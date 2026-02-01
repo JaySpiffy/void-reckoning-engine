@@ -18,7 +18,7 @@ def show_interactive_menu():
     print("6. Select Active Universe")
     print("7. Cross-Universe Duel (1v1)")
     print("8. Multi-Universe Fleet Battle (Mixed)")
-    print("9. Launch Live Dashboard")
+    print("9. Launch Terminal Dashboard (Demo)")
     print("10. Custom Report Export")
     print("0. Exit")
     
@@ -207,19 +207,9 @@ def show_interactive_menu():
         show_interactive_menu()
     elif choice == "9":
         universe = get_active_universe_interactive()
-        print(f"\nLaunching Campaign with Live Dashboard for {universe}...")
-        print("FastAPI Dashboard starting on http://localhost:8000")
-        
-        # Use subprocess to launch proper FastAPI server
-        subprocess.Popen([
-            sys.executable, 
-            "-m", "src.reporting.dashboard_v2.run_server",
-            "--universe", universe
-        ])
-        
-        # Original call replaced
-        # sys.argv = ["campaign_sim", "campaign", "--quick", "--universe", universe, "--dashboard"]
-        # main()
+        # Launch using the new dashboard CLI command (interactive)
+        sys.argv = ["campaign_sim", "dashboard", "--universe", universe]
+        main()
     elif choice == "10":
         universe = get_active_universe_interactive()
         print("\nExport Options:")

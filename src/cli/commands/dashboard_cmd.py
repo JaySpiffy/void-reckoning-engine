@@ -11,41 +11,52 @@ class DashboardCommand(BaseCommand):
         return "dashboard"
 
     @property
+    @property
     def help(self) -> str:
-        return "Launch live dashboard"
+        return "Launch Terminal Dashboard (Demo Batch)"
 
     def register_arguments(self, parser: argparse.ArgumentParser) -> None:
-        parser.add_argument("--port", type=int, default=5000, help="Port to bind to (default: 5000)")
-        parser.add_argument("--host", default="localhost", help="Host interface (default: localhost)")
-        parser.add_argument("--universe", type=str, help="Universe context (optional)")
-        parser.add_argument("--run-id", type=str, help="Run ID to attach to (optional)")
-        parser.add_argument("--no-browser", action="store_true", help="Do not open browser automatically")
+        parser.add_argument("--universe", type=str, help="Universe context (default: void_reckoning)")
+        parser.add_argument("--runs", type=int, help="Number of runs for demo")
 
     def execute(self, args: argparse.Namespace) -> None:
+        from src.engine import simulation_runner
+        
         universe = args.universe or "void_reckoning"
-        run_id = args.run_id # Optional
+        runs = args.runs
         
-        print(f"Starting Live Dashboard V2 on http://{args.host}:{args.port}")
+        # Interactive prompt if not specified via CLI arg
+        if runs is None:
+            try:
+                user_input = input(f"Enter number of runs for {universe} (default 5): ").strip()
+                if user_input:
+                    runs = int(user_input)
+                else:
+                    runs = 5
+            except ValueError:
+                print("Invalid input. Using default: 5")
+                runs = 5
         
-        cmd = [
-            sys.executable, 
-            "-m", "src.reporting.dashboard_v2.run_server",
-            "--universe", universe,
-            "--host", args.host,
-            "--port", str(args.port)
-        ]
+        print(f"\n[DEMO] Launching Terminal Dashboard for {universe} ({runs} runs)...")
+        print("This runs a small batch simulation to demonstrate the terminal UI.")
         
-        if run_id:
-            cmd.extend(["--run-id", run_id])
-            
-        dash_process = subprocess.Popen(cmd)
+        # Create a temporary config for the demo
+        config = {
+            "universe": universe,
+            "simulation": {
+                "num_runs": runs,
+                "output_dir": "reports/dashboard_demo"
+            },
+            "campaign": {
+                "turns": 50,  # Short runs for demo
+                "num_systems": 20
+            },
+            "reporting": {
+                "enable_dashboard": True
+            }
+        }
         
-        if not args.no_browser:
-            time.sleep(2.0)
-            webbrowser.open(f"http://{args.host}:{args.port}")
-            
         try:
-            dash_process.wait()
+            simulation_runner.run_batch_simulation(config)
         except KeyboardInterrupt:
-            print("Stopping dashboard...")
-            dash_process.terminate()
+            print("\nDemo stopped.")

@@ -15,7 +15,6 @@ A high-fidelity Grand Strategy Campaign Engine featuring the **Void Reckoning** 
 - [Core Features](#core-features)
 - [System Architecture](#system-architecture)
 - [Terminal Dashboard](#terminal-dashboard)
-- [Dashboard (In-Progress)](#dashboard)
 - [GPU Acceleration](#gpu-acceleration)
 - [Analytics Engine](#analytics-engine)
 - [AI System](#ai-system)
@@ -47,7 +46,7 @@ The engine uses a high-frequency real-time resolution for battles, allowing for 
 |---------|-------------|
 | `python run.py` | Launch interactive menu (11 options) |
 | `python run.py campaign --universe void_reckoning` | Run campaign simulation |
-| `python run.py dashboard` | Launch real-time dashboard |
+| `python run.py dashboard` | Launch Terminal Dashboard (Demo Batch) |
 | `python run.py simulate --mode duel` | Run tactical combat |
 | `python run.py validate` | Validate configurations |
 | `pytest` | Run test suite |
@@ -83,8 +82,7 @@ The engine uses a high-frequency real-time resolution for battles, allowing for 
 
 ### User Interface
 
-- 🎮 **Terminal Dashboard (Stable)**: High-performance, low-latency CLI visualization for real-time campaign monitoring and batch results.
-- 🎮 **Dashboard v2 (In-Progress)**: Experimental FastAPI backend with React + TypeScript frontend, WebSocket streaming, and real-time metrics.
+- 🎮 **Terminal Dashboard**: High-performance, low-latency CLI visualization for real-time campaign monitoring and batch results.
 - 💻 **15 CLI Commands**: Comprehensive simulation control via command-line interface
 - 🖥️ **Interactive Menu**: 11-option menu system for easy access to all features
 
@@ -654,7 +652,7 @@ The engine supports 15 CLI commands for comprehensive simulation control.
 | `ValidateCommand` | Validate configuration files and registries |
 | `ConfigCommand` | Manage and view configuration settings |
 | `MultiUniverseCommand` | Run parallel multi-universe simulations |
-| `DashboardCommand` | Launch the real-time dashboard server |
+| `DashboardCommand` | Launch Terminal Dashboard Demo (Batch Simulation) |
 | `ValidatePortalsCommand` | Validate portal network topology and connectivity |
 | `ListPortalsCommand` | List available portals in the active universe |
 | `TestPortalCommand` | Test portal traversal between locations |
@@ -696,8 +694,8 @@ python run.py simulate --mode duel --units "Templar Initiate" "Bio-Morph Ravager
 # Generate registries
 python run.py generate --universe eternal_crusade
 
-# Launch dashboard
-python run.py dashboard --universe eternal_crusade --port 8000
+# Launch Terminal Dashboard Demo
+python run.py dashboard --universe eternal_crusade
 
 # Run with GPU acceleration (auto device selection)
 python run.py campaign --universe eternal_crusade --gpu --gpu-strategy auto
@@ -733,71 +731,16 @@ The terminal dashboard is automatically activated when running campaigns with th
 ```bash
 # Run a batch campaign with live dashboard
 python run.py campaign --universe void_reckoning --batch --turns 100
+
+# Run a dedicated multi-universe simulation
+python run.py multi-universe --config config/void_reckoning_config.json
+
+# Launch a quick demo of the dashboard
+python run.py dashboard
 ```
 
 ---
 
-## Dashboard (In-Progress)
-
-The project features a modern, real-time dashboard built with **FastAPI** and **React + TypeScript**.
-
-### Dashboard Architecture
-
-**Frontend Stack:**
-
-- React 18.2.0
-- TypeScript 5.2.2
-- Vite 5.0.0
-- Zustand (State Management)
-- Recharts (Data Visualization)
-- React Router (Routing)
-- Axios (HTTP Client)
-
-**Backend Stack:**
-
-- FastAPI 0.109.0
-- WebSocket (Real-time Streaming)
-- Pydantic 2.5+ (Data Validation)
-- Uvicorn (ASGI Server)
-
-### Launch Dashboard
-
-```bash
-# Terminal 1: Start backend
-python run.py dashboard --universe eternal_crusade --port 8000
-
-# Terminal 2: Start frontend
-cd frontend && npm run dev
-```
-
-### Dashboard Features
-
-- 📡 Real-time metrics streaming via WebSockets
-- 🌌 Interactive Galaxy Map
-- 📊 Economic, Military, and Industrial analytics
-- 🛰️ **Combat Domain Splits**: Dedicated tracking for Space vs Ground battles and casualties
-- 🔔 Alert management system
-- 📉 Performance monitoring
-- 🎮 Live campaign tracking
-- 🎛️ Control interface for simulation management
-- 📈 Predictive analytics and anomaly detection
-- 🔍 Diagnostics and health checks
-
-### API Routes
-
-| Route | Description |
-|-------|-------------|
-| `/api/status` | System status |
-| `/api/metrics` | Performance metrics |
-| `/api/alerts` | Alert management |
-| `/api/analytics` | Comprehensive analytics |
-| `/api/control` | Simulation control |
-| `/api/diagnostics` | System diagnostics |
-| `/api/economic` | Economic metrics |
-| `/api/export` | Data export |
-| `/api/galaxy` | Galaxy map data |
-| `/api/industrial` | Industrial metrics |
-| `/api/performance` | Performance monitoring |
 | `/api/research` | Research analytics |
 | `/api/runs` | Simulation runs |
 | `/api/military` | Military metrics |
