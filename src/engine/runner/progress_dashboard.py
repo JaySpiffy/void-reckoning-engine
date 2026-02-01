@@ -1,4 +1,5 @@
 import os
+from src.core import gpu_utils
 
 class ProgressDashboard:
     """
@@ -30,7 +31,18 @@ class ProgressDashboard:
         if dynamic_map_str:
             print(f"Map Config: {dynamic_map_str}")
         if output_path:
-            print(f"Output Path: {output_path}")
+            # Build hardware info line
+            hw_line = f"Output Path: {output_path}"
+            selected_gpu = gpu_utils.get_selected_gpu()
+            if selected_gpu:
+                hw_line += f" | GPU: {selected_gpu.model.value} (Dev {selected_gpu.device_id})"
+            else:
+                hw_gpus = gpu_utils.get_hardware_gpu_info()
+                if hw_gpus:
+                    hw_line += f" | GPU: {hw_gpus[0]['name']} (HW Only)"
+                else:
+                    hw_line += f" | GPU: CPU-Only Fallback"
+            print(hw_line)
         print("-" * 80)
         
         sorted_ids = sorted(progress_map.keys())
@@ -77,6 +89,7 @@ class ProgressDashboard:
                 }
                 
                 for i, (faction, s) in enumerate(display_factions, 1):
+                    if not isinstance(s, dict): continue
                     # [DASHBOARD-FIX] Parse Instance ID (e.g. "Templars_of_the_Flux 2" -> "2TPL")
                     parts = faction.rsplit(' ', 1)
                     base_name = parts[0]

@@ -7,6 +7,7 @@ import json
 import traceback
 import multiprocessing
 from multiprocessing import Manager
+from collections import defaultdict
 
 # Extracted Components
 from src.engine.runner.simulation_worker import SimulationWorker, worker_init

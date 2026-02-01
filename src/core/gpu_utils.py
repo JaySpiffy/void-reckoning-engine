@@ -2,6 +2,9 @@
 import logging
 import os
 import sys
+import subprocess
+import re
+import json
 from typing import Any, Union, Optional, Dict, List, Tuple
 from dataclasses import dataclass
 from enum import Enum
@@ -99,6 +102,7 @@ _gpu_selection_strategy: GPUSelectionStrategy = GPUSelectionStrategy.AUTO
 _specific_gpu_id: Optional[int] = None
 _multi_gpu_enabled: bool = False
 _active_gpus: List[int] = []  # List of device IDs for multi-GPU
+_hw_gpu_info: List[Dict[str, Any]] = [] # Cached hardware-level detection
 
 
 # Set CUDA environment variables before importing CuPy
@@ -179,6 +183,16 @@ def _detect_gpu_model(device_id: int) -> GPUModel:
         if '5070' in name and 'TI' in name:
             logger.info(f"Detected RTX 5070 Ti on device {device_id}")
             return GPUModel.RTX_5070TI
+            
+        # Cross-reference with hardware detection if name is generic
+        for hw in _hw_gpu_info:
+            hw_name = hw['name'].upper()
+            if '3060' in hw_name and 'TI' in hw_name:
+                logger.info(f"Matched RTX 3060 Ti from hardware hint for device {device_id}")
+                return GPUModel.RTX_3060TI
+            if '5070' in hw_name and 'TI' in hw_name:
+                logger.info(f"Matched RTX 5070 Ti from hardware hint for device {device_id}")
+                return GPUModel.RTX_5070TI
         
         # Try to infer from memory and compute capability
         total_memory_mb = device.mem_info[0] // (1024 * 1024)
@@ -199,6 +213,73 @@ def _detect_gpu_model(device_id: int) -> GPUModel:
     except Exception as e:
         logger.error(f"Error detecting GPU model for device {device_id}: {e}")
         return GPUModel.UNKNOWN
+
+
+def _detect_via_nvidia_smi() -> List[Dict[str, Any]]:
+    """Uses nvidia-smi to detect NVIDIA GPUs."""
+    try:
+        cmd = ["nvidia-smi", "--query-gpu=name,memory.total", "--format=csv,noheader,nounits"]
+        result = subprocess.run(cmd, capture_output=True, text=True, check=True)
+        gpus = []
+        for line in result.stdout.strip().split('\n'):
+            if ',' in line:
+                name, mem = line.split(',')
+                gpus.append({
+                    "name": name.strip(),
+                    "memory_mb": int(mem.strip())
+                })
+        return gpus
+    except (subprocess.SubprocessError, FileNotFoundError, ValueError):
+        return []
+
+
+def _detect_via_wmi_powershell() -> List[Dict[str, Any]]:
+    """Uses PowerShell to detect all GPUs (Cross-vendor)."""
+    try:
+        # Use PowerShell to get video controller info
+        # Get-CimInstance is more modern than wmic
+        ps_cmd = 'Get-CimInstance -ClassName Win32_VideoController | Select-Object Name, AdapterRAM | ConvertTo-Json'
+        cmd = ["powershell", "-Command", ps_cmd]
+        result = subprocess.run(cmd, capture_output=True, text=True, check=True)
+        
+        if not result.stdout.strip():
+            return []
+            
+        data = json.loads(result.stdout)
+        if isinstance(data, dict):
+            data = [data]
+            
+        gpus = []
+        for entry in data:
+            name = entry.get("Name", "Unknown")
+            # AdapterRAM can be negative or weird in WMI for large values, but we'll try
+            ram_raw = entry.get("AdapterRAM", 0)
+            ram_mb = abs(int(ram_raw)) // (1024 * 1024) if ram_raw else 0
+            
+            gpus.append({
+                "name": name,
+                "memory_mb": ram_mb
+            })
+        return gpus
+    except (subprocess.SubprocessError, FileNotFoundError, Exception):
+        return []
+
+
+def get_hardware_gpu_info() -> List[Dict[str, Any]]:
+    """
+    Detects hardware GPUs installed in the PC using OS-level commands.
+    Returns a list of GPU info dicts.
+    """
+    # 1. Try nvidia-smi first for detailed NVIDIA info
+    gpus = _detect_via_nvidia_smi()
+    if gpus:
+        return gpus
+        
+    # 2. Fallback to WMI/PowerShell for generic detection (includes AMD/Intel)
+    if sys.platform == 'win32':
+        return _detect_via_wmi_powershell()
+        
+    return []
 
 
 def _detect_all_gpus() -> List[DetectedGPU]:
@@ -327,7 +408,19 @@ def check_gpu_availability():
     Sets global HAS_GPU and xp variables.
     Also detects all available GPUs and selects the best one.
     """
-    global HAS_GPU, xp, _detected_gpus, _selected_gpu
+    global HAS_GPU, xp, _detected_gpus, _selected_gpu, _hw_gpu_info
+    
+    # Phase 0: Hardware Auto-Detection (Regardless of CuPy)
+    try:
+        _hw_gpu_info = get_hardware_gpu_info()
+        if _hw_gpu_info:
+            for i, gpu in enumerate(_hw_gpu_info):
+                logger.info(f"Hardware GPU detected [{i}]: {gpu['name']} ({gpu['memory_mb']}MB VRAM)")
+        else:
+            logger.info("No hardware GPU detected via OS-level commands (fallback to CPU defaults).")
+    except Exception as e:
+        logger.debug(f"Hardware detection failed: {e}")
+
     try:
         import cupy as cp
         # Smoke Test: Attempt a small allocation and kernel compile check

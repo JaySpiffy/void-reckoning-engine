@@ -3,6 +3,7 @@ import os
 import sys
 from typing import Dict, Any, List
 from src.core.constants import FACTION_ABBREVIATIONS
+from src.core import gpu_utils
 
 # ANSI Colors
 RESET = "\033[0m"
@@ -44,7 +45,20 @@ class TerminalDashboard:
         buffer.append(f"{BOLD}{CYAN}╔{'═'*78}╗{RESET}")
         buffer.append(f"{BOLD}{CYAN}║ {WHITE}MULTI-UNIVERSE SIMULATION DASHBOARD{' '*43}{CYAN}║{RESET}")
         buffer.append(f"{BOLD}{CYAN}╚{'═'*78}╝{RESET}")
-        buffer.append(f"{DIM}Output: {output_dir}{RESET}")
+        
+        # Hardware Info Line
+        hw_info = f"{DIM}Output: {output_dir}{RESET}"
+        selected_gpu = gpu_utils.get_selected_gpu()
+        if selected_gpu:
+            hw_info += f" | {BOLD}{GREEN}GPU: {selected_gpu.model.value} (Device {selected_gpu.device_id}){RESET}"
+        else:
+            hw_gpus = gpu_utils.get_hardware_gpu_info()
+            if hw_gpus:
+                hw_info += f" | {BOLD}{YELLOW}GPU: {hw_gpus[0]['name']} (Hardware Only){RESET}"
+            else:
+                hw_info += f" | {DIM}GPU: CPU OnlyFallback{RESET}"
+        
+        buffer.append(hw_info)
         buffer.append(f"{CYAN}{'─' * 80}{RESET}")
         
         for config in universe_configs:
