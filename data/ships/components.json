@@ -1,0 +1,109 @@
+{
+    "components": [
+        {
+            "id": "reactor_fission",
+            "name": "Fission Reactor",
+            "slot_type": "REACTOR",
+            "stats": {},
+            "cost": 50,
+            "power": 100,
+            "tech_level": 1
+        },
+        {
+            "id": "reactor_fusion",
+            "name": "Fusion Reactor",
+            "slot_type": "REACTOR",
+            "stats": {},
+            "cost": 100,
+            "power": 250,
+            "tech_level": 2
+        },
+        {
+            "id": "thruster_chemical",
+            "name": "Chemical Thrusters",
+            "slot_type": "THRUSTER",
+            "stats": {
+                "evasion": 0.05,
+                "speed": 10
+            },
+            "cost": 20,
+            "power": -10,
+            "tech_level": 1
+        },
+        {
+            "id": "laser_s_1",
+            "name": "Red Laser (S)",
+            "slot_type": "S",
+            "stats": {
+                "damage": 5,
+                "accuracy": 0.90,
+                "range": 30
+            },
+            "cost": 20,
+            "power": -10,
+            "tech_level": 1
+        },
+        {
+            "id": "mass_driver_s_1",
+            "name": "Mass Driver (S)",
+            "slot_type": "S",
+            "stats": {
+                "damage": 6,
+                "accuracy": 0.80,
+                "range": 40
+            },
+            "cost": 20,
+            "power": -10,
+            "tech_level": 1
+        },
+        {
+            "id": "laser_m_1",
+            "name": "Red Laser (M)",
+            "slot_type": "M",
+            "stats": {
+                "damage": 12,
+                "accuracy": 0.85,
+                "range": 50
+            },
+            "cost": 50,
+            "power": -25,
+            "tech_level": 1
+        },
+        {
+            "id": "laser_l_1",
+            "name": "Red Laser (L)",
+            "slot_type": "L",
+            "stats": {
+                "damage": 30,
+                "accuracy": 0.80,
+                "range": 80
+            },
+            "cost": 100,
+            "power": -60,
+            "tech_level": 1
+        },
+        {
+            "id": "armor_ceramic",
+            "name": "Ceramic Plating",
+            "slot_type": "A",
+            "stats": {
+                "armor": 20,
+                "hp": 50
+            },
+            "cost": 20,
+            "power": 0,
+            "tech_level": 1
+        },
+        {
+            "id": "shield_deflector",
+            "name": "Deflectors",
+            "slot_type": "A",
+            "stats": {
+                "shield": 50
+            },
+            "cost": 40,
+            "power": -20,
+            "tech_level": 1
+        }
+    ]
+}

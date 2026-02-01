@@ -1,0 +1,55 @@
+version: "3.8"
+
+services:
+  dashboard:
+    build:
+      context: ..
+      dockerfile: Dockerfile.dashboard
+    image: dashboard:latest
+    container_name: campaign-dashboard
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./universes:/app/universes
+      - ./config:/app/config
+      - ./reports:/app/reports
+      - ./src:/app/src
+      - ./run.py:/app/run.py
+      - ./frontend/dist:/app/frontend/dist
+    environment:
+      - LOG_LEVEL=info
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/control/status').read()"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_WS_URL=ws://localhost:8000/ws
+      - VITE_API_BASE_URL=http://localhost:8000/api
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+
+  # Optional: Redis for future caching layer
+  # redis:
+  #   image: redis:alpine
+  #   ports:
+  #     - "6379:6379"
+
+  # Optional: Nginx proxy if strict static serving/gzip needed
+  # nginx:
+  #   image: nginx:alpine
+  #   ports:
+  #     - "80:80"
+  #   volumes:
+  #     - ./nginx.conf:/etc/nginx/nginx.conf
+  #   depends_on:
+  #     - dashboard

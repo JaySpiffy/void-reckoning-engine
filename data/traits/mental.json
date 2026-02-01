@@ -1,0 +1,81 @@
+{
+    "traits": [
+        {
+            "id": "genius",
+            "name": "Genius",
+            "category": "mental",
+            "modifiers": {
+                "research_speed": 0.50,
+                "xp_gain": 0.30,
+                "ability_power": 0.25
+            },
+            "description": "Brilliant minds. +50% Research, +30% XP.",
+            "rarity": "rare",
+            "conflicts": [
+                "slow_learner"
+            ]
+        },
+        {
+            "id": "intelligent",
+            "name": "Intelligent",
+            "category": "mental",
+            "modifiers": {
+                "research_speed": 0.25,
+                "xp_gain": 0.15
+            },
+            "description": "Smart. +25% Research, +15% XP.",
+            "rarity": "uncommon",
+            "conflicts": [
+                "slow_learner"
+            ]
+        },
+        {
+            "id": "slow_learner",
+            "name": "Slow Learner",
+            "category": "mental",
+            "modifiers": {
+                "xp_gain": -0.20,
+                "research_speed": -0.15
+            },
+            "description": "-20% XP, -15% Research.",
+            "rarity": "common",
+            "conflicts": [
+                "intelligent",
+                "genius"
+            ]
+        },
+        {
+            "id": "tactical",
+            "name": "Tactical",
+            "category": "mental",
+            "modifiers": {
+                "accuracy": 0.10,
+                "leadership": 0.15
+            },
+            "description": "+10% Accuracy, +15% Leadership.",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "latent_psionic",
+            "name": "Latent Psionic",
+            "category": "mental",
+            "modifiers": {
+                "psionic_power": 10.0,
+                "psionic_resistance": 0.20
+            },
+            "description": "Minor psychic potential.",
+            "rarity": "common"
+        },
+        {
+            "id": "charismatic",
+            "name": "Charismatic",
+            "category": "mental",
+            "modifiers": {
+                "morale": 0.25,
+                "leadership": 0.20
+            },
+            "description": "Natural leaders. +25% Morale.",
+            "rarity": "common"
+        }
+    ]
+}

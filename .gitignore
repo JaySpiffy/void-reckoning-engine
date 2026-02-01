@@ -1,0 +1,29 @@
+# Generated Artifacts
+reports/
+saves/
+universes/*
+!universes/void_reckoning/
+*.log
+debug_*.txt
+test_output.txt
+test_logs_debug/
+test_reports/
+
+# Internal Documentation
+docs/
+
+# Python / Build
+__pycache__/
+*.pyc
+.pytest_cache/
+.cache/
+*.egg-info/
+.coverage
+
+# IDE
+.vscode/
+.idea/
+
+# Misc / Backups
+examples_only/
+.roo/

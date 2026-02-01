@@ -1,0 +1,23 @@
+trend_analysis:
+  moving_average_window: 10
+  trend_threshold: 0.05
+  
+anomaly_detection:
+  z_score_threshold: 2.5
+  resource_spike_threshold: 3.0
+  battle_duration_outlier_factor: 1.5
+  
+predictive_models:
+  victory_prediction:
+    features: ["planets_controlled", "military_power", "requisition", "tech_count"]
+    model_type: "logistic_regression"
+    retrain_interval: 100
+  resource_exhaustion:
+    lookahead_turns: 20
+    warning_threshold: 5000
+    
+visualization:
+  default_theme: "dark"
+  dpi: 300
+  figure_size: [12, 8]
+  color_palette: "viridis"

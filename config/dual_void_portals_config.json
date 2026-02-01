@@ -1,0 +1,99 @@
+{
+    "_help": {
+        "description": "Dual-Universe Portal Config for Void Reckoning instances."
+    },
+    "mode": "multi",
+    "sandbox_mode": true,
+    "simulation": {
+        "max_workers": 8,
+        "debug_mode": false,
+        "faction_instances": 1
+    },
+    "campaign": {
+        "turns": 100,
+        "num_systems": 20,
+        "min_planets": 10,
+        "max_planets": 10,
+        "combat_rounds": 500,
+        "rounds_per_turn": 500
+    },
+    "mechanics": {
+        "enable_diplomacy": true,
+        "enable_portals": true,
+        "enable_weather": true
+    },
+    "universes": [
+        {
+            "name": "void_alpha",
+            "enabled": true,
+            "processor_affinity": [
+                0,
+                1,
+                2,
+                3
+            ],
+            "num_runs": 1,
+            "portals": [
+                {
+                    "portal_id": "rift_omega",
+                    "source_coords": [
+                        25,
+                        25
+                    ],
+                    "dest_universe": "void_beta",
+                    "dest_coords": [
+                        75,
+                        75
+                    ],
+                    "placement_strategy": "nearest_system",
+                    "metadata": {
+                        "name": "Alpha-Beta Rift Alpha",
+                        "description": "Stable gateway to the Beta instance."
+                    }
+                }
+            ]
+        },
+        {
+            "name": "void_beta",
+            "enabled": true,
+            "processor_affinity": [
+                4,
+                5,
+                6,
+                7
+            ],
+            "num_runs": 1,
+            "portals": [
+                {
+                    "portal_id": "rift_omega",
+                    "source_coords": [
+                        75,
+                        75
+                    ],
+                    "dest_universe": "void_alpha",
+                    "dest_coords": [
+                        25,
+                        25
+                    ],
+                    "placement_strategy": "nearest_system",
+                    "metadata": {
+                        "name": "Alpha-Beta Rift Beta",
+                        "description": "Stable gateway back to the Alpha instance."
+                    }
+                }
+            ]
+        }
+    ],
+    "multi_universe_settings": {
+        "sync_turns": true,
+        "cross_universe_events": true,
+        "aggregate_reports": true
+    },
+    "reporting": {
+        "formats": [
+            "json",
+            "markdown",
+            "html"
+        ]
+    }
+}

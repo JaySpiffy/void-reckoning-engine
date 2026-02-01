@@ -1,0 +1,1590 @@
+[
+  {
+    "name": "Raider (Melta)",
+    "blueprint_id": "nebula_drifters_raider_melta",
+    "type": "infantry",
+    "faction": "Nebula_Drifters",
+    "cost": 100,
+    "base_stats": {
+      "hp": 10,
+      "armor": 4,
+      "damage": 14,
+      "speed": 8,
+      "type": "infantry",
+      "cost": 110,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 12.954545454545455,
+      "atom_energy": 21.90909090909091,
+      "atom_cohesion": 13.863636363636363,
+      "atom_volatility": 5.127272727272727,
+      "atom_stability": 12.818181818181817,
+      "atom_focus": 5.127272727272727,
+      "atom_frequency": 5.127272727272727,
+      "atom_aether": 5.127272727272727,
+      "atom_will": 12.818181818181817,
+      "atom_information": 5.127272727272727
+    },
+    "source_universe": "void_reckoning",
+    "description": "Nebula_Drifters Infantry unit. Auto-generated. armed with short-range anti-armor thermal beams.",
+    "traits": [
+      "Trait_Shield_Regen"
+    ],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 10,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "nebula_drifters_base_melee_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Raider (Assault)",
+    "blueprint_id": "nebula_drifters_raider_assault",
+    "type": "infantry",
+    "faction": "Nebula_Drifters",
+    "cost": 100,
+    "base_stats": {
+      "hp": 10,
+      "armor": 4,
+      "damage": 18,
+      "speed": 9,
+      "type": "infantry",
+      "cost": 100,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 12.954545454545455,
+      "atom_energy": 12.818181818181817,
+      "atom_cohesion": 22.954545454545457,
+      "atom_volatility": 5.127272727272727,
+      "atom_stability": 12.818181818181817,
+      "atom_focus": 5.127272727272727,
+      "atom_frequency": 5.127272727272727,
+      "atom_aether": 5.127272727272727,
+      "atom_will": 12.818181818181817,
+      "atom_information": 5.127272727272727
+    },
+    "source_universe": "void_reckoning",
+    "description": "Nebula_Drifters Infantry unit. Auto-generated. configured for close-quarters combat.",
+    "traits": [
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "assault_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 10,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "nebula_drifters_base_melee_weapon_0_S"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "nebula_drifters_base_melee_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Incubus (Melta)",
+    "blueprint_id": "nebula_drifters_incubus_melta",
+    "type": "infantry",
+    "faction": "Nebula_Drifters",
+    "cost": 300,
+    "base_stats": {
+      "hp": 25,
+      "armor": 12,
+      "damage": 33,
+      "speed": 8,
+      "type": "infantry",
+      "cost": 330,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 7.6,
+      "atom_energy": 16.499999999999996,
+      "atom_cohesion": 9.19090909090909,
+      "atom_volatility": 2.9636363636363634,
+      "atom_stability": 7.40909090909091,
+      "atom_focus": 25.209090909090907,
+      "atom_frequency": 2.9636363636363634,
+      "atom_aether": 2.9636363636363634,
+      "atom_will": 7.40909090909091,
+      "atom_information": 17.79090909090909
+    },
+    "source_universe": "void_reckoning",
+    "description": "Nebula_Drifters Elite_Infantry unit. Auto-generated. armed with short-range anti-armor thermal beams.",
+    "traits": [
+      "Trait_Armor_Piercing"
+    ],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 30,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "nebula_drifters_base_melee_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Incubus (Assault)",
+    "blueprint_id": "nebula_drifters_incubus_assault",
+    "type": "infantry",
+    "faction": "Nebula_Drifters",
+    "cost": 300,
+    "base_stats": {
+      "hp": 25,
+      "armor": 12,
+      "damage": 36,
+      "speed": 9,
+      "type": "infantry",
+      "cost": 300,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 7.6,
+      "atom_energy": 7.40909090909091,
+      "atom_cohesion": 18.28181818181818,
+      "atom_volatility": 2.9636363636363634,
+      "atom_stability": 7.40909090909091,
+      "atom_focus": 25.209090909090907,
+      "atom_frequency": 2.9636363636363634,
+      "atom_aether": 2.9636363636363634,
+      "atom_will": 7.40909090909091,
+      "atom_information": 17.79090909090909
+    },
+    "source_universe": "void_reckoning",
+    "description": "Nebula_Drifters Elite_Infantry unit. Auto-generated. configured for close-quarters combat.",
+    "traits": [
+      "Trait_Adaptive_Armor",
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "assault_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 30,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "nebula_drifters_base_melee_weapon_0_S"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "nebula_drifters_base_melee_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Jetbike (Plasma)",
+    "blueprint_id": "nebula_drifters_jetbike_plasma",
+    "type": "vehicle",
+    "faction": "Nebula_Drifters",
+    "cost": 500,
+    "base_stats": {
+      "hp": 80,
+      "armor": 10,
+      "damage": 47,
+      "speed": 24,
+      "type": "vehicle",
+      "cost": 600,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 19.069565217391304,
+      "atom_energy": 10.608695652173912,
+      "atom_cohesion": 14.843478260869567,
+      "atom_volatility": 17.286956521739132,
+      "atom_stability": 10.608695652173912,
+      "atom_focus": 4.243478260869566,
+      "atom_frequency": 4.243478260869566,
+      "atom_aether": 4.243478260869566,
+      "atom_will": 10.608695652173912,
+      "atom_information": 4.243478260869566
+    },
+    "source_universe": "void_reckoning",
+    "description": "Nebula_Drifters Light_Vehicle unit. Auto-generated. armed with high-energy plasma weaponry.",
+    "traits": [],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 50,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "nebula_drifters_base_melee_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Jetbike (Melta)",
+    "blueprint_id": "nebula_drifters_jetbike_melta",
+    "type": "vehicle",
+    "faction": "Nebula_Drifters",
+    "cost": 500,
+    "base_stats": {
+      "hp": 80,
+      "armor": 10,
+      "damage": 44,
+      "speed": 24,
+      "type": "vehicle",
+      "cost": 550,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 19.936363636363634,
+      "atom_energy": 20.18181818181818,
+      "atom_cohesion": 15.518181818181818,
+      "atom_volatility": 4.4363636363636365,
+      "atom_stability": 11.09090909090909,
+      "atom_focus": 4.4363636363636365,
+      "atom_frequency": 4.4363636363636365,
+      "atom_aether": 4.4363636363636365,
+      "atom_will": 11.09090909090909,
+      "atom_information": 4.4363636363636365
+    },
+    "source_universe": "void_reckoning",
+    "description": "Nebula_Drifters Light_Vehicle unit. Auto-generated. armed with short-range anti-armor thermal beams.",
+    "traits": [
+      "Trait_Shield_Regen",
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 50,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "nebula_drifters_base_melee_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Jetbike (Missile)",
+    "blueprint_id": "nebula_drifters_jetbike_missile",
+    "type": "vehicle",
+    "faction": "Nebula_Drifters",
+    "cost": 500,
+    "base_stats": {
+      "hp": 80,
+      "armor": 10,
+      "damage": 32,
+      "speed": 24,
+      "type": "vehicle",
+      "cost": 500,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 29.02727272727273,
+      "atom_energy": 11.09090909090909,
+      "atom_cohesion": 15.518181818181818,
+      "atom_volatility": 4.4363636363636365,
+      "atom_stability": 11.09090909090909,
+      "atom_focus": 4.4363636363636365,
+      "atom_frequency": 4.4363636363636365,
+      "atom_aether": 4.4363636363636365,
+      "atom_will": 11.09090909090909,
+      "atom_information": 4.4363636363636365
+    },
+    "source_universe": "void_reckoning",
+    "description": "Nebula_Drifters Light_Vehicle unit. Auto-generated. equipped with long-range missile pods.",
+    "traits": [
+      "Trait_Damage_Reduction",
+      "Trait_Reinforced_Plating"
+    ],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 50,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "nebula_drifters_base_melee_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Jetbike (Shield)",
+    "blueprint_id": "nebula_drifters_jetbike_shield",
+    "type": "vehicle",
+    "faction": "Nebula_Drifters",
+    "cost": 500,
+    "base_stats": {
+      "hp": 64,
+      "armor": 5,
+      "damage": 35,
+      "speed": 24,
+      "type": "vehicle",
+      "cost": 650,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 18.275,
+      "atom_energy": 10.166666666666666,
+      "atom_cohesion": 14.225000000000001,
+      "atom_volatility": 4.066666666666666,
+      "atom_stability": 10.166666666666666,
+      "atom_focus": 20.73333333333333,
+      "atom_frequency": 4.066666666666666,
+      "atom_aether": 4.066666666666666,
+      "atom_will": 10.166666666666666,
+      "atom_information": 4.066666666666666
+    },
+    "source_universe": "void_reckoning",
+    "description": "Nebula_Drifters Light_Vehicle unit. Auto-generated. fitted with experimental shield generators.",
+    "traits": [
+      "Trait_Armor_Piercing"
+    ],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 50,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "nebula_drifters_base_melee_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Ravager (Plasma)",
+    "blueprint_id": "nebula_drifters_ravager_plasma",
+    "type": "vehicle",
+    "faction": "Nebula_Drifters",
+    "cost": 1200,
+    "base_stats": {
+      "hp": 250,
+      "armor": 30,
+      "damage": 145,
+      "speed": 12,
+      "type": "vehicle",
+      "cost": 1440,
+      "tier": 3,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 28.426086956521736,
+      "atom_energy": 8.130434782608695,
+      "atom_cohesion": 17.878260869565217,
+      "atom_volatility": 16.295652173913044,
+      "atom_stability": 8.130434782608695,
+      "atom_focus": 3.252173913043478,
+      "atom_frequency": 3.252173913043478,
+      "atom_aether": 3.252173913043478,
+      "atom_will": 8.130434782608695,
+      "atom_information": 3.252173913043478
+    },
+    "source_universe": "void_reckoning",
+    "description": "Nebula_Drifters Heavy_Tank unit. Auto-generated. armed with high-energy plasma weaponry.",
+    "traits": [
+      "Trait_Damage_Reduction",
+      "Trait_Reinforced_Plating",
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "battle_tank",
+    "domain": "ground",
+    "tier": 3,
+    "upkeep": 120,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_melee_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_laser_weapon_1_M"
+      }
+    ]
+  },
+  {
+    "name": "Ravager (Melta)",
+    "blueprint_id": "nebula_drifters_ravager_melta",
+    "type": "vehicle",
+    "faction": "Nebula_Drifters",
+    "cost": 1200,
+    "base_stats": {
+      "hp": 250,
+      "armor": 30,
+      "damage": 137,
+      "speed": 12,
+      "type": "vehicle",
+      "cost": 1320,
+      "tier": 3,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 29.718181818181815,
+      "atom_energy": 17.590909090909093,
+      "atom_cohesion": 18.690909090909088,
+      "atom_volatility": 3.4000000000000004,
+      "atom_stability": 8.5,
+      "atom_focus": 3.4000000000000004,
+      "atom_frequency": 3.4000000000000004,
+      "atom_aether": 3.4000000000000004,
+      "atom_will": 8.5,
+      "atom_information": 3.4000000000000004
+    },
+    "source_universe": "void_reckoning",
+    "description": "Nebula_Drifters Heavy_Tank unit. Auto-generated. armed with short-range anti-armor thermal beams.",
+    "traits": [
+      "Trait_Damage_Reduction",
+      "Trait_Anti_Vehicle",
+      "Trait_Reinforced_Plating"
+    ],
+    "variant": true,
+    "unit_class": "battle_tank",
+    "domain": "ground",
+    "tier": 3,
+    "upkeep": 120,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_melee_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_laser_weapon_1_M"
+      }
+    ]
+  },
+  {
+    "name": "Ravager (Missile)",
+    "blueprint_id": "nebula_drifters_ravager_missile",
+    "type": "vehicle",
+    "faction": "Nebula_Drifters",
+    "cost": 1200,
+    "base_stats": {
+      "hp": 250,
+      "armor": 30,
+      "damage": 101,
+      "speed": 12,
+      "type": "vehicle",
+      "cost": 1200,
+      "tier": 3,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 38.80909090909091,
+      "atom_energy": 8.5,
+      "atom_cohesion": 18.690909090909088,
+      "atom_volatility": 3.4000000000000004,
+      "atom_stability": 8.5,
+      "atom_focus": 3.4000000000000004,
+      "atom_frequency": 3.4000000000000004,
+      "atom_aether": 3.4000000000000004,
+      "atom_will": 8.5,
+      "atom_information": 3.4000000000000004
+    },
+    "source_universe": "void_reckoning",
+    "description": "Nebula_Drifters Heavy_Tank unit. Auto-generated. equipped with long-range missile pods.",
+    "traits": [
+      "Trait_Damage_Reduction",
+      "Trait_Reinforced_Plating",
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "battle_tank",
+    "domain": "ground",
+    "tier": 3,
+    "upkeep": 120,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_melee_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_laser_weapon_1_M"
+      }
+    ]
+  },
+  {
+    "name": "Ravager (Shield)",
+    "blueprint_id": "nebula_drifters_ravager_shield",
+    "type": "vehicle",
+    "faction": "Nebula_Drifters",
+    "cost": 1200,
+    "base_stats": {
+      "hp": 200,
+      "armor": 15,
+      "damage": 110,
+      "speed": 12,
+      "type": "vehicle",
+      "cost": 1560,
+      "tier": 3,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 27.241666666666664,
+      "atom_energy": 7.791666666666666,
+      "atom_cohesion": 17.13333333333333,
+      "atom_volatility": 3.1166666666666667,
+      "atom_stability": 7.791666666666666,
+      "atom_focus": 19.783333333333335,
+      "atom_frequency": 3.1166666666666667,
+      "atom_aether": 3.1166666666666667,
+      "atom_will": 7.791666666666666,
+      "atom_information": 3.1166666666666667
+    },
+    "source_universe": "void_reckoning",
+    "description": "Nebula_Drifters Heavy_Tank unit. Auto-generated. fitted with experimental shield generators.",
+    "traits": [
+      "Trait_Damage_Reduction",
+      "Trait_Reinforced_Plating",
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "battle_tank",
+    "domain": "ground",
+    "tier": 3,
+    "upkeep": 120,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_melee_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_laser_weapon_1_M"
+      }
+    ]
+  },
+  {
+    "name": "Wraith (Plasma)",
+    "blueprint_id": "nebula_drifters_wraith_plasma",
+    "type": "vehicle",
+    "faction": "Nebula_Drifters",
+    "cost": 900,
+    "base_stats": {
+      "hp": 180,
+      "armor": 18,
+      "damage": 98,
+      "speed": 10,
+      "type": "vehicle",
+      "cost": 1080,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 13.608695652173914,
+      "atom_energy": 11.530434782608696,
+      "atom_cohesion": 15.669565217391304,
+      "atom_volatility": 17.66086956521739,
+      "atom_stability": 11.530434782608696,
+      "atom_focus": 4.617391304347826,
+      "atom_frequency": 4.617391304347826,
+      "atom_aether": 4.617391304347826,
+      "atom_will": 11.530434782608696,
+      "atom_information": 4.617391304347826
+    },
+    "source_universe": "void_reckoning",
+    "description": "Nebula_Drifters Walker unit. Auto-generated. armed with high-energy plasma weaponry.",
+    "traits": [
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 90,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "nebula_drifters_base_melee_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Wraith (Melta)",
+    "blueprint_id": "nebula_drifters_wraith_melta",
+    "type": "vehicle",
+    "faction": "Nebula_Drifters",
+    "cost": 900,
+    "base_stats": {
+      "hp": 180,
+      "armor": 18,
+      "damage": 92,
+      "speed": 10,
+      "type": "vehicle",
+      "cost": 990,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 14.227272727272727,
+      "atom_energy": 21.14545454545454,
+      "atom_cohesion": 16.38181818181818,
+      "atom_volatility": 4.827272727272726,
+      "atom_stability": 12.054545454545455,
+      "atom_focus": 4.827272727272726,
+      "atom_frequency": 4.827272727272726,
+      "atom_aether": 4.827272727272726,
+      "atom_will": 12.054545454545455,
+      "atom_information": 4.827272727272726
+    },
+    "source_universe": "void_reckoning",
+    "description": "Nebula_Drifters Walker unit. Auto-generated. armed with short-range anti-armor thermal beams.",
+    "traits": [
+      "Trait_Shield_Regen",
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 90,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "nebula_drifters_base_melee_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Wraith (Missile)",
+    "blueprint_id": "nebula_drifters_wraith_missile",
+    "type": "vehicle",
+    "faction": "Nebula_Drifters",
+    "cost": 900,
+    "base_stats": {
+      "hp": 180,
+      "armor": 18,
+      "damage": 65,
+      "speed": 10,
+      "type": "vehicle",
+      "cost": 900,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 23.318181818181817,
+      "atom_energy": 12.054545454545455,
+      "atom_cohesion": 16.38181818181818,
+      "atom_volatility": 4.827272727272726,
+      "atom_stability": 12.054545454545455,
+      "atom_focus": 4.827272727272726,
+      "atom_frequency": 4.827272727272726,
+      "atom_aether": 4.827272727272726,
+      "atom_will": 12.054545454545455,
+      "atom_information": 4.827272727272726
+    },
+    "source_universe": "void_reckoning",
+    "description": "Nebula_Drifters Walker unit. Auto-generated. equipped with long-range missile pods.",
+    "traits": [
+      "Trait_Damage_Reduction",
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 90,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "nebula_drifters_base_melee_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Wraith (Shield)",
+    "blueprint_id": "nebula_drifters_wraith_shield",
+    "type": "vehicle",
+    "faction": "Nebula_Drifters",
+    "cost": 900,
+    "base_stats": {
+      "hp": 144,
+      "armor": 9,
+      "damage": 72,
+      "speed": 10,
+      "type": "vehicle",
+      "cost": 1170,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 13.041666666666668,
+      "atom_energy": 11.05,
+      "atom_cohesion": 15.016666666666667,
+      "atom_volatility": 4.425,
+      "atom_stability": 11.05,
+      "atom_focus": 21.09166666666667,
+      "atom_frequency": 4.425,
+      "atom_aether": 4.425,
+      "atom_will": 11.05,
+      "atom_information": 4.425
+    },
+    "source_universe": "void_reckoning",
+    "description": "Nebula_Drifters Walker unit. Auto-generated. fitted with experimental shield generators.",
+    "traits": [
+      "Trait_Armor_Piercing",
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 90,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "nebula_drifters_base_melee_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Razorwing (Plasma)",
+    "blueprint_id": "nebula_drifters_razorwing_plasma",
+    "type": "ship",
+    "faction": "Nebula_Drifters",
+    "cost": 150,
+    "base_stats": {
+      "hp": 50,
+      "armor": 0,
+      "damage": 51,
+      "speed": 70,
+      "type": "ship",
+      "cost": 180,
+      "tier": 1,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 8.73913043478261,
+      "atom_energy": 24.956521739130434,
+      "atom_cohesion": 8.321739130434782,
+      "atom_volatility": 16.373913043478257,
+      "atom_stability": 8.321739130434782,
+      "atom_focus": 3.3304347826086955,
+      "atom_frequency": 14.973913043478259,
+      "atom_aether": 3.3304347826086955,
+      "atom_will": 8.321739130434782,
+      "atom_information": 3.3304347826086955
+    },
+    "source_universe": "void_reckoning",
+    "description": "Nebula_Drifters Fighter unit. Auto-generated. armed with high-energy plasma weaponry.",
+    "traits": [
+      "Trait_Shield_Capacitor"
+    ],
+    "variant": true,
+    "unit_class": "fighter",
+    "domain": "space",
+    "tier": 1,
+    "upkeep": 15,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "nebula_drifters_base_laser_weapon_1_S"
+      }
+    ]
+  },
+  {
+    "name": "Razorwing (Missile)",
+    "blueprint_id": "nebula_drifters_razorwing_missile",
+    "type": "ship",
+    "faction": "Nebula_Drifters",
+    "cost": 150,
+    "base_stats": {
+      "hp": 50,
+      "armor": 0,
+      "damage": 43,
+      "speed": 70,
+      "type": "ship",
+      "cost": 150,
+      "tier": 1,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 18.227272727272727,
+      "atom_energy": 26.090909090909093,
+      "atom_cohesion": 8.700000000000001,
+      "atom_volatility": 3.481818181818182,
+      "atom_stability": 8.700000000000001,
+      "atom_focus": 3.481818181818182,
+      "atom_frequency": 15.654545454545454,
+      "atom_aether": 3.481818181818182,
+      "atom_will": 8.700000000000001,
+      "atom_information": 3.481818181818182
+    },
+    "source_universe": "void_reckoning",
+    "description": "Nebula_Drifters Fighter unit. Auto-generated. equipped with long-range missile pods.",
+    "traits": [
+      "Trait_Anti_Infantry"
+    ],
+    "variant": true,
+    "unit_class": "fighter",
+    "domain": "space",
+    "tier": 1,
+    "upkeep": 15,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "nebula_drifters_base_laser_weapon_1_S"
+      }
+    ]
+  },
+  {
+    "name": "Razorwing (Shield)",
+    "blueprint_id": "nebula_drifters_razorwing_shield",
+    "type": "ship",
+    "faction": "Nebula_Drifters",
+    "cost": 150,
+    "base_stats": {
+      "hp": 40,
+      "armor": 0,
+      "damage": 45,
+      "speed": 70,
+      "type": "ship",
+      "cost": 195,
+      "tier": 1,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 8.375,
+      "atom_energy": 23.916666666666668,
+      "atom_cohesion": 7.9750000000000005,
+      "atom_volatility": 3.191666666666667,
+      "atom_stability": 7.9750000000000005,
+      "atom_focus": 19.85833333333333,
+      "atom_frequency": 14.35,
+      "atom_aether": 3.191666666666667,
+      "atom_will": 7.9750000000000005,
+      "atom_information": 3.191666666666667
+    },
+    "source_universe": "void_reckoning",
+    "description": "Nebula_Drifters Fighter unit. Auto-generated. fitted with experimental shield generators.",
+    "traits": [
+      "Trait_Infiltrate"
+    ],
+    "variant": true,
+    "unit_class": "fighter",
+    "domain": "space",
+    "tier": 1,
+    "upkeep": 15,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "nebula_drifters_base_laser_weapon_1_S"
+      }
+    ]
+  },
+  {
+    "name": "Corsair Class (Plasma)",
+    "blueprint_id": "nebula_drifters_corsair_class_plasma",
+    "type": "ship",
+    "faction": "Nebula_Drifters",
+    "cost": 2000,
+    "base_stats": {
+      "hp": 800,
+      "armor": 10,
+      "damage": 350,
+      "speed": 30,
+      "type": "ship",
+      "cost": 2400,
+      "tier": 2,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 19.565217391304348,
+      "atom_energy": 10.869565217391305,
+      "atom_cohesion": 13.043478260869565,
+      "atom_volatility": 17.391304347826086,
+      "atom_stability": 10.869565217391305,
+      "atom_focus": 4.3478260869565215,
+      "atom_frequency": 4.3478260869565215,
+      "atom_aether": 4.3478260869565215,
+      "atom_will": 10.869565217391305,
+      "atom_information": 4.3478260869565215
+    },
+    "source_universe": "void_reckoning",
+    "description": "Nebula_Drifters Frigate unit. Auto-generated. armed with high-energy plasma weaponry.",
+    "traits": [],
+    "variant": true,
+    "unit_class": "frigate",
+    "domain": "space",
+    "tier": 2,
+    "upkeep": 200,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_melee_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_laser_weapon_1_M"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "nebula_drifters_base_melee_weapon_0_S"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "nebula_drifters_base_melee_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Corsair Class (Missile)",
+    "blueprint_id": "nebula_drifters_corsair_class_missile",
+    "type": "ship",
+    "faction": "Nebula_Drifters",
+    "cost": 2000,
+    "base_stats": {
+      "hp": 800,
+      "armor": 10,
+      "damage": 275,
+      "speed": 30,
+      "type": "ship",
+      "cost": 2000,
+      "tier": 2,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 29.545454545454547,
+      "atom_energy": 11.363636363636363,
+      "atom_cohesion": 13.636363636363635,
+      "atom_volatility": 4.545454545454546,
+      "atom_stability": 11.363636363636363,
+      "atom_focus": 4.545454545454546,
+      "atom_frequency": 4.545454545454546,
+      "atom_aether": 4.545454545454546,
+      "atom_will": 11.363636363636363,
+      "atom_information": 4.545454545454546
+    },
+    "source_universe": "void_reckoning",
+    "description": "Nebula_Drifters Frigate unit. Auto-generated. equipped with long-range missile pods.",
+    "traits": [
+      "Trait_Reinforced_Plating"
+    ],
+    "variant": true,
+    "unit_class": "frigate",
+    "domain": "space",
+    "tier": 2,
+    "upkeep": 200,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_melee_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_laser_weapon_1_M"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "nebula_drifters_base_melee_weapon_0_S"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "nebula_drifters_base_melee_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Corsair Class (Shield)",
+    "blueprint_id": "nebula_drifters_corsair_class_shield",
+    "type": "ship",
+    "faction": "Nebula_Drifters",
+    "cost": 2000,
+    "base_stats": {
+      "hp": 640,
+      "armor": 5,
+      "damage": 290,
+      "speed": 30,
+      "type": "ship",
+      "cost": 2600,
+      "tier": 2,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 18.75,
+      "atom_energy": 10.416666666666668,
+      "atom_cohesion": 12.5,
+      "atom_volatility": 4.166666666666666,
+      "atom_stability": 10.416666666666668,
+      "atom_focus": 20.833333333333336,
+      "atom_frequency": 4.166666666666666,
+      "atom_aether": 4.166666666666666,
+      "atom_will": 10.416666666666668,
+      "atom_information": 4.166666666666666
+    },
+    "source_universe": "void_reckoning",
+    "description": "Nebula_Drifters Frigate unit. Auto-generated. fitted with experimental shield generators.",
+    "traits": [
+      "Trait_Armor_Piercing"
+    ],
+    "variant": true,
+    "unit_class": "frigate",
+    "domain": "space",
+    "tier": 2,
+    "upkeep": 200,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_melee_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_laser_weapon_1_M"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "nebula_drifters_base_melee_weapon_0_S"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "nebula_drifters_base_melee_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Eclipse Class (Plasma)",
+    "blueprint_id": "nebula_drifters_eclipse_class_plasma",
+    "type": "ship",
+    "faction": "Nebula_Drifters",
+    "cost": 8000,
+    "base_stats": {
+      "hp": 3000,
+      "armor": 30,
+      "damage": 1220,
+      "speed": 16,
+      "type": "ship",
+      "cost": 9600,
+      "range": 30
+    },
+    "elemental_dna": {
+      "atom_mass": 32.84347826086957,
+      "atom_energy": 8.200000000000001,
+      "atom_cohesion": 13.121739130434781,
+      "atom_volatility": 16.321739130434782,
+      "atom_stability": 8.200000000000001,
+      "atom_focus": 3.278260869565217,
+      "atom_frequency": 3.278260869565217,
+      "atom_aether": 3.278260869565217,
+      "atom_will": 8.200000000000001,
+      "atom_information": 3.278260869565217
+    },
+    "source_universe": "void_reckoning",
+    "description": "Nebula_Drifters Cruiser unit. Auto-generated. armed with high-energy plasma weaponry.",
+    "traits": [
+      "Trait_Reinforced_Plating"
+    ],
+    "variant": true,
+    "unit_class": "cruiser",
+    "domain": "space",
+    "upkeep": 800,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_melee_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_melee_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_melee_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_laser_weapon_1_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_laser_weapon_1_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_laser_weapon_1_M"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "nebula_drifters_base_melee_weapon_0_L"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "nebula_drifters_base_melee_weapon_0_L"
+      }
+    ]
+  },
+  {
+    "name": "Eclipse Class (Missile)",
+    "blueprint_id": "nebula_drifters_eclipse_class_missile",
+    "type": "ship",
+    "faction": "Nebula_Drifters",
+    "cost": 8000,
+    "base_stats": {
+      "hp": 3000,
+      "armor": 30,
+      "damage": 920,
+      "speed": 16,
+      "type": "ship",
+      "cost": 8000,
+      "range": 30
+    },
+    "elemental_dna": {
+      "atom_mass": 43.42727272727273,
+      "atom_energy": 8.572727272727272,
+      "atom_cohesion": 13.718181818181819,
+      "atom_volatility": 3.4272727272727272,
+      "atom_stability": 8.572727272727272,
+      "atom_focus": 3.4272727272727272,
+      "atom_frequency": 3.4272727272727272,
+      "atom_aether": 3.4272727272727272,
+      "atom_will": 8.572727272727272,
+      "atom_information": 3.4272727272727272
+    },
+    "source_universe": "void_reckoning",
+    "description": "Nebula_Drifters Cruiser unit. Auto-generated. equipped with long-range missile pods.",
+    "traits": [
+      "Trait_Reinforced_Plating"
+    ],
+    "variant": true,
+    "unit_class": "cruiser",
+    "domain": "space",
+    "upkeep": 800,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_melee_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_melee_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_melee_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_laser_weapon_1_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_laser_weapon_1_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_laser_weapon_1_M"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "nebula_drifters_base_melee_weapon_0_L"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "nebula_drifters_base_melee_weapon_0_L"
+      }
+    ]
+  },
+  {
+    "name": "Eclipse Class (Shield)",
+    "blueprint_id": "nebula_drifters_eclipse_class_shield",
+    "type": "ship",
+    "faction": "Nebula_Drifters",
+    "cost": 8000,
+    "base_stats": {
+      "hp": 2400,
+      "armor": 15,
+      "damage": 980,
+      "speed": 16,
+      "type": "ship",
+      "cost": 10400,
+      "range": 30
+    },
+    "elemental_dna": {
+      "atom_mass": 31.475,
+      "atom_energy": 7.8583333333333325,
+      "atom_cohesion": 12.575,
+      "atom_volatility": 3.141666666666667,
+      "atom_stability": 7.8583333333333325,
+      "atom_focus": 19.808333333333334,
+      "atom_frequency": 3.141666666666667,
+      "atom_aether": 3.141666666666667,
+      "atom_will": 7.8583333333333325,
+      "atom_information": 3.141666666666667
+    },
+    "source_universe": "void_reckoning",
+    "description": "Nebula_Drifters Cruiser unit. Auto-generated. fitted with experimental shield generators.",
+    "traits": [
+      "Trait_Reinforced_Plating"
+    ],
+    "variant": true,
+    "unit_class": "cruiser",
+    "domain": "space",
+    "upkeep": 800,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_melee_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_melee_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_melee_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_laser_weapon_1_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_laser_weapon_1_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_laser_weapon_1_M"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "nebula_drifters_base_melee_weapon_0_L"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "nebula_drifters_base_melee_weapon_0_L"
+      }
+    ]
+  },
+  {
+    "name": "Void Stalker (Plasma)",
+    "blueprint_id": "nebula_drifters_void_stalker_plasma",
+    "type": "ship",
+    "faction": "Nebula_Drifters",
+    "cost": 25000,
+    "base_stats": {
+      "hp": 12000,
+      "armor": 80,
+      "damage": 4430,
+      "speed": 8,
+      "type": "ship",
+      "cost": 30000,
+      "tier": 3,
+      "range": 36
+    },
+    "elemental_dna": {
+      "atom_mass": 73.19130434782609,
+      "atom_energy": 1.4956521739130435,
+      "atom_cohesion": 6.278260869565218,
+      "atom_volatility": 13.643478260869566,
+      "atom_stability": 1.4956521739130435,
+      "atom_focus": 0.6,
+      "atom_frequency": 0.6,
+      "atom_aether": 0.6,
+      "atom_will": 1.4956521739130435,
+      "atom_information": 0.6
+    },
+    "source_universe": "void_reckoning",
+    "description": "Nebula_Drifters Battleship unit. Auto-generated. armed with high-energy plasma weaponry.",
+    "traits": [
+      "Trait_Reinforced_Plating"
+    ],
+    "variant": true,
+    "unit_class": "battleship",
+    "domain": "space",
+    "tier": 3,
+    "upkeep": 2500,
+    "components": [
+      {
+        "slot": "weapon_heavy",
+        "component": "nebula_drifters_base_plasma_weapon_3_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "nebula_drifters_base_plasma_weapon_3_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "nebula_drifters_base_plasma_weapon_3_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "nebula_drifters_base_plasma_weapon_3_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "nebula_drifters_base_plasma_weapon_7_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "nebula_drifters_base_plasma_weapon_7_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "nebula_drifters_base_plasma_weapon_7_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "nebula_drifters_base_plasma_weapon_7_XL"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_plasma_weapon_3_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_plasma_weapon_3_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_plasma_weapon_3_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_plasma_weapon_3_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_plasma_weapon_7_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_plasma_weapon_7_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_plasma_weapon_7_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_plasma_weapon_7_M"
+      }
+    ]
+  },
+  {
+    "name": "Void Stalker (Missile)",
+    "blueprint_id": "nebula_drifters_void_stalker_missile",
+    "type": "ship",
+    "faction": "Nebula_Drifters",
+    "cost": 25000,
+    "base_stats": {
+      "hp": 12000,
+      "armor": 80,
+      "damage": 3305,
+      "speed": 8,
+      "type": "ship",
+      "cost": 25000,
+      "tier": 3,
+      "range": 36
+    },
+    "elemental_dna": {
+      "atom_mass": 85.60909090909091,
+      "atom_energy": 1.5636363636363635,
+      "atom_cohesion": 6.5636363636363635,
+      "atom_volatility": 0.6272727272727272,
+      "atom_stability": 1.5636363636363635,
+      "atom_focus": 0.6272727272727272,
+      "atom_frequency": 0.6272727272727272,
+      "atom_aether": 0.6272727272727272,
+      "atom_will": 1.5636363636363635,
+      "atom_information": 0.6272727272727272
+    },
+    "source_universe": "void_reckoning",
+    "description": "Nebula_Drifters Battleship unit. Auto-generated. equipped with long-range missile pods.",
+    "traits": [
+      "Trait_Reinforced_Plating"
+    ],
+    "variant": true,
+    "unit_class": "battleship",
+    "domain": "space",
+    "tier": 3,
+    "upkeep": 2500,
+    "components": [
+      {
+        "slot": "weapon_heavy",
+        "component": "nebula_drifters_base_plasma_weapon_3_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "nebula_drifters_base_plasma_weapon_3_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "nebula_drifters_base_plasma_weapon_3_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "nebula_drifters_base_plasma_weapon_3_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "nebula_drifters_base_plasma_weapon_7_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "nebula_drifters_base_plasma_weapon_7_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "nebula_drifters_base_plasma_weapon_7_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "nebula_drifters_base_plasma_weapon_7_XL"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_plasma_weapon_3_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_plasma_weapon_3_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_plasma_weapon_3_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_plasma_weapon_3_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_plasma_weapon_7_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_plasma_weapon_7_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_plasma_weapon_7_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_plasma_weapon_7_M"
+      }
+    ]
+  },
+  {
+    "name": "Void Stalker (Shield)",
+    "blueprint_id": "nebula_drifters_void_stalker_shield",
+    "type": "ship",
+    "faction": "Nebula_Drifters",
+    "cost": 25000,
+    "base_stats": {
+      "hp": 9600,
+      "armor": 40,
+      "damage": 3530,
+      "speed": 8,
+      "type": "ship",
+      "cost": 32500,
+      "tier": 3,
+      "range": 36
+    },
+    "elemental_dna": {
+      "atom_mass": 70.14166666666667,
+      "atom_energy": 1.4333333333333333,
+      "atom_cohesion": 6.016666666666667,
+      "atom_volatility": 0.575,
+      "atom_stability": 1.4333333333333333,
+      "atom_focus": 17.24166666666667,
+      "atom_frequency": 0.575,
+      "atom_aether": 0.575,
+      "atom_will": 1.4333333333333333,
+      "atom_information": 0.575
+    },
+    "source_universe": "void_reckoning",
+    "description": "Nebula_Drifters Battleship unit. Auto-generated. fitted with experimental shield generators.",
+    "traits": [
+      "Trait_Reinforced_Plating"
+    ],
+    "variant": true,
+    "unit_class": "battleship",
+    "domain": "space",
+    "tier": 3,
+    "upkeep": 2500,
+    "components": [
+      {
+        "slot": "weapon_heavy",
+        "component": "nebula_drifters_base_plasma_weapon_3_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "nebula_drifters_base_plasma_weapon_3_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "nebula_drifters_base_plasma_weapon_3_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "nebula_drifters_base_plasma_weapon_3_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "nebula_drifters_base_plasma_weapon_7_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "nebula_drifters_base_plasma_weapon_7_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "nebula_drifters_base_plasma_weapon_7_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "nebula_drifters_base_plasma_weapon_7_XL"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_plasma_weapon_3_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_plasma_weapon_3_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_plasma_weapon_3_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_plasma_weapon_3_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_plasma_weapon_7_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_plasma_weapon_7_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_plasma_weapon_7_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_plasma_weapon_7_M"
+      }
+    ]
+  }
+]

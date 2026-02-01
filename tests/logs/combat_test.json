@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "version": "4.1",
+    "timestamp": "2026-01-06T22:05:58.521070",
+    "winner": "Imperium",
+    "rounds": 1,
+    "universe": "warhammer40k",
+    "final_tally": {}
+  },
+  "performance": [
+    {
+      "round": 1,
+      "metrics": {
+        "pathfinding": 12.5,
+        "damage_calc": 3.4
+      }
+    }
+  ],
+  "snapshots": [],
+  "events": []
+}

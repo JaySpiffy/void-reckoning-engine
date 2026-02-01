@@ -1,0 +1,101 @@
+[
+  {
+    "name": "Prime Calculator",
+    "blueprint_id": "algorithmic_hierarchy_prime_calculator",
+    "type": "hero",
+    "faction": "Algorithmic_Hierarchy",
+    "tier": 1,
+    "cost": 12000,
+    "base_stats": {
+      "role": "hero",
+      "tier": 1,
+      "hp": 500,
+      "armor": 80,
+      "damage": 200,
+      "speed": 10,
+      "cost": 12000,
+      "keywords": "hero unique hero tier5"
+    },
+    "elemental_dna": {
+      "atom_mass": 0.0,
+      "atom_energy": 20.0,
+      "atom_cohesion": 0.0,
+      "atom_volatility": 0.0,
+      "atom_stability": 0.0,
+      "atom_focus": 20.0,
+      "atom_frequency": 0.0,
+      "atom_aether": 0.0,
+      "atom_will": 0.0,
+      "atom_information": 60.0
+    },
+    "source_universe": "void_reckoning",
+    "description": "Supreme logic engine.",
+    "hero": true,
+    "unique": true,
+    "traits": [
+      "Trait_Armor_Piercing",
+      "Trait_Shield_Capacitor"
+    ],
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "upkeep": 1200,
+    "universal_stats": {
+      "hull_structural_integrity": 5000.0,
+      "armor_kinetic_resistance": 160.0,
+      "weapon_kinetic_damage": 300.0,
+      "mobility_speed_tactical": 20.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "Logic Titan",
+    "blueprint_id": "algorithmic_hierarchy_logic_titan",
+    "type": "hero",
+    "faction": "Algorithmic_Hierarchy",
+    "tier": 5,
+    "cost": 15000,
+    "base_stats": {
+      "role": "titan",
+      "tier": 5,
+      "hp": 4000,
+      "armor": 300,
+      "damage": 500,
+      "speed": 5,
+      "cost": 15000,
+      "keywords": "hero unique titan tier5"
+    },
+    "elemental_dna": {
+      "atom_mass": 0.0,
+      "atom_energy": 40.0,
+      "atom_cohesion": 0.0,
+      "atom_volatility": 0.0,
+      "atom_stability": 40.0,
+      "atom_focus": 0.0,
+      "atom_frequency": 0.0,
+      "atom_aether": 0.0,
+      "atom_will": 0.0,
+      "atom_information": 20.0
+    },
+    "source_universe": "void_reckoning",
+    "description": "Walking data-center of death.",
+    "hero": true,
+    "unique": true,
+    "traits": [
+      "Trait_Shield_Regen",
+      "Trait_Relentless",
+      "Trait_Shield_Capacitor"
+    ],
+    "unit_class": "titan_walker",
+    "domain": "ground",
+    "upkeep": 1500,
+    "universal_stats": {
+      "hull_structural_integrity": 40000.0,
+      "armor_kinetic_resistance": 600.0,
+      "weapon_kinetic_damage": 750.0,
+      "mobility_speed_tactical": 10.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  }
+]

@@ -1,0 +1,125 @@
+{
+  "nodes": [
+    {
+      "id": "Tech_ScrapLord_Marauders_Basic Doctrine",
+      "label": "Basic Doctrine",
+      "tier": 1,
+      "cost": 1000
+    },
+    {
+      "id": "Tech_ScrapLord_Marauders_Logistics",
+      "label": "Logistics",
+      "tier": 1,
+      "cost": 1000
+    },
+    {
+      "id": "Tech_ScrapLord_Marauders_Industrial Forging",
+      "label": "Industrial Forging",
+      "tier": 1,
+      "cost": 800
+    },
+    {
+      "id": "Tech_ScrapLord_Marauders_Resource Extraction",
+      "label": "Resource Extraction",
+      "tier": 1,
+      "cost": 800
+    },
+    {
+      "id": "Tech_ScrapLord_Marauders_Heavy Armor",
+      "label": "Heavy Armor",
+      "tier": 2,
+      "cost": 2500
+    },
+    {
+      "id": "Tech_ScrapLord_Marauders_Advanced Ballistics",
+      "label": "Advanced Ballistics",
+      "tier": 2,
+      "cost": 2500
+    },
+    {
+      "id": "Tech_ScrapLord_Marauders_Flux Navigation",
+      "label": "Flux Navigation",
+      "tier": 2,
+      "cost": 3000
+    },
+    {
+      "id": "Tech_ScrapLord_Marauders_Mega Construction",
+      "label": "Mega Construction",
+      "tier": 2,
+      "cost": 2500
+    },
+    {
+      "id": "Tech_ScrapLord_Marauders_Trade Networks",
+      "label": "Trade Networks",
+      "tier": 2,
+      "cost": 2000
+    },
+    {
+      "id": "Tech_ScrapLord_Marauders_Capital Ships",
+      "label": "Capital Ships",
+      "tier": 3,
+      "cost": 5000
+    },
+    {
+      "id": "Tech_ScrapLord_Marauders_Titan Integration",
+      "label": "Titan Integration",
+      "tier": 3,
+      "cost": 6000
+    },
+    {
+      "id": "Tech_ScrapLord_Marauders_Planetary Shielding",
+      "label": "Planetary Shielding",
+      "tier": 3,
+      "cost": 4500
+    },
+    {
+      "id": "Tech_ScrapLord_Marauders_Ascension Protocol",
+      "label": "Ascension Protocol",
+      "tier": 3,
+      "cost": 8000
+    },
+    {
+      "id": "Tech_ScrapLord_Marauders_Fight Pit",
+      "label": "Construction: Fight Pit",
+      "tier": 1,
+      "cost": 50
+    },
+    {
+      "id": "Tech_ScrapLord_Marauders_Mek Shop",
+      "label": "Construction: Mek Shop",
+      "tier": 2,
+      "cost": 150
+    },
+    {
+      "id": "Tech_ScrapLord_Marauders_Loot Pile",
+      "label": "Construction: Loot Pile",
+      "tier": 1,
+      "cost": 40
+    },
+    {
+      "id": "Tech_ScrapLord_Marauders_Tinkerer's Shed",
+      "label": "Construction: Tinkerer's Shed",
+      "tier": 1,
+      "cost": 80
+    },
+    {
+      "id": "Tech_ScrapLord_Marauders_Junk Wall",
+      "label": "Construction: Junk Wall",
+      "tier": 1,
+      "cost": 30
+    },
+    {
+      "id": "Tech_ScrapLord_Marauders_Space Hulk Dock",
+      "label": "Construction: Space Hulk Dock",
+      "tier": 3,
+      "cost": 300
+    },
+    {
+      "id": "Tech_ScrapLord_Marauders_Scrap Heap",
+      "label": "Construction: Scrap Heap",
+      "tier": 1,
+      "cost": 100
+    }
+  ],
+  "edges": []
+}

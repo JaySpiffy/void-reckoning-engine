@@ -1,0 +1,4462 @@
+{
+  "templars_of_the_flux_infantry_standard_standard_squad": {
+    "blueprint_id": "templars_of_the_flux_infantry_standard_standard_squad",
+    "name": "Templars_of_the_Flux Standard Standard Infantry Squad",
+    "type": "infantry_standard",
+    "faction": "Templars_of_the_Flux",
+    "category": "Infantry",
+    "base_stats": {
+      "hp": 10,
+      "organization": 20,
+      "soft_attack": 18.2,
+      "hard_attack": 3.64,
+      "manpower": 10
+    },
+    "components": [
+      {
+        "slot": "standard_issue",
+        "component": "land_small_Templars_of_the_Flux_base_phaser_weapon_3"
+      },
+      {
+        "slot": "special_issue",
+        "component": "land_small_Templars_of_the_Flux_base_sonic_weapon_9"
+      }
+    ],
+    "composition": {
+      "Rifleman": 7,
+      "Specialist": 2,
+      "Medic": 0,
+      "Leader": 1
+    },
+    "cost": 136.4
+  },
+  "templars_of_the_flux_infantry_standard_assault_squad": {
+    "blueprint_id": "templars_of_the_flux_infantry_standard_assault_squad",
+    "name": "Templars_of_the_Flux Assault Standard Infantry Squad",
+    "type": "infantry_standard",
+    "faction": "Templars_of_the_Flux",
+    "category": "Infantry",
+    "base_stats": {
+      "hp": 10,
+      "organization": 20,
+      "soft_attack": 26.2,
+      "hard_attack": 5.24,
+      "manpower": 10
+    },
+    "components": [
+      {
+        "slot": "standard_issue",
+        "component": "land_small_Templars_of_the_Flux_base_phaser_weapon_3"
+      },
+      {
+        "slot": "special_issue",
+        "component": "land_small_Templars_of_the_Flux_base_tesla_weapon_6"
+      }
+    ],
+    "composition": {
+      "Rifleman": 5,
+      "Specialist": 4,
+      "Medic": 0,
+      "Leader": 1
+    },
+    "cost": 152.4
+  },
+  "templars_of_the_flux_infantry_heavy_standard_squad": {
+    "blueprint_id": "templars_of_the_flux_infantry_heavy_standard_squad",
+    "name": "Templars_of_the_Flux Standard Heavy Infantry / Exo-Suits",
+    "type": "infantry_heavy",
+    "faction": "Templars_of_the_Flux",
+    "category": "Infantry",
+    "base_stats": {
+      "hp": 25,
+      "organization": 30,
+      "soft_attack": 21.2,
+      "hard_attack": 4.24,
+      "manpower": 5
+    },
+    "components": [
+      {
+        "slot": "standard_issue",
+        "component": "land_small_Templars_of_the_Flux_base_tesla_weapon_6"
+      },
+      {
+        "slot": "special_issue",
+        "component": "land_small_Templars_of_the_Flux_base_phaser_weapon_3"
+      }
+    ],
+    "composition": {
+      "Rifleman": 0,
+      "Specialist": 4,
+      "Medic": 0,
+      "Leader": 1
+    },
+    "cost": 292.4
+  },
+  "templars_of_the_flux_infantry_heavy_assault_squad": {
+    "blueprint_id": "templars_of_the_flux_infantry_heavy_assault_squad",
+    "name": "Templars_of_the_Flux Assault Heavy Infantry / Exo-Suits",
+    "type": "infantry_heavy",
+    "faction": "Templars_of_the_Flux",
+    "category": "Infantry",
+    "base_stats": {
+      "hp": 25,
+      "organization": 30,
+      "soft_attack": 21.2,
+      "hard_attack": 4.24,
+      "manpower": 5
+    },
+    "components": [
+      {
+        "slot": "standard_issue",
+        "component": "land_small_Templars_of_the_Flux_base_tesla_weapon_6"
+      },
+      {
+        "slot": "special_issue",
+        "component": "land_small_Templars_of_the_Flux_base_sonic_weapon_9"
+      }
+    ],
+    "composition": {
+      "Rifleman": 0,
+      "Specialist": 4,
+      "Medic": 0,
+      "Leader": 1
+    },
+    "cost": 292.4
+  },
+  "templars_of_the_flux_vehicle_light_tank_standard": {
+    "blueprint_id": "templars_of_the_flux_vehicle_light_tank_standard",
+    "name": "Templars_of_the_Flux Standard Light Tank",
+    "type": "vehicle_light_tank",
+    "faction": "Templars_of_the_Flux",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 100,
+      "armor": 10,
+      "soft_attack": 20,
+      "hard_attack": 10.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_Templars_of_the_Flux_base_bolter_weapon_5"
+      },
+      {
+        "slot": "hull_mount",
+        "component": "land_vehicle_Templars_of_the_Flux_base_bolter_weapon_5"
+      }
+    ],
+    "cost": 530.0
+  },
+  "templars_of_the_flux_vehicle_main_battle_tank_standard": {
+    "blueprint_id": "templars_of_the_flux_vehicle_main_battle_tank_standard",
+    "name": "Templars_of_the_Flux Standard Main Battle Tank",
+    "type": "vehicle_main_battle_tank",
+    "faction": "Templars_of_the_Flux",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 250,
+      "armor": 30,
+      "soft_attack": 33.0,
+      "hard_attack": 25.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_Templars_of_the_Flux_base_bolter_weapon_5"
+      },
+      {
+        "slot": "coaxial",
+        "component": "land_vehicle_Templars_of_the_Flux_base_bolter_weapon_5"
+      },
+      {
+        "slot": "sponson_left",
+        "component": "land_vehicle_Templars_of_the_Flux_base_bolter_weapon_5"
+      },
+      {
+        "slot": "sponson_right",
+        "component": "land_vehicle_Templars_of_the_Flux_base_sonic_weapon_9"
+      }
+    ],
+    "cost": 1258.0
+  },
+  "templars_of_the_flux_vehicle_main_battle_tank_elite": {
+    "blueprint_id": "templars_of_the_flux_vehicle_main_battle_tank_elite",
+    "name": "Templars_of_the_Flux Elite Main Battle Tank",
+    "type": "vehicle_main_battle_tank",
+    "faction": "Templars_of_the_Flux",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 250,
+      "armor": 30,
+      "soft_attack": 33.0,
+      "hard_attack": 25.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_Templars_of_the_Flux_base_sonic_weapon_9"
+      },
+      {
+        "slot": "coaxial",
+        "component": "land_vehicle_Templars_of_the_Flux_base_phaser_weapon_3"
+      },
+      {
+        "slot": "sponson_left",
+        "component": "land_vehicle_Templars_of_the_Flux_base_phaser_weapon_3"
+      },
+      {
+        "slot": "sponson_right",
+        "component": "land_vehicle_Templars_of_the_Flux_base_bolter_weapon_5"
+      }
+    ],
+    "cost": 1258.0
+  },
+  "templars_of_the_flux_vehicle_super_heavy_standard": {
+    "blueprint_id": "templars_of_the_flux_vehicle_super_heavy_standard",
+    "name": "Templars_of_the_Flux Standard Super-Heavy Fortress",
+    "type": "vehicle_super_heavy",
+    "faction": "Templars_of_the_Flux",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 800,
+      "armor": 60,
+      "soft_attack": 53.0,
+      "hard_attack": 35.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_Templars_of_the_Flux_base_phaser_weapon_3"
+      },
+      {
+        "slot": "turret_secondary",
+        "component": "land_vehicle_Templars_of_the_Flux_base_bolter_weapon_5"
+      },
+      {
+        "slot": "sponson_1",
+        "component": "land_vehicle_Templars_of_the_Flux_base_bolter_weapon_5"
+      },
+      {
+        "slot": "sponson_2",
+        "component": "land_vehicle_Templars_of_the_Flux_base_sonic_weapon_9"
+      },
+      {
+        "slot": "sponson_3",
+        "component": "land_vehicle_Templars_of_the_Flux_base_bolter_weapon_5"
+      },
+      {
+        "slot": "sponson_4",
+        "component": "land_vehicle_Templars_of_the_Flux_base_bolter_weapon_5"
+      }
+    ],
+    "cost": 4088.0
+  },
+  "templars_of_the_flux_vehicle_super_heavy_elite": {
+    "blueprint_id": "templars_of_the_flux_vehicle_super_heavy_elite",
+    "name": "Templars_of_the_Flux Elite Super-Heavy Fortress",
+    "type": "vehicle_super_heavy",
+    "faction": "Templars_of_the_Flux",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 800,
+      "armor": 60,
+      "soft_attack": 53.0,
+      "hard_attack": 35.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_Templars_of_the_Flux_base_bolter_weapon_5"
+      },
+      {
+        "slot": "turret_secondary",
+        "component": "land_vehicle_Templars_of_the_Flux_base_phaser_weapon_3"
+      },
+      {
+        "slot": "sponson_1",
+        "component": "land_vehicle_Templars_of_the_Flux_base_sonic_weapon_9"
+      },
+      {
+        "slot": "sponson_2",
+        "component": "land_vehicle_Templars_of_the_Flux_base_phaser_weapon_3"
+      },
+      {
+        "slot": "sponson_3",
+        "component": "land_vehicle_Templars_of_the_Flux_base_bolter_weapon_5"
+      },
+      {
+        "slot": "sponson_4",
+        "component": "land_vehicle_Templars_of_the_Flux_base_bolter_weapon_5"
+      }
+    ],
+    "cost": 4088.0
+  },
+  "templars_of_the_flux_walker_scout_standard": {
+    "blueprint_id": "templars_of_the_flux_walker_scout_standard",
+    "name": "Templars_of_the_Flux Standard Scout Walker",
+    "type": "walker_scout",
+    "faction": "Templars_of_the_Flux",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 60,
+      "armor": 5,
+      "soft_attack": 20,
+      "hard_attack": 10.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "chin_mount",
+        "component": "land_vehicle_Templars_of_the_Flux_base_bolter_weapon_5"
+      },
+      {
+        "slot": "utility",
+        "component": "land_vehicle_Templars_of_the_Flux_base_sonic_weapon_9"
+      }
+    ],
+    "cost": 330.0
+  },
+  "templars_of_the_flux_walker_combat_standard": {
+    "blueprint_id": "templars_of_the_flux_walker_combat_standard",
+    "name": "Templars_of_the_Flux Standard Combat Walker",
+    "type": "walker_combat",
+    "faction": "Templars_of_the_Flux",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 180,
+      "armor": 20,
+      "soft_attack": 16.0,
+      "hard_attack": 25.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "arm_left",
+        "component": "land_vehicle_Templars_of_the_Flux_base_sonic_weapon_9"
+      },
+      {
+        "slot": "arm_right",
+        "component": "land_vehicle_Templars_of_the_Flux_base_sonic_weapon_9"
+      },
+      {
+        "slot": "shoulder",
+        "component": "land_vehicle_Templars_of_the_Flux_base_tesla_weapon_6"
+      }
+    ],
+    "cost": 941.0
+  },
+  "templars_of_the_flux_walker_combat_elite": {
+    "blueprint_id": "templars_of_the_flux_walker_combat_elite",
+    "name": "Templars_of_the_Flux Elite Combat Walker",
+    "type": "walker_combat",
+    "faction": "Templars_of_the_Flux",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 180,
+      "armor": 20,
+      "soft_attack": 16.0,
+      "hard_attack": 25.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "arm_left",
+        "component": "land_vehicle_Templars_of_the_Flux_base_phaser_weapon_3"
+      },
+      {
+        "slot": "arm_right",
+        "component": "land_vehicle_Templars_of_the_Flux_base_phaser_weapon_3"
+      },
+      {
+        "slot": "shoulder",
+        "component": "land_vehicle_Templars_of_the_Flux_base_phaser_weapon_3"
+      }
+    ],
+    "cost": 941.0
+  },
+  "templars_of_the_flux_walker_titan_standard": {
+    "blueprint_id": "templars_of_the_flux_walker_titan_standard",
+    "name": "Templars_of_the_Flux Standard Titan",
+    "type": "walker_titan",
+    "faction": "Templars_of_the_Flux",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 5000,
+      "armor": 100,
+      "soft_attack": 26.0,
+      "hard_attack": 30.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "arm_left",
+        "component": "land_vehicle_Templars_of_the_Flux_base_tesla_weapon_6"
+      },
+      {
+        "slot": "arm_right",
+        "component": "land_vehicle_Templars_of_the_Flux_base_sonic_weapon_9"
+      },
+      {
+        "slot": "carapace_left",
+        "component": "land_vehicle_Templars_of_the_Flux_base_phaser_weapon_3"
+      },
+      {
+        "slot": "carapace_right",
+        "component": "land_vehicle_Templars_of_the_Flux_base_phaser_weapon_3"
+      }
+    ],
+    "cost": 15056.0
+  },
+  "templars_of_the_flux_walker_titan_elite": {
+    "blueprint_id": "templars_of_the_flux_walker_titan_elite",
+    "name": "Templars_of_the_Flux Elite Titan",
+    "type": "walker_titan",
+    "faction": "Templars_of_the_Flux",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 5000,
+      "armor": 100,
+      "soft_attack": 26.0,
+      "hard_attack": 30.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "arm_left",
+        "component": "land_vehicle_Templars_of_the_Flux_base_bolter_weapon_5"
+      },
+      {
+        "slot": "arm_right",
+        "component": "land_vehicle_Templars_of_the_Flux_base_tesla_weapon_6"
+      },
+      {
+        "slot": "carapace_left",
+        "component": "land_vehicle_Templars_of_the_Flux_base_tesla_weapon_6"
+      },
+      {
+        "slot": "carapace_right",
+        "component": "land_vehicle_Templars_of_the_Flux_base_phaser_weapon_3"
+      }
+    ],
+    "cost": 15056.0
+  },
+  "transcendent_order_infantry_standard_standard_squad": {
+    "blueprint_id": "transcendent_order_infantry_standard_standard_squad",
+    "name": "Transcendent_Order Standard Standard Infantry Squad",
+    "type": "infantry_standard",
+    "faction": "Transcendent_Order",
+    "category": "Infantry",
+    "base_stats": {
+      "hp": 10,
+      "organization": 20,
+      "soft_attack": 18.2,
+      "hard_attack": 3.64,
+      "manpower": 10
+    },
+    "components": [
+      {
+        "slot": "standard_issue",
+        "component": "land_small_Transcendent_Order_base_bolter_weapon_6"
+      },
+      {
+        "slot": "special_issue",
+        "component": "land_small_Transcendent_Order_base_tesla_weapon_3"
+      }
+    ],
+    "composition": {
+      "Rifleman": 7,
+      "Specialist": 2,
+      "Medic": 0,
+      "Leader": 1
+    },
+    "cost": 136.4
+  },
+  "transcendent_order_infantry_standard_assault_squad": {
+    "blueprint_id": "transcendent_order_infantry_standard_assault_squad",
+    "name": "Transcendent_Order Assault Standard Infantry Squad",
+    "type": "infantry_standard",
+    "faction": "Transcendent_Order",
+    "category": "Infantry",
+    "base_stats": {
+      "hp": 12.0,
+      "organization": 24.0,
+      "soft_attack": 25.2,
+      "hard_attack": 5.04,
+      "manpower": 10
+    },
+    "components": [
+      {
+        "slot": "standard_issue",
+        "component": "land_small_Transcendent_Order_base_plasma_weapon_9"
+      },
+      {
+        "slot": "special_issue",
+        "component": "land_small_Transcendent_Order_base_melta_weapon_1"
+      }
+    ],
+    "composition": {
+      "Rifleman": 4,
+      "Specialist": 4,
+      "Medic": 1,
+      "Leader": 1
+    },
+    "cost": 150.4
+  },
+  "transcendent_order_infantry_heavy_standard_squad": {
+    "blueprint_id": "transcendent_order_infantry_heavy_standard_squad",
+    "name": "Transcendent_Order Standard Heavy Infantry / Exo-Suits",
+    "type": "infantry_heavy",
+    "faction": "Transcendent_Order",
+    "category": "Infantry",
+    "base_stats": {
+      "hp": 25,
+      "organization": 30,
+      "soft_attack": 21.2,
+      "hard_attack": 4.24,
+      "manpower": 5
+    },
+    "components": [
+      {
+        "slot": "standard_issue",
+        "component": "land_small_Transcendent_Order_base_melta_weapon_2"
+      },
+      {
+        "slot": "special_issue",
+        "component": "land_small_Transcendent_Order_base_phaser_weapon_8"
+      }
+    ],
+    "composition": {
+      "Rifleman": 0,
+      "Specialist": 4,
+      "Medic": 0,
+      "Leader": 1
+    },
+    "cost": 292.4
+  },
+  "transcendent_order_infantry_heavy_assault_squad": {
+    "blueprint_id": "transcendent_order_infantry_heavy_assault_squad",
+    "name": "Transcendent_Order Assault Heavy Infantry / Exo-Suits",
+    "type": "infantry_heavy",
+    "faction": "Transcendent_Order",
+    "category": "Infantry",
+    "base_stats": {
+      "hp": 25,
+      "organization": 30,
+      "soft_attack": 21.2,
+      "hard_attack": 4.24,
+      "manpower": 5
+    },
+    "components": [
+      {
+        "slot": "standard_issue",
+        "component": "land_small_Transcendent_Order_base_bolter_weapon_6"
+      },
+      {
+        "slot": "special_issue",
+        "component": "land_small_Transcendent_Order_base_melta_weapon_1"
+      }
+    ],
+    "composition": {
+      "Rifleman": 0,
+      "Specialist": 4,
+      "Medic": 0,
+      "Leader": 1
+    },
+    "cost": 292.4
+  },
+  "transcendent_order_vehicle_light_tank_standard": {
+    "blueprint_id": "transcendent_order_vehicle_light_tank_standard",
+    "name": "Transcendent_Order Standard Light Tank",
+    "type": "vehicle_light_tank",
+    "faction": "Transcendent_Order",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 100,
+      "armor": 10,
+      "soft_attack": 20,
+      "hard_attack": 10.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_Transcendent_Order_base_gauss_weapon_5"
+      },
+      {
+        "slot": "hull_mount",
+        "component": "land_vehicle_Transcendent_Order_base_tesla_weapon_3"
+      }
+    ],
+    "cost": 530.0
+  },
+  "transcendent_order_vehicle_main_battle_tank_standard": {
+    "blueprint_id": "transcendent_order_vehicle_main_battle_tank_standard",
+    "name": "Transcendent_Order Standard Main Battle Tank",
+    "type": "vehicle_main_battle_tank",
+    "faction": "Transcendent_Order",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 250,
+      "armor": 30,
+      "soft_attack": 33.0,
+      "hard_attack": 25.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_Transcendent_Order_base_tesla_weapon_3"
+      },
+      {
+        "slot": "coaxial",
+        "component": "land_vehicle_Transcendent_Order_base_bolter_weapon_6"
+      },
+      {
+        "slot": "sponson_left",
+        "component": "land_vehicle_Transcendent_Order_base_bolter_weapon_6"
+      },
+      {
+        "slot": "sponson_right",
+        "component": "land_vehicle_Transcendent_Order_base_gauss_weapon_5"
+      }
+    ],
+    "cost": 1258.0
+  },
+  "transcendent_order_vehicle_main_battle_tank_elite": {
+    "blueprint_id": "transcendent_order_vehicle_main_battle_tank_elite",
+    "name": "Transcendent_Order Elite Main Battle Tank",
+    "type": "vehicle_main_battle_tank",
+    "faction": "Transcendent_Order",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 250,
+      "armor": 30,
+      "soft_attack": 33.0,
+      "hard_attack": 25.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_Transcendent_Order_base_bolter_weapon_6"
+      },
+      {
+        "slot": "coaxial",
+        "component": "land_vehicle_Transcendent_Order_base_gauss_weapon_5"
+      },
+      {
+        "slot": "sponson_left",
+        "component": "land_vehicle_Transcendent_Order_base_gauss_weapon_5"
+      },
+      {
+        "slot": "sponson_right",
+        "component": "land_vehicle_Transcendent_Order_base_tesla_weapon_3"
+      }
+    ],
+    "cost": 1258.0
+  },
+  "transcendent_order_vehicle_super_heavy_standard": {
+    "blueprint_id": "transcendent_order_vehicle_super_heavy_standard",
+    "name": "Transcendent_Order Standard Super-Heavy Fortress",
+    "type": "vehicle_super_heavy",
+    "faction": "Transcendent_Order",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 800,
+      "armor": 60,
+      "soft_attack": 53.0,
+      "hard_attack": 35.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_Transcendent_Order_base_plasma_weapon_9"
+      },
+      {
+        "slot": "turret_secondary",
+        "component": "land_vehicle_Transcendent_Order_base_gauss_weapon_5"
+      },
+      {
+        "slot": "sponson_1",
+        "component": "land_vehicle_Transcendent_Order_base_phaser_weapon_8"
+      },
+      {
+        "slot": "sponson_2",
+        "component": "land_vehicle_Transcendent_Order_base_melta_weapon_2"
+      },
+      {
+        "slot": "sponson_3",
+        "component": "land_vehicle_Transcendent_Order_base_bolter_weapon_6"
+      },
+      {
+        "slot": "sponson_4",
+        "component": "land_vehicle_Transcendent_Order_base_tesla_weapon_3"
+      }
+    ],
+    "cost": 4088.0
+  },
+  "transcendent_order_vehicle_super_heavy_elite": {
+    "blueprint_id": "transcendent_order_vehicle_super_heavy_elite",
+    "name": "Transcendent_Order Elite Super-Heavy Fortress",
+    "type": "vehicle_super_heavy",
+    "faction": "Transcendent_Order",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 800,
+      "armor": 60,
+      "soft_attack": 53.0,
+      "hard_attack": 35.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_Transcendent_Order_base_bolter_weapon_6"
+      },
+      {
+        "slot": "turret_secondary",
+        "component": "land_vehicle_Transcendent_Order_base_gauss_weapon_5"
+      },
+      {
+        "slot": "sponson_1",
+        "component": "land_vehicle_Transcendent_Order_base_melta_weapon_2"
+      },
+      {
+        "slot": "sponson_2",
+        "component": "land_vehicle_Transcendent_Order_base_phaser_weapon_8"
+      },
+      {
+        "slot": "sponson_3",
+        "component": "land_vehicle_Transcendent_Order_base_grav_weapon_7"
+      },
+      {
+        "slot": "sponson_4",
+        "component": "land_vehicle_Transcendent_Order_base_grav_weapon_7"
+      }
+    ],
+    "cost": 4088.0
+  },
+  "transcendent_order_walker_scout_standard": {
+    "blueprint_id": "transcendent_order_walker_scout_standard",
+    "name": "Transcendent_Order Standard Scout Walker",
+    "type": "walker_scout",
+    "faction": "Transcendent_Order",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 60,
+      "armor": 5,
+      "soft_attack": 20,
+      "hard_attack": 10.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "chin_mount",
+        "component": "land_vehicle_Transcendent_Order_base_bolter_weapon_6"
+      },
+      {
+        "slot": "utility",
+        "component": "land_vehicle_Transcendent_Order_base_grav_weapon_7"
+      }
+    ],
+    "cost": 330.0
+  },
+  "transcendent_order_walker_combat_standard": {
+    "blueprint_id": "transcendent_order_walker_combat_standard",
+    "name": "Transcendent_Order Standard Combat Walker",
+    "type": "walker_combat",
+    "faction": "Transcendent_Order",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 180,
+      "armor": 20,
+      "soft_attack": 16.0,
+      "hard_attack": 25.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "arm_left",
+        "component": "land_vehicle_Transcendent_Order_base_grav_weapon_7"
+      },
+      {
+        "slot": "arm_right",
+        "component": "land_vehicle_Transcendent_Order_base_melta_weapon_1"
+      },
+      {
+        "slot": "shoulder",
+        "component": "land_vehicle_Transcendent_Order_base_phaser_weapon_8"
+      }
+    ],
+    "cost": 941.0
+  },
+  "transcendent_order_walker_combat_elite": {
+    "blueprint_id": "transcendent_order_walker_combat_elite",
+    "name": "Transcendent_Order Elite Combat Walker",
+    "type": "walker_combat",
+    "faction": "Transcendent_Order",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 180,
+      "armor": 20,
+      "soft_attack": 16.0,
+      "hard_attack": 25.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "arm_left",
+        "component": "land_vehicle_Transcendent_Order_base_bolter_weapon_6"
+      },
+      {
+        "slot": "arm_right",
+        "component": "land_vehicle_Transcendent_Order_base_plasma_weapon_9"
+      },
+      {
+        "slot": "shoulder",
+        "component": "land_vehicle_Transcendent_Order_base_melta_weapon_1"
+      }
+    ],
+    "cost": 941.0
+  },
+  "transcendent_order_walker_titan_standard": {
+    "blueprint_id": "transcendent_order_walker_titan_standard",
+    "name": "Transcendent_Order Standard Titan",
+    "type": "walker_titan",
+    "faction": "Transcendent_Order",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 5000,
+      "armor": 100,
+      "soft_attack": 26.0,
+      "hard_attack": 30.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "arm_left",
+        "component": "land_vehicle_Transcendent_Order_base_melta_weapon_1"
+      },
+      {
+        "slot": "arm_right",
+        "component": "land_vehicle_Transcendent_Order_base_bolter_weapon_6"
+      },
+      {
+        "slot": "carapace_left",
+        "component": "land_vehicle_Transcendent_Order_base_melta_weapon_2"
+      },
+      {
+        "slot": "carapace_right",
+        "component": "land_vehicle_Transcendent_Order_base_melta_weapon_1"
+      }
+    ],
+    "cost": 15056.0
+  },
+  "transcendent_order_walker_titan_elite": {
+    "blueprint_id": "transcendent_order_walker_titan_elite",
+    "name": "Transcendent_Order Elite Titan",
+    "type": "walker_titan",
+    "faction": "Transcendent_Order",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 5000,
+      "armor": 100,
+      "soft_attack": 26.0,
+      "hard_attack": 30.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "arm_left",
+        "component": "land_vehicle_Transcendent_Order_base_phaser_weapon_8"
+      },
+      {
+        "slot": "arm_right",
+        "component": "land_vehicle_Transcendent_Order_base_gauss_weapon_5"
+      },
+      {
+        "slot": "carapace_left",
+        "component": "land_vehicle_Transcendent_Order_base_melta_weapon_1"
+      },
+      {
+        "slot": "carapace_right",
+        "component": "land_vehicle_Transcendent_Order_base_gauss_weapon_5"
+      }
+    ],
+    "cost": 15056.0
+  },
+  "steelbound_syndicate_infantry_standard_standard_squad": {
+    "blueprint_id": "steelbound_syndicate_infantry_standard_standard_squad",
+    "name": "SteelBound_Syndicate Standard Standard Infantry Squad",
+    "type": "infantry_standard",
+    "faction": "SteelBound_Syndicate",
+    "category": "Infantry",
+    "base_stats": {
+      "hp": 12.0,
+      "organization": 24.0,
+      "soft_attack": 17.2,
+      "hard_attack": 3.44,
+      "manpower": 10
+    },
+    "components": [
+      {
+        "slot": "standard_issue",
+        "component": "land_small_SteelBound_Syndicate_base_polaron_weapon_2"
+      },
+      {
+        "slot": "special_issue",
+        "component": "land_small_SteelBound_Syndicate_base_tesla_weapon_3"
+      }
+    ],
+    "composition": {
+      "Rifleman": 6,
+      "Specialist": 2,
+      "Medic": 1,
+      "Leader": 1
+    },
+    "cost": 134.4
+  },
+  "steelbound_syndicate_infantry_standard_assault_squad": {
+    "blueprint_id": "steelbound_syndicate_infantry_standard_assault_squad",
+    "name": "SteelBound_Syndicate Assault Standard Infantry Squad",
+    "type": "infantry_standard",
+    "faction": "SteelBound_Syndicate",
+    "category": "Infantry",
+    "base_stats": {
+      "hp": 10,
+      "organization": 20,
+      "soft_attack": 26.2,
+      "hard_attack": 5.24,
+      "manpower": 10
+    },
+    "components": [
+      {
+        "slot": "standard_issue",
+        "component": "land_small_SteelBound_Syndicate_base_gauss_weapon_4"
+      },
+      {
+        "slot": "special_issue",
+        "component": "land_small_SteelBound_Syndicate_base_polaron_weapon_9"
+      }
+    ],
+    "composition": {
+      "Rifleman": 5,
+      "Specialist": 4,
+      "Medic": 0,
+      "Leader": 1
+    },
+    "cost": 152.4
+  },
+  "steelbound_syndicate_infantry_heavy_standard_squad": {
+    "blueprint_id": "steelbound_syndicate_infantry_heavy_standard_squad",
+    "name": "SteelBound_Syndicate Standard Heavy Infantry / Exo-Suits",
+    "type": "infantry_heavy",
+    "faction": "SteelBound_Syndicate",
+    "category": "Infantry",
+    "base_stats": {
+      "hp": 25,
+      "organization": 30,
+      "soft_attack": 21.2,
+      "hard_attack": 4.24,
+      "manpower": 5
+    },
+    "components": [
+      {
+        "slot": "standard_issue",
+        "component": "land_small_SteelBound_Syndicate_base_bolter_weapon_0"
+      },
+      {
+        "slot": "special_issue",
+        "component": "land_small_SteelBound_Syndicate_base_gauss_weapon_4"
+      }
+    ],
+    "composition": {
+      "Rifleman": 0,
+      "Specialist": 4,
+      "Medic": 0,
+      "Leader": 1
+    },
+    "cost": 292.4
+  },
+  "steelbound_syndicate_infantry_heavy_assault_squad": {
+    "blueprint_id": "steelbound_syndicate_infantry_heavy_assault_squad",
+    "name": "SteelBound_Syndicate Assault Heavy Infantry / Exo-Suits",
+    "type": "infantry_heavy",
+    "faction": "SteelBound_Syndicate",
+    "category": "Infantry",
+    "base_stats": {
+      "hp": 25,
+      "organization": 30,
+      "soft_attack": 21.2,
+      "hard_attack": 4.24,
+      "manpower": 5
+    },
+    "components": [
+      {
+        "slot": "standard_issue",
+        "component": "land_small_SteelBound_Syndicate_base_polaron_weapon_9"
+      },
+      {
+        "slot": "special_issue",
+        "component": "land_small_SteelBound_Syndicate_base_grav_weapon_8"
+      }
+    ],
+    "composition": {
+      "Rifleman": 0,
+      "Specialist": 4,
+      "Medic": 0,
+      "Leader": 1
+    },
+    "cost": 292.4
+  },
+  "steelbound_syndicate_vehicle_light_tank_standard": {
+    "blueprint_id": "steelbound_syndicate_vehicle_light_tank_standard",
+    "name": "SteelBound_Syndicate Standard Light Tank",
+    "type": "vehicle_light_tank",
+    "faction": "SteelBound_Syndicate",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 100,
+      "armor": 10,
+      "soft_attack": 20,
+      "hard_attack": 10.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_SteelBound_Syndicate_base_polaron_weapon_2"
+      },
+      {
+        "slot": "hull_mount",
+        "component": "land_vehicle_SteelBound_Syndicate_base_polaron_weapon_9"
+      }
+    ],
+    "cost": 530.0
+  },
+  "steelbound_syndicate_vehicle_main_battle_tank_standard": {
+    "blueprint_id": "steelbound_syndicate_vehicle_main_battle_tank_standard",
+    "name": "SteelBound_Syndicate Standard Main Battle Tank",
+    "type": "vehicle_main_battle_tank",
+    "faction": "SteelBound_Syndicate",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 250,
+      "armor": 30,
+      "soft_attack": 33.0,
+      "hard_attack": 25.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_SteelBound_Syndicate_base_bolter_weapon_0"
+      },
+      {
+        "slot": "coaxial",
+        "component": "land_vehicle_SteelBound_Syndicate_base_polaron_weapon_2"
+      },
+      {
+        "slot": "sponson_left",
+        "component": "land_vehicle_SteelBound_Syndicate_base_gauss_weapon_4"
+      },
+      {
+        "slot": "sponson_right",
+        "component": "land_vehicle_SteelBound_Syndicate_base_polaron_weapon_2"
+      }
+    ],
+    "cost": 1258.0
+  },
+  "steelbound_syndicate_vehicle_main_battle_tank_elite": {
+    "blueprint_id": "steelbound_syndicate_vehicle_main_battle_tank_elite",
+    "name": "SteelBound_Syndicate Elite Main Battle Tank",
+    "type": "vehicle_main_battle_tank",
+    "faction": "SteelBound_Syndicate",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 250,
+      "armor": 30,
+      "soft_attack": 33.0,
+      "hard_attack": 25.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_SteelBound_Syndicate_base_tesla_weapon_3"
+      },
+      {
+        "slot": "coaxial",
+        "component": "land_vehicle_SteelBound_Syndicate_base_gauss_weapon_4"
+      },
+      {
+        "slot": "sponson_left",
+        "component": "land_vehicle_SteelBound_Syndicate_base_tesla_weapon_3"
+      },
+      {
+        "slot": "sponson_right",
+        "component": "land_vehicle_SteelBound_Syndicate_base_polaron_weapon_9"
+      }
+    ],
+    "cost": 1258.0
+  },
+  "steelbound_syndicate_vehicle_super_heavy_standard": {
+    "blueprint_id": "steelbound_syndicate_vehicle_super_heavy_standard",
+    "name": "SteelBound_Syndicate Standard Super-Heavy Fortress",
+    "type": "vehicle_super_heavy",
+    "faction": "SteelBound_Syndicate",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 800,
+      "armor": 60,
+      "soft_attack": 53.0,
+      "hard_attack": 35.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_SteelBound_Syndicate_base_rad_weapon_1"
+      },
+      {
+        "slot": "turret_secondary",
+        "component": "land_vehicle_SteelBound_Syndicate_base_bolter_weapon_0"
+      },
+      {
+        "slot": "sponson_1",
+        "component": "land_vehicle_SteelBound_Syndicate_base_gauss_weapon_4"
+      },
+      {
+        "slot": "sponson_2",
+        "component": "land_vehicle_SteelBound_Syndicate_base_rad_weapon_1"
+      },
+      {
+        "slot": "sponson_3",
+        "component": "land_vehicle_SteelBound_Syndicate_base_tesla_weapon_3"
+      },
+      {
+        "slot": "sponson_4",
+        "component": "land_vehicle_SteelBound_Syndicate_base_tesla_weapon_3"
+      }
+    ],
+    "cost": 4088.0
+  },
+  "steelbound_syndicate_vehicle_super_heavy_elite": {
+    "blueprint_id": "steelbound_syndicate_vehicle_super_heavy_elite",
+    "name": "SteelBound_Syndicate Elite Super-Heavy Fortress",
+    "type": "vehicle_super_heavy",
+    "faction": "SteelBound_Syndicate",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 800,
+      "armor": 60,
+      "soft_attack": 53.0,
+      "hard_attack": 35.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_SteelBound_Syndicate_base_bolter_weapon_0"
+      },
+      {
+        "slot": "turret_secondary",
+        "component": "land_vehicle_SteelBound_Syndicate_base_polaron_weapon_9"
+      },
+      {
+        "slot": "sponson_1",
+        "component": "land_vehicle_SteelBound_Syndicate_base_grav_weapon_8"
+      },
+      {
+        "slot": "sponson_2",
+        "component": "land_vehicle_SteelBound_Syndicate_base_tesla_weapon_3"
+      },
+      {
+        "slot": "sponson_3",
+        "component": "land_vehicle_SteelBound_Syndicate_base_rad_weapon_1"
+      },
+      {
+        "slot": "sponson_4",
+        "component": "land_vehicle_SteelBound_Syndicate_base_tesla_weapon_3"
+      }
+    ],
+    "cost": 4088.0
+  },
+  "steelbound_syndicate_walker_scout_standard": {
+    "blueprint_id": "steelbound_syndicate_walker_scout_standard",
+    "name": "SteelBound_Syndicate Standard Scout Walker",
+    "type": "walker_scout",
+    "faction": "SteelBound_Syndicate",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 60,
+      "armor": 5,
+      "soft_attack": 20,
+      "hard_attack": 10.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "chin_mount",
+        "component": "land_vehicle_SteelBound_Syndicate_base_grav_weapon_8"
+      },
+      {
+        "slot": "utility",
+        "component": "land_vehicle_SteelBound_Syndicate_base_gauss_weapon_4"
+      }
+    ],
+    "cost": 330.0
+  },
+  "steelbound_syndicate_walker_combat_standard": {
+    "blueprint_id": "steelbound_syndicate_walker_combat_standard",
+    "name": "SteelBound_Syndicate Standard Combat Walker",
+    "type": "walker_combat",
+    "faction": "SteelBound_Syndicate",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 180,
+      "armor": 20,
+      "soft_attack": 16.0,
+      "hard_attack": 25.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "arm_left",
+        "component": "land_vehicle_SteelBound_Syndicate_base_tesla_weapon_3"
+      },
+      {
+        "slot": "arm_right",
+        "component": "land_vehicle_SteelBound_Syndicate_base_polaron_weapon_9"
+      },
+      {
+        "slot": "shoulder",
+        "component": "land_vehicle_SteelBound_Syndicate_base_rad_weapon_1"
+      }
+    ],
+    "cost": 941.0
+  },
+  "steelbound_syndicate_walker_combat_elite": {
+    "blueprint_id": "steelbound_syndicate_walker_combat_elite",
+    "name": "SteelBound_Syndicate Elite Combat Walker",
+    "type": "walker_combat",
+    "faction": "SteelBound_Syndicate",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 180,
+      "armor": 20,
+      "soft_attack": 16.0,
+      "hard_attack": 25.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "arm_left",
+        "component": "land_vehicle_SteelBound_Syndicate_base_bolter_weapon_0"
+      },
+      {
+        "slot": "arm_right",
+        "component": "land_vehicle_SteelBound_Syndicate_base_polaron_weapon_9"
+      },
+      {
+        "slot": "shoulder",
+        "component": "land_vehicle_SteelBound_Syndicate_base_bolter_weapon_0"
+      }
+    ],
+    "cost": 941.0
+  },
+  "steelbound_syndicate_walker_titan_standard": {
+    "blueprint_id": "steelbound_syndicate_walker_titan_standard",
+    "name": "SteelBound_Syndicate Standard Titan",
+    "type": "walker_titan",
+    "faction": "SteelBound_Syndicate",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 5000,
+      "armor": 100,
+      "soft_attack": 26.0,
+      "hard_attack": 30.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "arm_left",
+        "component": "land_vehicle_SteelBound_Syndicate_base_rad_weapon_1"
+      },
+      {
+        "slot": "arm_right",
+        "component": "land_vehicle_SteelBound_Syndicate_base_gauss_weapon_4"
+      },
+      {
+        "slot": "carapace_left",
+        "component": "land_vehicle_SteelBound_Syndicate_base_polaron_weapon_2"
+      },
+      {
+        "slot": "carapace_right",
+        "component": "land_vehicle_SteelBound_Syndicate_base_polaron_weapon_9"
+      }
+    ],
+    "cost": 15056.0
+  },
+  "steelbound_syndicate_walker_titan_elite": {
+    "blueprint_id": "steelbound_syndicate_walker_titan_elite",
+    "name": "SteelBound_Syndicate Elite Titan",
+    "type": "walker_titan",
+    "faction": "SteelBound_Syndicate",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 5000,
+      "armor": 100,
+      "soft_attack": 26.0,
+      "hard_attack": 30.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "arm_left",
+        "component": "land_vehicle_SteelBound_Syndicate_base_polaron_weapon_2"
+      },
+      {
+        "slot": "arm_right",
+        "component": "land_vehicle_SteelBound_Syndicate_base_gauss_weapon_4"
+      },
+      {
+        "slot": "carapace_left",
+        "component": "land_vehicle_SteelBound_Syndicate_base_polaron_weapon_9"
+      },
+      {
+        "slot": "carapace_right",
+        "component": "land_vehicle_SteelBound_Syndicate_base_polaron_weapon_9"
+      }
+    ],
+    "cost": 15056.0
+  },
+  "biotide_collective_infantry_standard_standard_squad": {
+    "blueprint_id": "biotide_collective_infantry_standard_standard_squad",
+    "name": "BioTide_Collective Standard Standard Infantry Squad",
+    "type": "infantry_standard",
+    "faction": "BioTide_Collective",
+    "category": "Infantry",
+    "base_stats": {
+      "hp": 12.0,
+      "organization": 24.0,
+      "soft_attack": 17.2,
+      "hard_attack": 3.44,
+      "manpower": 10
+    },
+    "components": [
+      {
+        "slot": "standard_issue",
+        "component": "land_small_BioTide_Collective_base_polaron_weapon_0"
+      },
+      {
+        "slot": "special_issue",
+        "component": "land_small_BioTide_Collective_base_phaser_weapon_7"
+      }
+    ],
+    "composition": {
+      "Rifleman": 6,
+      "Specialist": 2,
+      "Medic": 1,
+      "Leader": 1
+    },
+    "cost": 134.4
+  },
+  "biotide_collective_infantry_standard_assault_squad": {
+    "blueprint_id": "biotide_collective_infantry_standard_assault_squad",
+    "name": "BioTide_Collective Assault Standard Infantry Squad",
+    "type": "infantry_standard",
+    "faction": "BioTide_Collective",
+    "category": "Infantry",
+    "base_stats": {
+      "hp": 10,
+      "organization": 20,
+      "soft_attack": 26.2,
+      "hard_attack": 5.24,
+      "manpower": 10
+    },
+    "components": [
+      {
+        "slot": "standard_issue",
+        "component": "land_small_BioTide_Collective_base_phaser_weapon_7"
+      },
+      {
+        "slot": "special_issue",
+        "component": "land_small_BioTide_Collective_base_bolter_weapon_8"
+      }
+    ],
+    "composition": {
+      "Rifleman": 5,
+      "Specialist": 4,
+      "Medic": 0,
+      "Leader": 1
+    },
+    "cost": 152.4
+  },
+  "biotide_collective_infantry_heavy_standard_squad": {
+    "blueprint_id": "biotide_collective_infantry_heavy_standard_squad",
+    "name": "BioTide_Collective Standard Heavy Infantry / Exo-Suits",
+    "type": "infantry_heavy",
+    "faction": "BioTide_Collective",
+    "category": "Infantry",
+    "base_stats": {
+      "hp": 25,
+      "organization": 30,
+      "soft_attack": 21.2,
+      "hard_attack": 4.24,
+      "manpower": 5
+    },
+    "components": [
+      {
+        "slot": "standard_issue",
+        "component": "land_small_BioTide_Collective_base_bolter_weapon_8"
+      },
+      {
+        "slot": "special_issue",
+        "component": "land_small_BioTide_Collective_base_bolter_weapon_8"
+      }
+    ],
+    "composition": {
+      "Rifleman": 0,
+      "Specialist": 4,
+      "Medic": 0,
+      "Leader": 1
+    },
+    "cost": 292.4
+  },
+  "biotide_collective_infantry_heavy_assault_squad": {
+    "blueprint_id": "biotide_collective_infantry_heavy_assault_squad",
+    "name": "BioTide_Collective Assault Heavy Infantry / Exo-Suits",
+    "type": "infantry_heavy",
+    "faction": "BioTide_Collective",
+    "category": "Infantry",
+    "base_stats": {
+      "hp": 25,
+      "organization": 30,
+      "soft_attack": 21.2,
+      "hard_attack": 4.24,
+      "manpower": 5
+    },
+    "components": [
+      {
+        "slot": "standard_issue",
+        "component": "land_small_BioTide_Collective_base_polaron_weapon_0"
+      },
+      {
+        "slot": "special_issue",
+        "component": "land_small_BioTide_Collective_base_polaron_weapon_0"
+      }
+    ],
+    "composition": {
+      "Rifleman": 0,
+      "Specialist": 4,
+      "Medic": 0,
+      "Leader": 1
+    },
+    "cost": 292.4
+  },
+  "biotide_collective_vehicle_light_tank_standard": {
+    "blueprint_id": "biotide_collective_vehicle_light_tank_standard",
+    "name": "BioTide_Collective Standard Light Tank",
+    "type": "vehicle_light_tank",
+    "faction": "BioTide_Collective",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 100,
+      "armor": 10,
+      "soft_attack": 20,
+      "hard_attack": 10.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_BioTide_Collective_base_phaser_weapon_7"
+      },
+      {
+        "slot": "hull_mount",
+        "component": "land_vehicle_BioTide_Collective_base_phaser_weapon_7"
+      }
+    ],
+    "cost": 530.0
+  },
+  "biotide_collective_vehicle_main_battle_tank_standard": {
+    "blueprint_id": "biotide_collective_vehicle_main_battle_tank_standard",
+    "name": "BioTide_Collective Standard Main Battle Tank",
+    "type": "vehicle_main_battle_tank",
+    "faction": "BioTide_Collective",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 250,
+      "armor": 30,
+      "soft_attack": 33.0,
+      "hard_attack": 25.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_BioTide_Collective_base_bolter_weapon_8"
+      },
+      {
+        "slot": "coaxial",
+        "component": "land_vehicle_BioTide_Collective_base_polaron_weapon_0"
+      },
+      {
+        "slot": "sponson_left",
+        "component": "land_vehicle_BioTide_Collective_base_bolter_weapon_8"
+      },
+      {
+        "slot": "sponson_right",
+        "component": "land_vehicle_BioTide_Collective_base_bolter_weapon_8"
+      }
+    ],
+    "cost": 1258.0
+  },
+  "biotide_collective_vehicle_main_battle_tank_elite": {
+    "blueprint_id": "biotide_collective_vehicle_main_battle_tank_elite",
+    "name": "BioTide_Collective Elite Main Battle Tank",
+    "type": "vehicle_main_battle_tank",
+    "faction": "BioTide_Collective",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 250,
+      "armor": 30,
+      "soft_attack": 33.0,
+      "hard_attack": 25.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_BioTide_Collective_base_polaron_weapon_0"
+      },
+      {
+        "slot": "coaxial",
+        "component": "land_vehicle_BioTide_Collective_base_bolter_weapon_8"
+      },
+      {
+        "slot": "sponson_left",
+        "component": "land_vehicle_BioTide_Collective_base_polaron_weapon_0"
+      },
+      {
+        "slot": "sponson_right",
+        "component": "land_vehicle_BioTide_Collective_base_polaron_weapon_0"
+      }
+    ],
+    "cost": 1258.0
+  },
+  "biotide_collective_vehicle_super_heavy_standard": {
+    "blueprint_id": "biotide_collective_vehicle_super_heavy_standard",
+    "name": "BioTide_Collective Standard Super-Heavy Fortress",
+    "type": "vehicle_super_heavy",
+    "faction": "BioTide_Collective",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 800,
+      "armor": 60,
+      "soft_attack": 53.0,
+      "hard_attack": 35.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_BioTide_Collective_base_bolter_weapon_8"
+      },
+      {
+        "slot": "turret_secondary",
+        "component": "land_vehicle_BioTide_Collective_base_polaron_weapon_0"
+      },
+      {
+        "slot": "sponson_1",
+        "component": "land_vehicle_BioTide_Collective_base_polaron_weapon_0"
+      },
+      {
+        "slot": "sponson_2",
+        "component": "land_vehicle_BioTide_Collective_base_polaron_weapon_0"
+      },
+      {
+        "slot": "sponson_3",
+        "component": "land_vehicle_BioTide_Collective_base_phaser_weapon_7"
+      },
+      {
+        "slot": "sponson_4",
+        "component": "land_vehicle_BioTide_Collective_base_bolter_weapon_8"
+      }
+    ],
+    "cost": 4088.0
+  },
+  "biotide_collective_vehicle_super_heavy_elite": {
+    "blueprint_id": "biotide_collective_vehicle_super_heavy_elite",
+    "name": "BioTide_Collective Elite Super-Heavy Fortress",
+    "type": "vehicle_super_heavy",
+    "faction": "BioTide_Collective",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 800,
+      "armor": 60,
+      "soft_attack": 53.0,
+      "hard_attack": 35.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_BioTide_Collective_base_bolter_weapon_8"
+      },
+      {
+        "slot": "turret_secondary",
+        "component": "land_vehicle_BioTide_Collective_base_polaron_weapon_0"
+      },
+      {
+        "slot": "sponson_1",
+        "component": "land_vehicle_BioTide_Collective_base_phaser_weapon_7"
+      },
+      {
+        "slot": "sponson_2",
+        "component": "land_vehicle_BioTide_Collective_base_polaron_weapon_0"
+      },
+      {
+        "slot": "sponson_3",
+        "component": "land_vehicle_BioTide_Collective_base_polaron_weapon_0"
+      },
+      {
+        "slot": "sponson_4",
+        "component": "land_vehicle_BioTide_Collective_base_polaron_weapon_0"
+      }
+    ],
+    "cost": 4088.0
+  },
+  "biotide_collective_walker_scout_standard": {
+    "blueprint_id": "biotide_collective_walker_scout_standard",
+    "name": "BioTide_Collective Standard Scout Walker",
+    "type": "walker_scout",
+    "faction": "BioTide_Collective",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 60,
+      "armor": 5,
+      "soft_attack": 20,
+      "hard_attack": 10.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "chin_mount",
+        "component": "land_vehicle_BioTide_Collective_base_phaser_weapon_7"
+      },
+      {
+        "slot": "utility",
+        "component": "land_vehicle_BioTide_Collective_base_polaron_weapon_0"
+      }
+    ],
+    "cost": 330.0
+  },
+  "biotide_collective_walker_combat_standard": {
+    "blueprint_id": "biotide_collective_walker_combat_standard",
+    "name": "BioTide_Collective Standard Combat Walker",
+    "type": "walker_combat",
+    "faction": "BioTide_Collective",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 180,
+      "armor": 20,
+      "soft_attack": 16.0,
+      "hard_attack": 25.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "arm_left",
+        "component": "land_vehicle_BioTide_Collective_base_phaser_weapon_7"
+      },
+      {
+        "slot": "arm_right",
+        "component": "land_vehicle_BioTide_Collective_base_phaser_weapon_7"
+      },
+      {
+        "slot": "shoulder",
+        "component": "land_vehicle_BioTide_Collective_base_phaser_weapon_7"
+      }
+    ],
+    "cost": 941.0
+  },
+  "biotide_collective_walker_combat_elite": {
+    "blueprint_id": "biotide_collective_walker_combat_elite",
+    "name": "BioTide_Collective Elite Combat Walker",
+    "type": "walker_combat",
+    "faction": "BioTide_Collective",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 180,
+      "armor": 20,
+      "soft_attack": 16.0,
+      "hard_attack": 25.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "arm_left",
+        "component": "land_vehicle_BioTide_Collective_base_bolter_weapon_8"
+      },
+      {
+        "slot": "arm_right",
+        "component": "land_vehicle_BioTide_Collective_base_phaser_weapon_7"
+      },
+      {
+        "slot": "shoulder",
+        "component": "land_vehicle_BioTide_Collective_base_bolter_weapon_8"
+      }
+    ],
+    "cost": 941.0
+  },
+  "biotide_collective_walker_titan_standard": {
+    "blueprint_id": "biotide_collective_walker_titan_standard",
+    "name": "BioTide_Collective Standard Titan",
+    "type": "walker_titan",
+    "faction": "BioTide_Collective",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 5000,
+      "armor": 100,
+      "soft_attack": 26.0,
+      "hard_attack": 30.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "arm_left",
+        "component": "land_vehicle_BioTide_Collective_base_polaron_weapon_0"
+      },
+      {
+        "slot": "arm_right",
+        "component": "land_vehicle_BioTide_Collective_base_phaser_weapon_7"
+      },
+      {
+        "slot": "carapace_left",
+        "component": "land_vehicle_BioTide_Collective_base_phaser_weapon_7"
+      },
+      {
+        "slot": "carapace_right",
+        "component": "land_vehicle_BioTide_Collective_base_phaser_weapon_7"
+      }
+    ],
+    "cost": 15056.0
+  },
+  "biotide_collective_walker_titan_elite": {
+    "blueprint_id": "biotide_collective_walker_titan_elite",
+    "name": "BioTide_Collective Elite Titan",
+    "type": "walker_titan",
+    "faction": "BioTide_Collective",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 5000,
+      "armor": 100,
+      "soft_attack": 26.0,
+      "hard_attack": 30.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "arm_left",
+        "component": "land_vehicle_BioTide_Collective_base_bolter_weapon_8"
+      },
+      {
+        "slot": "arm_right",
+        "component": "land_vehicle_BioTide_Collective_base_polaron_weapon_0"
+      },
+      {
+        "slot": "carapace_left",
+        "component": "land_vehicle_BioTide_Collective_base_phaser_weapon_7"
+      },
+      {
+        "slot": "carapace_right",
+        "component": "land_vehicle_BioTide_Collective_base_bolter_weapon_8"
+      }
+    ],
+    "cost": 15056.0
+  },
+  "algorithmic_hierarchy_infantry_standard_standard_squad": {
+    "blueprint_id": "algorithmic_hierarchy_infantry_standard_standard_squad",
+    "name": "Algorithmic_Hierarchy Standard Standard Infantry Squad",
+    "type": "infantry_standard",
+    "faction": "Algorithmic_Hierarchy",
+    "category": "Infantry",
+    "base_stats": {
+      "hp": 12.0,
+      "organization": 24.0,
+      "soft_attack": 17.2,
+      "hard_attack": 3.44,
+      "manpower": 10
+    },
+    "components": [
+      {
+        "slot": "standard_issue",
+        "component": "land_small_Algorithmic_Hierarchy_base_bolter_weapon_1"
+      },
+      {
+        "slot": "special_issue",
+        "component": "land_small_Algorithmic_Hierarchy_base_volkite_weapon_2"
+      }
+    ],
+    "composition": {
+      "Rifleman": 6,
+      "Specialist": 2,
+      "Medic": 1,
+      "Leader": 1
+    },
+    "cost": 134.4
+  },
+  "algorithmic_hierarchy_infantry_standard_assault_squad": {
+    "blueprint_id": "algorithmic_hierarchy_infantry_standard_assault_squad",
+    "name": "Algorithmic_Hierarchy Assault Standard Infantry Squad",
+    "type": "infantry_standard",
+    "faction": "Algorithmic_Hierarchy",
+    "category": "Infantry",
+    "base_stats": {
+      "hp": 10,
+      "organization": 20,
+      "soft_attack": 26.2,
+      "hard_attack": 5.24,
+      "manpower": 10
+    },
+    "components": [
+      {
+        "slot": "standard_issue",
+        "component": "land_small_Algorithmic_Hierarchy_base_bolter_weapon_1"
+      },
+      {
+        "slot": "special_issue",
+        "component": "land_small_Algorithmic_Hierarchy_base_gauss_weapon_5"
+      }
+    ],
+    "composition": {
+      "Rifleman": 5,
+      "Specialist": 4,
+      "Medic": 0,
+      "Leader": 1
+    },
+    "cost": 152.4
+  },
+  "algorithmic_hierarchy_infantry_heavy_standard_squad": {
+    "blueprint_id": "algorithmic_hierarchy_infantry_heavy_standard_squad",
+    "name": "Algorithmic_Hierarchy Standard Heavy Infantry / Exo-Suits",
+    "type": "infantry_heavy",
+    "faction": "Algorithmic_Hierarchy",
+    "category": "Infantry",
+    "base_stats": {
+      "hp": 25,
+      "organization": 30,
+      "soft_attack": 21.2,
+      "hard_attack": 4.24,
+      "manpower": 5
+    },
+    "components": [
+      {
+        "slot": "standard_issue",
+        "component": "land_small_Algorithmic_Hierarchy_base_bolter_weapon_1"
+      },
+      {
+        "slot": "special_issue",
+        "component": "land_small_Algorithmic_Hierarchy_base_volkite_weapon_2"
+      }
+    ],
+    "composition": {
+      "Rifleman": 0,
+      "Specialist": 4,
+      "Medic": 0,
+      "Leader": 1
+    },
+    "cost": 292.4
+  },
+  "algorithmic_hierarchy_infantry_heavy_assault_squad": {
+    "blueprint_id": "algorithmic_hierarchy_infantry_heavy_assault_squad",
+    "name": "Algorithmic_Hierarchy Assault Heavy Infantry / Exo-Suits",
+    "type": "infantry_heavy",
+    "faction": "Algorithmic_Hierarchy",
+    "category": "Infantry",
+    "base_stats": {
+      "hp": 25,
+      "organization": 30,
+      "soft_attack": 21.2,
+      "hard_attack": 4.24,
+      "manpower": 5
+    },
+    "components": [
+      {
+        "slot": "standard_issue",
+        "component": "land_small_Algorithmic_Hierarchy_base_volkite_weapon_2"
+      },
+      {
+        "slot": "special_issue",
+        "component": "land_small_Algorithmic_Hierarchy_base_plasma_weapon_4"
+      }
+    ],
+    "composition": {
+      "Rifleman": 0,
+      "Specialist": 4,
+      "Medic": 0,
+      "Leader": 1
+    },
+    "cost": 292.4
+  },
+  "algorithmic_hierarchy_vehicle_light_tank_standard": {
+    "blueprint_id": "algorithmic_hierarchy_vehicle_light_tank_standard",
+    "name": "Algorithmic_Hierarchy Standard Light Tank",
+    "type": "vehicle_light_tank",
+    "faction": "Algorithmic_Hierarchy",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 100,
+      "armor": 10,
+      "soft_attack": 20,
+      "hard_attack": 10.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_gauss_weapon_5"
+      },
+      {
+        "slot": "hull_mount",
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_bolter_weapon_1"
+      }
+    ],
+    "cost": 530.0
+  },
+  "algorithmic_hierarchy_vehicle_main_battle_tank_standard": {
+    "blueprint_id": "algorithmic_hierarchy_vehicle_main_battle_tank_standard",
+    "name": "Algorithmic_Hierarchy Standard Main Battle Tank",
+    "type": "vehicle_main_battle_tank",
+    "faction": "Algorithmic_Hierarchy",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 250,
+      "armor": 30,
+      "soft_attack": 33.0,
+      "hard_attack": 25.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_plasma_weapon_4"
+      },
+      {
+        "slot": "coaxial",
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_gauss_weapon_5"
+      },
+      {
+        "slot": "sponson_left",
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_bolter_weapon_1"
+      },
+      {
+        "slot": "sponson_right",
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_bolter_weapon_1"
+      }
+    ],
+    "cost": 1258.0
+  },
+  "algorithmic_hierarchy_vehicle_main_battle_tank_elite": {
+    "blueprint_id": "algorithmic_hierarchy_vehicle_main_battle_tank_elite",
+    "name": "Algorithmic_Hierarchy Elite Main Battle Tank",
+    "type": "vehicle_main_battle_tank",
+    "faction": "Algorithmic_Hierarchy",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 250,
+      "armor": 30,
+      "soft_attack": 33.0,
+      "hard_attack": 25.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_plasma_weapon_4"
+      },
+      {
+        "slot": "coaxial",
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_volkite_weapon_2"
+      },
+      {
+        "slot": "sponson_left",
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_volkite_weapon_2"
+      },
+      {
+        "slot": "sponson_right",
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_gauss_weapon_5"
+      }
+    ],
+    "cost": 1258.0
+  },
+  "algorithmic_hierarchy_vehicle_super_heavy_standard": {
+    "blueprint_id": "algorithmic_hierarchy_vehicle_super_heavy_standard",
+    "name": "Algorithmic_Hierarchy Standard Super-Heavy Fortress",
+    "type": "vehicle_super_heavy",
+    "faction": "Algorithmic_Hierarchy",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 800,
+      "armor": 60,
+      "soft_attack": 53.0,
+      "hard_attack": 35.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_plasma_weapon_4"
+      },
+      {
+        "slot": "turret_secondary",
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_gauss_weapon_5"
+      },
+      {
+        "slot": "sponson_1",
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_bolter_weapon_1"
+      },
+      {
+        "slot": "sponson_2",
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_gauss_weapon_5"
+      },
+      {
+        "slot": "sponson_3",
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_gauss_weapon_5"
+      },
+      {
+        "slot": "sponson_4",
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_volkite_weapon_2"
+      }
+    ],
+    "cost": 4088.0
+  },
+  "algorithmic_hierarchy_vehicle_super_heavy_elite": {
+    "blueprint_id": "algorithmic_hierarchy_vehicle_super_heavy_elite",
+    "name": "Algorithmic_Hierarchy Elite Super-Heavy Fortress",
+    "type": "vehicle_super_heavy",
+    "faction": "Algorithmic_Hierarchy",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 800,
+      "armor": 60,
+      "soft_attack": 53.0,
+      "hard_attack": 35.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_gauss_weapon_5"
+      },
+      {
+        "slot": "turret_secondary",
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_plasma_weapon_4"
+      },
+      {
+        "slot": "sponson_1",
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_plasma_weapon_4"
+      },
+      {
+        "slot": "sponson_2",
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_bolter_weapon_1"
+      },
+      {
+        "slot": "sponson_3",
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_gauss_weapon_5"
+      },
+      {
+        "slot": "sponson_4",
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_gauss_weapon_5"
+      }
+    ],
+    "cost": 4088.0
+  },
+  "algorithmic_hierarchy_walker_scout_standard": {
+    "blueprint_id": "algorithmic_hierarchy_walker_scout_standard",
+    "name": "Algorithmic_Hierarchy Standard Scout Walker",
+    "type": "walker_scout",
+    "faction": "Algorithmic_Hierarchy",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 60,
+      "armor": 5,
+      "soft_attack": 20,
+      "hard_attack": 10.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "chin_mount",
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_plasma_weapon_4"
+      },
+      {
+        "slot": "utility",
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_plasma_weapon_4"
+      }
+    ],
+    "cost": 330.0
+  },
+  "algorithmic_hierarchy_walker_combat_standard": {
+    "blueprint_id": "algorithmic_hierarchy_walker_combat_standard",
+    "name": "Algorithmic_Hierarchy Standard Combat Walker",
+    "type": "walker_combat",
+    "faction": "Algorithmic_Hierarchy",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 180,
+      "armor": 20,
+      "soft_attack": 16.0,
+      "hard_attack": 25.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "arm_left",
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_bolter_weapon_1"
+      },
+      {
+        "slot": "arm_right",
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_volkite_weapon_2"
+      },
+      {
+        "slot": "shoulder",
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_plasma_weapon_4"
+      }
+    ],
+    "cost": 941.0
+  },
+  "algorithmic_hierarchy_walker_combat_elite": {
+    "blueprint_id": "algorithmic_hierarchy_walker_combat_elite",
+    "name": "Algorithmic_Hierarchy Elite Combat Walker",
+    "type": "walker_combat",
+    "faction": "Algorithmic_Hierarchy",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 180,
+      "armor": 20,
+      "soft_attack": 16.0,
+      "hard_attack": 25.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "arm_left",
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_gauss_weapon_5"
+      },
+      {
+        "slot": "arm_right",
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_bolter_weapon_1"
+      },
+      {
+        "slot": "shoulder",
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_gauss_weapon_5"
+      }
+    ],
+    "cost": 941.0
+  },
+  "algorithmic_hierarchy_walker_titan_standard": {
+    "blueprint_id": "algorithmic_hierarchy_walker_titan_standard",
+    "name": "Algorithmic_Hierarchy Standard Titan",
+    "type": "walker_titan",
+    "faction": "Algorithmic_Hierarchy",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 5000,
+      "armor": 100,
+      "soft_attack": 26.0,
+      "hard_attack": 30.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "arm_left",
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_bolter_weapon_1"
+      },
+      {
+        "slot": "arm_right",
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_plasma_weapon_4"
+      },
+      {
+        "slot": "carapace_left",
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_gauss_weapon_5"
+      },
+      {
+        "slot": "carapace_right",
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_volkite_weapon_2"
+      }
+    ],
+    "cost": 15056.0
+  },
+  "algorithmic_hierarchy_walker_titan_elite": {
+    "blueprint_id": "algorithmic_hierarchy_walker_titan_elite",
+    "name": "Algorithmic_Hierarchy Elite Titan",
+    "type": "walker_titan",
+    "faction": "Algorithmic_Hierarchy",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 5000,
+      "armor": 100,
+      "soft_attack": 26.0,
+      "hard_attack": 30.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "arm_left",
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_gauss_weapon_5"
+      },
+      {
+        "slot": "arm_right",
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_bolter_weapon_1"
+      },
+      {
+        "slot": "carapace_left",
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_volkite_weapon_2"
+      },
+      {
+        "slot": "carapace_right",
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_bolter_weapon_1"
+      }
+    ],
+    "cost": 15056.0
+  },
+  "nebula_drifters_infantry_standard_standard_squad": {
+    "blueprint_id": "nebula_drifters_infantry_standard_standard_squad",
+    "name": "Nebula_Drifters Standard Standard Infantry Squad",
+    "type": "infantry_standard",
+    "faction": "Nebula_Drifters",
+    "category": "Infantry",
+    "base_stats": {
+      "hp": 12.0,
+      "organization": 24.0,
+      "soft_attack": 17.2,
+      "hard_attack": 3.44,
+      "manpower": 10
+    },
+    "components": [
+      {
+        "slot": "standard_issue",
+        "component": "land_small_Nebula_Drifters_base_gauss_weapon_6"
+      },
+      {
+        "slot": "special_issue",
+        "component": "land_small_Nebula_Drifters_base_gauss_weapon_6"
+      }
+    ],
+    "composition": {
+      "Rifleman": 6,
+      "Specialist": 2,
+      "Medic": 1,
+      "Leader": 1
+    },
+    "cost": 134.4
+  },
+  "nebula_drifters_infantry_standard_assault_squad": {
+    "blueprint_id": "nebula_drifters_infantry_standard_assault_squad",
+    "name": "Nebula_Drifters Assault Standard Infantry Squad",
+    "type": "infantry_standard",
+    "faction": "Nebula_Drifters",
+    "category": "Infantry",
+    "base_stats": {
+      "hp": 12.0,
+      "organization": 24.0,
+      "soft_attack": 25.2,
+      "hard_attack": 5.04,
+      "manpower": 10
+    },
+    "components": [
+      {
+        "slot": "standard_issue",
+        "component": "land_small_Nebula_Drifters_base_tesla_weapon_2"
+      },
+      {
+        "slot": "special_issue",
+        "component": "land_small_Nebula_Drifters_base_grav_weapon_0"
+      }
+    ],
+    "composition": {
+      "Rifleman": 4,
+      "Specialist": 4,
+      "Medic": 1,
+      "Leader": 1
+    },
+    "cost": 150.4
+  },
+  "nebula_drifters_infantry_heavy_standard_squad": {
+    "blueprint_id": "nebula_drifters_infantry_heavy_standard_squad",
+    "name": "Nebula_Drifters Standard Heavy Infantry / Exo-Suits",
+    "type": "infantry_heavy",
+    "faction": "Nebula_Drifters",
+    "category": "Infantry",
+    "base_stats": {
+      "hp": 25,
+      "organization": 30,
+      "soft_attack": 21.2,
+      "hard_attack": 4.24,
+      "manpower": 5
+    },
+    "components": [
+      {
+        "slot": "standard_issue",
+        "component": "land_small_Nebula_Drifters_base_tesla_weapon_2"
+      },
+      {
+        "slot": "special_issue",
+        "component": "land_small_Nebula_Drifters_base_grav_weapon_9"
+      }
+    ],
+    "composition": {
+      "Rifleman": 0,
+      "Specialist": 4,
+      "Medic": 0,
+      "Leader": 1
+    },
+    "cost": 292.4
+  },
+  "nebula_drifters_infantry_heavy_assault_squad": {
+    "blueprint_id": "nebula_drifters_infantry_heavy_assault_squad",
+    "name": "Nebula_Drifters Assault Heavy Infantry / Exo-Suits",
+    "type": "infantry_heavy",
+    "faction": "Nebula_Drifters",
+    "category": "Infantry",
+    "base_stats": {
+      "hp": 25,
+      "organization": 30,
+      "soft_attack": 21.2,
+      "hard_attack": 4.24,
+      "manpower": 5
+    },
+    "components": [
+      {
+        "slot": "standard_issue",
+        "component": "land_small_Nebula_Drifters_base_bolter_weapon_4"
+      },
+      {
+        "slot": "special_issue",
+        "component": "land_small_Nebula_Drifters_base_grav_weapon_9"
+      }
+    ],
+    "composition": {
+      "Rifleman": 0,
+      "Specialist": 4,
+      "Medic": 0,
+      "Leader": 1
+    },
+    "cost": 292.4
+  },
+  "nebula_drifters_vehicle_light_tank_standard": {
+    "blueprint_id": "nebula_drifters_vehicle_light_tank_standard",
+    "name": "Nebula_Drifters Standard Light Tank",
+    "type": "vehicle_light_tank",
+    "faction": "Nebula_Drifters",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 100,
+      "armor": 10,
+      "soft_attack": 20,
+      "hard_attack": 10.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_Nebula_Drifters_base_grav_weapon_9"
+      },
+      {
+        "slot": "hull_mount",
+        "component": "land_vehicle_Nebula_Drifters_base_gauss_weapon_6"
+      }
+    ],
+    "cost": 530.0
+  },
+  "nebula_drifters_vehicle_main_battle_tank_standard": {
+    "blueprint_id": "nebula_drifters_vehicle_main_battle_tank_standard",
+    "name": "Nebula_Drifters Standard Main Battle Tank",
+    "type": "vehicle_main_battle_tank",
+    "faction": "Nebula_Drifters",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 250,
+      "armor": 30,
+      "soft_attack": 33.0,
+      "hard_attack": 25.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_Nebula_Drifters_base_gauss_weapon_6"
+      },
+      {
+        "slot": "coaxial",
+        "component": "land_vehicle_Nebula_Drifters_base_tesla_weapon_2"
+      },
+      {
+        "slot": "sponson_left",
+        "component": "land_vehicle_Nebula_Drifters_base_tesla_weapon_2"
+      },
+      {
+        "slot": "sponson_right",
+        "component": "land_vehicle_Nebula_Drifters_base_tesla_weapon_2"
+      }
+    ],
+    "cost": 1258.0
+  },
+  "nebula_drifters_vehicle_main_battle_tank_elite": {
+    "blueprint_id": "nebula_drifters_vehicle_main_battle_tank_elite",
+    "name": "Nebula_Drifters Elite Main Battle Tank",
+    "type": "vehicle_main_battle_tank",
+    "faction": "Nebula_Drifters",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 250,
+      "armor": 30,
+      "soft_attack": 33.0,
+      "hard_attack": 25.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_Nebula_Drifters_base_grav_weapon_9"
+      },
+      {
+        "slot": "coaxial",
+        "component": "land_vehicle_Nebula_Drifters_base_bolter_weapon_4"
+      },
+      {
+        "slot": "sponson_left",
+        "component": "land_vehicle_Nebula_Drifters_base_grav_weapon_0"
+      },
+      {
+        "slot": "sponson_right",
+        "component": "land_vehicle_Nebula_Drifters_base_gauss_weapon_6"
+      }
+    ],
+    "cost": 1258.0
+  },
+  "nebula_drifters_vehicle_super_heavy_standard": {
+    "blueprint_id": "nebula_drifters_vehicle_super_heavy_standard",
+    "name": "Nebula_Drifters Standard Super-Heavy Fortress",
+    "type": "vehicle_super_heavy",
+    "faction": "Nebula_Drifters",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 800,
+      "armor": 60,
+      "soft_attack": 53.0,
+      "hard_attack": 35.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_Nebula_Drifters_base_tesla_weapon_2"
+      },
+      {
+        "slot": "turret_secondary",
+        "component": "land_vehicle_Nebula_Drifters_base_tesla_weapon_2"
+      },
+      {
+        "slot": "sponson_1",
+        "component": "land_vehicle_Nebula_Drifters_base_grav_weapon_0"
+      },
+      {
+        "slot": "sponson_2",
+        "component": "land_vehicle_Nebula_Drifters_base_grav_weapon_0"
+      },
+      {
+        "slot": "sponson_3",
+        "component": "land_vehicle_Nebula_Drifters_base_grav_weapon_9"
+      },
+      {
+        "slot": "sponson_4",
+        "component": "land_vehicle_Nebula_Drifters_base_tesla_weapon_2"
+      }
+    ],
+    "cost": 4088.0
+  },
+  "nebula_drifters_vehicle_super_heavy_elite": {
+    "blueprint_id": "nebula_drifters_vehicle_super_heavy_elite",
+    "name": "Nebula_Drifters Elite Super-Heavy Fortress",
+    "type": "vehicle_super_heavy",
+    "faction": "Nebula_Drifters",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 800,
+      "armor": 60,
+      "soft_attack": 53.0,
+      "hard_attack": 35.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_Nebula_Drifters_base_tesla_weapon_2"
+      },
+      {
+        "slot": "turret_secondary",
+        "component": "land_vehicle_Nebula_Drifters_base_grav_weapon_9"
+      },
+      {
+        "slot": "sponson_1",
+        "component": "land_vehicle_Nebula_Drifters_base_grav_weapon_0"
+      },
+      {
+        "slot": "sponson_2",
+        "component": "land_vehicle_Nebula_Drifters_base_gauss_weapon_6"
+      },
+      {
+        "slot": "sponson_3",
+        "component": "land_vehicle_Nebula_Drifters_base_gauss_weapon_5"
+      },
+      {
+        "slot": "sponson_4",
+        "component": "land_vehicle_Nebula_Drifters_base_gauss_weapon_6"
+      }
+    ],
+    "cost": 4088.0
+  },
+  "nebula_drifters_walker_scout_standard": {
+    "blueprint_id": "nebula_drifters_walker_scout_standard",
+    "name": "Nebula_Drifters Standard Scout Walker",
+    "type": "walker_scout",
+    "faction": "Nebula_Drifters",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 60,
+      "armor": 5,
+      "soft_attack": 20,
+      "hard_attack": 10.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "chin_mount",
+        "component": "land_vehicle_Nebula_Drifters_base_grav_weapon_0"
+      },
+      {
+        "slot": "utility",
+        "component": "land_vehicle_Nebula_Drifters_base_tesla_weapon_2"
+      }
+    ],
+    "cost": 330.0
+  },
+  "nebula_drifters_walker_combat_standard": {
+    "blueprint_id": "nebula_drifters_walker_combat_standard",
+    "name": "Nebula_Drifters Standard Combat Walker",
+    "type": "walker_combat",
+    "faction": "Nebula_Drifters",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 180,
+      "armor": 20,
+      "soft_attack": 16.0,
+      "hard_attack": 25.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "arm_left",
+        "component": "land_vehicle_Nebula_Drifters_base_grav_weapon_9"
+      },
+      {
+        "slot": "arm_right",
+        "component": "land_vehicle_Nebula_Drifters_base_gauss_weapon_6"
+      },
+      {
+        "slot": "shoulder",
+        "component": "land_vehicle_Nebula_Drifters_base_gauss_weapon_5"
+      }
+    ],
+    "cost": 941.0
+  },
+  "nebula_drifters_walker_combat_elite": {
+    "blueprint_id": "nebula_drifters_walker_combat_elite",
+    "name": "Nebula_Drifters Elite Combat Walker",
+    "type": "walker_combat",
+    "faction": "Nebula_Drifters",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 180,
+      "armor": 20,
+      "soft_attack": 16.0,
+      "hard_attack": 25.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "arm_left",
+        "component": "land_vehicle_Nebula_Drifters_base_grav_weapon_9"
+      },
+      {
+        "slot": "arm_right",
+        "component": "land_vehicle_Nebula_Drifters_base_gauss_weapon_5"
+      },
+      {
+        "slot": "shoulder",
+        "component": "land_vehicle_Nebula_Drifters_base_grav_weapon_9"
+      }
+    ],
+    "cost": 941.0
+  },
+  "nebula_drifters_walker_titan_standard": {
+    "blueprint_id": "nebula_drifters_walker_titan_standard",
+    "name": "Nebula_Drifters Standard Titan",
+    "type": "walker_titan",
+    "faction": "Nebula_Drifters",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 5000,
+      "armor": 100,
+      "soft_attack": 26.0,
+      "hard_attack": 30.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "arm_left",
+        "component": "land_vehicle_Nebula_Drifters_base_grav_weapon_9"
+      },
+      {
+        "slot": "arm_right",
+        "component": "land_vehicle_Nebula_Drifters_base_bolter_weapon_4"
+      },
+      {
+        "slot": "carapace_left",
+        "component": "land_vehicle_Nebula_Drifters_base_gauss_weapon_6"
+      },
+      {
+        "slot": "carapace_right",
+        "component": "land_vehicle_Nebula_Drifters_base_gauss_weapon_6"
+      }
+    ],
+    "cost": 15056.0
+  },
+  "nebula_drifters_walker_titan_elite": {
+    "blueprint_id": "nebula_drifters_walker_titan_elite",
+    "name": "Nebula_Drifters Elite Titan",
+    "type": "walker_titan",
+    "faction": "Nebula_Drifters",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 5000,
+      "armor": 100,
+      "soft_attack": 26.0,
+      "hard_attack": 30.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "arm_left",
+        "component": "land_vehicle_Nebula_Drifters_base_grav_weapon_9"
+      },
+      {
+        "slot": "arm_right",
+        "component": "land_vehicle_Nebula_Drifters_base_grav_weapon_0"
+      },
+      {
+        "slot": "carapace_left",
+        "component": "land_vehicle_Nebula_Drifters_base_bolter_weapon_4"
+      },
+      {
+        "slot": "carapace_right",
+        "component": "land_vehicle_Nebula_Drifters_base_grav_weapon_0"
+      }
+    ],
+    "cost": 15056.0
+  },
+  "aurelian_hegemony_infantry_standard_standard_squad": {
+    "blueprint_id": "aurelian_hegemony_infantry_standard_standard_squad",
+    "name": "Aurelian_Hegemony Standard Standard Infantry Squad",
+    "type": "infantry_standard",
+    "faction": "Aurelian_Hegemony",
+    "category": "Infantry",
+    "base_stats": {
+      "hp": 10,
+      "organization": 20,
+      "soft_attack": 18.2,
+      "hard_attack": 3.64,
+      "manpower": 10
+    },
+    "components": [
+      {
+        "slot": "standard_issue",
+        "component": "land_small_Aurelian_Hegemony_base_bolter_weapon_0"
+      },
+      {
+        "slot": "special_issue",
+        "component": "land_small_Aurelian_Hegemony_base_bolter_weapon_0"
+      }
+    ],
+    "composition": {
+      "Rifleman": 7,
+      "Specialist": 2,
+      "Medic": 0,
+      "Leader": 1
+    },
+    "cost": 136.4
+  },
+  "aurelian_hegemony_infantry_standard_assault_squad": {
+    "blueprint_id": "aurelian_hegemony_infantry_standard_assault_squad",
+    "name": "Aurelian_Hegemony Assault Standard Infantry Squad",
+    "type": "infantry_standard",
+    "faction": "Aurelian_Hegemony",
+    "category": "Infantry",
+    "base_stats": {
+      "hp": 10,
+      "organization": 20,
+      "soft_attack": 26.2,
+      "hard_attack": 5.24,
+      "manpower": 10
+    },
+    "components": [
+      {
+        "slot": "standard_issue",
+        "component": "land_small_Aurelian_Hegemony_base_rad_weapon_5"
+      },
+      {
+        "slot": "special_issue",
+        "component": "land_small_Aurelian_Hegemony_base_tachyon_weapon_1"
+      }
+    ],
+    "composition": {
+      "Rifleman": 5,
+      "Specialist": 4,
+      "Medic": 0,
+      "Leader": 1
+    },
+    "cost": 152.4
+  },
+  "aurelian_hegemony_infantry_heavy_standard_squad": {
+    "blueprint_id": "aurelian_hegemony_infantry_heavy_standard_squad",
+    "name": "Aurelian_Hegemony Standard Heavy Infantry / Exo-Suits",
+    "type": "infantry_heavy",
+    "faction": "Aurelian_Hegemony",
+    "category": "Infantry",
+    "base_stats": {
+      "hp": 25,
+      "organization": 30,
+      "soft_attack": 21.2,
+      "hard_attack": 4.24,
+      "manpower": 5
+    },
+    "components": [
+      {
+        "slot": "standard_issue",
+        "component": "land_small_Aurelian_Hegemony_base_bolter_weapon_0"
+      },
+      {
+        "slot": "special_issue",
+        "component": "land_small_Aurelian_Hegemony_base_tachyon_weapon_1"
+      }
+    ],
+    "composition": {
+      "Rifleman": 0,
+      "Specialist": 4,
+      "Medic": 0,
+      "Leader": 1
+    },
+    "cost": 292.4
+  },
+  "aurelian_hegemony_infantry_heavy_assault_squad": {
+    "blueprint_id": "aurelian_hegemony_infantry_heavy_assault_squad",
+    "name": "Aurelian_Hegemony Assault Heavy Infantry / Exo-Suits",
+    "type": "infantry_heavy",
+    "faction": "Aurelian_Hegemony",
+    "category": "Infantry",
+    "base_stats": {
+      "hp": 25,
+      "organization": 30,
+      "soft_attack": 21.2,
+      "hard_attack": 4.24,
+      "manpower": 5
+    },
+    "components": [
+      {
+        "slot": "standard_issue",
+        "component": "land_small_Aurelian_Hegemony_base_bolter_weapon_0"
+      },
+      {
+        "slot": "special_issue",
+        "component": "land_small_Aurelian_Hegemony_base_disruptor_weapon_4"
+      }
+    ],
+    "composition": {
+      "Rifleman": 0,
+      "Specialist": 4,
+      "Medic": 0,
+      "Leader": 1
+    },
+    "cost": 292.4
+  },
+  "aurelian_hegemony_vehicle_light_tank_standard": {
+    "blueprint_id": "aurelian_hegemony_vehicle_light_tank_standard",
+    "name": "Aurelian_Hegemony Standard Light Tank",
+    "type": "vehicle_light_tank",
+    "faction": "Aurelian_Hegemony",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 100,
+      "armor": 10,
+      "soft_attack": 20,
+      "hard_attack": 10.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_Aurelian_Hegemony_base_tachyon_weapon_1"
+      },
+      {
+        "slot": "hull_mount",
+        "component": "land_vehicle_Aurelian_Hegemony_base_phaser_weapon_3"
+      }
+    ],
+    "cost": 530.0
+  },
+  "aurelian_hegemony_vehicle_main_battle_tank_standard": {
+    "blueprint_id": "aurelian_hegemony_vehicle_main_battle_tank_standard",
+    "name": "Aurelian_Hegemony Standard Main Battle Tank",
+    "type": "vehicle_main_battle_tank",
+    "faction": "Aurelian_Hegemony",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 250,
+      "armor": 30,
+      "soft_attack": 33.0,
+      "hard_attack": 25.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_Aurelian_Hegemony_base_rad_weapon_8"
+      },
+      {
+        "slot": "coaxial",
+        "component": "land_vehicle_Aurelian_Hegemony_base_gauss_weapon_6"
+      },
+      {
+        "slot": "sponson_left",
+        "component": "land_vehicle_Aurelian_Hegemony_base_tachyon_weapon_1"
+      },
+      {
+        "slot": "sponson_right",
+        "component": "land_vehicle_Aurelian_Hegemony_base_disruptor_weapon_4"
+      }
+    ],
+    "cost": 1258.0
+  },
+  "aurelian_hegemony_vehicle_main_battle_tank_elite": {
+    "blueprint_id": "aurelian_hegemony_vehicle_main_battle_tank_elite",
+    "name": "Aurelian_Hegemony Elite Main Battle Tank",
+    "type": "vehicle_main_battle_tank",
+    "faction": "Aurelian_Hegemony",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 250,
+      "armor": 30,
+      "soft_attack": 33.0,
+      "hard_attack": 25.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_Aurelian_Hegemony_base_gauss_weapon_6"
+      },
+      {
+        "slot": "coaxial",
+        "component": "land_vehicle_Aurelian_Hegemony_base_disruptor_weapon_4"
+      },
+      {
+        "slot": "sponson_left",
+        "component": "land_vehicle_Aurelian_Hegemony_base_gauss_weapon_6"
+      },
+      {
+        "slot": "sponson_right",
+        "component": "land_vehicle_Aurelian_Hegemony_base_tachyon_weapon_1"
+      }
+    ],
+    "cost": 1258.0
+  },
+  "aurelian_hegemony_vehicle_super_heavy_standard": {
+    "blueprint_id": "aurelian_hegemony_vehicle_super_heavy_standard",
+    "name": "Aurelian_Hegemony Standard Super-Heavy Fortress",
+    "type": "vehicle_super_heavy",
+    "faction": "Aurelian_Hegemony",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 800,
+      "armor": 60,
+      "soft_attack": 53.0,
+      "hard_attack": 35.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_Aurelian_Hegemony_base_rad_weapon_8"
+      },
+      {
+        "slot": "turret_secondary",
+        "component": "land_vehicle_Aurelian_Hegemony_base_bolter_weapon_9"
+      },
+      {
+        "slot": "sponson_1",
+        "component": "land_vehicle_Aurelian_Hegemony_base_rad_weapon_8"
+      },
+      {
+        "slot": "sponson_2",
+        "component": "land_vehicle_Aurelian_Hegemony_base_tachyon_weapon_1"
+      },
+      {
+        "slot": "sponson_3",
+        "component": "land_vehicle_Aurelian_Hegemony_base_bolter_weapon_0"
+      },
+      {
+        "slot": "sponson_4",
+        "component": "land_vehicle_Aurelian_Hegemony_base_gauss_weapon_6"
+      }
+    ],
+    "cost": 4088.0
+  },
+  "aurelian_hegemony_vehicle_super_heavy_elite": {
+    "blueprint_id": "aurelian_hegemony_vehicle_super_heavy_elite",
+    "name": "Aurelian_Hegemony Elite Super-Heavy Fortress",
+    "type": "vehicle_super_heavy",
+    "faction": "Aurelian_Hegemony",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 800,
+      "armor": 60,
+      "soft_attack": 53.0,
+      "hard_attack": 35.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_Aurelian_Hegemony_base_rad_weapon_8"
+      },
+      {
+        "slot": "turret_secondary",
+        "component": "land_vehicle_Aurelian_Hegemony_base_disruptor_weapon_4"
+      },
+      {
+        "slot": "sponson_1",
+        "component": "land_vehicle_Aurelian_Hegemony_base_bolter_weapon_9"
+      },
+      {
+        "slot": "sponson_2",
+        "component": "land_vehicle_Aurelian_Hegemony_base_rad_weapon_8"
+      },
+      {
+        "slot": "sponson_3",
+        "component": "land_vehicle_Aurelian_Hegemony_base_rad_weapon_8"
+      },
+      {
+        "slot": "sponson_4",
+        "component": "land_vehicle_Aurelian_Hegemony_base_gauss_weapon_6"
+      }
+    ],
+    "cost": 4088.0
+  },
+  "aurelian_hegemony_walker_scout_standard": {
+    "blueprint_id": "aurelian_hegemony_walker_scout_standard",
+    "name": "Aurelian_Hegemony Standard Scout Walker",
+    "type": "walker_scout",
+    "faction": "Aurelian_Hegemony",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 60,
+      "armor": 5,
+      "soft_attack": 20,
+      "hard_attack": 10.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "chin_mount",
+        "component": "land_vehicle_Aurelian_Hegemony_base_phaser_weapon_3"
+      },
+      {
+        "slot": "utility",
+        "component": "land_vehicle_Aurelian_Hegemony_base_bolter_weapon_0"
+      }
+    ],
+    "cost": 330.0
+  },
+  "aurelian_hegemony_walker_combat_standard": {
+    "blueprint_id": "aurelian_hegemony_walker_combat_standard",
+    "name": "Aurelian_Hegemony Standard Combat Walker",
+    "type": "walker_combat",
+    "faction": "Aurelian_Hegemony",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 180,
+      "armor": 20,
+      "soft_attack": 16.0,
+      "hard_attack": 25.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "arm_left",
+        "component": "land_vehicle_Aurelian_Hegemony_base_gauss_weapon_6"
+      },
+      {
+        "slot": "arm_right",
+        "component": "land_vehicle_Aurelian_Hegemony_base_tachyon_weapon_1"
+      },
+      {
+        "slot": "shoulder",
+        "component": "land_vehicle_Aurelian_Hegemony_base_bolter_weapon_9"
+      }
+    ],
+    "cost": 941.0
+  },
+  "aurelian_hegemony_walker_combat_elite": {
+    "blueprint_id": "aurelian_hegemony_walker_combat_elite",
+    "name": "Aurelian_Hegemony Elite Combat Walker",
+    "type": "walker_combat",
+    "faction": "Aurelian_Hegemony",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 180,
+      "armor": 20,
+      "soft_attack": 16.0,
+      "hard_attack": 25.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "arm_left",
+        "component": "land_vehicle_Aurelian_Hegemony_base_bolter_weapon_0"
+      },
+      {
+        "slot": "arm_right",
+        "component": "land_vehicle_Aurelian_Hegemony_base_rad_weapon_8"
+      },
+      {
+        "slot": "shoulder",
+        "component": "land_vehicle_Aurelian_Hegemony_base_bolter_weapon_9"
+      }
+    ],
+    "cost": 941.0
+  },
+  "aurelian_hegemony_walker_titan_standard": {
+    "blueprint_id": "aurelian_hegemony_walker_titan_standard",
+    "name": "Aurelian_Hegemony Standard Titan",
+    "type": "walker_titan",
+    "faction": "Aurelian_Hegemony",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 5000,
+      "armor": 100,
+      "soft_attack": 26.0,
+      "hard_attack": 30.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "arm_left",
+        "component": "land_vehicle_Aurelian_Hegemony_base_tachyon_weapon_1"
+      },
+      {
+        "slot": "arm_right",
+        "component": "land_vehicle_Aurelian_Hegemony_base_disruptor_weapon_4"
+      },
+      {
+        "slot": "carapace_left",
+        "component": "land_vehicle_Aurelian_Hegemony_base_bolter_weapon_9"
+      },
+      {
+        "slot": "carapace_right",
+        "component": "land_vehicle_Aurelian_Hegemony_base_rad_weapon_5"
+      }
+    ],
+    "cost": 15056.0
+  },
+  "aurelian_hegemony_walker_titan_elite": {
+    "blueprint_id": "aurelian_hegemony_walker_titan_elite",
+    "name": "Aurelian_Hegemony Elite Titan",
+    "type": "walker_titan",
+    "faction": "Aurelian_Hegemony",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 5000,
+      "armor": 100,
+      "soft_attack": 26.0,
+      "hard_attack": 30.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "arm_left",
+        "component": "land_vehicle_Aurelian_Hegemony_base_bolter_weapon_9"
+      },
+      {
+        "slot": "arm_right",
+        "component": "land_vehicle_Aurelian_Hegemony_base_disruptor_weapon_4"
+      },
+      {
+        "slot": "carapace_left",
+        "component": "land_vehicle_Aurelian_Hegemony_base_phaser_weapon_3"
+      },
+      {
+        "slot": "carapace_right",
+        "component": "land_vehicle_Aurelian_Hegemony_base_disruptor_weapon_4"
+      }
+    ],
+    "cost": 15056.0
+  },
+  "voidspawn_entities_infantry_standard_standard_squad": {
+    "blueprint_id": "voidspawn_entities_infantry_standard_standard_squad",
+    "name": "VoidSpawn_Entities Standard Standard Infantry Squad",
+    "type": "infantry_standard",
+    "faction": "VoidSpawn_Entities",
+    "category": "Infantry",
+    "base_stats": {
+      "hp": 12.0,
+      "organization": 24.0,
+      "soft_attack": 17.2,
+      "hard_attack": 3.44,
+      "manpower": 10
+    },
+    "components": [
+      {
+        "slot": "standard_issue",
+        "component": "land_small_VoidSpawn_Entities_base_phaser_weapon_9"
+      },
+      {
+        "slot": "special_issue",
+        "component": "land_small_VoidSpawn_Entities_base_phaser_weapon_9"
+      }
+    ],
+    "composition": {
+      "Rifleman": 6,
+      "Specialist": 2,
+      "Medic": 1,
+      "Leader": 1
+    },
+    "cost": 134.4
+  },
+  "voidspawn_entities_infantry_standard_assault_squad": {
+    "blueprint_id": "voidspawn_entities_infantry_standard_assault_squad",
+    "name": "VoidSpawn_Entities Assault Standard Infantry Squad",
+    "type": "infantry_standard",
+    "faction": "VoidSpawn_Entities",
+    "category": "Infantry",
+    "base_stats": {
+      "hp": 12.0,
+      "organization": 24.0,
+      "soft_attack": 25.2,
+      "hard_attack": 5.04,
+      "manpower": 10
+    },
+    "components": [
+      {
+        "slot": "standard_issue",
+        "component": "land_small_VoidSpawn_Entities_base_tachyon_weapon_6"
+      },
+      {
+        "slot": "special_issue",
+        "component": "land_small_VoidSpawn_Entities_base_phaser_weapon_9"
+      }
+    ],
+    "composition": {
+      "Rifleman": 4,
+      "Specialist": 4,
+      "Medic": 1,
+      "Leader": 1
+    },
+    "cost": 150.4
+  },
+  "voidspawn_entities_infantry_heavy_standard_squad": {
+    "blueprint_id": "voidspawn_entities_infantry_heavy_standard_squad",
+    "name": "VoidSpawn_Entities Standard Heavy Infantry / Exo-Suits",
+    "type": "infantry_heavy",
+    "faction": "VoidSpawn_Entities",
+    "category": "Infantry",
+    "base_stats": {
+      "hp": 25,
+      "organization": 30,
+      "soft_attack": 21.2,
+      "hard_attack": 4.24,
+      "manpower": 5
+    },
+    "components": [
+      {
+        "slot": "standard_issue",
+        "component": "land_small_VoidSpawn_Entities_base_disruptor_weapon_5"
+      },
+      {
+        "slot": "special_issue",
+        "component": "land_small_VoidSpawn_Entities_base_melta_weapon_0"
+      }
+    ],
+    "composition": {
+      "Rifleman": 0,
+      "Specialist": 4,
+      "Medic": 0,
+      "Leader": 1
+    },
+    "cost": 292.4
+  },
+  "voidspawn_entities_infantry_heavy_assault_squad": {
+    "blueprint_id": "voidspawn_entities_infantry_heavy_assault_squad",
+    "name": "VoidSpawn_Entities Assault Heavy Infantry / Exo-Suits",
+    "type": "infantry_heavy",
+    "faction": "VoidSpawn_Entities",
+    "category": "Infantry",
+    "base_stats": {
+      "hp": 25,
+      "organization": 30,
+      "soft_attack": 21.2,
+      "hard_attack": 4.24,
+      "manpower": 5
+    },
+    "components": [
+      {
+        "slot": "standard_issue",
+        "component": "land_small_VoidSpawn_Entities_base_melta_weapon_0"
+      },
+      {
+        "slot": "special_issue",
+        "component": "land_small_VoidSpawn_Entities_base_tesla_weapon_1"
+      }
+    ],
+    "composition": {
+      "Rifleman": 0,
+      "Specialist": 4,
+      "Medic": 0,
+      "Leader": 1
+    },
+    "cost": 292.4
+  },
+  "voidspawn_entities_vehicle_light_tank_standard": {
+    "blueprint_id": "voidspawn_entities_vehicle_light_tank_standard",
+    "name": "VoidSpawn_Entities Standard Light Tank",
+    "type": "vehicle_light_tank",
+    "faction": "VoidSpawn_Entities",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 100,
+      "armor": 10,
+      "soft_attack": 20,
+      "hard_attack": 10.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_VoidSpawn_Entities_base_rad_weapon_2"
+      },
+      {
+        "slot": "hull_mount",
+        "component": "land_vehicle_VoidSpawn_Entities_base_disruptor_weapon_5"
+      }
+    ],
+    "cost": 530.0
+  },
+  "voidspawn_entities_vehicle_main_battle_tank_standard": {
+    "blueprint_id": "voidspawn_entities_vehicle_main_battle_tank_standard",
+    "name": "VoidSpawn_Entities Standard Main Battle Tank",
+    "type": "vehicle_main_battle_tank",
+    "faction": "VoidSpawn_Entities",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 250,
+      "armor": 30,
+      "soft_attack": 33.0,
+      "hard_attack": 25.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_VoidSpawn_Entities_base_tesla_weapon_7"
+      },
+      {
+        "slot": "coaxial",
+        "component": "land_vehicle_VoidSpawn_Entities_base_phaser_weapon_9"
+      },
+      {
+        "slot": "sponson_left",
+        "component": "land_vehicle_VoidSpawn_Entities_base_tesla_weapon_7"
+      },
+      {
+        "slot": "sponson_right",
+        "component": "land_vehicle_VoidSpawn_Entities_base_plasma_weapon_3"
+      }
+    ],
+    "cost": 1258.0
+  },
+  "voidspawn_entities_vehicle_main_battle_tank_elite": {
+    "blueprint_id": "voidspawn_entities_vehicle_main_battle_tank_elite",
+    "name": "VoidSpawn_Entities Elite Main Battle Tank",
+    "type": "vehicle_main_battle_tank",
+    "faction": "VoidSpawn_Entities",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 250,
+      "armor": 30,
+      "soft_attack": 33.0,
+      "hard_attack": 25.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_VoidSpawn_Entities_base_rad_weapon_2"
+      },
+      {
+        "slot": "coaxial",
+        "component": "land_vehicle_VoidSpawn_Entities_base_tesla_weapon_7"
+      },
+      {
+        "slot": "sponson_left",
+        "component": "land_vehicle_VoidSpawn_Entities_base_phaser_weapon_9"
+      },
+      {
+        "slot": "sponson_right",
+        "component": "land_vehicle_VoidSpawn_Entities_base_disruptor_weapon_5"
+      }
+    ],
+    "cost": 1258.0
+  },
+  "voidspawn_entities_vehicle_super_heavy_standard": {
+    "blueprint_id": "voidspawn_entities_vehicle_super_heavy_standard",
+    "name": "VoidSpawn_Entities Standard Super-Heavy Fortress",
+    "type": "vehicle_super_heavy",
+    "faction": "VoidSpawn_Entities",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 800,
+      "armor": 60,
+      "soft_attack": 53.0,
+      "hard_attack": 35.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_VoidSpawn_Entities_base_tesla_weapon_1"
+      },
+      {
+        "slot": "turret_secondary",
+        "component": "land_vehicle_VoidSpawn_Entities_base_tachyon_weapon_6"
+      },
+      {
+        "slot": "sponson_1",
+        "component": "land_vehicle_VoidSpawn_Entities_base_phaser_weapon_9"
+      },
+      {
+        "slot": "sponson_2",
+        "component": "land_vehicle_VoidSpawn_Entities_base_tesla_weapon_1"
+      },
+      {
+        "slot": "sponson_3",
+        "component": "land_vehicle_VoidSpawn_Entities_base_tachyon_weapon_6"
+      },
+      {
+        "slot": "sponson_4",
+        "component": "land_vehicle_VoidSpawn_Entities_base_phaser_weapon_9"
+      }
+    ],
+    "cost": 4088.0
+  },
+  "voidspawn_entities_vehicle_super_heavy_elite": {
+    "blueprint_id": "voidspawn_entities_vehicle_super_heavy_elite",
+    "name": "VoidSpawn_Entities Elite Super-Heavy Fortress",
+    "type": "vehicle_super_heavy",
+    "faction": "VoidSpawn_Entities",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 800,
+      "armor": 60,
+      "soft_attack": 53.0,
+      "hard_attack": 35.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_VoidSpawn_Entities_base_rad_weapon_2"
+      },
+      {
+        "slot": "turret_secondary",
+        "component": "land_vehicle_VoidSpawn_Entities_base_phaser_weapon_9"
+      },
+      {
+        "slot": "sponson_1",
+        "component": "land_vehicle_VoidSpawn_Entities_base_tachyon_weapon_6"
+      },
+      {
+        "slot": "sponson_2",
+        "component": "land_vehicle_VoidSpawn_Entities_base_plasma_weapon_3"
+      },
+      {
+        "slot": "sponson_3",
+        "component": "land_vehicle_VoidSpawn_Entities_base_tesla_weapon_1"
+      },
+      {
+        "slot": "sponson_4",
+        "component": "land_vehicle_VoidSpawn_Entities_base_melta_weapon_0"
+      }
+    ],
+    "cost": 4088.0
+  },
+  "voidspawn_entities_walker_scout_standard": {
+    "blueprint_id": "voidspawn_entities_walker_scout_standard",
+    "name": "VoidSpawn_Entities Standard Scout Walker",
+    "type": "walker_scout",
+    "faction": "VoidSpawn_Entities",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 60,
+      "armor": 5,
+      "soft_attack": 20,
+      "hard_attack": 10.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "chin_mount",
+        "component": "land_vehicle_VoidSpawn_Entities_base_disruptor_weapon_5"
+      },
+      {
+        "slot": "utility",
+        "component": "land_vehicle_VoidSpawn_Entities_base_phaser_weapon_9"
+      }
+    ],
+    "cost": 330.0
+  },
+  "voidspawn_entities_walker_combat_standard": {
+    "blueprint_id": "voidspawn_entities_walker_combat_standard",
+    "name": "VoidSpawn_Entities Standard Combat Walker",
+    "type": "walker_combat",
+    "faction": "VoidSpawn_Entities",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 180,
+      "armor": 20,
+      "soft_attack": 16.0,
+      "hard_attack": 25.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "arm_left",
+        "component": "land_vehicle_VoidSpawn_Entities_base_melta_weapon_0"
+      },
+      {
+        "slot": "arm_right",
+        "component": "land_vehicle_VoidSpawn_Entities_base_tachyon_weapon_6"
+      },
+      {
+        "slot": "shoulder",
+        "component": "land_vehicle_VoidSpawn_Entities_base_tesla_weapon_7"
+      }
+    ],
+    "cost": 941.0
+  },
+  "voidspawn_entities_walker_combat_elite": {
+    "blueprint_id": "voidspawn_entities_walker_combat_elite",
+    "name": "VoidSpawn_Entities Elite Combat Walker",
+    "type": "walker_combat",
+    "faction": "VoidSpawn_Entities",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 180,
+      "armor": 20,
+      "soft_attack": 16.0,
+      "hard_attack": 25.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "arm_left",
+        "component": "land_vehicle_VoidSpawn_Entities_base_phaser_weapon_9"
+      },
+      {
+        "slot": "arm_right",
+        "component": "land_vehicle_VoidSpawn_Entities_base_plasma_weapon_3"
+      },
+      {
+        "slot": "shoulder",
+        "component": "land_vehicle_VoidSpawn_Entities_base_rad_weapon_2"
+      }
+    ],
+    "cost": 941.0
+  },
+  "voidspawn_entities_walker_titan_standard": {
+    "blueprint_id": "voidspawn_entities_walker_titan_standard",
+    "name": "VoidSpawn_Entities Standard Titan",
+    "type": "walker_titan",
+    "faction": "VoidSpawn_Entities",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 5000,
+      "armor": 100,
+      "soft_attack": 26.0,
+      "hard_attack": 30.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "arm_left",
+        "component": "land_vehicle_VoidSpawn_Entities_base_rad_weapon_2"
+      },
+      {
+        "slot": "arm_right",
+        "component": "land_vehicle_VoidSpawn_Entities_base_tesla_weapon_1"
+      },
+      {
+        "slot": "carapace_left",
+        "component": "land_vehicle_VoidSpawn_Entities_base_tesla_weapon_7"
+      },
+      {
+        "slot": "carapace_right",
+        "component": "land_vehicle_VoidSpawn_Entities_base_phaser_weapon_9"
+      }
+    ],
+    "cost": 15056.0
+  },
+  "voidspawn_entities_walker_titan_elite": {
+    "blueprint_id": "voidspawn_entities_walker_titan_elite",
+    "name": "VoidSpawn_Entities Elite Titan",
+    "type": "walker_titan",
+    "faction": "VoidSpawn_Entities",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 5000,
+      "armor": 100,
+      "soft_attack": 26.0,
+      "hard_attack": 30.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "arm_left",
+        "component": "land_vehicle_VoidSpawn_Entities_base_tesla_weapon_1"
+      },
+      {
+        "slot": "arm_right",
+        "component": "land_vehicle_VoidSpawn_Entities_base_plasma_weapon_3"
+      },
+      {
+        "slot": "carapace_left",
+        "component": "land_vehicle_VoidSpawn_Entities_base_tesla_weapon_1"
+      },
+      {
+        "slot": "carapace_right",
+        "component": "land_vehicle_VoidSpawn_Entities_base_disruptor_weapon_5"
+      }
+    ],
+    "cost": 15056.0
+  },
+  "scraplord_marauders_infantry_standard_standard_squad": {
+    "blueprint_id": "scraplord_marauders_infantry_standard_standard_squad",
+    "name": "ScrapLord_Marauders Standard Standard Infantry Squad",
+    "type": "infantry_standard",
+    "faction": "ScrapLord_Marauders",
+    "category": "Infantry",
+    "base_stats": {
+      "hp": 12.0,
+      "organization": 24.0,
+      "soft_attack": 17.2,
+      "hard_attack": 3.44,
+      "manpower": 10
+    },
+    "components": [
+      {
+        "slot": "standard_issue",
+        "component": "land_small_ScrapLord_Marauders_base_melta_weapon_7"
+      },
+      {
+        "slot": "special_issue",
+        "component": "land_small_ScrapLord_Marauders_base_melta_weapon_7"
+      }
+    ],
+    "composition": {
+      "Rifleman": 6,
+      "Specialist": 2,
+      "Medic": 1,
+      "Leader": 1
+    },
+    "cost": 134.4
+  },
+  "scraplord_marauders_infantry_standard_assault_squad": {
+    "blueprint_id": "scraplord_marauders_infantry_standard_assault_squad",
+    "name": "ScrapLord_Marauders Assault Standard Infantry Squad",
+    "type": "infantry_standard",
+    "faction": "ScrapLord_Marauders",
+    "category": "Infantry",
+    "base_stats": {
+      "hp": 10,
+      "organization": 20,
+      "soft_attack": 26.2,
+      "hard_attack": 5.24,
+      "manpower": 10
+    },
+    "components": [
+      {
+        "slot": "standard_issue",
+        "component": "land_small_ScrapLord_Marauders_base_gauss_weapon_8"
+      },
+      {
+        "slot": "special_issue",
+        "component": "land_small_ScrapLord_Marauders_base_volkite_weapon_6"
+      }
+    ],
+    "composition": {
+      "Rifleman": 5,
+      "Specialist": 4,
+      "Medic": 0,
+      "Leader": 1
+    },
+    "cost": 152.4
+  },
+  "scraplord_marauders_infantry_heavy_standard_squad": {
+    "blueprint_id": "scraplord_marauders_infantry_heavy_standard_squad",
+    "name": "ScrapLord_Marauders Standard Heavy Infantry / Exo-Suits",
+    "type": "infantry_heavy",
+    "faction": "ScrapLord_Marauders",
+    "category": "Infantry",
+    "base_stats": {
+      "hp": 25,
+      "organization": 30,
+      "soft_attack": 21.2,
+      "hard_attack": 4.24,
+      "manpower": 5
+    },
+    "components": [
+      {
+        "slot": "standard_issue",
+        "component": "land_small_ScrapLord_Marauders_base_melta_weapon_7"
+      },
+      {
+        "slot": "special_issue",
+        "component": "land_small_ScrapLord_Marauders_base_gauss_weapon_5"
+      }
+    ],
+    "composition": {
+      "Rifleman": 0,
+      "Specialist": 4,
+      "Medic": 0,
+      "Leader": 1
+    },
+    "cost": 292.4
+  },
+  "scraplord_marauders_infantry_heavy_assault_squad": {
+    "blueprint_id": "scraplord_marauders_infantry_heavy_assault_squad",
+    "name": "ScrapLord_Marauders Assault Heavy Infantry / Exo-Suits",
+    "type": "infantry_heavy",
+    "faction": "ScrapLord_Marauders",
+    "category": "Infantry",
+    "base_stats": {
+      "hp": 25,
+      "organization": 30,
+      "soft_attack": 21.2,
+      "hard_attack": 4.24,
+      "manpower": 5
+    },
+    "components": [
+      {
+        "slot": "standard_issue",
+        "component": "land_small_ScrapLord_Marauders_base_gauss_weapon_5"
+      },
+      {
+        "slot": "special_issue",
+        "component": "land_small_ScrapLord_Marauders_base_melta_weapon_7"
+      }
+    ],
+    "composition": {
+      "Rifleman": 0,
+      "Specialist": 4,
+      "Medic": 0,
+      "Leader": 1
+    },
+    "cost": 292.4
+  },
+  "scraplord_marauders_vehicle_light_tank_standard": {
+    "blueprint_id": "scraplord_marauders_vehicle_light_tank_standard",
+    "name": "ScrapLord_Marauders Standard Light Tank",
+    "type": "vehicle_light_tank",
+    "faction": "ScrapLord_Marauders",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 100,
+      "armor": 10,
+      "soft_attack": 20,
+      "hard_attack": 10.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_ScrapLord_Marauders_base_volkite_weapon_6"
+      },
+      {
+        "slot": "hull_mount",
+        "component": "land_vehicle_ScrapLord_Marauders_base_volkite_weapon_6"
+      }
+    ],
+    "cost": 530.0
+  },
+  "scraplord_marauders_vehicle_main_battle_tank_standard": {
+    "blueprint_id": "scraplord_marauders_vehicle_main_battle_tank_standard",
+    "name": "ScrapLord_Marauders Standard Main Battle Tank",
+    "type": "vehicle_main_battle_tank",
+    "faction": "ScrapLord_Marauders",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 250,
+      "armor": 30,
+      "soft_attack": 33.0,
+      "hard_attack": 25.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_ScrapLord_Marauders_base_melta_weapon_7"
+      },
+      {
+        "slot": "coaxial",
+        "component": "land_vehicle_ScrapLord_Marauders_base_volkite_weapon_6"
+      },
+      {
+        "slot": "sponson_left",
+        "component": "land_vehicle_ScrapLord_Marauders_base_volkite_weapon_6"
+      },
+      {
+        "slot": "sponson_right",
+        "component": "land_vehicle_ScrapLord_Marauders_base_volkite_weapon_6"
+      }
+    ],
+    "cost": 1258.0
+  },
+  "scraplord_marauders_vehicle_main_battle_tank_elite": {
+    "blueprint_id": "scraplord_marauders_vehicle_main_battle_tank_elite",
+    "name": "ScrapLord_Marauders Elite Main Battle Tank",
+    "type": "vehicle_main_battle_tank",
+    "faction": "ScrapLord_Marauders",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 250,
+      "armor": 30,
+      "soft_attack": 33.0,
+      "hard_attack": 25.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_ScrapLord_Marauders_base_gauss_weapon_8"
+      },
+      {
+        "slot": "coaxial",
+        "component": "land_vehicle_ScrapLord_Marauders_base_melta_weapon_7"
+      },
+      {
+        "slot": "sponson_left",
+        "component": "land_vehicle_ScrapLord_Marauders_base_volkite_weapon_6"
+      },
+      {
+        "slot": "sponson_right",
+        "component": "land_vehicle_ScrapLord_Marauders_base_gauss_weapon_5"
+      }
+    ],
+    "cost": 1258.0
+  },
+  "scraplord_marauders_vehicle_super_heavy_standard": {
+    "blueprint_id": "scraplord_marauders_vehicle_super_heavy_standard",
+    "name": "ScrapLord_Marauders Standard Super-Heavy Fortress",
+    "type": "vehicle_super_heavy",
+    "faction": "ScrapLord_Marauders",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 800,
+      "armor": 60,
+      "soft_attack": 53.0,
+      "hard_attack": 35.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_ScrapLord_Marauders_base_gauss_weapon_5"
+      },
+      {
+        "slot": "turret_secondary",
+        "component": "land_vehicle_ScrapLord_Marauders_base_melta_weapon_7"
+      },
+      {
+        "slot": "sponson_1",
+        "component": "land_vehicle_ScrapLord_Marauders_base_gauss_weapon_8"
+      },
+      {
+        "slot": "sponson_2",
+        "component": "land_vehicle_ScrapLord_Marauders_base_volkite_weapon_6"
+      },
+      {
+        "slot": "sponson_3",
+        "component": "land_vehicle_ScrapLord_Marauders_base_volkite_weapon_6"
+      },
+      {
+        "slot": "sponson_4",
+        "component": "land_vehicle_ScrapLord_Marauders_base_volkite_weapon_6"
+      }
+    ],
+    "cost": 4088.0
+  },
+  "scraplord_marauders_vehicle_super_heavy_elite": {
+    "blueprint_id": "scraplord_marauders_vehicle_super_heavy_elite",
+    "name": "ScrapLord_Marauders Elite Super-Heavy Fortress",
+    "type": "vehicle_super_heavy",
+    "faction": "ScrapLord_Marauders",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 800,
+      "armor": 60,
+      "soft_attack": 53.0,
+      "hard_attack": 35.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_ScrapLord_Marauders_base_gauss_weapon_8"
+      },
+      {
+        "slot": "turret_secondary",
+        "component": "land_vehicle_ScrapLord_Marauders_base_gauss_weapon_5"
+      },
+      {
+        "slot": "sponson_1",
+        "component": "land_vehicle_ScrapLord_Marauders_base_melta_weapon_7"
+      },
+      {
+        "slot": "sponson_2",
+        "component": "land_vehicle_ScrapLord_Marauders_base_gauss_weapon_8"
+      },
+      {
+        "slot": "sponson_3",
+        "component": "land_vehicle_ScrapLord_Marauders_base_gauss_weapon_5"
+      },
+      {
+        "slot": "sponson_4",
+        "component": "land_vehicle_ScrapLord_Marauders_base_volkite_weapon_6"
+      }
+    ],
+    "cost": 4088.0
+  },
+  "scraplord_marauders_walker_scout_standard": {
+    "blueprint_id": "scraplord_marauders_walker_scout_standard",
+    "name": "ScrapLord_Marauders Standard Scout Walker",
+    "type": "walker_scout",
+    "faction": "ScrapLord_Marauders",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 60,
+      "armor": 5,
+      "soft_attack": 20,
+      "hard_attack": 10.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "chin_mount",
+        "component": "land_vehicle_ScrapLord_Marauders_base_gauss_weapon_8"
+      },
+      {
+        "slot": "utility",
+        "component": "land_vehicle_ScrapLord_Marauders_base_gauss_weapon_8"
+      }
+    ],
+    "cost": 330.0
+  },
+  "scraplord_marauders_walker_combat_standard": {
+    "blueprint_id": "scraplord_marauders_walker_combat_standard",
+    "name": "ScrapLord_Marauders Standard Combat Walker",
+    "type": "walker_combat",
+    "faction": "ScrapLord_Marauders",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 180,
+      "armor": 20,
+      "soft_attack": 16.0,
+      "hard_attack": 25.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "arm_left",
+        "component": "land_vehicle_ScrapLord_Marauders_base_melta_weapon_7"
+      },
+      {
+        "slot": "arm_right",
+        "component": "land_vehicle_ScrapLord_Marauders_base_gauss_weapon_5"
+      },
+      {
+        "slot": "shoulder",
+        "component": "land_vehicle_ScrapLord_Marauders_base_gauss_weapon_5"
+      }
+    ],
+    "cost": 941.0
+  },
+  "scraplord_marauders_walker_combat_elite": {
+    "blueprint_id": "scraplord_marauders_walker_combat_elite",
+    "name": "ScrapLord_Marauders Elite Combat Walker",
+    "type": "walker_combat",
+    "faction": "ScrapLord_Marauders",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 180,
+      "armor": 20,
+      "soft_attack": 16.0,
+      "hard_attack": 25.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "arm_left",
+        "component": "land_vehicle_ScrapLord_Marauders_base_gauss_weapon_8"
+      },
+      {
+        "slot": "arm_right",
+        "component": "land_vehicle_ScrapLord_Marauders_base_volkite_weapon_6"
+      },
+      {
+        "slot": "shoulder",
+        "component": "land_vehicle_ScrapLord_Marauders_base_gauss_weapon_5"
+      }
+    ],
+    "cost": 941.0
+  },
+  "scraplord_marauders_walker_titan_standard": {
+    "blueprint_id": "scraplord_marauders_walker_titan_standard",
+    "name": "ScrapLord_Marauders Standard Titan",
+    "type": "walker_titan",
+    "faction": "ScrapLord_Marauders",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 5000,
+      "armor": 100,
+      "soft_attack": 26.0,
+      "hard_attack": 30.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "arm_left",
+        "component": "land_vehicle_ScrapLord_Marauders_base_melta_weapon_7"
+      },
+      {
+        "slot": "arm_right",
+        "component": "land_vehicle_ScrapLord_Marauders_base_melta_weapon_7"
+      },
+      {
+        "slot": "carapace_left",
+        "component": "land_vehicle_ScrapLord_Marauders_base_gauss_weapon_5"
+      },
+      {
+        "slot": "carapace_right",
+        "component": "land_vehicle_ScrapLord_Marauders_base_gauss_weapon_5"
+      }
+    ],
+    "cost": 15056.0
+  },
+  "scraplord_marauders_walker_titan_elite": {
+    "blueprint_id": "scraplord_marauders_walker_titan_elite",
+    "name": "ScrapLord_Marauders Elite Titan",
+    "type": "walker_titan",
+    "faction": "ScrapLord_Marauders",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 5000,
+      "armor": 100,
+      "soft_attack": 26.0,
+      "hard_attack": 30.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "arm_left",
+        "component": "land_vehicle_ScrapLord_Marauders_base_melta_weapon_7"
+      },
+      {
+        "slot": "arm_right",
+        "component": "land_vehicle_ScrapLord_Marauders_base_gauss_weapon_5"
+      },
+      {
+        "slot": "carapace_left",
+        "component": "land_vehicle_ScrapLord_Marauders_base_volkite_weapon_6"
+      },
+      {
+        "slot": "carapace_right",
+        "component": "land_vehicle_ScrapLord_Marauders_base_gauss_weapon_8"
+      }
+    ],
+    "cost": 15056.0
+  },
+  "primeval_sentinels_infantry_standard_standard_squad": {
+    "blueprint_id": "primeval_sentinels_infantry_standard_standard_squad",
+    "name": "Primeval_Sentinels Standard Standard Infantry Squad",
+    "type": "infantry_standard",
+    "faction": "Primeval_Sentinels",
+    "category": "Infantry",
+    "base_stats": {
+      "hp": 10,
+      "organization": 20,
+      "soft_attack": 18.2,
+      "hard_attack": 3.64,
+      "manpower": 10
+    },
+    "components": [
+      {
+        "slot": "standard_issue",
+        "component": "land_small_Primeval_Sentinels_base_disruptor_weapon_7"
+      },
+      {
+        "slot": "special_issue",
+        "component": "land_small_Primeval_Sentinels_base_disruptor_weapon_7"
+      }
+    ],
+    "composition": {
+      "Rifleman": 7,
+      "Specialist": 2,
+      "Medic": 0,
+      "Leader": 1
+    },
+    "cost": 136.4
+  },
+  "primeval_sentinels_infantry_standard_assault_squad": {
+    "blueprint_id": "primeval_sentinels_infantry_standard_assault_squad",
+    "name": "Primeval_Sentinels Assault Standard Infantry Squad",
+    "type": "infantry_standard",
+    "faction": "Primeval_Sentinels",
+    "category": "Infantry",
+    "base_stats": {
+      "hp": 12.0,
+      "organization": 24.0,
+      "soft_attack": 25.2,
+      "hard_attack": 5.04,
+      "manpower": 10
+    },
+    "components": [
+      {
+        "slot": "standard_issue",
+        "component": "land_small_Primeval_Sentinels_base_tachyon_weapon_2"
+      },
+      {
+        "slot": "special_issue",
+        "component": "land_small_Primeval_Sentinels_base_polaron_weapon_8"
+      }
+    ],
+    "composition": {
+      "Rifleman": 4,
+      "Specialist": 4,
+      "Medic": 1,
+      "Leader": 1
+    },
+    "cost": 150.4
+  },
+  "primeval_sentinels_infantry_heavy_standard_squad": {
+    "blueprint_id": "primeval_sentinels_infantry_heavy_standard_squad",
+    "name": "Primeval_Sentinels Standard Heavy Infantry / Exo-Suits",
+    "type": "infantry_heavy",
+    "faction": "Primeval_Sentinels",
+    "category": "Infantry",
+    "base_stats": {
+      "hp": 25,
+      "organization": 30,
+      "soft_attack": 21.2,
+      "hard_attack": 4.24,
+      "manpower": 5
+    },
+    "components": [
+      {
+        "slot": "standard_issue",
+        "component": "land_small_Primeval_Sentinels_base_tachyon_weapon_2"
+      },
+      {
+        "slot": "special_issue",
+        "component": "land_small_Primeval_Sentinels_base_plasma_weapon_9"
+      }
+    ],
+    "composition": {
+      "Rifleman": 0,
+      "Specialist": 4,
+      "Medic": 0,
+      "Leader": 1
+    },
+    "cost": 292.4
+  },
+  "primeval_sentinels_infantry_heavy_assault_squad": {
+    "blueprint_id": "primeval_sentinels_infantry_heavy_assault_squad",
+    "name": "Primeval_Sentinels Assault Heavy Infantry / Exo-Suits",
+    "type": "infantry_heavy",
+    "faction": "Primeval_Sentinels",
+    "category": "Infantry",
+    "base_stats": {
+      "hp": 25,
+      "organization": 30,
+      "soft_attack": 21.2,
+      "hard_attack": 4.24,
+      "manpower": 5
+    },
+    "components": [
+      {
+        "slot": "standard_issue",
+        "component": "land_small_Primeval_Sentinels_base_plasma_weapon_9"
+      },
+      {
+        "slot": "special_issue",
+        "component": "land_small_Primeval_Sentinels_base_tachyon_weapon_2"
+      }
+    ],
+    "composition": {
+      "Rifleman": 0,
+      "Specialist": 4,
+      "Medic": 0,
+      "Leader": 1
+    },
+    "cost": 292.4
+  },
+  "primeval_sentinels_vehicle_light_tank_standard": {
+    "blueprint_id": "primeval_sentinels_vehicle_light_tank_standard",
+    "name": "Primeval_Sentinels Standard Light Tank",
+    "type": "vehicle_light_tank",
+    "faction": "Primeval_Sentinels",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 100,
+      "armor": 10,
+      "soft_attack": 20,
+      "hard_attack": 10.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_Primeval_Sentinels_base_polaron_weapon_8"
+      },
+      {
+        "slot": "hull_mount",
+        "component": "land_vehicle_Primeval_Sentinels_base_plasma_weapon_9"
+      }
+    ],
+    "cost": 530.0
+  },
+  "primeval_sentinels_vehicle_main_battle_tank_standard": {
+    "blueprint_id": "primeval_sentinels_vehicle_main_battle_tank_standard",
+    "name": "Primeval_Sentinels Standard Main Battle Tank",
+    "type": "vehicle_main_battle_tank",
+    "faction": "Primeval_Sentinels",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 250,
+      "armor": 30,
+      "soft_attack": 33.0,
+      "hard_attack": 25.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_Primeval_Sentinels_base_tachyon_weapon_2"
+      },
+      {
+        "slot": "coaxial",
+        "component": "land_vehicle_Primeval_Sentinels_base_tachyon_weapon_2"
+      },
+      {
+        "slot": "sponson_left",
+        "component": "land_vehicle_Primeval_Sentinels_base_plasma_weapon_9"
+      },
+      {
+        "slot": "sponson_right",
+        "component": "land_vehicle_Primeval_Sentinels_base_disruptor_weapon_7"
+      }
+    ],
+    "cost": 1258.0
+  },
+  "primeval_sentinels_vehicle_main_battle_tank_elite": {
+    "blueprint_id": "primeval_sentinels_vehicle_main_battle_tank_elite",
+    "name": "Primeval_Sentinels Elite Main Battle Tank",
+    "type": "vehicle_main_battle_tank",
+    "faction": "Primeval_Sentinels",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 250,
+      "armor": 30,
+      "soft_attack": 33.0,
+      "hard_attack": 25.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_Primeval_Sentinels_base_disruptor_weapon_7"
+      },
+      {
+        "slot": "coaxial",
+        "component": "land_vehicle_Primeval_Sentinels_base_disruptor_weapon_7"
+      },
+      {
+        "slot": "sponson_left",
+        "component": "land_vehicle_Primeval_Sentinels_base_plasma_weapon_9"
+      },
+      {
+        "slot": "sponson_right",
+        "component": "land_vehicle_Primeval_Sentinels_base_disruptor_weapon_7"
+      }
+    ],
+    "cost": 1258.0
+  },
+  "primeval_sentinels_vehicle_super_heavy_standard": {
+    "blueprint_id": "primeval_sentinels_vehicle_super_heavy_standard",
+    "name": "Primeval_Sentinels Standard Super-Heavy Fortress",
+    "type": "vehicle_super_heavy",
+    "faction": "Primeval_Sentinels",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 800,
+      "armor": 60,
+      "soft_attack": 53.0,
+      "hard_attack": 35.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_Primeval_Sentinels_base_disruptor_weapon_7"
+      },
+      {
+        "slot": "turret_secondary",
+        "component": "land_vehicle_Primeval_Sentinels_base_tachyon_weapon_2"
+      },
+      {
+        "slot": "sponson_1",
+        "component": "land_vehicle_Primeval_Sentinels_base_disruptor_weapon_7"
+      },
+      {
+        "slot": "sponson_2",
+        "component": "land_vehicle_Primeval_Sentinels_base_polaron_weapon_8"
+      },
+      {
+        "slot": "sponson_3",
+        "component": "land_vehicle_Primeval_Sentinels_base_disruptor_weapon_7"
+      },
+      {
+        "slot": "sponson_4",
+        "component": "land_vehicle_Primeval_Sentinels_base_plasma_weapon_9"
+      }
+    ],
+    "cost": 4088.0
+  },
+  "primeval_sentinels_vehicle_super_heavy_elite": {
+    "blueprint_id": "primeval_sentinels_vehicle_super_heavy_elite",
+    "name": "Primeval_Sentinels Elite Super-Heavy Fortress",
+    "type": "vehicle_super_heavy",
+    "faction": "Primeval_Sentinels",
+    "category": "Vehicle",
+    "base_stats": {
+      "hp": 800,
+      "armor": 60,
+      "soft_attack": 53.0,
+      "hard_attack": 35.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "turret_main",
+        "component": "land_vehicle_Primeval_Sentinels_base_tachyon_weapon_2"
+      },
+      {
+        "slot": "turret_secondary",
+        "component": "land_vehicle_Primeval_Sentinels_base_disruptor_weapon_7"
+      },
+      {
+        "slot": "sponson_1",
+        "component": "land_vehicle_Primeval_Sentinels_base_plasma_weapon_9"
+      },
+      {
+        "slot": "sponson_2",
+        "component": "land_vehicle_Primeval_Sentinels_base_plasma_weapon_9"
+      },
+      {
+        "slot": "sponson_3",
+        "component": "land_vehicle_Primeval_Sentinels_base_polaron_weapon_8"
+      },
+      {
+        "slot": "sponson_4",
+        "component": "land_vehicle_Primeval_Sentinels_base_polaron_weapon_8"
+      }
+    ],
+    "cost": 4088.0
+  },
+  "primeval_sentinels_walker_scout_standard": {
+    "blueprint_id": "primeval_sentinels_walker_scout_standard",
+    "name": "Primeval_Sentinels Standard Scout Walker",
+    "type": "walker_scout",
+    "faction": "Primeval_Sentinels",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 60,
+      "armor": 5,
+      "soft_attack": 20,
+      "hard_attack": 10.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "chin_mount",
+        "component": "land_vehicle_Primeval_Sentinels_base_plasma_weapon_9"
+      },
+      {
+        "slot": "utility",
+        "component": "land_vehicle_Primeval_Sentinels_base_disruptor_weapon_7"
+      }
+    ],
+    "cost": 330.0
+  },
+  "primeval_sentinels_walker_combat_standard": {
+    "blueprint_id": "primeval_sentinels_walker_combat_standard",
+    "name": "Primeval_Sentinels Standard Combat Walker",
+    "type": "walker_combat",
+    "faction": "Primeval_Sentinels",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 180,
+      "armor": 20,
+      "soft_attack": 16.0,
+      "hard_attack": 25.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "arm_left",
+        "component": "land_vehicle_Primeval_Sentinels_base_polaron_weapon_8"
+      },
+      {
+        "slot": "arm_right",
+        "component": "land_vehicle_Primeval_Sentinels_base_polaron_weapon_8"
+      },
+      {
+        "slot": "shoulder",
+        "component": "land_vehicle_Primeval_Sentinels_base_disruptor_weapon_7"
+      }
+    ],
+    "cost": 941.0
+  },
+  "primeval_sentinels_walker_combat_elite": {
+    "blueprint_id": "primeval_sentinels_walker_combat_elite",
+    "name": "Primeval_Sentinels Elite Combat Walker",
+    "type": "walker_combat",
+    "faction": "Primeval_Sentinels",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 180,
+      "armor": 20,
+      "soft_attack": 16.0,
+      "hard_attack": 25.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "arm_left",
+        "component": "land_vehicle_Primeval_Sentinels_base_plasma_weapon_9"
+      },
+      {
+        "slot": "arm_right",
+        "component": "land_vehicle_Primeval_Sentinels_base_tachyon_weapon_2"
+      },
+      {
+        "slot": "shoulder",
+        "component": "land_vehicle_Primeval_Sentinels_base_plasma_weapon_9"
+      }
+    ],
+    "cost": 941.0
+  },
+  "primeval_sentinels_walker_titan_standard": {
+    "blueprint_id": "primeval_sentinels_walker_titan_standard",
+    "name": "Primeval_Sentinels Standard Titan",
+    "type": "walker_titan",
+    "faction": "Primeval_Sentinels",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 5000,
+      "armor": 100,
+      "soft_attack": 26.0,
+      "hard_attack": 30.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "arm_left",
+        "component": "land_vehicle_Primeval_Sentinels_base_disruptor_weapon_7"
+      },
+      {
+        "slot": "arm_right",
+        "component": "land_vehicle_Primeval_Sentinels_base_disruptor_weapon_7"
+      },
+      {
+        "slot": "carapace_left",
+        "component": "land_vehicle_Primeval_Sentinels_base_polaron_weapon_8"
+      },
+      {
+        "slot": "carapace_right",
+        "component": "land_vehicle_Primeval_Sentinels_base_tachyon_weapon_2"
+      }
+    ],
+    "cost": 15056.0
+  },
+  "primeval_sentinels_walker_titan_elite": {
+    "blueprint_id": "primeval_sentinels_walker_titan_elite",
+    "name": "Primeval_Sentinels Elite Titan",
+    "type": "walker_titan",
+    "faction": "Primeval_Sentinels",
+    "category": "Walker",
+    "base_stats": {
+      "hp": 5000,
+      "armor": 100,
+      "soft_attack": 26.0,
+      "hard_attack": 30.0,
+      "speed": 10
+    },
+    "components": [
+      {
+        "slot": "arm_left",
+        "component": "land_vehicle_Primeval_Sentinels_base_tachyon_weapon_2"
+      },
+      {
+        "slot": "arm_right",
+        "component": "land_vehicle_Primeval_Sentinels_base_disruptor_weapon_7"
+      },
+      {
+        "slot": "carapace_left",
+        "component": "land_vehicle_Primeval_Sentinels_base_disruptor_weapon_7"
+      },
+      {
+        "slot": "carapace_right",
+        "component": "land_vehicle_Primeval_Sentinels_base_tachyon_weapon_2"
+      }
+    ],
+    "cost": 15056.0
+  }
+}

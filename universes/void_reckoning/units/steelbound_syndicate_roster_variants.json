@@ -1,0 +1,1593 @@
+[
+  {
+    "name": "Conscript (Melta)",
+    "blueprint_id": "steelbound_syndicate_conscript_melta",
+    "type": "infantry",
+    "faction": "SteelBound_Syndicate",
+    "cost": 100,
+    "base_stats": {
+      "hp": 10,
+      "armor": 30,
+      "damage": 11,
+      "speed": 3,
+      "type": "infantry",
+      "cost": 110,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 12.063636363636364,
+      "atom_energy": 21.036363636363635,
+      "atom_cohesion": 19.1,
+      "atom_volatility": 4.781818181818181,
+      "atom_stability": 11.945454545454547,
+      "atom_focus": 4.781818181818181,
+      "atom_frequency": 4.781818181818181,
+      "atom_aether": 4.781818181818181,
+      "atom_will": 11.945454545454547,
+      "atom_information": 4.781818181818181
+    },
+    "source_universe": "void_reckoning",
+    "description": "SteelBound_Syndicate Infantry unit. Auto-generated. armed with short-range anti-armor thermal beams.",
+    "traits": [
+      "Trait_Shield_Regen"
+    ],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 10,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "steelbound_syndicate_base_laser_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Conscript (Assault)",
+    "blueprint_id": "steelbound_syndicate_conscript_assault",
+    "type": "infantry",
+    "faction": "SteelBound_Syndicate",
+    "cost": 100,
+    "base_stats": {
+      "hp": 10,
+      "armor": 30,
+      "damage": 16,
+      "speed": 3,
+      "type": "infantry",
+      "cost": 100,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 12.063636363636364,
+      "atom_energy": 11.945454545454547,
+      "atom_cohesion": 28.190909090909095,
+      "atom_volatility": 4.781818181818181,
+      "atom_stability": 11.945454545454547,
+      "atom_focus": 4.781818181818181,
+      "atom_frequency": 4.781818181818181,
+      "atom_aether": 4.781818181818181,
+      "atom_will": 11.945454545454547,
+      "atom_information": 4.781818181818181
+    },
+    "source_universe": "void_reckoning",
+    "description": "SteelBound_Syndicate Infantry unit. Auto-generated. configured for close-quarters combat.",
+    "traits": [
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "assault_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 10,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "steelbound_syndicate_base_laser_weapon_0_S"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "steelbound_syndicate_base_laser_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Grenadier (Melta)",
+    "blueprint_id": "steelbound_syndicate_grenadier_melta",
+    "type": "infantry",
+    "faction": "SteelBound_Syndicate",
+    "cost": 300,
+    "base_stats": {
+      "hp": 25,
+      "armor": 90,
+      "damage": 24,
+      "speed": 3,
+      "type": "infantry",
+      "cost": 330,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 6.736363636363636,
+      "atom_energy": 15.663636363636362,
+      "atom_cohesion": 18.409090909090907,
+      "atom_volatility": 2.6272727272727274,
+      "atom_stability": 6.572727272727273,
+      "atom_focus": 22.381818181818183,
+      "atom_frequency": 2.6272727272727274,
+      "atom_aether": 2.6272727272727274,
+      "atom_will": 6.572727272727273,
+      "atom_information": 15.78181818181818
+    },
+    "source_universe": "void_reckoning",
+    "description": "SteelBound_Syndicate Elite_Infantry unit. Auto-generated. armed with short-range anti-armor thermal beams.",
+    "traits": [
+      "Trait_Armor_Piercing",
+      "Trait_Adaptive_Armor"
+    ],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 30,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "steelbound_syndicate_base_laser_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Grenadier (Assault)",
+    "blueprint_id": "steelbound_syndicate_grenadier_assault",
+    "type": "infantry",
+    "faction": "SteelBound_Syndicate",
+    "cost": 300,
+    "base_stats": {
+      "hp": 25,
+      "armor": 90,
+      "damage": 28,
+      "speed": 3,
+      "type": "infantry",
+      "cost": 300,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 6.736363636363636,
+      "atom_energy": 6.572727272727273,
+      "atom_cohesion": 27.500000000000004,
+      "atom_volatility": 2.6272727272727274,
+      "atom_stability": 6.572727272727273,
+      "atom_focus": 22.381818181818183,
+      "atom_frequency": 2.6272727272727274,
+      "atom_aether": 2.6272727272727274,
+      "atom_will": 6.572727272727273,
+      "atom_information": 15.78181818181818
+    },
+    "source_universe": "void_reckoning",
+    "description": "SteelBound_Syndicate Elite_Infantry unit. Auto-generated. configured for close-quarters combat.",
+    "traits": [
+      "Trait_Adaptive_Armor",
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "assault_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 30,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "steelbound_syndicate_base_laser_weapon_0_S"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "steelbound_syndicate_base_laser_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Rover (Plasma)",
+    "blueprint_id": "steelbound_syndicate_rover_plasma",
+    "type": "vehicle",
+    "faction": "SteelBound_Syndicate",
+    "cost": 500,
+    "base_stats": {
+      "hp": 80,
+      "armor": 75,
+      "damage": 33,
+      "speed": 9,
+      "type": "vehicle",
+      "cost": 600,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 14.495652173913046,
+      "atom_energy": 8.052173913043479,
+      "atom_cohesion": 32.21739130434783,
+      "atom_volatility": 16.26086956521739,
+      "atom_stability": 8.052173913043479,
+      "atom_focus": 3.217391304347826,
+      "atom_frequency": 3.217391304347826,
+      "atom_aether": 3.217391304347826,
+      "atom_will": 8.052173913043479,
+      "atom_information": 3.217391304347826
+    },
+    "source_universe": "void_reckoning",
+    "description": "SteelBound_Syndicate Light_Vehicle unit. Auto-generated. armed with high-energy plasma weaponry.",
+    "traits": [
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 50,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "steelbound_syndicate_base_laser_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Rover (Melta)",
+    "blueprint_id": "steelbound_syndicate_rover_melta",
+    "type": "vehicle",
+    "faction": "SteelBound_Syndicate",
+    "cost": 500,
+    "base_stats": {
+      "hp": 80,
+      "armor": 75,
+      "damage": 31,
+      "speed": 9,
+      "type": "vehicle",
+      "cost": 550,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 15.154545454545456,
+      "atom_energy": 17.509090909090908,
+      "atom_cohesion": 33.68181818181818,
+      "atom_volatility": 3.3636363636363638,
+      "atom_stability": 8.418181818181818,
+      "atom_focus": 3.3636363636363638,
+      "atom_frequency": 3.3636363636363638,
+      "atom_aether": 3.3636363636363638,
+      "atom_will": 8.418181818181818,
+      "atom_information": 3.3636363636363638
+    },
+    "source_universe": "void_reckoning",
+    "description": "SteelBound_Syndicate Light_Vehicle unit. Auto-generated. armed with short-range anti-armor thermal beams.",
+    "traits": [
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 50,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "steelbound_syndicate_base_laser_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Rover (Missile)",
+    "blueprint_id": "steelbound_syndicate_rover_missile",
+    "type": "vehicle",
+    "faction": "SteelBound_Syndicate",
+    "cost": 500,
+    "base_stats": {
+      "hp": 80,
+      "armor": 75,
+      "damage": 23,
+      "speed": 9,
+      "type": "vehicle",
+      "cost": 500,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 24.24545454545455,
+      "atom_energy": 8.418181818181818,
+      "atom_cohesion": 33.68181818181818,
+      "atom_volatility": 3.3636363636363638,
+      "atom_stability": 8.418181818181818,
+      "atom_focus": 3.3636363636363638,
+      "atom_frequency": 3.3636363636363638,
+      "atom_aether": 3.3636363636363638,
+      "atom_will": 8.418181818181818,
+      "atom_information": 3.3636363636363638
+    },
+    "source_universe": "void_reckoning",
+    "description": "SteelBound_Syndicate Light_Vehicle unit. Auto-generated. equipped with long-range missile pods.",
+    "traits": [
+      "Trait_Damage_Reduction",
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 50,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "steelbound_syndicate_base_laser_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Rover (Shield)",
+    "blueprint_id": "steelbound_syndicate_rover_shield",
+    "type": "vehicle",
+    "faction": "SteelBound_Syndicate",
+    "cost": 500,
+    "base_stats": {
+      "hp": 64,
+      "armor": 37,
+      "damage": 25,
+      "speed": 9,
+      "type": "vehicle",
+      "cost": 650,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 13.89166666666667,
+      "atom_energy": 7.716666666666666,
+      "atom_cohesion": 30.874999999999996,
+      "atom_volatility": 3.0833333333333335,
+      "atom_stability": 7.716666666666666,
+      "atom_focus": 19.749999999999996,
+      "atom_frequency": 3.0833333333333335,
+      "atom_aether": 3.0833333333333335,
+      "atom_will": 7.716666666666666,
+      "atom_information": 3.0833333333333335
+    },
+    "source_universe": "void_reckoning",
+    "description": "SteelBound_Syndicate Light_Vehicle unit. Auto-generated. fitted with experimental shield generators.",
+    "traits": [
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 50,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "steelbound_syndicate_base_laser_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Sledgehammer (Plasma)",
+    "blueprint_id": "steelbound_syndicate_sledgehammer_plasma",
+    "type": "vehicle",
+    "faction": "SteelBound_Syndicate",
+    "cost": 1200,
+    "base_stats": {
+      "hp": 250,
+      "armor": 225,
+      "damage": 104,
+      "speed": 4,
+      "type": "vehicle",
+      "cost": 1440,
+      "tier": 3,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 16.45217391304348,
+      "atom_energy": 4.7043478260869565,
+      "atom_cohesion": 47.0,
+      "atom_volatility": 14.921739130434784,
+      "atom_stability": 4.7043478260869565,
+      "atom_focus": 1.8782608695652174,
+      "atom_frequency": 1.8782608695652174,
+      "atom_aether": 1.8782608695652174,
+      "atom_will": 4.7043478260869565,
+      "atom_information": 1.8782608695652174
+    },
+    "source_universe": "void_reckoning",
+    "description": "SteelBound_Syndicate Heavy_Tank unit. Auto-generated. armed with high-energy plasma weaponry.",
+    "traits": [
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "battle_tank",
+    "domain": "ground",
+    "tier": 3,
+    "upkeep": 120,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_laser_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_information_weapon_1_M"
+      }
+    ]
+  },
+  {
+    "name": "Sledgehammer (Melta)",
+    "blueprint_id": "steelbound_syndicate_sledgehammer_melta",
+    "type": "vehicle",
+    "faction": "SteelBound_Syndicate",
+    "cost": 1200,
+    "base_stats": {
+      "hp": 250,
+      "armor": 225,
+      "damage": 98,
+      "speed": 4,
+      "type": "vehicle",
+      "cost": 1320,
+      "tier": 3,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 17.200000000000003,
+      "atom_energy": 14.00909090909091,
+      "atom_cohesion": 49.13636363636363,
+      "atom_volatility": 1.9636363636363638,
+      "atom_stability": 4.918181818181818,
+      "atom_focus": 1.9636363636363638,
+      "atom_frequency": 1.9636363636363638,
+      "atom_aether": 1.9636363636363638,
+      "atom_will": 4.918181818181818,
+      "atom_information": 1.9636363636363638
+    },
+    "source_universe": "void_reckoning",
+    "description": "SteelBound_Syndicate Heavy_Tank unit. Auto-generated. armed with short-range anti-armor thermal beams.",
+    "traits": [
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "battle_tank",
+    "domain": "ground",
+    "tier": 3,
+    "upkeep": 120,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_laser_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_information_weapon_1_M"
+      }
+    ]
+  },
+  {
+    "name": "Sledgehammer (Missile)",
+    "blueprint_id": "steelbound_syndicate_sledgehammer_missile",
+    "type": "vehicle",
+    "faction": "SteelBound_Syndicate",
+    "cost": 1200,
+    "base_stats": {
+      "hp": 250,
+      "armor": 225,
+      "damage": 74,
+      "speed": 4,
+      "type": "vehicle",
+      "cost": 1200,
+      "tier": 3,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 26.290909090909093,
+      "atom_energy": 4.918181818181818,
+      "atom_cohesion": 49.13636363636363,
+      "atom_volatility": 1.9636363636363638,
+      "atom_stability": 4.918181818181818,
+      "atom_focus": 1.9636363636363638,
+      "atom_frequency": 1.9636363636363638,
+      "atom_aether": 1.9636363636363638,
+      "atom_will": 4.918181818181818,
+      "atom_information": 1.9636363636363638
+    },
+    "source_universe": "void_reckoning",
+    "description": "SteelBound_Syndicate Heavy_Tank unit. Auto-generated. equipped with long-range missile pods.",
+    "traits": [
+      "Trait_Damage_Reduction",
+      "Trait_Reinforced_Plating",
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "battle_tank",
+    "domain": "ground",
+    "tier": 3,
+    "upkeep": 120,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_laser_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_information_weapon_1_M"
+      }
+    ]
+  },
+  {
+    "name": "Sledgehammer (Shield)",
+    "blueprint_id": "steelbound_syndicate_sledgehammer_shield",
+    "type": "vehicle",
+    "faction": "SteelBound_Syndicate",
+    "cost": 1200,
+    "base_stats": {
+      "hp": 200,
+      "armor": 112,
+      "damage": 80,
+      "speed": 4,
+      "type": "vehicle",
+      "cost": 1560,
+      "tier": 3,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 15.766666666666667,
+      "atom_energy": 4.508333333333334,
+      "atom_cohesion": 45.041666666666664,
+      "atom_volatility": 1.8000000000000003,
+      "atom_stability": 4.508333333333334,
+      "atom_focus": 18.46666666666667,
+      "atom_frequency": 1.8000000000000003,
+      "atom_aether": 1.8000000000000003,
+      "atom_will": 4.508333333333334,
+      "atom_information": 1.8000000000000003
+    },
+    "source_universe": "void_reckoning",
+    "description": "SteelBound_Syndicate Heavy_Tank unit. Auto-generated. fitted with experimental shield generators.",
+    "traits": [
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "battle_tank",
+    "domain": "ground",
+    "tier": 3,
+    "upkeep": 120,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_laser_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_information_weapon_1_M"
+      }
+    ]
+  },
+  {
+    "name": "Iron Strider (Plasma)",
+    "blueprint_id": "steelbound_syndicate_iron_strider_plasma",
+    "type": "vehicle",
+    "faction": "SteelBound_Syndicate",
+    "cost": 900,
+    "base_stats": {
+      "hp": 180,
+      "armor": 135,
+      "damage": 67,
+      "speed": 4,
+      "type": "vehicle",
+      "cost": 1080,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 10.382608695652173,
+      "atom_energy": 8.799999999999999,
+      "atom_cohesion": 32.56521739130435,
+      "atom_volatility": 16.565217391304348,
+      "atom_stability": 8.799999999999999,
+      "atom_focus": 3.5217391304347827,
+      "atom_frequency": 3.5217391304347827,
+      "atom_aether": 3.5217391304347827,
+      "atom_will": 8.799999999999999,
+      "atom_information": 3.5217391304347827
+    },
+    "source_universe": "void_reckoning",
+    "description": "SteelBound_Syndicate Walker unit. Auto-generated. armed with high-energy plasma weaponry.",
+    "traits": [
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 90,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "steelbound_syndicate_base_laser_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Iron Strider (Melta)",
+    "blueprint_id": "steelbound_syndicate_iron_strider_melta",
+    "type": "vehicle",
+    "faction": "SteelBound_Syndicate",
+    "cost": 900,
+    "base_stats": {
+      "hp": 180,
+      "armor": 135,
+      "damage": 63,
+      "speed": 4,
+      "type": "vehicle",
+      "cost": 990,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 10.854545454545454,
+      "atom_energy": 18.29090909090909,
+      "atom_cohesion": 34.04545454545455,
+      "atom_volatility": 3.681818181818182,
+      "atom_stability": 9.2,
+      "atom_focus": 3.681818181818182,
+      "atom_frequency": 3.681818181818182,
+      "atom_aether": 3.681818181818182,
+      "atom_will": 9.2,
+      "atom_information": 3.681818181818182
+    },
+    "source_universe": "void_reckoning",
+    "description": "SteelBound_Syndicate Walker unit. Auto-generated. armed with short-range anti-armor thermal beams.",
+    "traits": [
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 90,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "steelbound_syndicate_base_laser_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Iron Strider (Missile)",
+    "blueprint_id": "steelbound_syndicate_iron_strider_missile",
+    "type": "vehicle",
+    "faction": "SteelBound_Syndicate",
+    "cost": 900,
+    "base_stats": {
+      "hp": 180,
+      "armor": 135,
+      "damage": 45,
+      "speed": 4,
+      "type": "vehicle",
+      "cost": 900,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 19.945454545454545,
+      "atom_energy": 9.2,
+      "atom_cohesion": 34.04545454545455,
+      "atom_volatility": 3.681818181818182,
+      "atom_stability": 9.2,
+      "atom_focus": 3.681818181818182,
+      "atom_frequency": 3.681818181818182,
+      "atom_aether": 3.681818181818182,
+      "atom_will": 9.2,
+      "atom_information": 3.681818181818182
+    },
+    "source_universe": "void_reckoning",
+    "description": "SteelBound_Syndicate Walker unit. Auto-generated. equipped with long-range missile pods.",
+    "traits": [
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 90,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "steelbound_syndicate_base_laser_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Iron Strider (Shield)",
+    "blueprint_id": "steelbound_syndicate_iron_strider_shield",
+    "type": "vehicle",
+    "faction": "SteelBound_Syndicate",
+    "cost": 900,
+    "base_stats": {
+      "hp": 144,
+      "armor": 67,
+      "damage": 50,
+      "speed": 4,
+      "type": "vehicle",
+      "cost": 1170,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 9.95,
+      "atom_energy": 8.433333333333334,
+      "atom_cohesion": 31.20833333333334,
+      "atom_volatility": 3.3749999999999996,
+      "atom_stability": 8.433333333333334,
+      "atom_focus": 20.041666666666664,
+      "atom_frequency": 3.3749999999999996,
+      "atom_aether": 3.3749999999999996,
+      "atom_will": 8.433333333333334,
+      "atom_information": 3.3749999999999996
+    },
+    "source_universe": "void_reckoning",
+    "description": "SteelBound_Syndicate Walker unit. Auto-generated. fitted with experimental shield generators.",
+    "traits": [
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 90,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "steelbound_syndicate_base_laser_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Hawk (Plasma)",
+    "blueprint_id": "steelbound_syndicate_hawk_plasma",
+    "type": "ship",
+    "faction": "SteelBound_Syndicate",
+    "cost": 150,
+    "base_stats": {
+      "hp": 50,
+      "armor": 0,
+      "damage": 110,
+      "speed": 28,
+      "type": "ship",
+      "cost": 180,
+      "tier": 1,
+      "range": 109
+    },
+    "elemental_dna": {
+      "atom_mass": 12.982608695652173,
+      "atom_energy": 12.330434782608696,
+      "atom_cohesion": 12.330434782608696,
+      "atom_volatility": 17.973913043478262,
+      "atom_stability": 12.330434782608696,
+      "atom_focus": 4.930434782608695,
+      "atom_frequency": 4.930434782608695,
+      "atom_aether": 4.930434782608695,
+      "atom_will": 12.330434782608696,
+      "atom_information": 4.930434782608695
+    },
+    "source_universe": "void_reckoning",
+    "description": "SteelBound_Syndicate Fighter unit. Auto-generated. armed with high-energy plasma weaponry.",
+    "traits": [],
+    "variant": true,
+    "unit_class": "fighter",
+    "domain": "space",
+    "tier": 1,
+    "upkeep": 15,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "steelbound_syndicate_base_laser_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Hawk (Missile)",
+    "blueprint_id": "steelbound_syndicate_hawk_missile",
+    "type": "ship",
+    "faction": "SteelBound_Syndicate",
+    "cost": 150,
+    "base_stats": {
+      "hp": 50,
+      "armor": 0,
+      "damage": 105,
+      "speed": 28,
+      "type": "ship",
+      "cost": 150,
+      "tier": 1,
+      "range": 109
+    },
+    "elemental_dna": {
+      "atom_mass": 22.663636363636364,
+      "atom_energy": 12.890909090909092,
+      "atom_cohesion": 12.890909090909092,
+      "atom_volatility": 5.154545454545454,
+      "atom_stability": 12.890909090909092,
+      "atom_focus": 5.154545454545454,
+      "atom_frequency": 5.154545454545454,
+      "atom_aether": 5.154545454545454,
+      "atom_will": 12.890909090909092,
+      "atom_information": 5.154545454545454
+    },
+    "source_universe": "void_reckoning",
+    "description": "SteelBound_Syndicate Fighter unit. Auto-generated. equipped with long-range missile pods.",
+    "traits": [],
+    "variant": true,
+    "unit_class": "fighter",
+    "domain": "space",
+    "tier": 1,
+    "upkeep": 15,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "steelbound_syndicate_base_laser_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Hawk (Shield)",
+    "blueprint_id": "steelbound_syndicate_hawk_shield",
+    "type": "ship",
+    "faction": "SteelBound_Syndicate",
+    "cost": 150,
+    "base_stats": {
+      "hp": 40,
+      "armor": 0,
+      "damage": 106,
+      "speed": 28,
+      "type": "ship",
+      "cost": 195,
+      "tier": 1,
+      "range": 109
+    },
+    "elemental_dna": {
+      "atom_mass": 12.441666666666666,
+      "atom_energy": 11.816666666666666,
+      "atom_cohesion": 11.816666666666666,
+      "atom_volatility": 4.725,
+      "atom_stability": 11.816666666666666,
+      "atom_focus": 21.391666666666666,
+      "atom_frequency": 4.725,
+      "atom_aether": 4.725,
+      "atom_will": 11.816666666666666,
+      "atom_information": 4.725
+    },
+    "source_universe": "void_reckoning",
+    "description": "SteelBound_Syndicate Fighter unit. Auto-generated. fitted with experimental shield generators.",
+    "traits": [
+      "Trait_Armor_Piercing"
+    ],
+    "variant": true,
+    "unit_class": "fighter",
+    "domain": "space",
+    "tier": 1,
+    "upkeep": 15,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "steelbound_syndicate_base_laser_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Hammer Class (Plasma)",
+    "blueprint_id": "steelbound_syndicate_hammer_class_plasma",
+    "type": "ship",
+    "faction": "SteelBound_Syndicate",
+    "cost": 2000,
+    "base_stats": {
+      "hp": 800,
+      "armor": 75,
+      "damage": 524,
+      "speed": 12,
+      "type": "ship",
+      "cost": 2400,
+      "tier": 2,
+      "range": 109
+    },
+    "elemental_dna": {
+      "atom_mass": 16.826086956521742,
+      "atom_energy": 9.347826086956522,
+      "atom_cohesion": 23.391304347826086,
+      "atom_volatility": 16.782608695652172,
+      "atom_stability": 9.347826086956522,
+      "atom_focus": 3.739130434782609,
+      "atom_frequency": 3.739130434782609,
+      "atom_aether": 3.739130434782609,
+      "atom_will": 9.347826086956522,
+      "atom_information": 3.739130434782609
+    },
+    "source_universe": "void_reckoning",
+    "description": "SteelBound_Syndicate Frigate unit. Auto-generated. armed with high-energy plasma weaponry.",
+    "traits": [
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "frigate",
+    "domain": "space",
+    "tier": 2,
+    "upkeep": 200,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_laser_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "steelbound_syndicate_base_laser_weapon_0_S"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "steelbound_syndicate_base_laser_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Hammer Class (Missile)",
+    "blueprint_id": "steelbound_syndicate_hammer_class_missile",
+    "type": "ship",
+    "faction": "SteelBound_Syndicate",
+    "cost": 2000,
+    "base_stats": {
+      "hp": 800,
+      "armor": 75,
+      "damage": 474,
+      "speed": 12,
+      "type": "ship",
+      "cost": 2000,
+      "tier": 2,
+      "range": 109
+    },
+    "elemental_dna": {
+      "atom_mass": 26.681818181818183,
+      "atom_energy": 9.772727272727273,
+      "atom_cohesion": 24.454545454545453,
+      "atom_volatility": 3.9090909090909087,
+      "atom_stability": 9.772727272727273,
+      "atom_focus": 3.9090909090909087,
+      "atom_frequency": 3.9090909090909087,
+      "atom_aether": 3.9090909090909087,
+      "atom_will": 9.772727272727273,
+      "atom_information": 3.9090909090909087
+    },
+    "source_universe": "void_reckoning",
+    "description": "SteelBound_Syndicate Frigate unit. Auto-generated. equipped with long-range missile pods.",
+    "traits": [
+      "Trait_Damage_Reduction",
+      "Trait_Reinforced_Plating",
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "frigate",
+    "domain": "space",
+    "tier": 2,
+    "upkeep": 200,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_laser_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "steelbound_syndicate_base_laser_weapon_0_S"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "steelbound_syndicate_base_laser_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Hammer Class (Shield)",
+    "blueprint_id": "steelbound_syndicate_hammer_class_shield",
+    "type": "ship",
+    "faction": "SteelBound_Syndicate",
+    "cost": 2000,
+    "base_stats": {
+      "hp": 640,
+      "armor": 37,
+      "damage": 484,
+      "speed": 12,
+      "type": "ship",
+      "cost": 2600,
+      "tier": 2,
+      "range": 109
+    },
+    "elemental_dna": {
+      "atom_mass": 16.125,
+      "atom_energy": 8.958333333333334,
+      "atom_cohesion": 22.416666666666664,
+      "atom_volatility": 3.5833333333333335,
+      "atom_stability": 8.958333333333334,
+      "atom_focus": 20.25,
+      "atom_frequency": 3.5833333333333335,
+      "atom_aether": 3.5833333333333335,
+      "atom_will": 8.958333333333334,
+      "atom_information": 3.5833333333333335
+    },
+    "source_universe": "void_reckoning",
+    "description": "SteelBound_Syndicate Frigate unit. Auto-generated. fitted with experimental shield generators.",
+    "traits": [
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "frigate",
+    "domain": "space",
+    "tier": 2,
+    "upkeep": 200,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_laser_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "steelbound_syndicate_base_laser_weapon_0_S"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "steelbound_syndicate_base_laser_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Anvil Class (Plasma)",
+    "blueprint_id": "steelbound_syndicate_anvil_class_plasma",
+    "type": "ship",
+    "faction": "SteelBound_Syndicate",
+    "cost": 8000,
+    "base_stats": {
+      "hp": 3000,
+      "armor": 225,
+      "damage": 1424,
+      "speed": 6,
+      "type": "ship",
+      "cost": 9600,
+      "range": 109
+    },
+    "elemental_dna": {
+      "atom_mass": 23.991304347826087,
+      "atom_energy": 6.000000000000001,
+      "atom_cohesion": 32.96521739130435,
+      "atom_volatility": 15.443478260869565,
+      "atom_stability": 6.000000000000001,
+      "atom_focus": 2.4,
+      "atom_frequency": 2.4,
+      "atom_aether": 2.4,
+      "atom_will": 6.000000000000001,
+      "atom_information": 2.4
+    },
+    "source_universe": "void_reckoning",
+    "description": "SteelBound_Syndicate Cruiser unit. Auto-generated. armed with high-energy plasma weaponry.",
+    "traits": [
+      "Trait_Damage_Reduction",
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "cruiser",
+    "domain": "space",
+    "upkeep": 800,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_laser_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_laser_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_laser_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_laser_weapon_0_L"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_laser_weapon_0_L"
+      }
+    ]
+  },
+  {
+    "name": "Anvil Class (Missile)",
+    "blueprint_id": "steelbound_syndicate_anvil_class_missile",
+    "type": "ship",
+    "faction": "SteelBound_Syndicate",
+    "cost": 8000,
+    "base_stats": {
+      "hp": 3000,
+      "armor": 225,
+      "damage": 1224,
+      "speed": 6,
+      "type": "ship",
+      "cost": 8000,
+      "range": 109
+    },
+    "elemental_dna": {
+      "atom_mass": 34.17272727272728,
+      "atom_energy": 6.2727272727272725,
+      "atom_cohesion": 34.46363636363636,
+      "atom_volatility": 2.509090909090909,
+      "atom_stability": 6.2727272727272725,
+      "atom_focus": 2.509090909090909,
+      "atom_frequency": 2.509090909090909,
+      "atom_aether": 2.509090909090909,
+      "atom_will": 6.2727272727272725,
+      "atom_information": 2.509090909090909
+    },
+    "source_universe": "void_reckoning",
+    "description": "SteelBound_Syndicate Cruiser unit. Auto-generated. equipped with long-range missile pods.",
+    "traits": [
+      "Trait_Damage_Reduction",
+      "Trait_Reinforced_Plating",
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "cruiser",
+    "domain": "space",
+    "upkeep": 800,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_laser_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_laser_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_laser_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_laser_weapon_0_L"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_laser_weapon_0_L"
+      }
+    ]
+  },
+  {
+    "name": "Anvil Class (Shield)",
+    "blueprint_id": "steelbound_syndicate_anvil_class_shield",
+    "type": "ship",
+    "faction": "SteelBound_Syndicate",
+    "cost": 8000,
+    "base_stats": {
+      "hp": 2400,
+      "armor": 112,
+      "damage": 1264,
+      "speed": 6,
+      "type": "ship",
+      "cost": 10400,
+      "range": 109
+    },
+    "elemental_dna": {
+      "atom_mass": 22.991666666666667,
+      "atom_energy": 5.75,
+      "atom_cohesion": 31.59166666666666,
+      "atom_volatility": 2.3,
+      "atom_stability": 5.75,
+      "atom_focus": 18.966666666666665,
+      "atom_frequency": 2.3,
+      "atom_aether": 2.3,
+      "atom_will": 5.75,
+      "atom_information": 2.3
+    },
+    "source_universe": "void_reckoning",
+    "description": "SteelBound_Syndicate Cruiser unit. Auto-generated. fitted with experimental shield generators.",
+    "traits": [
+      "Trait_Damage_Reduction",
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "cruiser",
+    "domain": "space",
+    "upkeep": 800,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_laser_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_laser_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_laser_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_laser_weapon_0_L"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_laser_weapon_0_L"
+      }
+    ]
+  },
+  {
+    "name": "Foundry Class (Plasma)",
+    "blueprint_id": "steelbound_syndicate_foundry_class_plasma",
+    "type": "ship",
+    "faction": "SteelBound_Syndicate",
+    "cost": 25000,
+    "base_stats": {
+      "hp": 12000,
+      "armor": 600,
+      "damage": 4324,
+      "speed": 3,
+      "type": "ship",
+      "cost": 30000,
+      "tier": 3,
+      "range": 109
+    },
+    "elemental_dna": {
+      "atom_mass": 53.90434782608696,
+      "atom_energy": 1.1043478260869566,
+      "atom_cohesion": 27.52173913043478,
+      "atom_volatility": 13.48695652173913,
+      "atom_stability": 1.1043478260869566,
+      "atom_focus": 0.4434782608695652,
+      "atom_frequency": 0.4434782608695652,
+      "atom_aether": 0.4434782608695652,
+      "atom_will": 1.1043478260869566,
+      "atom_information": 0.4434782608695652
+    },
+    "source_universe": "void_reckoning",
+    "description": "SteelBound_Syndicate Battleship unit. Auto-generated. armed with high-energy plasma weaponry.",
+    "traits": [
+      "Trait_Damage_Reduction",
+      "Trait_Reinforced_Plating",
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "battleship",
+    "domain": "space",
+    "tier": 3,
+    "upkeep": 2500,
+    "components": [
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_plasma_weapon_2_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_plasma_weapon_2_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_plasma_weapon_2_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_plasma_weapon_2_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_plasma_weapon_8_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_plasma_weapon_8_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_plasma_weapon_8_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_plasma_weapon_8_XL"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_plasma_weapon_2_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_plasma_weapon_2_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_plasma_weapon_2_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_plasma_weapon_2_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_plasma_weapon_8_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_plasma_weapon_8_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_plasma_weapon_8_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_plasma_weapon_8_M"
+      }
+    ]
+  },
+  {
+    "name": "Foundry Class (Missile)",
+    "blueprint_id": "steelbound_syndicate_foundry_class_missile",
+    "type": "ship",
+    "faction": "SteelBound_Syndicate",
+    "cost": 25000,
+    "base_stats": {
+      "hp": 12000,
+      "armor": 600,
+      "damage": 3574,
+      "speed": 3,
+      "type": "ship",
+      "cost": 25000,
+      "tier": 3,
+      "range": 109
+    },
+    "elemental_dna": {
+      "atom_mass": 65.44545454545454,
+      "atom_energy": 1.1545454545454545,
+      "atom_cohesion": 28.772727272727266,
+      "atom_volatility": 0.46363636363636357,
+      "atom_stability": 1.1545454545454545,
+      "atom_focus": 0.46363636363636357,
+      "atom_frequency": 0.46363636363636357,
+      "atom_aether": 0.46363636363636357,
+      "atom_will": 1.1545454545454545,
+      "atom_information": 0.46363636363636357
+    },
+    "source_universe": "void_reckoning",
+    "description": "SteelBound_Syndicate Battleship unit. Auto-generated. equipped with long-range missile pods.",
+    "traits": [
+      "Trait_Damage_Reduction",
+      "Trait_Reinforced_Plating",
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "battleship",
+    "domain": "space",
+    "tier": 3,
+    "upkeep": 2500,
+    "components": [
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_plasma_weapon_2_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_plasma_weapon_2_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_plasma_weapon_2_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_plasma_weapon_2_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_plasma_weapon_8_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_plasma_weapon_8_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_plasma_weapon_8_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_plasma_weapon_8_XL"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_plasma_weapon_2_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_plasma_weapon_2_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_plasma_weapon_2_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_plasma_weapon_2_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_plasma_weapon_8_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_plasma_weapon_8_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_plasma_weapon_8_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_plasma_weapon_8_M"
+      }
+    ]
+  },
+  {
+    "name": "Foundry Class (Shield)",
+    "blueprint_id": "steelbound_syndicate_foundry_class_shield",
+    "type": "ship",
+    "faction": "SteelBound_Syndicate",
+    "cost": 25000,
+    "base_stats": {
+      "hp": 9600,
+      "armor": 300,
+      "damage": 3724,
+      "speed": 3,
+      "type": "ship",
+      "cost": 32500,
+      "tier": 3,
+      "range": 109
+    },
+    "elemental_dna": {
+      "atom_mass": 51.65833333333334,
+      "atom_energy": 1.0583333333333333,
+      "atom_cohesion": 26.375,
+      "atom_volatility": 0.42500000000000004,
+      "atom_stability": 1.0583333333333333,
+      "atom_focus": 17.09166666666667,
+      "atom_frequency": 0.42500000000000004,
+      "atom_aether": 0.42500000000000004,
+      "atom_will": 1.0583333333333333,
+      "atom_information": 0.42500000000000004
+    },
+    "source_universe": "void_reckoning",
+    "description": "SteelBound_Syndicate Battleship unit. Auto-generated. fitted with experimental shield generators.",
+    "traits": [
+      "Trait_Damage_Reduction",
+      "Trait_Reinforced_Plating",
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "battleship",
+    "domain": "space",
+    "tier": 3,
+    "upkeep": 2500,
+    "components": [
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_plasma_weapon_2_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_plasma_weapon_2_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_plasma_weapon_2_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_plasma_weapon_2_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_plasma_weapon_8_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_plasma_weapon_8_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_plasma_weapon_8_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_plasma_weapon_8_XL"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_plasma_weapon_2_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_plasma_weapon_2_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_plasma_weapon_2_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_plasma_weapon_2_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_plasma_weapon_8_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_plasma_weapon_8_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_plasma_weapon_8_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_plasma_weapon_8_M"
+      }
+    ]
+  }
+]

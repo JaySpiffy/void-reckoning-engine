@@ -1,0 +1,30 @@
+{
+    "baselines": {
+        "turn_processing_ms_small": 100,
+        "turn_processing_ms_medium": 500,
+        "turn_processing_ms_large": 2000,
+        "pathfinding_ms_short": 5,
+        "pathfinding_ms_long": 50,
+        "combat_resolution_ms_small": 10,
+        "combat_resolution_ms_large": 100,
+        "economy_processing_ms_per_faction": 20,
+        "ai_strategy_ms_per_faction": 50
+    },
+    "scenarios": {
+        "small": {
+            "num_systems": 20,
+            "num_factions": 2,
+            "density": 0.3
+        },
+        "medium": {
+            "num_systems": 50,
+            "num_factions": 4,
+            "density": 0.5
+        },
+        "large": {
+            "num_systems": 100,
+            "num_factions": 8,
+            "density": 0.7
+        }
+    }
+}

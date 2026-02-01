@@ -1,0 +1,83 @@
+{
+  "nodes": [
+    {
+      "id": "Tech_Algorithmic_Hierarchy_Basic Doctrine",
+      "label": "Basic Doctrine",
+      "tier": 1,
+      "cost": 1000
+    },
+    {
+      "id": "Tech_Algorithmic_Hierarchy_Logistics",
+      "label": "Logistics",
+      "tier": 1,
+      "cost": 1000
+    },
+    {
+      "id": "Tech_Algorithmic_Hierarchy_Industrial Forging",
+      "label": "Industrial Forging",
+      "tier": 1,
+      "cost": 800
+    },
+    {
+      "id": "Tech_Algorithmic_Hierarchy_Resource Extraction",
+      "label": "Resource Extraction",
+      "tier": 1,
+      "cost": 800
+    },
+    {
+      "id": "Tech_Algorithmic_Hierarchy_Heavy Armor",
+      "label": "Heavy Armor",
+      "tier": 2,
+      "cost": 2500
+    },
+    {
+      "id": "Tech_Algorithmic_Hierarchy_Advanced Ballistics",
+      "label": "Advanced Ballistics",
+      "tier": 2,
+      "cost": 2500
+    },
+    {
+      "id": "Tech_Algorithmic_Hierarchy_Flux Navigation",
+      "label": "Flux Navigation",
+      "tier": 2,
+      "cost": 3000
+    },
+    {
+      "id": "Tech_Algorithmic_Hierarchy_Mega Construction",
+      "label": "Mega Construction",
+      "tier": 2,
+      "cost": 2500
+    },
+    {
+      "id": "Tech_Algorithmic_Hierarchy_Trade Networks",
+      "label": "Trade Networks",
+      "tier": 2,
+      "cost": 2000
+    },
+    {
+      "id": "Tech_Algorithmic_Hierarchy_Capital Ships",
+      "label": "Capital Ships",
+      "tier": 3,
+      "cost": 5000
+    },
+    {
+      "id": "Tech_Algorithmic_Hierarchy_Titan Integration",
+      "label": "Titan Integration",
+      "tier": 3,
+      "cost": 6000
+    },
+    {
+      "id": "Tech_Algorithmic_Hierarchy_Planetary Shielding",
+      "label": "Planetary Shielding",
+      "tier": 3,
+      "cost": 4500
+    },
+    {
+      "id": "Tech_Algorithmic_Hierarchy_Ascension Protocol",
+      "label": "Ascension Protocol",
+      "tier": 3,
+      "cost": 8000
+    }
+  ],
+  "edges": []
+}

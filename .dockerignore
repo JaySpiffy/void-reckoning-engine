@@ -1,0 +1,35 @@
+# Docker Ignore
+node_modules
+frontend/node_modules
+frontend/dist
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.env
+.env.*
+.git
+.gitignore
+.dockerignore
+# Dockerfile* (Commented out to allow specific Dockerfiles)
+docker-compose*
+tests/
+reports/
+logs/
+.pytest_cache/
+.coverage
+htmlcov/
+*.db
+*.sqlite
+*.sqlite3
+*.egg-info/
+.mypy_cache/
+.vscode/
+.idea/
+dist/
+build/
+universes/
+config/

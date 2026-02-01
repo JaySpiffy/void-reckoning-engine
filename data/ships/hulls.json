@@ -1,0 +1,89 @@
+{
+    "hulls": [
+        {
+            "id": "corvette",
+            "name": "Corvette",
+            "size": 1,
+            "base_stats": {
+                "hp": 300,
+                "evasion": 0.60,
+                "armor": 0,
+                "speed": 160
+            },
+            "slots": {
+                "S": 3,
+                "REACTOR": 1,
+                "THRUSTER": 1,
+                "FTL": 1,
+                "SENSOR": 1,
+                "COMPUTER": 1,
+                "A": 2
+            }
+        },
+        {
+            "id": "destroyer",
+            "name": "Destroyer",
+            "size": 2,
+            "base_stats": {
+                "hp": 800,
+                "evasion": 0.35,
+                "armor": 0,
+                "speed": 140
+            },
+            "slots": {
+                "M": 1,
+                "S": 4,
+                "REACTOR": 1,
+                "THRUSTER": 1,
+                "FTL": 1,
+                "SENSOR": 1,
+                "COMPUTER": 1,
+                "A": 4
+            }
+        },
+        {
+            "id": "cruiser",
+            "name": "Cruiser",
+            "size": 4,
+            "base_stats": {
+                "hp": 1800,
+                "evasion": 0.15,
+                "armor": 0,
+                "speed": 120
+            },
+            "slots": {
+                "L": 1,
+                "M": 2,
+                "S": 2,
+                "REACTOR": 1,
+                "THRUSTER": 1,
+                "FTL": 1,
+                "SENSOR": 1,
+                "COMPUTER": 1,
+                "A": 6
+            }
+        },
+        {
+            "id": "battleship",
+            "name": "Battleship",
+            "size": 8,
+            "base_stats": {
+                "hp": 4000,
+                "evasion": 0.05,
+                "armor": 0,
+                "speed": 100
+            },
+            "slots": {
+                "X": 1,
+                "L": 3,
+                "M": 2,
+                "REACTOR": 1,
+                "THRUSTER": 1,
+                "FTL": 1,
+                "SENSOR": 1,
+                "COMPUTER": 1,
+                "A": 10
+            }
+        }
+    ]
+}

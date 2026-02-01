@@ -1,0 +1,13 @@
+{
+    "simulation": {
+        "num_runs": 10,
+        "max_workers": 6,
+        "output_dir": "reports/balance_baseline"
+    },
+    "campaign": {
+        "turns": 50,
+        "num_systems": 15,
+        "min_planets": 1,
+        "max_planets": 3
+    }
+}

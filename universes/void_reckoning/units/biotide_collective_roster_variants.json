@@ -1,0 +1,1600 @@
+[
+  {
+    "name": "Drone (Melta)",
+    "blueprint_id": "biotide_collective_drone_melta",
+    "type": "infantry",
+    "faction": "BioTide_Collective",
+    "cost": 70,
+    "base_stats": {
+      "hp": 13,
+      "armor": 8,
+      "damage": 11,
+      "speed": 5,
+      "type": "infantry",
+      "cost": 77,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 12.836363636363634,
+      "atom_energy": 21.763636363636362,
+      "atom_cohesion": 14.690909090909091,
+      "atom_volatility": 5.072727272727272,
+      "atom_stability": 12.672727272727272,
+      "atom_focus": 5.072727272727272,
+      "atom_frequency": 5.072727272727272,
+      "atom_aether": 5.072727272727272,
+      "atom_will": 12.672727272727272,
+      "atom_information": 5.072727272727272
+    },
+    "source_universe": "void_reckoning",
+    "description": "BioTide_Collective Infantry unit. Auto-generated. armed with short-range anti-armor thermal beams.",
+    "traits": [
+      "Trait_Shield_Regen"
+    ],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 7,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "biotide_collective_base_biological_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Drone (Assault)",
+    "blueprint_id": "biotide_collective_drone_assault",
+    "type": "infantry",
+    "faction": "BioTide_Collective",
+    "cost": 70,
+    "base_stats": {
+      "hp": 13,
+      "armor": 8,
+      "damage": 16,
+      "speed": 6,
+      "type": "infantry",
+      "cost": 70,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 12.836363636363634,
+      "atom_energy": 12.672727272727272,
+      "atom_cohesion": 23.78181818181818,
+      "atom_volatility": 5.072727272727272,
+      "atom_stability": 12.672727272727272,
+      "atom_focus": 5.072727272727272,
+      "atom_frequency": 5.072727272727272,
+      "atom_aether": 5.072727272727272,
+      "atom_will": 12.672727272727272,
+      "atom_information": 5.072727272727272
+    },
+    "source_universe": "void_reckoning",
+    "description": "BioTide_Collective Infantry unit. Auto-generated. configured for close-quarters combat.",
+    "traits": [
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "assault_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 7,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "biotide_collective_base_biological_weapon_0_S"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "biotide_collective_base_biological_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Warrior (Melta)",
+    "blueprint_id": "biotide_collective_warrior_melta",
+    "type": "infantry",
+    "faction": "BioTide_Collective",
+    "cost": 210,
+    "base_stats": {
+      "hp": 32,
+      "armor": 24,
+      "damage": 29,
+      "speed": 5,
+      "type": "infantry",
+      "cost": 231,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 7.5,
+      "atom_energy": 16.35454545454546,
+      "atom_cohesion": 10.754545454545454,
+      "atom_volatility": 2.909090909090909,
+      "atom_stability": 7.263636363636364,
+      "atom_focus": 24.700000000000003,
+      "atom_frequency": 2.909090909090909,
+      "atom_aether": 2.909090909090909,
+      "atom_will": 7.263636363636364,
+      "atom_information": 17.436363636363637
+    },
+    "source_universe": "void_reckoning",
+    "description": "BioTide_Collective Elite_Infantry unit. Auto-generated. armed with short-range anti-armor thermal beams.",
+    "traits": [
+      "Trait_Armor_Piercing",
+      "Trait_Adaptive_Armor"
+    ],
+    "variant": true,
+    "unit_class": "assault_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 21,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "biotide_collective_base_biological_weapon_0_S"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "biotide_collective_base_biological_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Warrior (Assault)",
+    "blueprint_id": "biotide_collective_warrior_assault",
+    "type": "infantry",
+    "faction": "BioTide_Collective",
+    "cost": 210,
+    "base_stats": {
+      "hp": 32,
+      "armor": 24,
+      "damage": 28,
+      "speed": 6,
+      "type": "infantry",
+      "cost": 210,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 7.5,
+      "atom_energy": 7.263636363636364,
+      "atom_cohesion": 19.845454545454544,
+      "atom_volatility": 2.909090909090909,
+      "atom_stability": 7.263636363636364,
+      "atom_focus": 24.700000000000003,
+      "atom_frequency": 2.909090909090909,
+      "atom_aether": 2.909090909090909,
+      "atom_will": 7.263636363636364,
+      "atom_information": 17.436363636363637
+    },
+    "source_universe": "void_reckoning",
+    "description": "BioTide_Collective Elite_Infantry unit. Auto-generated. configured for close-quarters combat.",
+    "traits": [
+      "Trait_Regeneration",
+      "Trait_Adaptive_Armor"
+    ],
+    "variant": true,
+    "unit_class": "assault_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 21,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "biotide_collective_base_biological_weapon_0_S"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "biotide_collective_base_biological_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Skitterer (Plasma)",
+    "blueprint_id": "biotide_collective_skitterer_plasma",
+    "type": "vehicle",
+    "faction": "BioTide_Collective",
+    "cost": 350,
+    "base_stats": {
+      "hp": 104,
+      "armor": 20,
+      "damage": 33,
+      "speed": 16,
+      "type": "vehicle",
+      "cost": 420,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 20.09565217391304,
+      "atom_energy": 9.834782608695653,
+      "atom_cohesion": 17.704347826086956,
+      "atom_volatility": 16.973913043478262,
+      "atom_stability": 9.834782608695653,
+      "atom_focus": 3.930434782608695,
+      "atom_frequency": 3.930434782608695,
+      "atom_aether": 3.930434782608695,
+      "atom_will": 9.834782608695653,
+      "atom_information": 3.930434782608695
+    },
+    "source_universe": "void_reckoning",
+    "description": "BioTide_Collective Light_Vehicle unit. Auto-generated. armed with high-energy plasma weaponry.",
+    "traits": [
+      "Trait_Regeneration",
+      "Trait_Damage_Reduction"
+    ],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 35,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "biotide_collective_base_biological_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Skitterer (Melta)",
+    "blueprint_id": "biotide_collective_skitterer_melta",
+    "type": "vehicle",
+    "faction": "BioTide_Collective",
+    "cost": 350,
+    "base_stats": {
+      "hp": 104,
+      "armor": 20,
+      "damage": 31,
+      "speed": 16,
+      "type": "vehicle",
+      "cost": 385,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 21.009090909090908,
+      "atom_energy": 19.372727272727275,
+      "atom_cohesion": 18.509090909090908,
+      "atom_volatility": 4.1090909090909085,
+      "atom_stability": 10.281818181818183,
+      "atom_focus": 4.1090909090909085,
+      "atom_frequency": 4.1090909090909085,
+      "atom_aether": 4.1090909090909085,
+      "atom_will": 10.281818181818183,
+      "atom_information": 4.1090909090909085
+    },
+    "source_universe": "void_reckoning",
+    "description": "BioTide_Collective Light_Vehicle unit. Auto-generated. armed with short-range anti-armor thermal beams.",
+    "traits": [
+      "Trait_Regeneration",
+      "Trait_Anti_Vehicle"
+    ],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 35,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "biotide_collective_base_biological_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Skitterer (Missile)",
+    "blueprint_id": "biotide_collective_skitterer_missile",
+    "type": "vehicle",
+    "faction": "BioTide_Collective",
+    "cost": 350,
+    "base_stats": {
+      "hp": 104,
+      "armor": 20,
+      "damage": 23,
+      "speed": 16,
+      "type": "vehicle",
+      "cost": 350,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 30.099999999999998,
+      "atom_energy": 10.281818181818183,
+      "atom_cohesion": 18.509090909090908,
+      "atom_volatility": 4.1090909090909085,
+      "atom_stability": 10.281818181818183,
+      "atom_focus": 4.1090909090909085,
+      "atom_frequency": 4.1090909090909085,
+      "atom_aether": 4.1090909090909085,
+      "atom_will": 10.281818181818183,
+      "atom_information": 4.1090909090909085
+    },
+    "source_universe": "void_reckoning",
+    "description": "BioTide_Collective Light_Vehicle unit. Auto-generated. equipped with long-range missile pods.",
+    "traits": [
+      "Trait_Regeneration",
+      "Trait_Damage_Reduction"
+    ],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 35,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "biotide_collective_base_biological_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Skitterer (Shield)",
+    "blueprint_id": "biotide_collective_skitterer_shield",
+    "type": "vehicle",
+    "faction": "BioTide_Collective",
+    "cost": 350,
+    "base_stats": {
+      "hp": 83,
+      "armor": 10,
+      "damage": 25,
+      "speed": 16,
+      "type": "vehicle",
+      "cost": 455,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 19.258333333333333,
+      "atom_energy": 9.425,
+      "atom_cohesion": 16.966666666666665,
+      "atom_volatility": 3.766666666666666,
+      "atom_stability": 9.425,
+      "atom_focus": 20.433333333333334,
+      "atom_frequency": 3.766666666666666,
+      "atom_aether": 3.766666666666666,
+      "atom_will": 9.425,
+      "atom_information": 3.766666666666666
+    },
+    "source_universe": "void_reckoning",
+    "description": "BioTide_Collective Light_Vehicle unit. Auto-generated. fitted with experimental shield generators.",
+    "traits": [
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 35,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "biotide_collective_base_biological_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Crusher Beast (Plasma)",
+    "blueprint_id": "biotide_collective_crusher_beast_plasma",
+    "type": "vehicle",
+    "faction": "BioTide_Collective",
+    "cost": 840,
+    "base_stats": {
+      "hp": 325,
+      "armor": 60,
+      "damage": 104,
+      "speed": 8,
+      "type": "vehicle",
+      "cost": 1008,
+      "tier": 3,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 29.208695652173915,
+      "atom_energy": 6.878260869565217,
+      "atom_cohesion": 23.373913043478257,
+      "atom_volatility": 15.791304347826088,
+      "atom_stability": 6.878260869565217,
+      "atom_focus": 2.747826086956522,
+      "atom_frequency": 2.747826086956522,
+      "atom_aether": 2.747826086956522,
+      "atom_will": 6.878260869565217,
+      "atom_information": 2.747826086956522
+    },
+    "source_universe": "void_reckoning",
+    "description": "BioTide_Collective Heavy_Tank unit. Auto-generated. armed with high-energy plasma weaponry.",
+    "traits": [
+      "Trait_Regeneration",
+      "Trait_Damage_Reduction"
+    ],
+    "variant": true,
+    "unit_class": "battle_tank",
+    "domain": "ground",
+    "tier": 3,
+    "upkeep": 84,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_biological_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_information_weapon_1_M"
+      }
+    ]
+  },
+  {
+    "name": "Crusher Beast (Melta)",
+    "blueprint_id": "biotide_collective_crusher_beast_melta",
+    "type": "vehicle",
+    "faction": "BioTide_Collective",
+    "cost": 840,
+    "base_stats": {
+      "hp": 325,
+      "armor": 60,
+      "damage": 98,
+      "speed": 8,
+      "type": "vehicle",
+      "cost": 924,
+      "tier": 3,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 30.53636363636364,
+      "atom_energy": 16.28181818181818,
+      "atom_cohesion": 24.436363636363637,
+      "atom_volatility": 2.872727272727273,
+      "atom_stability": 7.1909090909090905,
+      "atom_focus": 2.872727272727273,
+      "atom_frequency": 2.872727272727273,
+      "atom_aether": 2.872727272727273,
+      "atom_will": 7.1909090909090905,
+      "atom_information": 2.872727272727273
+    },
+    "source_universe": "void_reckoning",
+    "description": "BioTide_Collective Heavy_Tank unit. Auto-generated. armed with short-range anti-armor thermal beams.",
+    "traits": [
+      "Trait_Regeneration",
+      "Trait_Damage_Reduction"
+    ],
+    "variant": true,
+    "unit_class": "battle_tank",
+    "domain": "ground",
+    "tier": 3,
+    "upkeep": 84,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_biological_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_information_weapon_1_M"
+      }
+    ]
+  },
+  {
+    "name": "Crusher Beast (Missile)",
+    "blueprint_id": "biotide_collective_crusher_beast_missile",
+    "type": "vehicle",
+    "faction": "BioTide_Collective",
+    "cost": 840,
+    "base_stats": {
+      "hp": 325,
+      "armor": 60,
+      "damage": 74,
+      "speed": 8,
+      "type": "vehicle",
+      "cost": 840,
+      "tier": 3,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 39.627272727272725,
+      "atom_energy": 7.1909090909090905,
+      "atom_cohesion": 24.436363636363637,
+      "atom_volatility": 2.872727272727273,
+      "atom_stability": 7.1909090909090905,
+      "atom_focus": 2.872727272727273,
+      "atom_frequency": 2.872727272727273,
+      "atom_aether": 2.872727272727273,
+      "atom_will": 7.1909090909090905,
+      "atom_information": 2.872727272727273
+    },
+    "source_universe": "void_reckoning",
+    "description": "BioTide_Collective Heavy_Tank unit. Auto-generated. equipped with long-range missile pods.",
+    "traits": [
+      "Trait_Regeneration",
+      "Trait_Damage_Reduction"
+    ],
+    "variant": true,
+    "unit_class": "battle_tank",
+    "domain": "ground",
+    "tier": 3,
+    "upkeep": 84,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_biological_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_information_weapon_1_M"
+      }
+    ]
+  },
+  {
+    "name": "Crusher Beast (Shield)",
+    "blueprint_id": "biotide_collective_crusher_beast_shield",
+    "type": "vehicle",
+    "faction": "BioTide_Collective",
+    "cost": 840,
+    "base_stats": {
+      "hp": 260,
+      "armor": 30,
+      "damage": 80,
+      "speed": 8,
+      "type": "vehicle",
+      "cost": 1092,
+      "tier": 3,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 27.99166666666667,
+      "atom_energy": 6.591666666666667,
+      "atom_cohesion": 22.400000000000002,
+      "atom_volatility": 2.6333333333333333,
+      "atom_stability": 6.591666666666667,
+      "atom_focus": 19.3,
+      "atom_frequency": 2.6333333333333333,
+      "atom_aether": 2.6333333333333333,
+      "atom_will": 6.591666666666667,
+      "atom_information": 2.6333333333333333
+    },
+    "source_universe": "void_reckoning",
+    "description": "BioTide_Collective Heavy_Tank unit. Auto-generated. fitted with experimental shield generators.",
+    "traits": [
+      "Trait_Regeneration",
+      "Trait_Damage_Reduction"
+    ],
+    "variant": true,
+    "unit_class": "battle_tank",
+    "domain": "ground",
+    "tier": 3,
+    "upkeep": 84,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_biological_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_information_weapon_1_M"
+      }
+    ]
+  },
+  {
+    "name": "Stalking Horror (Plasma)",
+    "blueprint_id": "biotide_collective_stalking_horror_plasma",
+    "type": "vehicle",
+    "faction": "BioTide_Collective",
+    "cost": 630,
+    "base_stats": {
+      "hp": 234,
+      "armor": 36,
+      "damage": 67,
+      "speed": 7,
+      "type": "vehicle",
+      "cost": 756,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 13.48695652173913,
+      "atom_energy": 10.930434782608696,
+      "atom_cohesion": 18.808695652173913,
+      "atom_volatility": 17.417391304347827,
+      "atom_stability": 10.930434782608696,
+      "atom_focus": 4.373913043478261,
+      "atom_frequency": 4.373913043478261,
+      "atom_aether": 4.373913043478261,
+      "atom_will": 10.930434782608696,
+      "atom_information": 4.373913043478261
+    },
+    "source_universe": "void_reckoning",
+    "description": "BioTide_Collective Walker unit. Auto-generated. armed with high-energy plasma weaponry.",
+    "traits": [
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 63,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "biotide_collective_base_biological_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Stalking Horror (Melta)",
+    "blueprint_id": "biotide_collective_stalking_horror_melta",
+    "type": "vehicle",
+    "faction": "BioTide_Collective",
+    "cost": 630,
+    "base_stats": {
+      "hp": 234,
+      "armor": 36,
+      "damage": 63,
+      "speed": 7,
+      "type": "vehicle",
+      "cost": 693,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 14.099999999999998,
+      "atom_energy": 20.51818181818182,
+      "atom_cohesion": 19.663636363636364,
+      "atom_volatility": 4.572727272727272,
+      "atom_stability": 11.427272727272728,
+      "atom_focus": 4.572727272727272,
+      "atom_frequency": 4.572727272727272,
+      "atom_aether": 4.572727272727272,
+      "atom_will": 11.427272727272728,
+      "atom_information": 4.572727272727272
+    },
+    "source_universe": "void_reckoning",
+    "description": "BioTide_Collective Walker unit. Auto-generated. armed with short-range anti-armor thermal beams.",
+    "traits": [
+      "Trait_Regeneration",
+      "Trait_Shield_Regen"
+    ],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 63,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "biotide_collective_base_biological_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Stalking Horror (Missile)",
+    "blueprint_id": "biotide_collective_stalking_horror_missile",
+    "type": "vehicle",
+    "faction": "BioTide_Collective",
+    "cost": 630,
+    "base_stats": {
+      "hp": 234,
+      "armor": 36,
+      "damage": 45,
+      "speed": 7,
+      "type": "vehicle",
+      "cost": 630,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 23.19090909090909,
+      "atom_energy": 11.427272727272728,
+      "atom_cohesion": 19.663636363636364,
+      "atom_volatility": 4.572727272727272,
+      "atom_stability": 11.427272727272728,
+      "atom_focus": 4.572727272727272,
+      "atom_frequency": 4.572727272727272,
+      "atom_aether": 4.572727272727272,
+      "atom_will": 11.427272727272728,
+      "atom_information": 4.572727272727272
+    },
+    "source_universe": "void_reckoning",
+    "description": "BioTide_Collective Walker unit. Auto-generated. equipped with long-range missile pods.",
+    "traits": [
+      "Trait_Regeneration",
+      "Trait_Damage_Reduction"
+    ],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 63,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "biotide_collective_base_biological_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Stalking Horror (Shield)",
+    "blueprint_id": "biotide_collective_stalking_horror_shield",
+    "type": "vehicle",
+    "faction": "BioTide_Collective",
+    "cost": 630,
+    "base_stats": {
+      "hp": 187,
+      "armor": 18,
+      "damage": 50,
+      "speed": 7,
+      "type": "vehicle",
+      "cost": 819,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 12.925,
+      "atom_energy": 10.475,
+      "atom_cohesion": 18.025,
+      "atom_volatility": 4.191666666666667,
+      "atom_stability": 10.475,
+      "atom_focus": 20.858333333333334,
+      "atom_frequency": 4.191666666666667,
+      "atom_aether": 4.191666666666667,
+      "atom_will": 10.475,
+      "atom_information": 4.191666666666667
+    },
+    "source_universe": "void_reckoning",
+    "description": "BioTide_Collective Walker unit. Auto-generated. fitted with experimental shield generators.",
+    "traits": [
+      "Trait_Regeneration",
+      "Trait_Armor_Piercing"
+    ],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 63,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "biotide_collective_base_biological_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Spore (Plasma)",
+    "blueprint_id": "biotide_collective_spore_plasma",
+    "type": "ship",
+    "faction": "BioTide_Collective",
+    "cost": 105,
+    "base_stats": {
+      "hp": 65,
+      "armor": 0,
+      "damage": 44,
+      "speed": 49,
+      "type": "ship",
+      "cost": 126,
+      "tier": 1,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 11.486956521739131,
+      "atom_energy": 10.782608695652174,
+      "atom_cohesion": 10.782608695652174,
+      "atom_volatility": 17.356521739130436,
+      "atom_stability": 10.782608695652174,
+      "atom_focus": 4.3130434782608695,
+      "atom_frequency": 15.08695652173913,
+      "atom_aether": 4.3130434782608695,
+      "atom_will": 10.782608695652174,
+      "atom_information": 4.3130434782608695
+    },
+    "source_universe": "void_reckoning",
+    "description": "BioTide_Collective Fighter unit. Auto-generated. armed with high-energy plasma weaponry.",
+    "traits": [
+      "Trait_Frenzy"
+    ],
+    "variant": true,
+    "unit_class": "fighter",
+    "domain": "space",
+    "tier": 1,
+    "upkeep": 10,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "biotide_collective_base_laser_weapon_5_S"
+      }
+    ]
+  },
+  {
+    "name": "Spore (Missile)",
+    "blueprint_id": "biotide_collective_spore_missile",
+    "type": "ship",
+    "faction": "BioTide_Collective",
+    "cost": 105,
+    "base_stats": {
+      "hp": 65,
+      "armor": 0,
+      "damage": 39,
+      "speed": 49,
+      "type": "ship",
+      "cost": 105,
+      "tier": 1,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 21.1,
+      "atom_energy": 11.272727272727273,
+      "atom_cohesion": 11.272727272727273,
+      "atom_volatility": 4.509090909090909,
+      "atom_stability": 11.272727272727273,
+      "atom_focus": 4.509090909090909,
+      "atom_frequency": 15.772727272727275,
+      "atom_aether": 4.509090909090909,
+      "atom_will": 11.272727272727273,
+      "atom_information": 4.509090909090909
+    },
+    "source_universe": "void_reckoning",
+    "description": "BioTide_Collective Fighter unit. Auto-generated. equipped with long-range missile pods.",
+    "traits": [
+      "Trait_Anti_Infantry"
+    ],
+    "variant": true,
+    "unit_class": "fighter",
+    "domain": "space",
+    "tier": 1,
+    "upkeep": 10,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "biotide_collective_base_laser_weapon_5_S"
+      }
+    ]
+  },
+  {
+    "name": "Spore (Shield)",
+    "blueprint_id": "biotide_collective_spore_shield",
+    "type": "ship",
+    "faction": "BioTide_Collective",
+    "cost": 105,
+    "base_stats": {
+      "hp": 52,
+      "armor": 0,
+      "damage": 40,
+      "speed": 49,
+      "type": "ship",
+      "cost": 136,
+      "tier": 1,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 11.008333333333335,
+      "atom_energy": 10.333333333333334,
+      "atom_cohesion": 10.333333333333334,
+      "atom_volatility": 4.133333333333333,
+      "atom_stability": 10.333333333333334,
+      "atom_focus": 20.8,
+      "atom_frequency": 14.458333333333334,
+      "atom_aether": 4.133333333333333,
+      "atom_will": 10.333333333333334,
+      "atom_information": 4.133333333333333
+    },
+    "source_universe": "void_reckoning",
+    "description": "BioTide_Collective Fighter unit. Auto-generated. fitted with experimental shield generators.",
+    "traits": [
+      "Trait_Infiltrate"
+    ],
+    "variant": true,
+    "unit_class": "fighter",
+    "domain": "space",
+    "tier": 1,
+    "upkeep": 10,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "biotide_collective_base_laser_weapon_5_S"
+      }
+    ]
+  },
+  {
+    "name": "Bio-Ship (Plasma)",
+    "blueprint_id": "biotide_collective_bio-ship_plasma",
+    "type": "ship",
+    "faction": "BioTide_Collective",
+    "cost": 1400,
+    "base_stats": {
+      "hp": 1040,
+      "armor": 20,
+      "damage": 280,
+      "speed": 21,
+      "type": "ship",
+      "cost": 1680,
+      "tier": 2,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 21.008695652173913,
+      "atom_energy": 10.304347826086955,
+      "atom_cohesion": 14.426086956521738,
+      "atom_volatility": 17.16521739130435,
+      "atom_stability": 10.304347826086955,
+      "atom_focus": 4.121739130434783,
+      "atom_frequency": 4.121739130434783,
+      "atom_aether": 4.121739130434783,
+      "atom_will": 10.304347826086955,
+      "atom_information": 4.121739130434783
+    },
+    "source_universe": "void_reckoning",
+    "description": "BioTide_Collective Frigate unit. Auto-generated. armed with high-energy plasma weaponry.",
+    "traits": [],
+    "variant": true,
+    "unit_class": "frigate",
+    "domain": "space",
+    "tier": 2,
+    "upkeep": 140,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_biological_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "biotide_collective_base_biological_weapon_0_S"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "biotide_collective_base_biological_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Bio-Ship (Missile)",
+    "blueprint_id": "biotide_collective_bio-ship_missile",
+    "type": "ship",
+    "faction": "BioTide_Collective",
+    "cost": 1400,
+    "base_stats": {
+      "hp": 1040,
+      "armor": 20,
+      "damage": 230,
+      "speed": 21,
+      "type": "ship",
+      "cost": 1400,
+      "tier": 2,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 31.05454545454545,
+      "atom_energy": 10.772727272727273,
+      "atom_cohesion": 15.081818181818182,
+      "atom_volatility": 4.309090909090909,
+      "atom_stability": 10.772727272727273,
+      "atom_focus": 4.309090909090909,
+      "atom_frequency": 4.309090909090909,
+      "atom_aether": 4.309090909090909,
+      "atom_will": 10.772727272727273,
+      "atom_information": 4.309090909090909
+    },
+    "source_universe": "void_reckoning",
+    "description": "BioTide_Collective Frigate unit. Auto-generated. equipped with long-range missile pods.",
+    "traits": [
+      "Trait_Regeneration",
+      "Trait_Damage_Reduction",
+      "Trait_Reinforced_Plating"
+    ],
+    "variant": true,
+    "unit_class": "frigate",
+    "domain": "space",
+    "tier": 2,
+    "upkeep": 140,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_biological_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "biotide_collective_base_biological_weapon_0_S"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "biotide_collective_base_biological_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Bio-Ship (Shield)",
+    "blueprint_id": "biotide_collective_bio-ship_shield",
+    "type": "ship",
+    "faction": "BioTide_Collective",
+    "cost": 1400,
+    "base_stats": {
+      "hp": 832,
+      "armor": 10,
+      "damage": 240,
+      "speed": 21,
+      "type": "ship",
+      "cost": 1820,
+      "tier": 2,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 20.133333333333333,
+      "atom_energy": 9.874999999999998,
+      "atom_cohesion": 13.825000000000001,
+      "atom_volatility": 3.95,
+      "atom_stability": 9.874999999999998,
+      "atom_focus": 20.61666666666667,
+      "atom_frequency": 3.95,
+      "atom_aether": 3.95,
+      "atom_will": 9.874999999999998,
+      "atom_information": 3.95
+    },
+    "source_universe": "void_reckoning",
+    "description": "BioTide_Collective Frigate unit. Auto-generated. fitted with experimental shield generators.",
+    "traits": [],
+    "variant": true,
+    "unit_class": "frigate",
+    "domain": "space",
+    "tier": 2,
+    "upkeep": 140,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_biological_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "biotide_collective_base_biological_weapon_0_S"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "biotide_collective_base_biological_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Hive Ship (Plasma)",
+    "blueprint_id": "biotide_collective_hive_ship_plasma",
+    "type": "ship",
+    "faction": "BioTide_Collective",
+    "cost": 5600,
+    "base_stats": {
+      "hp": 3900,
+      "armor": 60,
+      "damage": 940,
+      "speed": 11,
+      "type": "ship",
+      "cost": 6720,
+      "range": 30
+    },
+    "elemental_dna": {
+      "atom_mass": 35.208695652173915,
+      "atom_energy": 7.182608695652173,
+      "atom_cohesion": 15.808695652173913,
+      "atom_volatility": 15.921739130434782,
+      "atom_stability": 7.182608695652173,
+      "atom_focus": 2.8782608695652177,
+      "atom_frequency": 2.8782608695652177,
+      "atom_aether": 2.8782608695652177,
+      "atom_will": 7.182608695652173,
+      "atom_information": 2.8782608695652177
+    },
+    "source_universe": "void_reckoning",
+    "description": "BioTide_Collective Cruiser unit. Auto-generated. armed with high-energy plasma weaponry.",
+    "traits": [
+      "Trait_Regeneration",
+      "Trait_Damage_Reduction",
+      "Trait_Reinforced_Plating"
+    ],
+    "variant": true,
+    "unit_class": "cruiser",
+    "domain": "space",
+    "upkeep": 560,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_biological_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_biological_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_biological_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "biotide_collective_base_biological_weapon_0_L"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "biotide_collective_base_biological_weapon_0_L"
+      }
+    ]
+  },
+  {
+    "name": "Hive Ship (Missile)",
+    "blueprint_id": "biotide_collective_hive_ship_missile",
+    "type": "ship",
+    "faction": "BioTide_Collective",
+    "cost": 5600,
+    "base_stats": {
+      "hp": 3900,
+      "armor": 60,
+      "damage": 740,
+      "speed": 11,
+      "type": "ship",
+      "cost": 5600,
+      "range": 30
+    },
+    "elemental_dna": {
+      "atom_mass": 45.9,
+      "atom_energy": 7.509090909090908,
+      "atom_cohesion": 16.527272727272727,
+      "atom_volatility": 3.0090909090909093,
+      "atom_stability": 7.509090909090908,
+      "atom_focus": 3.0090909090909093,
+      "atom_frequency": 3.0090909090909093,
+      "atom_aether": 3.0090909090909093,
+      "atom_will": 7.509090909090908,
+      "atom_information": 3.0090909090909093
+    },
+    "source_universe": "void_reckoning",
+    "description": "BioTide_Collective Cruiser unit. Auto-generated. equipped with long-range missile pods.",
+    "traits": [
+      "Trait_Regeneration",
+      "Trait_Damage_Reduction",
+      "Trait_Reinforced_Plating"
+    ],
+    "variant": true,
+    "unit_class": "cruiser",
+    "domain": "space",
+    "upkeep": 560,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_biological_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_biological_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_biological_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "biotide_collective_base_biological_weapon_0_L"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "biotide_collective_base_biological_weapon_0_L"
+      }
+    ]
+  },
+  {
+    "name": "Hive Ship (Shield)",
+    "blueprint_id": "biotide_collective_hive_ship_shield",
+    "type": "ship",
+    "faction": "BioTide_Collective",
+    "cost": 5600,
+    "base_stats": {
+      "hp": 3120,
+      "armor": 30,
+      "damage": 780,
+      "speed": 11,
+      "type": "ship",
+      "cost": 7280,
+      "range": 30
+    },
+    "elemental_dna": {
+      "atom_mass": 33.74166666666667,
+      "atom_energy": 6.883333333333333,
+      "atom_cohesion": 15.15,
+      "atom_volatility": 2.7583333333333333,
+      "atom_stability": 6.883333333333333,
+      "atom_focus": 19.424999999999997,
+      "atom_frequency": 2.7583333333333333,
+      "atom_aether": 2.7583333333333333,
+      "atom_will": 6.883333333333333,
+      "atom_information": 2.7583333333333333
+    },
+    "source_universe": "void_reckoning",
+    "description": "BioTide_Collective Cruiser unit. Auto-generated. fitted with experimental shield generators.",
+    "traits": [
+      "Trait_Regeneration",
+      "Trait_Damage_Reduction",
+      "Trait_Reinforced_Plating"
+    ],
+    "variant": true,
+    "unit_class": "cruiser",
+    "domain": "space",
+    "upkeep": 560,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_biological_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_biological_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_biological_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "biotide_collective_base_biological_weapon_0_L"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "biotide_collective_base_biological_weapon_0_L"
+      }
+    ]
+  },
+  {
+    "name": "World Eater (Plasma)",
+    "blueprint_id": "biotide_collective_world_eater_plasma",
+    "type": "ship",
+    "faction": "BioTide_Collective",
+    "cost": 17500,
+    "base_stats": {
+      "hp": 15600,
+      "armor": 160,
+      "damage": 3380,
+      "speed": 5,
+      "type": "ship",
+      "cost": 21000,
+      "tier": 3,
+      "range": 36
+    },
+    "elemental_dna": {
+      "atom_mass": 72.72173913043478,
+      "atom_energy": 1.1478260869565218,
+      "atom_cohesion": 8.486956521739131,
+      "atom_volatility": 13.504347826086956,
+      "atom_stability": 1.1478260869565218,
+      "atom_focus": 0.4608695652173913,
+      "atom_frequency": 0.4608695652173913,
+      "atom_aether": 0.4608695652173913,
+      "atom_will": 1.1478260869565218,
+      "atom_information": 0.4608695652173913
+    },
+    "source_universe": "void_reckoning",
+    "description": "BioTide_Collective Battleship unit. Auto-generated. armed with high-energy plasma weaponry.",
+    "traits": [
+      "Trait_Reinforced_Plating"
+    ],
+    "variant": true,
+    "unit_class": "battleship",
+    "domain": "space",
+    "tier": 3,
+    "upkeep": 1750,
+    "components": [
+      {
+        "slot": "weapon_heavy",
+        "component": "biotide_collective_base_plasma_weapon_3_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "biotide_collective_base_plasma_weapon_3_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "biotide_collective_base_plasma_weapon_3_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "biotide_collective_base_plasma_weapon_3_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "biotide_collective_base_plasma_weapon_4_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "biotide_collective_base_plasma_weapon_4_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "biotide_collective_base_plasma_weapon_4_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "biotide_collective_base_plasma_weapon_4_XL"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_plasma_weapon_3_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_plasma_weapon_3_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_plasma_weapon_3_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_plasma_weapon_3_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_plasma_weapon_4_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_plasma_weapon_4_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_plasma_weapon_4_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_plasma_weapon_4_M"
+      }
+    ]
+  },
+  {
+    "name": "World Eater (Missile)",
+    "blueprint_id": "biotide_collective_world_eater_missile",
+    "type": "ship",
+    "faction": "BioTide_Collective",
+    "cost": 17500,
+    "base_stats": {
+      "hp": 15600,
+      "armor": 160,
+      "damage": 2630,
+      "speed": 5,
+      "type": "ship",
+      "cost": 17500,
+      "tier": 3,
+      "range": 36
+    },
+    "elemental_dna": {
+      "atom_mass": 85.11818181818181,
+      "atom_energy": 1.2,
+      "atom_cohesion": 8.872727272727273,
+      "atom_volatility": 0.48181818181818187,
+      "atom_stability": 1.2,
+      "atom_focus": 0.48181818181818187,
+      "atom_frequency": 0.48181818181818187,
+      "atom_aether": 0.48181818181818187,
+      "atom_will": 1.2,
+      "atom_information": 0.48181818181818187
+    },
+    "source_universe": "void_reckoning",
+    "description": "BioTide_Collective Battleship unit. Auto-generated. equipped with long-range missile pods.",
+    "traits": [
+      "Trait_Reinforced_Plating"
+    ],
+    "variant": true,
+    "unit_class": "battleship",
+    "domain": "space",
+    "tier": 3,
+    "upkeep": 1750,
+    "components": [
+      {
+        "slot": "weapon_heavy",
+        "component": "biotide_collective_base_plasma_weapon_3_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "biotide_collective_base_plasma_weapon_3_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "biotide_collective_base_plasma_weapon_3_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "biotide_collective_base_plasma_weapon_3_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "biotide_collective_base_plasma_weapon_4_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "biotide_collective_base_plasma_weapon_4_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "biotide_collective_base_plasma_weapon_4_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "biotide_collective_base_plasma_weapon_4_XL"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_plasma_weapon_3_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_plasma_weapon_3_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_plasma_weapon_3_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_plasma_weapon_3_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_plasma_weapon_4_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_plasma_weapon_4_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_plasma_weapon_4_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_plasma_weapon_4_M"
+      }
+    ]
+  },
+  {
+    "name": "World Eater (Shield)",
+    "blueprint_id": "biotide_collective_world_eater_shield",
+    "type": "ship",
+    "faction": "BioTide_Collective",
+    "cost": 17500,
+    "base_stats": {
+      "hp": 12480,
+      "armor": 80,
+      "damage": 2780,
+      "speed": 5,
+      "type": "ship",
+      "cost": 22750,
+      "tier": 3,
+      "range": 36
+    },
+    "elemental_dna": {
+      "atom_mass": 69.69166666666666,
+      "atom_energy": 1.1,
+      "atom_cohesion": 8.133333333333333,
+      "atom_volatility": 0.4416666666666667,
+      "atom_stability": 1.1,
+      "atom_focus": 17.108333333333334,
+      "atom_frequency": 0.4416666666666667,
+      "atom_aether": 0.4416666666666667,
+      "atom_will": 1.1,
+      "atom_information": 0.4416666666666667
+    },
+    "source_universe": "void_reckoning",
+    "description": "BioTide_Collective Battleship unit. Auto-generated. fitted with experimental shield generators.",
+    "traits": [
+      "Trait_Reinforced_Plating"
+    ],
+    "variant": true,
+    "unit_class": "battleship",
+    "domain": "space",
+    "tier": 3,
+    "upkeep": 1750,
+    "components": [
+      {
+        "slot": "weapon_heavy",
+        "component": "biotide_collective_base_plasma_weapon_3_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "biotide_collective_base_plasma_weapon_3_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "biotide_collective_base_plasma_weapon_3_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "biotide_collective_base_plasma_weapon_3_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "biotide_collective_base_plasma_weapon_4_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "biotide_collective_base_plasma_weapon_4_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "biotide_collective_base_plasma_weapon_4_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "biotide_collective_base_plasma_weapon_4_XL"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_plasma_weapon_3_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_plasma_weapon_3_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_plasma_weapon_3_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_plasma_weapon_3_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_plasma_weapon_4_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_plasma_weapon_4_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_plasma_weapon_4_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_plasma_weapon_4_M"
+      }
+    ]
+  }
+]

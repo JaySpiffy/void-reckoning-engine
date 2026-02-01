@@ -1,0 +1,43 @@
+.dashboardContainer {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+.gridLayout {
+    display: grid;
+    grid-template-columns: 320px 1fr 320px;
+    gap: var(--grid-gap);
+    padding: 1rem;
+    flex: 1;
+    max-height: calc(100vh - 80px);
+    /* Adjust based on header height */
+    overflow: hidden;
+}
+
+@media (max-width: 1280px) {
+    .gridLayout {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        max-height: none;
+        overflow: visible;
+    }
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    /* Increased for better separation of tactical modules */
+    max-height: 100%;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+    padding-bottom: 2rem;
+}
+
+.column::-webkit-scrollbar {
+    width: 4px;
+}

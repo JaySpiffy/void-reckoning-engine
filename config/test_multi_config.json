@@ -1,0 +1,33 @@
+{
+    "mode": "multi",
+    "universes": [
+        {
+            "name": "star_wars",
+            "enabled": true,
+            "processor_affinity": [
+                0,
+                1
+            ],
+            "num_runs": 1,
+            "campaign": {
+                "turns": 3,
+                "num_systems": 10,
+                "min_planets": 2,
+                "max_planets": 4,
+                "combat_rounds": 10
+            },
+            "simulation": {
+                "num_runs": 1,
+                "output_subdir": "output_test",
+                "random_seed": 12345
+            },
+            "economy": {
+                "base_income_req": 2000
+            },
+            "units": {
+                "max_fleet_size": 20,
+                "max_land_army_size": 10
+            }
+        }
+    ]
+}

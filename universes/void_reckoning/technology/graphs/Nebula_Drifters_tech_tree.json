@@ -1,0 +1,83 @@
+{
+  "nodes": [
+    {
+      "id": "Tech_Nebula_Drifters_Basic Doctrine",
+      "label": "Basic Doctrine",
+      "tier": 1,
+      "cost": 1000
+    },
+    {
+      "id": "Tech_Nebula_Drifters_Logistics",
+      "label": "Logistics",
+      "tier": 1,
+      "cost": 1000
+    },
+    {
+      "id": "Tech_Nebula_Drifters_Industrial Forging",
+      "label": "Industrial Forging",
+      "tier": 1,
+      "cost": 800
+    },
+    {
+      "id": "Tech_Nebula_Drifters_Resource Extraction",
+      "label": "Resource Extraction",
+      "tier": 1,
+      "cost": 800
+    },
+    {
+      "id": "Tech_Nebula_Drifters_Heavy Armor",
+      "label": "Heavy Armor",
+      "tier": 2,
+      "cost": 2500
+    },
+    {
+      "id": "Tech_Nebula_Drifters_Advanced Ballistics",
+      "label": "Advanced Ballistics",
+      "tier": 2,
+      "cost": 2500
+    },
+    {
+      "id": "Tech_Nebula_Drifters_Flux Navigation",
+      "label": "Flux Navigation",
+      "tier": 2,
+      "cost": 3000
+    },
+    {
+      "id": "Tech_Nebula_Drifters_Mega Construction",
+      "label": "Mega Construction",
+      "tier": 2,
+      "cost": 2500
+    },
+    {
+      "id": "Tech_Nebula_Drifters_Trade Networks",
+      "label": "Trade Networks",
+      "tier": 2,
+      "cost": 2000
+    },
+    {
+      "id": "Tech_Nebula_Drifters_Capital Ships",
+      "label": "Capital Ships",
+      "tier": 3,
+      "cost": 5000
+    },
+    {
+      "id": "Tech_Nebula_Drifters_Titan Integration",
+      "label": "Titan Integration",
+      "tier": 3,
+      "cost": 6000
+    },
+    {
+      "id": "Tech_Nebula_Drifters_Planetary Shielding",
+      "label": "Planetary Shielding",
+      "tier": 3,
+      "cost": 4500
+    },
+    {
+      "id": "Tech_Nebula_Drifters_Ascension Protocol",
+      "label": "Ascension Protocol",
+      "tier": 3,
+      "cost": 8000
+    }
+  ],
+  "edges": []
+}

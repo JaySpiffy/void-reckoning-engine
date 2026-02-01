@@ -1,0 +1,131 @@
+{
+  "nodes": [
+    {
+      "id": "Tech_Primeval_Sentinels_Basic Doctrine",
+      "label": "Basic Doctrine",
+      "tier": 1,
+      "cost": 1000
+    },
+    {
+      "id": "Tech_Primeval_Sentinels_Logistics",
+      "label": "Logistics",
+      "tier": 1,
+      "cost": 1000
+    },
+    {
+      "id": "Tech_Primeval_Sentinels_Industrial Forging",
+      "label": "Industrial Forging",
+      "tier": 1,
+      "cost": 800
+    },
+    {
+      "id": "Tech_Primeval_Sentinels_Resource Extraction",
+      "label": "Resource Extraction",
+      "tier": 1,
+      "cost": 800
+    },
+    {
+      "id": "Tech_Primeval_Sentinels_Heavy Armor",
+      "label": "Heavy Armor",
+      "tier": 2,
+      "cost": 2500
+    },
+    {
+      "id": "Tech_Primeval_Sentinels_Advanced Ballistics",
+      "label": "Advanced Ballistics",
+      "tier": 2,
+      "cost": 2500
+    },
+    {
+      "id": "Tech_Primeval_Sentinels_Flux Navigation",
+      "label": "Flux Navigation",
+      "tier": 2,
+      "cost": 3000
+    },
+    {
+      "id": "Tech_Primeval_Sentinels_Mega Construction",
+      "label": "Mega Construction",
+      "tier": 2,
+      "cost": 2500
+    },
+    {
+      "id": "Tech_Primeval_Sentinels_Trade Networks",
+      "label": "Trade Networks",
+      "tier": 2,
+      "cost": 2000
+    },
+    {
+      "id": "Tech_Primeval_Sentinels_Capital Ships",
+      "label": "Capital Ships",
+      "tier": 3,
+      "cost": 5000
+    },
+    {
+      "id": "Tech_Primeval_Sentinels_Titan Integration",
+      "label": "Titan Integration",
+      "tier": 3,
+      "cost": 6000
+    },
+    {
+      "id": "Tech_Primeval_Sentinels_Planetary Shielding",
+      "label": "Planetary Shielding",
+      "tier": 3,
+      "cost": 4500
+    },
+    {
+      "id": "Tech_Primeval_Sentinels_Ascension Protocol",
+      "label": "Ascension Protocol",
+      "tier": 3,
+      "cost": 8000
+    },
+    {
+      "id": "Tech_Primeval_Sentinels_Aspect Shrine",
+      "label": "Construction: Aspect Shrine",
+      "tier": 1,
+      "cost": 90
+    },
+    {
+      "id": "Tech_Primeval_Sentinels_Gravitic Forge",
+      "label": "Construction: Gravitic Forge",
+      "tier": 2,
+      "cost": 250
+    },
+    {
+      "id": "Tech_Primeval_Sentinels_Crystal Farm",
+      "label": "Construction: Crystal Farm",
+      "tier": 1,
+      "cost": 70
+    },
+    {
+      "id": "Tech_Primeval_Sentinels_Archive of Ages",
+      "label": "Construction: Archive of Ages",
+      "tier": 1,
+      "cost": 120
+    },
+    {
+      "id": "Tech_Primeval_Sentinels_Hall of Prophecy",
+      "label": "Construction: Hall of Prophecy",
+      "tier": 2,
+      "cost": 250
+    },
+    {
+      "id": "Tech_Primeval_Sentinels_Holo-Field Projector",
+      "label": "Construction: Holo-Field Projector",
+      "tier": 1,
+      "cost": 60
+    },
+    {
+      "id": "Tech_Primeval_Sentinels_Infinity Gate",
+      "label": "Construction: Infinity Gate",
+      "tier": 3,
+      "cost": 500
+    },
+    {
+      "id": "Tech_Primeval_Sentinels_Star-Lattice Nexus",
+      "label": "Construction: Star-Lattice Nexus",
+      "tier": 4,
+      "cost": 800
+    }
+  ],
+  "edges": []
+}

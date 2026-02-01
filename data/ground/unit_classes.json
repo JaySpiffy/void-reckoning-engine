@@ -1,0 +1,87 @@
+{
+    "classes": [
+        {
+            "id": "line_infantry",
+            "name": "Line Infantry",
+            "stats": {
+                "hp": 6000,
+                "entity_count": 100,
+                "armor": 30,
+                "morale": 60,
+                "melee_attack": 25,
+                "melee_defense": 25,
+                "ranged_attack": 0,
+                "charge_bonus": 10,
+                "weapon_strength": 30,
+                "armor_piercing": 5,
+                "speed": 35
+            },
+            "attributes": [
+                "infantry"
+            ]
+        },
+        {
+            "id": "assault_marines",
+            "name": "Assault Marines",
+            "stats": {
+                "hp": 9000,
+                "entity_count": 50,
+                "armor": 80,
+                "morale": 85,
+                "melee_attack": 45,
+                "melee_defense": 40,
+                "ranged_attack": 20,
+                "charge_bonus": 30,
+                "weapon_strength": 45,
+                "armor_piercing": 15,
+                "speed": 40
+            },
+            "attributes": [
+                "infantry",
+                "fearless"
+            ]
+        },
+        {
+            "id": "battle_tank",
+            "name": "Battle Tank",
+            "stats": {
+                "hp": 4000,
+                "entity_count": 4,
+                "armor": 120,
+                "morale": 90,
+                "melee_attack": 20,
+                "melee_defense": 10,
+                "ranged_attack": 300,
+                "charge_bonus": 60,
+                "weapon_strength": 150,
+                "armor_piercing": 100,
+                "speed": 50
+            },
+            "attributes": [
+                "large",
+                "armored"
+            ]
+        },
+        {
+            "id": "war_titan",
+            "name": "War Titan",
+            "stats": {
+                "hp": 15000,
+                "entity_count": 1,
+                "armor": 150,
+                "morale": 100,
+                "melee_attack": 80,
+                "melee_defense": 60,
+                "ranged_attack": 500,
+                "charge_bonus": 90,
+                "weapon_strength": 800,
+                "armor_piercing": 500,
+                "speed": 60
+            },
+            "attributes": [
+                "massive",
+                "terror"
+            ]
+        }
+    ]
+}

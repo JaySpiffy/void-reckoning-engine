@@ -1,0 +1,491 @@
+{
+  "nodes": [
+    {
+      "id": "Tech_Neutral_Templars of the Flux",
+      "label": "Templars of the Flux",
+      "tier": 1,
+      "cost": 0
+    },
+    {
+      "id": "Tech_Neutral_Bio-Tide Collective",
+      "label": "Bio-Tide Collective",
+      "tier": 1,
+      "cost": 0
+    },
+    {
+      "id": "Tech_Neutral_Steel-Bound Syndicate",
+      "label": "Steel-Bound Syndicate",
+      "tier": 1,
+      "cost": 0
+    },
+    {
+      "id": "Tech_Neutral_Algorithmic Hierarchy",
+      "label": "Algorithmic Hierarchy",
+      "tier": 1,
+      "cost": 0
+    },
+    {
+      "id": "Tech_Neutral_Void-Spawn Entities",
+      "label": "Void-Spawn Entities",
+      "tier": 1,
+      "cost": 0
+    },
+    {
+      "id": "Tech_Neutral_Aurelian Hegemony",
+      "label": "Aurelian Hegemony",
+      "tier": 1,
+      "cost": 0
+    },
+    {
+      "id": "Tech_Neutral_Nebula Drifters",
+      "label": "Nebula Drifters",
+      "tier": 1,
+      "cost": 0
+    },
+    {
+      "id": "Tech_Neutral_Transcendent Order",
+      "label": "Transcendent Order",
+      "tier": 1,
+      "cost": 0
+    },
+    {
+      "id": "Tech_Neutral_Primeval Sentinels",
+      "label": "Primeval Sentinels",
+      "tier": 1,
+      "cost": 0
+    },
+    {
+      "id": "Tech_Neutral_Scrap-Lord Marauders",
+      "label": "Scrap-Lord Marauders",
+      "tier": 1,
+      "cost": 0
+    },
+    {
+      "id": "Tech_Neutral_Aspect Shrine",
+      "label": "Construction: Aspect Shrine",
+      "tier": 1,
+      "cost": 90
+    },
+    {
+      "id": "Tech_Neutral_Gravitic Forge",
+      "label": "Construction: Gravitic Forge",
+      "tier": 2,
+      "cost": 250
+    },
+    {
+      "id": "Tech_Neutral_Crystal Farm",
+      "label": "Construction: Crystal Farm",
+      "tier": 1,
+      "cost": 70
+    },
+    {
+      "id": "Tech_Neutral_Archive of Ages",
+      "label": "Construction: Archive of Ages",
+      "tier": 1,
+      "cost": 120
+    },
+    {
+      "id": "Tech_Neutral_Hall of Prophecy",
+      "label": "Construction: Hall of Prophecy",
+      "tier": 2,
+      "cost": 250
+    },
+    {
+      "id": "Tech_Neutral_Holo-Field Projector",
+      "label": "Construction: Holo-Field Projector",
+      "tier": 1,
+      "cost": 60
+    },
+    {
+      "id": "Tech_Neutral_Infinity Gate",
+      "label": "Construction: Infinity Gate",
+      "tier": 3,
+      "cost": 500
+    },
+    {
+      "id": "Tech_Neutral_Star-Lattice Nexus",
+      "label": "Construction: Star-Lattice Nexus",
+      "tier": 4,
+      "cost": 800
+    },
+    {
+      "id": "Tech_Neutral_Meditation Chamber",
+      "label": "Construction: Meditation Chamber",
+      "tier": 1,
+      "cost": 80
+    },
+    {
+      "id": "Tech_Neutral_Crystal Foundry",
+      "label": "Construction: Crystal Foundry",
+      "tier": 2,
+      "cost": 200
+    },
+    {
+      "id": "Tech_Neutral_Aether Syphon",
+      "label": "Construction: Aether Syphon",
+      "tier": 1,
+      "cost": 60
+    },
+    {
+      "id": "Tech_Neutral_Archive of Wisdom",
+      "label": "Construction: Archive of Wisdom",
+      "tier": 1,
+      "cost": 100
+    },
+    {
+      "id": "Tech_Neutral_Kinetic Shield Generator",
+      "label": "Construction: Kinetic Shield Generator",
+      "tier": 1,
+      "cost": 50
+    },
+    {
+      "id": "Tech_Neutral_Astral Spire",
+      "label": "Construction: Astral Spire",
+      "tier": 3,
+      "cost": 400
+    },
+    {
+      "id": "Tech_Neutral_Aether Conduit",
+      "label": "Construction: Aether Conduit",
+      "tier": 3,
+      "cost": 500
+    },
+    {
+      "id": "Tech_Neutral_Assembly Line",
+      "label": "Construction: Assembly Line",
+      "tier": 1,
+      "cost": 80
+    },
+    {
+      "id": "Tech_Neutral_Cyber-Foundry",
+      "label": "Construction: Cyber-Foundry",
+      "tier": 2,
+      "cost": 200
+    },
+    {
+      "id": "Tech_Neutral_Data Vault",
+      "label": "Construction: Data Vault",
+      "tier": 1,
+      "cost": 60
+    },
+    {
+      "id": "Tech_Neutral_Logic Core",
+      "label": "Construction: Logic Core",
+      "tier": 1,
+      "cost": 100
+    },
+    {
+      "id": "Tech_Neutral_Auto-Turret Grid",
+      "label": "Construction: Auto-Turret Grid",
+      "tier": 1,
+      "cost": 50
+    },
+    {
+      "id": "Tech_Neutral_Orbital Upload",
+      "label": "Construction: Orbital Upload",
+      "tier": 3,
+      "cost": 400
+    },
+    {
+      "id": "Tech_Neutral_Reanimation Matrix",
+      "label": "Construction: Reanimation Matrix",
+      "tier": 3,
+      "cost": 500
+    },
+    {
+      "id": "Tech_Neutral_Spawning Pool",
+      "label": "Construction: Spawning Pool",
+      "tier": 1,
+      "cost": 70
+    },
+    {
+      "id": "Tech_Neutral_Gestation Chamber",
+      "label": "Construction: Gestation Chamber",
+      "tier": 2,
+      "cost": 180
+    },
+    {
+      "id": "Tech_Neutral_Digestion Pool",
+      "label": "Construction: Digestion Pool",
+      "tier": 1,
+      "cost": 60
+    },
+    {
+      "id": "Tech_Neutral_Synaptic Node",
+      "label": "Construction: Synaptic Node",
+      "tier": 1,
+      "cost": 100
+    },
+    {
+      "id": "Tech_Neutral_Spore Chimney",
+      "label": "Construction: Spore Chimney",
+      "tier": 1,
+      "cost": 45
+    },
+    {
+      "id": "Tech_Neutral_Bio-Ship Anchor",
+      "label": "Construction: Bio-Ship Anchor",
+      "tier": 3,
+      "cost": 350
+    },
+    {
+      "id": "Tech_Neutral_Digestion Nexus",
+      "label": "Construction: Digestion Nexus",
+      "tier": 3,
+      "cost": 500
+    },
+    {
+      "id": "Tech_Neutral_Drill Yard",
+      "label": "Construction: Drill Yard",
+      "tier": 1,
+      "cost": 80
+    },
+    {
+      "id": "Tech_Neutral_Heavy Assembly Plant",
+      "label": "Construction: Heavy Assembly Plant",
+      "tier": 2,
+      "cost": 200
+    },
+    {
+      "id": "Tech_Neutral_Mineral Processor",
+      "label": "Construction: Mineral Processor",
+      "tier": 1,
+      "cost": 60
+    },
+    {
+      "id": "Tech_Neutral_Design Bureau",
+      "label": "Construction: Design Bureau",
+      "tier": 1,
+      "cost": 100
+    },
+    {
+      "id": "Tech_Neutral_Ferrocrete Bunker",
+      "label": "Construction: Ferrocrete Bunker",
+      "tier": 1,
+      "cost": 50
+    },
+    {
+      "id": "Tech_Neutral_Orbital Drydock",
+      "label": "Construction: Orbital Drydock",
+      "tier": 3,
+      "cost": 400
+    },
+    {
+      "id": "Tech_Neutral_Mega-Foundry",
+      "label": "Construction: Mega-Foundry",
+      "tier": 3,
+      "cost": 500
+    },
+    {
+      "id": "Tech_Neutral_Summoning Circle",
+      "label": "Construction: Summoning Circle",
+      "tier": 1,
+      "cost": 70
+    },
+    {
+      "id": "Tech_Neutral_Flux Forge",
+      "label": "Construction: Flux Forge",
+      "tier": 2,
+      "cost": 200
+    },
+    {
+      "id": "Tech_Neutral_Soul Altar",
+      "label": "Construction: Soul Altar",
+      "tier": 1,
+      "cost": 60
+    },
+    {
+      "id": "Tech_Neutral_Library of Chaos",
+      "label": "Construction: Library of Chaos",
+      "tier": 1,
+      "cost": 100
+    },
+    {
+      "id": "Tech_Neutral_Flux Shroud",
+      "label": "Construction: Flux Shroud",
+      "tier": 1,
+      "cost": 50
+    },
+    {
+      "id": "Tech_Neutral_Dimensional Gate",
+      "label": "Construction: Dimensional Gate",
+      "tier": 3,
+      "cost": 400
+    },
+    {
+      "id": "Tech_Neutral_Reality Tear",
+      "label": "Construction: Reality Tear",
+      "tier": 4,
+      "cost": 600
+    },
+    {
+      "id": "Tech_Neutral_Fight Pit",
+      "label": "Construction: Fight Pit",
+      "tier": 1,
+      "cost": 50
+    },
+    {
+      "id": "Tech_Neutral_Mek Shop",
+      "label": "Construction: Mek Shop",
+      "tier": 2,
+      "cost": 150
+    },
+    {
+      "id": "Tech_Neutral_Loot Pile",
+      "label": "Construction: Loot Pile",
+      "tier": 1,
+      "cost": 40
+    },
+    {
+      "id": "Tech_Neutral_Tinkerer's Shed",
+      "label": "Construction: Tinkerer's Shed",
+      "tier": 1,
+      "cost": 80
+    },
+    {
+      "id": "Tech_Neutral_Junk Wall",
+      "label": "Construction: Junk Wall",
+      "tier": 1,
+      "cost": 30
+    },
+    {
+      "id": "Tech_Neutral_Space Hulk Dock",
+      "label": "Construction: Space Hulk Dock",
+      "tier": 3,
+      "cost": 300
+    },
+    {
+      "id": "Tech_Neutral_Scrap Heap",
+      "label": "Construction: Scrap Heap",
+      "tier": 1,
+      "cost": 100
+    },
+    {
+      "id": "Tech_Neutral_Military Academy",
+      "label": "Construction: Military Academy",
+      "tier": 1,
+      "cost": 80
+    },
+    {
+      "id": "Tech_Neutral_Arsenals of Sol",
+      "label": "Construction: Arsenals of Sol",
+      "tier": 2,
+      "cost": 220
+    },
+    {
+      "id": "Tech_Neutral_Trade Hub",
+      "label": "Construction: Trade Hub",
+      "tier": 1,
+      "cost": 60
+    },
+    {
+      "id": "Tech_Neutral_University",
+      "label": "Construction: University",
+      "tier": 1,
+      "cost": 100
+    },
+    {
+      "id": "Tech_Neutral_Shield Generator",
+      "label": "Construction: Shield Generator",
+      "tier": 1,
+      "cost": 60
+    },
+    {
+      "id": "Tech_Neutral_Orbital Shipyard",
+      "label": "Construction: Orbital Shipyard",
+      "tier": 3,
+      "cost": 450
+    },
+    {
+      "id": "Tech_Neutral_Diplomatic Embassy",
+      "label": "Construction: Diplomatic Embassy",
+      "tier": 2,
+      "cost": 300
+    },
+    {
+      "id": "Tech_Neutral_Training Pit",
+      "label": "Construction: Training Pit",
+      "tier": 1,
+      "cost": 60
+    },
+    {
+      "id": "Tech_Neutral_Chop Shop",
+      "label": "Construction: Chop Shop",
+      "tier": 2,
+      "cost": 180
+    },
+    {
+      "id": "Tech_Neutral_Smuggler's Cove",
+      "label": "Construction: Smuggler's Cove",
+      "tier": 1,
+      "cost": 50
+    },
+    {
+      "id": "Tech_Neutral_Tech Scavenger",
+      "label": "Construction: Tech Scavenger",
+      "tier": 1,
+      "cost": 90
+    },
+    {
+      "id": "Tech_Neutral_Hidden Bunkers",
+      "label": "Construction: Hidden Bunkers",
+      "tier": 1,
+      "cost": 40
+    },
+    {
+      "id": "Tech_Neutral_Asteroid Dock",
+      "label": "Construction: Asteroid Dock",
+      "tier": 3,
+      "cost": 350
+    },
+    {
+      "id": "Tech_Neutral_Raider's Haven",
+      "label": "Construction: Raider's Haven",
+      "tier": 2,
+      "cost": 400
+    },
+    {
+      "id": "Tech_Neutral_Chapel-Barracks",
+      "label": "Construction: Chapel-Barracks",
+      "tier": 1,
+      "cost": 80
+    },
+    {
+      "id": "Tech_Neutral_Pattern Manufactorum",
+      "label": "Construction: Pattern Manufactorum",
+      "tier": 2,
+      "cost": 200
+    },
+    {
+      "id": "Tech_Neutral_Tithe Hall",
+      "label": "Construction: Tithe Hall",
+      "tier": 1,
+      "cost": 60
+    },
+    {
+      "id": "Tech_Neutral_Scriptorium",
+      "label": "Construction: Scriptorium",
+      "tier": 1,
+      "cost": 100
+    },
+    {
+      "id": "Tech_Neutral_Bastion of Faith",
+      "label": "Construction: Bastion of Faith",
+      "tier": 1,
+      "cost": 50
+    },
+    {
+      "id": "Tech_Neutral_Orbital Cathedral",
+      "label": "Construction: Orbital Cathedral",
+      "tier": 3,
+      "cost": 400
+    },
+    {
+      "id": "Tech_Neutral_Conviction Shrine",
+      "label": "Construction: Conviction Shrine",
+      "tier": 3,
+      "cost": 500
+    }
+  ],
+  "edges": []
+}

@@ -1,0 +1,123 @@
+{
+    "traits": [
+        {
+            "id": "strong",
+            "name": "Strong",
+            "category": "physical",
+            "modifiers": {
+                "hp": 0.20,
+                "damage": 0.10
+            },
+            "description": "This species possesses exceptional physical strength, granting +20% HP and +10% Damage.",
+            "rarity": "common",
+            "conflicts": [
+                "weak"
+            ]
+        },
+        {
+            "id": "weak",
+            "name": "Weak",
+            "category": "physical",
+            "modifiers": {
+                "hp": -0.15,
+                "damage": -0.15
+            },
+            "description": "This species is physically frail, suffering -15% HP and Damage.",
+            "rarity": "common",
+            "conflicts": [
+                "strong",
+                "resilient"
+            ]
+        },
+        {
+            "id": "resilient",
+            "name": "Resilient",
+            "category": "physical",
+            "modifiers": {
+                "hp": 0.10,
+                "armor_flat": 10.0
+            },
+            "description": "Tough hide or structure grants +10% HP and +10 Flat Armor.",
+            "rarity": "common",
+            "conflicts": [
+                "weak"
+            ]
+        },
+        {
+            "id": "regenerative",
+            "name": "Regenerative",
+            "category": "physical",
+            "modifiers": {
+                "hp": -0.05,
+                "regeneration_flat": 5.0
+            },
+            "description": "Cells regenerate rapidly. Slightly lower max HP but regenerates 5 HP/turn.",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "aggressive",
+            "name": "Aggressive",
+            "category": "combat",
+            "modifiers": {
+                "damage": 0.15,
+                "armor": -0.05
+            },
+            "description": "Focuses on offense. +15% Damage, -5% Armor.",
+            "rarity": "common",
+            "conflicts": [
+                "defensive"
+            ]
+        },
+        {
+            "id": "defensive",
+            "name": "Defensive",
+            "category": "combat",
+            "modifiers": {
+                "armor": 0.20,
+                "damage": -0.10
+            },
+            "description": "Focuses on defense. +20% Armor, -10% Damage.",
+            "rarity": "common",
+            "conflicts": [
+                "aggressive"
+            ]
+        },
+        {
+            "id": "tactical",
+            "name": "Tactical",
+            "category": "combat",
+            "modifiers": {
+                "accuracy": 0.20,
+                "speed": 0.10
+            },
+            "description": "Superior tactics grant +20% Accuracy and +10% Speed.",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "thrifty",
+            "name": "Thrifty",
+            "category": "economic",
+            "modifiers": {
+                "cost": -0.15
+            },
+            "description": "Efficient production reduces unit costs by 15%.",
+            "rarity": "common",
+            "conflicts": [
+                "wasteful"
+            ]
+        },
+        {
+            "id": "wasteful",
+            "name": "Wasteful",
+            "category": "economic",
+            "modifiers": {
+                "cost": 0.20
+            },
+            "description": "Inefficient production increases unit costs by 20%.",
+            "rarity": "common",
+            "conflicts": [
+                "thrifty"
+            ]
+        }
+    ]
+}

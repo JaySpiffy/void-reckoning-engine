@@ -1,0 +1,478 @@
+[
+  {
+    "name": "Transcendent_Order Seeker",
+    "blueprint_id": "transcendent_order_skirmisher",
+    "type": "infantry",
+    "faction": "Transcendent_Order",
+    "cost": 100,
+    "base_stats": {
+      "hp": 60,
+      "armor": 10,
+      "damage": 30,
+      "speed": 10,
+      "type": "infantry",
+      "cost": 100,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_focus": 10.31,
+      "atom_energy": 14.57,
+      "atom_mass": 7.68,
+      "atom_will": 7.11,
+      "atom_stability": 12.69,
+      "atom_volatility": 5.34,
+      "atom_frequency": 19.55,
+      "atom_aether": 2.84,
+      "atom_cohesion": 9.6,
+      "atom_information": 10.31
+    },
+    "source_universe": "void_reckoning",
+    "description": "Transcendent_Order skirmisher-class ground unit. Auto-generated via Taxonomy.",
+    "abilities": [
+      "Ability_Evasive_Maneuvers",
+      "Ability_Sensor_Sweep"
+    ],
+    "traits": [
+      "Stalker Pattern"
+    ],
+    "unit_class": "skirmisher",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 10,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "transcendent_order_base_projectile_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Transcendent_Order Glider",
+    "blueprint_id": "transcendent_order_light_vehicle",
+    "type": "vehicle",
+    "faction": "Transcendent_Order",
+    "cost": 275,
+    "base_stats": {
+      "hp": 200,
+      "armor": 30,
+      "damage": 60,
+      "speed": 12,
+      "type": "vehicle",
+      "cost": 275,
+      "tier": 2,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_focus": 5.42,
+      "atom_energy": 17.37,
+      "atom_mass": 11.85,
+      "atom_will": 7.22,
+      "atom_stability": 15.55,
+      "atom_volatility": 7.95,
+      "atom_frequency": 11.53,
+      "atom_aether": 2.88,
+      "atom_cohesion": 14.81,
+      "atom_information": 5.42
+    },
+    "source_universe": "void_reckoning",
+    "description": "Transcendent_Order light_vehicle-class ground unit. Auto-generated via Taxonomy.",
+    "abilities": [
+      "Ability_Afterburner",
+      "Ability_Hit_and_Run"
+    ],
+    "traits": [
+      "Veteran Crew",
+      "Stalker Pattern"
+    ],
+    "unit_class": "light_vehicle",
+    "domain": "ground",
+    "tier": 2,
+    "upkeep": 27,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "transcendent_order_base_projectile_weapon_0_M"
+      }
+    ]
+  },
+  {
+    "name": "Transcendent_Order Conveyance",
+    "blueprint_id": "transcendent_order_apc",
+    "type": "vehicle",
+    "faction": "Transcendent_Order",
+    "cost": 400,
+    "base_stats": {
+      "hp": 250,
+      "armor": 50,
+      "damage": 40,
+      "speed": 10,
+      "type": "vehicle",
+      "transport_capacity": 2,
+      "cost": 400,
+      "tier": 2,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_focus": 5.43,
+      "atom_energy": 12.3,
+      "atom_mass": 11.86,
+      "atom_will": 7.23,
+      "atom_stability": 18.25,
+      "atom_volatility": 2.89,
+      "atom_frequency": 8.76,
+      "atom_aether": 2.89,
+      "atom_cohesion": 17.36,
+      "atom_information": 13.03
+    },
+    "source_universe": "void_reckoning",
+    "description": "Transcendent_Order apc-class ground unit. Auto-generated via Taxonomy.",
+    "abilities": [
+      "Ability_Shield_Regen",
+      "Ability_Sensor_Sweep"
+    ],
+    "traits": [
+      "Cautious Commander",
+      "Regeneration"
+    ],
+    "unit_class": "apc",
+    "domain": "ground",
+    "tier": 2,
+    "upkeep": 40,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "transcendent_order_base_projectile_weapon_0_M"
+      }
+    ]
+  },
+  {
+    "name": "Transcendent_Order Prism",
+    "blueprint_id": "transcendent_order_anti_tank",
+    "type": "vehicle",
+    "faction": "Transcendent_Order",
+    "cost": 500,
+    "base_stats": {
+      "hp": 150,
+      "armor": 25,
+      "damage": 120,
+      "speed": 8,
+      "type": "vehicle",
+      "cost": 500,
+      "tier": 2,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_focus": 13.04,
+      "atom_energy": 22.49,
+      "atom_mass": 9.85,
+      "atom_will": 7.24,
+      "atom_stability": 15.59,
+      "atom_volatility": 7.97,
+      "atom_frequency": 3.18,
+      "atom_aether": 2.89,
+      "atom_cohesion": 12.31,
+      "atom_information": 5.44
+    },
+    "source_universe": "void_reckoning",
+    "description": "Transcendent_Order anti_tank-class ground unit. Auto-generated via Taxonomy.",
+    "abilities": [
+      "Ability_Tracking_Lock",
+      "Ability_Ion_Cannon"
+    ],
+    "traits": [
+      "Master-Crafted",
+      "Reckless Pilot"
+    ],
+    "unit_class": "anti_tank",
+    "domain": "ground",
+    "tier": 2,
+    "upkeep": 50,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "transcendent_order_base_projectile_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "transcendent_order_base_information_weapon_1_M"
+      }
+    ]
+  },
+  {
+    "name": "Transcendent_Order Cathedral",
+    "blueprint_id": "transcendent_order_superheavy_tank",
+    "type": "vehicle",
+    "faction": "Transcendent_Order",
+    "cost": 2500,
+    "base_stats": {
+      "hp": 1000,
+      "armor": 150,
+      "damage": 320,
+      "speed": 5,
+      "type": "vehicle",
+      "cost": 2500,
+      "tier": 3,
+      "range": 30
+    },
+    "elemental_dna": {
+      "atom_focus": 5.55,
+      "atom_energy": 12.57,
+      "atom_mass": 18.35,
+      "atom_will": 7.39,
+      "atom_stability": 15.92,
+      "atom_volatility": 8.14,
+      "atom_frequency": 3.25,
+      "atom_aether": 2.95,
+      "atom_cohesion": 20.33,
+      "atom_information": 5.55
+    },
+    "source_universe": "void_reckoning",
+    "description": "Transcendent_Order superheavy_tank-class ground unit. Auto-generated via Taxonomy.",
+    "abilities": [
+      "Ability_Overcharge",
+      "Ability_Fortify_Position",
+      "Ability_EMP_Burst"
+    ],
+    "traits": [
+      "Cautious Commander",
+      "Regeneration",
+      "Master-Crafted"
+    ],
+    "unit_class": "superheavy_tank",
+    "domain": "ground",
+    "tier": 3,
+    "upkeep": 250,
+    "components": [
+      {
+        "slot": "weapon_heavy",
+        "component": "transcendent_order_base_projectile_weapon_0_L"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "transcendent_order_base_projectile_weapon_0_L"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "transcendent_order_base_projectile_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "transcendent_order_base_information_weapon_1_M"
+      }
+    ]
+  },
+  {
+    "name": "Transcendent_Order Adept",
+    "blueprint_id": "transcendent_order_light_infantry",
+    "type": "infantry",
+    "faction": "Transcendent_Order",
+    "cost": 75,
+    "base_stats": {
+      "hp": 60,
+      "armor": 15,
+      "damage": 25,
+      "speed": 8,
+      "type": "infantry",
+      "cost": 75,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 7.69,
+      "atom_focus": 7.83,
+      "atom_frequency": 16.86,
+      "atom_stability": 15.32,
+      "atom_volatility": 2.84,
+      "atom_energy": 12.1,
+      "atom_will": 9.61,
+      "atom_cohesion": 14.59,
+      "atom_aether": 2.84,
+      "atom_information": 10.32
+    },
+    "source_universe": "void_reckoning",
+    "description": "Transcendent_Order light_infantry-class ground unit. Auto-generated via Taxonomy.",
+    "abilities": [
+      "Ability_Rapid_Fire"
+    ],
+    "traits": [
+      "Veteran Crew"
+    ],
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 7,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "transcendent_order_base_projectile_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Transcendent_Order Templar",
+    "blueprint_id": "transcendent_order_assault_infantry",
+    "type": "infantry",
+    "faction": "Transcendent_Order",
+    "cost": 125,
+    "base_stats": {
+      "hp": 100,
+      "armor": 25,
+      "damage": 50,
+      "speed": 6,
+      "type": "infantry",
+      "cost": 125,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 11.92,
+      "atom_focus": 5.46,
+      "atom_frequency": 6.0,
+      "atom_stability": 12.98,
+      "atom_volatility": 15.66,
+      "atom_energy": 14.91,
+      "atom_will": 12.36,
+      "atom_cohesion": 14.91,
+      "atom_aether": 2.9,
+      "atom_information": 2.9
+    },
+    "source_universe": "void_reckoning",
+    "description": "Transcendent_Order assault_infantry-class ground unit. Auto-generated via Taxonomy.",
+    "abilities": [
+      "Ability_Plasma_Burst",
+      "Ability_Fortify_Position"
+    ],
+    "traits": [
+      "Reckless Pilot"
+    ],
+    "unit_class": "assault_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 12,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "transcendent_order_base_projectile_weapon_0_S"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "transcendent_order_base_projectile_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Transcendent_Order Arbiter",
+    "blueprint_id": "transcendent_order_battle_tank",
+    "type": "vehicle",
+    "faction": "Transcendent_Order",
+    "cost": 1000,
+    "base_stats": {
+      "hp": 500,
+      "armor": 80,
+      "damage": 140,
+      "speed": 7,
+      "type": "vehicle",
+      "cost": 1000,
+      "tier": 3,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 16.2,
+      "atom_focus": 5.52,
+      "atom_frequency": 3.23,
+      "atom_stability": 15.83,
+      "atom_volatility": 8.1,
+      "atom_energy": 15.08,
+      "atom_will": 7.35,
+      "atom_cohesion": 20.23,
+      "atom_aether": 2.94,
+      "atom_information": 5.52
+    },
+    "source_universe": "void_reckoning",
+    "description": "Transcendent_Order battle_tank-class ground unit. Auto-generated via Taxonomy.",
+    "abilities": [
+      "Ability_Plasma_Burst",
+      "Ability_Fortify_Position"
+    ],
+    "traits": [
+      "Master-Crafted",
+      "Veteran Crew"
+    ],
+    "unit_class": "battle_tank",
+    "domain": "ground",
+    "tier": 3,
+    "upkeep": 100,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "transcendent_order_base_projectile_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "transcendent_order_base_information_weapon_1_M"
+      }
+    ]
+  },
+  {
+    "name": "Transcendent_Order Sanctuary",
+    "blueprint_id": "transcendent_order_heavy_vehicle",
+    "type": "vehicle",
+    "faction": "Transcendent_Order",
+    "cost": 1600,
+    "base_stats": {
+      "hp": 600,
+      "armor": 100,
+      "damage": 220,
+      "speed": 6,
+      "type": "vehicle",
+      "cost": 1600,
+      "tier": 3,
+      "range": 30
+    },
+    "elemental_dna": {
+      "atom_mass": 14.07,
+      "atom_focus": 5.5,
+      "atom_frequency": 3.22,
+      "atom_stability": 13.08,
+      "atom_volatility": 10.63,
+      "atom_energy": 20.16,
+      "atom_will": 7.33,
+      "atom_cohesion": 17.59,
+      "atom_aether": 2.92,
+      "atom_information": 5.5
+    },
+    "source_universe": "void_reckoning",
+    "description": "Transcendent_Order heavy_vehicle-class ground unit. Auto-generated via Taxonomy.",
+    "abilities": [
+      "Ability_Torpedo_Salvo",
+      "Ability_Shield_Regen"
+    ],
+    "traits": [
+      "Reckless Pilot",
+      "Veteran Crew"
+    ],
+    "unit_class": "heavy_vehicle",
+    "domain": "ground",
+    "tier": 3,
+    "upkeep": 160,
+    "components": [
+      {
+        "slot": "weapon_heavy",
+        "component": "transcendent_order_base_projectile_weapon_0_L"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "transcendent_order_base_projectile_weapon_0_L"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "transcendent_order_base_projectile_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "transcendent_order_base_information_weapon_1_M"
+      }
+    ]
+  }
+]

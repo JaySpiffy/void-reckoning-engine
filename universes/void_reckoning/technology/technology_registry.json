@@ -1,0 +1,3330 @@
+{
+  "Tech_Algorithmic_Hierarchy_Basic Doctrine": {
+    "id": "Tech_Algorithmic_Hierarchy_Basic Doctrine",
+    "name": "Basic Doctrine",
+    "tier": 1,
+    "cost": 1000,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Algorithmic_Hierarchy",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Algorithmic_Hierarchy_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Algorithmic_Hierarchy_Logistics": {
+    "id": "Tech_Algorithmic_Hierarchy_Logistics",
+    "name": "Logistics",
+    "tier": 1,
+    "cost": 1000,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Algorithmic_Hierarchy",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Algorithmic_Hierarchy_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Algorithmic_Hierarchy_Industrial Forging": {
+    "id": "Tech_Algorithmic_Hierarchy_Industrial Forging",
+    "name": "Industrial Forging",
+    "tier": 1,
+    "cost": 800,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Algorithmic_Hierarchy",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Algorithmic_Hierarchy_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Algorithmic_Hierarchy_Resource Extraction": {
+    "id": "Tech_Algorithmic_Hierarchy_Resource Extraction",
+    "name": "Resource Extraction",
+    "tier": 1,
+    "cost": 800,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Algorithmic_Hierarchy",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Algorithmic_Hierarchy_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Algorithmic_Hierarchy_Heavy Armor": {
+    "id": "Tech_Algorithmic_Hierarchy_Heavy Armor",
+    "name": "Heavy Armor",
+    "tier": 2,
+    "cost": 2500,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Algorithmic_Hierarchy",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Algorithmic_Hierarchy_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Algorithmic_Hierarchy_Advanced Ballistics": {
+    "id": "Tech_Algorithmic_Hierarchy_Advanced Ballistics",
+    "name": "Advanced Ballistics",
+    "tier": 2,
+    "cost": 2500,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Algorithmic_Hierarchy",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Algorithmic_Hierarchy_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Algorithmic_Hierarchy_Flux Navigation": {
+    "id": "Tech_Algorithmic_Hierarchy_Flux Navigation",
+    "name": "Flux Navigation",
+    "tier": 2,
+    "cost": 3000,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Algorithmic_Hierarchy",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Algorithmic_Hierarchy_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Algorithmic_Hierarchy_Mega Construction": {
+    "id": "Tech_Algorithmic_Hierarchy_Mega Construction",
+    "name": "Mega Construction",
+    "tier": 2,
+    "cost": 2500,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Orbital Structures"
+    ],
+    "unlocks_ships": [],
+    "faction": "Algorithmic_Hierarchy",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Algorithmic_Hierarchy_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Algorithmic_Hierarchy_Trade Networks": {
+    "id": "Tech_Algorithmic_Hierarchy_Trade Networks",
+    "name": "Trade Networks",
+    "tier": 2,
+    "cost": 2000,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Algorithmic_Hierarchy",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Algorithmic_Hierarchy_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Algorithmic_Hierarchy_Capital Ships": {
+    "id": "Tech_Algorithmic_Hierarchy_Capital Ships",
+    "name": "Capital Ships",
+    "tier": 3,
+    "cost": 5000,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [
+      "AI Battleships"
+    ],
+    "faction": "Algorithmic_Hierarchy",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Algorithmic_Hierarchy_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Algorithmic_Hierarchy_Titan Integration": {
+    "id": "Tech_Algorithmic_Hierarchy_Titan Integration",
+    "name": "Titan Integration",
+    "tier": 3,
+    "cost": 6000,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Colossus"
+    ],
+    "unlocks_ships": [],
+    "faction": "Algorithmic_Hierarchy",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Algorithmic_Hierarchy_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Algorithmic_Hierarchy_Planetary Shielding": {
+    "id": "Tech_Algorithmic_Hierarchy_Planetary Shielding",
+    "name": "Planetary Shielding",
+    "tier": 3,
+    "cost": 4500,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Algorithmic_Hierarchy",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Algorithmic_Hierarchy_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Algorithmic_Hierarchy_Ascension Protocol": {
+    "id": "Tech_Algorithmic_Hierarchy_Ascension Protocol",
+    "name": "Ascension Protocol",
+    "tier": 3,
+    "cost": 8000,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "[Thrall]"
+    ],
+    "unlocks_ships": [],
+    "faction": "Algorithmic_Hierarchy",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Algorithmic_Hierarchy_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Aurelian_Hegemony_Basic Doctrine": {
+    "id": "Tech_Aurelian_Hegemony_Basic Doctrine",
+    "name": "Basic Doctrine",
+    "tier": 1,
+    "cost": 1000,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Aurelian_Hegemony",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Aurelian_Hegemony_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Aurelian_Hegemony_Logistics": {
+    "id": "Tech_Aurelian_Hegemony_Logistics",
+    "name": "Logistics",
+    "tier": 1,
+    "cost": 1000,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Aurelian_Hegemony",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Aurelian_Hegemony_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Aurelian_Hegemony_Industrial Forging": {
+    "id": "Tech_Aurelian_Hegemony_Industrial Forging",
+    "name": "Industrial Forging",
+    "tier": 1,
+    "cost": 800,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Aurelian_Hegemony",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Aurelian_Hegemony_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Aurelian_Hegemony_Resource Extraction": {
+    "id": "Tech_Aurelian_Hegemony_Resource Extraction",
+    "name": "Resource Extraction",
+    "tier": 1,
+    "cost": 800,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Aurelian_Hegemony",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Aurelian_Hegemony_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Aurelian_Hegemony_Heavy Armor": {
+    "id": "Tech_Aurelian_Hegemony_Heavy Armor",
+    "name": "Heavy Armor",
+    "tier": 2,
+    "cost": 2500,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Aurelian_Hegemony",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Aurelian_Hegemony_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Aurelian_Hegemony_Advanced Ballistics": {
+    "id": "Tech_Aurelian_Hegemony_Advanced Ballistics",
+    "name": "Advanced Ballistics",
+    "tier": 2,
+    "cost": 2500,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Aurelian_Hegemony",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Aurelian_Hegemony_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Aurelian_Hegemony_Flux Navigation": {
+    "id": "Tech_Aurelian_Hegemony_Flux Navigation",
+    "name": "Flux Navigation",
+    "tier": 2,
+    "cost": 3000,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Aurelian_Hegemony",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Aurelian_Hegemony_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Aurelian_Hegemony_Mega Construction": {
+    "id": "Tech_Aurelian_Hegemony_Mega Construction",
+    "name": "Mega Construction",
+    "tier": 2,
+    "cost": 2500,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [
+      "Cruisers"
+    ],
+    "faction": "Aurelian_Hegemony",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Aurelian_Hegemony_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Aurelian_Hegemony_Trade Networks": {
+    "id": "Tech_Aurelian_Hegemony_Trade Networks",
+    "name": "Trade Networks",
+    "tier": 2,
+    "cost": 2000,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Aurelian_Hegemony",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Aurelian_Hegemony_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Aurelian_Hegemony_Capital Ships": {
+    "id": "Tech_Aurelian_Hegemony_Capital Ships",
+    "name": "Capital Ships",
+    "tier": 3,
+    "cost": 5000,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [
+      "Battleships"
+    ],
+    "faction": "Aurelian_Hegemony",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Aurelian_Hegemony_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Aurelian_Hegemony_Titan Integration": {
+    "id": "Tech_Aurelian_Hegemony_Titan Integration",
+    "name": "Titan Integration",
+    "tier": 3,
+    "cost": 6000,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Warlord Titans"
+    ],
+    "unlocks_ships": [],
+    "faction": "Aurelian_Hegemony",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Aurelian_Hegemony_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Aurelian_Hegemony_Planetary Shielding": {
+    "id": "Tech_Aurelian_Hegemony_Planetary Shielding",
+    "name": "Planetary Shielding",
+    "tier": 3,
+    "cost": 4500,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Aurelian_Hegemony",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Aurelian_Hegemony_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Aurelian_Hegemony_Ascension Protocol": {
+    "id": "Tech_Aurelian_Hegemony_Ascension Protocol",
+    "name": "Ascension Protocol",
+    "tier": 3,
+    "cost": 8000,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Aurelian_Hegemony",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Aurelian_Hegemony_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Aurelian_Hegemony_Exterminatus": {
+    "id": "Tech_Aurelian_Hegemony_Exterminatus",
+    "name": "Exterminatus",
+    "tier": 4,
+    "cost": 15000,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Aurelian_Hegemony",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Aurelian_Hegemony_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_BioTide_Collective_Basic Doctrine": {
+    "id": "Tech_BioTide_Collective_Basic Doctrine",
+    "name": "Basic Doctrine",
+    "tier": 1,
+    "cost": 1000,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "T1 Gaunts"
+    ],
+    "unlocks_ships": [],
+    "faction": "BioTide_Collective",
+    "area": "engineering",
+    "category": [],
+    "source_file": "BioTide_Collective_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_BioTide_Collective_Logistics": {
+    "id": "Tech_BioTide_Collective_Logistics",
+    "name": "Logistics",
+    "tier": 1,
+    "cost": 1000,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "BioTide_Collective",
+    "area": "engineering",
+    "category": [],
+    "source_file": "BioTide_Collective_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_BioTide_Collective_Industrial Forging": {
+    "id": "Tech_BioTide_Collective_Industrial Forging",
+    "name": "Industrial Forging",
+    "tier": 1,
+    "cost": 800,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "BioTide_Collective",
+    "area": "engineering",
+    "category": [],
+    "source_file": "BioTide_Collective_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_BioTide_Collective_Resource Extraction": {
+    "id": "Tech_BioTide_Collective_Resource Extraction",
+    "name": "Resource Extraction",
+    "tier": 1,
+    "cost": 800,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "BioTide_Collective",
+    "area": "engineering",
+    "category": [],
+    "source_file": "BioTide_Collective_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_BioTide_Collective_Heavy Armor": {
+    "id": "Tech_BioTide_Collective_Heavy Armor",
+    "name": "Heavy Armor",
+    "tier": 2,
+    "cost": 2500,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "BioTide_Collective",
+    "area": "engineering",
+    "category": [],
+    "source_file": "BioTide_Collective_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_BioTide_Collective_Advanced Ballistics": {
+    "id": "Tech_BioTide_Collective_Advanced Ballistics",
+    "name": "Advanced Ballistics",
+    "tier": 2,
+    "cost": 2500,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "BioTide_Collective",
+    "area": "engineering",
+    "category": [],
+    "source_file": "BioTide_Collective_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_BioTide_Collective_Flux Navigation": {
+    "id": "Tech_BioTide_Collective_Flux Navigation",
+    "name": "Flux Navigation",
+    "tier": 2,
+    "cost": 3000,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "BioTide_Collective",
+    "area": "engineering",
+    "category": [],
+    "source_file": "BioTide_Collective_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_BioTide_Collective_Mega Construction": {
+    "id": "Tech_BioTide_Collective_Mega Construction",
+    "name": "Mega Construction",
+    "tier": 2,
+    "cost": 2500,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "T3 Bio-Structures"
+    ],
+    "unlocks_ships": [],
+    "faction": "BioTide_Collective",
+    "area": "engineering",
+    "category": [],
+    "source_file": "BioTide_Collective_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_BioTide_Collective_Trade Networks": {
+    "id": "Tech_BioTide_Collective_Trade Networks",
+    "name": "Trade Networks",
+    "tier": 2,
+    "cost": 2000,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "BioTide_Collective",
+    "area": "engineering",
+    "category": [],
+    "source_file": "BioTide_Collective_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_BioTide_Collective_Capital Ships": {
+    "id": "Tech_BioTide_Collective_Capital Ships",
+    "name": "Capital Ships",
+    "tier": 3,
+    "cost": 5000,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [
+      "Hive Ships"
+    ],
+    "faction": "BioTide_Collective",
+    "area": "engineering",
+    "category": [],
+    "source_file": "BioTide_Collective_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_BioTide_Collective_Titan Integration": {
+    "id": "Tech_BioTide_Collective_Titan Integration",
+    "name": "Titan Integration",
+    "tier": 3,
+    "cost": 6000,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Hierophants/Bio-Titans"
+    ],
+    "unlocks_ships": [],
+    "faction": "BioTide_Collective",
+    "area": "engineering",
+    "category": [],
+    "source_file": "BioTide_Collective_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_BioTide_Collective_Planetary Shielding": {
+    "id": "Tech_BioTide_Collective_Planetary Shielding",
+    "name": "Planetary Shielding",
+    "tier": 3,
+    "cost": 4500,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "BioTide_Collective",
+    "area": "engineering",
+    "category": [],
+    "source_file": "BioTide_Collective_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_BioTide_Collective_Ascension Protocol": {
+    "id": "Tech_BioTide_Collective_Ascension Protocol",
+    "name": "Ascension Protocol",
+    "tier": 3,
+    "cost": 8000,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "[Drone]"
+    ],
+    "unlocks_ships": [],
+    "faction": "BioTide_Collective",
+    "area": "engineering",
+    "category": [],
+    "source_file": "BioTide_Collective_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Nebula_Drifters_Basic Doctrine": {
+    "id": "Tech_Nebula_Drifters_Basic Doctrine",
+    "name": "Basic Doctrine",
+    "tier": 1,
+    "cost": 1000,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Nebula_Drifters",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Nebula_Drifters_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Nebula_Drifters_Logistics": {
+    "id": "Tech_Nebula_Drifters_Logistics",
+    "name": "Logistics",
+    "tier": 1,
+    "cost": 1000,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Nebula_Drifters",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Nebula_Drifters_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Nebula_Drifters_Industrial Forging": {
+    "id": "Tech_Nebula_Drifters_Industrial Forging",
+    "name": "Industrial Forging",
+    "tier": 1,
+    "cost": 800,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Nebula_Drifters",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Nebula_Drifters_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Nebula_Drifters_Resource Extraction": {
+    "id": "Tech_Nebula_Drifters_Resource Extraction",
+    "name": "Resource Extraction",
+    "tier": 1,
+    "cost": 800,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Nebula_Drifters",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Nebula_Drifters_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Nebula_Drifters_Heavy Armor": {
+    "id": "Tech_Nebula_Drifters_Heavy Armor",
+    "name": "Heavy Armor",
+    "tier": 2,
+    "cost": 2500,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Nebula_Drifters",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Nebula_Drifters_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Nebula_Drifters_Advanced Ballistics": {
+    "id": "Tech_Nebula_Drifters_Advanced Ballistics",
+    "name": "Advanced Ballistics",
+    "tier": 2,
+    "cost": 2500,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Nebula_Drifters",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Nebula_Drifters_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Nebula_Drifters_Flux Navigation": {
+    "id": "Tech_Nebula_Drifters_Flux Navigation",
+    "name": "Flux Navigation",
+    "tier": 2,
+    "cost": 3000,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Nebula_Drifters",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Nebula_Drifters_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Nebula_Drifters_Mega Construction": {
+    "id": "Tech_Nebula_Drifters_Mega Construction",
+    "name": "Mega Construction",
+    "tier": 2,
+    "cost": 2500,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Nebula_Drifters",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Nebula_Drifters_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Nebula_Drifters_Trade Networks": {
+    "id": "Tech_Nebula_Drifters_Trade Networks",
+    "name": "Trade Networks",
+    "tier": 2,
+    "cost": 2000,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Nebula_Drifters",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Nebula_Drifters_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Nebula_Drifters_Capital Ships": {
+    "id": "Tech_Nebula_Drifters_Capital Ships",
+    "name": "Capital Ships",
+    "tier": 3,
+    "cost": 5000,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [
+      "Stealth Battleships"
+    ],
+    "faction": "Nebula_Drifters",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Nebula_Drifters_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Nebula_Drifters_Titan Integration": {
+    "id": "Tech_Nebula_Drifters_Titan Integration",
+    "name": "Titan Integration",
+    "tier": 3,
+    "cost": 6000,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Wraith Titans"
+    ],
+    "unlocks_ships": [],
+    "faction": "Nebula_Drifters",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Nebula_Drifters_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Nebula_Drifters_Planetary Shielding": {
+    "id": "Tech_Nebula_Drifters_Planetary Shielding",
+    "name": "Planetary Shielding",
+    "tier": 3,
+    "cost": 4500,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Nebula_Drifters",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Nebula_Drifters_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Nebula_Drifters_Ascension Protocol": {
+    "id": "Tech_Nebula_Drifters_Ascension Protocol",
+    "name": "Ascension Protocol",
+    "tier": 3,
+    "cost": 8000,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "[Raider]"
+    ],
+    "unlocks_ships": [],
+    "faction": "Nebula_Drifters",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Nebula_Drifters_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Primeval_Sentinels_Basic Doctrine": {
+    "id": "Tech_Primeval_Sentinels_Basic Doctrine",
+    "name": "Basic Doctrine",
+    "tier": 1,
+    "cost": 1000,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "[Aspect Shrine]"
+    ],
+    "unlocks_ships": [],
+    "faction": "Primeval_Sentinels",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Primeval_Sentinels_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Primeval_Sentinels_Logistics": {
+    "id": "Tech_Primeval_Sentinels_Logistics",
+    "name": "Logistics",
+    "tier": 1,
+    "cost": 1000,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "[Guardian]"
+    ],
+    "unlocks_ships": [],
+    "faction": "Primeval_Sentinels",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Primeval_Sentinels_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Primeval_Sentinels_Industrial Forging": {
+    "id": "Tech_Primeval_Sentinels_Industrial Forging",
+    "name": "Industrial Forging",
+    "tier": 1,
+    "cost": 800,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "[Gravitic Forge]"
+    ],
+    "unlocks_ships": [],
+    "faction": "Primeval_Sentinels",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Primeval_Sentinels_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Primeval_Sentinels_Resource Extraction": {
+    "id": "Tech_Primeval_Sentinels_Resource Extraction",
+    "name": "Resource Extraction",
+    "tier": 1,
+    "cost": 800,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "[Crystal Farm]"
+    ],
+    "unlocks_ships": [],
+    "faction": "Primeval_Sentinels",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Primeval_Sentinels_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Primeval_Sentinels_Heavy Armor": {
+    "id": "Tech_Primeval_Sentinels_Heavy Armor",
+    "name": "Heavy Armor",
+    "tier": 2,
+    "cost": 2500,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "[Wraith]"
+    ],
+    "unlocks_ships": [],
+    "faction": "Primeval_Sentinels",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Primeval_Sentinels_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Primeval_Sentinels_Advanced Ballistics": {
+    "id": "Tech_Primeval_Sentinels_Advanced Ballistics",
+    "name": "Advanced Ballistics",
+    "tier": 2,
+    "cost": 2500,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "[Stalker]"
+    ],
+    "unlocks_ships": [],
+    "faction": "Primeval_Sentinels",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Primeval_Sentinels_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Primeval_Sentinels_Flux Navigation": {
+    "id": "Tech_Primeval_Sentinels_Flux Navigation",
+    "name": "Flux Navigation",
+    "tier": 2,
+    "cost": 3000,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "[Infinity Gate]"
+    ],
+    "unlocks_ships": [],
+    "faction": "Primeval_Sentinels",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Primeval_Sentinels_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Primeval_Sentinels_Mega Construction": {
+    "id": "Tech_Primeval_Sentinels_Mega Construction",
+    "name": "Mega Construction",
+    "tier": 2,
+    "cost": 2500,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "[Star-Lattice Nexus]"
+    ],
+    "unlocks_ships": [],
+    "faction": "Primeval_Sentinels",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Primeval_Sentinels_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Primeval_Sentinels_Trade Networks": {
+    "id": "Tech_Primeval_Sentinels_Trade Networks",
+    "name": "Trade Networks",
+    "tier": 2,
+    "cost": 2000,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Primeval_Sentinels",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Primeval_Sentinels_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Primeval_Sentinels_Capital Ships": {
+    "id": "Tech_Primeval_Sentinels_Capital Ships",
+    "name": "Capital Ships",
+    "tier": 3,
+    "cost": 5000,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [
+      "[Cruiser]"
+    ],
+    "faction": "Primeval_Sentinels",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Primeval_Sentinels_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Primeval_Sentinels_Titan Integration": {
+    "id": "Tech_Primeval_Sentinels_Titan Integration",
+    "name": "Titan Integration",
+    "tier": 3,
+    "cost": 6000,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [
+      "[Battleship]"
+    ],
+    "faction": "Primeval_Sentinels",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Primeval_Sentinels_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Primeval_Sentinels_Planetary Shielding": {
+    "id": "Tech_Primeval_Sentinels_Planetary Shielding",
+    "name": "Planetary Shielding",
+    "tier": 3,
+    "cost": 4500,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Primeval_Sentinels",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Primeval_Sentinels_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Primeval_Sentinels_Ascension Protocol": {
+    "id": "Tech_Primeval_Sentinels_Ascension Protocol",
+    "name": "Ascension Protocol",
+    "tier": 3,
+    "cost": 8000,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "[High Crusader]"
+    ],
+    "unlocks_ships": [],
+    "faction": "Primeval_Sentinels",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Primeval_Sentinels_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_ScrapLord_Marauders_Basic Doctrine": {
+    "id": "Tech_ScrapLord_Marauders_Basic Doctrine",
+    "name": "Basic Doctrine",
+    "tier": 1,
+    "cost": 1000,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "ScrapLord_Marauders",
+    "area": "engineering",
+    "category": [],
+    "source_file": "ScrapLord_Marauders_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_ScrapLord_Marauders_Logistics": {
+    "id": "Tech_ScrapLord_Marauders_Logistics",
+    "name": "Logistics",
+    "tier": 1,
+    "cost": 1000,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "ScrapLord_Marauders",
+    "area": "engineering",
+    "category": [],
+    "source_file": "ScrapLord_Marauders_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_ScrapLord_Marauders_Industrial Forging": {
+    "id": "Tech_ScrapLord_Marauders_Industrial Forging",
+    "name": "Industrial Forging",
+    "tier": 1,
+    "cost": 800,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "ScrapLord_Marauders",
+    "area": "engineering",
+    "category": [],
+    "source_file": "ScrapLord_Marauders_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_ScrapLord_Marauders_Resource Extraction": {
+    "id": "Tech_ScrapLord_Marauders_Resource Extraction",
+    "name": "Resource Extraction",
+    "tier": 1,
+    "cost": 800,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "ScrapLord_Marauders",
+    "area": "engineering",
+    "category": [],
+    "source_file": "ScrapLord_Marauders_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_ScrapLord_Marauders_Heavy Armor": {
+    "id": "Tech_ScrapLord_Marauders_Heavy Armor",
+    "name": "Heavy Armor",
+    "tier": 2,
+    "cost": 2500,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "ScrapLord_Marauders",
+    "area": "engineering",
+    "category": [],
+    "source_file": "ScrapLord_Marauders_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_ScrapLord_Marauders_Advanced Ballistics": {
+    "id": "Tech_ScrapLord_Marauders_Advanced Ballistics",
+    "name": "Advanced Ballistics",
+    "tier": 2,
+    "cost": 2500,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "ScrapLord_Marauders",
+    "area": "engineering",
+    "category": [],
+    "source_file": "ScrapLord_Marauders_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_ScrapLord_Marauders_Flux Navigation": {
+    "id": "Tech_ScrapLord_Marauders_Flux Navigation",
+    "name": "Flux Navigation",
+    "tier": 2,
+    "cost": 3000,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "ScrapLord_Marauders",
+    "area": "engineering",
+    "category": [],
+    "source_file": "ScrapLord_Marauders_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_ScrapLord_Marauders_Mega Construction": {
+    "id": "Tech_ScrapLord_Marauders_Mega Construction",
+    "name": "Mega Construction",
+    "tier": 2,
+    "cost": 2500,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Super-Heavies"
+    ],
+    "unlocks_ships": [],
+    "faction": "ScrapLord_Marauders",
+    "area": "engineering",
+    "category": [],
+    "source_file": "ScrapLord_Marauders_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_ScrapLord_Marauders_Trade Networks": {
+    "id": "Tech_ScrapLord_Marauders_Trade Networks",
+    "name": "Trade Networks",
+    "tier": 2,
+    "cost": 2000,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "ScrapLord_Marauders",
+    "area": "engineering",
+    "category": [],
+    "source_file": "ScrapLord_Marauders_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_ScrapLord_Marauders_Capital Ships": {
+    "id": "Tech_ScrapLord_Marauders_Capital Ships",
+    "name": "Capital Ships",
+    "tier": 3,
+    "cost": 5000,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Roks"
+    ],
+    "unlocks_ships": [],
+    "faction": "ScrapLord_Marauders",
+    "area": "engineering",
+    "category": [],
+    "source_file": "ScrapLord_Marauders_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_ScrapLord_Marauders_Titan Integration": {
+    "id": "Tech_ScrapLord_Marauders_Titan Integration",
+    "name": "Titan Integration",
+    "tier": 3,
+    "cost": 6000,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Gargant Construction"
+    ],
+    "unlocks_ships": [],
+    "faction": "ScrapLord_Marauders",
+    "area": "engineering",
+    "category": [],
+    "source_file": "ScrapLord_Marauders_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_ScrapLord_Marauders_Planetary Shielding": {
+    "id": "Tech_ScrapLord_Marauders_Planetary Shielding",
+    "name": "Planetary Shielding",
+    "tier": 3,
+    "cost": 4500,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "ScrapLord_Marauders",
+    "area": "engineering",
+    "category": [],
+    "source_file": "ScrapLord_Marauders_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_ScrapLord_Marauders_Ascension Protocol": {
+    "id": "Tech_ScrapLord_Marauders_Ascension Protocol",
+    "name": "Ascension Protocol",
+    "tier": 3,
+    "cost": 8000,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "[Scavenger]"
+    ],
+    "unlocks_ships": [],
+    "faction": "ScrapLord_Marauders",
+    "area": "engineering",
+    "category": [],
+    "source_file": "ScrapLord_Marauders_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_SteelBound_Syndicate_Basic Doctrine": {
+    "id": "Tech_SteelBound_Syndicate_Basic Doctrine",
+    "name": "Basic Doctrine",
+    "tier": 1,
+    "cost": 1000,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "T1 Trenches"
+    ],
+    "unlocks_ships": [],
+    "faction": "SteelBound_Syndicate",
+    "area": "engineering",
+    "category": [],
+    "source_file": "SteelBound_Syndicate_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_SteelBound_Syndicate_Logistics": {
+    "id": "Tech_SteelBound_Syndicate_Logistics",
+    "name": "Logistics",
+    "tier": 1,
+    "cost": 1000,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "SteelBound_Syndicate",
+    "area": "engineering",
+    "category": [],
+    "source_file": "SteelBound_Syndicate_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_SteelBound_Syndicate_Industrial Forging": {
+    "id": "Tech_SteelBound_Syndicate_Industrial Forging",
+    "name": "Industrial Forging",
+    "tier": 1,
+    "cost": 800,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "SteelBound_Syndicate",
+    "area": "engineering",
+    "category": [],
+    "source_file": "SteelBound_Syndicate_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_SteelBound_Syndicate_Resource Extraction": {
+    "id": "Tech_SteelBound_Syndicate_Resource Extraction",
+    "name": "Resource Extraction",
+    "tier": 1,
+    "cost": 800,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "SteelBound_Syndicate",
+    "area": "engineering",
+    "category": [],
+    "source_file": "SteelBound_Syndicate_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_SteelBound_Syndicate_Heavy Armor": {
+    "id": "Tech_SteelBound_Syndicate_Heavy Armor",
+    "name": "Heavy Armor",
+    "tier": 2,
+    "cost": 2500,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "SteelBound_Syndicate",
+    "area": "engineering",
+    "category": [],
+    "source_file": "SteelBound_Syndicate_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_SteelBound_Syndicate_Advanced Ballistics": {
+    "id": "Tech_SteelBound_Syndicate_Advanced Ballistics",
+    "name": "Advanced Ballistics",
+    "tier": 2,
+    "cost": 2500,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "SteelBound_Syndicate",
+    "area": "engineering",
+    "category": [],
+    "source_file": "SteelBound_Syndicate_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_SteelBound_Syndicate_Flux Navigation": {
+    "id": "Tech_SteelBound_Syndicate_Flux Navigation",
+    "name": "Flux Navigation",
+    "tier": 2,
+    "cost": 3000,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "SteelBound_Syndicate",
+    "area": "engineering",
+    "category": [],
+    "source_file": "SteelBound_Syndicate_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_SteelBound_Syndicate_Mega Construction": {
+    "id": "Tech_SteelBound_Syndicate_Mega Construction",
+    "name": "Mega Construction",
+    "tier": 2,
+    "cost": 2500,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "T3 Forts"
+    ],
+    "unlocks_ships": [],
+    "faction": "SteelBound_Syndicate",
+    "area": "engineering",
+    "category": [],
+    "source_file": "SteelBound_Syndicate_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_SteelBound_Syndicate_Trade Networks": {
+    "id": "Tech_SteelBound_Syndicate_Trade Networks",
+    "name": "Trade Networks",
+    "tier": 2,
+    "cost": 2000,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "SteelBound_Syndicate",
+    "area": "engineering",
+    "category": [],
+    "source_file": "SteelBound_Syndicate_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_SteelBound_Syndicate_Capital Ships": {
+    "id": "Tech_SteelBound_Syndicate_Capital Ships",
+    "name": "Capital Ships",
+    "tier": 3,
+    "cost": 5000,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [
+      "Battleships"
+    ],
+    "faction": "SteelBound_Syndicate",
+    "area": "engineering",
+    "category": [],
+    "source_file": "SteelBound_Syndicate_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_SteelBound_Syndicate_Titan Integration": {
+    "id": "Tech_SteelBound_Syndicate_Titan Integration",
+    "name": "Titan Integration",
+    "tier": 3,
+    "cost": 6000,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Titan Construction"
+    ],
+    "unlocks_ships": [],
+    "faction": "SteelBound_Syndicate",
+    "area": "engineering",
+    "category": [],
+    "source_file": "SteelBound_Syndicate_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_SteelBound_Syndicate_Planetary Shielding": {
+    "id": "Tech_SteelBound_Syndicate_Planetary Shielding",
+    "name": "Planetary Shielding",
+    "tier": 3,
+    "cost": 4500,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "SteelBound_Syndicate",
+    "area": "engineering",
+    "category": [],
+    "source_file": "SteelBound_Syndicate_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_SteelBound_Syndicate_Ascension Protocol": {
+    "id": "Tech_SteelBound_Syndicate_Ascension Protocol",
+    "name": "Ascension Protocol",
+    "tier": 3,
+    "cost": 8000,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "[Conscript]"
+    ],
+    "unlocks_ships": [],
+    "faction": "SteelBound_Syndicate",
+    "area": "engineering",
+    "category": [],
+    "source_file": "SteelBound_Syndicate_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Neutral_Templars of the Flux": {
+    "id": "Tech_Neutral_Templars of the Flux",
+    "name": "Templars of the Flux",
+    "tier": 1,
+    "cost": 0,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "TECH_TREE_PHILOSOPHY.md",
+    "source_format": "unknown"
+  },
+  "Tech_Neutral_Bio-Tide Collective": {
+    "id": "Tech_Neutral_Bio-Tide Collective",
+    "name": "Bio-Tide Collective",
+    "tier": 1,
+    "cost": 0,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "TECH_TREE_PHILOSOPHY.md",
+    "source_format": "unknown"
+  },
+  "Tech_Neutral_Steel-Bound Syndicate": {
+    "id": "Tech_Neutral_Steel-Bound Syndicate",
+    "name": "Steel-Bound Syndicate",
+    "tier": 1,
+    "cost": 0,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "TECH_TREE_PHILOSOPHY.md",
+    "source_format": "unknown"
+  },
+  "Tech_Neutral_Algorithmic Hierarchy": {
+    "id": "Tech_Neutral_Algorithmic Hierarchy",
+    "name": "Algorithmic Hierarchy",
+    "tier": 1,
+    "cost": 0,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "TECH_TREE_PHILOSOPHY.md",
+    "source_format": "unknown"
+  },
+  "Tech_Neutral_Void-Spawn Entities": {
+    "id": "Tech_Neutral_Void-Spawn Entities",
+    "name": "Void-Spawn Entities",
+    "tier": 1,
+    "cost": 0,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "TECH_TREE_PHILOSOPHY.md",
+    "source_format": "unknown"
+  },
+  "Tech_Neutral_Aurelian Hegemony": {
+    "id": "Tech_Neutral_Aurelian Hegemony",
+    "name": "Aurelian Hegemony",
+    "tier": 1,
+    "cost": 0,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "TECH_TREE_PHILOSOPHY.md",
+    "source_format": "unknown"
+  },
+  "Tech_Neutral_Nebula Drifters": {
+    "id": "Tech_Neutral_Nebula Drifters",
+    "name": "Nebula Drifters",
+    "tier": 1,
+    "cost": 0,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "TECH_TREE_PHILOSOPHY.md",
+    "source_format": "unknown"
+  },
+  "Tech_Neutral_Transcendent Order": {
+    "id": "Tech_Neutral_Transcendent Order",
+    "name": "Transcendent Order",
+    "tier": 1,
+    "cost": 0,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "TECH_TREE_PHILOSOPHY.md",
+    "source_format": "unknown"
+  },
+  "Tech_Neutral_Primeval Sentinels": {
+    "id": "Tech_Neutral_Primeval Sentinels",
+    "name": "Primeval Sentinels",
+    "tier": 1,
+    "cost": 0,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "TECH_TREE_PHILOSOPHY.md",
+    "source_format": "unknown"
+  },
+  "Tech_Neutral_Scrap-Lord Marauders": {
+    "id": "Tech_Neutral_Scrap-Lord Marauders",
+    "name": "Scrap-Lord Marauders",
+    "tier": 1,
+    "cost": 0,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "TECH_TREE_PHILOSOPHY.md",
+    "source_format": "unknown"
+  },
+  "Tech_Templars_of_the_Flux_Basic Doctrine": {
+    "id": "Tech_Templars_of_the_Flux_Basic Doctrine",
+    "name": "Basic Doctrine",
+    "tier": 1,
+    "cost": 1000,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "[Chapel-Barracks]"
+    ],
+    "unlocks_ships": [],
+    "faction": "Templars_of_the_Flux",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Templars_of_the_Flux_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Templars_of_the_Flux_Logistics": {
+    "id": "Tech_Templars_of_the_Flux_Logistics",
+    "name": "Logistics",
+    "tier": 1,
+    "cost": 1000,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "[Initiate]"
+    ],
+    "unlocks_ships": [],
+    "faction": "Templars_of_the_Flux",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Templars_of_the_Flux_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Templars_of_the_Flux_Industrial Forging": {
+    "id": "Tech_Templars_of_the_Flux_Industrial Forging",
+    "name": "Industrial Forging",
+    "tier": 1,
+    "cost": 800,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "[Pattern Manufactorum]"
+    ],
+    "unlocks_ships": [],
+    "faction": "Templars_of_the_Flux",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Templars_of_the_Flux_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Templars_of_the_Flux_Resource Extraction": {
+    "id": "Tech_Templars_of_the_Flux_Resource Extraction",
+    "name": "Resource Extraction",
+    "tier": 1,
+    "cost": 800,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "[Tithe Hall]"
+    ],
+    "unlocks_ships": [],
+    "faction": "Templars_of_the_Flux",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Templars_of_the_Flux_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Templars_of_the_Flux_Heavy Armor": {
+    "id": "Tech_Templars_of_the_Flux_Heavy Armor",
+    "name": "Heavy Armor",
+    "tier": 2,
+    "cost": 2500,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "[Purifier]"
+    ],
+    "unlocks_ships": [],
+    "faction": "Templars_of_the_Flux",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Templars_of_the_Flux_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Templars_of_the_Flux_Advanced Ballistics": {
+    "id": "Tech_Templars_of_the_Flux_Advanced Ballistics",
+    "name": "Advanced Ballistics",
+    "tier": 2,
+    "cost": 2500,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "[Chariot]"
+    ],
+    "unlocks_ships": [],
+    "faction": "Templars_of_the_Flux",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Templars_of_the_Flux_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Templars_of_the_Flux_Flux Navigation": {
+    "id": "Tech_Templars_of_the_Flux_Flux Navigation",
+    "name": "Flux Navigation",
+    "tier": 2,
+    "cost": 3000,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "[Orbital Cathedral]"
+    ],
+    "unlocks_ships": [],
+    "faction": "Templars_of_the_Flux",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Templars_of_the_Flux_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Templars_of_the_Flux_Mega Construction": {
+    "id": "Tech_Templars_of_the_Flux_Mega Construction",
+    "name": "Mega Construction",
+    "tier": 2,
+    "cost": 2500,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "[Conviction Shrine]"
+    ],
+    "unlocks_ships": [],
+    "faction": "Templars_of_the_Flux",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Templars_of_the_Flux_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Templars_of_the_Flux_Trade Networks": {
+    "id": "Tech_Templars_of_the_Flux_Trade Networks",
+    "name": "Trade Networks",
+    "tier": 2,
+    "cost": 2000,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Templars_of_the_Flux",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Templars_of_the_Flux_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Templars_of_the_Flux_Capital Ships": {
+    "id": "Tech_Templars_of_the_Flux_Capital Ships",
+    "name": "Capital Ships",
+    "tier": 3,
+    "cost": 5000,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "[Cathedral Class]"
+    ],
+    "unlocks_ships": [],
+    "faction": "Templars_of_the_Flux",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Templars_of_the_Flux_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Templars_of_the_Flux_Titan Integration": {
+    "id": "Tech_Templars_of_the_Flux_Titan Integration",
+    "name": "Titan Integration",
+    "tier": 3,
+    "cost": 6000,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "[Saint's Avatar]"
+    ],
+    "unlocks_ships": [],
+    "faction": "Templars_of_the_Flux",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Templars_of_the_Flux_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Templars_of_the_Flux_Planetary Shielding": {
+    "id": "Tech_Templars_of_the_Flux_Planetary Shielding",
+    "name": "Planetary Shielding",
+    "tier": 3,
+    "cost": 4500,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Templars_of_the_Flux",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Templars_of_the_Flux_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Templars_of_the_Flux_Ascension Protocol": {
+    "id": "Tech_Templars_of_the_Flux_Ascension Protocol",
+    "name": "Ascension Protocol",
+    "tier": 3,
+    "cost": 8000,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "[High Crusader]"
+    ],
+    "unlocks_ships": [],
+    "faction": "Templars_of_the_Flux",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Templars_of_the_Flux_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Transcendent_Order_Basic Doctrine": {
+    "id": "Tech_Transcendent_Order_Basic Doctrine",
+    "name": "Basic Doctrine",
+    "tier": 1,
+    "cost": 1000,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Transcendent_Order",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Transcendent_Order_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Transcendent_Order_Logistics": {
+    "id": "Tech_Transcendent_Order_Logistics",
+    "name": "Logistics",
+    "tier": 1,
+    "cost": 1000,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Transcendent_Order",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Transcendent_Order_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Transcendent_Order_Industrial Forging": {
+    "id": "Tech_Transcendent_Order_Industrial Forging",
+    "name": "Industrial Forging",
+    "tier": 1,
+    "cost": 800,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Transcendent_Order",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Transcendent_Order_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Transcendent_Order_Resource Extraction": {
+    "id": "Tech_Transcendent_Order_Resource Extraction",
+    "name": "Resource Extraction",
+    "tier": 1,
+    "cost": 800,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Transcendent_Order",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Transcendent_Order_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Transcendent_Order_Heavy Armor": {
+    "id": "Tech_Transcendent_Order_Heavy Armor",
+    "name": "Heavy Armor",
+    "tier": 2,
+    "cost": 2500,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Transcendent_Order",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Transcendent_Order_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Transcendent_Order_Advanced Ballistics": {
+    "id": "Tech_Transcendent_Order_Advanced Ballistics",
+    "name": "Advanced Ballistics",
+    "tier": 2,
+    "cost": 2500,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Transcendent_Order",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Transcendent_Order_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Transcendent_Order_Flux Navigation": {
+    "id": "Tech_Transcendent_Order_Flux Navigation",
+    "name": "Flux Navigation",
+    "tier": 2,
+    "cost": 3000,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Transcendent_Order",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Transcendent_Order_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Transcendent_Order_Mega Construction": {
+    "id": "Tech_Transcendent_Order_Mega Construction",
+    "name": "Mega Construction",
+    "tier": 2,
+    "cost": 2500,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "T3 Districts"
+    ],
+    "unlocks_ships": [],
+    "faction": "Transcendent_Order",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Transcendent_Order_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Transcendent_Order_Trade Networks": {
+    "id": "Tech_Transcendent_Order_Trade Networks",
+    "name": "Trade Networks",
+    "tier": 2,
+    "cost": 2000,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Transcendent_Order",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Transcendent_Order_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Transcendent_Order_Capital Ships": {
+    "id": "Tech_Transcendent_Order_Capital Ships",
+    "name": "Capital Ships",
+    "tier": 3,
+    "cost": 5000,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [
+      "Resonator Battleships"
+    ],
+    "faction": "Transcendent_Order",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Transcendent_Order_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Transcendent_Order_Titan Integration": {
+    "id": "Tech_Transcendent_Order_Titan Integration",
+    "name": "Titan Integration",
+    "tier": 3,
+    "cost": 6000,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Phantom Titans"
+    ],
+    "unlocks_ships": [],
+    "faction": "Transcendent_Order",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Transcendent_Order_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Transcendent_Order_Planetary Shielding": {
+    "id": "Tech_Transcendent_Order_Planetary Shielding",
+    "name": "Planetary Shielding",
+    "tier": 3,
+    "cost": 4500,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Transcendent_Order",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Transcendent_Order_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Transcendent_Order_Ascension Protocol": {
+    "id": "Tech_Transcendent_Order_Ascension Protocol",
+    "name": "Ascension Protocol",
+    "tier": 3,
+    "cost": 8000,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "[Acolyte]"
+    ],
+    "unlocks_ships": [],
+    "faction": "Transcendent_Order",
+    "area": "engineering",
+    "category": [],
+    "source_file": "Transcendent_Order_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_VoidSpawn_Entities_Basic Doctrine": {
+    "id": "Tech_VoidSpawn_Entities_Basic Doctrine",
+    "name": "Basic Doctrine",
+    "tier": 1,
+    "cost": 1000,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "VoidSpawn_Entities",
+    "area": "engineering",
+    "category": [],
+    "source_file": "VoidSpawn_Entities_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_VoidSpawn_Entities_Logistics": {
+    "id": "Tech_VoidSpawn_Entities_Logistics",
+    "name": "Logistics",
+    "tier": 1,
+    "cost": 1000,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "VoidSpawn_Entities",
+    "area": "engineering",
+    "category": [],
+    "source_file": "VoidSpawn_Entities_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_VoidSpawn_Entities_Industrial Forging": {
+    "id": "Tech_VoidSpawn_Entities_Industrial Forging",
+    "name": "Industrial Forging",
+    "tier": 1,
+    "cost": 800,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "VoidSpawn_Entities",
+    "area": "engineering",
+    "category": [],
+    "source_file": "VoidSpawn_Entities_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_VoidSpawn_Entities_Resource Extraction": {
+    "id": "Tech_VoidSpawn_Entities_Resource Extraction",
+    "name": "Resource Extraction",
+    "tier": 1,
+    "cost": 800,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "VoidSpawn_Entities",
+    "area": "engineering",
+    "category": [],
+    "source_file": "VoidSpawn_Entities_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_VoidSpawn_Entities_Heavy Armor": {
+    "id": "Tech_VoidSpawn_Entities_Heavy Armor",
+    "name": "Heavy Armor",
+    "tier": 2,
+    "cost": 2500,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "VoidSpawn_Entities",
+    "area": "engineering",
+    "category": [],
+    "source_file": "VoidSpawn_Entities_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_VoidSpawn_Entities_Advanced Ballistics": {
+    "id": "Tech_VoidSpawn_Entities_Advanced Ballistics",
+    "name": "Advanced Ballistics",
+    "tier": 2,
+    "cost": 2500,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "VoidSpawn_Entities",
+    "area": "engineering",
+    "category": [],
+    "source_file": "VoidSpawn_Entities_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_VoidSpawn_Entities_Flux Navigation": {
+    "id": "Tech_VoidSpawn_Entities_Flux Navigation",
+    "name": "Flux Navigation",
+    "tier": 2,
+    "cost": 3000,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "VoidSpawn_Entities",
+    "area": "engineering",
+    "category": [],
+    "source_file": "VoidSpawn_Entities_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_VoidSpawn_Entities_Mega Construction": {
+    "id": "Tech_VoidSpawn_Entities_Mega Construction",
+    "name": "Mega Construction",
+    "tier": 2,
+    "cost": 2500,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Demon Engines"
+    ],
+    "unlocks_ships": [],
+    "faction": "VoidSpawn_Entities",
+    "area": "engineering",
+    "category": [],
+    "source_file": "VoidSpawn_Entities_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_VoidSpawn_Entities_Trade Networks": {
+    "id": "Tech_VoidSpawn_Entities_Trade Networks",
+    "name": "Trade Networks",
+    "tier": 2,
+    "cost": 2000,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "VoidSpawn_Entities",
+    "area": "engineering",
+    "category": [],
+    "source_file": "VoidSpawn_Entities_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_VoidSpawn_Entities_Capital Ships": {
+    "id": "Tech_VoidSpawn_Entities_Capital Ships",
+    "name": "Capital Ships",
+    "tier": 3,
+    "cost": 5000,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Space Hulks"
+    ],
+    "unlocks_ships": [],
+    "faction": "VoidSpawn_Entities",
+    "area": "engineering",
+    "category": [],
+    "source_file": "VoidSpawn_Entities_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_VoidSpawn_Entities_Titan Integration": {
+    "id": "Tech_VoidSpawn_Entities_Titan Integration",
+    "name": "Titan Integration",
+    "tier": 3,
+    "cost": 6000,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Greater Daemon Summons"
+    ],
+    "unlocks_ships": [],
+    "faction": "VoidSpawn_Entities",
+    "area": "engineering",
+    "category": [],
+    "source_file": "VoidSpawn_Entities_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_VoidSpawn_Entities_Planetary Shielding": {
+    "id": "Tech_VoidSpawn_Entities_Planetary Shielding",
+    "name": "Planetary Shielding",
+    "tier": 3,
+    "cost": 4500,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "VoidSpawn_Entities",
+    "area": "engineering",
+    "category": [],
+    "source_file": "VoidSpawn_Entities_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_VoidSpawn_Entities_Ascension Protocol": {
+    "id": "Tech_VoidSpawn_Entities_Ascension Protocol",
+    "name": "Ascension Protocol",
+    "tier": 3,
+    "cost": 8000,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "[Daemon]"
+    ],
+    "unlocks_ships": [],
+    "faction": "VoidSpawn_Entities",
+    "area": "engineering",
+    "category": [],
+    "source_file": "VoidSpawn_Entities_tech.md",
+    "source_format": "unknown"
+  },
+  "Tech_Neutral_Aspect Shrine": {
+    "id": "Tech_Neutral_Aspect Shrine",
+    "name": "Construction: Aspect Shrine",
+    "tier": 1,
+    "cost": 90,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Neutral_Aspect Shrine"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Gravitic Forge": {
+    "id": "Tech_Neutral_Gravitic Forge",
+    "name": "Construction: Gravitic Forge",
+    "tier": 2,
+    "cost": 250,
+    "prerequisites": [
+      "Tech_Primeval_Sentinels_Industrial_Forging"
+    ],
+    "unlocks_buildings": [
+      "Neutral_Gravitic Forge"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Crystal Farm": {
+    "id": "Tech_Neutral_Crystal Farm",
+    "name": "Construction: Crystal Farm",
+    "tier": 1,
+    "cost": 70,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Neutral_Crystal Farm"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Archive of Ages": {
+    "id": "Tech_Neutral_Archive of Ages",
+    "name": "Construction: Archive of Ages",
+    "tier": 1,
+    "cost": 120,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Neutral_Archive of Ages"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Hall of Prophecy": {
+    "id": "Tech_Neutral_Hall of Prophecy",
+    "name": "Construction: Hall of Prophecy",
+    "tier": 2,
+    "cost": 250,
+    "prerequisites": [
+      "Tech_Primeval_Sentinels_Basic_Doctrine"
+    ],
+    "unlocks_buildings": [
+      "Neutral_Hall of Prophecy"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Holo-Field Projector": {
+    "id": "Tech_Neutral_Holo-Field Projector",
+    "name": "Construction: Holo-Field Projector",
+    "tier": 1,
+    "cost": 60,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Neutral_Holo-Field Projector"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Infinity Gate": {
+    "id": "Tech_Neutral_Infinity Gate",
+    "name": "Construction: Infinity Gate",
+    "tier": 3,
+    "cost": 500,
+    "prerequisites": [
+      "Tech_Primeval_Sentinels_Void_Shielding"
+    ],
+    "unlocks_buildings": [
+      "Neutral_Infinity Gate"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Star-Lattice Nexus": {
+    "id": "Tech_Neutral_Star-Lattice Nexus",
+    "name": "Construction: Star-Lattice Nexus",
+    "tier": 4,
+    "cost": 800,
+    "prerequisites": [
+      "Tech_Primeval_Sentinels_Flux_Navigation"
+    ],
+    "unlocks_buildings": [
+      "Neutral_Star-Lattice Nexus"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Meditation Chamber": {
+    "id": "Tech_Neutral_Meditation Chamber",
+    "name": "Construction: Meditation Chamber",
+    "tier": 1,
+    "cost": 80,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Neutral_Meditation Chamber"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Crystal Foundry": {
+    "id": "Tech_Neutral_Crystal Foundry",
+    "name": "Construction: Crystal Foundry",
+    "tier": 2,
+    "cost": 200,
+    "prerequisites": [
+      "Tech_Transcendent_Order_Industrial_Forging"
+    ],
+    "unlocks_buildings": [
+      "Neutral_Crystal Foundry"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Aether Syphon": {
+    "id": "Tech_Neutral_Aether Syphon",
+    "name": "Construction: Aether Syphon",
+    "tier": 1,
+    "cost": 60,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Neutral_Aether Syphon"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Archive of Wisdom": {
+    "id": "Tech_Neutral_Archive of Wisdom",
+    "name": "Construction: Archive of Wisdom",
+    "tier": 1,
+    "cost": 100,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Neutral_Archive of Wisdom"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Kinetic Shield Generator": {
+    "id": "Tech_Neutral_Kinetic Shield Generator",
+    "name": "Construction: Kinetic Shield Generator",
+    "tier": 1,
+    "cost": 50,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Neutral_Kinetic Shield Generator"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Astral Spire": {
+    "id": "Tech_Neutral_Astral Spire",
+    "name": "Construction: Astral Spire",
+    "tier": 3,
+    "cost": 400,
+    "prerequisites": [
+      "Tech_Transcendent_Order_Void_Shielding"
+    ],
+    "unlocks_buildings": [
+      "Neutral_Astral Spire"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Aether Conduit": {
+    "id": "Tech_Neutral_Aether Conduit",
+    "name": "Construction: Aether Conduit",
+    "tier": 3,
+    "cost": 500,
+    "prerequisites": [
+      "Tech_Transcendent_Order_Aether_Resonance"
+    ],
+    "unlocks_buildings": [
+      "Neutral_Aether Conduit"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Assembly Line": {
+    "id": "Tech_Neutral_Assembly Line",
+    "name": "Construction: Assembly Line",
+    "tier": 1,
+    "cost": 80,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Neutral_Assembly Line"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Cyber-Foundry": {
+    "id": "Tech_Neutral_Cyber-Foundry",
+    "name": "Construction: Cyber-Foundry",
+    "tier": 2,
+    "cost": 200,
+    "prerequisites": [
+      "Tech_Algorithmic_Hierarchy_Industrial_Forging"
+    ],
+    "unlocks_buildings": [
+      "Neutral_Cyber-Foundry"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Data Vault": {
+    "id": "Tech_Neutral_Data Vault",
+    "name": "Construction: Data Vault",
+    "tier": 1,
+    "cost": 60,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Neutral_Data Vault"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Logic Core": {
+    "id": "Tech_Neutral_Logic Core",
+    "name": "Construction: Logic Core",
+    "tier": 1,
+    "cost": 100,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Neutral_Logic Core"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Auto-Turret Grid": {
+    "id": "Tech_Neutral_Auto-Turret Grid",
+    "name": "Construction: Auto-Turret Grid",
+    "tier": 1,
+    "cost": 50,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Neutral_Auto-Turret Grid"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Orbital Upload": {
+    "id": "Tech_Neutral_Orbital Upload",
+    "name": "Construction: Orbital Upload",
+    "tier": 3,
+    "cost": 400,
+    "prerequisites": [
+      "Tech_Algorithmic_Hierarchy_Void_Shielding"
+    ],
+    "unlocks_buildings": [
+      "Neutral_Orbital Upload"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Reanimation Matrix": {
+    "id": "Tech_Neutral_Reanimation Matrix",
+    "name": "Construction: Reanimation Matrix",
+    "tier": 3,
+    "cost": 500,
+    "prerequisites": [
+      "Tech_Algorithmic_Hierarchy_Industrial_Forging"
+    ],
+    "unlocks_buildings": [
+      "Neutral_Reanimation Matrix"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Spawning Pool": {
+    "id": "Tech_Neutral_Spawning Pool",
+    "name": "Construction: Spawning Pool",
+    "tier": 1,
+    "cost": 70,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Neutral_Spawning Pool"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Gestation Chamber": {
+    "id": "Tech_Neutral_Gestation Chamber",
+    "name": "Construction: Gestation Chamber",
+    "tier": 2,
+    "cost": 180,
+    "prerequisites": [
+      "Tech_BioTide_Collective_Industrial_Forging (Evolutionary Adaptation)"
+    ],
+    "unlocks_buildings": [
+      "Neutral_Gestation Chamber"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Digestion Pool": {
+    "id": "Tech_Neutral_Digestion Pool",
+    "name": "Construction: Digestion Pool",
+    "tier": 1,
+    "cost": 60,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Neutral_Digestion Pool"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Synaptic Node": {
+    "id": "Tech_Neutral_Synaptic Node",
+    "name": "Construction: Synaptic Node",
+    "tier": 1,
+    "cost": 100,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Neutral_Synaptic Node"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Spore Chimney": {
+    "id": "Tech_Neutral_Spore Chimney",
+    "name": "Construction: Spore Chimney",
+    "tier": 1,
+    "cost": 45,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Neutral_Spore Chimney"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Bio-Ship Anchor": {
+    "id": "Tech_Neutral_Bio-Ship Anchor",
+    "name": "Construction: Bio-Ship Anchor",
+    "tier": 3,
+    "cost": 350,
+    "prerequisites": [
+      "Tech_BioTide_Collective_Void_Shielding (Chitinous Plating)"
+    ],
+    "unlocks_buildings": [
+      "Neutral_Bio-Ship Anchor"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Digestion Nexus": {
+    "id": "Tech_Neutral_Digestion Nexus",
+    "name": "Construction: Digestion Nexus",
+    "tier": 3,
+    "cost": 500,
+    "prerequisites": [
+      "Tech_BioTide_Collective_Industrial_Forging"
+    ],
+    "unlocks_buildings": [
+      "Neutral_Digestion Nexus"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Drill Yard": {
+    "id": "Tech_Neutral_Drill Yard",
+    "name": "Construction: Drill Yard",
+    "tier": 1,
+    "cost": 80,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Neutral_Drill Yard"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Heavy Assembly Plant": {
+    "id": "Tech_Neutral_Heavy Assembly Plant",
+    "name": "Construction: Heavy Assembly Plant",
+    "tier": 2,
+    "cost": 200,
+    "prerequisites": [
+      "Tech_SteelBound_Syndicate_Industrial_Forging"
+    ],
+    "unlocks_buildings": [
+      "Neutral_Heavy Assembly Plant"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Mineral Processor": {
+    "id": "Tech_Neutral_Mineral Processor",
+    "name": "Construction: Mineral Processor",
+    "tier": 1,
+    "cost": 60,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Neutral_Mineral Processor"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Design Bureau": {
+    "id": "Tech_Neutral_Design Bureau",
+    "name": "Construction: Design Bureau",
+    "tier": 1,
+    "cost": 100,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Neutral_Design Bureau"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Ferrocrete Bunker": {
+    "id": "Tech_Neutral_Ferrocrete Bunker",
+    "name": "Construction: Ferrocrete Bunker",
+    "tier": 1,
+    "cost": 50,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Neutral_Ferrocrete Bunker"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Orbital Drydock": {
+    "id": "Tech_Neutral_Orbital Drydock",
+    "name": "Construction: Orbital Drydock",
+    "tier": 3,
+    "cost": 400,
+    "prerequisites": [
+      "Tech_SteelBound_Syndicate_Void_Shielding"
+    ],
+    "unlocks_buildings": [
+      "Neutral_Orbital Drydock"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Mega-Foundry": {
+    "id": "Tech_Neutral_Mega-Foundry",
+    "name": "Construction: Mega-Foundry",
+    "tier": 3,
+    "cost": 500,
+    "prerequisites": [
+      "Tech_SteelBound_Syndicate_Industrial_Forging"
+    ],
+    "unlocks_buildings": [
+      "Neutral_Mega-Foundry"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Summoning Circle": {
+    "id": "Tech_Neutral_Summoning Circle",
+    "name": "Construction: Summoning Circle",
+    "tier": 1,
+    "cost": 70,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Neutral_Summoning Circle"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Flux Forge": {
+    "id": "Tech_Neutral_Flux Forge",
+    "name": "Construction: Flux Forge",
+    "tier": 2,
+    "cost": 200,
+    "prerequisites": [
+      "Tech_VoidSpawn_Entities_Industrial_Forging"
+    ],
+    "unlocks_buildings": [
+      "Neutral_Flux Forge"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Soul Altar": {
+    "id": "Tech_Neutral_Soul Altar",
+    "name": "Construction: Soul Altar",
+    "tier": 1,
+    "cost": 60,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Neutral_Soul Altar"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Library of Chaos": {
+    "id": "Tech_Neutral_Library of Chaos",
+    "name": "Construction: Library of Chaos",
+    "tier": 1,
+    "cost": 100,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Neutral_Library of Chaos"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Flux Shroud": {
+    "id": "Tech_Neutral_Flux Shroud",
+    "name": "Construction: Flux Shroud",
+    "tier": 1,
+    "cost": 50,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Neutral_Flux Shroud"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Dimensional Gate": {
+    "id": "Tech_Neutral_Dimensional Gate",
+    "name": "Construction: Dimensional Gate",
+    "tier": 3,
+    "cost": 400,
+    "prerequisites": [
+      "Tech_VoidSpawn_Entities_Flux_Navigation"
+    ],
+    "unlocks_buildings": [
+      "Neutral_Dimensional Gate"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Reality Tear": {
+    "id": "Tech_Neutral_Reality Tear",
+    "name": "Construction: Reality Tear",
+    "tier": 4,
+    "cost": 600,
+    "prerequisites": [
+      "Tech_VoidSpawn_Entities_Aether_Resonance"
+    ],
+    "unlocks_buildings": [
+      "Neutral_Reality Tear"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Fight Pit": {
+    "id": "Tech_Neutral_Fight Pit",
+    "name": "Construction: Fight Pit",
+    "tier": 1,
+    "cost": 50,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Neutral_Fight Pit"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Mek Shop": {
+    "id": "Tech_Neutral_Mek Shop",
+    "name": "Construction: Mek Shop",
+    "tier": 2,
+    "cost": 150,
+    "prerequisites": [
+      "Tech_ScrapLord_Marauders_Industrial_Forging"
+    ],
+    "unlocks_buildings": [
+      "Neutral_Mek Shop"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Loot Pile": {
+    "id": "Tech_Neutral_Loot Pile",
+    "name": "Construction: Loot Pile",
+    "tier": 1,
+    "cost": 40,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Neutral_Loot Pile"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Tinkerer's Shed": {
+    "id": "Tech_Neutral_Tinkerer's Shed",
+    "name": "Construction: Tinkerer's Shed",
+    "tier": 1,
+    "cost": 80,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Neutral_Tinkerer's Shed"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Junk Wall": {
+    "id": "Tech_Neutral_Junk Wall",
+    "name": "Construction: Junk Wall",
+    "tier": 1,
+    "cost": 30,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Neutral_Junk Wall"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Space Hulk Dock": {
+    "id": "Tech_Neutral_Space Hulk Dock",
+    "name": "Construction: Space Hulk Dock",
+    "tier": 3,
+    "cost": 300,
+    "prerequisites": [
+      "Tech_ScrapLord_Marauders_Void_Shielding"
+    ],
+    "unlocks_buildings": [
+      "Neutral_Space Hulk Dock"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Scrap Heap": {
+    "id": "Tech_Neutral_Scrap Heap",
+    "name": "Construction: Scrap Heap",
+    "tier": 1,
+    "cost": 100,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Neutral_Scrap Heap"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Military Academy": {
+    "id": "Tech_Neutral_Military Academy",
+    "name": "Construction: Military Academy",
+    "tier": 1,
+    "cost": 80,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Neutral_Military Academy"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Arsenals of Sol": {
+    "id": "Tech_Neutral_Arsenals of Sol",
+    "name": "Construction: Arsenals of Sol",
+    "tier": 2,
+    "cost": 220,
+    "prerequisites": [
+      "Tech_Aurelian_Hegemony_Industrial_Forging"
+    ],
+    "unlocks_buildings": [
+      "Neutral_Arsenals of Sol"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Trade Hub": {
+    "id": "Tech_Neutral_Trade Hub",
+    "name": "Construction: Trade Hub",
+    "tier": 1,
+    "cost": 60,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Neutral_Trade Hub"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_University": {
+    "id": "Tech_Neutral_University",
+    "name": "Construction: University",
+    "tier": 1,
+    "cost": 100,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Neutral_University"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Shield Generator": {
+    "id": "Tech_Neutral_Shield Generator",
+    "name": "Construction: Shield Generator",
+    "tier": 1,
+    "cost": 60,
+    "prerequisites": [
+      "Tech_Aurelian_Hegemony_Void_Shielding (Local shielding)"
+    ],
+    "unlocks_buildings": [
+      "Neutral_Shield Generator"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Orbital Shipyard": {
+    "id": "Tech_Neutral_Orbital Shipyard",
+    "name": "Construction: Orbital Shipyard",
+    "tier": 3,
+    "cost": 450,
+    "prerequisites": [
+      "Tech_Aurelian_Hegemony_Void_Shielding"
+    ],
+    "unlocks_buildings": [
+      "Neutral_Orbital Shipyard"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Diplomatic Embassy": {
+    "id": "Tech_Neutral_Diplomatic Embassy",
+    "name": "Construction: Diplomatic Embassy",
+    "tier": 2,
+    "cost": 300,
+    "prerequisites": [
+      "Tech_Aurelian_Hegemony_Conviction_Doctrines"
+    ],
+    "unlocks_buildings": [
+      "Neutral_Diplomatic Embassy"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Training Pit": {
+    "id": "Tech_Neutral_Training Pit",
+    "name": "Construction: Training Pit",
+    "tier": 1,
+    "cost": 60,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Neutral_Training Pit"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Chop Shop": {
+    "id": "Tech_Neutral_Chop Shop",
+    "name": "Construction: Chop Shop",
+    "tier": 2,
+    "cost": 180,
+    "prerequisites": [
+      "Tech_Nebula_Drifters_Industrial_Forging"
+    ],
+    "unlocks_buildings": [
+      "Neutral_Chop Shop"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Smuggler's Cove": {
+    "id": "Tech_Neutral_Smuggler's Cove",
+    "name": "Construction: Smuggler's Cove",
+    "tier": 1,
+    "cost": 50,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Neutral_Smuggler's Cove"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Tech Scavenger": {
+    "id": "Tech_Neutral_Tech Scavenger",
+    "name": "Construction: Tech Scavenger",
+    "tier": 1,
+    "cost": 90,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Neutral_Tech Scavenger"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Hidden Bunkers": {
+    "id": "Tech_Neutral_Hidden Bunkers",
+    "name": "Construction: Hidden Bunkers",
+    "tier": 1,
+    "cost": 40,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Neutral_Hidden Bunkers"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Asteroid Dock": {
+    "id": "Tech_Neutral_Asteroid Dock",
+    "name": "Construction: Asteroid Dock",
+    "tier": 3,
+    "cost": 350,
+    "prerequisites": [
+      "Tech_Nebula_Drifters_Void_Shielding"
+    ],
+    "unlocks_buildings": [
+      "Neutral_Asteroid Dock"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Raider's Haven": {
+    "id": "Tech_Neutral_Raider's Haven",
+    "name": "Construction: Raider's Haven",
+    "tier": 2,
+    "cost": 400,
+    "prerequisites": [
+      "Tech_Nebula_Drifters_Flux_Navigation"
+    ],
+    "unlocks_buildings": [
+      "Neutral_Raider's Haven"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Chapel-Barracks": {
+    "id": "Tech_Neutral_Chapel-Barracks",
+    "name": "Construction: Chapel-Barracks",
+    "tier": 1,
+    "cost": 80,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Neutral_Chapel-Barracks"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Pattern Manufactorum": {
+    "id": "Tech_Neutral_Pattern Manufactorum",
+    "name": "Construction: Pattern Manufactorum",
+    "tier": 2,
+    "cost": 200,
+    "prerequisites": [
+      "Tech_Templars_of_the_Flux_Industrial_Forging"
+    ],
+    "unlocks_buildings": [
+      "Neutral_Pattern Manufactorum"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Tithe Hall": {
+    "id": "Tech_Neutral_Tithe Hall",
+    "name": "Construction: Tithe Hall",
+    "tier": 1,
+    "cost": 60,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Neutral_Tithe Hall"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Scriptorium": {
+    "id": "Tech_Neutral_Scriptorium",
+    "name": "Construction: Scriptorium",
+    "tier": 1,
+    "cost": 100,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Neutral_Scriptorium"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Bastion of Faith": {
+    "id": "Tech_Neutral_Bastion of Faith",
+    "name": "Construction: Bastion of Faith",
+    "tier": 1,
+    "cost": 50,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Neutral_Bastion of Faith"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Orbital Cathedral": {
+    "id": "Tech_Neutral_Orbital Cathedral",
+    "name": "Construction: Orbital Cathedral",
+    "tier": 3,
+    "cost": 400,
+    "prerequisites": [
+      "Tech_Templars_of_the_Flux_Void_Shielding"
+    ],
+    "unlocks_buildings": [
+      "Neutral_Orbital Cathedral"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Neutral_Conviction Shrine": {
+    "id": "Tech_Neutral_Conviction Shrine",
+    "name": "Construction: Conviction Shrine",
+    "tier": 3,
+    "cost": 500,
+    "prerequisites": [
+      "Tech_Templars_of_the_Flux_Conviction_Doctrines"
+    ],
+    "unlocks_buildings": [
+      "Neutral_Conviction Shrine"
+    ],
+    "unlocks_ships": [],
+    "faction": "Neutral",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_None": {
+    "id": "Tech_None",
+    "name": "Construction: Unknown",
+    "tier": 0,
+    "cost": 0,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "None"
+    ],
+    "unlocks_ships": [],
+    "faction": "Global",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Recruitment Stations": {
+    "id": "Tech_Recruitment Stations",
+    "name": "Construction: Unknown",
+    "tier": 0,
+    "cost": 0,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Recruitment Stations"
+    ],
+    "unlocks_ships": [],
+    "faction": "Global",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  },
+  "Tech_Spaceport": {
+    "id": "Tech_Spaceport",
+    "name": "Construction: Unknown",
+    "tier": 0,
+    "cost": 0,
+    "prerequisites": [],
+    "unlocks_buildings": [
+      "Spaceport"
+    ],
+    "unlocks_ships": [],
+    "faction": "Global",
+    "area": "engineering",
+    "category": [],
+    "source_file": "building_synthesis",
+    "source_format": "synthetic"
+  }
+}

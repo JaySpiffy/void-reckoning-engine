@@ -1,0 +1,125 @@
+{
+  "nodes": [
+    {
+      "id": "Tech_Templars_of_the_Flux_Basic Doctrine",
+      "label": "Basic Doctrine",
+      "tier": 1,
+      "cost": 1000
+    },
+    {
+      "id": "Tech_Templars_of_the_Flux_Logistics",
+      "label": "Logistics",
+      "tier": 1,
+      "cost": 1000
+    },
+    {
+      "id": "Tech_Templars_of_the_Flux_Industrial Forging",
+      "label": "Industrial Forging",
+      "tier": 1,
+      "cost": 800
+    },
+    {
+      "id": "Tech_Templars_of_the_Flux_Resource Extraction",
+      "label": "Resource Extraction",
+      "tier": 1,
+      "cost": 800
+    },
+    {
+      "id": "Tech_Templars_of_the_Flux_Heavy Armor",
+      "label": "Heavy Armor",
+      "tier": 2,
+      "cost": 2500
+    },
+    {
+      "id": "Tech_Templars_of_the_Flux_Advanced Ballistics",
+      "label": "Advanced Ballistics",
+      "tier": 2,
+      "cost": 2500
+    },
+    {
+      "id": "Tech_Templars_of_the_Flux_Flux Navigation",
+      "label": "Flux Navigation",
+      "tier": 2,
+      "cost": 3000
+    },
+    {
+      "id": "Tech_Templars_of_the_Flux_Mega Construction",
+      "label": "Mega Construction",
+      "tier": 2,
+      "cost": 2500
+    },
+    {
+      "id": "Tech_Templars_of_the_Flux_Trade Networks",
+      "label": "Trade Networks",
+      "tier": 2,
+      "cost": 2000
+    },
+    {
+      "id": "Tech_Templars_of_the_Flux_Capital Ships",
+      "label": "Capital Ships",
+      "tier": 3,
+      "cost": 5000
+    },
+    {
+      "id": "Tech_Templars_of_the_Flux_Titan Integration",
+      "label": "Titan Integration",
+      "tier": 3,
+      "cost": 6000
+    },
+    {
+      "id": "Tech_Templars_of_the_Flux_Planetary Shielding",
+      "label": "Planetary Shielding",
+      "tier": 3,
+      "cost": 4500
+    },
+    {
+      "id": "Tech_Templars_of_the_Flux_Ascension Protocol",
+      "label": "Ascension Protocol",
+      "tier": 3,
+      "cost": 8000
+    },
+    {
+      "id": "Tech_Templars_of_the_Flux_Chapel-Barracks",
+      "label": "Construction: Chapel-Barracks",
+      "tier": 1,
+      "cost": 80
+    },
+    {
+      "id": "Tech_Templars_of_the_Flux_Pattern Manufactorum",
+      "label": "Construction: Pattern Manufactorum",
+      "tier": 2,
+      "cost": 200
+    },
+    {
+      "id": "Tech_Templars_of_the_Flux_Tithe Hall",
+      "label": "Construction: Tithe Hall",
+      "tier": 1,
+      "cost": 60
+    },
+    {
+      "id": "Tech_Templars_of_the_Flux_Scriptorium",
+      "label": "Construction: Scriptorium",
+      "tier": 1,
+      "cost": 100
+    },
+    {
+      "id": "Tech_Templars_of_the_Flux_Bastion of Faith",
+      "label": "Construction: Bastion of Faith",
+      "tier": 1,
+      "cost": 50
+    },
+    {
+      "id": "Tech_Templars_of_the_Flux_Orbital Cathedral",
+      "label": "Construction: Orbital Cathedral",
+      "tier": 3,
+      "cost": 400
+    },
+    {
+      "id": "Tech_Templars_of_the_Flux_Conviction Shrine",
+      "label": "Construction: Conviction Shrine",
+      "tier": 3,
+      "cost": 500
+    }
+  ],
+  "edges": []
+}

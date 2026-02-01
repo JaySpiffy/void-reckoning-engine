@@ -1,0 +1,261 @@
+[
+  {
+    "name": "Primeval_Sentinels Star-Lattice Ark Command Vehicle",
+    "blueprint_id": "primeval_sentinels_command_vehicle",
+    "type": "command",
+    "faction": "Primeval_Sentinels",
+    "tier": 4,
+    "cost": 11500,
+    "upkeep": 1150,
+    "base_stats": {
+      "hp": 2500,
+      "armor": 100,
+      "damage": 170,
+      "speed": 10,
+      "role": "command",
+      "cost": 11500,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_stability": 22.63,
+      "atom_focus": 18.97,
+      "atom_frequency": 1.37,
+      "atom_information": 18.17,
+      "atom_cohesion": 9.03,
+      "atom_energy": 6.23,
+      "atom_will": 17.43,
+      "atom_mass": 3.43,
+      "atom_volatility": 1.37,
+      "atom_aether": 1.37
+    },
+    "source_universe": "void_reckoning",
+    "description": "Primeval_Sentinels command_vehicle (ground). Tier 4 Strategic Asset.",
+    "abilities": [
+      "Ability_Sensor_Sweep",
+      "Ability_Tracking_Lock",
+      "Ability_Shield_Regen"
+    ],
+    "traits": [
+      "Cautious Commander",
+      "Master-Crafted",
+      "Veteran Crew"
+    ],
+    "unit_class": "command_vehicle",
+    "domain": "ground",
+    "special_mechanics": {
+      "star-lattice_teleport": {
+        "range": "infinite",
+        "cooldown": 5,
+        "description": "Can traverse the Star-Lattice instantly."
+      }
+    },
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "primeval_sentinels_base_information_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "primeval_sentinels_base_information_weapon_1_M"
+      }
+    ]
+  },
+  {
+    "name": "Primeval_Sentinels Wraith Lord Titan Walker",
+    "blueprint_id": "primeval_sentinels_titan_walker",
+    "type": "titan",
+    "faction": "Primeval_Sentinels",
+    "tier": 5,
+    "cost": 28749,
+    "upkeep": 2874,
+    "base_stats": {
+      "hp": 8000,
+      "armor": 300,
+      "damage": 670,
+      "speed": 6,
+      "role": "titan",
+      "cost": 28749,
+      "range": 30
+    },
+    "elemental_dna": {
+      "atom_stability": 17.03,
+      "atom_focus": 32.97,
+      "atom_frequency": 1.37,
+      "atom_information": 1.37,
+      "atom_cohesion": 6.23,
+      "atom_energy": 20.23,
+      "atom_will": 3.43,
+      "atom_mass": 14.63,
+      "atom_volatility": 1.37,
+      "atom_aether": 1.37
+    },
+    "source_universe": "void_reckoning",
+    "description": "Primeval_Sentinels titan_walker (ground). Tier 5 Strategic Asset.",
+    "abilities": [
+      "Ability_Sensor_Sweep",
+      "Ability_Plasma_Burst",
+      "Ability_Tracking_Lock",
+      "Ability_Fortify_Position",
+      "Ability_Overcharge",
+      "Ability_Shield_Regen"
+    ],
+    "traits": [
+      "Master-Crafted",
+      "Veteran Crew"
+    ],
+    "unit_class": "titan_walker",
+    "domain": "ground",
+    "special_mechanics": {
+      "star-lattice_teleport": {
+        "range": "infinite",
+        "cooldown": 5,
+        "description": "Can traverse the Star-Lattice instantly."
+      }
+    },
+    "components": [
+      {
+        "slot": "weapon_heavy",
+        "component": "primeval_sentinels_base_information_weapon_0_L"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "primeval_sentinels_base_information_weapon_0_L"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "primeval_sentinels_base_information_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "primeval_sentinels_base_information_weapon_1_M"
+      }
+    ]
+  },
+  {
+    "name": "Primeval_Sentinels Wraith Lord Siege Engine",
+    "blueprint_id": "primeval_sentinels_siege_engine",
+    "type": "titan",
+    "faction": "Primeval_Sentinels",
+    "tier": 5,
+    "cost": 31624,
+    "upkeep": 3162,
+    "base_stats": {
+      "hp": 7000,
+      "armor": 250,
+      "damage": 920,
+      "speed": 5,
+      "role": "titan",
+      "cost": 31624,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_stability": 11.43,
+      "atom_focus": 27.37,
+      "atom_frequency": 1.37,
+      "atom_information": 1.37,
+      "atom_cohesion": 3.43,
+      "atom_energy": 11.83,
+      "atom_will": 3.43,
+      "atom_mass": 14.63,
+      "atom_volatility": 23.77,
+      "atom_aether": 1.37
+    },
+    "source_universe": "void_reckoning",
+    "description": "Primeval_Sentinels siege_engine (ground). Tier 5 Strategic Asset.",
+    "abilities": [
+      "Ability_Tracking_Lock",
+      "Ability_Fortify_Position",
+      "Ability_Sensor_Sweep",
+      "Ability_Torpedo_Salvo"
+    ],
+    "traits": [
+      "Master-Crafted",
+      "Reckless Pilot",
+      "Veteran Crew"
+    ],
+    "unit_class": "siege_engine",
+    "domain": "ground",
+    "special_mechanics": {
+      "star-lattice_teleport": {
+        "range": "infinite",
+        "cooldown": 5,
+        "description": "Can traverse the Star-Lattice instantly."
+      }
+    },
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "primeval_sentinels_base_missile_weapon_7_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "primeval_sentinels_base_missile_weapon_8_M"
+      }
+    ]
+  },
+  {
+    "name": "Primeval_Sentinels Aspect Titan Mobile Fortress",
+    "blueprint_id": "primeval_sentinels_mobile_fortress",
+    "type": "strategic_asset",
+    "faction": "Primeval_Sentinels",
+    "tier": 6,
+    "cost": 69000,
+    "upkeep": 6900,
+    "base_stats": {
+      "hp": 20000,
+      "armor": 500,
+      "damage": 1020,
+      "speed": 4,
+      "role": "strategic_asset",
+      "cost": 69000,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_stability": 17.03,
+      "atom_focus": 13.37,
+      "atom_frequency": 1.37,
+      "atom_information": 1.37,
+      "atom_cohesion": 14.63,
+      "atom_energy": 3.43,
+      "atom_will": 20.23,
+      "atom_mass": 25.83,
+      "atom_volatility": 1.37,
+      "atom_aether": 1.37
+    },
+    "source_universe": "void_reckoning",
+    "description": "Primeval_Sentinels mobile_fortress (ground). Tier 6 Strategic Asset.",
+    "abilities": [
+      "Ability_Sensor_Sweep",
+      "Ability_Tracking_Lock",
+      "Ability_Fortify_Position",
+      "Ability_Regeneration",
+      "Ability_Point_Defense",
+      "Ability_Flak_Barrage"
+    ],
+    "traits": [
+      "Cautious Commander",
+      "Master-Crafted",
+      "Regeneration",
+      "Veteran Crew"
+    ],
+    "unit_class": "mobile_fortress",
+    "domain": "ground",
+    "special_mechanics": {
+      "star-lattice_teleport": {
+        "range": "infinite",
+        "cooldown": 5,
+        "description": "Can traverse the Star-Lattice instantly."
+      }
+    },
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "primeval_sentinels_base_information_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "primeval_sentinels_base_information_weapon_1_M"
+      }
+    ]
+  }
+]

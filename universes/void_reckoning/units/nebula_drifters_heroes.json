@@ -1,0 +1,104 @@
+[
+  {
+    "name": "Void Prince",
+    "blueprint_id": "nebula_drifters_void_prince",
+    "type": "hero",
+    "faction": "Nebula_Drifters",
+    "tier": 1,
+    "cost": 11000,
+    "base_stats": {
+      "role": "hero",
+      "tier": 1,
+      "hp": 300,
+      "armor": 50,
+      "damage": 250,
+      "speed": 20,
+      "cost": 11000,
+      "keywords": "hero unique hero tier5"
+    },
+    "elemental_dna": {
+      "atom_mass": 0.0,
+      "atom_energy": 20.0,
+      "atom_cohesion": 0.0,
+      "atom_volatility": 20.0,
+      "atom_stability": 0.0,
+      "atom_focus": 0.0,
+      "atom_frequency": 60.0,
+      "atom_aether": 0.0,
+      "atom_will": 0.0,
+      "atom_information": 0.0
+    },
+    "source_universe": "void_reckoning",
+    "description": "Master of the Hit and Run.",
+    "hero": true,
+    "unique": true,
+    "traits": [
+      "Trait_Anti_Infantry",
+      "Trait_Jump_Pack",
+      "Trait_Fleet",
+      "Trait_Deep_Strike"
+    ],
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "upkeep": 1100,
+    "universal_stats": {
+      "hull_structural_integrity": 3000.0,
+      "armor_kinetic_resistance": 100.0,
+      "weapon_kinetic_damage": 375.0,
+      "mobility_speed_tactical": 40.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "Shadow Baron",
+    "blueprint_id": "nebula_drifters_shadow_baron",
+    "type": "hero",
+    "faction": "Nebula_Drifters",
+    "tier": 4,
+    "cost": 7000,
+    "base_stats": {
+      "role": "commander",
+      "tier": 4,
+      "hp": 200,
+      "armor": 40,
+      "damage": 150,
+      "speed": 15,
+      "cost": 7000,
+      "keywords": "hero unique commander tier4"
+    },
+    "elemental_dna": {
+      "atom_mass": 0.0,
+      "atom_energy": 0.0,
+      "atom_cohesion": 0.0,
+      "atom_volatility": 0.0,
+      "atom_stability": 0.0,
+      "atom_focus": 30.0,
+      "atom_frequency": 50.0,
+      "atom_aether": 20.0,
+      "atom_will": 0.0,
+      "atom_information": 0.0
+    },
+    "source_universe": "void_reckoning",
+    "description": "Stealth fleet commander.",
+    "hero": true,
+    "unique": true,
+    "traits": [
+      "Trait_Infiltrate",
+      "Trait_Stealth",
+      "Trait_Fleet",
+      "Trait_Deep_Strike"
+    ],
+    "unit_class": "command_vehicle",
+    "domain": "ground",
+    "upkeep": 700,
+    "universal_stats": {
+      "hull_structural_integrity": 2000.0,
+      "armor_kinetic_resistance": 80.0,
+      "weapon_kinetic_damage": 225.0,
+      "mobility_speed_tactical": 30.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  }
+]

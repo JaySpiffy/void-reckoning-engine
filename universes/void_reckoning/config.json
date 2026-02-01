@@ -1,0 +1,39 @@
+{
+    "name": "void_reckoning",
+    "description": "Original IP Universe: The Void Reckoning. A universe torn by Aether Rifts where faith and physics collide.",
+    "modules": {
+        "ai_personalities": "universes.void_reckoning.ai_personalities",
+        "combat_rules": "universes.void_reckoning.combat_phases"
+    },
+    "version": "1.0.0",
+    "mechanics": {
+        "mechanic_flux_storms": true,
+        "label_flux_storms": "Aether Rifts",
+        "mechanic_morale": true,
+        "mechanic_slavery": false,
+        "mechanic_biogenics": false
+    },
+    "economy": {
+        "base_income_req": 800,
+        "base_income_prom": 100,
+        "starting_req": 5000
+    },
+    "factions": [
+        "Templars_of_the_Flux",
+        "Transcendent_Order",
+        "SteelBound_Syndicate",
+        "BioTide_Collective",
+        "Algorithmic_Hierarchy",
+        "Nebula_Drifters",
+        "Aurelian_Hegemony",
+        "VoidSpawn_Entities",
+        "ScrapLord_Marauders",
+        "Primeval_Sentinels"
+    ],
+    "paths": {
+        "factions": "factions",
+        "units": "units",
+        "tech": "technology",
+        "buildings": "buildings"
+    }
+}

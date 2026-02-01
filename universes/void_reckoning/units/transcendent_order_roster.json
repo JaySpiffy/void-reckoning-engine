@@ -1,0 +1,700 @@
+[
+  {
+    "name": "Acolyte",
+    "blueprint_id": "transcendent_order_acolyte",
+    "type": "infantry",
+    "faction": "Transcendent_Order",
+    "cost": 100,
+    "base_stats": {
+      "hp": 10,
+      "armor": 10,
+      "damage": 12,
+      "speed": 4,
+      "type": "infantry",
+      "cost": 100,
+      "tier": 1,
+      "range": 19
+    },
+    "universal_stats": {
+      "hull_structural_integrity": 100.0,
+      "armor_kinetic_resistance": 20.0,
+      "weapon_kinetic_damage": 18.0,
+      "mobility_speed_tactical": 8.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    },
+    "elemental_dna": {
+      "atom_mass": 6.23,
+      "atom_energy": 6.17,
+      "atom_cohesion": 1.23,
+      "atom_volatility": 2.47,
+      "atom_stability": 6.17,
+      "atom_focus": 2.47,
+      "atom_frequency": 2.47,
+      "atom_aether": 39.47,
+      "atom_will": 30.85,
+      "atom_information": 2.47
+    },
+    "source_universe": "void_reckoning",
+    "description": "Initiates who have begun the transition, glowing with inner light and wielding focused psychic bolts.",
+    "traits": [
+      "Trait_Fearless"
+    ],
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 10,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "transcendent_order_base_projectile_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Magus",
+    "blueprint_id": "transcendent_order_magus",
+    "type": "infantry",
+    "faction": "Transcendent_Order",
+    "cost": 300,
+    "base_stats": {
+      "hp": 25,
+      "armor": 30,
+      "damage": 27,
+      "speed": 4,
+      "type": "infantry",
+      "cost": 300,
+      "tier": 1,
+      "range": 19
+    },
+    "universal_stats": {
+      "hull_structural_integrity": 250.0,
+      "armor_kinetic_resistance": 60.0,
+      "weapon_kinetic_damage": 40.5,
+      "mobility_speed_tactical": 8.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    },
+    "elemental_dna": {
+      "atom_mass": 4.74,
+      "atom_energy": 4.62,
+      "atom_cohesion": 2.77,
+      "atom_volatility": 1.85,
+      "atom_stability": 4.62,
+      "atom_focus": 15.72,
+      "atom_frequency": 1.85,
+      "atom_aether": 29.61,
+      "atom_will": 23.12,
+      "atom_information": 11.1
+    },
+    "source_universe": "void_reckoning",
+    "description": "Fully ascended resonators who can crush enemy minds or shield allies with a thought.",
+    "traits": [
+      "Trait_Fearless"
+    ],
+    "abilities": [
+      "Ability_Resonant_Storm"
+    ],
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 30,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "transcendent_order_base_projectile_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Flux Skiff",
+    "blueprint_id": "transcendent_order_flux_skiff",
+    "type": "vehicle",
+    "faction": "Transcendent_Order",
+    "cost": 500,
+    "base_stats": {
+      "hp": 80,
+      "armor": 25,
+      "damage": 35,
+      "speed": 12,
+      "type": "vehicle",
+      "cost": 500,
+      "tier": 1,
+      "range": 19
+    },
+    "universal_stats": {
+      "hull_structural_integrity": 800.0,
+      "armor_kinetic_resistance": 50.0,
+      "weapon_kinetic_damage": 52.5,
+      "mobility_speed_tactical": 24.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    },
+    "elemental_dna": {
+      "atom_mass": 10.11,
+      "atom_energy": 5.62,
+      "atom_cohesion": 5.62,
+      "atom_volatility": 2.25,
+      "atom_stability": 5.62,
+      "atom_focus": 2.25,
+      "atom_frequency": 2.25,
+      "atom_aether": 35.94,
+      "atom_will": 28.09,
+      "atom_information": 2.25
+    },
+    "source_universe": "void_reckoning",
+    "description": "Anti-grav platforms that flicker in and out of reality, carrying troops through the Flux.",
+    "traits": [
+      "Trait_Fearless"
+    ],
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 50,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "transcendent_order_base_projectile_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Prism Tank",
+    "blueprint_id": "transcendent_order_prism_tank",
+    "type": "vehicle",
+    "faction": "Transcendent_Order",
+    "cost": 1200,
+    "base_stats": {
+      "hp": 250,
+      "armor": 75,
+      "damage": 110,
+      "speed": 6,
+      "type": "vehicle",
+      "cost": 1200,
+      "tier": 3,
+      "range": 24
+    },
+    "universal_stats": {
+      "hull_structural_integrity": 2500.0,
+      "armor_kinetic_resistance": 150.0,
+      "weapon_kinetic_damage": 165.0,
+      "mobility_speed_tactical": 12.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    },
+    "elemental_dna": {
+      "atom_mass": 16.28,
+      "atom_energy": 4.65,
+      "atom_cohesion": 13.95,
+      "atom_volatility": 1.86,
+      "atom_stability": 4.65,
+      "atom_focus": 1.86,
+      "atom_frequency": 1.86,
+      "atom_aether": 29.77,
+      "atom_will": 23.26,
+      "atom_information": 1.86
+    },
+    "source_universe": "void_reckoning",
+    "description": "A floating crystal monolith that focuses the collective will of its crew into a devastating beam.",
+    "traits": [
+      "Trait_Feel_No_Pain",
+      "Trait_Fearless"
+    ],
+    "unit_class": "battle_tank",
+    "domain": "ground",
+    "tier": 3,
+    "upkeep": 120,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "transcendent_order_base_projectile_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "transcendent_order_base_information_weapon_1_M"
+      }
+    ]
+  },
+  {
+    "name": "Construct",
+    "blueprint_id": "transcendent_order_construct",
+    "type": "vehicle",
+    "faction": "Transcendent_Order",
+    "cost": 900,
+    "base_stats": {
+      "hp": 180,
+      "armor": 45,
+      "damage": 72,
+      "speed": 5,
+      "type": "vehicle",
+      "cost": 900,
+      "tier": 1,
+      "range": 19
+    },
+    "universal_stats": {
+      "hull_structural_integrity": 1800.0,
+      "armor_kinetic_resistance": 90.0,
+      "weapon_kinetic_damage": 108.0,
+      "mobility_speed_tactical": 10.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    },
+    "elemental_dna": {
+      "atom_mass": 6.91,
+      "atom_energy": 5.85,
+      "atom_cohesion": 5.27,
+      "atom_volatility": 2.34,
+      "atom_stability": 5.85,
+      "atom_focus": 2.34,
+      "atom_frequency": 2.34,
+      "atom_aether": 37.49,
+      "atom_will": 29.27,
+      "atom_information": 2.34
+    },
+    "source_universe": "void_reckoning",
+    "description": "Transcendent_Order Walker unit. Auto-generated.",
+    "traits": [
+      "Trait_Fearless"
+    ],
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 90,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "transcendent_order_base_projectile_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Wisp",
+    "blueprint_id": "transcendent_order_wisp",
+    "type": "ship",
+    "faction": "Transcendent_Order",
+    "cost": 150,
+    "base_stats": {
+      "hp": 50,
+      "armor": 0,
+      "damage": 45,
+      "speed": 35,
+      "type": "ship",
+      "cost": 150,
+      "tier": 1,
+      "range": 24
+    },
+    "universal_stats": {
+      "hull_structural_integrity": 500.0,
+      "armor_kinetic_resistance": 0.0,
+      "weapon_kinetic_damage": 67.5,
+      "mobility_speed_tactical": 70.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    },
+    "elemental_dna": {
+      "atom_mass": 6.16,
+      "atom_energy": 5.87,
+      "atom_cohesion": 0.0,
+      "atom_volatility": 2.35,
+      "atom_stability": 5.87,
+      "atom_focus": 2.35,
+      "atom_frequency": 8.21,
+      "atom_aether": 37.51,
+      "atom_will": 29.33,
+      "atom_information": 2.35
+    },
+    "source_universe": "void_reckoning",
+    "description": "Transcendent_Order Fighter unit. Auto-generated.",
+    "traits": [
+      "Trait_Fearless"
+    ],
+    "unit_class": "fighter",
+    "domain": "space",
+    "tier": 1,
+    "upkeep": 15,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "transcendent_order_base_projectile_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Lantern Class",
+    "blueprint_id": "transcendent_order_lantern_class",
+    "type": "ship",
+    "faction": "Transcendent_Order",
+    "cost": 2000,
+    "base_stats": {
+      "hp": 800,
+      "armor": 25,
+      "damage": 290,
+      "speed": 15,
+      "type": "ship",
+      "cost": 2000,
+      "tier": 2,
+      "range": 24
+    },
+    "universal_stats": {
+      "hull_structural_integrity": 8000.0,
+      "armor_kinetic_resistance": 50.0,
+      "weapon_kinetic_damage": 435.0,
+      "mobility_speed_tactical": 30.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    },
+    "elemental_dna": {
+      "atom_mass": 10.4,
+      "atom_energy": 5.78,
+      "atom_cohesion": 2.89,
+      "atom_volatility": 2.31,
+      "atom_stability": 5.78,
+      "atom_focus": 2.31,
+      "atom_frequency": 2.31,
+      "atom_aether": 37.01,
+      "atom_will": 28.9,
+      "atom_information": 2.31
+    },
+    "source_universe": "void_reckoning",
+    "description": "Transcendent_Order Frigate unit. Auto-generated.",
+    "traits": [
+      "Trait_Fearless"
+    ],
+    "unit_class": "frigate",
+    "domain": "space",
+    "tier": 2,
+    "upkeep": 200,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "transcendent_order_base_projectile_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "transcendent_order_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "transcendent_order_base_projectile_weapon_0_S"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "transcendent_order_base_projectile_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Beacon Class",
+    "blueprint_id": "transcendent_order_beacon_class",
+    "type": "ship",
+    "faction": "Transcendent_Order",
+    "cost": 8000,
+    "base_stats": {
+      "hp": 3000,
+      "armor": 75,
+      "damage": 980,
+      "speed": 8,
+      "type": "ship",
+      "cost": 8000,
+      "range": 30
+    },
+    "universal_stats": {
+      "hull_structural_integrity": 30000.0,
+      "armor_kinetic_resistance": 150.0,
+      "weapon_kinetic_damage": 1470.0,
+      "mobility_speed_tactical": 16.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    },
+    "elemental_dna": {
+      "atom_mass": 19.51,
+      "atom_energy": 4.88,
+      "atom_cohesion": 7.32,
+      "atom_volatility": 1.95,
+      "atom_stability": 4.88,
+      "atom_focus": 1.95,
+      "atom_frequency": 1.95,
+      "atom_aether": 31.22,
+      "atom_will": 24.39,
+      "atom_information": 1.95
+    },
+    "source_universe": "void_reckoning",
+    "description": "Transcendent_Order Cruiser unit. Auto-generated.",
+    "traits": [
+      "Trait_Fearless"
+    ],
+    "unit_class": "cruiser",
+    "domain": "space",
+    "upkeep": 800,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "transcendent_order_base_projectile_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "transcendent_order_base_projectile_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "transcendent_order_base_projectile_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "transcendent_order_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "transcendent_order_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "transcendent_order_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "transcendent_order_base_projectile_weapon_0_L"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "transcendent_order_base_projectile_weapon_0_L"
+      }
+    ]
+  },
+  {
+    "name": "Nexus Class",
+    "blueprint_id": "transcendent_order_nexus_class",
+    "type": "ship",
+    "faction": "Transcendent_Order",
+    "cost": 25000,
+    "base_stats": {
+      "hp": 12000,
+      "armor": 200,
+      "damage": 3530,
+      "speed": 4,
+      "type": "ship",
+      "cost": 25000,
+      "tier": 3,
+      "range": 36
+    },
+    "universal_stats": {
+      "hull_structural_integrity": 120000.0,
+      "armor_kinetic_resistance": 400.0,
+      "weapon_kinetic_damage": 5295.0,
+      "mobility_speed_tactical": 8.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    },
+    "elemental_dna": {
+      "atom_mass": 68.04,
+      "atom_energy": 1.39,
+      "atom_cohesion": 11.11,
+      "atom_volatility": 0.56,
+      "atom_stability": 1.39,
+      "atom_focus": 0.56,
+      "atom_frequency": 0.56,
+      "atom_aether": 8.89,
+      "atom_will": 6.94,
+      "atom_information": 0.56
+    },
+    "source_universe": "void_reckoning",
+    "description": "Transcendent_Order Battleship unit. Auto-generated.",
+    "traits": [
+      "Trait_Reinforced_Plating"
+    ],
+    "unit_class": "battleship",
+    "domain": "space",
+    "tier": 3,
+    "upkeep": 2500,
+    "components": [
+      {
+        "slot": "weapon_heavy",
+        "component": "transcendent_order_base_projectile_weapon_0_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "transcendent_order_base_projectile_weapon_0_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "transcendent_order_base_projectile_weapon_0_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "transcendent_order_base_projectile_weapon_0_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "transcendent_order_base_information_weapon_1_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "transcendent_order_base_information_weapon_1_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "transcendent_order_base_information_weapon_1_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "transcendent_order_base_information_weapon_1_XL"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "transcendent_order_base_projectile_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "transcendent_order_base_projectile_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "transcendent_order_base_projectile_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "transcendent_order_base_projectile_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "transcendent_order_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "transcendent_order_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "transcendent_order_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "transcendent_order_base_information_weapon_1_M"
+      }
+    ]
+  },
+  {
+    "name": "Aether Sage",
+    "blueprint_id": "transcendent_order_aether_sage",
+    "type": "hero",
+    "faction": "Transcendent_Order",
+    "tier": 1,
+    "cost": 10000,
+    "base_stats": {
+      "role": "hero",
+      "tier": 1,
+      "hp": 300,
+      "armor": 40,
+      "damage": 305,
+      "speed": 8,
+      "cost": 10000,
+      "keywords": "hero unique hero tier5",
+      "range": 19
+    },
+    "universal_stats": {
+      "hull_structural_integrity": 3000.0,
+      "armor_kinetic_resistance": 80.0,
+      "weapon_kinetic_damage": 457.5,
+      "mobility_speed_tactical": 16.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    },
+    "elemental_dna": {
+      "atom_mass": 0.0,
+      "atom_energy": 0.0,
+      "atom_cohesion": 0.0,
+      "atom_volatility": 0.0,
+      "atom_stability": 0.0,
+      "atom_focus": 30.0,
+      "atom_frequency": 0.0,
+      "atom_aether": 50.0,
+      "atom_will": 20.0,
+      "atom_information": 0.0
+    },
+    "source_universe": "void_reckoning",
+    "description": "Master of the Flux and Resonant arts.",
+    "hero": true,
+    "unique": true,
+    "traits": [
+      "Trait_Fearless"
+    ],
+    "abilities": [
+      "Ability_Psychic_Barrier",
+      "Ability_Soul_Drain",
+      "Ability_Psychic_Storm",
+      "Ability_Flux_Jump",
+      "Ability_Aether_Lance",
+      "Ability_Prescience"
+    ],
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "upkeep": 1000,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "transcendent_order_base_projectile_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Mind-Weaver",
+    "blueprint_id": "transcendent_order_mind_weaver",
+    "type": "hero",
+    "faction": "Transcendent_Order",
+    "tier": 1,
+    "cost": 6000,
+    "base_stats": {
+      "role": "specialist",
+      "tier": 1,
+      "hp": 200,
+      "armor": 30,
+      "damage": 105,
+      "speed": 6,
+      "cost": 6000,
+      "keywords": "hero unique specialist tier4",
+      "range": 19
+    },
+    "universal_stats": {
+      "hull_structural_integrity": 2000.0,
+      "armor_kinetic_resistance": 60.0,
+      "weapon_kinetic_damage": 157.5,
+      "mobility_speed_tactical": 12.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    },
+    "elemental_dna": {
+      "atom_mass": 0.0,
+      "atom_energy": 0.0,
+      "atom_cohesion": 0.0,
+      "atom_volatility": 0.0,
+      "atom_stability": 0.0,
+      "atom_focus": 40.0,
+      "atom_frequency": 0.0,
+      "atom_aether": 0.0,
+      "atom_will": 20.0,
+      "atom_information": 40.0
+    },
+    "source_universe": "void_reckoning",
+    "description": "Telepathic controller of enemies.",
+    "hero": true,
+    "unique": true,
+    "traits": [
+      "Trait_Fearless"
+    ],
+    "abilities": [
+      "Ability_Flux_Jump",
+      "Ability_Aether_Lance",
+      "Ability_Mind_Control",
+      "Ability_Psychic_Barrier"
+    ],
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "upkeep": 600,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "transcendent_order_base_projectile_weapon_0_S"
+      }
+    ]
+  }
+]

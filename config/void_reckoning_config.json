@@ -1,0 +1,152 @@
+{
+    "_help": {
+        "mode": "Execution mode: 'single' (one universe) or 'multi' (parallel universes).",
+        "description": "Configuration usage for Void Reckoning universe."
+    },
+    "mode": "multi",
+    "sandbox_mode": true,
+    "procedural_faction_limit": 0,
+    "campaign": {
+        "turns": 500,
+        "num_systems": 20,
+        "min_planets": 10,
+        "max_planets": 10,
+        "combat_rounds": 2000,
+        "rounds_per_turn": 2000
+    },
+    "combat": {
+        "real_time_headless": true,
+        "rounds_per_turn": 2000
+    },
+    "economy": {
+        "base_income_req": 2000000,
+        "base_income_prom": 1500,
+        "colonization_cost": 0,
+        "starting_requisition": 500000000000
+    },
+    "units": {
+        "max_fleet_size": 400,
+        "max_land_army_size": 100
+    },
+    "mechanics": {
+        "enable_diplomacy": true,
+        "enable_portals": true,
+        "enable_weather": true,
+        "weather_config": {
+            "enabled": true,
+            "fluctuation_magnitude": 0.2,
+            "eruption_threshold": 0.15,
+            "subsidence_threshold": 0.25,
+            "max_storm_percentage": 5.0,
+            "min_duration": 5,
+            "max_duration": 20,
+            "storm_chance_per_turn": 0.01
+        },
+        "ai_economy": {
+            "sustainability_check": true,
+            "note": "Modes are now managed internally by EconomyManager"
+        }
+    },
+    "reporting": {
+        "formats": [
+            "json",
+            "markdown"
+        ]
+    },
+    "universes": [
+        {
+            "name": "void_reckoning",
+            "enabled": true,
+            "processor_affinity": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7
+            ],
+            "num_runs": 1,
+            "economy": {
+                "base_income_req": 10000
+            }
+        }
+    ],
+    "multi_universe_settings": {
+        "sync_turns": false,
+        "cross_universe_events": false,
+        "aggregate_reports": true
+    },
+    "gpu": {
+        "_help": {
+            "enabled": "Enable GPU acceleration (requires CuPy and CUDA)",
+            "selection_strategy": "GPU selection strategy: 'auto', 'first', 'most_vram', 'most_cores', or 'specific'",
+            "specific_gpu_id": "Specific GPU device ID to use (only when selection_strategy is 'specific')",
+            "multi_gpu_enabled": "Enable multi-GPU mode for parallel processing",
+            "multi_gpu_device_ids": "List of GPU device IDs for multi-GPU mode (null = use all available)",
+            "batch_size_override": "Override automatic batch size (null = auto-detect based on GPU)",
+            "memory_pool_size_mb": "Memory pool size in MB (null = auto-detect based on GPU VRAM)"
+        },
+        "enabled": true,
+        "selection_strategy": "auto",
+        "specific_gpu_id": 0,
+        "multi_gpu_enabled": false,
+        "multi_gpu_device_ids": null,
+        "batch_size_override": 4096,
+        "memory_pool_size_mb": null,
+        "gpu_profiles": {
+            "RTX_3060TI": {
+                "cuda_cores": 12288,
+                "vram_gb": 24,
+                "compute_capability": [
+                    8,
+                    9
+                ],
+                "memory_bandwidth_gbps": 608.0,
+                "recommended_batch_size": 2048,
+                "max_batch_size": 8192,
+                "memory_pool_size_mb": 20480
+            },
+            "RTX_5070TI": {
+                "cuda_cores": 8960,
+                "vram_gb": 16,
+                "compute_capability": [
+                    10,
+                    0
+                ],
+                "memory_bandwidth_gbps": 896.0,
+                "recommended_batch_size": 4096,
+                "max_batch_size": 8192,
+                "memory_pool_size_mb": 14336
+            },
+            "default": {
+                "cuda_cores": 0,
+                "vram_gb": 0,
+                "compute_capability": [
+                    0,
+                    0
+                ],
+                "memory_bandwidth_gbps": 0.0,
+                "recommended_batch_size": 512,
+                "max_batch_size": 2048,
+                "memory_pool_size_mb": 8192
+            }
+        }
+    },
+    "simulation": {
+        "max_workers": 8,
+        "debug_mode": false,
+        "save_interval": 50,
+        "output_dir": "reports/void_reckoning_sim",
+        "log_level": "INFO",
+        "random_seed": null,
+        "faction_instances": 1,
+        "enable_mayhem": false
+    },
+    "performance": {
+        "logging_level": "summary",
+        "log_interval": 10,
+        "profile_methods": false
+    }
+}

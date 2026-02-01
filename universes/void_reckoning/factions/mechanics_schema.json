@@ -1,0 +1,38 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "additionalProperties": {
+        "type": "object",
+        "required": [
+            "id",
+            "name",
+            "faction_affinity"
+        ],
+        "properties": {
+            "id": {
+                "type": "string"
+            },
+            "name": {
+                "type": "string"
+            },
+            "description": {
+                "type": "string"
+            },
+            "faction_affinity": {
+                "type": "string"
+            },
+            "modifiers": {
+                "type": "object"
+            },
+            "category": {
+                "type": "string",
+                "enum": [
+                    "resource",
+                    "combat",
+                    "economy",
+                    "passive"
+                ]
+            }
+        }
+    }
+}

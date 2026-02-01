@@ -1,0 +1,29 @@
+{
+    "server": {
+        "host": "localhost",
+        "port": 5000,
+        "debug": false
+    },
+    "streaming": {
+        "buffer_size": 1000,
+        "metrics_window_seconds": 60,
+        "update_interval_ms": 2000
+    },
+    "visualization": {
+        "max_data_points": 100,
+        "faction_colors": {
+            "Hegemony": "#FFD700",
+            "Chaos": "#8B0000",
+            "Aether-Kin": "#4169E1",
+            "Marauders": "#228B22",
+            "Tau": "#00CED1",
+            "Hierarchs": "#32CD32",
+            "Bio-Morphs": "#8B008B"
+        },
+        "heatmap_grid_size": 10
+    },
+    "cache": {
+        "enabled": true,
+        "ttl_seconds": 60
+    }
+}

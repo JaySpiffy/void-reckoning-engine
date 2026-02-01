@@ -1,0 +1,129 @@
+.item {
+    display: flex;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+    transition: all 0.2s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.item:hover {
+    background: rgba(255, 255, 255, 0.06);
+    transform: translateX(2px);
+}
+
+.acknowledged {
+    opacity: 0.6;
+}
+
+.severityBar {
+    width: 4px;
+    flex-shrink: 0;
+}
+
+.content {
+    flex: 1;
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.topRow {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.25rem;
+}
+
+.badge {
+    font-size: 0.65rem;
+    font-weight: bold;
+    padding: 1px 6px;
+    border-radius: 2px;
+}
+
+.ruleName {
+    font-size: 0.75rem;
+    color: #8892b0;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.timestamp {
+    font-size: 0.7rem;
+    color: #647181;
+    margin-left: auto;
+}
+
+.message {
+    font-size: 0.9rem;
+    color: #e0e6ed;
+    line-height: 1.4;
+}
+
+.context {
+    font-size: 0.7rem;
+    color: #647181;
+    font-style: italic;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    padding-right: 0.75rem;
+}
+
+.ackButton {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #8892b0;
+    font-size: 0.65rem;
+    padding: 2px 8px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.ackButton:hover {
+    border-color: #647181;
+    color: #e0e6ed;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Severity Colors */
+.info {
+    background-color: #33b5e5;
+    color: white;
+}
+
+.warning {
+    background-color: #ffbb33;
+    color: black;
+}
+
+.error {
+    background-color: #ff8800;
+    color: white;
+}
+
+.critical {
+    background-color: #ff4444;
+    color: white;
+}
+
+.severityBar.info {
+    background-color: #33b5e5;
+}
+
+.severityBar.warning {
+    background-color: #ffbb33;
+}
+
+.severityBar.error {
+    background-color: #ff8800;
+}
+
+.severityBar.critical {
+    background-color: #ff4444;
+}

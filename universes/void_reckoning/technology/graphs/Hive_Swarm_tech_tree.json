@@ -1,0 +1,125 @@
+{
+  "nodes": [
+    {
+      "id": "Tech_BioTide_Collective_Basic Doctrine",
+      "label": "Basic Doctrine",
+      "tier": 1,
+      "cost": 1000
+    },
+    {
+      "id": "Tech_BioTide_Collective_Logistics",
+      "label": "Logistics",
+      "tier": 1,
+      "cost": 1000
+    },
+    {
+      "id": "Tech_BioTide_Collective_Industrial Forging",
+      "label": "Industrial Forging",
+      "tier": 1,
+      "cost": 800
+    },
+    {
+      "id": "Tech_BioTide_Collective_Resource Extraction",
+      "label": "Resource Extraction",
+      "tier": 1,
+      "cost": 800
+    },
+    {
+      "id": "Tech_BioTide_Collective_Heavy Armor",
+      "label": "Heavy Armor",
+      "tier": 2,
+      "cost": 2500
+    },
+    {
+      "id": "Tech_BioTide_Collective_Advanced Ballistics",
+      "label": "Advanced Ballistics",
+      "tier": 2,
+      "cost": 2500
+    },
+    {
+      "id": "Tech_BioTide_Collective_Flux Navigation",
+      "label": "Flux Navigation",
+      "tier": 2,
+      "cost": 3000
+    },
+    {
+      "id": "Tech_BioTide_Collective_Mega Construction",
+      "label": "Mega Construction",
+      "tier": 2,
+      "cost": 2500
+    },
+    {
+      "id": "Tech_BioTide_Collective_Trade Networks",
+      "label": "Trade Networks",
+      "tier": 2,
+      "cost": 2000
+    },
+    {
+      "id": "Tech_BioTide_Collective_Capital Ships",
+      "label": "Capital Ships",
+      "tier": 3,
+      "cost": 5000
+    },
+    {
+      "id": "Tech_BioTide_Collective_Titan Integration",
+      "label": "Titan Integration",
+      "tier": 3,
+      "cost": 6000
+    },
+    {
+      "id": "Tech_BioTide_Collective_Planetary Shielding",
+      "label": "Planetary Shielding",
+      "tier": 3,
+      "cost": 4500
+    },
+    {
+      "id": "Tech_BioTide_Collective_Ascension Protocol",
+      "label": "Ascension Protocol",
+      "tier": 3,
+      "cost": 8000
+    },
+    {
+      "id": "Tech_BioTide_Collective_Spawning Pool",
+      "label": "Construction: Spawning Pool",
+      "tier": 1,
+      "cost": 70
+    },
+    {
+      "id": "Tech_BioTide_Collective_Gestation Chamber",
+      "label": "Construction: Gestation Chamber",
+      "tier": 2,
+      "cost": 180
+    },
+    {
+      "id": "Tech_BioTide_Collective_Digestion Pool",
+      "label": "Construction: Digestion Pool",
+      "tier": 1,
+      "cost": 60
+    },
+    {
+      "id": "Tech_BioTide_Collective_Synaptic Node",
+      "label": "Construction: Synaptic Node",
+      "tier": 1,
+      "cost": 100
+    },
+    {
+      "id": "Tech_BioTide_Collective_Spore Chimney",
+      "label": "Construction: Spore Chimney",
+      "tier": 1,
+      "cost": 45
+    },
+    {
+      "id": "Tech_BioTide_Collective_Bio-Ship Anchor",
+      "label": "Construction: Bio-Ship Anchor",
+      "tier": 3,
+      "cost": 350
+    },
+    {
+      "id": "Tech_BioTide_Collective_Digestion Nexus",
+      "label": "Construction: Digestion Nexus",
+      "tier": 3,
+      "cost": 500
+    }
+  ],
+  "edges": []
+}

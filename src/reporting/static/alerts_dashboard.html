@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Warhammer 40k Alert Dashboard</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.2/socket.io.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #121212;
+            color: #e0e0e0;
+            margin: 0;
+        }
+
+        header {
+            background: #1e1e1e;
+            padding: 20px;
+            border-bottom: 2px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .sidebar {
+            background: #1e1e1e;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .card {
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+
+        h1,
+        h2 {
+            margin-top: 0;
+            color: #fff;
+        }
+
+        .alert-item {
+            padding: 10px;
+            border-left: 5px solid #666;
+            background: #2a2a2a;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+
+        .alert-info {
+            border-left-color: #2196f3;
+        }
+
+        .alert-warning {
+            border-left-color: #ffeb3b;
+        }
+
+        .alert-error {
+            border-left-color: #f44336;
+        }
+
+        .alert-critical {
+            border-left-color: #d32f2f;
+            background: #3d1a1a;
+        }
+
+        .severity-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-right: 10px;
+        }
+
+        .badge-info {
+            background: #2196f3;
+            color: white;
+        }
+
+        .badge-warning {
+            background: #ffeb3b;
+            color: black;
+        }
+
+        .badge-error {
+            background: #f44336;
+            color: white;
+        }
+
+        .badge-critical {
+            background: #d32f2f;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Warhammer 40k Alert Dashboard</h1>
+        <div id="connection-status">Connecting...</div>
+    </header>
+    <div class="container">
+        <div class="sidebar">
+            <h2>Statistics</h2>
+            <canvas id="statsChart"></canvas>
+            <div id="stat-list"></div>
+        </div>
+        <div class="main-content">
+            <div class="card">
+                <h2>Real-time Alert Feed</h2>
+                <div id="alert-feed"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const socket = io('http://localhost:5000');
+        const feed = document.getElementById('alert-feed');
+
+        socket.on('connect', () => {
+            document.getElementById('connection-status').innerText = 'Connected';
+            document.getElementById('connection-status').style.color = '#4caf50';
+        });
+
+        socket.on('alert_triggered', (alert) => {
+            const div = document.createElement('div');
+            div.className = `alert-item alert-${alert.severity}`;
+            div.innerHTML = `
+                <div>
+                    <span class="severity-badge badge-${alert.severity}">${alert.severity}</span>
+                    <strong>${alert.rule_name}</strong> - ${new Date(alert.timestamp).toLocaleTimeString()}
+                </div>
+                <div style="margin-top: 5px;">${alert.message}</div>
+            `;
+            feed.prepend(div);
+        });
+
+        // Initialize Stats Chart
+        const ctx = document.getElementById('statsChart').getContext('2d');
+        const statsChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Info', 'Warning', 'Error', 'Critical'],
+                datasets: [{
+                    data: [0, 0, 0, 0],
+                    backgroundColor: ['#2196f3', '#ffeb3b', '#f44336', '#d32f2f']
+                }]
+            }
+        });
+    </script>
+</body>
+
+</html>

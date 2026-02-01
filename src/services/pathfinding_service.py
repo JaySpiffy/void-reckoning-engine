@@ -1,0 +1,187 @@
+import heapq
+import functools
+from typing import List, Tuple, Optional, Any, Set, Dict
+
+from src.utils.profiler import profile_method
+
+class PathfindingService:
+    """
+    Service for calculating paths between GraphNodes using A*.
+    Manages caching and path validation.
+    """
+    def __init__(self):
+        self._path_cache = {} # (start_node, end_node) -> (path, cost)
+        self._failed_paths_logged_this_turn = set()
+        
+        # Telemetry Stats
+        self._stats = {"hits": 0, "misses": 0, "requests": 0}
+
+    @property
+    def cache_stats(self):
+        return self._stats.copy()
+
+    def clear_cache(self):
+        """Clears the path cache. Should be called at the start of a turn or when topology changes."""
+        self._path_cache = {}
+        self._failed_paths_logged_this_turn = set()
+        # Reset stats or keep cumulative? Usually cumulative per turn/session is better for analysis.
+        # Let's keep cumulative.
+
+    def invalidate_portal_paths(self):
+        """Clears paths involving portals (Phase 23)."""
+        # Simple approach: clear all, or filter. Since this happens rarely (portal changes), full clear is safer/easier.
+        self.clear_cache()
+
+    def register_with_cache_manager(self, cache_manager):
+        """Registers the path cache with the provided CacheManager."""
+        cache_manager.register_cache(self.clear_cache, "pathfinding")
+
+    @profile_method
+    def find_cached_path(self, start_node: Any, end_node: Any, turn: int = 0, context: str = None) -> Tuple[Optional[List[Any]], float, Dict[str, Any]]:
+        """
+        Cached wrapper for find_path. 
+        Context (e.g., universe name) is included in cache key (Comment 3).
+        """
+        self._stats["requests"] += 1
+        
+        cache_key = (start_node, end_node, context)
+        if cache_key in self._path_cache:
+            self._stats["hits"] += 1
+            return self._path_cache[cache_key]
+            
+        self._stats["misses"] += 1
+        result = self.find_path(start_node, end_node)
+        self._path_cache[cache_key] = result
+        return result
+
+    @profile_method
+    def find_path(self, start_node: Any, end_node: Any, max_cost: float = float('inf')) -> Tuple[Optional[List[Any]], float, Dict[str, Any]]:
+        """
+        Returns (list of nodes, total_cost, metadata) or (None, infinity, {}) if no path.
+        Uses optimized A* algorithm with Euclidean heuristic and informed fallback.
+        """
+        if start_node == end_node:
+            return [start_node], 0, {}
+
+        def _heuristic(a, b):
+            # 1. Coordinate-based Euclidean (Admissible)
+            if hasattr(a, 'position') and hasattr(b, 'position') and a.position and b.position:
+                return ((a.position[0] - b.position[0])**2 + (a.position[1] - b.position[1])**2)**0.5
+            
+            # 2. Informed Fallback (Hop-based/Scaled Distance)
+            # If we don't have coords, we use a conservative estimate to guide simulation.
+            # Using 1.0 as a floor for distance between unique nodes.
+            return 1.0 if a != b else 0
+
+        # Priority Queue: (f_score, node)
+        h_start = _heuristic(start_node, end_node)
+        queue = [(h_start, start_node)]
+        
+        g_score = {start_node: 0}
+        path_map = {start_node: None}
+        closed_set = set() # Track fully expanded nodes
+
+        best_goal_cost = float('inf')
+
+        while queue:
+            f_score, current_node = heapq.heappop(queue)
+
+            if current_node == end_node:
+                best_goal_cost = g_score[current_node]
+                break
+
+            # Pruning based on best known goal or maximum allowed cost
+            if f_score >= best_goal_cost or g_score[current_node] > max_cost:
+                continue
+
+            if current_node in closed_set:
+                continue
+            
+            closed_set.add(current_node)
+            
+            # [SAFETY] Prevent Infinite Loop / OOM
+            if len(closed_set) > 50000:
+                # Log failure?
+                # We return None path, effectively failing pathfinding.
+                return (None, float('inf'), {})
+
+            if not hasattr(current_node, 'edges'):
+                continue
+                
+            for edge in current_node.edges:
+                if hasattr(edge, 'is_traversable') and not edge.is_traversable():
+                    continue
+                elif hasattr(edge, 'blocked') and edge.blocked:
+                     continue
+
+                neighbor = edge.target
+                tentative_g_score = g_score[current_node] + edge.distance
+
+                if tentative_g_score < g_score.get(neighbor, float('inf')):
+                    g_score[neighbor] = tentative_g_score
+                    path_map[neighbor] = current_node
+                    
+                    h_score = _heuristic(neighbor, end_node)
+                    f_neighbor = tentative_g_score + h_score
+                    
+                    # Only add to queue if it could potentially beat our best goal cost
+                    if f_neighbor < best_goal_cost:
+                        heapq.heappush(queue, (f_neighbor, neighbor))
+
+        if best_goal_cost != float('inf'):
+            path = []
+            curr = end_node
+            portal_metadata = {}
+            
+            while curr:
+                path.append(curr)
+                if hasattr(curr, 'is_portal') and curr.is_portal():
+                    portal_metadata["requires_handoff"] = True
+                    portal_metadata["portal_node"] = curr
+                    portal_metadata["dest_universe"] = curr.metadata.get("portal_dest_universe")
+                    portal_metadata["portal_id"] = curr.metadata.get("portal_id")
+                    portal_metadata["exit_coords"] = curr.metadata.get("portal_dest_coords")
+                    
+                curr = path_map[curr]
+            
+            path = path[::-1] # Reverse first to get correct order Start -> ...
+            
+            if portal_metadata.get("requires_handoff"):
+                p_node = portal_metadata["portal_node"]
+                if p_node in path:
+                     idx = path.index(p_node)
+                     path = path[:idx+1] # Truncate after portal
+                     # Cost in A* is cumulative g_score
+                     if p_node in g_score:
+                         best_goal_cost = g_score[p_node]
+            
+            return (path, best_goal_cost, portal_metadata)
+        else:
+            return (None, float('inf'), {})
+
+    def describe_path(self, path: List[Any], metadata: Dict[str, Any]) -> str:
+        """
+        Returns a human-readable description of a path, including portal crossings.
+        """
+        if not path: return "No Path"
+        
+        desc = []
+        for node in path:
+            name = getattr(node, 'name', str(node))
+            if hasattr(node, 'is_portal') and node.is_portal():
+                dest = node.metadata.get("portal_dest_universe", "Unknown")
+                desc.append(f"[PORTAL -> {dest}]")
+            else:
+                desc.append(name)
+                
+        return " -> ".join(desc)
+
+    def log_path_failure(self, start_node: Any, end_node: Any) -> bool:
+        """
+        Returns True if this failure hasn't been logged this turn yet.
+        """
+        key = (getattr(start_node, 'id', str(start_node)), getattr(end_node, 'id', str(end_node)))
+        if key not in self._failed_paths_logged_this_turn:
+            self._failed_paths_logged_this_turn.add(key)
+            return True
+        return False

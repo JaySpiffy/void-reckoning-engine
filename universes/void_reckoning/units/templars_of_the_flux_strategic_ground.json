@@ -1,0 +1,262 @@
+[
+  {
+    "name": "Templars_of_the_Flux Saint's Fury Command Vehicle",
+    "blueprint_id": "templars_of_the_flux_command_vehicle",
+    "type": "command",
+    "faction": "Templars_of_the_Flux",
+    "tier": 4,
+    "cost": 20000,
+    "upkeep": 2000,
+    "base_stats": {
+      "hp": 2875,
+      "armor": 100,
+      "damage": 170,
+      "speed": 10,
+      "role": "command",
+      "cost": 20000,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_stability": 15.24,
+      "atom_focus": 7.26,
+      "atom_frequency": 1.43,
+      "atom_information": 18.93,
+      "atom_cohesion": 9.41,
+      "atom_energy": 6.49,
+      "atom_will": 26.48,
+      "atom_mass": 3.57,
+      "atom_volatility": 1.43,
+      "atom_aether": 9.76
+    },
+    "source_universe": "void_reckoning",
+    "description": "Templars_of_the_Flux command_vehicle (ground). Tier 4 Strategic Asset.",
+    "abilities": [
+      "Ability_Sensor_Sweep",
+      "Ability_Plasma_Burst",
+      "Ability_Tracking_Lock",
+      "Ability_Overcharge",
+      "Ability_Shield_Regen"
+    ],
+    "traits": [
+      "Cautious Commander",
+      "Master-Crafted",
+      "Veteran Crew"
+    ],
+    "unit_class": "command_vehicle",
+    "domain": "ground",
+    "special_mechanics": {
+      "morale_aura": {
+        "range": 500,
+        "bonus": 0.5,
+        "description": "Inspired by the Void Reckoning."
+      }
+    },
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "templars_of_the_flux_base_plasma_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "templars_of_the_flux_base_missile_weapon_1_M"
+      }
+    ]
+  },
+  {
+    "name": "Templars_of_the_Flux Holy Ark Titan Walker",
+    "blueprint_id": "templars_of_the_flux_titan_walker",
+    "type": "titan",
+    "faction": "Templars_of_the_Flux",
+    "tier": 5,
+    "cost": 50000,
+    "upkeep": 5000,
+    "base_stats": {
+      "hp": 9200,
+      "armor": 300,
+      "damage": 670,
+      "speed": 6,
+      "role": "titan",
+      "cost": 50000,
+      "range": 30
+    },
+    "elemental_dna": {
+      "atom_stability": 9.41,
+      "atom_focus": 21.83,
+      "atom_frequency": 1.43,
+      "atom_information": 1.43,
+      "atom_cohesion": 6.49,
+      "atom_energy": 21.07,
+      "atom_will": 11.91,
+      "atom_mass": 15.24,
+      "atom_volatility": 1.43,
+      "atom_aether": 9.76
+    },
+    "source_universe": "void_reckoning",
+    "description": "Templars_of_the_Flux titan_walker (ground). Tier 5 Strategic Asset.",
+    "abilities": [
+      "Ability_Overcharge",
+      "Ability_Shield_Regen",
+      "Ability_Plasma_Burst",
+      "Ability_Fortify_Position"
+    ],
+    "traits": [
+      "Master-Crafted",
+      "Veteran Crew"
+    ],
+    "unit_class": "titan_walker",
+    "domain": "ground",
+    "special_mechanics": {
+      "morale_aura": {
+        "range": 500,
+        "bonus": 0.5,
+        "description": "Inspired by the Void Reckoning."
+      }
+    },
+    "components": [
+      {
+        "slot": "weapon_heavy",
+        "component": "templars_of_the_flux_base_plasma_weapon_0_L"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "templars_of_the_flux_base_plasma_weapon_0_L"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "templars_of_the_flux_base_plasma_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "templars_of_the_flux_base_missile_weapon_1_M"
+      }
+    ]
+  },
+  {
+    "name": "Templars_of_the_Flux Eternal Wrath Siege Engine",
+    "blueprint_id": "templars_of_the_flux_siege_engine",
+    "type": "titan",
+    "faction": "Templars_of_the_Flux",
+    "tier": 5,
+    "cost": 55000,
+    "upkeep": 5500,
+    "base_stats": {
+      "hp": 8049,
+      "armor": 250,
+      "damage": 920,
+      "speed": 5,
+      "role": "titan",
+      "cost": 55000,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_stability": 3.57,
+      "atom_focus": 16.01,
+      "atom_frequency": 1.43,
+      "atom_information": 1.43,
+      "atom_cohesion": 3.57,
+      "atom_energy": 12.32,
+      "atom_will": 11.91,
+      "atom_mass": 15.24,
+      "atom_volatility": 24.76,
+      "atom_aether": 9.76
+    },
+    "source_universe": "void_reckoning",
+    "description": "Templars_of_the_Flux siege_engine (ground). Tier 5 Strategic Asset.",
+    "abilities": [
+      "Ability_Torpedo_Salvo",
+      "Ability_Tracking_Lock",
+      "Ability_Fortify_Position",
+      "Ability_Overcharge",
+      "Ability_Plasma_Burst"
+    ],
+    "traits": [
+      "Master-Crafted",
+      "Reckless Pilot",
+      "Veteran Crew"
+    ],
+    "unit_class": "siege_engine",
+    "domain": "ground",
+    "special_mechanics": {
+      "morale_aura": {
+        "range": 500,
+        "bonus": 0.5,
+        "description": "Inspired by the Void Reckoning."
+      }
+    },
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "templars_of_the_flux_base_plasma_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "templars_of_the_flux_base_missile_weapon_1_M"
+      }
+    ]
+  },
+  {
+    "name": "Templars_of_the_Flux Penitent Titan Mobile Fortress",
+    "blueprint_id": "templars_of_the_flux_mobile_fortress",
+    "type": "strategic_asset",
+    "faction": "Templars_of_the_Flux",
+    "tier": 6,
+    "cost": 120000,
+    "upkeep": 12000,
+    "base_stats": {
+      "hp": 23000,
+      "armor": 500,
+      "damage": 1020,
+      "speed": 4,
+      "role": "strategic_asset",
+      "cost": 120000,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_stability": 9.41,
+      "atom_focus": 1.43,
+      "atom_frequency": 1.43,
+      "atom_information": 1.43,
+      "atom_cohesion": 15.24,
+      "atom_energy": 3.57,
+      "atom_will": 29.39,
+      "atom_mass": 26.91,
+      "atom_volatility": 1.43,
+      "atom_aether": 9.76
+    },
+    "source_universe": "void_reckoning",
+    "description": "Templars_of_the_Flux mobile_fortress (ground). Tier 6 Strategic Asset.",
+    "abilities": [
+      "Ability_Plasma_Burst",
+      "Ability_Fortify_Position",
+      "Ability_Overcharge",
+      "Ability_Regeneration",
+      "Ability_Point_Defense",
+      "Ability_Flak_Barrage"
+    ],
+    "traits": [
+      "Cautious Commander",
+      "Master-Crafted",
+      "Regeneration",
+      "Veteran Crew"
+    ],
+    "unit_class": "mobile_fortress",
+    "domain": "ground",
+    "special_mechanics": {
+      "morale_aura": {
+        "range": 500,
+        "bonus": 0.5,
+        "description": "Inspired by the Void Reckoning."
+      }
+    },
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "templars_of_the_flux_base_plasma_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "templars_of_the_flux_base_missile_weapon_1_M"
+      }
+    ]
+  }
+]

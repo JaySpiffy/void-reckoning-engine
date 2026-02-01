@@ -1,0 +1,131 @@
+{
+  "nodes": [
+    {
+      "id": "Tech_Aurelian_Hegemony_Basic Doctrine",
+      "label": "Basic Doctrine",
+      "tier": 1,
+      "cost": 1000
+    },
+    {
+      "id": "Tech_Aurelian_Hegemony_Logistics",
+      "label": "Logistics",
+      "tier": 1,
+      "cost": 1000
+    },
+    {
+      "id": "Tech_Aurelian_Hegemony_Industrial Forging",
+      "label": "Industrial Forging",
+      "tier": 1,
+      "cost": 800
+    },
+    {
+      "id": "Tech_Aurelian_Hegemony_Resource Extraction",
+      "label": "Resource Extraction",
+      "tier": 1,
+      "cost": 800
+    },
+    {
+      "id": "Tech_Aurelian_Hegemony_Heavy Armor",
+      "label": "Heavy Armor",
+      "tier": 2,
+      "cost": 2500
+    },
+    {
+      "id": "Tech_Aurelian_Hegemony_Advanced Ballistics",
+      "label": "Advanced Ballistics",
+      "tier": 2,
+      "cost": 2500
+    },
+    {
+      "id": "Tech_Aurelian_Hegemony_Flux Navigation",
+      "label": "Flux Navigation",
+      "tier": 2,
+      "cost": 3000
+    },
+    {
+      "id": "Tech_Aurelian_Hegemony_Mega Construction",
+      "label": "Mega Construction",
+      "tier": 2,
+      "cost": 2500
+    },
+    {
+      "id": "Tech_Aurelian_Hegemony_Trade Networks",
+      "label": "Trade Networks",
+      "tier": 2,
+      "cost": 2000
+    },
+    {
+      "id": "Tech_Aurelian_Hegemony_Capital Ships",
+      "label": "Capital Ships",
+      "tier": 3,
+      "cost": 5000
+    },
+    {
+      "id": "Tech_Aurelian_Hegemony_Titan Integration",
+      "label": "Titan Integration",
+      "tier": 3,
+      "cost": 6000
+    },
+    {
+      "id": "Tech_Aurelian_Hegemony_Planetary Shielding",
+      "label": "Planetary Shielding",
+      "tier": 3,
+      "cost": 4500
+    },
+    {
+      "id": "Tech_Aurelian_Hegemony_Ascension Protocol",
+      "label": "Ascension Protocol",
+      "tier": 3,
+      "cost": 8000
+    },
+    {
+      "id": "Tech_Aurelian_Hegemony_Exterminatus",
+      "label": "Exterminatus",
+      "tier": 4,
+      "cost": 15000
+    },
+    {
+      "id": "Tech_Aurelian_Hegemony_Military Academy",
+      "label": "Construction: Military Academy",
+      "tier": 1,
+      "cost": 80
+    },
+    {
+      "id": "Tech_Aurelian_Hegemony_Arsenals of Sol",
+      "label": "Construction: Arsenals of Sol",
+      "tier": 2,
+      "cost": 220
+    },
+    {
+      "id": "Tech_Aurelian_Hegemony_Trade Hub",
+      "label": "Construction: Trade Hub",
+      "tier": 1,
+      "cost": 60
+    },
+    {
+      "id": "Tech_Aurelian_Hegemony_University",
+      "label": "Construction: University",
+      "tier": 1,
+      "cost": 100
+    },
+    {
+      "id": "Tech_Aurelian_Hegemony_Shield Generator",
+      "label": "Construction: Shield Generator",
+      "tier": 1,
+      "cost": 60
+    },
+    {
+      "id": "Tech_Aurelian_Hegemony_Orbital Shipyard",
+      "label": "Construction: Orbital Shipyard",
+      "tier": 3,
+      "cost": 450
+    },
+    {
+      "id": "Tech_Aurelian_Hegemony_Diplomatic Embassy",
+      "label": "Construction: Diplomatic Embassy",
+      "tier": 2,
+      "cost": 300
+    }
+  ],
+  "edges": []
+}

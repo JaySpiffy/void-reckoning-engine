@@ -1,0 +1,15 @@
+{
+    "description": "High Aether universe with unstable reality. Will and Aether are dominant.",
+    "atom_multipliers": {
+        "atom_aether": 1.5,
+        "atom_will": 1.2,
+        "atom_volatility": 1.3,
+        "atom_focus": 0.8,
+        "atom_stability": 0.9,
+        "atom_mass": 1.0,
+        "atom_energy": 1.0,
+        "atom_cohesion": 1.0,
+        "atom_information": 1.0,
+        "atom_frequency": 1.0
+    }
+}

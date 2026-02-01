@@ -1,0 +1,575 @@
+[
+  {
+    "name": "Exorcist (Plasma)",
+    "blueprint_id": "templars_of_the_flux_exorcist_plasma",
+    "type": "vehicle",
+    "faction": "Templars_of_the_Flux",
+    "tier": 1,
+    "cost": 600,
+    "base_stats": {
+      "role": "anti_air",
+      "tier": 1,
+      "hp": 120,
+      "armor": 40,
+      "damage": 47,
+      "cost": 720,
+      "keywords": "vehicle specialist aa",
+      "desc": "Specialized anti-aircraft vehicle.",
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 19.52173913043478,
+      "atom_energy": 8.869565217391303,
+      "atom_cohesion": 23.08695652173913,
+      "atom_volatility": 16.591304347826085,
+      "atom_stability": 8.869565217391303,
+      "atom_focus": 3.5478260869565217,
+      "atom_frequency": 3.5478260869565217,
+      "atom_aether": 3.5478260869565217,
+      "atom_will": 8.869565217391303,
+      "atom_information": 3.5478260869565217
+    },
+    "source_universe": "void_reckoning",
+    "description": "Specialized anti-aircraft vehicle. armed with high-energy plasma weaponry.",
+    "specialist": true,
+    "traits": [
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "upkeep": 60,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "templars_of_the_flux_base_plasma_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Exorcist (Melta)",
+    "blueprint_id": "templars_of_the_flux_exorcist_melta",
+    "type": "vehicle",
+    "faction": "Templars_of_the_Flux",
+    "tier": 1,
+    "cost": 600,
+    "base_stats": {
+      "role": "anti_air",
+      "tier": 1,
+      "hp": 120,
+      "armor": 40,
+      "damage": 44,
+      "cost": 660,
+      "keywords": "vehicle specialist aa",
+      "desc": "Specialized anti-aircraft vehicle.",
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 20.409090909090907,
+      "atom_energy": 18.363636363636363,
+      "atom_cohesion": 24.136363636363637,
+      "atom_volatility": 3.709090909090909,
+      "atom_stability": 9.272727272727273,
+      "atom_focus": 3.709090909090909,
+      "atom_frequency": 3.709090909090909,
+      "atom_aether": 3.709090909090909,
+      "atom_will": 9.272727272727273,
+      "atom_information": 3.709090909090909
+    },
+    "source_universe": "void_reckoning",
+    "description": "Specialized anti-aircraft vehicle. armed with short-range anti-armor thermal beams.",
+    "specialist": true,
+    "traits": [
+      "Trait_Damage_Reduction",
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "upkeep": 60,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "templars_of_the_flux_base_plasma_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Exorcist (Missile)",
+    "blueprint_id": "templars_of_the_flux_exorcist_missile",
+    "type": "vehicle",
+    "faction": "Templars_of_the_Flux",
+    "tier": 1,
+    "cost": 600,
+    "base_stats": {
+      "role": "anti_air",
+      "tier": 1,
+      "hp": 120,
+      "armor": 40,
+      "damage": 32,
+      "cost": 600,
+      "keywords": "vehicle specialist aa",
+      "desc": "Specialized anti-aircraft vehicle.",
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 29.500000000000004,
+      "atom_energy": 9.272727272727273,
+      "atom_cohesion": 24.136363636363637,
+      "atom_volatility": 3.709090909090909,
+      "atom_stability": 9.272727272727273,
+      "atom_focus": 3.709090909090909,
+      "atom_frequency": 3.709090909090909,
+      "atom_aether": 3.709090909090909,
+      "atom_will": 9.272727272727273,
+      "atom_information": 3.709090909090909
+    },
+    "source_universe": "void_reckoning",
+    "description": "Specialized anti-aircraft vehicle. equipped with long-range missile pods.",
+    "specialist": true,
+    "traits": [
+      "Trait_Damage_Reduction",
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "upkeep": 60,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "templars_of_the_flux_base_plasma_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Exorcist (Shield)",
+    "blueprint_id": "templars_of_the_flux_exorcist_shield",
+    "type": "vehicle",
+    "faction": "Templars_of_the_Flux",
+    "tier": 1,
+    "cost": 600,
+    "base_stats": {
+      "role": "anti_air",
+      "tier": 1,
+      "hp": 96,
+      "armor": 20,
+      "damage": 35,
+      "cost": 780,
+      "keywords": "vehicle specialist aa",
+      "desc": "Specialized anti-aircraft vehicle.",
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 18.708333333333332,
+      "atom_energy": 8.5,
+      "atom_cohesion": 22.125,
+      "atom_volatility": 3.4000000000000004,
+      "atom_stability": 8.5,
+      "atom_focus": 20.066666666666666,
+      "atom_frequency": 3.4000000000000004,
+      "atom_aether": 3.4000000000000004,
+      "atom_will": 8.5,
+      "atom_information": 3.4000000000000004
+    },
+    "source_universe": "void_reckoning",
+    "description": "Specialized anti-aircraft vehicle. fitted with experimental shield generators.",
+    "specialist": true,
+    "traits": [
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "upkeep": 60,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "templars_of_the_flux_base_plasma_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Retributor (Melta)",
+    "blueprint_id": "templars_of_the_flux_retributor_melta",
+    "type": "infantry",
+    "faction": "Templars_of_the_Flux",
+    "tier": 3,
+    "cost": 800,
+    "base_stats": {
+      "role": "anti_tank",
+      "tier": 3,
+      "hp": 100,
+      "armor": 30,
+      "damage": 226,
+      "cost": 880,
+      "keywords": "infantry specialist heavy_weapon",
+      "desc": "Heavy infantry armed with anti-armor weapons.",
+      "range": 30
+    },
+    "elemental_dna": {
+      "atom_mass": 12.990909090909089,
+      "atom_energy": 20.900000000000002,
+      "atom_cohesion": 18.9,
+      "atom_volatility": 4.718181818181819,
+      "atom_stability": 11.809090909090909,
+      "atom_focus": 4.718181818181819,
+      "atom_frequency": 4.718181818181819,
+      "atom_aether": 4.718181818181819,
+      "atom_will": 11.809090909090909,
+      "atom_information": 4.718181818181819
+    },
+    "source_universe": "void_reckoning",
+    "description": "Heavy infantry armed with anti-armor weapons. armed with short-range anti-armor thermal beams.",
+    "specialist": true,
+    "traits": [
+      "Trait_Shield_Regen",
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "heavy_vehicle",
+    "domain": "ground",
+    "upkeep": 80,
+    "components": [
+      {
+        "slot": "weapon_heavy",
+        "component": "templars_of_the_flux_base_plasma_weapon_0_L"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "templars_of_the_flux_base_plasma_weapon_0_L"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "templars_of_the_flux_base_plasma_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "templars_of_the_flux_base_missile_weapon_1_M"
+      }
+    ]
+  },
+  {
+    "name": "Retributor (Assault)",
+    "blueprint_id": "templars_of_the_flux_retributor_assault",
+    "type": "infantry",
+    "faction": "Templars_of_the_Flux",
+    "tier": 1,
+    "cost": 800,
+    "base_stats": {
+      "role": "anti_tank",
+      "tier": 1,
+      "hp": 100,
+      "armor": 30,
+      "damage": 154,
+      "cost": 800,
+      "keywords": "infantry specialist heavy_weapon",
+      "desc": "Heavy infantry armed with anti-armor weapons.",
+      "speed": 12,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 12.990909090909089,
+      "atom_energy": 11.809090909090909,
+      "atom_cohesion": 27.99090909090909,
+      "atom_volatility": 4.718181818181819,
+      "atom_stability": 11.809090909090909,
+      "atom_focus": 4.718181818181819,
+      "atom_frequency": 4.718181818181819,
+      "atom_aether": 4.718181818181819,
+      "atom_will": 11.809090909090909,
+      "atom_information": 4.718181818181819
+    },
+    "source_universe": "void_reckoning",
+    "description": "Heavy infantry armed with anti-armor weapons. configured for close-quarters combat.",
+    "specialist": true,
+    "traits": [
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "assault_infantry",
+    "domain": "ground",
+    "upkeep": 80,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "templars_of_the_flux_base_plasma_weapon_0_S"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "templars_of_the_flux_base_plasma_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Seeker (Melta)",
+    "blueprint_id": "templars_of_the_flux_seeker_melta",
+    "type": "infantry",
+    "faction": "Templars_of_the_Flux",
+    "tier": 1,
+    "cost": 700,
+    "base_stats": {
+      "role": "stealth",
+      "tier": 1,
+      "hp": 60,
+      "armor": 10,
+      "damage": 70,
+      "cost": 770,
+      "keywords": "infantry specialist stealth",
+      "desc": "Stealth operative for behind-lines sabotage.",
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 13.272727272727272,
+      "atom_energy": 21.60909090909091,
+      "atom_cohesion": 15.036363636363637,
+      "atom_volatility": 5.009090909090909,
+      "atom_stability": 12.518181818181818,
+      "atom_focus": 5.009090909090909,
+      "atom_frequency": 5.009090909090909,
+      "atom_aether": 5.009090909090909,
+      "atom_will": 12.518181818181818,
+      "atom_information": 5.009090909090909
+    },
+    "source_universe": "void_reckoning",
+    "description": "Stealth operative for behind-lines sabotage. armed with short-range anti-armor thermal beams.",
+    "specialist": true,
+    "traits": [
+      "Trait_Shield_Regen",
+      "Trait_Shield_Capacitor"
+    ],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "upkeep": 70,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "templars_of_the_flux_base_plasma_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Seeker (Assault)",
+    "blueprint_id": "templars_of_the_flux_seeker_assault",
+    "type": "infantry",
+    "faction": "Templars_of_the_Flux",
+    "tier": 1,
+    "cost": 700,
+    "base_stats": {
+      "role": "stealth",
+      "tier": 1,
+      "hp": 60,
+      "armor": 10,
+      "damage": 70,
+      "cost": 700,
+      "keywords": "infantry specialist stealth",
+      "desc": "Stealth operative for behind-lines sabotage.",
+      "speed": 12,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 13.272727272727272,
+      "atom_energy": 12.518181818181818,
+      "atom_cohesion": 24.12727272727273,
+      "atom_volatility": 5.009090909090909,
+      "atom_stability": 12.518181818181818,
+      "atom_focus": 5.009090909090909,
+      "atom_frequency": 5.009090909090909,
+      "atom_aether": 5.009090909090909,
+      "atom_will": 12.518181818181818,
+      "atom_information": 5.009090909090909
+    },
+    "source_universe": "void_reckoning",
+    "description": "Stealth operative for behind-lines sabotage. configured for close-quarters combat.",
+    "specialist": true,
+    "traits": [
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "assault_infantry",
+    "domain": "ground",
+    "upkeep": 70,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "templars_of_the_flux_base_plasma_weapon_0_S"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "templars_of_the_flux_base_plasma_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Purge-Ship (Plasma)",
+    "blueprint_id": "templars_of_the_flux_purge-ship_plasma",
+    "type": "ship",
+    "faction": "Templars_of_the_Flux",
+    "tier": 2,
+    "cost": 5000,
+    "base_stats": {
+      "role": "anti_capital",
+      "tier": 2,
+      "hp": 1500,
+      "armor": 80,
+      "damage": 940,
+      "cost": 6000,
+      "keywords": "ship specialist glass_cannon",
+      "desc": "Escort ship designed to hunt Capital ships.",
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 37.573913043478264,
+      "atom_energy": 5.3652173913043475,
+      "atom_cohesion": 22.547826086956523,
+      "atom_volatility": 15.191304347826087,
+      "atom_stability": 5.3652173913043475,
+      "atom_focus": 2.1478260869565218,
+      "atom_frequency": 2.1478260869565218,
+      "atom_aether": 2.1478260869565218,
+      "atom_will": 5.3652173913043475,
+      "atom_information": 2.1478260869565218
+    },
+    "source_universe": "void_reckoning",
+    "description": "Escort ship designed to hunt Capital ships. armed with high-energy plasma weaponry.",
+    "specialist": true,
+    "traits": [
+      "Trait_Damage_Reduction",
+      "Trait_Reinforced_Plating",
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "corvette",
+    "domain": "space",
+    "upkeep": 500,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "templars_of_the_flux_base_plasma_weapon_0_S"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "templars_of_the_flux_base_plasma_weapon_0_S"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "templars_of_the_flux_base_plasma_weapon_0_M"
+      }
+    ]
+  },
+  {
+    "name": "Purge-Ship (Missile)",
+    "blueprint_id": "templars_of_the_flux_purge-ship_missile",
+    "type": "ship",
+    "faction": "Templars_of_the_Flux",
+    "tier": 2,
+    "cost": 5000,
+    "base_stats": {
+      "role": "anti_capital",
+      "tier": 2,
+      "hp": 1500,
+      "armor": 80,
+      "damage": 640,
+      "cost": 5000,
+      "keywords": "ship specialist glass_cannon",
+      "desc": "Escort ship designed to hunt Capital ships.",
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 48.372727272727275,
+      "atom_energy": 5.6090909090909085,
+      "atom_cohesion": 23.572727272727274,
+      "atom_volatility": 2.2454545454545456,
+      "atom_stability": 5.6090909090909085,
+      "atom_focus": 2.2454545454545456,
+      "atom_frequency": 2.2454545454545456,
+      "atom_aether": 2.2454545454545456,
+      "atom_will": 5.6090909090909085,
+      "atom_information": 2.2454545454545456
+    },
+    "source_universe": "void_reckoning",
+    "description": "Escort ship designed to hunt Capital ships. equipped with long-range missile pods.",
+    "specialist": true,
+    "traits": [
+      "Trait_Damage_Reduction",
+      "Trait_Reinforced_Plating",
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "corvette",
+    "domain": "space",
+    "upkeep": 500,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "templars_of_the_flux_base_plasma_weapon_0_S"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "templars_of_the_flux_base_plasma_weapon_0_S"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "templars_of_the_flux_base_plasma_weapon_0_M"
+      }
+    ]
+  },
+  {
+    "name": "Purge-Ship (Shield)",
+    "blueprint_id": "templars_of_the_flux_purge-ship_shield",
+    "type": "ship",
+    "faction": "Templars_of_the_Flux",
+    "tier": 2,
+    "cost": 5000,
+    "base_stats": {
+      "role": "anti_capital",
+      "tier": 2,
+      "hp": 1200,
+      "armor": 40,
+      "damage": 700,
+      "cost": 6500,
+      "keywords": "ship specialist glass_cannon",
+      "desc": "Escort ship designed to hunt Capital ships.",
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 36.00833333333334,
+      "atom_energy": 5.141666666666667,
+      "atom_cohesion": 21.60833333333333,
+      "atom_volatility": 2.0583333333333336,
+      "atom_stability": 5.141666666666667,
+      "atom_focus": 18.725,
+      "atom_frequency": 2.0583333333333336,
+      "atom_aether": 2.0583333333333336,
+      "atom_will": 5.141666666666667,
+      "atom_information": 2.0583333333333336
+    },
+    "source_universe": "void_reckoning",
+    "description": "Escort ship designed to hunt Capital ships. fitted with experimental shield generators.",
+    "specialist": true,
+    "traits": [
+      "Trait_Damage_Reduction",
+      "Trait_Reinforced_Plating",
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "corvette",
+    "domain": "space",
+    "upkeep": 500,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "templars_of_the_flux_base_plasma_weapon_0_S"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "templars_of_the_flux_base_plasma_weapon_0_S"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "templars_of_the_flux_base_plasma_weapon_0_M"
+      }
+    ]
+  }
+]

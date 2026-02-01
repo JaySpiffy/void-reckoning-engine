@@ -1,0 +1,31 @@
+{
+    "enable_portals": true,
+    "portals": [
+        {
+            "portal_id": "sw_st_hub",
+            "source_coords": [
+                10,
+                10
+            ],
+            "dest_universe": "star_trek",
+            "dest_coords": [
+                90,
+                90
+            ],
+            "placement_strategy": "nearest_system"
+        },
+        {
+            "portal_id": "sw_40k_rift",
+            "source_coords": [
+                90,
+                10
+            ],
+            "dest_universe": "warhammer40k",
+            "dest_coords": [
+                50,
+                50
+            ],
+            "placement_strategy": "galactic_core"
+        }
+    ]
+}

@@ -1,0 +1,23 @@
+{
+  "nodes": [
+    {
+      "id": "Tech_None",
+      "label": "Construction: Unknown",
+      "tier": 0,
+      "cost": 0
+    },
+    {
+      "id": "Tech_Recruitment Stations",
+      "label": "Construction: Unknown",
+      "tier": 0,
+      "cost": 0
+    },
+    {
+      "id": "Tech_Spaceport",
+      "label": "Construction: Unknown",
+      "tier": 0,
+      "cost": 0
+    }
+  ],
+  "edges": []
+}

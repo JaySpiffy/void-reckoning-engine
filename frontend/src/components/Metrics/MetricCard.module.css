@@ -1,0 +1,84 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    min-height: 100px;
+    justify-content: center;
+}
+
+.card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 15px var(--accent-glow);
+}
+
+.errorCard {
+    border-color: var(--error);
+    background: rgba(255, 68, 68, 0.05);
+}
+
+.label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.valueContainer {
+    display: flex;
+    align-items: baseline;
+    gap: 0.25rem;
+}
+
+.value {
+    font-size: 2.25rem;
+    font-weight: 800;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-primary);
+    line-height: 1;
+}
+
+.accent {
+    color: var(--accent);
+}
+
+.unit {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.error {
+    color: var(--error);
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.errorIcon {
+    font-size: 1.25rem;
+}
+
+.errorText {
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    color: var(--error);
+}
+
+.skeletonLabel {
+    width: 60px;
+    height: 12px;
+    margin-bottom: 8px;
+}
+
+.skeletonValue {
+    width: 100px;
+    height: 36px;
+}

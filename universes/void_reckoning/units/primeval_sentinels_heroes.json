@@ -1,0 +1,100 @@
+[
+  {
+    "name": "Farseer",
+    "blueprint_id": "primeval_sentinels_farseer",
+    "type": "hero",
+    "faction": "Primeval_Sentinels",
+    "tier": 1,
+    "cost": 5500,
+    "base_stats": {
+      "role": "hero",
+      "tier": 1,
+      "hp": 250,
+      "armor": 40,
+      "damage": 180,
+      "speed": 10,
+      "cost": 5500,
+      "keywords": "hero unique hero tier5"
+    },
+    "elemental_dna": {
+      "atom_mass": 0.0,
+      "atom_energy": 0.0,
+      "atom_cohesion": 0.0,
+      "atom_volatility": 0.0,
+      "atom_stability": 0.0,
+      "atom_focus": 50.0,
+      "atom_frequency": 0.0,
+      "atom_aether": 30.0,
+      "atom_will": 20.0,
+      "atom_information": 0.0
+    },
+    "source_universe": "void_reckoning",
+    "description": "Predicts the future of battle.",
+    "hero": true,
+    "unique": true,
+    "traits": [
+      "Trait_Fearless"
+    ],
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "upkeep": 550,
+    "universal_stats": {
+      "hull_structural_integrity": 2500.0,
+      "armor_kinetic_resistance": 80.0,
+      "weapon_kinetic_damage": 270.0,
+      "mobility_speed_tactical": 20.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "Avatar of War",
+    "blueprint_id": "primeval_sentinels_avatar_of_war",
+    "type": "hero",
+    "faction": "Primeval_Sentinels",
+    "tier": 1,
+    "cost": 7500,
+    "base_stats": {
+      "role": "titan",
+      "tier": 1,
+      "hp": 1500,
+      "armor": 200,
+      "damage": 500,
+      "speed": 9,
+      "cost": 7500,
+      "keywords": "hero unique titan tier5"
+    },
+    "elemental_dna": {
+      "atom_mass": 20.0,
+      "atom_energy": 40.0,
+      "atom_cohesion": 0.0,
+      "atom_volatility": 40.0,
+      "atom_stability": 0.0,
+      "atom_focus": 0.0,
+      "atom_frequency": 0.0,
+      "atom_aether": 0.0,
+      "atom_will": 0.0,
+      "atom_information": 0.0
+    },
+    "source_universe": "void_reckoning",
+    "description": "Molten god of war.",
+    "hero": true,
+    "unique": true,
+    "traits": [
+      "Trait_Shield_Capacitor",
+      "Trait_Splash_Damage",
+      "Trait_Anti_Vehicle"
+    ],
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "upkeep": 750,
+    "universal_stats": {
+      "hull_structural_integrity": 15000.0,
+      "armor_kinetic_resistance": 400.0,
+      "weapon_kinetic_damage": 750.0,
+      "mobility_speed_tactical": 18.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  }
+]

@@ -1,0 +1,47 @@
+{
+    "traits": [
+        {
+            "id": "psionic",
+            "name": "Psionic",
+            "category": "special",
+            "modifiers": {
+                "psionic_power": 30.0,
+                "psionic_resistance": 0.40
+            },
+            "description": "Powerful psychics.",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "cybernetic",
+            "name": "Cybernetic",
+            "category": "special",
+            "modifiers": {
+                "hp": 0.10,
+                "speed": 0.10
+            },
+            "description": "Enhanced with machines.",
+            "rarity": "common"
+        },
+        {
+            "id": "ethereal",
+            "name": "Ethereal",
+            "category": "special",
+            "modifiers": {
+                "physical_damage_received": -0.50,
+                "energy_damage_received": 0.50
+            },
+            "description": "Phase shifted.",
+            "rarity": "rare"
+        },
+        {
+            "id": "void_adapted",
+            "name": "Void Adapted",
+            "category": "special",
+            "modifiers": {
+                "void_damage_received": -0.50
+            },
+            "description": "Born in space.",
+            "rarity": "uncommon"
+        }
+    ]
+}

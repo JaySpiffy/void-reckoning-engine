@@ -1,0 +1,26 @@
+# Natural Language Query Examples
+# Run with: python tools/analyze.py query "QUERY STRING"
+
+# Battle Analysis
+Show all battles where Imperium lost
+Show battles in sector_001
+List battles with winner Chaos and turns 50-100
+Show battles with > 5000 damage
+
+# Faction Analysis
+Show resource stats for Tau
+Compare economy for Imperium vs Necrons
+List tech unlocks for Eldar
+Show units recruited by Orks last 10 turns
+
+# Timeline / Event Analysis
+Show timeline for batch_beta_01
+List events where category is diplomacy
+Show errors in last 50 turns
+
+# Advanced Filters (CLI Flags)
+# python tools/analyze.py query --search "warp storm" --limit 50
+# python tools/analyze.py query "battles" --winner Tyranids --min-damage 10000
+
+# Pattern Mining
+# python tools/analyze.py patterns --universe warhammer40k --n-gram 3

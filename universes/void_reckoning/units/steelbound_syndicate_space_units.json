@@ -1,0 +1,740 @@
+[
+  {
+    "name": "Bulwark Fighter",
+    "blueprint_id": "steelbound_syndicate_fighter",
+    "type": "strike_craft",
+    "faction": "SteelBound_Syndicate",
+    "cost": 200,
+    "upkeep": 20,
+    "base_stats": {
+      "hp": 80,
+      "armor": 15,
+      "damage": 124,
+      "speed": 55,
+      "type": "strike_craft",
+      "cost": 200,
+      "range": 109
+    },
+    "elemental_dna": {
+      "atom_volatility": 5.36,
+      "atom_will": 9.64,
+      "atom_focus": 5.36,
+      "atom_aether": 2.85,
+      "atom_stability": 9.64,
+      "atom_cohesion": 12.14,
+      "atom_frequency": 15.37,
+      "atom_information": 12.86,
+      "atom_mass": 12.14,
+      "atom_energy": 14.64
+    },
+    "source_universe": "void_reckoning",
+    "description": "SteelBound_Syndicate fighter-class unit. Auto-generated via Taxonomy.",
+    "abilities": [
+      "Ability_Evasive_Maneuvers",
+      "Ability_Rapid_Fire"
+    ],
+    "traits": [
+      "Veteran Crew"
+    ],
+    "unit_class": "fighter",
+    "domain": "space",
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "steelbound_syndicate_base_laser_weapon_0_S"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 800.0,
+      "armor_kinetic_resistance": 30.0,
+      "weapon_kinetic_damage": 186.0,
+      "mobility_speed_tactical": 110.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "Siege Bomber",
+    "blueprint_id": "steelbound_syndicate_bomber",
+    "type": "strike_craft",
+    "faction": "SteelBound_Syndicate",
+    "cost": 250,
+    "upkeep": 25,
+    "base_stats": {
+      "hp": 100,
+      "armor": 20,
+      "damage": 137,
+      "speed": 40,
+      "type": "strike_craft",
+      "cost": 250,
+      "range": 109
+    },
+    "elemental_dna": {
+      "atom_volatility": 15.35,
+      "atom_will": 7.14,
+      "atom_focus": 5.36,
+      "atom_aether": 2.85,
+      "atom_stability": 12.14,
+      "atom_cohesion": 14.64,
+      "atom_frequency": 5.36,
+      "atom_information": 5.36,
+      "atom_mass": 17.16,
+      "atom_energy": 14.64
+    },
+    "source_universe": "void_reckoning",
+    "description": "SteelBound_Syndicate bomber-class unit. Auto-generated via Taxonomy.",
+    "abilities": [
+      "Ability_Plasma_Burst",
+      "Ability_Torpedo_Salvo"
+    ],
+    "traits": [
+      "Master-Crafted"
+    ],
+    "unit_class": "bomber",
+    "domain": "space",
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "steelbound_syndicate_base_plasma_weapon_2_S"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 1000.0,
+      "armor_kinetic_resistance": 40.0,
+      "weapon_kinetic_damage": 205.5,
+      "mobility_speed_tactical": 80.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "Fortress Interceptor",
+    "blueprint_id": "steelbound_syndicate_interceptor",
+    "type": "strike_craft",
+    "faction": "SteelBound_Syndicate",
+    "cost": 230,
+    "upkeep": 23,
+    "base_stats": {
+      "hp": 70,
+      "armor": 10,
+      "damage": 230,
+      "speed": 65,
+      "type": "strike_craft",
+      "cost": 230,
+      "range": 109
+    },
+    "elemental_dna": {
+      "atom_volatility": 5.36,
+      "atom_will": 7.14,
+      "atom_focus": 10.36,
+      "atom_aether": 2.85,
+      "atom_stability": 12.14,
+      "atom_cohesion": 9.64,
+      "atom_frequency": 10.36,
+      "atom_information": 12.86,
+      "atom_mass": 9.64,
+      "atom_energy": 19.65
+    },
+    "source_universe": "void_reckoning",
+    "description": "SteelBound_Syndicate interceptor-class unit. Auto-generated via Taxonomy.",
+    "abilities": [
+      "Ability_Afterburner",
+      "Ability_Tracking_Lock"
+    ],
+    "traits": [
+      "Reckless Pilot"
+    ],
+    "unit_class": "interceptor",
+    "domain": "space",
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_laser_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_laser_weapon_9_M"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 700.0,
+      "armor_kinetic_resistance": 20.0,
+      "weapon_kinetic_damage": 345.0,
+      "mobility_speed_tactical": 130.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "Bastion Corvette",
+    "blueprint_id": "steelbound_syndicate_corvette",
+    "type": "ship",
+    "faction": "SteelBound_Syndicate",
+    "cost": 1000,
+    "upkeep": 100,
+    "base_stats": {
+      "hp": 400,
+      "armor": 45,
+      "damage": 360,
+      "speed": 35,
+      "type": "ship",
+      "cost": 1000,
+      "range": 109
+    },
+    "elemental_dna": {
+      "atom_volatility": 5.36,
+      "atom_will": 7.14,
+      "atom_focus": 5.36,
+      "atom_aether": 2.85,
+      "atom_stability": 14.64,
+      "atom_cohesion": 14.64,
+      "atom_frequency": 7.86,
+      "atom_information": 7.86,
+      "atom_mass": 17.15,
+      "atom_energy": 17.14
+    },
+    "source_universe": "void_reckoning",
+    "description": "SteelBound_Syndicate corvette-class unit. Auto-generated via Taxonomy.",
+    "abilities": [
+      "Ability_Point_Defense",
+      "Ability_Flak_Barrage"
+    ],
+    "traits": [
+      "Cautious Commander"
+    ],
+    "unit_class": "corvette",
+    "domain": "space",
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "steelbound_syndicate_base_laser_weapon_0_S"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "steelbound_syndicate_base_laser_weapon_0_S"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_laser_weapon_0_M"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 4000.0,
+      "armor_kinetic_resistance": 90.0,
+      "weapon_kinetic_damage": 540.0,
+      "mobility_speed_tactical": 70.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "Iron Frigate",
+    "blueprint_id": "steelbound_syndicate_frigate",
+    "type": "ship",
+    "faction": "SteelBound_Syndicate",
+    "cost": 1250,
+    "upkeep": 125,
+    "base_stats": {
+      "hp": 500,
+      "armor": 50,
+      "damage": 475,
+      "speed": 30,
+      "type": "ship",
+      "cost": 1250,
+      "range": 109
+    },
+    "elemental_dna": {
+      "atom_volatility": 5.36,
+      "atom_will": 7.14,
+      "atom_focus": 10.36,
+      "atom_aether": 2.85,
+      "atom_stability": 17.16,
+      "atom_cohesion": 12.14,
+      "atom_frequency": 5.36,
+      "atom_information": 15.35,
+      "atom_mass": 12.14,
+      "atom_energy": 12.14
+    },
+    "source_universe": "void_reckoning",
+    "description": "SteelBound_Syndicate frigate-class unit. Auto-generated via Taxonomy.",
+    "abilities": [
+      "Ability_EMP_Burst",
+      "Ability_Sensor_Sweep"
+    ],
+    "traits": [
+      "Veteran Crew"
+    ],
+    "unit_class": "frigate",
+    "domain": "space",
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_laser_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "steelbound_syndicate_base_laser_weapon_0_S"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "steelbound_syndicate_base_laser_weapon_0_S"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 5000.0,
+      "armor_kinetic_resistance": 100.0,
+      "weapon_kinetic_damage": 712.5,
+      "mobility_speed_tactical": 60.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "Steel Destroyer",
+    "blueprint_id": "steelbound_syndicate_destroyer",
+    "type": "ship",
+    "faction": "SteelBound_Syndicate",
+    "cost": 1600,
+    "upkeep": 160,
+    "base_stats": {
+      "hp": 450,
+      "armor": 40,
+      "damage": 512,
+      "speed": 32,
+      "type": "ship",
+      "cost": 1600,
+      "range": 109
+    },
+    "elemental_dna": {
+      "atom_volatility": 10.36,
+      "atom_will": 7.14,
+      "atom_focus": 12.86,
+      "atom_aether": 2.85,
+      "atom_stability": 12.14,
+      "atom_cohesion": 9.64,
+      "atom_frequency": 5.36,
+      "atom_information": 7.86,
+      "atom_mass": 9.64,
+      "atom_energy": 22.15
+    },
+    "source_universe": "void_reckoning",
+    "description": "SteelBound_Syndicate destroyer-class unit. Auto-generated via Taxonomy.",
+    "abilities": [
+      "Ability_Ion_Cannon",
+      "Ability_Overcharge"
+    ],
+    "traits": [
+      "Reckless Pilot"
+    ],
+    "unit_class": "destroyer",
+    "domain": "space",
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_laser_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_laser_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_information_weapon_1_M"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 4500.0,
+      "armor_kinetic_resistance": 80.0,
+      "weapon_kinetic_damage": 768.0,
+      "mobility_speed_tactical": 64.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "Heavy Light Cruiser",
+    "blueprint_id": "steelbound_syndicate_light_cruiser",
+    "type": "ship",
+    "faction": "SteelBound_Syndicate",
+    "cost": 5000,
+    "upkeep": 500,
+    "base_stats": {
+      "hp": 1500,
+      "armor": 80,
+      "damage": 1052,
+      "speed": 25,
+      "type": "ship",
+      "cost": 5000,
+      "range": 109
+    },
+    "elemental_dna": {
+      "atom_volatility": 2.85,
+      "atom_will": 7.14,
+      "atom_focus": 7.86,
+      "atom_aether": 2.85,
+      "atom_stability": 14.64,
+      "atom_cohesion": 12.14,
+      "atom_frequency": 5.36,
+      "atom_information": 12.86,
+      "atom_mass": 12.14,
+      "atom_energy": 22.16
+    },
+    "source_universe": "void_reckoning",
+    "description": "SteelBound_Syndicate light_cruiser-class unit. Auto-generated via Taxonomy.",
+    "abilities": [
+      "Ability_Sensor_Sweep",
+      "Ability_Hit_and_Run"
+    ],
+    "traits": [
+      "Veteran Crew"
+    ],
+    "unit_class": "light_cruiser",
+    "domain": "space",
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_laser_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_laser_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_laser_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_laser_weapon_0_L"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_laser_weapon_0_L"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 15000.0,
+      "armor_kinetic_resistance": 160.0,
+      "weapon_kinetic_damage": 1578.0,
+      "mobility_speed_tactical": 50.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "Armored Heavy Cruiser",
+    "blueprint_id": "steelbound_syndicate_heavy_cruiser",
+    "type": "ship",
+    "faction": "SteelBound_Syndicate",
+    "cost": 8000,
+    "upkeep": 800,
+    "base_stats": {
+      "hp": 2500,
+      "armor": 100,
+      "damage": 1464,
+      "speed": 20,
+      "type": "ship",
+      "cost": 8000,
+      "range": 109
+    },
+    "elemental_dna": {
+      "atom_volatility": 5.36,
+      "atom_will": 7.14,
+      "atom_focus": 7.86,
+      "atom_aether": 2.85,
+      "atom_stability": 17.14,
+      "atom_cohesion": 19.66,
+      "atom_frequency": 2.85,
+      "atom_information": 5.36,
+      "atom_mass": 17.14,
+      "atom_energy": 14.64
+    },
+    "source_universe": "void_reckoning",
+    "description": "SteelBound_Syndicate heavy_cruiser-class unit. Auto-generated via Taxonomy.",
+    "abilities": [
+      "Ability_Shield_Regen",
+      "Ability_Fortify_Position"
+    ],
+    "traits": [
+      "Cautious Commander",
+      "Regeneration"
+    ],
+    "unit_class": "heavy_cruiser",
+    "domain": "space",
+    "components": [
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_laser_weapon_0_L"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_laser_weapon_0_L"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_laser_weapon_0_L"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_laser_weapon_0_L"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_laser_weapon_0_L"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_laser_weapon_0_L"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_laser_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_laser_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_information_weapon_1_M"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 25000.0,
+      "armor_kinetic_resistance": 200.0,
+      "weapon_kinetic_damage": 2196.0,
+      "mobility_speed_tactical": 40.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "Shield Battlecruiser",
+    "blueprint_id": "steelbound_syndicate_battlecruiser",
+    "type": "ship",
+    "faction": "SteelBound_Syndicate",
+    "cost": 10000,
+    "upkeep": 1000,
+    "base_stats": {
+      "hp": 2200,
+      "armor": 90,
+      "damage": 1504,
+      "speed": 22,
+      "type": "ship",
+      "cost": 10000,
+      "range": 109
+    },
+    "elemental_dna": {
+      "atom_volatility": 12.86,
+      "atom_will": 7.14,
+      "atom_focus": 10.36,
+      "atom_aether": 2.85,
+      "atom_stability": 9.64,
+      "atom_cohesion": 12.14,
+      "atom_frequency": 5.36,
+      "atom_information": 7.86,
+      "atom_mass": 12.14,
+      "atom_energy": 19.65
+    },
+    "source_universe": "void_reckoning",
+    "description": "SteelBound_Syndicate battlecruiser-class unit. Auto-generated via Taxonomy.",
+    "abilities": [
+      "Ability_Plasma_Burst",
+      "Ability_Overcharge"
+    ],
+    "traits": [
+      "Reckless Pilot"
+    ],
+    "unit_class": "battlecruiser",
+    "domain": "space",
+    "components": [
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_laser_weapon_0_L"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_laser_weapon_0_L"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_laser_weapon_0_L"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_laser_weapon_0_L"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_laser_weapon_0_L"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_laser_weapon_0_L"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_laser_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_laser_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_information_weapon_1_M"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 22000.0,
+      "armor_kinetic_resistance": 180.0,
+      "weapon_kinetic_damage": 2256.0,
+      "mobility_speed_tactical": 44.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "Guardian Battleship",
+    "blueprint_id": "steelbound_syndicate_battleship",
+    "type": "ship",
+    "faction": "SteelBound_Syndicate",
+    "cost": 12500,
+    "upkeep": 1250,
+    "base_stats": {
+      "hp": 4000,
+      "armor": 120,
+      "damage": 2618,
+      "speed": 15,
+      "type": "ship",
+      "cost": 12500,
+      "range": 109
+    },
+    "elemental_dna": {
+      "atom_volatility": 5.36,
+      "atom_will": 7.14,
+      "atom_focus": 5.36,
+      "atom_aether": 2.85,
+      "atom_stability": 12.14,
+      "atom_cohesion": 19.64,
+      "atom_frequency": 2.85,
+      "atom_information": 5.36,
+      "atom_mass": 22.16,
+      "atom_energy": 17.14
+    },
+    "source_universe": "void_reckoning",
+    "description": "SteelBound_Syndicate battleship-class unit. Auto-generated via Taxonomy.",
+    "abilities": [
+      "Ability_Fortify_Position",
+      "Ability_Regeneration"
+    ],
+    "traits": [
+      "Regeneration",
+      "Cautious Commander"
+    ],
+    "unit_class": "battleship",
+    "domain": "space",
+    "components": [
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_plasma_weapon_2_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_plasma_weapon_2_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_plasma_weapon_2_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_plasma_weapon_2_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_plasma_weapon_8_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_plasma_weapon_8_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_plasma_weapon_8_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "steelbound_syndicate_base_plasma_weapon_8_XL"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_plasma_weapon_2_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_plasma_weapon_2_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_plasma_weapon_2_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_plasma_weapon_2_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_plasma_weapon_8_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_plasma_weapon_8_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_plasma_weapon_8_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "steelbound_syndicate_base_plasma_weapon_8_M"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 40000.0,
+      "armor_kinetic_resistance": 240.0,
+      "weapon_kinetic_damage": 3927.0,
+      "mobility_speed_tactical": 30.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  }
+]

@@ -1,0 +1,89 @@
+{
+  "Templars_of_the_Flux": {
+    "name": "Templars of the Flux",
+    "id": "Templars_of_the_Flux",
+    "traits": [
+      "strong",
+      "aggressive"
+    ],
+    "description": "Imported from DNA. Notable atoms: Mass 25, Vol 28."
+  },
+  "Transcendent_Order": {
+    "name": "Transcendent Order",
+    "id": "Transcendent_Order",
+    "traits": [
+      "tactical"
+    ],
+    "description": "Imported from DNA. Notable atoms: Mass 6, Vol 2."
+  },
+  "SteelBound_Syndicate": {
+    "name": "Steel-Bound Syndicate",
+    "id": "SteelBound_Syndicate",
+    "traits": [
+      "resilient",
+      "defensive"
+    ],
+    "description": "Imported from DNA. Notable atoms: Mass 18, Vol 2."
+  },
+  "BioTide_Collective": {
+    "name": "Bio-Tide Collective",
+    "id": "BioTide_Collective",
+    "traits": [
+      "strong",
+      "aggressive"
+    ],
+    "description": "Imported from DNA. Notable atoms: Mass 25, Vol 28."
+  },
+  "Algorithmic_Hierarchy": {
+    "name": "Algorithmic Hierarchy",
+    "id": "Algorithmic_Hierarchy",
+    "traits": [
+      "tactical"
+    ],
+    "description": "Imported from DNA. Notable atoms: Mass 5, Vol 2."
+  },
+  "Nebula_Drifters": {
+    "name": "Nebula Drifters",
+    "id": "Nebula_Drifters",
+    "traits": [
+      "fast"
+    ],
+    "description": "Imported from DNA. Notable atoms: Mass 7, Vol 3."
+  },
+  "Aurelian_Hegemony": {
+    "name": "Aurelian Hegemony",
+    "id": "Aurelian_Hegemony",
+    "traits": [
+      "defensive"
+    ],
+    "description": "Imported from DNA. Notable atoms: Mass 16, Vol 3."
+  },
+  "VoidSpawn_Entities": {
+    "name": "Void-Spawn Entities",
+    "id": "VoidSpawn_Entities",
+    "traits": [
+      "strong",
+      "aggressive",
+      "ethereal"
+    ],
+    "description": "Imported from DNA. Notable atoms: Mass 18, Vol 21."
+  },
+  "ScrapLord_Marauders": {
+    "name": "Scrap-Lord Marauders",
+    "id": "ScrapLord_Marauders",
+    "traits": [
+      "strong",
+      "fast"
+    ],
+    "description": "Imported from DNA. Notable atoms: Mass 20, Vol 2."
+  },
+  "Primeval_Sentinels": {
+    "name": "Primeval Sentinels",
+    "id": "Primeval_Sentinels",
+    "traits": [
+      "resonant",
+      "tactical"
+    ],
+    "description": "Imported from DNA. Notable atoms: Mass 5, Vol 2."
+  }
+}

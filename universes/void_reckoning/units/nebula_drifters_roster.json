@@ -1,0 +1,717 @@
+[
+  {
+    "name": "Raider",
+    "blueprint_id": "nebula_drifters_raider",
+    "type": "infantry",
+    "faction": "Nebula_Drifters",
+    "cost": 100,
+    "base_stats": {
+      "hp": 10,
+      "armor": 4,
+      "damage": 12,
+      "speed": 8,
+      "type": "infantry",
+      "cost": 100,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 14.25,
+      "atom_energy": 14.1,
+      "atom_cohesion": 15.25,
+      "atom_volatility": 5.64,
+      "atom_stability": 14.1,
+      "atom_focus": 5.64,
+      "atom_frequency": 5.64,
+      "atom_aether": 5.64,
+      "atom_will": 14.1,
+      "atom_information": 5.64
+    },
+    "source_universe": "void_reckoning",
+    "description": "Lightly armed pirates who rely on speed and sheer ferocity to overrun localized defenses.",
+    "traits": [
+      "Trait_Regeneration"
+    ],
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 10,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "nebula_drifters_base_melee_weapon_0_S"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 100.0,
+      "armor_kinetic_resistance": 8.0,
+      "weapon_kinetic_damage": 18.0,
+      "mobility_speed_tactical": 16.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "Incubus",
+    "blueprint_id": "nebula_drifters_incubus",
+    "type": "infantry",
+    "faction": "Nebula_Drifters",
+    "cost": 300,
+    "base_stats": {
+      "hp": 25,
+      "armor": 12,
+      "damage": 27,
+      "speed": 8,
+      "type": "infantry",
+      "cost": 300,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 8.36,
+      "atom_energy": 8.15,
+      "atom_cohesion": 10.11,
+      "atom_volatility": 3.26,
+      "atom_stability": 8.15,
+      "atom_focus": 27.73,
+      "atom_frequency": 3.26,
+      "atom_aether": 3.26,
+      "atom_will": 8.15,
+      "atom_information": 19.57
+    },
+    "source_universe": "void_reckoning",
+    "description": "Elite boarding troops equipped with energized blades, specialized in ship-to-ship combat.",
+    "traits": [
+      "Trait_Adaptive_Armor"
+    ],
+    "abilities": [
+      "Ability_Boarding_Action"
+    ],
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 30,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "nebula_drifters_base_melee_weapon_0_S"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 250.0,
+      "armor_kinetic_resistance": 24.0,
+      "weapon_kinetic_damage": 40.5,
+      "mobility_speed_tactical": 16.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "Jetbike",
+    "blueprint_id": "nebula_drifters_jetbike",
+    "type": "vehicle",
+    "faction": "Nebula_Drifters",
+    "cost": 500,
+    "base_stats": {
+      "hp": 80,
+      "armor": 10,
+      "damage": 35,
+      "speed": 24,
+      "type": "vehicle",
+      "cost": 500,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 21.93,
+      "atom_energy": 12.2,
+      "atom_cohesion": 17.07,
+      "atom_volatility": 4.88,
+      "atom_stability": 12.2,
+      "atom_focus": 4.88,
+      "atom_frequency": 4.88,
+      "atom_aether": 4.88,
+      "atom_will": 12.2,
+      "atom_information": 4.88
+    },
+    "source_universe": "void_reckoning",
+    "description": "Gravity-defying attack bikes that scream across the battlefield, striking before the enemy can react.",
+    "traits": [
+      "Trait_Damage_Reduction",
+      "Trait_Regeneration"
+    ],
+    "abilities": [
+      "Ability_Afterburner"
+    ],
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 50,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "nebula_drifters_base_melee_weapon_0_S"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 800.0,
+      "armor_kinetic_resistance": 20.0,
+      "weapon_kinetic_damage": 52.5,
+      "mobility_speed_tactical": 48.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "Ravager",
+    "blueprint_id": "nebula_drifters_ravager",
+    "type": "vehicle",
+    "faction": "Nebula_Drifters",
+    "cost": 1200,
+    "base_stats": {
+      "hp": 250,
+      "armor": 30,
+      "damage": 110,
+      "speed": 12,
+      "type": "vehicle",
+      "cost": 1200,
+      "tier": 3,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 32.69,
+      "atom_energy": 9.35,
+      "atom_cohesion": 20.56,
+      "atom_volatility": 3.74,
+      "atom_stability": 9.35,
+      "atom_focus": 3.74,
+      "atom_frequency": 3.74,
+      "atom_aether": 3.74,
+      "atom_will": 9.35,
+      "atom_information": 3.74
+    },
+    "source_universe": "void_reckoning",
+    "description": "A heavy skimmer tank armed with dark matter lances, sacrificing armor for devastating firepower.",
+    "traits": [
+      "Trait_Damage_Reduction",
+      "Trait_Reinforced_Plating",
+      "Trait_Regeneration"
+    ],
+    "unit_class": "battle_tank",
+    "domain": "ground",
+    "tier": 3,
+    "upkeep": 120,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_melee_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_laser_weapon_1_M"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 2500.0,
+      "armor_kinetic_resistance": 60.0,
+      "weapon_kinetic_damage": 165.0,
+      "mobility_speed_tactical": 24.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "Wraith",
+    "blueprint_id": "nebula_drifters_wraith",
+    "type": "vehicle",
+    "faction": "Nebula_Drifters",
+    "cost": 900,
+    "base_stats": {
+      "hp": 180,
+      "armor": 18,
+      "damage": 72,
+      "speed": 10,
+      "type": "vehicle",
+      "cost": 900,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 15.65,
+      "atom_energy": 13.26,
+      "atom_cohesion": 18.02,
+      "atom_volatility": 5.31,
+      "atom_stability": 13.26,
+      "atom_focus": 5.31,
+      "atom_frequency": 5.31,
+      "atom_aether": 5.31,
+      "atom_will": 13.26,
+      "atom_information": 5.31
+    },
+    "source_universe": "void_reckoning",
+    "description": "Nebula_Drifters Walker unit. Auto-generated.",
+    "traits": [
+      "Trait_Regeneration"
+    ],
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 90,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "nebula_drifters_base_melee_weapon_0_S"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 1800.0,
+      "armor_kinetic_resistance": 36.0,
+      "weapon_kinetic_damage": 108.0,
+      "mobility_speed_tactical": 20.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "Razorwing",
+    "blueprint_id": "nebula_drifters_razorwing",
+    "type": "ship",
+    "faction": "Nebula_Drifters",
+    "cost": 150,
+    "base_stats": {
+      "hp": 50,
+      "armor": 0,
+      "damage": 45,
+      "speed": 70,
+      "type": "ship",
+      "cost": 150,
+      "tier": 1,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 10.05,
+      "atom_energy": 28.7,
+      "atom_cohesion": 9.57,
+      "atom_volatility": 3.83,
+      "atom_stability": 9.57,
+      "atom_focus": 3.83,
+      "atom_frequency": 17.22,
+      "atom_aether": 3.83,
+      "atom_will": 9.57,
+      "atom_information": 3.83
+    },
+    "source_universe": "void_reckoning",
+    "description": "Nebula_Drifters Fighter unit. Auto-generated.",
+    "traits": [
+      "Trait_Anti_Infantry"
+    ],
+    "unit_class": "fighter",
+    "domain": "space",
+    "tier": 1,
+    "upkeep": 15,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "nebula_drifters_base_laser_weapon_1_S"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 500.0,
+      "armor_kinetic_resistance": 0.0,
+      "weapon_kinetic_damage": 67.5,
+      "mobility_speed_tactical": 140.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "Corsair Class",
+    "blueprint_id": "nebula_drifters_corsair_class",
+    "type": "ship",
+    "faction": "Nebula_Drifters",
+    "cost": 2000,
+    "base_stats": {
+      "hp": 800,
+      "armor": 10,
+      "damage": 290,
+      "speed": 30,
+      "type": "ship",
+      "cost": 2000,
+      "tier": 2,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 22.5,
+      "atom_energy": 12.5,
+      "atom_cohesion": 15.0,
+      "atom_volatility": 5.0,
+      "atom_stability": 12.5,
+      "atom_focus": 5.0,
+      "atom_frequency": 5.0,
+      "atom_aether": 5.0,
+      "atom_will": 12.5,
+      "atom_information": 5.0
+    },
+    "source_universe": "void_reckoning",
+    "description": "Nebula_Drifters Frigate unit. Auto-generated.",
+    "traits": [
+      "Trait_Damage_Reduction",
+      "Trait_Regeneration"
+    ],
+    "unit_class": "frigate",
+    "domain": "space",
+    "tier": 2,
+    "upkeep": 200,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_melee_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_laser_weapon_1_M"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "nebula_drifters_base_melee_weapon_0_S"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "nebula_drifters_base_melee_weapon_0_S"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 8000.0,
+      "armor_kinetic_resistance": 20.0,
+      "weapon_kinetic_damage": 435.0,
+      "mobility_speed_tactical": 60.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "Eclipse Class",
+    "blueprint_id": "nebula_drifters_eclipse_class",
+    "type": "ship",
+    "faction": "Nebula_Drifters",
+    "cost": 8000,
+    "base_stats": {
+      "hp": 3000,
+      "armor": 30,
+      "damage": 980,
+      "speed": 16,
+      "type": "ship",
+      "cost": 8000,
+      "range": 30
+    },
+    "elemental_dna": {
+      "atom_mass": 37.77,
+      "atom_energy": 9.43,
+      "atom_cohesion": 15.09,
+      "atom_volatility": 3.77,
+      "atom_stability": 9.43,
+      "atom_focus": 3.77,
+      "atom_frequency": 3.77,
+      "atom_aether": 3.77,
+      "atom_will": 9.43,
+      "atom_information": 3.77
+    },
+    "source_universe": "void_reckoning",
+    "description": "Nebula_Drifters Cruiser unit. Auto-generated.",
+    "traits": [
+      "Trait_Damage_Reduction",
+      "Trait_Reinforced_Plating",
+      "Trait_Regeneration"
+    ],
+    "unit_class": "cruiser",
+    "domain": "space",
+    "upkeep": 800,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_melee_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_melee_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_melee_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_laser_weapon_1_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_laser_weapon_1_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_laser_weapon_1_M"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "nebula_drifters_base_melee_weapon_0_L"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "nebula_drifters_base_melee_weapon_0_L"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 30000.0,
+      "armor_kinetic_resistance": 60.0,
+      "weapon_kinetic_damage": 1470.0,
+      "mobility_speed_tactical": 32.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "Void Stalker",
+    "blueprint_id": "nebula_drifters_void_stalker",
+    "type": "ship",
+    "faction": "Nebula_Drifters",
+    "cost": 25000,
+    "base_stats": {
+      "hp": 12000,
+      "armor": 80,
+      "damage": 3530,
+      "speed": 8,
+      "type": "ship",
+      "cost": 25000,
+      "tier": 3,
+      "range": 36
+    },
+    "elemental_dna": {
+      "atom_mass": 84.17,
+      "atom_energy": 1.72,
+      "atom_cohesion": 7.22,
+      "atom_volatility": 0.69,
+      "atom_stability": 1.72,
+      "atom_focus": 0.69,
+      "atom_frequency": 0.69,
+      "atom_aether": 0.69,
+      "atom_will": 1.72,
+      "atom_information": 0.69
+    },
+    "source_universe": "void_reckoning",
+    "description": "Nebula_Drifters Battleship unit. Auto-generated.",
+    "traits": [
+      "Trait_Reinforced_Plating"
+    ],
+    "unit_class": "battleship",
+    "domain": "space",
+    "tier": 3,
+    "upkeep": 2500,
+    "components": [
+      {
+        "slot": "weapon_heavy",
+        "component": "nebula_drifters_base_plasma_weapon_3_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "nebula_drifters_base_plasma_weapon_3_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "nebula_drifters_base_plasma_weapon_3_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "nebula_drifters_base_plasma_weapon_3_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "nebula_drifters_base_plasma_weapon_7_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "nebula_drifters_base_plasma_weapon_7_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "nebula_drifters_base_plasma_weapon_7_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "nebula_drifters_base_plasma_weapon_7_XL"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_plasma_weapon_3_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_plasma_weapon_3_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_plasma_weapon_3_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_plasma_weapon_3_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_plasma_weapon_7_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_plasma_weapon_7_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_plasma_weapon_7_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_plasma_weapon_7_M"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 120000.0,
+      "armor_kinetic_resistance": 160.0,
+      "weapon_kinetic_damage": 5295.0,
+      "mobility_speed_tactical": 16.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "Void Prince",
+    "blueprint_id": "nebula_drifters_void_prince",
+    "type": "hero",
+    "faction": "Nebula_Drifters",
+    "tier": 1,
+    "cost": 11000,
+    "base_stats": {
+      "role": "hero",
+      "tier": 1,
+      "hp": 300,
+      "armor": 50,
+      "damage": 255,
+      "speed": 20,
+      "cost": 11000,
+      "keywords": "hero unique hero tier5",
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 0.0,
+      "atom_energy": 20.0,
+      "atom_cohesion": 0.0,
+      "atom_volatility": 20.0,
+      "atom_stability": 0.0,
+      "atom_focus": 0.0,
+      "atom_frequency": 60.0,
+      "atom_aether": 0.0,
+      "atom_will": 0.0,
+      "atom_information": 0.0
+    },
+    "source_universe": "void_reckoning",
+    "description": "Master of the Hit and Run.",
+    "hero": true,
+    "unique": true,
+    "traits": [
+      "Trait_Anti_Infantry",
+      "Trait_Jump_Pack",
+      "Trait_Fleet",
+      "Trait_Deep_Strike"
+    ],
+    "abilities": [
+      "Ability_Plasma_Burst",
+      "Ability_Afterburner",
+      "Ability_Hit_and_Run",
+      "Ability_Strategic_Flux",
+      "Ability_Phase_Jump"
+    ],
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "upkeep": 1100,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "nebula_drifters_base_melee_weapon_0_S"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 3000.0,
+      "armor_kinetic_resistance": 100.0,
+      "weapon_kinetic_damage": 382.5,
+      "mobility_speed_tactical": 40.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "Shadow Baron",
+    "blueprint_id": "nebula_drifters_shadow_baron",
+    "type": "hero",
+    "faction": "Nebula_Drifters",
+    "tier": 4,
+    "cost": 7000,
+    "base_stats": {
+      "role": "commander",
+      "tier": 4,
+      "hp": 200,
+      "armor": 40,
+      "damage": 170,
+      "speed": 15,
+      "cost": 7000,
+      "keywords": "hero unique commander tier4",
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 0.0,
+      "atom_energy": 0.0,
+      "atom_cohesion": 0.0,
+      "atom_volatility": 0.0,
+      "atom_stability": 0.0,
+      "atom_focus": 30.0,
+      "atom_frequency": 50.0,
+      "atom_aether": 20.0,
+      "atom_will": 0.0,
+      "atom_information": 0.0
+    },
+    "source_universe": "void_reckoning",
+    "description": "Stealth fleet commander.",
+    "hero": true,
+    "unique": true,
+    "traits": [
+      "Trait_Infiltrate",
+      "Trait_Stealth",
+      "Trait_Fleet",
+      "Trait_Deep_Strike"
+    ],
+    "abilities": [
+      "Ability_Plasma_Burst",
+      "Ability_Afterburner",
+      "Ability_Strategic_Flux",
+      "Ability_Phase_Jump"
+    ],
+    "unit_class": "command_vehicle",
+    "domain": "ground",
+    "upkeep": 700,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_melee_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "nebula_drifters_base_laser_weapon_1_M"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 2000.0,
+      "armor_kinetic_resistance": 80.0,
+      "weapon_kinetic_damage": 255.0,
+      "mobility_speed_tactical": 30.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  }
+]

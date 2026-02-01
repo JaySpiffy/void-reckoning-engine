@@ -1,0 +1,39 @@
+thresholds:
+  predicted_insolvency:
+    enabled: true
+    metric: "predicted_turns_until_zero"
+    operator: "less_than"
+    value: 10
+    duration_turns: 2
+    severity: "warning"
+    message: "Faction {faction} predicted insolvency in {value} turns"
+
+  maintenance_cap_warning:
+    enabled: true
+    metric: "total_maintenance_pct"
+    operator: "greater_than"
+    value: 0.35
+    duration_turns: 1
+    severity: "warning"
+    message: "Faction {faction} approaching maintenance cap: {value}%"
+
+patterns:
+  chronic_deficit:
+    enabled: true
+    event_type: "economy"
+    pattern: "consecutive_negative_income"
+    metric: "consecutive_turns"
+    operator: "greater_than"
+    value: 5
+    window_turns: 10
+    severity: "warning"
+    message: "Faction {faction} has negative income for {value}+ consecutive turns"
+
+  system_alert:
+    enabled: true
+    event_type: "system"
+    pattern: "memory_growth"
+    metric: "rss_mb"
+    growth_rate_mb_per_turn: 50
+    severity: "critical"
+    message: "Rapid memory growth detected: {growth_rate} MB/turn"

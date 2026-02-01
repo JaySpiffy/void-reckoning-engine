@@ -1,0 +1,123 @@
+{
+    "_help": {
+        "mode": "Execution mode: 'single' (one universe) or 'multi' (parallel universes).",
+        "universes": "List of universe configurations for multi-mode execution.",
+        "global_defaults": "Settings defined at this level apply to ALL universes unless overridden."
+    },
+    "mode": "multi",
+    "campaign": {
+        "turns": 500,
+        "num_systems": 50,
+        "min_planets": 10,
+        "max_planets": 15,
+        "combat_rounds": 500,
+        "rounds_per_turn": 100
+    },
+    "economy": {
+        "base_income_req": 10000,
+        "base_income_prom": 1000,
+        "colonization_cost": 10000
+    },
+    "units": {
+        "max_fleet_size": 50,
+        "max_land_army_size": 40
+    },
+    "mechanics": {
+        "enable_diplomacy": true,
+        "enable_portals": true,
+        "enable_weather": true,
+        "weather_config": {
+            "eruption_threshold": 0.15,
+            "subsidence_threshold": 0.25,
+            "fluctuation_magnitude": 0.03
+        },
+        "ai_economy": {
+            "sustainability_check": true,
+            "modes": [
+                {
+                    "name": "DEVELOPMENT",
+                    "condition_type": "stockpile",
+                    "threshold": 6000,
+                    "budget": {
+                        "recruitment": 0.1,
+                        "construction": 0.8,
+                        "research": 0.1
+                    }
+                },
+                {
+                    "name": "CRISIS",
+                    "condition_type": "margin",
+                    "threshold": 1.05,
+                    "budget": {
+                        "recruitment": 0.0,
+                        "construction": 0.9,
+                        "research": 0.1
+                    }
+                },
+                {
+                    "name": "RECOVERY",
+                    "condition_type": "margin",
+                    "threshold": 1.25,
+                    "budget": {
+                        "recruitment": 0.2,
+                        "construction": 0.6,
+                        "research": 0.2
+                    }
+                },
+                {
+                    "name": "EXPANSION",
+                    "condition_type": "default",
+                    "threshold": 0.0,
+                    "budget": {
+                        "recruitment": 0.4,
+                        "construction": 0.4,
+                        "research": 0.2
+                    }
+                }
+            ]
+        }
+    },
+    "reporting": {
+        "formats": [
+            "json",
+            "html",
+            "csv"
+        ]
+    },
+    "universes": [
+        {
+            "name": "void_reckoning",
+            "enabled": true,
+            "processor_affinity": [
+                0
+            ],
+            "num_runs": 1,
+            "economy": {
+                "base_income_req": 5000,
+                "base_income_prom": 500
+            },
+            "units": {
+                "max_fleet_size": 50,
+                "max_land_army_size": 30
+            }
+        }
+    ],
+    "multi_universe_settings": {
+        "sync_turns": true,
+        "cross_universe_events": true,
+        "aggregate_reports": true
+    },
+    "simulation": {
+        "max_workers": 12,
+        "debug_mode": false,
+        "save_interval": 100,
+        "output_dir": "reports",
+        "log_level": "INFO",
+        "random_seed": 42
+    },
+    "performance": {
+        "logging_level": "summary",
+        "log_interval": 5,
+        "profile_methods": true
+    }
+}

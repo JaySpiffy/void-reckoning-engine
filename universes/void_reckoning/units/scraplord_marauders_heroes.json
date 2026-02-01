@@ -1,0 +1,103 @@
+[
+  {
+    "name": "Warlord",
+    "blueprint_id": "scraplord_marauders_warlord",
+    "type": "hero",
+    "faction": "ScrapLord_Marauders",
+    "tier": 1,
+    "cost": 10000,
+    "base_stats": {
+      "role": "hero",
+      "tier": 1,
+      "hp": 800,
+      "armor": 120,
+      "damage": 250,
+      "speed": 7,
+      "cost": 10000,
+      "keywords": "hero unique hero tier5"
+    },
+    "elemental_dna": {
+      "atom_mass": 30.0,
+      "atom_energy": 0.0,
+      "atom_cohesion": 20.0,
+      "atom_volatility": 50.0,
+      "atom_stability": 0.0,
+      "atom_focus": 0.0,
+      "atom_frequency": 0.0,
+      "atom_aether": 0.0,
+      "atom_will": 0.0,
+      "atom_information": 0.0
+    },
+    "source_universe": "void_reckoning",
+    "description": " Biggest and strongest Marauder.",
+    "hero": true,
+    "unique": true,
+    "traits": [
+      "Trait_Reinforced_Plating",
+      "Trait_Damage_Reduction",
+      "Trait_Regeneration"
+    ],
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "upkeep": 1000,
+    "universal_stats": {
+      "hull_structural_integrity": 8000.0,
+      "armor_kinetic_resistance": 240.0,
+      "weapon_kinetic_damage": 375.0,
+      "mobility_speed_tactical": 14.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "Big Mek",
+    "blueprint_id": "scraplord_marauders_big_mek",
+    "type": "hero",
+    "faction": "ScrapLord_Marauders",
+    "tier": 1,
+    "cost": 6000,
+    "base_stats": {
+      "role": "commander",
+      "tier": 1,
+      "hp": 400,
+      "armor": 80,
+      "damage": 120,
+      "speed": 6,
+      "cost": 6000,
+      "keywords": "hero unique commander tier4"
+    },
+    "elemental_dna": {
+      "atom_mass": 30.0,
+      "atom_energy": 40.0,
+      "atom_cohesion": 0.0,
+      "atom_volatility": 0.0,
+      "atom_stability": 0.0,
+      "atom_focus": 30.0,
+      "atom_frequency": 0.0,
+      "atom_aether": 0.0,
+      "atom_will": 0.0,
+      "atom_information": 0.0
+    },
+    "source_universe": "void_reckoning",
+    "description": "Builder of great machines.",
+    "hero": true,
+    "unique": true,
+    "traits": [
+      "Trait_Reinforced_Plating",
+      "Trait_Armor_Piercing",
+      "Trait_Anti_Vehicle",
+      "Trait_Shield_Capacitor"
+    ],
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "upkeep": 600,
+    "universal_stats": {
+      "hull_structural_integrity": 4000.0,
+      "armor_kinetic_resistance": 160.0,
+      "weapon_kinetic_damage": 180.0,
+      "mobility_speed_tactical": 12.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  }
+]

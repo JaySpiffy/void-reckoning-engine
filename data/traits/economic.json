@@ -1,0 +1,64 @@
+{
+    "traits": [
+        {
+            "id": "industrialist",
+            "name": "Industrialist",
+            "category": "economic",
+            "modifiers": {
+                "production_speed": 0.30,
+                "build_cost": -0.20
+            },
+            "description": "+30% Production Speed, -20% Build Cost.",
+            "rarity": "common"
+        },
+        {
+            "id": "thrifty",
+            "name": "Thrifty",
+            "category": "economic",
+            "modifiers": {
+                "maintenance_cost": -0.30,
+                "production_speed": 0.10
+            },
+            "description": "-30% Upkeep, +10% Production.",
+            "rarity": "common",
+            "conflicts": [
+                "wasteful"
+            ]
+        },
+        {
+            "id": "wasteful",
+            "name": "Wasteful",
+            "category": "economic",
+            "modifiers": {
+                "maintenance_cost": 0.50,
+                "production_speed": -0.20
+            },
+            "description": "+50% Upkeep, -20% Production.",
+            "rarity": "common",
+            "conflicts": [
+                "thrifty"
+            ]
+        },
+        {
+            "id": "merchants",
+            "name": "Merchants",
+            "category": "economic",
+            "modifiers": {
+                "trade_income": 0.40,
+                "diplomatic_range": 0.20
+            },
+            "description": "Natural traders. +40% Trade Income.",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "recyclers",
+            "name": "Recyclers",
+            "category": "economic",
+            "modifiers": {
+                "waste_reduction": 0.30
+            },
+            "description": "Efficient use of materials.",
+            "rarity": "common"
+        }
+    ]
+}

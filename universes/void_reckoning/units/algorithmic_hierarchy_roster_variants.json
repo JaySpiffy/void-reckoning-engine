@@ -1,0 +1,1600 @@
+[
+  {
+    "name": "Thrall (Melta)",
+    "blueprint_id": "algorithmic_hierarchy_thrall_melta",
+    "type": "infantry",
+    "faction": "Algorithmic_Hierarchy",
+    "cost": 100,
+    "base_stats": {
+      "hp": 15,
+      "armor": 20,
+      "damage": 12,
+      "speed": 2,
+      "type": "infantry",
+      "cost": 110,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 12.445454545454545,
+      "atom_energy": 21.354545454545455,
+      "atom_cohesion": 17.172727272727272,
+      "atom_volatility": 4.8999999999999995,
+      "atom_stability": 12.263636363636364,
+      "atom_focus": 4.8999999999999995,
+      "atom_frequency": 4.8999999999999995,
+      "atom_aether": 4.8999999999999995,
+      "atom_will": 12.263636363636364,
+      "atom_information": 4.8999999999999995
+    },
+    "source_universe": "void_reckoning",
+    "description": "Algorithmic_Hierarchy Infantry unit. Auto-generated. armed with short-range anti-armor thermal beams.",
+    "traits": [
+      "Trait_Shield_Regen"
+    ],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 10,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "algorithmic_hierarchy_base_information_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Thrall (Assault)",
+    "blueprint_id": "algorithmic_hierarchy_thrall_assault",
+    "type": "infantry",
+    "faction": "Algorithmic_Hierarchy",
+    "cost": 100,
+    "base_stats": {
+      "hp": 15,
+      "armor": 20,
+      "damage": 17,
+      "speed": 2,
+      "type": "infantry",
+      "cost": 100,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 12.445454545454545,
+      "atom_energy": 12.263636363636364,
+      "atom_cohesion": 26.263636363636365,
+      "atom_volatility": 4.8999999999999995,
+      "atom_stability": 12.263636363636364,
+      "atom_focus": 4.8999999999999995,
+      "atom_frequency": 4.8999999999999995,
+      "atom_aether": 4.8999999999999995,
+      "atom_will": 12.263636363636364,
+      "atom_information": 4.8999999999999995
+    },
+    "source_universe": "void_reckoning",
+    "description": "Algorithmic_Hierarchy Infantry unit. Auto-generated. configured for close-quarters combat.",
+    "traits": [
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "assault_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 10,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "algorithmic_hierarchy_base_information_weapon_0_S"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "algorithmic_hierarchy_base_information_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Immortal (Melta)",
+    "blueprint_id": "algorithmic_hierarchy_immortal_melta",
+    "type": "infantry",
+    "faction": "Algorithmic_Hierarchy",
+    "cost": 300,
+    "base_stats": {
+      "hp": 37,
+      "armor": 60,
+      "damage": 28,
+      "speed": 2,
+      "type": "infantry",
+      "cost": 330,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 7.118181818181818,
+      "atom_energy": 15.954545454545455,
+      "atom_cohesion": 15.109090909090911,
+      "atom_volatility": 2.745454545454545,
+      "atom_stability": 6.863636363636363,
+      "atom_focus": 23.37272727272727,
+      "atom_frequency": 2.745454545454545,
+      "atom_aether": 2.745454545454545,
+      "atom_will": 6.863636363636363,
+      "atom_information": 16.48181818181818
+    },
+    "source_universe": "void_reckoning",
+    "description": "Algorithmic_Hierarchy Elite_Infantry unit. Auto-generated. armed with short-range anti-armor thermal beams.",
+    "traits": [
+      "Trait_Adaptive_Armor",
+      "Trait_Armor_Piercing"
+    ],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 30,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "algorithmic_hierarchy_base_information_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Immortal (Assault)",
+    "blueprint_id": "algorithmic_hierarchy_immortal_assault",
+    "type": "infantry",
+    "faction": "Algorithmic_Hierarchy",
+    "cost": 300,
+    "base_stats": {
+      "hp": 37,
+      "armor": 60,
+      "damage": 31,
+      "speed": 2,
+      "type": "infantry",
+      "cost": 300,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 7.118181818181818,
+      "atom_energy": 6.863636363636363,
+      "atom_cohesion": 24.200000000000003,
+      "atom_volatility": 2.745454545454545,
+      "atom_stability": 6.863636363636363,
+      "atom_focus": 23.37272727272727,
+      "atom_frequency": 2.745454545454545,
+      "atom_aether": 2.745454545454545,
+      "atom_will": 6.863636363636363,
+      "atom_information": 16.48181818181818
+    },
+    "source_universe": "void_reckoning",
+    "description": "Algorithmic_Hierarchy Elite_Infantry unit. Auto-generated. configured for close-quarters combat.",
+    "traits": [
+      "Trait_Adaptive_Armor",
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "assault_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 30,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "algorithmic_hierarchy_base_information_weapon_0_S"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "algorithmic_hierarchy_base_information_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Skimmer (Plasma)",
+    "blueprint_id": "algorithmic_hierarchy_skimmer_plasma",
+    "type": "vehicle",
+    "faction": "Algorithmic_Hierarchy",
+    "cost": 500,
+    "base_stats": {
+      "hp": 120,
+      "armor": 50,
+      "damage": 38,
+      "speed": 6,
+      "type": "vehicle",
+      "cost": 600,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 18.756521739130434,
+      "atom_energy": 8.521739130434783,
+      "atom_cohesion": 25.59130434782609,
+      "atom_volatility": 16.45217391304348,
+      "atom_stability": 8.521739130434783,
+      "atom_focus": 3.4086956521739133,
+      "atom_frequency": 3.4086956521739133,
+      "atom_aether": 3.4086956521739133,
+      "atom_will": 8.521739130434783,
+      "atom_information": 3.4086956521739133
+    },
+    "source_universe": "void_reckoning",
+    "description": "Algorithmic_Hierarchy Light_Vehicle unit. Auto-generated. armed with high-energy plasma weaponry.",
+    "traits": [
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 50,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "algorithmic_hierarchy_base_information_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Skimmer (Melta)",
+    "blueprint_id": "algorithmic_hierarchy_skimmer_melta",
+    "type": "vehicle",
+    "faction": "Algorithmic_Hierarchy",
+    "cost": 500,
+    "base_stats": {
+      "hp": 120,
+      "armor": 50,
+      "damage": 36,
+      "speed": 6,
+      "type": "vehicle",
+      "cost": 550,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 19.60909090909091,
+      "atom_energy": 18.0,
+      "atom_cohesion": 26.754545454545454,
+      "atom_volatility": 3.5636363636363635,
+      "atom_stability": 8.90909090909091,
+      "atom_focus": 3.5636363636363635,
+      "atom_frequency": 3.5636363636363635,
+      "atom_aether": 3.5636363636363635,
+      "atom_will": 8.90909090909091,
+      "atom_information": 3.5636363636363635
+    },
+    "source_universe": "void_reckoning",
+    "description": "Algorithmic_Hierarchy Light_Vehicle unit. Auto-generated. armed with short-range anti-armor thermal beams.",
+    "traits": [
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 50,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "algorithmic_hierarchy_base_information_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Skimmer (Missile)",
+    "blueprint_id": "algorithmic_hierarchy_skimmer_missile",
+    "type": "vehicle",
+    "faction": "Algorithmic_Hierarchy",
+    "cost": 500,
+    "base_stats": {
+      "hp": 120,
+      "armor": 50,
+      "damage": 26,
+      "speed": 6,
+      "type": "vehicle",
+      "cost": 500,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 28.7,
+      "atom_energy": 8.90909090909091,
+      "atom_cohesion": 26.754545454545454,
+      "atom_volatility": 3.5636363636363635,
+      "atom_stability": 8.90909090909091,
+      "atom_focus": 3.5636363636363635,
+      "atom_frequency": 3.5636363636363635,
+      "atom_aether": 3.5636363636363635,
+      "atom_will": 8.90909090909091,
+      "atom_information": 3.5636363636363635
+    },
+    "source_universe": "void_reckoning",
+    "description": "Algorithmic_Hierarchy Light_Vehicle unit. Auto-generated. equipped with long-range missile pods.",
+    "traits": [
+      "Trait_Damage_Reduction",
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 50,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "algorithmic_hierarchy_base_information_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Skimmer (Shield)",
+    "blueprint_id": "algorithmic_hierarchy_skimmer_shield",
+    "type": "vehicle",
+    "faction": "Algorithmic_Hierarchy",
+    "cost": 500,
+    "base_stats": {
+      "hp": 96,
+      "armor": 25,
+      "damage": 29,
+      "speed": 6,
+      "type": "vehicle",
+      "cost": 650,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 17.974999999999998,
+      "atom_energy": 8.166666666666668,
+      "atom_cohesion": 24.525,
+      "atom_volatility": 3.266666666666666,
+      "atom_stability": 8.166666666666668,
+      "atom_focus": 19.933333333333334,
+      "atom_frequency": 3.266666666666666,
+      "atom_aether": 3.266666666666666,
+      "atom_will": 8.166666666666668,
+      "atom_information": 3.266666666666666
+    },
+    "source_universe": "void_reckoning",
+    "description": "Algorithmic_Hierarchy Light_Vehicle unit. Auto-generated. fitted with experimental shield generators.",
+    "traits": [
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 50,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "algorithmic_hierarchy_base_information_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Monolith (Plasma)",
+    "blueprint_id": "algorithmic_hierarchy_monolith_plasma",
+    "type": "vehicle",
+    "faction": "Algorithmic_Hierarchy",
+    "cost": 1200,
+    "base_stats": {
+      "hp": 375,
+      "armor": 150,
+      "damage": 120,
+      "speed": 3,
+      "type": "vehicle",
+      "cost": 1440,
+      "tier": 3,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 24.660869565217393,
+      "atom_energy": 5.191304347826087,
+      "atom_cohesion": 36.3304347826087,
+      "atom_volatility": 15.121739130434783,
+      "atom_stability": 5.191304347826087,
+      "atom_focus": 2.0782608695652174,
+      "atom_frequency": 2.0782608695652174,
+      "atom_aether": 2.0782608695652174,
+      "atom_will": 5.191304347826087,
+      "atom_information": 2.0782608695652174
+    },
+    "source_universe": "void_reckoning",
+    "description": "Algorithmic_Hierarchy Heavy_Tank unit. Auto-generated. armed with high-energy plasma weaponry.",
+    "traits": [
+      "Trait_Damage_Reduction",
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "battle_tank",
+    "domain": "ground",
+    "tier": 3,
+    "upkeep": 120,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_information_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_information_weapon_1_M"
+      }
+    ]
+  },
+  {
+    "name": "Monolith (Melta)",
+    "blueprint_id": "algorithmic_hierarchy_monolith_melta",
+    "type": "vehicle",
+    "faction": "Algorithmic_Hierarchy",
+    "cost": 1200,
+    "base_stats": {
+      "hp": 375,
+      "armor": 150,
+      "damage": 113,
+      "speed": 3,
+      "type": "vehicle",
+      "cost": 1320,
+      "tier": 3,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 25.781818181818185,
+      "atom_energy": 14.518181818181816,
+      "atom_cohesion": 37.981818181818184,
+      "atom_volatility": 2.172727272727273,
+      "atom_stability": 5.427272727272727,
+      "atom_focus": 2.172727272727273,
+      "atom_frequency": 2.172727272727273,
+      "atom_aether": 2.172727272727273,
+      "atom_will": 5.427272727272727,
+      "atom_information": 2.172727272727273
+    },
+    "source_universe": "void_reckoning",
+    "description": "Algorithmic_Hierarchy Heavy_Tank unit. Auto-generated. armed with short-range anti-armor thermal beams.",
+    "traits": [
+      "Trait_Damage_Reduction",
+      "Trait_Regeneration",
+      "Trait_Reinforced_Plating"
+    ],
+    "variant": true,
+    "unit_class": "battle_tank",
+    "domain": "ground",
+    "tier": 3,
+    "upkeep": 120,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_information_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_information_weapon_1_M"
+      }
+    ]
+  },
+  {
+    "name": "Monolith (Missile)",
+    "blueprint_id": "algorithmic_hierarchy_monolith_missile",
+    "type": "vehicle",
+    "faction": "Algorithmic_Hierarchy",
+    "cost": 1200,
+    "base_stats": {
+      "hp": 375,
+      "armor": 150,
+      "damage": 84,
+      "speed": 3,
+      "type": "vehicle",
+      "cost": 1200,
+      "tier": 3,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 34.872727272727275,
+      "atom_energy": 5.427272727272727,
+      "atom_cohesion": 37.981818181818184,
+      "atom_volatility": 2.172727272727273,
+      "atom_stability": 5.427272727272727,
+      "atom_focus": 2.172727272727273,
+      "atom_frequency": 2.172727272727273,
+      "atom_aether": 2.172727272727273,
+      "atom_will": 5.427272727272727,
+      "atom_information": 2.172727272727273
+    },
+    "source_universe": "void_reckoning",
+    "description": "Algorithmic_Hierarchy Heavy_Tank unit. Auto-generated. equipped with long-range missile pods.",
+    "traits": [
+      "Trait_Damage_Reduction",
+      "Trait_Regeneration",
+      "Trait_Reinforced_Plating"
+    ],
+    "variant": true,
+    "unit_class": "battle_tank",
+    "domain": "ground",
+    "tier": 3,
+    "upkeep": 120,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_information_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_information_weapon_1_M"
+      }
+    ]
+  },
+  {
+    "name": "Monolith (Shield)",
+    "blueprint_id": "algorithmic_hierarchy_monolith_shield",
+    "type": "vehicle",
+    "faction": "Algorithmic_Hierarchy",
+    "cost": 1200,
+    "base_stats": {
+      "hp": 300,
+      "armor": 75,
+      "damage": 92,
+      "speed": 3,
+      "type": "vehicle",
+      "cost": 1560,
+      "tier": 3,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 23.633333333333333,
+      "atom_energy": 4.975,
+      "atom_cohesion": 34.81666666666667,
+      "atom_volatility": 1.991666666666667,
+      "atom_stability": 4.975,
+      "atom_focus": 18.658333333333335,
+      "atom_frequency": 1.991666666666667,
+      "atom_aether": 1.991666666666667,
+      "atom_will": 4.975,
+      "atom_information": 1.991666666666667
+    },
+    "source_universe": "void_reckoning",
+    "description": "Algorithmic_Hierarchy Heavy_Tank unit. Auto-generated. fitted with experimental shield generators.",
+    "traits": [
+      "Trait_Damage_Reduction",
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "battle_tank",
+    "domain": "ground",
+    "tier": 3,
+    "upkeep": 120,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_information_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_information_weapon_1_M"
+      }
+    ]
+  },
+  {
+    "name": "Strider (Plasma)",
+    "blueprint_id": "algorithmic_hierarchy_strider_plasma",
+    "type": "vehicle",
+    "faction": "Algorithmic_Hierarchy",
+    "cost": 900,
+    "base_stats": {
+      "hp": 270,
+      "armor": 90,
+      "damage": 80,
+      "speed": 2,
+      "type": "vehicle",
+      "cost": 1080,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 12.173913043478262,
+      "atom_energy": 9.591304347826087,
+      "atom_cohesion": 26.83478260869565,
+      "atom_volatility": 16.878260869565217,
+      "atom_stability": 9.591304347826087,
+      "atom_focus": 3.834782608695652,
+      "atom_frequency": 3.834782608695652,
+      "atom_aether": 3.834782608695652,
+      "atom_will": 9.591304347826087,
+      "atom_information": 3.834782608695652
+    },
+    "source_universe": "void_reckoning",
+    "description": "Algorithmic_Hierarchy Walker unit. Auto-generated. armed with high-energy plasma weaponry.",
+    "traits": [
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 90,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "algorithmic_hierarchy_base_information_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Strider (Melta)",
+    "blueprint_id": "algorithmic_hierarchy_strider_melta",
+    "type": "vehicle",
+    "faction": "Algorithmic_Hierarchy",
+    "cost": 900,
+    "base_stats": {
+      "hp": 270,
+      "armor": 90,
+      "damage": 75,
+      "speed": 2,
+      "type": "vehicle",
+      "cost": 990,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 12.727272727272727,
+      "atom_energy": 19.11818181818182,
+      "atom_cohesion": 28.054545454545455,
+      "atom_volatility": 4.00909090909091,
+      "atom_stability": 10.027272727272726,
+      "atom_focus": 4.00909090909091,
+      "atom_frequency": 4.00909090909091,
+      "atom_aether": 4.00909090909091,
+      "atom_will": 10.027272727272726,
+      "atom_information": 4.00909090909091
+    },
+    "source_universe": "void_reckoning",
+    "description": "Algorithmic_Hierarchy Walker unit. Auto-generated. armed with short-range anti-armor thermal beams.",
+    "traits": [
+      "Trait_Shield_Regen",
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 90,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "algorithmic_hierarchy_base_information_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Strider (Missile)",
+    "blueprint_id": "algorithmic_hierarchy_strider_missile",
+    "type": "vehicle",
+    "faction": "Algorithmic_Hierarchy",
+    "cost": 900,
+    "base_stats": {
+      "hp": 270,
+      "armor": 90,
+      "damage": 53,
+      "speed": 2,
+      "type": "vehicle",
+      "cost": 900,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 21.818181818181817,
+      "atom_energy": 10.027272727272726,
+      "atom_cohesion": 28.054545454545455,
+      "atom_volatility": 4.00909090909091,
+      "atom_stability": 10.027272727272726,
+      "atom_focus": 4.00909090909091,
+      "atom_frequency": 4.00909090909091,
+      "atom_aether": 4.00909090909091,
+      "atom_will": 10.027272727272726,
+      "atom_information": 4.00909090909091
+    },
+    "source_universe": "void_reckoning",
+    "description": "Algorithmic_Hierarchy Walker unit. Auto-generated. equipped with long-range missile pods.",
+    "traits": [
+      "Trait_Damage_Reduction",
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 90,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "algorithmic_hierarchy_base_information_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Strider (Shield)",
+    "blueprint_id": "algorithmic_hierarchy_strider_shield",
+    "type": "vehicle",
+    "faction": "Algorithmic_Hierarchy",
+    "cost": 900,
+    "base_stats": {
+      "hp": 216,
+      "armor": 45,
+      "damage": 59,
+      "speed": 2,
+      "type": "vehicle",
+      "cost": 1170,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 11.666666666666666,
+      "atom_energy": 9.191666666666666,
+      "atom_cohesion": 25.716666666666665,
+      "atom_volatility": 3.675,
+      "atom_stability": 9.191666666666666,
+      "atom_focus": 20.341666666666665,
+      "atom_frequency": 3.675,
+      "atom_aether": 3.675,
+      "atom_will": 9.191666666666666,
+      "atom_information": 3.675
+    },
+    "source_universe": "void_reckoning",
+    "description": "Algorithmic_Hierarchy Walker unit. Auto-generated. fitted with experimental shield generators.",
+    "traits": [
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 90,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "algorithmic_hierarchy_base_information_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Doom Scythe (Plasma)",
+    "blueprint_id": "algorithmic_hierarchy_doom_scythe_plasma",
+    "type": "ship",
+    "faction": "Algorithmic_Hierarchy",
+    "cost": 150,
+    "base_stats": {
+      "hp": 75,
+      "armor": 0,
+      "damage": 46,
+      "speed": 17,
+      "type": "ship",
+      "cost": 180,
+      "tier": 1,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 13.243478260869566,
+      "atom_energy": 12.286956521739132,
+      "atom_cohesion": 12.286956521739132,
+      "atom_volatility": 17.956521739130434,
+      "atom_stability": 12.286956521739132,
+      "atom_focus": 4.91304347826087,
+      "atom_frequency": 4.91304347826087,
+      "atom_aether": 4.91304347826087,
+      "atom_will": 12.286956521739132,
+      "atom_information": 4.91304347826087
+    },
+    "source_universe": "void_reckoning",
+    "description": "Algorithmic_Hierarchy Fighter unit. Auto-generated. armed with high-energy plasma weaponry.",
+    "traits": [],
+    "variant": true,
+    "unit_class": "fighter",
+    "domain": "space",
+    "tier": 1,
+    "upkeep": 15,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "algorithmic_hierarchy_base_projectile_weapon_3_S"
+      }
+    ]
+  },
+  {
+    "name": "Doom Scythe (Missile)",
+    "blueprint_id": "algorithmic_hierarchy_doom_scythe_missile",
+    "type": "ship",
+    "faction": "Algorithmic_Hierarchy",
+    "cost": 150,
+    "base_stats": {
+      "hp": 75,
+      "armor": 0,
+      "damage": 40,
+      "speed": 17,
+      "type": "ship",
+      "cost": 150,
+      "tier": 1,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 22.936363636363637,
+      "atom_energy": 12.845454545454546,
+      "atom_cohesion": 12.845454545454546,
+      "atom_volatility": 5.136363636363637,
+      "atom_stability": 12.845454545454546,
+      "atom_focus": 5.136363636363637,
+      "atom_frequency": 5.136363636363637,
+      "atom_aether": 5.136363636363637,
+      "atom_will": 12.845454545454546,
+      "atom_information": 5.136363636363637
+    },
+    "source_universe": "void_reckoning",
+    "description": "Algorithmic_Hierarchy Fighter unit. Auto-generated. equipped with long-range missile pods.",
+    "traits": [],
+    "variant": true,
+    "unit_class": "fighter",
+    "domain": "space",
+    "tier": 1,
+    "upkeep": 15,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "algorithmic_hierarchy_base_projectile_weapon_3_S"
+      }
+    ]
+  },
+  {
+    "name": "Doom Scythe (Shield)",
+    "blueprint_id": "algorithmic_hierarchy_doom_scythe_shield",
+    "type": "ship",
+    "faction": "Algorithmic_Hierarchy",
+    "cost": 150,
+    "base_stats": {
+      "hp": 60,
+      "armor": 0,
+      "damage": 42,
+      "speed": 17,
+      "type": "ship",
+      "cost": 195,
+      "tier": 1,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 12.691666666666668,
+      "atom_energy": 11.775,
+      "atom_cohesion": 11.775,
+      "atom_volatility": 4.708333333333334,
+      "atom_stability": 11.775,
+      "atom_focus": 21.375,
+      "atom_frequency": 4.708333333333334,
+      "atom_aether": 4.708333333333334,
+      "atom_will": 11.775,
+      "atom_information": 4.708333333333334
+    },
+    "source_universe": "void_reckoning",
+    "description": "Algorithmic_Hierarchy Fighter unit. Auto-generated. fitted with experimental shield generators.",
+    "traits": [
+      "Trait_Armor_Piercing"
+    ],
+    "variant": true,
+    "unit_class": "fighter",
+    "domain": "space",
+    "tier": 1,
+    "upkeep": 15,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "algorithmic_hierarchy_base_projectile_weapon_3_S"
+      }
+    ]
+  },
+  {
+    "name": "Dirge Class (Plasma)",
+    "blueprint_id": "algorithmic_hierarchy_dirge_class_plasma",
+    "type": "ship",
+    "faction": "Algorithmic_Hierarchy",
+    "cost": 2000,
+    "base_stats": {
+      "hp": 1200,
+      "armor": 50,
+      "damage": 308,
+      "speed": 7,
+      "type": "ship",
+      "cost": 2400,
+      "tier": 2,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 20.782608695652172,
+      "atom_energy": 9.452173913043477,
+      "atom_cohesion": 18.904347826086955,
+      "atom_volatility": 16.826086956521742,
+      "atom_stability": 9.452173913043477,
+      "atom_focus": 3.782608695652174,
+      "atom_frequency": 3.782608695652174,
+      "atom_aether": 3.782608695652174,
+      "atom_will": 9.452173913043477,
+      "atom_information": 3.782608695652174
+    },
+    "source_universe": "void_reckoning",
+    "description": "Algorithmic_Hierarchy Frigate unit. Auto-generated. armed with high-energy plasma weaponry.",
+    "traits": [
+      "Trait_Damage_Reduction",
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "frigate",
+    "domain": "space",
+    "tier": 2,
+    "upkeep": 200,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_information_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "algorithmic_hierarchy_base_information_weapon_0_S"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "algorithmic_hierarchy_base_information_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Dirge Class (Missile)",
+    "blueprint_id": "algorithmic_hierarchy_dirge_class_missile",
+    "type": "ship",
+    "faction": "Algorithmic_Hierarchy",
+    "cost": 2000,
+    "base_stats": {
+      "hp": 1200,
+      "armor": 50,
+      "damage": 248,
+      "speed": 7,
+      "type": "ship",
+      "cost": 2000,
+      "tier": 2,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 30.818181818181817,
+      "atom_energy": 9.881818181818181,
+      "atom_cohesion": 19.763636363636362,
+      "atom_volatility": 3.954545454545454,
+      "atom_stability": 9.881818181818181,
+      "atom_focus": 3.954545454545454,
+      "atom_frequency": 3.954545454545454,
+      "atom_aether": 3.954545454545454,
+      "atom_will": 9.881818181818181,
+      "atom_information": 3.954545454545454
+    },
+    "source_universe": "void_reckoning",
+    "description": "Algorithmic_Hierarchy Frigate unit. Auto-generated. equipped with long-range missile pods.",
+    "traits": [
+      "Trait_Damage_Reduction",
+      "Trait_Reinforced_Plating",
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "frigate",
+    "domain": "space",
+    "tier": 2,
+    "upkeep": 200,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_information_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "algorithmic_hierarchy_base_information_weapon_0_S"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "algorithmic_hierarchy_base_information_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Dirge Class (Shield)",
+    "blueprint_id": "algorithmic_hierarchy_dirge_class_shield",
+    "type": "ship",
+    "faction": "Algorithmic_Hierarchy",
+    "cost": 2000,
+    "base_stats": {
+      "hp": 960,
+      "armor": 25,
+      "damage": 260,
+      "speed": 7,
+      "type": "ship",
+      "cost": 2600,
+      "tier": 2,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 19.916666666666664,
+      "atom_energy": 9.058333333333332,
+      "atom_cohesion": 18.116666666666664,
+      "atom_volatility": 3.6249999999999996,
+      "atom_stability": 9.058333333333332,
+      "atom_focus": 20.291666666666668,
+      "atom_frequency": 3.6249999999999996,
+      "atom_aether": 3.6249999999999996,
+      "atom_will": 9.058333333333332,
+      "atom_information": 3.6249999999999996
+    },
+    "source_universe": "void_reckoning",
+    "description": "Algorithmic_Hierarchy Frigate unit. Auto-generated. fitted with experimental shield generators.",
+    "traits": [
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "frigate",
+    "domain": "space",
+    "tier": 2,
+    "upkeep": 200,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_information_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "algorithmic_hierarchy_base_information_weapon_0_S"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "algorithmic_hierarchy_base_information_weapon_0_S"
+      }
+    ]
+  },
+  {
+    "name": "Requiem Class (Plasma)",
+    "blueprint_id": "algorithmic_hierarchy_requiem_class_plasma",
+    "type": "ship",
+    "faction": "Algorithmic_Hierarchy",
+    "cost": 8000,
+    "base_stats": {
+      "hp": 4500,
+      "armor": 150,
+      "damage": 1052,
+      "speed": 4,
+      "type": "ship",
+      "cost": 9600,
+      "range": 30
+    },
+    "elemental_dna": {
+      "atom_mass": 32.96521739130435,
+      "atom_energy": 6.000000000000001,
+      "atom_cohesion": 23.991304347826087,
+      "atom_volatility": 15.443478260869565,
+      "atom_stability": 6.000000000000001,
+      "atom_focus": 2.4,
+      "atom_frequency": 2.4,
+      "atom_aether": 2.4,
+      "atom_will": 6.000000000000001,
+      "atom_information": 2.4
+    },
+    "source_universe": "void_reckoning",
+    "description": "Algorithmic_Hierarchy Cruiser unit. Auto-generated. armed with high-energy plasma weaponry.",
+    "traits": [
+      "Trait_Damage_Reduction",
+      "Trait_Regeneration",
+      "Trait_Reinforced_Plating"
+    ],
+    "variant": true,
+    "unit_class": "cruiser",
+    "domain": "space",
+    "upkeep": 800,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_information_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_information_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_information_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "algorithmic_hierarchy_base_information_weapon_0_L"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "algorithmic_hierarchy_base_information_weapon_0_L"
+      }
+    ]
+  },
+  {
+    "name": "Requiem Class (Missile)",
+    "blueprint_id": "algorithmic_hierarchy_requiem_class_missile",
+    "type": "ship",
+    "faction": "Algorithmic_Hierarchy",
+    "cost": 8000,
+    "base_stats": {
+      "hp": 4500,
+      "armor": 150,
+      "damage": 812,
+      "speed": 4,
+      "type": "ship",
+      "cost": 8000,
+      "range": 30
+    },
+    "elemental_dna": {
+      "atom_mass": 43.554545454545455,
+      "atom_energy": 6.2727272727272725,
+      "atom_cohesion": 25.081818181818182,
+      "atom_volatility": 2.509090909090909,
+      "atom_stability": 6.2727272727272725,
+      "atom_focus": 2.509090909090909,
+      "atom_frequency": 2.509090909090909,
+      "atom_aether": 2.509090909090909,
+      "atom_will": 6.2727272727272725,
+      "atom_information": 2.509090909090909
+    },
+    "source_universe": "void_reckoning",
+    "description": "Algorithmic_Hierarchy Cruiser unit. Auto-generated. equipped with long-range missile pods.",
+    "traits": [
+      "Trait_Damage_Reduction",
+      "Trait_Reinforced_Plating",
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "cruiser",
+    "domain": "space",
+    "upkeep": 800,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_information_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_information_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_information_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "algorithmic_hierarchy_base_information_weapon_0_L"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "algorithmic_hierarchy_base_information_weapon_0_L"
+      }
+    ]
+  },
+  {
+    "name": "Requiem Class (Shield)",
+    "blueprint_id": "algorithmic_hierarchy_requiem_class_shield",
+    "type": "ship",
+    "faction": "Algorithmic_Hierarchy",
+    "cost": 8000,
+    "base_stats": {
+      "hp": 3600,
+      "armor": 75,
+      "damage": 860,
+      "speed": 4,
+      "type": "ship",
+      "cost": 10400,
+      "range": 30
+    },
+    "elemental_dna": {
+      "atom_mass": 31.59166666666666,
+      "atom_energy": 5.75,
+      "atom_cohesion": 22.991666666666667,
+      "atom_volatility": 2.3,
+      "atom_stability": 5.75,
+      "atom_focus": 18.966666666666665,
+      "atom_frequency": 2.3,
+      "atom_aether": 2.3,
+      "atom_will": 5.75,
+      "atom_information": 2.3
+    },
+    "source_universe": "void_reckoning",
+    "description": "Algorithmic_Hierarchy Cruiser unit. Auto-generated. fitted with experimental shield generators.",
+    "traits": [
+      "Trait_Damage_Reduction",
+      "Trait_Regeneration",
+      "Trait_Reinforced_Plating"
+    ],
+    "variant": true,
+    "unit_class": "cruiser",
+    "domain": "space",
+    "upkeep": 800,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_information_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_information_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_information_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_information_weapon_1_M"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "algorithmic_hierarchy_base_information_weapon_0_L"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "algorithmic_hierarchy_base_information_weapon_0_L"
+      }
+    ]
+  },
+  {
+    "name": "Silicon God (Plasma)",
+    "blueprint_id": "algorithmic_hierarchy_silicon_god_plasma",
+    "type": "ship",
+    "faction": "Algorithmic_Hierarchy",
+    "cost": 25000,
+    "base_stats": {
+      "hp": 18000,
+      "armor": 400,
+      "damage": 3800,
+      "speed": 2,
+      "type": "ship",
+      "cost": 30000,
+      "tier": 3,
+      "range": 36
+    },
+    "elemental_dna": {
+      "atom_mass": 66.83478260869565,
+      "atom_energy": 0.9130434782608696,
+      "atom_cohesion": 15.556521739130435,
+      "atom_volatility": 13.408695652173913,
+      "atom_stability": 0.9130434782608696,
+      "atom_focus": 0.36521739130434777,
+      "atom_frequency": 0.36521739130434777,
+      "atom_aether": 0.36521739130434777,
+      "atom_will": 0.9130434782608696,
+      "atom_information": 0.36521739130434777
+    },
+    "source_universe": "void_reckoning",
+    "description": "Algorithmic_Hierarchy Battleship unit. Auto-generated. armed with high-energy plasma weaponry.",
+    "traits": [
+      "Trait_Damage_Reduction",
+      "Trait_Reinforced_Plating",
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "battleship",
+    "domain": "space",
+    "tier": 3,
+    "upkeep": 2500,
+    "components": [
+      {
+        "slot": "weapon_heavy",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_XL"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_M"
+      }
+    ]
+  },
+  {
+    "name": "Silicon God (Missile)",
+    "blueprint_id": "algorithmic_hierarchy_silicon_god_missile",
+    "type": "ship",
+    "faction": "Algorithmic_Hierarchy",
+    "cost": 25000,
+    "base_stats": {
+      "hp": 18000,
+      "armor": 400,
+      "damage": 2900,
+      "speed": 2,
+      "type": "ship",
+      "cost": 25000,
+      "tier": 3,
+      "range": 36
+    },
+    "elemental_dna": {
+      "atom_mass": 78.96363636363635,
+      "atom_energy": 0.9545454545454546,
+      "atom_cohesion": 16.263636363636362,
+      "atom_volatility": 0.38181818181818183,
+      "atom_stability": 0.9545454545454546,
+      "atom_focus": 0.38181818181818183,
+      "atom_frequency": 0.38181818181818183,
+      "atom_aether": 0.38181818181818183,
+      "atom_will": 0.9545454545454546,
+      "atom_information": 0.38181818181818183
+    },
+    "source_universe": "void_reckoning",
+    "description": "Algorithmic_Hierarchy Battleship unit. Auto-generated. equipped with long-range missile pods.",
+    "traits": [
+      "Trait_Damage_Reduction",
+      "Trait_Reinforced_Plating",
+      "Trait_Regeneration"
+    ],
+    "variant": true,
+    "unit_class": "battleship",
+    "domain": "space",
+    "tier": 3,
+    "upkeep": 2500,
+    "components": [
+      {
+        "slot": "weapon_heavy",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_XL"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_M"
+      }
+    ]
+  },
+  {
+    "name": "Silicon God (Shield)",
+    "blueprint_id": "algorithmic_hierarchy_silicon_god_shield",
+    "type": "ship",
+    "faction": "Algorithmic_Hierarchy",
+    "cost": 25000,
+    "base_stats": {
+      "hp": 14400,
+      "armor": 200,
+      "damage": 3080,
+      "speed": 2,
+      "type": "ship",
+      "cost": 32500,
+      "tier": 3,
+      "range": 36
+    },
+    "elemental_dna": {
+      "atom_mass": 64.05,
+      "atom_energy": 0.8750000000000001,
+      "atom_cohesion": 14.908333333333335,
+      "atom_volatility": 0.35000000000000003,
+      "atom_stability": 0.8750000000000001,
+      "atom_focus": 17.01666666666667,
+      "atom_frequency": 0.35000000000000003,
+      "atom_aether": 0.35000000000000003,
+      "atom_will": 0.8750000000000001,
+      "atom_information": 0.35000000000000003
+    },
+    "source_universe": "void_reckoning",
+    "description": "Algorithmic_Hierarchy Battleship unit. Auto-generated. fitted with experimental shield generators.",
+    "traits": [
+      "Trait_Reinforced_Plating"
+    ],
+    "variant": true,
+    "unit_class": "battleship",
+    "domain": "space",
+    "tier": 3,
+    "upkeep": 2500,
+    "components": [
+      {
+        "slot": "weapon_heavy",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_XL"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "algorithmic_hierarchy_base_plasma_weapon_6_M"
+      }
+    ]
+  }
+]

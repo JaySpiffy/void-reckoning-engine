@@ -1,0 +1,22 @@
+{
+    "enable_portals": true,
+    "portals": [
+        {
+            "portal_id": "nexus_alpha",
+            "source_coords": [
+                50,
+                50
+            ],
+            "dest_universe": "target_universe",
+            "dest_coords": [
+                50,
+                50
+            ],
+            "placement_strategy": "galactic_core",
+            "metadata": {
+                "name": "Central Nexus",
+                "description": "Main gateway between two galaxies."
+            }
+        }
+    ]
+}

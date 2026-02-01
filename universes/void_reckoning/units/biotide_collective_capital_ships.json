@@ -1,0 +1,494 @@
+[
+  {
+    "name": "BioTide_Collective Hive Leviathan Carrier",
+    "blueprint_id": "biotide_collective_carrier",
+    "type": "capital_ship",
+    "faction": "BioTide_Collective",
+    "tier": 4,
+    "cost": 20000,
+    "upkeep": 2000,
+    "base_stats": {
+      "hp": 5000,
+      "armor": 150,
+      "damage": 280,
+      "speed": 12,
+      "role": "capital_ship",
+      "cost": 20000,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_stability": 18.95,
+      "atom_focus": 4.53,
+      "atom_frequency": 4.53,
+      "atom_information": 19.75,
+      "atom_cohesion": 9.82,
+      "atom_energy": 12.86,
+      "atom_will": 3.73,
+      "atom_mass": 18.51,
+      "atom_volatility": 5.83,
+      "atom_aether": 1.49
+    },
+    "source_universe": "void_reckoning",
+    "description": "BioTide_Collective carrier (space). Tier 4 Strategic Asset.",
+    "abilities": [
+      "Ability_Sensor_Sweep",
+      "Ability_Torpedo_Salvo",
+      "Ability_Regeneration",
+      "Ability_Point_Defense",
+      "Ability_Shield_Regen"
+    ],
+    "traits": [
+      "Veteran Crew"
+    ],
+    "unit_class": "carrier",
+    "domain": "space",
+    "special_mechanics": {
+      "biomass_spawning": {
+        "units_per_turn": 1,
+        "unit_tier": 1,
+        "description": "Spawns units from consumed biomass."
+      }
+    },
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_biological_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_information_weapon_1_M"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 50000.0,
+      "armor_kinetic_resistance": 300.0,
+      "weapon_kinetic_damage": 420.0,
+      "mobility_speed_tactical": 24.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "BioTide_Collective Biomass Titan Iron-Sarcophagus",
+    "blueprint_id": "biotide_collective_iron-sarcophagus",
+    "type": "capital_ship",
+    "faction": "BioTide_Collective",
+    "tier": 4,
+    "cost": 28000,
+    "upkeep": 2800,
+    "base_stats": {
+      "hp": 8000,
+      "armor": 250,
+      "damage": 580,
+      "speed": 10,
+      "role": "capital_ship",
+      "cost": 28000,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_stability": 6.77,
+      "atom_focus": 4.53,
+      "atom_frequency": 1.49,
+      "atom_information": 1.49,
+      "atom_cohesion": 21.99,
+      "atom_energy": 15.9,
+      "atom_will": 3.73,
+      "atom_mass": 33.73,
+      "atom_volatility": 8.88,
+      "atom_aether": 1.49
+    },
+    "source_universe": "void_reckoning",
+    "description": "BioTide_Collective iron-sarcophagus (space). Tier 4 Strategic Asset.",
+    "abilities": [
+      "Ability_Torpedo_Salvo",
+      "Ability_Fortify_Position",
+      "Ability_Overcharge",
+      "Ability_Regeneration",
+      "Ability_Plasma_Burst"
+    ],
+    "traits": [
+      "Regeneration",
+      "Veteran Crew"
+    ],
+    "unit_class": "iron-sarcophagus",
+    "domain": "space",
+    "special_mechanics": {
+      "biomass_spawning": {
+        "units_per_turn": 1,
+        "unit_tier": 1,
+        "description": "Spawns units from consumed biomass."
+      }
+    },
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_biological_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_information_weapon_1_M"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 80000.0,
+      "armor_kinetic_resistance": 500.0,
+      "weapon_kinetic_damage": 870.0,
+      "mobility_speed_tactical": 20.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "BioTide_Collective Apex Devourer Titan",
+    "blueprint_id": "biotide_collective_titan",
+    "type": "titan",
+    "faction": "BioTide_Collective",
+    "tier": 5,
+    "cost": 50000,
+    "upkeep": 5000,
+    "base_stats": {
+      "hp": 12000,
+      "armor": 350,
+      "damage": 880,
+      "speed": 8,
+      "role": "titan",
+      "cost": 50000,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_stability": 9.82,
+      "atom_focus": 22.79,
+      "atom_frequency": 1.49,
+      "atom_information": 1.49,
+      "atom_cohesion": 6.77,
+      "atom_energy": 21.99,
+      "atom_will": 3.73,
+      "atom_mass": 24.6,
+      "atom_volatility": 5.83,
+      "atom_aether": 1.49
+    },
+    "source_universe": "void_reckoning",
+    "description": "BioTide_Collective titan (space). Tier 5 Strategic Asset.",
+    "abilities": [
+      "Ability_Torpedo_Salvo",
+      "Ability_Tracking_Lock",
+      "Ability_Overcharge",
+      "Ability_Ion_Cannon",
+      "Ability_Regeneration",
+      "Ability_Plasma_Burst"
+    ],
+    "traits": [
+      "Master-Crafted",
+      "Veteran Crew"
+    ],
+    "unit_class": "titan",
+    "domain": "space",
+    "special_mechanics": {
+      "biomass_spawning": {
+        "units_per_turn": 1,
+        "unit_tier": 1,
+        "description": "Spawns units from consumed biomass."
+      }
+    },
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_biological_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_information_weapon_1_M"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 120000.0,
+      "armor_kinetic_resistance": 700.0,
+      "weapon_kinetic_damage": 1320.0,
+      "mobility_speed_tactical": 16.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "BioTide_Collective Swarm Mothership Planet Killer",
+    "blueprint_id": "biotide_collective_planet_killer",
+    "type": "titan",
+    "faction": "BioTide_Collective",
+    "tier": 5,
+    "cost": 64000,
+    "upkeep": 6400,
+    "base_stats": {
+      "hp": 10000,
+      "armor": 300,
+      "damage": 2080,
+      "speed": 6,
+      "role": "titan",
+      "cost": 64000,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_stability": 3.73,
+      "atom_focus": 19.75,
+      "atom_frequency": 1.49,
+      "atom_information": 1.49,
+      "atom_cohesion": 3.73,
+      "atom_energy": 15.9,
+      "atom_will": 3.73,
+      "atom_mass": 18.51,
+      "atom_volatility": 30.18,
+      "atom_aether": 1.49
+    },
+    "source_universe": "void_reckoning",
+    "description": "BioTide_Collective planet_killer (space). Tier 5 Strategic Asset.",
+    "abilities": [
+      "Ability_Torpedo_Salvo",
+      "Ability_Overcharge",
+      "Ability_Ion_Cannon",
+      "Ability_Regeneration",
+      "Ability_Plasma_Burst"
+    ],
+    "traits": [
+      "Reckless Pilot",
+      "Veteran Crew"
+    ],
+    "unit_class": "planet_killer",
+    "domain": "space",
+    "special_mechanics": {
+      "biomass_spawning": {
+        "units_per_turn": 1,
+        "unit_tier": 1,
+        "description": "Spawns units from consumed biomass."
+      }
+    },
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_biological_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_information_weapon_1_M"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 100000.0,
+      "armor_kinetic_resistance": 600.0,
+      "weapon_kinetic_damage": 3120.0,
+      "mobility_speed_tactical": 12.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "BioTide_Collective Biomass Titan World Devastator",
+    "blueprint_id": "biotide_collective_world_devastator",
+    "type": "titan",
+    "faction": "BioTide_Collective",
+    "tier": 5,
+    "cost": 60000,
+    "upkeep": 6000,
+    "base_stats": {
+      "hp": 15000,
+      "armor": 400,
+      "damage": 1080,
+      "speed": 5,
+      "role": "titan",
+      "cost": 60000,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_stability": 3.73,
+      "atom_focus": 1.49,
+      "atom_frequency": 1.49,
+      "atom_information": 1.49,
+      "atom_cohesion": 15.9,
+      "atom_energy": 21.99,
+      "atom_will": 3.73,
+      "atom_mass": 36.77,
+      "atom_volatility": 11.92,
+      "atom_aether": 1.49
+    },
+    "source_universe": "void_reckoning",
+    "description": "BioTide_Collective world_devastator (space). Tier 5 Strategic Asset.",
+    "abilities": [
+      "Ability_Regeneration",
+      "Ability_Shield_Regen",
+      "Ability_Fortify_Position",
+      "Ability_Torpedo_Salvo"
+    ],
+    "traits": [
+      "Cautious Commander",
+      "Veteran Crew"
+    ],
+    "unit_class": "world_devastator",
+    "domain": "space",
+    "special_mechanics": {
+      "biomass_spawning": {
+        "units_per_turn": 1,
+        "unit_tier": 1,
+        "description": "Spawns units from consumed biomass."
+      }
+    },
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_biological_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_information_weapon_1_M"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 150000.0,
+      "armor_kinetic_resistance": 800.0,
+      "weapon_kinetic_damage": 1620.0,
+      "mobility_speed_tactical": 10.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "BioTide_Collective Swarm Mothership Stellar Accelerator",
+    "blueprint_id": "biotide_collective_stellar_accelerator",
+    "type": "titan",
+    "faction": "BioTide_Collective",
+    "tier": 5,
+    "cost": 72000,
+    "upkeep": 7200,
+    "base_stats": {
+      "hp": 8000,
+      "armor": 200,
+      "damage": 1580,
+      "speed": 15,
+      "role": "titan",
+      "cost": 72000,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_stability": 3.73,
+      "atom_focus": 10.62,
+      "atom_frequency": 19.75,
+      "atom_information": 1.49,
+      "atom_cohesion": 3.73,
+      "atom_energy": 15.9,
+      "atom_will": 3.73,
+      "atom_mass": 12.43,
+      "atom_volatility": 5.83,
+      "atom_aether": 22.79
+    },
+    "source_universe": "void_reckoning",
+    "description": "BioTide_Collective stellar_accelerator (space). Tier 5 Strategic Asset.",
+    "abilities": [
+      "Ability_Sensor_Sweep",
+      "Ability_Torpedo_Salvo",
+      "Ability_Overcharge",
+      "Ability_EMP_Burst",
+      "Ability_Regeneration",
+      "Ability_Ion_Cannon"
+    ],
+    "traits": [
+      "Reckless Pilot",
+      "Veteran Crew"
+    ],
+    "unit_class": "stellar_accelerator",
+    "domain": "space",
+    "special_mechanics": {
+      "biomass_spawning": {
+        "units_per_turn": 1,
+        "unit_tier": 1,
+        "description": "Spawns units from consumed biomass."
+      }
+    },
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_biological_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_information_weapon_1_M"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 80000.0,
+      "armor_kinetic_resistance": 400.0,
+      "weapon_kinetic_damage": 2370.0,
+      "mobility_speed_tactical": 30.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "BioTide_Collective Swarm Mothership",
+    "blueprint_id": "biotide_collective_mothership",
+    "type": "strategic_asset",
+    "faction": "BioTide_Collective",
+    "tier": 6,
+    "cost": 120000,
+    "upkeep": 12000,
+    "base_stats": {
+      "hp": 25000,
+      "armor": 600,
+      "damage": 1280,
+      "speed": 6,
+      "role": "strategic_asset",
+      "cost": 120000,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_stability": 3.73,
+      "atom_focus": 1.49,
+      "atom_frequency": 1.49,
+      "atom_information": 7.57,
+      "atom_cohesion": 12.86,
+      "atom_energy": 3.73,
+      "atom_will": 25.03,
+      "atom_mass": 36.78,
+      "atom_volatility": 5.83,
+      "atom_aether": 1.49
+    },
+    "source_universe": "void_reckoning",
+    "description": "BioTide_Collective mothership (space). Tier 6 Strategic Asset.",
+    "abilities": [
+      "Ability_Sensor_Sweep",
+      "Ability_Torpedo_Salvo",
+      "Ability_Fortify_Position",
+      "Ability_Regeneration",
+      "Ability_Point_Defense",
+      "Ability_Shield_Regen"
+    ],
+    "traits": [
+      "Cautious Commander",
+      "Regeneration",
+      "Veteran Crew"
+    ],
+    "unit_class": "mothership",
+    "domain": "space",
+    "special_mechanics": {
+      "biomass_spawning": {
+        "units_per_turn": 1,
+        "unit_tier": 1,
+        "description": "Spawns units from consumed biomass."
+      }
+    },
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_biological_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "biotide_collective_base_information_weapon_1_M"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 250000.0,
+      "armor_kinetic_resistance": 1200.0,
+      "weapon_kinetic_damage": 1920.0,
+      "mobility_speed_tactical": 12.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  }
+]

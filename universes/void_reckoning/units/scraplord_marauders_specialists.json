@@ -1,0 +1,435 @@
+[
+  {
+    "name": "Flakka-Wagon",
+    "blueprint_id": "scraplord_marauders_flakka-wagon",
+    "type": "vehicle",
+    "faction": "ScrapLord_Marauders",
+    "tier": 1,
+    "cost": 600,
+    "base_stats": {
+      "role": "anti_air",
+      "tier": 1,
+      "hp": 120,
+      "armor": 40,
+      "damage": 35,
+      "cost": 600,
+      "keywords": "vehicle specialist aa",
+      "desc": "Specialized anti-aircraft vehicle.",
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 7.8,
+      "atom_energy": 17.56,
+      "atom_cohesion": 3.9,
+      "atom_volatility": 11.7,
+      "atom_stability": 0.0,
+      "atom_focus": 20.03,
+      "atom_frequency": 31.21,
+      "atom_aether": 0.0,
+      "atom_will": 3.9,
+      "atom_information": 3.9
+    },
+    "source_universe": "void_reckoning",
+    "description": "Specialized anti-aircraft vehicle.",
+    "specialist": true,
+    "traits": [
+      "Trait_Infiltrate",
+      "Trait_Anti_Infantry"
+    ],
+    "abilities": [
+      "Ability_EMP_Burst",
+      "Ability_Ion_Cannon",
+      "Ability_Frag_Barrage"
+    ],
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "upkeep": 60,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "scraplord_marauders_base_projectile_weapon_0_S"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 1200.0,
+      "armor_kinetic_resistance": 80.0,
+      "weapon_kinetic_damage": 52.5,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "Tank-Busta",
+    "blueprint_id": "scraplord_marauders_tank-busta",
+    "type": "infantry",
+    "faction": "ScrapLord_Marauders",
+    "tier": 3,
+    "cost": 800,
+    "base_stats": {
+      "role": "anti_tank",
+      "tier": 3,
+      "hp": 100,
+      "armor": 30,
+      "damage": 140,
+      "cost": 800,
+      "keywords": "infantry specialist heavy_weapon",
+      "desc": "Heavy infantry armed with anti-armor weapons.",
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 32.64,
+      "atom_energy": 23.61,
+      "atom_cohesion": 4.17,
+      "atom_volatility": 27.08,
+      "atom_stability": 0.0,
+      "atom_focus": 0.0,
+      "atom_frequency": 4.17,
+      "atom_aether": 0.0,
+      "atom_will": 4.17,
+      "atom_information": 4.17
+    },
+    "source_universe": "void_reckoning",
+    "description": "Heavy infantry armed with anti-armor weapons.",
+    "specialist": true,
+    "traits": [
+      "Trait_Splash_Damage",
+      "Trait_Reinforced_Plating"
+    ],
+    "abilities": [
+      "Ability_Melta_Beam",
+      "Ability_Kinetic_Strike",
+      "Ability_Antimatter_Torpedo"
+    ],
+    "unit_class": "battle_tank",
+    "domain": "ground",
+    "upkeep": 80,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "scraplord_marauders_base_projectile_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "scraplord_marauders_base_missile_weapon_1_M"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 1000.0,
+      "armor_kinetic_resistance": 60.0,
+      "weapon_kinetic_damage": 210.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "Sneaky-Git",
+    "blueprint_id": "scraplord_marauders_sneaky-git",
+    "type": "infantry",
+    "faction": "ScrapLord_Marauders",
+    "tier": 1,
+    "cost": 700,
+    "base_stats": {
+      "role": "stealth",
+      "tier": 1,
+      "hp": 60,
+      "armor": 10,
+      "damage": 55,
+      "cost": 700,
+      "keywords": "infantry specialist stealth",
+      "desc": "Stealth operative for behind-lines sabotage.",
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 12.24,
+      "atom_energy": 3.87,
+      "atom_cohesion": 3.87,
+      "atom_volatility": 11.6,
+      "atom_stability": 0.0,
+      "atom_focus": 18.04,
+      "atom_frequency": 29.12,
+      "atom_aether": 0.0,
+      "atom_will": 3.87,
+      "atom_information": 17.4
+    },
+    "source_universe": "void_reckoning",
+    "description": "Stealth operative for behind-lines sabotage.",
+    "specialist": true,
+    "traits": [
+      "Trait_Infiltrate",
+      "Trait_Stealth"
+    ],
+    "abilities": [
+      "Ability_Phase_Jump",
+      "Ability_Neural_Disruptor",
+      "Ability_Evasive_Maneuvers"
+    ],
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "upkeep": 70,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "scraplord_marauders_base_projectile_weapon_0_S"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 600.0,
+      "armor_kinetic_resistance": 20.0,
+      "weapon_kinetic_damage": 82.5,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "Boom-Ship",
+    "blueprint_id": "scraplord_marauders_boom-ship",
+    "type": "ship",
+    "faction": "ScrapLord_Marauders",
+    "tier": 2,
+    "cost": 1150,
+    "base_stats": {
+      "role": "anti_capital",
+      "tier": 2,
+      "hp": 800,
+      "armor": 80,
+      "damage": 400,
+      "cost": 1150,
+      "keywords": "ship specialist glass_cannon",
+      "desc": "Escort ship designed to hunt Capital ships.",
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 31.4,
+      "atom_energy": 23.84,
+      "atom_cohesion": 11.63,
+      "atom_volatility": 22.67,
+      "atom_stability": 0.0,
+      "atom_focus": 0.0,
+      "atom_frequency": 3.49,
+      "atom_aether": 0.0,
+      "atom_will": 3.49,
+      "atom_information": 3.49
+    },
+    "source_universe": "void_reckoning",
+    "description": "Escort ship designed to hunt Capital ships.",
+    "specialist": true,
+    "traits": [
+      "Trait_Splash_Damage",
+      "Trait_Reinforced_Plating",
+      "Trait_Anti_Vehicle"
+    ],
+    "abilities": [
+      "Ability_Antimatter_Torpedo",
+      "Ability_Orbital_Bombardment",
+      "Ability_Ion_Cannon"
+    ],
+    "unit_class": "corvette",
+    "domain": "space",
+    "upkeep": 115,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "scraplord_marauders_base_projectile_weapon_0_S"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "scraplord_marauders_base_projectile_weapon_0_S"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "scraplord_marauders_base_projectile_weapon_0_M"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 8000.0,
+      "armor_kinetic_resistance": 160.0,
+      "weapon_kinetic_damage": 600.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "Scrap-Medic",
+    "blueprint_id": "scraplord_marauders_scrap_medic",
+    "type": "infantry",
+    "faction": "ScrapLord_Marauders",
+    "tier": 1,
+    "cost": 700,
+    "base_stats": {
+      "role": "support",
+      "tier": 1,
+      "hp": 140,
+      "armor": 35,
+      "damage": 75,
+      "cost": 700,
+      "keywords": "specialist support",
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 7.27,
+      "atom_energy": 3.64,
+      "atom_cohesion": 29.09,
+      "atom_volatility": 10.91,
+      "atom_stability": 16.97,
+      "atom_focus": 0.0,
+      "atom_frequency": 3.64,
+      "atom_aether": 0.0,
+      "atom_will": 24.85,
+      "atom_information": 3.64
+    },
+    "source_universe": "void_reckoning",
+    "description": "Specialist unit for scraplord_marauders fulfilling the support role.",
+    "specialist": true,
+    "abilities": [
+      "Ability_Shield_Harmonics",
+      "Ability_Nanite_Repair",
+      "Ability_Emergency_Repairs"
+    ],
+    "traits": [
+      "Trait_Feel_No_Pain",
+      "Trait_Stubborn"
+    ],
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "upkeep": 70,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "scraplord_marauders_base_projectile_weapon_0_S"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 1400.0,
+      "armor_kinetic_resistance": 70.0,
+      "weapon_kinetic_damage": 112.5,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "Buggy Raider",
+    "blueprint_id": "scraplord_marauders_buggy_raider",
+    "type": "vehicle",
+    "faction": "ScrapLord_Marauders",
+    "tier": 2,
+    "cost": 800,
+    "base_stats": {
+      "role": "fast_attack",
+      "tier": 2,
+      "hp": 160,
+      "armor": 40,
+      "damage": 90,
+      "cost": 800,
+      "keywords": "specialist fast_attack",
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 7.59,
+      "atom_energy": 21.52,
+      "atom_cohesion": 3.8,
+      "atom_volatility": 24.68,
+      "atom_stability": 0.0,
+      "atom_focus": 0.0,
+      "atom_frequency": 34.81,
+      "atom_aether": 0.0,
+      "atom_will": 3.8,
+      "atom_information": 3.8
+    },
+    "source_universe": "void_reckoning",
+    "description": "Specialist unit for scraplord_marauders fulfilling the fast_attack role.",
+    "specialist": true,
+    "abilities": [
+      "Ability_Afterburner",
+      "Ability_Hit_and_Run"
+    ],
+    "traits": [
+      "Trait_Splash_Damage",
+      "Trait_Anti_Infantry"
+    ],
+    "unit_class": "light_vehicle",
+    "domain": "ground",
+    "upkeep": 80,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "scraplord_marauders_base_projectile_weapon_0_M"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 1600.0,
+      "armor_kinetic_resistance": 80.0,
+      "weapon_kinetic_damage": 135.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "Salvage Brute",
+    "blueprint_id": "scraplord_marauders_salvage_brute",
+    "type": "infantry",
+    "faction": "ScrapLord_Marauders",
+    "tier": 3,
+    "cost": 950,
+    "base_stats": {
+      "role": "heavy_infantry",
+      "tier": 3,
+      "hp": 190,
+      "armor": 47,
+      "damage": 165,
+      "cost": 950,
+      "keywords": "specialist heavy_infantry",
+      "range": 30
+    },
+    "elemental_dna": {
+      "atom_mass": 29.75,
+      "atom_energy": 3.8,
+      "atom_cohesion": 25.95,
+      "atom_volatility": 11.39,
+      "atom_stability": 17.72,
+      "atom_focus": 0.0,
+      "atom_frequency": 3.8,
+      "atom_aether": 0.0,
+      "atom_will": 3.8,
+      "atom_information": 3.8
+    },
+    "source_universe": "void_reckoning",
+    "description": "Specialist unit for scraplord_marauders fulfilling the heavy_infantry role.",
+    "specialist": true,
+    "abilities": [
+      "Ability_Fortify_Position",
+      "Ability_Kinetic_Strike"
+    ],
+    "traits": [
+      "Trait_Reinforced_Plating",
+      "Trait_Damage_Reduction"
+    ],
+    "unit_class": "heavy_vehicle",
+    "domain": "ground",
+    "upkeep": 95,
+    "components": [
+      {
+        "slot": "weapon_heavy",
+        "component": "scraplord_marauders_base_projectile_weapon_0_L"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "scraplord_marauders_base_projectile_weapon_0_L"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "scraplord_marauders_base_projectile_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "scraplord_marauders_base_missile_weapon_1_M"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 1900.0,
+      "armor_kinetic_resistance": 94.0,
+      "weapon_kinetic_damage": 247.5,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  }
+]

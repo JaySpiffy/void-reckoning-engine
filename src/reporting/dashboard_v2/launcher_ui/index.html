@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission Control - Launcher</title>
+    <style>
+        :root {
+            --bg-dark: #0f111a;
+            --bg-card: #1a1d26;
+            --text-primary: #e0e6ed;
+            --text-secondary: #94a3b8;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --border: #334155;
+            --success: #22c55e;
+            --error: #ef4444;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 450px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        select {
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            color: var(--text-primary);
+            padding: 0.75rem;
+            font-size: 0.95rem;
+            outline: none;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+
+        select:focus {
+            border-color: var(--accent);
+        }
+
+        button {
+            width: 100%;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            padding: 0.875rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        button:hover {
+            background-color: var(--accent-hover);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .status {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            text-align: center;
+            display: none;
+        }
+
+        .status.success {
+            background-color: rgba(34, 197, 94, 0.1);
+            color: var(--success);
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            display: block;
+        }
+
+        .status.error {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: var(--error);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            display: block;
+        }
+        
+        .spinner {
+             display: inline-block;
+             width: 12px;
+             height: 12px;
+             border: 2px solid rgba(255,255,255,0.3);
+             border-radius: 50%;
+             border-top-color: #fff;
+             animation: spin 1s ease-in-out infinite;
+             margin-right: 8px;
+        }
+
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
+        
+        .nav-link {
+            text-align: center;
+            margin-top: 1rem;
+        }
+        
+        .nav-link a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.8rem;
+        }
+        
+        .nav-link a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>MISSION CONTROL</h1>
+        <div class="subtitle">Campaign Launchpad</div>
+    </div>
+
+    <div class="form-group">
+        <label for="universeSelect">Target Universe</label>
+        <select id="universeSelect">
+            <option value="" disabled selected>Loading universes...</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="configSelect">Configuration Protocol</label>
+        <select id="configSelect">
+             <option value="" disabled selected>Loading configs...</option>
+        </select>
+    </div>
+
+    <button id="launchBtn" onclick="launchSimulation()">
+        INITIATE LAUNCH SEQUENCE
+    </button>
+    
+    <div class="nav-link">
+        <a href="/">Return to Live Dashboard</a>
+    </div>
+
+    <div id="statusArea" class="status"></div>
+</div>
+
+<script>
+    const API_BASE = '/api';
+
+    async function fetchData() {
+        try {
+            // Fetch Universes
+            const uniRes = await fetch(`${API_BASE}/control/universes`);
+            const uniData = await uniRes.json();
+            
+            const uniSelect = document.getElementById('universeSelect');
+            uniSelect.innerHTML = '';
+            uniData.universes.forEach(u => {
+                const opt = document.createElement('option');
+                opt.value = u;
+                opt.textContent = u.replace(/_/g, ' ').toUpperCase();
+                if (u === 'void_reckoning') opt.selected = true; // Default
+                uniSelect.appendChild(opt);
+            });
+
+            // Fetch Configs
+            const cfgRes = await fetch(`${API_BASE}/control/configs`);
+            const cfgData = await cfgRes.json();
+            
+            const cfgSelect = document.getElementById('configSelect');
+            cfgSelect.innerHTML = '';
+            cfgData.configs.forEach(c => {
+                const opt = document.createElement('option');
+                opt.value = c; // relative path
+                opt.textContent = c;
+                if (c.includes('void_reckoning')) opt.selected = true; // Smart default
+                cfgSelect.appendChild(opt);
+            });
+
+        } catch (e) {
+            showStatus('Failed to load mission parameters: ' + e.message, 'error');
+        }
+    }
+
+    async function launchSimulation() {
+        const btn = document.getElementById('launchBtn');
+        const universe = document.getElementById('universeSelect').value;
+        const config = document.getElementById('configSelect').value;
+
+        if (!universe || !config) {
+            showStatus('Please select both Universe and Configuration.', 'error');
+            return;
+        }
+
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner"></span> INITIATING...';
+        showStatus('', ''); // Clear
+
+        try {
+            const res = await fetch(`${API_BASE}/control/launch`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ universe: universe, config_file: config })
+            });
+
+            const data = await res.json();
+
+            if (res.ok) {
+                showStatus(`🚀 Simulation Started! (PID: ${data.pid})<br>Redirecting to Live Feed...`, 'success');
+                setTimeout(() => {
+                    window.location.href = '/';
+                }, 2000);
+            } else {
+                showStatus(`Launch Failed: ${data.detail || 'Unknown Error'}`, 'error');
+                btn.disabled = false;
+                btn.textContent = 'INITIATE LAUNCH SEQUENCE';
+            }
+        } catch (e) {
+            showStatus('Connection Failure: ' + e.message, 'error');
+            btn.disabled = false;
+            btn.textContent = 'INITIATE LAUNCH SEQUENCE';
+        }
+    }
+
+    function showStatus(msg, type) {
+        const el = document.getElementById('statusArea');
+        el.className = 'status ' + type;
+        el.innerHTML = msg;
+        if (!msg) el.style.display = 'none';
+    }
+
+    // Init
+    fetchData();
+</script>
+
+</body>
+</html>

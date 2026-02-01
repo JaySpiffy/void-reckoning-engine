@@ -1,0 +1,125 @@
+{
+  "nodes": [
+    {
+      "id": "Tech_SteelBound_Syndicate_Basic Doctrine",
+      "label": "Basic Doctrine",
+      "tier": 1,
+      "cost": 1000
+    },
+    {
+      "id": "Tech_SteelBound_Syndicate_Logistics",
+      "label": "Logistics",
+      "tier": 1,
+      "cost": 1000
+    },
+    {
+      "id": "Tech_SteelBound_Syndicate_Industrial Forging",
+      "label": "Industrial Forging",
+      "tier": 1,
+      "cost": 800
+    },
+    {
+      "id": "Tech_SteelBound_Syndicate_Resource Extraction",
+      "label": "Resource Extraction",
+      "tier": 1,
+      "cost": 800
+    },
+    {
+      "id": "Tech_SteelBound_Syndicate_Heavy Armor",
+      "label": "Heavy Armor",
+      "tier": 2,
+      "cost": 2500
+    },
+    {
+      "id": "Tech_SteelBound_Syndicate_Advanced Ballistics",
+      "label": "Advanced Ballistics",
+      "tier": 2,
+      "cost": 2500
+    },
+    {
+      "id": "Tech_SteelBound_Syndicate_Flux Navigation",
+      "label": "Flux Navigation",
+      "tier": 2,
+      "cost": 3000
+    },
+    {
+      "id": "Tech_SteelBound_Syndicate_Mega Construction",
+      "label": "Mega Construction",
+      "tier": 2,
+      "cost": 2500
+    },
+    {
+      "id": "Tech_SteelBound_Syndicate_Trade Networks",
+      "label": "Trade Networks",
+      "tier": 2,
+      "cost": 2000
+    },
+    {
+      "id": "Tech_SteelBound_Syndicate_Capital Ships",
+      "label": "Capital Ships",
+      "tier": 3,
+      "cost": 5000
+    },
+    {
+      "id": "Tech_SteelBound_Syndicate_Titan Integration",
+      "label": "Titan Integration",
+      "tier": 3,
+      "cost": 6000
+    },
+    {
+      "id": "Tech_SteelBound_Syndicate_Planetary Shielding",
+      "label": "Planetary Shielding",
+      "tier": 3,
+      "cost": 4500
+    },
+    {
+      "id": "Tech_SteelBound_Syndicate_Ascension Protocol",
+      "label": "Ascension Protocol",
+      "tier": 3,
+      "cost": 8000
+    },
+    {
+      "id": "Tech_SteelBound_Syndicate_Drill Yard",
+      "label": "Construction: Drill Yard",
+      "tier": 1,
+      "cost": 80
+    },
+    {
+      "id": "Tech_SteelBound_Syndicate_Heavy Assembly Plant",
+      "label": "Construction: Heavy Assembly Plant",
+      "tier": 2,
+      "cost": 200
+    },
+    {
+      "id": "Tech_SteelBound_Syndicate_Mineral Processor",
+      "label": "Construction: Mineral Processor",
+      "tier": 1,
+      "cost": 60
+    },
+    {
+      "id": "Tech_SteelBound_Syndicate_Design Bureau",
+      "label": "Construction: Design Bureau",
+      "tier": 1,
+      "cost": 100
+    },
+    {
+      "id": "Tech_SteelBound_Syndicate_Ferrocrete Bunker",
+      "label": "Construction: Ferrocrete Bunker",
+      "tier": 1,
+      "cost": 50
+    },
+    {
+      "id": "Tech_SteelBound_Syndicate_Orbital Drydock",
+      "label": "Construction: Orbital Drydock",
+      "tier": 3,
+      "cost": 400
+    },
+    {
+      "id": "Tech_SteelBound_Syndicate_Mega-Foundry",
+      "label": "Construction: Mega-Foundry",
+      "tier": 3,
+      "cost": 500
+    }
+  ],
+  "edges": []
+}

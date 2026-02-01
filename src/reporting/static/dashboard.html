@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campaign Command Center</title>
+    <link rel="stylesheet" href="/static/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"
+        onerror="console.error('Failed to load Chart.js from CDN')"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"
+        onerror="console.error('Failed to load Chart.js Annotation Plugin from CDN')"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.2/socket.io.min.js"
+        onerror="console.error('Failed to load Socket.IO from CDN')"></script>
+</head>
+
+<body>
+
+    <div id="loading-overlay">
+        <div class="spinner"></div>
+        <div>INITIALIZING COMMAND COGITATOR...</div>
+    </div>
+
+    <div id="status-message" class="hidden"></div>
+    <div id="global-error-container"></div>
+
+    <div class="dashboard-container">
+        <!-- Header -->
+        <header>
+            <div class="title-section">
+                <h1>CAMPAIGN<span>COMMAND</span></h1>
+                <div class="subtitle"><span id="universe-name">LOADING</span> // <span id="run-id">CONNECTING</span>
+                </div>
+            </div>
+            <div class="status-section">
+                <!-- Timeline Controls -->
+                <div class="timeline-controls">
+                    <label class="switch">
+                        <input type="checkbox" id="mode-toggle" onchange="toggleHistoricalMode(this.checked)">
+                        <span class="toggle-slider"></span>
+                    </label>
+                    <span id="mode-label" class="mode-live">LIVE</span>
+                    <input type="range" id="turn-slider" min="1" max="1" value="1" disabled
+                        oninput="handleSliderChange(this.value)">
+                </div>
+
+                <div class="turn-display">TURN <span id="metric-turn"
+                        style="color:var(--accent);font-weight:bold;">--</span></div>
+                <div id="connection-status" class="status-badge offline">OFFLINE</div>
+                <button onclick="requestSnapshot()">REFRESH</button>
+            </div>
+        </header>
+
+        <!-- Unified Filter & Export Panel (Comment 2/Step 1-3) -->
+        <section class="filter-export-panel">
+            <div class="filter-row">
+                <!-- Global Faction Filter -->
+                <div class="filter-group">
+                    <label>Factions</label>
+                    <div id="global-faction-filter" class="multi-select-container" onclick="toggleMultiSelect(this)">
+                        <div class="multi-select-display">All Factions</div>
+                        <div class="multi-select-dropdown" id="global-faction-dropdown">
+                            <!-- JS Populates -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Turn Range Slider -->
+                <div class="filter-group">
+                    <label>Turn Range</label>
+                    <div class="range-slider-container">
+                        <div class="range-inputs">
+                            <input type="number" id="turn-range-min" value="1" onchange="syncTurnInputs()">
+                            <span>to</span>
+                            <input type="number" id="turn-range-max" value="1" onchange="syncTurnInputs()">
+                        </div>
+                        <input type="range" id="turn-range-slider" min="1" max="1" value="1" style="flex:1"
+                            oninput="handleRangeSliderChange(this.value)">
+                    </div>
+                </div>
+
+                <!-- Manual Control -->
+                <div class="filter-group" id="sim-control-group">
+                    <label>Sim Control</label>
+                    <div class="btn-group">
+                        <button id="btn-play-pause" class="btn-accent" onclick="togglePause()">PAUSE</button>
+                        <button id="btn-step" class="btn-outline" onclick="triggerStep()">NEXT TURN</button>
+                    </div>
+                </div>
+
+                <!-- Export Controls -->
+                <div class="filter-group" style="margin-left: auto;">
+                    <label>Actions</label>
+                    <div class="btn-group">
+                        <button class="btn-accent" onclick="exportCurrentView('csv')">Export CSV</button>
+                        <button class="btn-accent" onclick="exportCurrentView('excel')">Export Excel</button>
+                        <button class="btn-accent" onclick="exportCurrentView('pdf')">Generate PDF</button>
+                        <button class="btn-outline" onclick="openBookmarkManager()">Bookmarks</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Metric Visibility Toggles -->
+            <div class="filter-row"
+                style="margin-top: 0.5rem; border-top: 1px solid var(--border); padding-top: 0.5rem;">
+                <div class="filter-group" style="width: 100%;">
+                    <label>Metric Visibility</label>
+                    <div class="visibility-panel" id="metric-visibility-toggles">
+                        <!-- JS Populates -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Alerts Panel (Comment 5) -->
+        <section id="alerts-panel" class="card"
+            style="margin: 0 1rem 1rem 1rem; border-left: 4px solid var(--error); min-height: 150px;">
+            <div class="card-header" style="justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <h2>Anomalies & Alerts</h2>
+                    <div id="alert-pulse" class="alert-pulse hidden"></div>
+                </div>
+
+                <!-- Alert Controls -->
+                <div class="alert-controls" style="display: flex; gap: 0.5rem; align-items: center;">
+                    <select id="alert-severity-filter" class="filter-select" onchange="applyAlertFilters()"
+                        style="background: var(--bg-card); color: var(--text-dim); border: 1px solid var(--border); font-size: 0.75rem; padding: 2px 5px;">
+                        <option value="all">SVR: ALL</option>
+                        <option value="critical">CRITICAL</option>
+                        <option value="warning">WARNING</option>
+                        <option value="info">INFO</option>
+                    </select>
+                    <select id="alert-type-filter" class="filter-select" onchange="applyAlertFilters()"
+                        style="background: var(--bg-card); color: var(--text-dim); border: 1px solid var(--border); font-size: 0.75rem; padding: 2px 5px;">
+                        <option value="all">TYPE: ALL</option>
+                        <option value="Economy">ECONOMY</option>
+                        <option value="Military">MILITARY</option>
+                        <option value="Industrial">INDUSTRIAL</option>
+                        <option value="Research">RESEARCH</option>
+                    </select>
+                    <div
+                        style="display: flex; align-items: center; gap: 0.25rem; font-size: 0.75rem; color: var(--text-dim);">
+                        <input type="checkbox" id="alert-history-toggle" onchange="applyAlertFilters()">
+                        <label for="alert-history-toggle">HISTORY</label>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 0.5rem;">
+                    <span id="alert-summary-critical" class="status-badge"
+                        style="background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.4); font-size: 0.7rem;">0
+                        CRITICAL</span>
+                    <span id="alert-summary-warning" class="status-badge"
+                        style="background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.4); font-size: 0.7rem;">0
+                        WARNING</span>
+                </div>
+            </div>
+            <div class="card-content"
+                style="display: grid; grid-template-columns: 2fr 1fr; gap: 1rem; padding: 0.75rem;">
+                <div id="active-alerts-list" class="alert-list">
+                    <div class="empty-state">No active anomalies detected in sector.</div>
+                </div>
+                <div id="anomaly-summary-chart-container" style="height: 140px; position: relative;"
+                    class="chart-container" data-chart-id="anomalySeverity">
+                    <div class="skeleton skeleton-chart" id="skeleton-anomalySeverity"></div>
+                    <canvas id="anomalySeverityChart" class="hidden"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Performance Metrics Panel (Step 11) -->
+        <section class="performance-panel card collapsed" id="performance-panel" style="margin: 0 1rem 1rem 1rem;">
+            <div class="card-header" onclick="togglePerformancePanel()"
+                style="cursor: pointer; justify-content: space-between;">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <div class="spinner-tiny" id="perf-spinner" style="display:none;"></div>
+                    <h2>System Performance Metrics</h2>
+                </div>
+                <span id="perf-toggle-icon">▼</span>
+            </div>
+            <div class="card-content"
+                style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; padding: 1rem;">
+                <div class="perf-metric">
+                    <span class="label">Memory Usage</span>
+                    <span class="value" id="perf-mem">-- MB</span>
+                </div>
+                <div class="perf-metric">
+                    <span class="label">Cache Hit Rate</span>
+                    <span class="value" id="perf-cache">-- %</span>
+                </div>
+                <div class="perf-metric">
+                    <span class="label">Query Profiling</span>
+                    <div class="btn-group" style="margin-top: 5px;">
+                        <button id="profiling-btn" class="btn-outline" style="font-size: 0.6rem; padding: 2px 8px;"
+                            onclick="toggleProfiling(event)">Enable</button>
+                    </div>
+                </div>
+                <div class="perf-metric">
+                    <span class="label">Slow Queries</span>
+                    <span class="value" id="perf-slow-count" onclick="showSlowQueries(event)"
+                        style="cursor: pointer; text-decoration: underline;">0 Detected</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Grid Layout -->
+        <div class="grid-layout">
+
+            <!-- LEFT COLUMN (Metrics & Lists) -->
+            <div class="flex flex-col gap-4" style="display:flex; flex-direction:column; gap:1rem;">
+
+                <!-- Metrics Grid -->
+                <div class="metrics-container">
+                    <div class="metric-card">
+                        <span class="label">BATTLES/SEC</span>
+                        <span class="value accent" id="metric-bpm">0.00</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="label">UNITS/SEC</span>
+                        <span class="value" id="metric-spm">0.00</span>
+                    </div>
+                </div>
+
+                <!-- Planet Table -->
+                <div class="card" style="flex:1;">
+                    <div class="card-header">
+                        <h2>Planetary Control</h2>
+                    </div>
+                    <div class="card-content">
+                        <table class="planet-table">
+                            <thead>
+                                <tr>
+                                    <th>System</th>
+                                    <th>Owner</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="planet-table-body">
+                                <!-- JS Populates -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Alert/Status list (Optional placeholder for alerts if added later) -->
+                <div class="card" style="height: 150px;">
+                    <div class="card-header">
+                        <h2>System Status</h2>
+                    </div>
+                    <div class="card-content" style="font-size:0.8rem; color:var(--text-secondary);">
+                        <div id="status-feed">Systems Nominal.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CENTER COLUMN (Visuals) -->
+            <div class="flex flex-col gap-4" style="display:flex; flex-direction:column; gap:1rem;">
+
+                <!-- Heatmap -->
+                <div class="card" id="galactic-theater-card">
+                    <div class="card-header">
+                        <h2>Galactic Conflict Intensity</h2>
+                    </div>
+                    <div class="card-content" id="heatmap-container">
+                        <div id="heatmap-grid"></div>
+                    </div>
+                </div>
+
+                <!-- Charts Row -->
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem; flex:1;">
+                    <!-- Resources Chart -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>Resource Trends</h2>
+                        </div>
+                        <div class="card-content chart-container" data-chart-id="resources">
+                            <div class="skeleton skeleton-chart" id="skeleton-resources"></div>
+                            <canvas id="resourceChart" class="hidden"></canvas>
+                        </div>
+                    </div>
+                    <!-- Unit Production Chart -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>Unit Production</h2>
+                        </div>
+                        <div class="card-content chart-container" data-chart-id="production">
+                            <div class="skeleton skeleton-chart" id="skeleton-production"></div>
+                            <canvas id="productionChart" class="hidden"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <!-- Economic Health Section -->
+                <div class="card" style="grid-column: span 2;">
+                    <div class="card-header">
+                        <h2>Economic Health Analysis</h2>
+
+                        <div style="display: flex; gap: 1rem; align-items: center;">
+                            <!-- Faction Filter -->
+                            <div class="filter-group">
+                                <div id="economic-faction-filter-multi" class="multi-select-container"
+                                    onclick="toggleMultiSelect(this)">
+                                    <div class="multi-select-display">Selected Factions</div>
+                                    <div class="multi-select-dropdown" id="economic-faction-dropdown">
+                                        <!-- JS Populates -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Comparison Toggle -->
+                            <div class="comparison-toggle" style="display: flex; align-items: center; gap: 0.5rem;">
+                                <label style="font-size: 0.7rem; color: var(--text-secondary);">Compare Mode</label>
+                                <label class="switch">
+                                    <input type="checkbox" id="comparison-mode-toggle"
+                                        onchange="toggleComparisonMode(this.checked)">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div style="position: relative; height: 250px;" class="chart-container"
+                            data-chart-id="netProfit">
+                            <div class="skeleton skeleton-chart" id="skeleton-netProfit"></div>
+                            <canvas id="netProfitChart" class="hidden"></canvas>
+                        </div>
+                        <div style="position: relative; height: 250px;" class="chart-container"
+                            data-chart-id="revenueBreakdown">
+                            <div class="skeleton skeleton-chart" id="skeleton-revenueBreakdown"></div>
+                            <canvas id="revenueBreakdownChart" class="hidden"></canvas>
+                        </div>
+                        <div style="position: relative; height: 250px;" class="chart-container"
+                            data-chart-id="stockpileVelocity">
+                            <div class="skeleton skeleton-chart" id="skeleton-stockpileVelocity"></div>
+                            <canvas id="stockpileVelocityChart" class="hidden"></canvas>
+                        </div>
+                        <div style="position: relative; height: 250px;" class="chart-container"
+                            data-chart-id="resourceRoi">
+                            <div class="skeleton skeleton-chart" id="skeleton-resourceRoi"></div>
+                            <canvas id="resourceRoiChart" class="hidden"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Military Analysis Section -->
+                <div class="card" style="grid-column: span 2;">
+                    <div class="card-header">
+                        <h2>Military Performance Analysis</h2>
+
+                        <div style="display: flex; gap: 1rem; align-items: center;">
+                            <!-- Faction Filter -->
+                            <div class="filter-group">
+                                <div id="military-faction-filter-multi" class="multi-select-container"
+                                    onclick="toggleMultiSelect(this)">
+                                    <div class="multi-select-display">Selected Factions</div>
+                                    <div class="multi-select-dropdown" id="military-faction-dropdown">
+                                        <!-- JS Populates -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Comparison Toggle (shared with economic) -->
+                            <div class="comparison-toggle" style="display: flex; align-items: center; gap: 0.5rem;">
+                                <label style="font-size: 0.7rem; color: var(--text-secondary);">Compare Mode</label>
+                                <label class="switch">
+                                    <input type="checkbox" id="military-comparison-toggle"
+                                        onchange="toggleComparisonMode(this.checked)">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div style="position: relative; height: 250px;" class="chart-container"
+                            data-chart-id="combatEffectiveness">
+                            <div class="skeleton skeleton-chart" id="skeleton-combatEffectiveness"></div>
+                            <canvas id="combatEffectivenessChart" class="hidden"></canvas>
+                        </div>
+                        <div style="position: relative; height: 250px;" class="chart-container"
+                            data-chart-id="forceComposition">
+                            <div class="skeleton skeleton-chart" id="skeleton-forceComposition"></div>
+                            <canvas id="forceCompositionChart" class="hidden"></canvas>
+                        </div>
+                        <div style="position: relative; height: 250px;" class="chart-container"
+                            data-chart-id="attritionRate">
+                            <div class="skeleton skeleton-chart" id="skeleton-attritionRate"></div>
+                            <canvas id="attritionRateChart" class="hidden"></canvas>
+                        </div>
+                        <div style="position: relative; height: 250px;" class="chart-container"
+                            data-chart-id="battleHeatmap">
+                            <div class="skeleton skeleton-chart" id="skeleton-battleHeatmap"></div>
+                            <canvas id="battleHeatmapCanvas" class="hidden"></canvas>
+                        </div>
+                        <!-- New Fleet Power Chart -->
+                        <div style="position: relative; height: 250px; grid-column: span 2;" class="chart-container"
+                            data-chart-id="fleetPower">
+                            <div class="skeleton skeleton-chart" id="skeleton-fleetPower"></div>
+                            <canvas id="fleetPowerChart" class="hidden"></canvas>
+                        </div>
+
+                        <!-- New Charts: Territory & Battle Stats -->
+                        <div style="position: relative; height: 250px;" class="chart-container"
+                            data-chart-id="territoryCount">
+                            <div class="skeleton skeleton-chart" id="skeleton-territoryCount"></div>
+                            <canvas id="territoryCountChart" class="hidden"></canvas>
+                        </div>
+
+                        <div style="position: relative; height: 250px;" class="chart-container"
+                            data-chart-id="battleStats">
+                            <div class="skeleton skeleton-chart" id="skeleton-battleStats"></div>
+                            <canvas id="battleStatsChart" class="hidden"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Development Pulse Analysis Section -->
+                    <div class="card" style="grid-column: span 2;">
+                        <div class="card-header">
+                            <h2>Development Pulse Analysis</h2>
+
+                            <div style="display: flex; gap: 1rem; align-items: center;">
+                                <!-- Faction Filter -->
+                                <div class="filter-group">
+                                    <div id="development-faction-filter-multi" class="multi-select-container"
+                                        onclick="toggleMultiSelect(this)">
+                                        <div class="multi-select-display">Selected Factions</div>
+                                        <div class="multi-select-dropdown" id="development-faction-dropdown">
+                                            <!-- JS Populates -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Comparison Toggle -->
+                                <div class="comparison-toggle" style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <label style="font-size: 0.7rem; color: var(--text-secondary);">Compare Mode</label>
+                                    <label class="switch">
+                                        <input type="checkbox" id="development-comparison-toggle"
+                                            onchange="toggleComparisonMode(this.checked)">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-content" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div style="position: relative; height: 250px;" class="chart-container"
+                                data-chart-id="industrialDensity">
+                                <div class="skeleton skeleton-chart" id="skeleton-industrialDensity"></div>
+                                <canvas id="industrialDensityChart" class="hidden"></canvas>
+                            </div>
+                            <div style="position: relative; height: 250px;" class="chart-container"
+                                data-chart-id="queueEfficiency">
+                                <div class="skeleton skeleton-chart" id="skeleton-queueEfficiency"></div>
+                                <canvas id="queueEfficiencyChart" class="hidden"></canvas>
+                            </div>
+                            <div style="position: relative; height: 250px;" class="chart-container"
+                                data-chart-id="techTreeProgress">
+                                <div class="skeleton skeleton-chart" id="skeleton-techTreeProgress"></div>
+                                <canvas id="techTreeProgressChart" class="hidden"></canvas>
+                            </div>
+                            <div id="researchRoiContainer" style="height: 250px; overflow-y: auto;">
+                                <!-- ROI Cards will be injected here -->
+                            </div>
+                        </div>
+
+                        <!-- Timeline Sub-section -->
+                        <div class="card-footer"
+                            style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; padding: 1rem; border-top: 1px solid var(--border-color);">
+                            <div>
+                                <h3 style="font-size: 0.9rem; margin-bottom: 0.5rem; color: var(--text-secondary);">
+                                    Construction Timeline</h3>
+                                <ul id="constructionTimelineList"
+                                    style="max-height: 200px; overflow-y: auto; list-style: none; padding: 0; font-size: 0.8rem;">
+                                </ul>
+                            </div>
+                            <div>
+                                <h3 style="font-size: 0.9rem; margin-bottom: 0.5rem; color: var(--text-secondary);">
+                                    Research Timeline</h3>
+                                <ul id="researchTimelineList"
+                                    style="max-height: 200px; overflow-y: auto; list-style: none; padding: 0; font-size: 0.8rem;">
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RIGHT COLUMN (Events & Tech) -->
+            <div class="flex flex-col gap-4" style="display:flex; flex-direction:column; gap:1rem;">
+
+                <!-- Live Event Log -->
+                <div class="card" style="flex:2;">
+                    <div class="card-header">
+                        <div style="display:flex; justify-content:space-between; width:100%;">
+                            <h2>Live Telemetry</h2>
+                            <span style="color:var(--error); font-size:0.7rem; animation: pulse 2s infinite;">●
+                                REC</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <ul id="event-log"></ul>
+                    </div>
+                </div>
+
+                <!-- Tech Timeline -->
+                <div class="card" style="flex:1;">
+                    <div class="card-header">
+                        <h2>Technology Feed</h2>
+                    </div>
+                    <div class="card-content">
+                        <ul id="tech-timeline-list" class="timeline"></ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- UI Overlays -->
+    <div id="export-overlay" class="hidden">
+        <div class="spinner"></div>
+        <div id="export-status">PREPARING DATA...</div>
+        <div class="progress-bar">
+            <div id="export-progress" class="progress-fill" style="width: 0%"></div>
+        </div>
+    </div>
+
+    <div id="bookmark-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Bookmark Manager</h3>
+                <button class="btn-outline" onclick="closeBookmarkManager()">×</button>
+            </div>
+            <div class="filter-group">
+                <label>Save Current View</label>
+                <div style="display: flex; gap: 0.5rem;">
+                    <input type="text" id="bookmark-name" placeholder="Bookmark Name"
+                        style="flex:1; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: #fff; padding: 0.4rem; border-radius: 4px;">
+                    <button class="btn-accent" onclick="saveBookmark()">Save</button>
+                </div>
+            </div>
+            <div class="filter-group" style="margin-top: 1rem;">
+                <label>Saved Bookmarks</label>
+                <div id="bookmark-list" class="bookmark-list">
+                    <!-- JS Populates -->
+                </div>
+            </div>
+            <div class="btn-group" style="margin-top: 1rem; justify-content: flex-end;">
+                <button class="btn-outline" onclick="exportBookmarks()">Export All</button>
+                <button class="btn-outline" onclick="importBookmarks()">Import</button>
+                <button class="btn-outline" style="color: var(--error);" onclick="clearAllBookmarks()">Clear
+                    All</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/dashboard.js"></script>
+</body>
+
+</html>

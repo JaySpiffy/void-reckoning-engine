@@ -1,0 +1,1412 @@
+{
+  "Neutral_Aspect Shrine": {
+    "id": "Neutral_Aspect Shrine",
+    "name": "Aspect Shrine",
+    "tier": 1,
+    "cost": 900,
+    "maintenance": 25,
+    "prerequisites": [],
+    "unlocks": [
+      "[Guardian]",
+      "[Warden]"
+    ],
+    "effects": {
+      "description": "- +20% Exp Gain\n  - +1 Rank for Infantry"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Ancient_Guardians_buildings.md",
+    "source_format": "unknown",
+    "capacity": "10 Squads"
+  },
+  "Neutral_Gravitic Forge": {
+    "id": "Neutral_Gravitic Forge",
+    "name": "Gravitic Forge",
+    "tier": 2,
+    "cost": 2500,
+    "maintenance": 60,
+    "prerequisites": [
+      "Tech_Primeval_Sentinels_Industrial_Forging"
+    ],
+    "unlocks": [
+      "[Grav-Sled]",
+      "[Stalker]"
+    ],
+    "effects": {
+      "description": "- +15% Vehicle Speed\n  - +10% Vehicle Shielding"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Ancient_Guardians_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Crystal Farm": {
+    "id": "Neutral_Crystal Farm",
+    "name": "Crystal Farm",
+    "tier": 1,
+    "cost": 700,
+    "maintenance": 20,
+    "prerequisites": [],
+    "unlocks": [],
+    "effects": {
+      "description": "- +110 Requisition/turn\n  - +5 Rare Crystals resource"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Ancient_Guardians_buildings.md",
+    "source_format": "unknown",
+    "capacity": "500 Requisition"
+  },
+  "Neutral_Archive of Ages": {
+    "id": "Neutral_Archive of Ages",
+    "name": "Archive of Ages",
+    "tier": 1,
+    "cost": 1200,
+    "maintenance": 30,
+    "prerequisites": [],
+    "unlocks": [],
+    "effects": {
+      "description": "- +25% Research speed\n  - Unlocks Lost Tech"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Ancient_Guardians_buildings.md",
+    "source_format": "unknown",
+    "capacity": "100 Knowledge"
+  },
+  "Neutral_Hall of Prophecy": {
+    "id": "Neutral_Hall of Prophecy",
+    "name": "Hall of Prophecy",
+    "tier": 2,
+    "cost": 2500,
+    "maintenance": 75,
+    "prerequisites": [
+      "Tech_Primeval_Sentinels_Basic_Doctrine"
+    ],
+    "unlocks": [],
+    "effects": {
+      "description": "- +50% Research speed\n  - +10% Strategic foresight (Flavor)"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Ancient_Guardians_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Holo-Field Projector": {
+    "id": "Neutral_Holo-Field Projector",
+    "name": "Holo-Field Projector",
+    "tier": 1,
+    "cost": 600,
+    "maintenance": 15,
+    "prerequisites": [],
+    "unlocks": [],
+    "effects": {
+      "description": "- +35 Planetary Defense\n  - +20% Evasion for garrison"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Ancient_Guardians_buildings.md",
+    "source_format": "unknown",
+    "capacity": "2 Garrisons"
+  },
+  "Neutral_Infinity Gate": {
+    "id": "Neutral_Infinity Gate",
+    "name": "Infinity Gate",
+    "tier": 3,
+    "cost": 5000,
+    "maintenance": 150,
+    "prerequisites": [
+      "Tech_Primeval_Sentinels_Void_Shielding"
+    ],
+    "unlocks": [
+      "[Frigate]",
+      "[Cruiser]"
+    ],
+    "effects": {
+      "description": "- Unlocks Space Ship Construction\n  - Instant Reserve Deployment"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Ancient_Guardians_buildings.md",
+    "source_format": "unknown",
+    "capacity": "3 Capital Ships"
+  },
+  "Neutral_Star-Lattice Nexus": {
+    "id": "Neutral_Star-Lattice Nexus",
+    "name": "Star-Lattice Nexus",
+    "tier": 4,
+    "cost": 8000,
+    "maintenance": 200,
+    "prerequisites": [
+      "Tech_Primeval_Sentinels_Flux_Navigation"
+    ],
+    "unlocks": [],
+    "effects": {
+      "description": "- Instant strategic movement between Nexus planets\n  - +100% Planetary Defense\n  - +50% Trade Income (Safe routes)"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Ancient_Guardians_buildings.md",
+    "source_format": "unknown",
+    "capacity": "1 Galaxy Node"
+  },
+  "Neutral_Meditation Chamber": {
+    "id": "Neutral_Meditation Chamber",
+    "name": "Meditation Chamber",
+    "tier": 1,
+    "cost": 800,
+    "maintenance": 20,
+    "prerequisites": [],
+    "unlocks": [
+      "[Ascended Initiate]",
+      "[Ascended Disciple]"
+    ],
+    "effects": {
+      "description": "- +10 Resonator Power (Planet)\n  - +1 Rank for Resonator recruits"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Ascended_Order_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Crystal Foundry": {
+    "id": "Neutral_Crystal Foundry",
+    "name": "Crystal Foundry",
+    "tier": 2,
+    "cost": 2000,
+    "maintenance": 50,
+    "prerequisites": [
+      "Tech_Transcendent_Order_Industrial_Forging"
+    ],
+    "unlocks": [
+      "[Grav-Tank]",
+      "[Prism Crawler]"
+    ],
+    "effects": {
+      "description": "- +20% Vehicle production speed\n  - +5% Shield strength for new units"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Ascended_Order_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Aether Syphon": {
+    "id": "Neutral_Aether Syphon",
+    "name": "Aether Syphon",
+    "tier": 1,
+    "cost": 600,
+    "maintenance": 15,
+    "prerequisites": [],
+    "unlocks": [],
+    "effects": {
+      "description": "- +100 Requisition/turn\n  - +5 Energy credits"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Ascended_Order_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Archive of Wisdom": {
+    "id": "Neutral_Archive of Wisdom",
+    "name": "Archive of Wisdom",
+    "tier": 1,
+    "cost": 1000,
+    "maintenance": 25,
+    "prerequisites": [],
+    "unlocks": [],
+    "effects": {
+      "description": "- +20% Research speed\n  - +1 Research slot"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Ascended_Order_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Kinetic Shield Generator": {
+    "id": "Neutral_Kinetic Shield Generator",
+    "name": "Kinetic Shield Generator",
+    "tier": 1,
+    "cost": 500,
+    "maintenance": 10,
+    "prerequisites": [],
+    "unlocks": [],
+    "effects": {
+      "description": "- +30 Planetary Shield\n  - Reducues bombardment damage by 15%"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Ascended_Order_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Astral Spire": {
+    "id": "Neutral_Astral Spire",
+    "name": "Astral Spire",
+    "tier": 3,
+    "cost": 4000,
+    "maintenance": 150,
+    "prerequisites": [
+      "Tech_Transcendent_Order_Void_Shielding"
+    ],
+    "unlocks": [
+      "[Ascended Frigate]",
+      "[Ascended Cruiser]"
+    ],
+    "effects": {
+      "description": "- Unlocks Space Ship Construction\n  - +15% Ship Shield Regeneration"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Ascended_Order_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Aether Conduit": {
+    "id": "Neutral_Aether Conduit",
+    "name": "Aether Conduit",
+    "tier": 3,
+    "cost": 5000,
+    "maintenance": 100,
+    "prerequisites": [
+      "Tech_Transcendent_Order_Aether_Resonance"
+    ],
+    "unlocks": [],
+    "effects": {
+      "description": "- +50% Resonator power (Planet)\n  - +10% Research speed (Global)\n  - Small chance of Flux Peril"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Ascended_Order_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Assembly Line": {
+    "id": "Neutral_Assembly Line",
+    "name": "Assembly Line",
+    "tier": 1,
+    "cost": 800,
+    "maintenance": 20,
+    "prerequisites": [],
+    "unlocks": [
+      "[Cyber Skitarii]",
+      "[Combat Servitor]"
+    ],
+    "effects": {
+      "description": "- +10% Production Efficiency\n  - +1 Rank for Cyborgs"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Cyber_Synod_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Cyber-Foundry": {
+    "id": "Neutral_Cyber-Foundry",
+    "name": "Cyber-Foundry",
+    "tier": 2,
+    "cost": 2000,
+    "maintenance": 50,
+    "prerequisites": [
+      "Tech_Algorithmic_Hierarchy_Industrial_Forging"
+    ],
+    "unlocks": [
+      "[Walker Bot]",
+      "[Grav-Platform]"
+    ],
+    "effects": {
+      "description": "- +20% Vehicle production speed\n  - +10% Unit Accuracy"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Cyber_Synod_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Data Vault": {
+    "id": "Neutral_Data Vault",
+    "name": "Data Vault",
+    "tier": 1,
+    "cost": 600,
+    "maintenance": 30,
+    "prerequisites": [],
+    "unlocks": [],
+    "effects": {
+      "description": "- +150 Requisition/turn (Data mining)\n  - +10% Tech trade value"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Cyber_Synod_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Logic Core": {
+    "id": "Neutral_Logic Core",
+    "name": "Logic Core",
+    "tier": 1,
+    "cost": 1000,
+    "maintenance": 25,
+    "prerequisites": [],
+    "unlocks": [],
+    "effects": {
+      "description": "- +25% Research speed\n  - +1 Research slot"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Cyber_Synod_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Auto-Turret Grid": {
+    "id": "Neutral_Auto-Turret Grid",
+    "name": "Auto-Turret Grid",
+    "tier": 1,
+    "cost": 500,
+    "maintenance": 10,
+    "prerequisites": [],
+    "unlocks": [],
+    "effects": {
+      "description": "- +30 Planetary Defense\n  - Automatic counter-attack bonus"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Cyber_Synod_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Orbital Upload": {
+    "id": "Neutral_Orbital Upload",
+    "name": "Orbital Upload",
+    "tier": 3,
+    "cost": 4000,
+    "maintenance": 150,
+    "prerequisites": [
+      "Tech_Algorithmic_Hierarchy_Void_Shielding"
+    ],
+    "unlocks": [
+      "[Synod Frigate]",
+      "[Synod Cruiser]"
+    ],
+    "effects": {
+      "description": "- Unlocks Space Ship Construction\n  - +15% Ship Range"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Cyber_Synod_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Reanimation Matrix": {
+    "id": "Neutral_Reanimation Matrix",
+    "name": "Reanimation Matrix",
+    "tier": 3,
+    "cost": 5000,
+    "maintenance": 100,
+    "prerequisites": [
+      "Tech_Algorithmic_Hierarchy_Industrial_Forging"
+    ],
+    "unlocks": [],
+    "effects": {
+      "description": "- 50% chance to revive destroyed mechanical units\n  - +20% Repair rate"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Cyber_Synod_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Spawning Pool": {
+    "id": "Neutral_Spawning Pool",
+    "name": "Spawning Pool",
+    "tier": 1,
+    "cost": 700,
+    "maintenance": 15,
+    "prerequisites": [],
+    "unlocks": [
+      "[Hive Drone]",
+      "[Warrior Strain]"
+    ],
+    "effects": {
+      "description": "- +30% Growth rate\n  - -25% Infantry cost"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Hive_Swarm_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Gestation Chamber": {
+    "id": "Neutral_Gestation Chamber",
+    "name": "Gestation Chamber",
+    "tier": 2,
+    "cost": 1800,
+    "maintenance": 40,
+    "prerequisites": [
+      "Tech_BioTide_Collective_Industrial_Forging (Evolutionary Adaptation)"
+    ],
+    "unlocks": [
+      "[Chitinous Behemoth Strain]",
+      "[Bio-Tank]"
+    ],
+    "effects": {
+      "description": "- +20% Monstrous Creature production speed\n  - +10% Unit HP"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Hive_Swarm_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Digestion Pool": {
+    "id": "Neutral_Digestion Pool",
+    "name": "Digestion Pool",
+    "tier": 1,
+    "cost": 600,
+    "maintenance": 10,
+    "prerequisites": [],
+    "unlocks": [],
+    "effects": {
+      "description": "- +100 Requisition/turn\n  - Converts enemy casualties to Biomass (Resource)"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Hive_Swarm_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Synaptic Node": {
+    "id": "Neutral_Synaptic Node",
+    "name": "Synaptic Node",
+    "tier": 1,
+    "cost": 1000,
+    "maintenance": 20,
+    "prerequisites": [],
+    "unlocks": [],
+    "effects": {
+      "description": "- +15% Research speed (Evolution rate)\n  - +5 Synaptic Range"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Hive_Swarm_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Spore Chimney": {
+    "id": "Neutral_Spore Chimney",
+    "name": "Spore Chimney",
+    "tier": 1,
+    "cost": 450,
+    "maintenance": 5,
+    "prerequisites": [],
+    "unlocks": [],
+    "effects": {
+      "description": "- +15 Planetary Defense\n  - Obscures planet (Acc penalty for invaders)"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Hive_Swarm_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Bio-Ship Anchor": {
+    "id": "Neutral_Bio-Ship Anchor",
+    "name": "Bio-Ship Anchor",
+    "tier": 3,
+    "cost": 3500,
+    "maintenance": 120,
+    "prerequisites": [
+      "Tech_BioTide_Collective_Void_Shielding (Chitinous Plating)"
+    ],
+    "unlocks": [
+      "[Hive Frigate]",
+      "[Hive Cruiser]"
+    ],
+    "effects": {
+      "description": "- Unlocks Space Ship Construction\n  - +10% Ship Regen"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Hive_Swarm_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Digestion Nexus": {
+    "id": "Neutral_Digestion Nexus",
+    "name": "Digestion Nexus",
+    "tier": 3,
+    "cost": 5000,
+    "maintenance": 100,
+    "prerequisites": [
+      "Tech_BioTide_Collective_Industrial_Forging"
+    ],
+    "unlocks": [],
+    "effects": {
+      "description": "- +50% Biomass generation\n  - +30% Pop Growth\n  - -10% Global Unit Cost"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Hive_Swarm_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Drill Yard": {
+    "id": "Neutral_Drill Yard",
+    "name": "Drill Yard",
+    "tier": 1,
+    "cost": 800,
+    "maintenance": 20,
+    "prerequisites": [],
+    "unlocks": [
+      "[Vanguard Trooper]",
+      "[Heavy Gunner]"
+    ],
+    "effects": {
+      "description": "- +10 Planetary Defense\n  - +1 Rank for Heavy Infantry"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Iron_Vanguard_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Heavy Assembly Plant": {
+    "id": "Neutral_Heavy Assembly Plant",
+    "name": "Heavy Assembly Plant",
+    "tier": 2,
+    "cost": 2000,
+    "maintenance": 50,
+    "prerequisites": [
+      "Tech_SteelBound_Syndicate_Industrial_Forging"
+    ],
+    "unlocks": [
+      "[Siege Tank]",
+      "[Artillery Platform]"
+    ],
+    "effects": {
+      "description": "- +25% Vehicle production speed\n  - -15% Building Cost (Local)"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Iron_Vanguard_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Mineral Processor": {
+    "id": "Neutral_Mineral Processor",
+    "name": "Mineral Processor",
+    "tier": 1,
+    "cost": 600,
+    "maintenance": 15,
+    "prerequisites": [],
+    "unlocks": [],
+    "effects": {
+      "description": "- +120 Requisition/turn\n  - +10% Mining yield"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Iron_Vanguard_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Design Bureau": {
+    "id": "Neutral_Design Bureau",
+    "name": "Design Bureau",
+    "tier": 1,
+    "cost": 1000,
+    "maintenance": 25,
+    "prerequisites": [],
+    "unlocks": [],
+    "effects": {
+      "description": "- +15% Research speed\n  - Unlocks experimental blueprints"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Iron_Vanguard_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Ferrocrete Bunker": {
+    "id": "Neutral_Ferrocrete Bunker",
+    "name": "Ferrocrete Bunker",
+    "tier": 1,
+    "cost": 500,
+    "maintenance": 10,
+    "prerequisites": [],
+    "unlocks": [],
+    "effects": {
+      "description": "- +40 Planetary Defense\n  - +20% Garrison health"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Iron_Vanguard_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Orbital Drydock": {
+    "id": "Neutral_Orbital Drydock",
+    "name": "Orbital Drydock",
+    "tier": 3,
+    "cost": 4000,
+    "maintenance": 150,
+    "prerequisites": [
+      "Tech_SteelBound_Syndicate_Void_Shielding"
+    ],
+    "unlocks": [
+      "[Vanguard Frigate]",
+      "[Vanguard Cruiser]"
+    ],
+    "effects": {
+      "description": "- Unlocks Space Ship Construction\n  - +10% Ship Armor"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Iron_Vanguard_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Mega-Foundry": {
+    "id": "Neutral_Mega-Foundry",
+    "name": "Mega-Foundry",
+    "tier": 3,
+    "cost": 5000,
+    "maintenance": 100,
+    "prerequisites": [
+      "Tech_SteelBound_Syndicate_Industrial_Forging"
+    ],
+    "unlocks": [],
+    "effects": {
+      "description": "- -20% Building costs (Global)\n  - +25% Production speed (Planet)\n  - +50 Pollution (Flavor)"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Iron_Vanguard_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Summoning Circle": {
+    "id": "Neutral_Summoning Circle",
+    "name": "Summoning Circle",
+    "tier": 1,
+    "cost": 700,
+    "maintenance": 10,
+    "prerequisites": [],
+    "unlocks": [
+      "[Lesser Daemon]",
+      "[Rift Hound]"
+    ],
+    "effects": {
+      "description": "- +20% Summon speed\n  - -10% Army Upkeep"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Rift_Daemons_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Flux Forge": {
+    "id": "Neutral_Flux Forge",
+    "name": "Flux Forge",
+    "tier": 2,
+    "cost": 2000,
+    "maintenance": 50,
+    "prerequisites": [
+      "Tech_VoidSpawn_Entities_Industrial_Forging"
+    ],
+    "unlocks": [
+      "[Soul Grinder]",
+      "[Daemon Engine]"
+    ],
+    "effects": {
+      "description": "- +25% Daemon Engine production\n  - +10% Unit HP"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Rift_Daemons_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Soul Altar": {
+    "id": "Neutral_Soul Altar",
+    "name": "Soul Altar",
+    "tier": 1,
+    "cost": 600,
+    "maintenance": 0,
+    "prerequisites": [],
+    "unlocks": [],
+    "effects": {
+      "description": "- +100 Requisition (Soul harvest)\n  - -5% Local Pop Growth"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Rift_Daemons_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Library of Chaos": {
+    "id": "Neutral_Library of Chaos",
+    "name": "Library of Chaos",
+    "tier": 1,
+    "cost": 1000,
+    "maintenance": 20,
+    "prerequisites": [],
+    "unlocks": [],
+    "effects": {
+      "description": "- +20% Research speed\n  - High risk of Corruption"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Rift_Daemons_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Flux Shroud": {
+    "id": "Neutral_Flux Shroud",
+    "name": "Flux Shroud",
+    "tier": 1,
+    "cost": 500,
+    "maintenance": 15,
+    "prerequisites": [],
+    "unlocks": [],
+    "effects": {
+      "description": "- +25 Planetary Defense\n  - Teleportation interference for enemies"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Rift_Daemons_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Dimensional Gate": {
+    "id": "Neutral_Dimensional Gate",
+    "name": "Dimensional Gate",
+    "tier": 3,
+    "cost": 4000,
+    "maintenance": 150,
+    "prerequisites": [
+      "Tech_VoidSpawn_Entities_Flux_Navigation"
+    ],
+    "unlocks": [
+      "[Rift Frigate]",
+      "[Rift Cruiser]"
+    ],
+    "effects": {
+      "description": "- Unlocks Space Ship Construction\n  - +15% Ship Evasion"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Rift_Daemons_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Reality Tear": {
+    "id": "Neutral_Reality Tear",
+    "name": "Reality Tear",
+    "tier": 4,
+    "cost": 6000,
+    "maintenance": 200,
+    "prerequisites": [
+      "Tech_VoidSpawn_Entities_Aether_Resonance"
+    ],
+    "unlocks": [],
+    "effects": {
+      "description": "- Spawns random daemon units periodically\n  - -10% Enemy Morale (System-wide)\n  - Corrupts neighboring planets"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Rift_Daemons_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Fight Pit": {
+    "id": "Neutral_Fight Pit",
+    "name": "Fight Pit",
+    "tier": 1,
+    "cost": 500,
+    "maintenance": 5,
+    "prerequisites": [],
+    "unlocks": [
+      "[Clan Raiders]",
+      "[Brawlers]"
+    ],
+    "effects": {
+      "description": "- +10% Army Damage\n  - +5 Morale"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Scavenger_Clans_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Mek Shop": {
+    "id": "Neutral_Mek Shop",
+    "name": "Mek Shop",
+    "tier": 2,
+    "cost": 1500,
+    "maintenance": 30,
+    "prerequisites": [
+      "Tech_ScrapLord_Marauders_Industrial_Forging"
+    ],
+    "unlocks": [
+      "[Scrap Trukk]",
+      "[Battle Wagon]"
+    ],
+    "effects": {
+      "description": "- +30% Vehicle production speed\n  - +15% Fire rate (Random variance)"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Scavenger_Clans_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Loot Pile": {
+    "id": "Neutral_Loot Pile",
+    "name": "Loot Pile",
+    "tier": 1,
+    "cost": 400,
+    "maintenance": 0,
+    "prerequisites": [],
+    "unlocks": [],
+    "effects": {
+      "description": "- +80 Requisition/turn\n  - +10% Scavenge rate"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Scavenger_Clans_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Tinkerer's Shed": {
+    "id": "Neutral_Tinkerer's Shed",
+    "name": "Tinkerer's Shed",
+    "tier": 1,
+    "cost": 800,
+    "maintenance": 10,
+    "prerequisites": [],
+    "unlocks": [],
+    "effects": {
+      "description": "- +15% Research speed\n  - Unlocks unique \"kustom\" upgrades"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Scavenger_Clans_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Junk Wall": {
+    "id": "Neutral_Junk Wall",
+    "name": "Junk Wall",
+    "tier": 1,
+    "cost": 300,
+    "maintenance": 5,
+    "prerequisites": [],
+    "unlocks": [],
+    "effects": {
+      "description": "- +20 Planetary Defense\n  - Cheap to repair"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Scavenger_Clans_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Space Hulk Dock": {
+    "id": "Neutral_Space Hulk Dock",
+    "name": "Space Hulk Dock",
+    "tier": 3,
+    "cost": 3000,
+    "maintenance": 80,
+    "prerequisites": [
+      "Tech_ScrapLord_Marauders_Void_Shielding"
+    ],
+    "unlocks": [
+      "[Scavenger Frigate]",
+      "[Scavenger Cruiser]"
+    ],
+    "effects": {
+      "description": "- Unlocks Space Ship Construction\n  - +20% Ship Hull Points"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Scavenger_Clans_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Scrap Heap": {
+    "id": "Neutral_Scrap Heap",
+    "name": "Scrap Heap",
+    "tier": 1,
+    "cost": 1000,
+    "maintenance": 10,
+    "prerequisites": [],
+    "unlocks": [],
+    "effects": {
+      "description": "- Salvages 25% of destroyed units as resources (Planet)\n  - -10% Unit Cost (Local)"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Scavenger_Clans_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Military Academy": {
+    "id": "Neutral_Military Academy",
+    "name": "Military Academy",
+    "tier": 1,
+    "cost": 800,
+    "maintenance": 20,
+    "prerequisites": [],
+    "unlocks": [
+      "[Solar Marine]",
+      "[Hegemony Guard]"
+    ],
+    "effects": {
+      "description": "- +2 Rank for Infantry recruits\n  - +10% Army Morale"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Solar_Hegemony_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Arsenals of Sol": {
+    "id": "Neutral_Arsenals of Sol",
+    "name": "Arsenals of Sol",
+    "tier": 2,
+    "cost": 2200,
+    "maintenance": 60,
+    "prerequisites": [
+      "Tech_Aurelian_Hegemony_Industrial_Forging"
+    ],
+    "unlocks": [
+      "[Solar Tank]",
+      "[Artillery Walker]"
+    ],
+    "effects": {
+      "description": "- +20% Vehicle production speed\n  - +10% Weapon Damage"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Solar_Hegemony_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Trade Hub": {
+    "id": "Neutral_Trade Hub",
+    "name": "Trade Hub",
+    "tier": 1,
+    "cost": 600,
+    "maintenance": 15,
+    "prerequisites": [],
+    "unlocks": [],
+    "effects": {
+      "description": "- +150 Requisition/turn\n  - +25% Trade Value"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Solar_Hegemony_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_University": {
+    "id": "Neutral_University",
+    "name": "University",
+    "tier": 1,
+    "cost": 1000,
+    "maintenance": 30,
+    "prerequisites": [],
+    "unlocks": [],
+    "effects": {
+      "description": "- +20% Research speed\n  - +5% Happiness"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Solar_Hegemony_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Shield Generator": {
+    "id": "Neutral_Shield Generator",
+    "name": "Shield Generator",
+    "tier": 1,
+    "cost": 600,
+    "maintenance": 20,
+    "prerequisites": [
+      "Tech_Aurelian_Hegemony_Void_Shielding (Local shielding)"
+    ],
+    "unlocks": [],
+    "effects": {
+      "description": "- +40 Planetary Shield\n  - Protects buildings from bombardment"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Solar_Hegemony_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Orbital Shipyard": {
+    "id": "Neutral_Orbital Shipyard",
+    "name": "Orbital Shipyard",
+    "tier": 3,
+    "cost": 4500,
+    "maintenance": 180,
+    "prerequisites": [
+      "Tech_Aurelian_Hegemony_Void_Shielding"
+    ],
+    "unlocks": [
+      "[Solar Frigate]",
+      "[Solar Cruiser]"
+    ],
+    "effects": {
+      "description": "- Unlocks Space Ship Construction\n  - +1 Ship Build Slot"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Solar_Hegemony_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Diplomatic Embassy": {
+    "id": "Neutral_Diplomatic Embassy",
+    "name": "Diplomatic Embassy",
+    "tier": 2,
+    "cost": 3000,
+    "maintenance": 50,
+    "prerequisites": [
+      "Tech_Aurelian_Hegemony_Conviction_Doctrines"
+    ],
+    "unlocks": [],
+    "effects": {
+      "description": "- +30 Diplomacy rating\n  - +20% Trade income (Global)\n  - Unlocks Diplomatic Actions"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Solar_Hegemony_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Training Pit": {
+    "id": "Neutral_Training Pit",
+    "name": "Training Pit",
+    "tier": 1,
+    "cost": 600,
+    "maintenance": 10,
+    "prerequisites": [],
+    "unlocks": [
+      "[Corsair Raider]",
+      "[Void Reaver]"
+    ],
+    "effects": {
+      "description": "- +5 Morale\n  - +10% Exp Gain from combat"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Void_Corsairs_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Chop Shop": {
+    "id": "Neutral_Chop Shop",
+    "name": "Chop Shop",
+    "tier": 2,
+    "cost": 1800,
+    "maintenance": 40,
+    "prerequisites": [
+      "Tech_Nebula_Drifters_Industrial_Forging"
+    ],
+    "unlocks": [
+      "[Raider Skiff]",
+      "[Looted Tank]"
+    ],
+    "effects": {
+      "description": "- +30% Vehicle production speed\n  - Salvages 25% of cost from destroyed enemies"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Void_Corsairs_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Smuggler's Cove": {
+    "id": "Neutral_Smuggler's Cove",
+    "name": "Smuggler's Cove",
+    "tier": 1,
+    "cost": 500,
+    "maintenance": 5,
+    "prerequisites": [],
+    "unlocks": [],
+    "effects": {
+      "description": "- +120 Requisition/turn\n  - +20% Black Market Income"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Void_Corsairs_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Tech Scavenger": {
+    "id": "Neutral_Tech Scavenger",
+    "name": "Tech Scavenger",
+    "tier": 1,
+    "cost": 900,
+    "maintenance": 20,
+    "prerequisites": [],
+    "unlocks": [],
+    "effects": {
+      "description": "- +10% Research speed\n  - Gain tech progress from battles"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Void_Corsairs_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Hidden Bunkers": {
+    "id": "Neutral_Hidden Bunkers",
+    "name": "Hidden Bunkers",
+    "tier": 1,
+    "cost": 400,
+    "maintenance": 5,
+    "prerequisites": [],
+    "unlocks": [],
+    "effects": {
+      "description": "- +20 Planetary Defense\n  - -20% Enemy detection chance"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Void_Corsairs_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Asteroid Dock": {
+    "id": "Neutral_Asteroid Dock",
+    "name": "Asteroid Dock",
+    "tier": 3,
+    "cost": 3500,
+    "maintenance": 100,
+    "prerequisites": [
+      "Tech_Nebula_Drifters_Void_Shielding"
+    ],
+    "unlocks": [
+      "[Corsair Frigate]",
+      "[Corsair Cruiser]"
+    ],
+    "effects": {
+      "description": "- Unlocks Space Ship Construction\n  - +15% Ship Speed"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Void_Corsairs_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Raider's Haven": {
+    "id": "Neutral_Raider's Haven",
+    "name": "Raider's Haven",
+    "tier": 2,
+    "cost": 4000,
+    "maintenance": 80,
+    "prerequisites": [
+      "Tech_Nebula_Drifters_Flux_Navigation"
+    ],
+    "unlocks": [],
+    "effects": {
+      "description": "- +50% loot from raids (Global)\n  - -25% Detection risk\n  - +2 Trade Routes"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Void_Corsairs_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Chapel-Barracks": {
+    "id": "Neutral_Chapel-Barracks",
+    "name": "Chapel-Barracks",
+    "tier": 1,
+    "cost": 800,
+    "maintenance": 20,
+    "prerequisites": [],
+    "unlocks": [
+      "[Initiate]",
+      "[Templar]"
+    ],
+    "effects": {
+      "description": "- +15 Morale (Planet-wide)\n  - +1 Rank for Infantry recruits\n  - +5 Planetary Defense"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Zealot_Legions_buildings.md",
+    "source_format": "unknown",
+    "capacity": "10 Squads"
+  },
+  "Neutral_Pattern Manufactorum": {
+    "id": "Neutral_Pattern Manufactorum",
+    "name": "Pattern Manufactorum",
+    "tier": 2,
+    "cost": 2000,
+    "maintenance": 50,
+    "prerequisites": [
+      "Tech_Templars_of_the_Flux_Industrial_Forging"
+    ],
+    "unlocks": [
+      "[Chariot]",
+      "[Purifier]",
+      "[Sorrow-Walker]"
+    ],
+    "effects": {
+      "description": "- +20% Vehicle production speed\n  - -10% Vehicle maintenance cost"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Zealot_Legions_buildings.md",
+    "source_format": "unknown",
+    "capacity": "5 Units"
+  },
+  "Neutral_Tithe Hall": {
+    "id": "Neutral_Tithe Hall",
+    "name": "Tithe Hall",
+    "tier": 1,
+    "cost": 600,
+    "maintenance": 15,
+    "prerequisites": [],
+    "unlocks": [],
+    "effects": {
+      "description": "- +100 Requisition/turn\n  - +5% Trade income"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Zealot_Legions_buildings.md",
+    "source_format": "unknown",
+    "capacity": "500 Requisition"
+  },
+  "Neutral_Scriptorium": {
+    "id": "Neutral_Scriptorium",
+    "name": "Scriptorium",
+    "tier": 1,
+    "cost": 1000,
+    "maintenance": 25,
+    "prerequisites": [],
+    "unlocks": [],
+    "effects": {
+      "description": "- +15% Research speed\n  - +1 Research slot"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Zealot_Legions_buildings.md",
+    "source_format": "unknown",
+    "capacity": "100 Knowledge"
+  },
+  "Neutral_Bastion of Faith": {
+    "id": "Neutral_Bastion of Faith",
+    "name": "Bastion of Faith",
+    "tier": 1,
+    "cost": 500,
+    "maintenance": 10,
+    "prerequisites": [],
+    "unlocks": [],
+    "effects": {
+      "description": "- +25 Planetary Defense rating\n  - +10% Garrison strength"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Zealot_Legions_buildings.md",
+    "source_format": "unknown",
+    "capacity": "2 Garrisons"
+  },
+  "Neutral_Orbital Cathedral": {
+    "id": "Neutral_Orbital Cathedral",
+    "name": "Orbital Cathedral",
+    "tier": 3,
+    "cost": 4000,
+    "maintenance": 150,
+    "prerequisites": [
+      "Tech_Templars_of_the_Flux_Void_Shielding"
+    ],
+    "unlocks": [
+      "[Sword Class]",
+      "[Cathedral Class]",
+      "[Basilica Class]"
+    ],
+    "effects": {
+      "description": "- Unlocks Space Ship Construction\n  - +10% Ship Fire Rate (Orbit)"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Zealot_Legions_buildings.md",
+    "source_format": "unknown",
+    "capacity": "3 Capital Ships"
+  },
+  "Neutral_Conviction Shrine": {
+    "id": "Neutral_Conviction Shrine",
+    "name": "Conviction Shrine",
+    "tier": 3,
+    "cost": 5000,
+    "maintenance": 100,
+    "prerequisites": [
+      "Tech_Templars_of_the_Flux_Conviction_Doctrines"
+    ],
+    "unlocks": [
+      "[High Crusader]",
+      "[Arch-Confessor]",
+      "[Saint's Avatar]"
+    ],
+    "effects": {
+      "description": "- +50% Morale regen (Planet)\n  - Unlocks Conviction abilities for Heroes\n  - +2 Influence/turn"
+    },
+    "faction": "Neutral",
+    "category": "infrastructure",
+    "source_file": "Zealot_Legions_buildings.md",
+    "source_format": "unknown",
+    "capacity": "1 Hero"
+  },
+  "None": {
+    "id": "None",
+    "name": "Unknown",
+    "tier": 0,
+    "cost": 0,
+    "maintenance": 0,
+    "prerequisites": [],
+    "unlocks": [],
+    "effects": {},
+    "faction": "Global",
+    "category": "infrastructure",
+    "source_file": "manual",
+    "source_format": "unknown",
+    "capacity": null
+  },
+  "Recruitment Stations": {
+    "id": "Recruitment Stations",
+    "name": "Unknown",
+    "tier": 0,
+    "cost": 0,
+    "maintenance": 0,
+    "prerequisites": [],
+    "unlocks": [],
+    "effects": {},
+    "faction": "Global",
+    "category": "infrastructure",
+    "source_file": "manual",
+    "source_format": "unknown",
+    "capacity": null
+  },
+  "Spaceport": {
+    "id": "Spaceport",
+    "name": "Unknown",
+    "tier": 0,
+    "cost": 0,
+    "maintenance": 0,
+    "prerequisites": [],
+    "unlocks": [],
+    "effects": {},
+    "faction": "Global",
+    "category": "infrastructure",
+    "source_file": "manual",
+    "source_format": "unknown",
+    "capacity": null
+  }
+}

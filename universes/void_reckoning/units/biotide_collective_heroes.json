@@ -1,0 +1,104 @@
+[
+  {
+    "name": "Brood Tyrant",
+    "blueprint_id": "biotide_collective_brood_tyrant",
+    "type": "hero",
+    "faction": "BioTide_Collective",
+    "tier": 1,
+    "cost": 11000,
+    "base_stats": {
+      "role": "hero",
+      "tier": 1,
+      "hp": 600,
+      "armor": 100,
+      "damage": 180,
+      "speed": 9,
+      "cost": 11000,
+      "keywords": "hero unique hero tier5"
+    },
+    "elemental_dna": {
+      "atom_mass": 20.0,
+      "atom_energy": 0.0,
+      "atom_cohesion": 0.0,
+      "atom_volatility": 0.0,
+      "atom_stability": 0.0,
+      "atom_focus": 0.0,
+      "atom_frequency": 40.0,
+      "atom_aether": 0.0,
+      "atom_will": 40.0,
+      "atom_information": 0.0
+    },
+    "source_universe": "void_reckoning",
+    "description": "Synapse creature directing the swarm.",
+    "hero": true,
+    "unique": true,
+    "traits": [
+      "Trait_Synapse",
+      "Trait_Fleet",
+      "Trait_Fearless",
+      "Trait_Deep_Strike"
+    ],
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "upkeep": 1100,
+    "universal_stats": {
+      "hull_structural_integrity": 6000.0,
+      "armor_kinetic_resistance": 200.0,
+      "weapon_kinetic_damage": 270.0,
+      "mobility_speed_tactical": 18.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "Apex Predator",
+    "blueprint_id": "biotide_collective_apex_predator",
+    "type": "hero",
+    "faction": "BioTide_Collective",
+    "tier": 3,
+    "cost": 14000,
+    "base_stats": {
+      "role": "titan",
+      "tier": 3,
+      "hp": 2000,
+      "armor": 150,
+      "damage": 350,
+      "speed": 10,
+      "cost": 14000,
+      "keywords": "hero unique titan tier5"
+    },
+    "elemental_dna": {
+      "atom_mass": 40.0,
+      "atom_energy": 20.0,
+      "atom_cohesion": 0.0,
+      "atom_volatility": 40.0,
+      "atom_stability": 0.0,
+      "atom_focus": 0.0,
+      "atom_frequency": 0.0,
+      "atom_aether": 0.0,
+      "atom_will": 0.0,
+      "atom_information": 0.0
+    },
+    "source_universe": "void_reckoning",
+    "description": "Massive biological siege engine.",
+    "hero": true,
+    "unique": true,
+    "traits": [
+      "Trait_Splash_Damage",
+      "Trait_Anti_Vehicle",
+      "Trait_Reinforced_Plating",
+      "Trait_Shield_Capacitor"
+    ],
+    "unit_class": "battle_tank",
+    "domain": "ground",
+    "upkeep": 1400,
+    "universal_stats": {
+      "hull_structural_integrity": 20000.0,
+      "armor_kinetic_resistance": 300.0,
+      "weapon_kinetic_damage": 525.0,
+      "mobility_speed_tactical": 20.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  }
+]

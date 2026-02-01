@@ -1,0 +1,90 @@
+.container {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+}
+
+.filterGroup {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.label {
+    font-size: 0.75rem;
+    color: #8892b0;
+    text-transform: uppercase;
+}
+
+.chipGroup {
+    display: flex;
+    gap: 0.4rem;
+}
+
+.chip {
+    font-size: 0.6rem;
+    padding: 2px 6px;
+    border-radius: 2px;
+    border: 1px solid transparent;
+    background: rgba(255, 255, 255, 0.05);
+    color: #647181;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: bold;
+}
+
+.chip.active.info {
+    background: #33b5e5;
+    color: white;
+}
+
+.chip.active.warning {
+    background: #ffbb33;
+    color: black;
+}
+
+.chip.active.error {
+    background: #ff8800;
+    color: white;
+}
+
+.chip.active.critical {
+    background: #ff4444;
+    color: white;
+}
+
+.chip:not(.active):hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.select {
+    background: #0a0b10;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #e0e6ed;
+    font-size: 0.75rem;
+    padding: 2px 4px;
+    border-radius: 2px;
+}
+
+.historyToggle {
+    display: flex;
+    align-items: center;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    padding-left: 1.5rem;
+}
+
+.toggleLabel {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: #e0e6ed;
+    cursor: pointer;
+}
+
+.toggleLabel input {
+    cursor: pointer;
+}

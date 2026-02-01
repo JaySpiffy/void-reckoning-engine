@@ -1,0 +1,64 @@
+{
+    "traits": [
+        {
+            "id": "aggressive",
+            "name": "Aggressive",
+            "category": "combat",
+            "modifiers": {
+                "damage": 0.20,
+                "morale": -0.10
+            },
+            "description": "Fierce in battle. +20% Damage.",
+            "rarity": "common",
+            "conflicts": [
+                "pacifist"
+            ]
+        },
+        {
+            "id": "berserker",
+            "name": "Berserker",
+            "category": "combat",
+            "modifiers": {
+                "damage": 0.30,
+                "armor": -0.10,
+                "morale": 0.20
+            },
+            "description": "Unstoppable rage. +30% Damage, -10% Armor.",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "resilient",
+            "name": "Resilient",
+            "category": "combat",
+            "modifiers": {
+                "hp": 0.20,
+                "armor": 0.15
+            },
+            "description": "Hard to kill. +20% HP, +15% Armor.",
+            "rarity": "common"
+        },
+        {
+            "id": "fortified",
+            "name": "Fortified",
+            "category": "combat",
+            "modifiers": {
+                "armor": 0.30,
+                "hp": 0.10,
+                "speed": -0.20
+            },
+            "description": "Heavily armored. +30% Armor.",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "ambush",
+            "name": "Ambush Specialist",
+            "category": "combat",
+            "modifiers": {
+                "first_strike_bonus": 0.30,
+                "detection": -0.20
+            },
+            "description": "Masters of surprise.",
+            "rarity": "common"
+        }
+    ]
+}

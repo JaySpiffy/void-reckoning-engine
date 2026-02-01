@@ -1,0 +1,72 @@
+{
+  "Master-Crafted": {
+    "description": "Superior craftsmanship increases damage and accuracy",
+    "modifiers": {
+      "weapon_kinetic_damage": 1.1,
+      "weapon_energy_damage": 1.1,
+      "weapon_accuracy_rating": 1.05
+    }
+  },
+  "Veteran Crew": {
+    "description": "Experienced crew improves all combat stats",
+    "modifiers": {
+      "crew_experience": 1.5,
+      "weapon_accuracy_rating": 1.1,
+      "mobility_agility_rating": 1.05
+    }
+  },
+  "Regeneration": {
+    "description": "Advanced regeneration systems",
+    "modifiers": {
+      "regeneration_rate": 10.0,
+      "hull_structural_integrity": 1.1
+    }
+  },
+  "Stalker Pattern": {
+    "description": "Stealth modifications",
+    "modifiers": {
+      "stealth_rating": 2.0,
+      "detection_range_passive": 0.8
+    }
+  },
+  "Reckless Pilot": {
+    "description": "Aggressive flying with disregard for safety",
+    "modifiers": {
+      "weapon_kinetic_damage": 1.25,
+      "weapon_energy_damage": 1.25,
+      "armor_kinetic_resistance": 0.8,
+      "mobility_speed_tactical": 1.1
+    }
+  },
+  "Cautious Commander": {
+    "description": "Prioritizes survival over aggression",
+    "modifiers": {
+      "armor_kinetic_resistance": 1.1,
+      "armor_energy_resistance": 1.1,
+      "weapon_accuracy_rating": 0.9,
+      "crew_morale_base": 1.05
+    }
+  },
+  "Salvaged": {
+    "description": "Recovered from battlefield wreckage, reduced effectiveness",
+    "modifiers": {
+      "hull_structural_integrity": 0.85,
+      "weapon_kinetic_damage": 0.9,
+      "weapon_energy_damage": 0.9
+    }
+  },
+  "Reverse-Engineered": {
+    "description": "Stolen technology, imperfect replication",
+    "modifiers": {
+      "weapon_accuracy_rating": 0.9,
+      "crew_experience": 0.8,
+      "hull_structural_integrity": 0.95
+    }
+  },
+  "Gifted": {
+    "description": "Shared via diplomatic exchange, full effectiveness",
+    "modifiers": {
+      "crew_morale_base": 1.05
+    }
+  }
+}

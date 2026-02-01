@@ -1,0 +1,710 @@
+[
+  {
+    "name": "Lesser Horror",
+    "blueprint_id": "voidspawn_entities_lesser_horror",
+    "type": "infantry",
+    "faction": "VoidSpawn_Entities",
+    "cost": 100,
+    "base_stats": {
+      "hp": 8,
+      "armor": 0,
+      "damage": 12,
+      "speed": 4,
+      "type": "infantry",
+      "cost": 100,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 6.72,
+      "atom_energy": 6.66,
+      "atom_cohesion": 6.66,
+      "atom_volatility": 15.99,
+      "atom_stability": 0.01,
+      "atom_focus": 2.67,
+      "atom_frequency": 2.67,
+      "atom_aether": 49.29,
+      "atom_will": 6.66,
+      "atom_information": 2.67
+    },
+    "source_universe": "void_reckoning",
+    "description": "Twisting masses of flesh and teeth that giggle as they tear their victims apart.",
+    "traits": [
+      "Trait_Rending"
+    ],
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 10,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "voidspawn_entities_base_missile_weapon_0_S"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 80.0,
+      "armor_kinetic_resistance": 0.0,
+      "weapon_kinetic_damage": 18.0,
+      "mobility_speed_tactical": 8.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "Herald",
+    "blueprint_id": "voidspawn_entities_herald",
+    "type": "infantry",
+    "faction": "VoidSpawn_Entities",
+    "cost": 300,
+    "base_stats": {
+      "hp": 20,
+      "armor": 0,
+      "damage": 27,
+      "speed": 4,
+      "type": "infantry",
+      "cost": 300,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 5.09,
+      "atom_energy": 5.0,
+      "atom_cohesion": 5.0,
+      "atom_volatility": 11.99,
+      "atom_stability": 0.01,
+      "atom_focus": 16.98,
+      "atom_frequency": 2.0,
+      "atom_aether": 36.94,
+      "atom_will": 5.0,
+      "atom_information": 11.99
+    },
+    "source_universe": "void_reckoning",
+    "description": "Commanders of the unholy host, capable of ripping holes in reality with a gesture.",
+    "traits": [
+      "Trait_Rending",
+      "Trait_Ethereal_Form"
+    ],
+    "abilities": [
+      "Ability_Flux_Rift"
+    ],
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 30,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "voidspawn_entities_base_missile_weapon_0_S"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 200.0,
+      "armor_kinetic_resistance": 0.0,
+      "weapon_kinetic_damage": 40.5,
+      "mobility_speed_tactical": 8.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "Seeker Chariot",
+    "blueprint_id": "voidspawn_entities_seeker_chariot",
+    "type": "vehicle",
+    "faction": "VoidSpawn_Entities",
+    "cost": 500,
+    "base_stats": {
+      "hp": 64,
+      "armor": 0,
+      "damage": 40,
+      "speed": 12,
+      "type": "vehicle",
+      "cost": 500,
+      "tier": 2,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 10.49,
+      "atom_energy": 6.39,
+      "atom_cohesion": 6.39,
+      "atom_volatility": 15.35,
+      "atom_stability": 0.01,
+      "atom_focus": 2.56,
+      "atom_frequency": 2.56,
+      "atom_aether": 47.3,
+      "atom_will": 6.39,
+      "atom_information": 2.56
+    },
+    "source_universe": "void_reckoning",
+    "description": "Spiked platforms pulled by daemonic steeds, hunting down those who try to flee.",
+    "traits": [
+      "Trait_Rending",
+      "Trait_Ethereal_Form"
+    ],
+    "unit_class": "light_vehicle",
+    "domain": "ground",
+    "tier": 2,
+    "upkeep": 50,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "voidspawn_entities_base_missile_weapon_0_M"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 640.0,
+      "armor_kinetic_resistance": 0.0,
+      "weapon_kinetic_damage": 60.0,
+      "mobility_speed_tactical": 24.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "Soul Grinder",
+    "blueprint_id": "voidspawn_entities_soul_grinder",
+    "type": "vehicle",
+    "faction": "VoidSpawn_Entities",
+    "cost": 1200,
+    "base_stats": {
+      "hp": 200,
+      "armor": 0,
+      "damage": 110,
+      "speed": 6,
+      "type": "vehicle",
+      "cost": 1200,
+      "tier": 3,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 17.65,
+      "atom_energy": 5.88,
+      "atom_cohesion": 5.88,
+      "atom_volatility": 14.12,
+      "atom_stability": 0.01,
+      "atom_focus": 2.35,
+      "atom_frequency": 2.35,
+      "atom_aether": 43.53,
+      "atom_will": 5.88,
+      "atom_information": 2.35
+    },
+    "source_universe": "void_reckoning",
+    "description": "A fusion of daemon and machine, scuttling on iron legs and vomiting flux-fire.",
+    "traits": [
+      "Trait_Rending",
+      "Trait_Ethereal_Form"
+    ],
+    "unit_class": "battle_tank",
+    "domain": "ground",
+    "tier": 3,
+    "upkeep": 120,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "voidspawn_entities_base_missile_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "voidspawn_entities_base_laser_weapon_1_M"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 2000.0,
+      "armor_kinetic_resistance": 0.0,
+      "weapon_kinetic_damage": 165.0,
+      "mobility_speed_tactical": 12.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "Greater Daemon",
+    "blueprint_id": "voidspawn_entities_greater_daemon",
+    "type": "vehicle",
+    "faction": "VoidSpawn_Entities",
+    "cost": 900,
+    "base_stats": {
+      "hp": 144,
+      "armor": 0,
+      "damage": 72,
+      "speed": 5,
+      "type": "vehicle",
+      "cost": 900,
+      "tier": 1,
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 7.55,
+      "atom_energy": 6.6,
+      "atom_cohesion": 6.6,
+      "atom_volatility": 15.85,
+      "atom_stability": 0.01,
+      "atom_focus": 2.64,
+      "atom_frequency": 2.64,
+      "atom_aether": 48.87,
+      "atom_will": 6.6,
+      "atom_information": 2.64
+    },
+    "source_universe": "void_reckoning",
+    "description": "VoidSpawn_Entities Walker unit. Auto-generated.",
+    "traits": [
+      "Trait_Rending",
+      "Trait_Ethereal_Form"
+    ],
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "tier": 1,
+    "upkeep": 90,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "voidspawn_entities_base_missile_weapon_0_S"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 1440.0,
+      "armor_kinetic_resistance": 0.0,
+      "weapon_kinetic_damage": 108.0,
+      "mobility_speed_tactical": 10.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "Screamer",
+    "blueprint_id": "voidspawn_entities_screamer",
+    "type": "ship",
+    "faction": "VoidSpawn_Entities",
+    "cost": 150,
+    "base_stats": {
+      "hp": 40,
+      "armor": 0,
+      "damage": 45,
+      "speed": 35,
+      "type": "ship",
+      "cost": 150,
+      "tier": 1,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 6.48,
+      "atom_energy": 6.23,
+      "atom_cohesion": 6.23,
+      "atom_volatility": 14.96,
+      "atom_stability": 0.01,
+      "atom_focus": 2.49,
+      "atom_frequency": 8.73,
+      "atom_aether": 46.15,
+      "atom_will": 6.23,
+      "atom_information": 2.49
+    },
+    "source_universe": "void_reckoning",
+    "description": "VoidSpawn_Entities Fighter unit. Auto-generated.",
+    "traits": [
+      "Trait_Rending"
+    ],
+    "abilities": [
+      "Ability_Terror_Scream"
+    ],
+    "unit_class": "fighter",
+    "domain": "space",
+    "tier": 1,
+    "upkeep": 15,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "voidspawn_entities_base_laser_weapon_1_S"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 400.0,
+      "armor_kinetic_resistance": 0.0,
+      "weapon_kinetic_damage": 67.5,
+      "mobility_speed_tactical": 70.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "Hellfire Class",
+    "blueprint_id": "voidspawn_entities_hellfire_class",
+    "type": "ship",
+    "faction": "VoidSpawn_Entities",
+    "cost": 2000,
+    "base_stats": {
+      "hp": 640,
+      "armor": 0,
+      "damage": 290,
+      "speed": 15,
+      "type": "ship",
+      "cost": 2000,
+      "tier": 2,
+      "range": 24
+    },
+    "elemental_dna": {
+      "atom_mass": 10.49,
+      "atom_energy": 6.39,
+      "atom_cohesion": 6.39,
+      "atom_volatility": 15.35,
+      "atom_stability": 0.01,
+      "atom_focus": 2.56,
+      "atom_frequency": 2.56,
+      "atom_aether": 47.3,
+      "atom_will": 6.39,
+      "atom_information": 2.56
+    },
+    "source_universe": "void_reckoning",
+    "description": "VoidSpawn_Entities Frigate unit. Auto-generated.",
+    "traits": [
+      "Trait_Rending",
+      "Trait_Ethereal_Form"
+    ],
+    "unit_class": "frigate",
+    "domain": "space",
+    "tier": 2,
+    "upkeep": 200,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "voidspawn_entities_base_missile_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "voidspawn_entities_base_laser_weapon_1_M"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "voidspawn_entities_base_missile_weapon_0_S"
+      },
+      {
+        "slot": "weapon_small",
+        "component": "voidspawn_entities_base_missile_weapon_0_S"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 6400.0,
+      "armor_kinetic_resistance": 0.0,
+      "weapon_kinetic_damage": 435.0,
+      "mobility_speed_tactical": 30.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "Torment Class",
+    "blueprint_id": "voidspawn_entities_torment_class",
+    "type": "ship",
+    "faction": "VoidSpawn_Entities",
+    "cost": 8000,
+    "base_stats": {
+      "hp": 2400,
+      "armor": 0,
+      "damage": 980,
+      "speed": 8,
+      "type": "ship",
+      "cost": 8000,
+      "range": 30
+    },
+    "elemental_dna": {
+      "atom_mass": 19.54,
+      "atom_energy": 5.75,
+      "atom_cohesion": 5.75,
+      "atom_volatility": 13.79,
+      "atom_stability": 0.01,
+      "atom_focus": 2.3,
+      "atom_frequency": 2.3,
+      "atom_aether": 42.51,
+      "atom_will": 5.75,
+      "atom_information": 2.3
+    },
+    "source_universe": "void_reckoning",
+    "description": "VoidSpawn_Entities Cruiser unit. Auto-generated.",
+    "traits": [
+      "Trait_Rending",
+      "Trait_Ethereal_Form"
+    ],
+    "unit_class": "cruiser",
+    "domain": "space",
+    "upkeep": 800,
+    "components": [
+      {
+        "slot": "weapon_medium",
+        "component": "voidspawn_entities_base_missile_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "voidspawn_entities_base_missile_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "voidspawn_entities_base_missile_weapon_0_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "voidspawn_entities_base_laser_weapon_1_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "voidspawn_entities_base_laser_weapon_1_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "voidspawn_entities_base_laser_weapon_1_M"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "voidspawn_entities_base_missile_weapon_0_L"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "voidspawn_entities_base_missile_weapon_0_L"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 24000.0,
+      "armor_kinetic_resistance": 0.0,
+      "weapon_kinetic_damage": 1470.0,
+      "mobility_speed_tactical": 16.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "Abyssal Class",
+    "blueprint_id": "voidspawn_entities_abyssal_class",
+    "type": "ship",
+    "faction": "VoidSpawn_Entities",
+    "cost": 25000,
+    "base_stats": {
+      "hp": 9600,
+      "armor": 0,
+      "damage": 3530,
+      "speed": 4,
+      "type": "ship",
+      "cost": 25000,
+      "tier": 3,
+      "range": 36
+    },
+    "elemental_dna": {
+      "atom_mass": 71.92,
+      "atom_energy": 1.87,
+      "atom_cohesion": 1.87,
+      "atom_volatility": 4.49,
+      "atom_stability": 0.0,
+      "atom_focus": 0.75,
+      "atom_frequency": 0.75,
+      "atom_aether": 15.73,
+      "atom_will": 1.87,
+      "atom_information": 0.75
+    },
+    "source_universe": "void_reckoning",
+    "description": "VoidSpawn_Entities Battleship unit. Auto-generated.",
+    "traits": [
+      "Trait_Reinforced_Plating"
+    ],
+    "unit_class": "battleship",
+    "domain": "space",
+    "tier": 3,
+    "upkeep": 2500,
+    "components": [
+      {
+        "slot": "weapon_heavy",
+        "component": "voidspawn_entities_base_plasma_weapon_3_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "voidspawn_entities_base_plasma_weapon_3_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "voidspawn_entities_base_plasma_weapon_3_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "voidspawn_entities_base_plasma_weapon_3_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "voidspawn_entities_base_plasma_weapon_8_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "voidspawn_entities_base_plasma_weapon_8_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "voidspawn_entities_base_plasma_weapon_8_XL"
+      },
+      {
+        "slot": "weapon_heavy",
+        "component": "voidspawn_entities_base_plasma_weapon_8_XL"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "voidspawn_entities_base_plasma_weapon_3_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "voidspawn_entities_base_plasma_weapon_3_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "voidspawn_entities_base_plasma_weapon_3_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "voidspawn_entities_base_plasma_weapon_3_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "voidspawn_entities_base_plasma_weapon_8_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "voidspawn_entities_base_plasma_weapon_8_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "voidspawn_entities_base_plasma_weapon_8_M"
+      },
+      {
+        "slot": "weapon_medium",
+        "component": "voidspawn_entities_base_plasma_weapon_8_M"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 96000.0,
+      "armor_kinetic_resistance": 0.0,
+      "weapon_kinetic_damage": 5295.0,
+      "mobility_speed_tactical": 8.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "Flux Lord",
+    "blueprint_id": "voidspawn_entities_flux_lord",
+    "type": "hero",
+    "faction": "VoidSpawn_Entities",
+    "tier": 1,
+    "cost": 13000,
+    "base_stats": {
+      "role": "hero",
+      "tier": 1,
+      "hp": 800,
+      "armor": 80,
+      "damage": 305,
+      "speed": 12,
+      "cost": 13000,
+      "keywords": "hero unique hero tier5",
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 0.0,
+      "atom_energy": 0.0,
+      "atom_cohesion": 0.0,
+      "atom_volatility": 40.0,
+      "atom_stability": 0.0,
+      "atom_focus": 0.0,
+      "atom_frequency": 0.0,
+      "atom_aether": 60.0,
+      "atom_will": 0.0,
+      "atom_information": 0.0
+    },
+    "source_universe": "void_reckoning",
+    "description": "Daemon Prince of the Rift.",
+    "hero": true,
+    "unique": true,
+    "traits": [
+      "Trait_Rending",
+      "Trait_Ethereal_Form"
+    ],
+    "abilities": [
+      "Ability_Vortex_Grenade",
+      "Ability_Reality_Tear",
+      "Ability_Psychic_Storm",
+      "Ability_Flux_Jump",
+      "Ability_Corruption_Wave"
+    ],
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "upkeep": 1300,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "voidspawn_entities_base_missile_weapon_0_S"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 8000.0,
+      "armor_kinetic_resistance": 160.0,
+      "weapon_kinetic_damage": 457.5,
+      "mobility_speed_tactical": 24.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  },
+  {
+    "name": "Entropy Avatar",
+    "blueprint_id": "voidspawn_entities_entropy_avatar",
+    "type": "hero",
+    "faction": "VoidSpawn_Entities",
+    "tier": 1,
+    "cost": 15000,
+    "base_stats": {
+      "role": "titan",
+      "tier": 1,
+      "hp": 5000,
+      "armor": 50,
+      "damage": 605,
+      "speed": 8,
+      "cost": 15000,
+      "keywords": "hero unique titan tier5",
+      "range": 19
+    },
+    "elemental_dna": {
+      "atom_mass": 0.0,
+      "atom_energy": 0.0,
+      "atom_cohesion": 0.0,
+      "atom_volatility": 70.0,
+      "atom_stability": 0.0,
+      "atom_focus": 0.0,
+      "atom_frequency": 0.0,
+      "atom_aether": 30.0,
+      "atom_will": 0.0,
+      "atom_information": 0.0
+    },
+    "source_universe": "void_reckoning",
+    "description": "Living storm of chaos.",
+    "hero": true,
+    "unique": true,
+    "traits": [
+      "Trait_Rending",
+      "Trait_Ethereal_Form"
+    ],
+    "abilities": [
+      "Ability_Vortex_Grenade",
+      "Ability_Reality_Tear",
+      "Ability_Flux_Rift",
+      "Ability_Psychic_Storm",
+      "Ability_Corruption_Wave"
+    ],
+    "unit_class": "light_infantry",
+    "domain": "ground",
+    "upkeep": 1500,
+    "components": [
+      {
+        "slot": "weapon_small",
+        "component": "voidspawn_entities_base_missile_weapon_0_S"
+      }
+    ],
+    "universal_stats": {
+      "hull_structural_integrity": 50000.0,
+      "armor_kinetic_resistance": 100.0,
+      "weapon_kinetic_damage": 907.5,
+      "mobility_speed_tactical": 16.0,
+      "weapon_accuracy_rating": 85.0,
+      "crew_morale_base": 10.0
+    }
+  }
+]

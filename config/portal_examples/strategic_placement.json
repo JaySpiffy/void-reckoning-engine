@@ -1,0 +1,44 @@
+{
+    "enable_portals": true,
+    "portals": [
+        {
+            "portal_id": "core_portal",
+            "source_coords": [
+                0,
+                0
+            ],
+            "dest_universe": "uni_b",
+            "dest_coords": [
+                0,
+                0
+            ],
+            "placement_strategy": "galactic_core"
+        },
+        {
+            "portal_id": "border_portal",
+            "source_coords": [
+                50,
+                50
+            ],
+            "dest_universe": "uni_c",
+            "dest_coords": [
+                50,
+                50
+            ],
+            "placement_strategy": "border_region"
+        },
+        {
+            "portal_id": "isolated_portal",
+            "source_coords": [
+                15,
+                85
+            ],
+            "dest_universe": "uni_d",
+            "dest_coords": [
+                15,
+                85
+            ],
+            "placement_strategy": "exact_coords"
+        }
+    ]
+}

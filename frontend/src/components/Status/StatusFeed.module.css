@@ -1,0 +1,79 @@
+.feedContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-height: 250px;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+    position: relative;
+}
+
+.feedContainer::-webkit-scrollbar {
+    width: 4px;
+}
+
+.feedContainer::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.feedContainer::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 2px;
+}
+
+.feedContainer::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+}
+
+.emptyState {
+    padding: 1rem;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    font-style: italic;
+    border: 1px dashed var(--border);
+    border-radius: 4px;
+}
+
+.errorBanner {
+    background: rgba(255, 68, 68, 0.1);
+    border: 1px solid var(--error);
+    border-radius: 4px;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+    text-align: center;
+}
+
+.errorTitle {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--error);
+    text-transform: uppercase;
+}
+
+.reconnectBtn {
+    background: var(--error);
+    color: white;
+    border: none;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    border-radius: 2px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: filter 0.2s;
+}
+
+.reconnectBtn:hover {
+    filter: brightness(1.2);
+}
+
+.skeletonItem {
+    height: 40px;
+    width: 100%;
+    margin-bottom: 0.5rem;
+}

@@ -1,0 +1,103 @@
+{
+    "traits": [
+        {
+            "id": "giant",
+            "name": "Giant",
+            "category": "physical",
+            "modifiers": {
+                "hp": 0.50,
+                "armor": 0.30,
+                "speed": -0.20,
+                "cost": 0.50
+            },
+            "description": "Massive stature. +50% HP, +30% Armor, -20% Speed.",
+            "rarity": "uncommon",
+            "conflicts": [
+                "dwarf",
+                "tiny"
+            ]
+        },
+        {
+            "id": "dwarf",
+            "name": "Dwarf",
+            "category": "physical",
+            "modifiers": {
+                "hp": -0.20,
+                "armor": 0.10,
+                "speed": 0.20,
+                "cost": -0.20
+            },
+            "description": "Compact and sturdy. +10% Armor, +20% Speed, -20% HP.",
+            "rarity": "uncommon",
+            "conflicts": [
+                "giant",
+                "colossal"
+            ]
+        },
+        {
+            "id": "colossal",
+            "name": "Colossal",
+            "category": "physical",
+            "modifiers": {
+                "hp": 1.0,
+                "armor": 0.50,
+                "speed": -0.40,
+                "cost": 1.0
+            },
+            "description": "Titanic scale. +100% HP, +50% Armor, -40% Speed.",
+            "rarity": "rare",
+            "conflicts": [
+                "tiny",
+                "dwarf"
+            ]
+        },
+        {
+            "id": "tiny",
+            "name": "Tiny",
+            "category": "physical",
+            "modifiers": {
+                "hp": -0.40,
+                "armor": -0.20,
+                "speed": 0.40,
+                "cost": -0.40
+            },
+            "description": "Small target. -40% HP, +40% Speed.",
+            "rarity": "common",
+            "conflicts": [
+                "giant",
+                "colossal"
+            ]
+        },
+        {
+            "id": "rapid_regen",
+            "name": "Rapid Regeneration",
+            "category": "physical",
+            "modifiers": {
+                "hp_regen_flat": 5.0
+            },
+            "description": "Heals 5 HP per turn.",
+            "rarity": "common"
+        },
+        {
+            "id": "fleet_footed",
+            "name": "Fleet Footed",
+            "category": "physical",
+            "modifiers": {
+                "speed": 0.20
+            },
+            "description": "+20% Movement Speed.",
+            "rarity": "common"
+        },
+        {
+            "id": "void_walker",
+            "name": "Void Walker",
+            "category": "physical",
+            "modifiers": {
+                "speed": 0.50,
+                "void_resistance": 0.50
+            },
+            "description": "Adapted for vacuum. +50% Speed, 50% Void Resistance.",
+            "rarity": "uncommon"
+        }
+    ]
+}

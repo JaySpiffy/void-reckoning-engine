@@ -1,0 +1,11 @@
+{
+    "simulation": {
+        "num_runs": 1,
+        "max_workers": 1,
+        "output_dir": "reports/verify_fog"
+    },
+    "campaign": {
+        "turns": 50,
+        "num_systems": 20
+    }
+}
