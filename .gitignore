@@ -24,6 +24,12 @@ __pycache__/
 .vscode/
 .idea/
 
+# Experimental / WIP
+docker/
+frontend/
+Dockerfile.*
+.dockerignore
+
 # Misc / Backups
 examples_only/
 .roo/
