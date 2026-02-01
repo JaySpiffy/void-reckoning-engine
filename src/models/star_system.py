@@ -93,6 +93,7 @@ class StarSystem:
             
             node = GraphNode(n_name, n_type, n_name)
             node.position = (x, y)
+            node.metadata["system"] = self
             
             if planet_obj:
                 node.metadata["object"] = planet_obj

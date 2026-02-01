@@ -573,6 +573,7 @@ class Planet:
             node.max_tier = 1
             node.building_slots = 0
             node.metadata["object"] = self
+            node.metadata["system"] = self.system
             
             # Slot Config
             if type == "Capital": 

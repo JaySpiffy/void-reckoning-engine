@@ -168,7 +168,14 @@ class DefensiveStrategy:
         if target in construction_targets:
             def_tf.id = f"ESC-{self.ai.tf_counter}"
             def_tf.mission_role = "CONSTRUCTION" # Correct role for lifecycle management
-            loc_name = target.name if not hasattr(target, 'system') else f"{target.system.name} ({target.name})"
+            
+            # [FIX] Resilient System Name Resolution
+            loc_system = getattr(target, 'system', None)
+            if loc_system and hasattr(loc_system, 'name'):
+                loc_name = f"{loc_system.name} ({target.name})"
+            else:
+                loc_name = target.name
+                
             print(f"  > [STRATEGY] {faction} forming ESCORT for Starbase construction at {loc_name}")
 
         # Feature 110: Assign Combat Doctrine

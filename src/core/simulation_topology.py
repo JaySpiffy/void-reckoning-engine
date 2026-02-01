@@ -23,6 +23,10 @@ class GraphNode:
         self.buildings = [] # List of building IDs constructed here
         self.max_tier = 1 # Max building tier allow (1=Province, 3=Minor, 5=Major)
         self.building_slots = 0 # Available slots
+        self.construction_queue = [] # Compatibility for Planet-like logic
+        self.unit_queue = [] # Compatibility for Planet-like logic
+        self.max_queue_size = 5 # Compatibility for Planet-like logic
+        self.naval_slots = 0 # Compatibility for Planet-like logic
         
         # Phase 33: Ground Warfare
         self.armies = [] # List of Army objects stationed on this node
@@ -33,6 +37,62 @@ class GraphNode:
             self.metadata["portal_dest_universe"] = portal_dest_universe
             self.metadata["portal_dest_coords"] = portal_dest_coords
             self.metadata["portal_id"] = portal_id
+
+    @property
+    def owner(self) -> str:
+        """Compatibility property for Planet-like ownership checks."""
+        # Check metadata first
+        if "owner" in self.metadata:
+            return self.metadata["owner"]
+        
+        # Fallback to parent object (e.g. Planet) if available
+        obj = self.metadata.get("object")
+        if obj and hasattr(obj, 'owner') and obj != self:
+            return obj.owner
+            
+        return "Neutral"
+
+    @owner.setter
+    def owner(self, value: str):
+        """Sets the owner in metadata."""
+        self.metadata["owner"] = value
+
+    def generate_resources(self) -> Dict[str, Any]:
+        """Compatibility method for Planet-like resource generation checks."""
+        # Nodes don't typically generate resources in isolation, 
+        # though buildings on them contribute to the Parent Planet income.
+        return {"req": 0, "breakdown": {"base": 0, "buildings": 0, "provinces": 0}}
+
+    @property
+    def system(self) -> Any:
+        """Compatibility property for parent StarSystem resolution."""
+        # Check metadata first
+        if "system" in self.metadata:
+            return self.metadata["system"]
+        
+        # Check parent object (e.g. Planet) for its system
+        obj = self.metadata.get("object")
+        if obj and hasattr(obj, 'system') and obj != self:
+            return obj.system
+            
+        return None
+
+    @property
+    def node_reference(self) -> 'GraphNode':
+        """Compatibility property: a node is its own reference."""
+        return self
+
+    @property
+    def provinces(self) -> List['GraphNode']:
+        """Compatibility property for Planet-like province list."""
+        # A province node is its only province.
+        return [self]
+
+    def process_queue(self, engine: Any) -> None:
+        """Compatibility method for Planet-like queue processing."""
+        # Nodes usually have their construction advanced by the Parent Planet,
+        # but if they are treated as independent colonies, we need a stub.
+        pass
 
     def is_portal(self) -> bool:
         """Returns True if this node acts as an inter-universe portal."""
