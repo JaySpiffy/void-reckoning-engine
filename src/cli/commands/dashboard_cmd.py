@@ -11,7 +11,6 @@ class DashboardCommand(BaseCommand):
         return "dashboard"
 
     @property
-    @property
     def help(self) -> str:
         return "Launch Terminal Dashboard (Demo Batch)"
 
