@@ -14,10 +14,10 @@ class RaidMechanic(BaseMechanic):
         if planet and self.get_owner(planet) != faction.name:
             # We fought on enemy soil. Did we win? Or just raid?
             # Even losing might grant raid income if we destroyed stuff.
-            # Let's give income based on planet value.
             # Let's give income based on planet value * loot bonus
             loot_mult = 1.0 + self.get_modifier("loot_bonus", 0.0)
-            income = planet.base_income_req * 0.5 * loot_mult
+            base_income = getattr(planet, 'base_income_req', 0)
+            income = base_income * 0.5 * loot_mult
             faction.add_income(income)
             
             stats = getattr(faction, "stats", {})

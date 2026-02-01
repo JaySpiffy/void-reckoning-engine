@@ -64,6 +64,20 @@ class GraphNode:
         return {"req": 0, "breakdown": {"base": 0, "buildings": 0, "provinces": 0}}
 
     @property
+    def base_income_req(self) -> int:
+        """Compatibility property for base income requirements."""
+        # Check metadata first
+        if "base_income_req" in self.metadata:
+            return self.metadata["base_income_req"]
+        
+        # Fallback to parent object (e.g. Planet) if available
+        obj = self.metadata.get("object")
+        if obj and hasattr(obj, 'base_income_req') and obj != self:
+            return obj.base_income_req
+            
+        return 0
+
+    @property
     def system(self) -> Any:
         """Compatibility property for parent StarSystem resolution."""
         # Check metadata first
