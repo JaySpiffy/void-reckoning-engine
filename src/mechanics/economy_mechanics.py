@@ -11,7 +11,7 @@ class RaidMechanic(BaseMechanic):
         planet = context.get("planet")
         winner = context.get("winner")
         
-        if planet and planet.owner != faction.name:
+        if planet and self.get_owner(planet) != faction.name:
             # We fought on enemy soil. Did we win? Or just raid?
             # Even losing might grant raid income if we destroyed stuff.
             # Let's give income based on planet value.

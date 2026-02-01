@@ -43,8 +43,6 @@ class ConvictionMechanic(BaseMechanic):
         faction_name = getattr(context.get("caster"), "faction", None)
         # We need the faction object to modify resources.
         # Ensure context provides it or we can lookup via mechanics engine logic.
-        # But here 'context' is from `on_ability_use` hook which passes dictionary.
-        # We might need to rely on `self.engine` if available or `context` hacks.
         # Based on my check of `ability_manager`, we pass `faction` if possible but let's see.
         pass
 
@@ -100,7 +98,7 @@ class BiomassMechanic(BaseMechanic):
         # Context needs location.
         location = context.get("location") # Planet object
         
-        if location and location.owner == faction.name:
+        if location and self.get_owner(location) == faction.name:
             cost = unit.cost
             gain = cost * 0.3
             faction.biomass_pool += gain

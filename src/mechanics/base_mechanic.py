@@ -35,3 +35,13 @@ class BaseMechanic(ABC):
         
     def on_ability_use(self, context):
         pass
+
+    def get_owner(self, location) -> str:
+        """Safely retrieves the owner of a location (Planet or GraphNode)."""
+        if not location:
+            return "Neutral"
+        if hasattr(location, 'owner'):
+            return location.owner
+        if hasattr(location, 'metadata'):
+            return location.metadata.get("owner", "Neutral")
+        return "Neutral"
