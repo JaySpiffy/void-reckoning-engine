@@ -6,7 +6,11 @@
 [![GPU Support](https://img.shields.io/badge/GPU-CuPy%20%7C%20CUDA-green.svg)](#gpu-acceleration)
 [![Dashboard](https://img.shields.io/badge/Dashboard-In--Progress-orange.svg)](#dashboard)
 
-A high-fidelity Grand Strategy Campaign Engine featuring the **Void Reckoning** universe with multi-universe support, parallel simulation, GPU acceleration, advanced tactical combat, and real-time analytics.
+A complex, text-based 4X strategy engine featuring trait-based faction evolution and professional architectural patterns.
+
+> **The "Gap" in the Python Market**: Unlike simple hobby projects or massive C++ engines, this framework provides a serious, architecturally mature simulation engine in Python, utilizing advanced patterns (Dependency Injection, Managers, Event Bus) for deep economic, diplomatic, and genetic modeling.
+>
+> **The "Headless" Advantage**: This is not a "game engine" in the graphical sense, but a **Headless 4X Simulation Framework**. It is designed for technical users interested in AI Training (Reinforcement Learning), Data Science (Campaign Analytics), and robust Backend Logic for web-based strategy games.
 
 ## Table of Contents
 
