@@ -581,7 +581,7 @@ python run.py campaign --universe void_reckoning --gpu --gpu-strategy auto
 
 ```bash
 # Terminal 1: Start backend
-python run.py dashboard --universe eternal_crusade --port 8000
+python run.py dashboard --universe void_reckoning --port 8000
 
 # Terminal 2: Start frontend
 cd frontend && npm run dev
@@ -600,12 +600,12 @@ python run.py simulate --mode fleet --faction1 Templars_of_the_Flux --faction2 B
 ### 5. Validate Configuration
 
 ```bash
-python run.py validate --universe eternal_crusade
+python run.py validate --universe void_reckoning
 ```
 
-## Eternal Crusade Factions
+## Void Reckoning Factions
 
-The Eternal Crusade universe features ten distinct factions, each with unique doctrines, units, and strategic capabilities:
+The Void Reckoning universe features ten distinct factions, each with unique doctrines, units, and strategic capabilities:
 
 | Faction | Playstyle | Key Strengths |
 | :--- | :--- | :--- |
@@ -672,49 +672,49 @@ The engine supports 15 CLI commands for comprehensive simulation control.
 
 ```bash
 # Run a campaign with specific universe
-python run.py campaign --universe eternal_crusade --quick
+python run.py campaign --universe void_reckoning --quick
 
 # Run parallel simulation with custom configuration
 python run.py multi-universe --config config/unified_simulation_config.json
 
 # Query simulation reports with advanced filtering
-python run.py query --faction Zealot_Legions --category combat --search "Orbital Bombardment"
+python run.py query --faction Templars_of_the_Flux --category combat --search "Orbital Bombardment"
 
 # Validate configuration files
-python run.py validate --universe eternal_crusade
+python run.py validate --universe void_reckoning
 
 # Validate portal network
-python run.py validate-portals --universe eternal_crusade
+python run.py validate-portals --universe void_reckoning
 
 # List available portals
-python run.py list-portals --universe eternal_crusade
+python run.py list-portals --universe void_reckoning
 
 # Test portal traversal
-python run.py test-portal --source "Zealot Legions" --destination "Hive Swarm"
+python run.py test-portal --source "Templars_of_the_Flux" --destination "BioTide_Collective"
 
 # Duel between specific units
 python run.py simulate --mode duel --units "Templar Initiate" "Bio-Morph Ravager" --universe void_reckoning
 
 # Generate registries
-python run.py generate --universe eternal_crusade
+python run.py generate --universe void_reckoning
 
 # Launch Terminal Dashboard Demo
-python run.py dashboard --universe eternal_crusade
+python run.py dashboard --universe void_reckoning
 
 # Run with GPU acceleration (auto device selection)
-python run.py campaign --universe eternal_crusade --gpu --gpu-strategy auto
+python run.py campaign --universe void_reckoning --gpu --gpu-strategy auto
 
 # Run with specific GPU
-python run.py campaign --universe eternal_crusade --gpu --gpu-device 0
+python run.py campaign --universe void_reckoning --gpu --gpu-device 0
 
 # Run analytics on simulation results
-python run.py export analytics --universe eternal_crusade --output-dir reports/exports --formats pdf excel
+python run.py export analytics --universe void_reckoning --output-dir reports/exports --formats pdf excel
 
 # Cross-universe duel
-python run.py cross-universe-duel --unit1 "eternal_crusade:Zealot_Legions:Zealot Marine" --unit2 "custom_universe:Custom_Faction:Custom Warrior"
+python run.py cross-universe-duel --unit1 "void_reckoning:Templars_of_the_Flux:Templar Initiate" --unit2 "custom_universe:Custom_Faction:Custom Warrior"
 
 # Cross-universe fleet battle
-python run.py cross-universe-battle --universe1 eternal_crusade --universe2 custom_universe --faction1 Zealot_Legions --faction2 Custom_Faction
+python run.py cross-universe-battle --universe1 void_reckoning --universe2 custom_universe --faction1 Templars_of_the_Flux --faction2 Custom_Faction
 
 ## Terminal Dashboard
 
@@ -893,7 +893,7 @@ multi-universe-simulator/
 │   ├── analytics_config.yaml    # Analytics engine configuration
 │   ├── balance_config.json      # Game balance settings
 │   ├── dashboard_config.json    # Dashboard configuration
-│   ├── eternal_crusade_config.json
+│   ├── void_reckoning_config.json
 │   └── portals/                 # Portal network examples
 ├── data/                        # Static data files
 ├── docker/                      # Docker configuration
@@ -919,7 +919,7 @@ multi-universe-simulator/
 ├── tests/                       # Test suite
 ├── tools/                       # Power tools
 ├── universes/                   # Universe configurations
-│   └── eternal_crusade/
+│   └── void_reckoning/
 ├── requirements.txt             # Python dependencies
 ├── requirements-dev.txt         # Development dependencies
 ├── run.py                       # Main entry point
@@ -939,7 +939,7 @@ pytest
 ### Run Specific Test Categories
 
 ```bash
-pytest -m eternal_crusade    # Eternal Crusade specific tests
+pytest -m void_reckoning    # Void Reckoning specific tests
 pytest -m multi_universe     # Multi-universe tests
 pytest -m universe           # General universe tests
 pytest -m performance        # Performance regression benchmarks
@@ -1092,7 +1092,7 @@ Comprehensive documentation is available in the [`docs/`](docs/) directory.
 ### Completed Features
 
 - [x] Multi-Core Parallel Simulation Runner
-- [x] Ten Eternal Crusade Factions Implemented
+- [x] Ten Void Reckoning Factions Implemented
 - [x] Real-Time Dashboard with WebSocket Streaming
 - [x] Portal System with Reality Anchors
 - [x] Diplomacy System
