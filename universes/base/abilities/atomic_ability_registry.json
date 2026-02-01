@@ -1,0 +1,2022 @@
+{
+    "tractor_beam": {
+        "id": "tractor_beam",
+        "name": "Tractor Beam",
+        "description": "Gravitic beam that reduces target mobility based on mass differential",
+        "payload_type": "tractor_beam",
+        "elemental_dna": {
+            "atom_mass": 40.0,
+            "atom_energy": 30.0,
+            "atom_stability": 20.0,
+            "atom_focus": 10.0
+        },
+        "cooldown": 15,
+        "range": 5000,
+        "duration": 10
+    },
+    "emp_blast": {
+        "id": "emp_blast",
+        "name": "EMP Blast",
+        "description": "Electromagnetic pulse that disrupts systems based on frequency/stability",
+        "payload_type": "emp",
+        "elemental_dna": {
+            "atom_frequency": 45.0,
+            "atom_stability": 30.0,
+            "atom_energy": 15.0,
+            "atom_information": 10.0
+        },
+        "cooldown": 20,
+        "range": 3000,
+        "duration": 5
+    },
+    "phase_jump": {
+        "id": "phase_jump",
+        "name": "Phase Jump",
+        "description": "Instantaneous teleportation using phase-space manipulation",
+        "payload_type": "phase_jump",
+        "elemental_dna": {
+            "atom_frequency": 40.0,
+            "atom_energy": 35.0,
+            "atom_aether": 15.0,
+            "atom_focus": 10.0
+        },
+        "cooldown": 30,
+        "range": 0,
+        "duration": 0
+    },
+    "antimatter_torpedo": {
+        "id": "antimatter_torpedo",
+        "name": "Antimatter Torpedo",
+        "description": "Volatility-based damage that bypasses structural cohesion",
+        "payload_type": "antimatter_torpedo",
+        "elemental_dna": {
+            "atom_volatility": 40.0,
+            "atom_energy": 30.0,
+            "atom_aether": 20.0,
+            "atom_mass": 10.0
+        },
+        "cooldown": 12,
+        "range": 8000,
+        "duration": 0
+    },
+    "shield_harmonics": {
+        "id": "shield_harmonics",
+        "name": "Shield Harmonics",
+        "description": "Resonant frequency tuning to boost shield regeneration",
+        "payload_type": "shield_harmonics",
+        "elemental_dna": {
+            "atom_frequency": 50.0,
+            "atom_stability": 30.0,
+            "atom_energy": 20.0
+        },
+        "cooldown": 25,
+        "range": 0,
+        "duration": 15
+    },
+    "cloaking_device": {
+        "display_name": "Cloaking Device",
+        "description": "Light bending field to obscure presence.",
+        "elemental_dna": {
+            "atom_frequency": 50.0,
+            "atom_focus": 30.0,
+            "atom_energy": 20.0
+        },
+        "target_atom": "atom_information",
+        "effect_type": "stealth"
+    },
+    "transporter": {
+        "display_name": "Transporter",
+        "description": "Matter-energy conversion for instant movement.",
+        "elemental_dna": {
+            "atom_frequency": 40.0,
+            "atom_information": 40.0,
+            "atom_energy": 20.0
+        },
+        "target_atom": "atom_stability",
+        "effect_type": "teleportation"
+    },
+    "borg_adaptation": {
+        "display_name": "Adaptive Shielding",
+        "description": "Frequency modulation to negate incoming damage.",
+        "elemental_dna": {
+            "atom_frequency": 40.0,
+            "atom_information": 30.0,
+            "atom_stability": 30.0
+        },
+        "target_atom": "atom_energy",
+        "effect_type": "damage_reduction"
+    },
+    "psychic_barrier": {
+        "display_name": "Psychic Barrier",
+        "description": "A shield of pure Aetheric will.",
+        "elemental_dna": {
+            "atom_aether": 50.0,
+            "atom_will": 30.0,
+            "atom_focus": 20.0
+        },
+        "target_atom": "atom_energy",
+        "effect_type": "damage_reduction"
+    },
+    "ion_cannon": {
+        "display_name": "Ion Cannon",
+        "description": "Energy pulse that disrupts electronic stability.",
+        "elemental_dna": {
+            "atom_energy": 50.0,
+            "atom_frequency": 30.0,
+            "atom_information": 20.0
+        },
+        "target_atom": "atom_stability",
+        "effect_type": "system_disruption"
+    },
+    "feel_no_pain": {
+        "display_name": "Feel No Pain",
+        "description": "Post-human resilience and pain suppression.",
+        "elemental_dna": {
+            "atom_cohesion": 60.0,
+            "atom_will": 40.0
+        },
+        "target_atom": "atom_energy",
+        "effect_type": "damage_reduction"
+    },
+    "force_choke": {
+        "display_name": "Force Choke",
+        "description": "Telekinetic constriction of the throat.",
+        "elemental_dna": {
+            "atom_will": 50.0,
+            "atom_energy": 30.0,
+            "atom_mass": 20.0
+        },
+        "target_atom": "atom_cohesion",
+        "effect_type": "life_suppression"
+    },
+    "anti_fly": {
+        "display_name": "Anti-Fly",
+        "description": "Atomic DNA profile for Anti-Fly.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 75.0,
+            "atom_will": 0.0,
+            "atom_focus": 0.0,
+            "atom_aether": 0.0,
+            "atom_information": 25.0
+        },
+        "effect_type": "mobility_buff"
+    },
+    "aquilon_optics": {
+        "display_name": "Aquilon Optics",
+        "description": "Atomic DNA profile for Aquilon Optics.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "assault_ramp": {
+        "display_name": "Assault Ramp",
+        "description": "Atomic DNA profile for Assault Ramp.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "assault_vehicle": {
+        "display_name": "Assault Vehicle",
+        "description": "Atomic DNA profile for Assault Vehicle.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "author_of_the_codex": {
+        "display_name": "Author of the Codex",
+        "description": "Atomic DNA profile for Author of the Codex.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "avalanche_of_muscle": {
+        "display_name": "Avalanche of Muscle",
+        "description": "Atomic DNA profile for Avalanche of Muscle.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "awaken_the_machine": {
+        "display_name": "Awaken the Machine",
+        "description": "Atomic DNA profile for Awaken the Machine.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "banshee_mask": {
+        "display_name": "Banshee Mask",
+        "description": "Atomic DNA profile for Banshee Mask.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "battle_lust": {
+        "display_name": "Battle Lust",
+        "description": "Atomic DNA profile for Battle Lust.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "blessing_of_the_omnissiah": {
+        "display_name": "Blessing of the Omnissiah",
+        "description": "Atomic DNA profile for Blessing of the Omnissiah.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "born_soldiers": {
+        "display_name": "Born Soldiers",
+        "description": "Atomic DNA profile for Born Soldiers.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "brutalis_charge": {
+        "display_name": "Brutalis Charge",
+        "description": "Atomic DNA profile for Brutalis Charge.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "call_the_storm": {
+        "display_name": "Call the Storm",
+        "description": "Atomic DNA profile for Call the Storm.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 25.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 25.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 50.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "attack_buff"
+    },
+    "camo_cloaks": {
+        "display_name": "Camo Cloaks",
+        "description": "Atomic DNA profile for Camo Cloaks.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 75.0,
+            "atom_will": 0.0,
+            "atom_focus": 0.0,
+            "atom_aether": 0.0,
+            "atom_information": 25.0
+        },
+        "effect_type": "mobility_buff"
+    },
+    "cloudstrider": {
+        "display_name": "Cloudstrider",
+        "description": "Atomic DNA profile for Cloudstrider.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "daring_recon": {
+        "display_name": "Daring Recon",
+        "description": "Atomic DNA profile for Daring Recon.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "defenders_of_fate": {
+        "display_name": "Defenders of Fate",
+        "description": "Atomic DNA profile for Defenders of Fate.",
+        "elemental_dna": {
+            "atom_mass": 37.5,
+            "atom_energy": 0.0,
+            "atom_cohesion": 62.5,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 0.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "defense_buff"
+    },
+    "defense_tactics": {
+        "display_name": "Defense Tactics",
+        "description": "Atomic DNA profile for Defense Tactics.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "destructor": {
+        "display_name": "Destructor",
+        "description": "Atomic DNA profile for Destructor.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "dragon's_bite": {
+        "display_name": "Dragon's Bite",
+        "description": "Atomic DNA profile for Dragon's Bite.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "dreadnought_transport": {
+        "display_name": "Dreadnought Transport",
+        "description": "Atomic DNA profile for Dreadnought Transport.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "duty_eternal": {
+        "display_name": "Duty Eternal",
+        "description": "Atomic DNA profile for Duty Eternal.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "earthshaker_rounds": {
+        "display_name": "Earthshaker Rounds",
+        "description": "Atomic DNA profile for Earthshaker Rounds.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "engrammatic_logic": {
+        "display_name": "Engrammatic Logic",
+        "description": "Atomic DNA profile for Engrammatic Logic.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "fire_support": {
+        "display_name": "Fire Support",
+        "description": "Atomic DNA profile for Fire Support.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "firing_deck": {
+        "display_name": "Firing Deck",
+        "description": "Atomic DNA profile for Firing Deck.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "flesh_hunger": {
+        "display_name": "Flesh Hunger",
+        "description": "Atomic DNA profile for Flesh Hunger.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "forestwalk": {
+        "display_name": "Forestwalk",
+        "description": "Atomic DNA profile for Forestwalk.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "gaze_of_death": {
+        "display_name": "Gaze of Death",
+        "description": "Atomic DNA profile for Gaze of Death.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "grand_illusion": {
+        "display_name": "Grand Illusion",
+        "description": "Atomic DNA profile for Grand Illusion.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "grav_chute_insertion": {
+        "display_name": "Grav-Chute Insertion",
+        "description": "Atomic DNA profile for Grav-Chute Insertion.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "grinding_advance": {
+        "display_name": "Grinding Advance",
+        "description": "Atomic DNA profile for Grinding Advance.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "guardian_protocols": {
+        "display_name": "Guardian Protocols",
+        "description": "Atomic DNA profile for Guardian Protocols.",
+        "elemental_dna": {
+            "atom_mass": 37.5,
+            "atom_energy": 0.0,
+            "atom_cohesion": 62.5,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 0.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "defense_buff"
+    },
+    "guide": {
+        "display_name": "Guide",
+        "description": "Atomic DNA profile for Guide.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 30.0,
+            "atom_focus": 20.0,
+            "atom_aether": 50.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "warp_interaction"
+    },
+    "hammer_of_wrath": {
+        "display_name": "Hammer of Wrath",
+        "description": "Atomic DNA profile for Hammer of Wrath.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "hard_to_hit": {
+        "display_name": "Hard to Hit",
+        "description": "Atomic DNA profile for Hard to Hit.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 25.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 25.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 50.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "attack_buff"
+    },
+    "high_king_of_fenris": {
+        "display_name": "High King of Fenris",
+        "description": "Atomic DNA profile for High King of Fenris.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "high_marshal": {
+        "display_name": "High Marshal",
+        "description": "Atomic DNA profile for High Marshal.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "holo_fields": {
+        "display_name": "Holo-fields",
+        "description": "Atomic DNA profile for Holo-fields.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "home_turf": {
+        "display_name": "Home Turf",
+        "description": "Atomic DNA profile for Home Turf.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "hunting_lance": {
+        "display_name": "Hunting Lance",
+        "description": "Atomic DNA profile for Hunting Lance.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "implacable": {
+        "display_name": "Implacable",
+        "description": "Atomic DNA profile for Implacable.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "implacable_eradication": {
+        "display_name": "Implacable Eradication",
+        "description": "Atomic DNA profile for Implacable Eradication.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "indirect_fire": {
+        "display_name": "Indirect Fire",
+        "description": "Atomic DNA profile for Indirect Fire.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "inescapable_accuracy": {
+        "display_name": "Inescapable Accuracy",
+        "description": "Atomic DNA profile for Inescapable Accuracy.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "intercept": {
+        "display_name": "Intercept",
+        "description": "Atomic DNA profile for Intercept.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "judgement_of_the_triarch": {
+        "display_name": "Judgement of the Triarch",
+        "description": "Atomic DNA profile for Judgement of the Triarch.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "killshot": {
+        "display_name": "Killshot",
+        "description": "Atomic DNA profile for Killshot.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "lance_charge": {
+        "display_name": "Lance Charge",
+        "description": "Atomic DNA profile for Lance Charge.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "lightning_arc": {
+        "display_name": "Lightning Arc",
+        "description": "Atomic DNA profile for Lightning Arc.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "linked_fire": {
+        "display_name": "Linked Fire",
+        "description": "Atomic DNA profile for Linked Fire.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "litanies_of_hate": {
+        "display_name": "Litanies of Hate",
+        "description": "Atomic DNA profile for Litanies of Hate.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "lord_regent": {
+        "display_name": "Lord Regent",
+        "description": "Atomic DNA profile for Lord Regent.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "magnetic_tracks": {
+        "display_name": "Magnetic Tracks",
+        "description": "Atomic DNA profile for Magnetic Tracks.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "mandiblasters": {
+        "display_name": "Mandiblasters",
+        "description": "Atomic DNA profile for Mandiblasters.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "master_tactician": {
+        "display_name": "Master Tactician",
+        "description": "Atomic DNA profile for Master Tactician.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "matter_eater": {
+        "display_name": "Matter Eater",
+        "description": "Atomic DNA profile for Matter Eater.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "mechanical_augmentation": {
+        "display_name": "Mechanical Augmentation",
+        "description": "Atomic DNA profile for Mechanical Augmentation.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "meteoric_descent": {
+        "display_name": "Meteoric Descent",
+        "description": "Atomic DNA profile for Meteoric Descent.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "mind_war": {
+        "display_name": "Mind War",
+        "description": "Atomic DNA profile for Mind War.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 30.0,
+            "atom_focus": 20.0,
+            "atom_aether": 50.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "warp_interaction"
+    },
+    "mindshock_pod": {
+        "display_name": "Mindshock Pod",
+        "description": "Atomic DNA profile for Mindshock Pod.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 30.0,
+            "atom_focus": 20.0,
+            "atom_aether": 50.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "warp_interaction"
+    },
+    "molten_form": {
+        "display_name": "Molten Form",
+        "description": "Atomic DNA profile for Molten Form.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "omni_scramblers": {
+        "display_name": "Omni-Scramblers",
+        "description": "Atomic DNA profile for Omni-Scramblers.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "optimized_for_slaughter": {
+        "display_name": "Optimized for Slaughter",
+        "description": "Atomic DNA profile for Optimized for Slaughter.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "orbital_insertion": {
+        "display_name": "Orbital Insertion",
+        "description": "Atomic DNA profile for Orbital Insertion.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "path_of_the_outcast": {
+        "display_name": "Path of the Outcast",
+        "description": "Atomic DNA profile for Path of the Outcast.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "power_field": {
+        "display_name": "Power Field",
+        "description": "Atomic DNA profile for Power Field.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 30.0,
+            "atom_focus": 20.0,
+            "atom_aether": 50.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "warp_interaction"
+    },
+    "quickening": {
+        "display_name": "Quickening",
+        "description": "Atomic DNA profile for Quickening.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "reanimation_protocols": {
+        "display_name": "Reanimation Protocols",
+        "description": "Atomic DNA profile for Reanimation Protocols.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "repulsor_field": {
+        "display_name": "Repulsor Field",
+        "description": "Atomic DNA profile for Repulsor Field.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "resurrection_orb": {
+        "display_name": "Resurrection Orb",
+        "description": "Atomic DNA profile for Resurrection Orb.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "rites_of_reanimation": {
+        "display_name": "Rites of Reanimation",
+        "description": "Atomic DNA profile for Rites of Reanimation.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "rolling_fortress": {
+        "display_name": "Rolling Fortress",
+        "description": "Atomic DNA profile for Rolling Fortress.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "self_repair": {
+        "display_name": "Self-Repair",
+        "description": "Atomic DNA profile for Self-Repair.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "serpent_shield": {
+        "display_name": "Serpent Shield",
+        "description": "Atomic DNA profile for Serpent Shield.",
+        "elemental_dna": {
+            "atom_mass": 37.5,
+            "atom_energy": 0.0,
+            "atom_cohesion": 62.5,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 0.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "defense_buff"
+    },
+    "shadow_hunter": {
+        "display_name": "Shadow Hunter",
+        "description": "Atomic DNA profile for Shadow Hunter.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "shoot_and_fade": {
+        "display_name": "Shoot and Fade",
+        "description": "Atomic DNA profile for Shoot and Fade.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "skyhunters": {
+        "display_name": "Skyhunters",
+        "description": "Atomic DNA profile for Skyhunters.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "skyleap": {
+        "display_name": "Skyleap",
+        "description": "Atomic DNA profile for Skyleap.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "slow_and_purposeful": {
+        "display_name": "Slow and Purposeful",
+        "description": "Atomic DNA profile for Slow and Purposeful.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "smite": {
+        "display_name": "Smite",
+        "description": "Atomic DNA profile for Smite.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "sticky_objectives": {
+        "display_name": "Sticky Objectives",
+        "description": "Atomic DNA profile for Sticky Objectives.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "storm_eagle_rockets": {
+        "display_name": "Storm Eagle Rockets",
+        "description": "Atomic DNA profile for Storm Eagle Rockets.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 25.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 25.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 50.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "attack_buff"
+    },
+    "storm_of_silence": {
+        "display_name": "Storm of Silence",
+        "description": "Atomic DNA profile for Storm of Silence.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 25.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 25.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 50.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "attack_buff"
+    },
+    "summary_execution": {
+        "display_name": "Summary Execution",
+        "description": "Atomic DNA profile for Summary Execution.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "supercharge": {
+        "display_name": "Supercharge",
+        "description": "Atomic DNA profile for Supercharge.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "surrogate_hosts": {
+        "display_name": "Surrogate Hosts",
+        "description": "Atomic DNA profile for Surrogate Hosts.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "swift_demise": {
+        "display_name": "Swift Demise",
+        "description": "Atomic DNA profile for Swift Demise.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 75.0,
+            "atom_will": 0.0,
+            "atom_focus": 0.0,
+            "atom_aether": 0.0,
+            "atom_information": 25.0
+        },
+        "effect_type": "mobility_buff"
+    },
+    "tactical_acumen": {
+        "display_name": "Tactical Acumen",
+        "description": "Atomic DNA profile for Tactical Acumen.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "tactical_precision": {
+        "display_name": "Tactical Precision",
+        "description": "Atomic DNA profile for Tactical Precision.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 25.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 25.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 50.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "attack_buff"
+    },
+    "targeting_relay": {
+        "display_name": "Targeting Relay",
+        "description": "Atomic DNA profile for Targeting Relay.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "tears_of_isha": {
+        "display_name": "Tears of Isha",
+        "description": "Atomic DNA profile for Tears of Isha.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "teleport_homer": {
+        "display_name": "Teleport Homer",
+        "description": "Atomic DNA profile for Teleport Homer.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 75.0,
+            "atom_will": 0.0,
+            "atom_focus": 0.0,
+            "atom_aether": 0.0,
+            "atom_information": 25.0
+        },
+        "effect_type": "mobility_buff"
+    },
+    "the_harvester": {
+        "display_name": "The Harvester",
+        "description": "Atomic DNA profile for The Harvester.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "the_lord_solar": {
+        "display_name": "The Lord Solar",
+        "description": "Atomic DNA profile for The Lord Solar.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "the_stars_are_right": {
+        "display_name": "The Stars Are Right",
+        "description": "Atomic DNA profile for The Stars Are Right.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "titan_hunter": {
+        "display_name": "Titan Hunter",
+        "description": "Atomic DNA profile for Titan Hunter.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "total_obliteration": {
+        "display_name": "Total Obliteration",
+        "description": "Atomic DNA profile for Total Obliteration.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "tunneling_horrors": {
+        "display_name": "Tunneling Horrors",
+        "description": "Atomic DNA profile for Tunneling Horrors.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "unquenchable_spirit": {
+        "display_name": "Unquenchable Spirit",
+        "description": "Atomic DNA profile for Unquenchable Spirit.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "unto_the_anvil": {
+        "display_name": "Unto the Anvil",
+        "description": "Atomic DNA profile for Unto the Anvil.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "unyielding": {
+        "display_name": "Unyielding",
+        "description": "Atomic DNA profile for Unyielding.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "voice_of_command": {
+        "display_name": "Voice of Command",
+        "description": "Atomic DNA profile for Voice of Command.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "voice_of_the_triarch": {
+        "display_name": "Voice of the Triarch",
+        "description": "Atomic DNA profile for Voice of the Triarch.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "volatile": {
+        "display_name": "Volatile",
+        "description": "Atomic DNA profile for Volatile.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "wall_of_muscle": {
+        "display_name": "Wall of Muscle",
+        "description": "Atomic DNA profile for Wall of Muscle.",
+        "elemental_dna": {
+            "atom_mass": 37.5,
+            "atom_energy": 0.0,
+            "atom_cohesion": 62.5,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 0.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "defense_buff"
+    },
+    "whirling_onslaught": {
+        "display_name": "Whirling Onslaught",
+        "description": "Atomic DNA profile for Whirling Onslaught.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "winged_deliverance": {
+        "display_name": "Winged Deliverance",
+        "description": "Atomic DNA profile for Winged Deliverance.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "wraithbone_form": {
+        "display_name": "Wraithbone Form",
+        "description": "Atomic DNA profile for Wraithbone Form.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 0.0,
+            "atom_will": 0.0,
+            "atom_focus": 100.0,
+            "atom_aether": 0.0,
+            "atom_information": 0.0
+        },
+        "effect_type": "generic_combat_modifier"
+    },
+    "wraithjump": {
+        "display_name": "Wraithjump",
+        "description": "Atomic DNA profile for Wraithjump.",
+        "elemental_dna": {
+            "atom_mass": 0.0,
+            "atom_energy": 0.0,
+            "atom_cohesion": 0.0,
+            "atom_stability": 0.0,
+            "atom_volatility": 0.0,
+            "atom_frequency": 75.0,
+            "atom_will": 0.0,
+            "atom_focus": 0.0,
+            "atom_aether": 0.0,
+            "atom_information": 25.0
+        },
+        "effect_type": "mobility_buff"
+    }
+}

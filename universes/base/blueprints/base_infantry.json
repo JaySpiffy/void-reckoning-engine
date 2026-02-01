@@ -1,0 +1,36 @@
+{
+    "id": "base_infantry",
+    "name": "Base Infantry",
+    "type": "infantry",
+    "category": "infantry",
+    "elemental_signature": {
+        "atom_mass": 15.0,
+        "atom_energy": 5.0,
+        "atom_cohesion": 20.0,
+        "atom_information": 10.0,
+        "atom_aether": 0.0,
+        "atom_will": 25.0,
+        "atom_volatility": 5.0,
+        "atom_frequency": 0.0,
+        "atom_stability": 15.0,
+        "atom_focus": 5.0
+    },
+    "base_stats": {
+        "hp": 100,
+        "armor": 20,
+        "damage": 10,
+        "ma": 35,
+        "md": 35,
+        "movement": 4
+    },
+    "universal_stats": {
+        "hull_structural_integrity": 1.0,
+        "weapon_kinetic_damage": 1.0,
+        "armor_kinetic_resistance": 1.0,
+        "mobility_speed_tactical": 1.0,
+        "mobility_agility_rating": 1.0
+    },
+    "default_traits": [],
+    "cost": 1000,
+    "description": "Standard infantry unit template."
+}

@@ -1,0 +1,39 @@
+{
+    "promethium_fuel": {
+        "name": "Refined Promethium",
+        "description": "Volatile liquid fuel source.",
+        "elemental_signature": {
+            "atom_energy": 60.0,
+            "atom_volatility": 30.0,
+            "atom_mass": 10.0
+        }
+    },
+    "adamantium_ingot": {
+        "name": "Adamantium Ingot",
+        "description": "Ultra-dense composite metal.",
+        "elemental_signature": {
+            "atom_mass": 50.0,
+            "atom_cohesion": 40.0,
+            "atom_stability": 10.0
+        }
+    },
+    "wraithbone": {
+        "name": "Wraithbone Construct",
+        "name_aeldari": "Vaul's Breath",
+        "description": "Psycho-plastic material.",
+        "elemental_signature": {
+            "atom_cohesion": 30.0,
+            "atom_will": 40.0,
+            "atom_aether": 30.0
+        }
+    },
+    "ferro_crete": {
+        "name": "Ferro-Crete Block",
+        "description": "Cheap, durable construction material.",
+        "elemental_signature": {
+            "atom_mass": 60.0,
+            "atom_cohesion": 20.0,
+            "atom_stability": 20.0
+        }
+    }
+}

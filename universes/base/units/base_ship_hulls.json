@@ -1,0 +1,150 @@
+{
+    "fighter": {
+        "name": "Fighter",
+        "base_hp": 80,
+        "base_cost": 200,
+        "base_upkeep": 20,
+        "base_speed": 55,
+        "hardpoints": {
+            "weapon_light": 1,
+            "module_utility": 1
+        }
+    },
+    "interceptor": {
+        "name": "Interceptor",
+        "base_hp": 100,
+        "base_cost": 250,
+        "base_upkeep": 25,
+        "base_speed": 65,
+        "hardpoints": {
+            "weapon_light": 2,
+            "module_utility": 1
+        }
+    },
+    "bomber": {
+        "name": "Bomber",
+        "base_hp": 120,
+        "base_cost": 300,
+        "base_upkeep": 30,
+        "base_speed": 45,
+        "hardpoints": {
+            "weapon_heavy": 1,
+            "module_defense": 1
+        }
+    },
+    "corvette": {
+        "name": "Corvette",
+        "base_hp": 800,
+        "base_cost": 1200,
+        "base_upkeep": 100,
+        "base_speed": 40,
+        "hardpoints": {
+            "weapon_medium": 2,
+            "weapon_light": 2,
+            "module_defense": 2,
+            "module_utility": 1
+        }
+    },
+    "frigate": {
+        "name": "Frigate",
+        "base_hp": 1500,
+        "base_cost": 2500,
+        "base_upkeep": 200,
+        "base_speed": 35,
+        "hardpoints": {
+            "weapon_medium": 4,
+            "module_defense": 3,
+            "module_utility": 2
+        }
+    },
+    "destroyer": {
+        "name": "Destroyer",
+        "base_hp": 2200,
+        "base_cost": 4000,
+        "base_upkeep": 350,
+        "base_speed": 30,
+        "hardpoints": {
+            "weapon_heavy": 2,
+            "weapon_medium": 4,
+            "module_defense": 3,
+            "module_utility": 2
+        }
+    },
+    "cruiser": {
+        "name": "Cruiser",
+        "base_hp": 4500,
+        "base_cost": 8000,
+        "base_upkeep": 600,
+        "base_speed": 25,
+        "hardpoints": {
+            "weapon_heavy": 4,
+            "weapon_medium": 6,
+            "module_defense": 5,
+            "module_utility": 3
+        }
+    },
+    "battleship": {
+        "name": "Battleship",
+        "base_hp": 12000,
+        "base_cost": 20000,
+        "base_upkeep": 1500,
+        "base_speed": 20,
+        "hardpoints": {
+            "weapon_heavy": 8,
+            "weapon_medium": 10,
+            "module_defense": 8,
+            "module_utility": 4
+        }
+    },
+    "carrier": {
+        "name": "Carrier",
+        "base_hp": 10000,
+        "base_cost": 22000,
+        "base_upkeep": 1600,
+        "base_speed": 20,
+        "hardpoints": {
+            "hangar": 4,
+            "weapon_light": 8,
+            "module_defense": 6,
+            "module_utility": 5
+        }
+    },
+    "dreadnought": {
+        "name": "Dreadnought",
+        "base_hp": 25000,
+        "base_cost": 50000,
+        "base_upkeep": 4000,
+        "base_speed": 15,
+        "hardpoints": {
+            "weapon_titan": 1,
+            "weapon_heavy": 12,
+            "module_defense": 12,
+            "module_utility": 6
+        }
+    },
+    "titan": {
+        "name": "Titan",
+        "base_hp": 60000,
+        "base_cost": 120000,
+        "base_upkeep": 10000,
+        "base_speed": 10,
+        "hardpoints": {
+            "weapon_titan": 2,
+            "weapon_heavy": 20,
+            "module_defense": 20,
+            "module_utility": 10
+        }
+    },
+    "interdictor": {
+        "name": "Interdictor",
+        "base_hp": 4000,
+        "base_cost": 10000,
+        "base_upkeep": 800,
+        "base_speed": 22,
+        "hardpoints": {
+            "weapon_medium": 2,
+            "module_defense": 4,
+            "module_utility": 6
+        }
+    }
+}

@@ -1,0 +1,35 @@
+{
+    "id": "base_ship_cruiser",
+    "name": "Base Cruiser Ship",
+    "type": "ship",
+    "category": "cruiser",
+    "elemental_signature": {
+        "atom_mass": 30.0,
+        "atom_energy": 35.0,
+        "atom_cohesion": 20.0,
+        "atom_information": 10.0,
+        "atom_aether": 0.0,
+        "atom_will": 0.0,
+        "atom_volatility": 0.0,
+        "atom_frequency": 3.0,
+        "atom_stability": 2.0,
+        "atom_focus": 0.0
+    },
+    "base_stats": {
+        "hp": 1500,
+        "armor": 80,
+        "damage": 60,
+        "shield": 800,
+        "movement": 8
+    },
+    "universal_stats": {
+        "hull_structural_integrity": 1.5,
+        "weapon_kinetic_damage": 1.2,
+        "armor_kinetic_resistance": 1.2,
+        "mobility_speed_tactical": 1.0,
+        "mobility_agility_rating": 1.0
+    },
+    "default_traits": [],
+    "cost": 12000,
+    "description": "Medium ship template."
+}

@@ -1,0 +1,70 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Portal Configuration",
+    "type": "object",
+    "properties": {
+        "enable_portals": {
+            "type": "boolean",
+            "description": "Master switch for portal generation"
+        },
+        "portals": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": [
+                    "portal_id",
+                    "source_coords",
+                    "dest_universe",
+                    "dest_coords"
+                ],
+                "properties": {
+                    "portal_id": {
+                        "type": "string",
+                        "description": "Unique identifier matching across universes"
+                    },
+                    "source_coords": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        },
+                        "minItems": 2,
+                        "maxItems": 2,
+                        "description": "Coordinates in this universe's galaxy [x, y]"
+                    },
+                    "dest_universe": {
+                        "type": "string",
+                        "description": "Target universe name"
+                    },
+                    "dest_coords": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        },
+                        "minItems": 2,
+                        "maxItems": 2,
+                        "description": "Coordinates in destination universe [x, y]"
+                    },
+                    "placement_strategy": {
+                        "type": "string",
+                        "enum": [
+                            "nearest_system",
+                            "galactic_core",
+                            "border_region",
+                            "exact_coords"
+                        ],
+                        "default": "nearest_system",
+                        "description": "Strategy for placing the portal node in the galaxy"
+                    },
+                    "metadata": {
+                        "type": "object",
+                        "description": "Optional custom data (name, description, security_level)"
+                    }
+                }
+            }
+        }
+    },
+    "required": [
+        "enable_portals",
+        "portals"
+    ]
+}

@@ -1,0 +1,4198 @@
+{
+    "base_las_weapon": {
+        "name": "Standard Las Weapon",
+        "category": "Energy",
+        "description": "Standard Laser weapon.",
+        "stats": {
+            "range": 24,
+            "strength": 3,
+            "ap": 0,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "laser"
+        ]
+    },
+    "base_las_light": {
+        "name": "Light Las Projector",
+        "category": "Energy",
+        "description": "Light-weight Laser weapon.",
+        "stats": {
+            "range": 19,
+            "strength": 2,
+            "ap": 0,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "laser"
+        ]
+    },
+    "base_las_heavy": {
+        "name": "Heavy Las Projector",
+        "category": "Energy",
+        "description": "Heavy mounted Laser weapon.",
+        "stats": {
+            "range": 36,
+            "strength": 3,
+            "ap": -1,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "laser",
+            "heavy"
+        ]
+    },
+    "base_las_heavy_rapid_fire": {
+        "name": "Rapid Fire Heavy Las Projector",
+        "category": "Energy",
+        "description": "Rapid Fire modified Laser weapon.",
+        "stats": {
+            "range": 28,
+            "strength": 3,
+            "ap": -1,
+            "attacks": 2
+        },
+        "tags": [
+            "energy",
+            "laser",
+            "heavy",
+            "rapid_fire"
+        ]
+    },
+    "base_las_heavy_sniper": {
+        "name": "Sniper Heavy Las Projector",
+        "category": "Energy",
+        "description": "Sniper modified Laser weapon.",
+        "stats": {
+            "range": 54,
+            "strength": 3,
+            "ap": -2,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "laser",
+            "heavy",
+            "accurate"
+        ]
+    },
+    "base_las_heavy_blast": {
+        "name": "Blast Heavy Las Projector",
+        "category": "Energy",
+        "description": "Blast modified Laser weapon.",
+        "stats": {
+            "range": 36,
+            "strength": 3,
+            "ap": -1,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "laser",
+            "heavy",
+            "blast"
+        ]
+    },
+    "base_las_heavy_twin_linked": {
+        "name": "Twin-Linked Heavy Las Cannon",
+        "category": "Energy",
+        "description": "Twin-Linked modified Laser weapon.",
+        "stats": {
+            "range": 36,
+            "strength": 3,
+            "ap": -1,
+            "attacks": 2
+        },
+        "tags": [
+            "energy",
+            "laser",
+            "heavy",
+            "twin_linked"
+        ]
+    },
+    "base_las_heavy_overcharged": {
+        "name": "Overcharged Heavy Las Projector",
+        "category": "Energy",
+        "description": "Overcharged modified Laser weapon.",
+        "stats": {
+            "range": 36,
+            "strength": 3,
+            "ap": -2,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "laser",
+            "heavy",
+            "hazardous",
+            "overcharged"
+        ]
+    },
+    "base_las_heavy_compact": {
+        "name": "Compact Heavy Las Cannon",
+        "category": "Energy",
+        "description": "Compact modified Laser weapon.",
+        "stats": {
+            "range": 21,
+            "strength": 3,
+            "ap": -1,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "laser",
+            "heavy",
+            "assault"
+        ]
+    },
+    "base_las_heavy_master_crafted": {
+        "name": "Master-Crafted Heavy Las Projector",
+        "category": "Energy",
+        "description": "Master-Crafted modified Laser weapon.",
+        "stats": {
+            "range": 36,
+            "strength": 4,
+            "ap": -2,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "laser",
+            "heavy",
+            "master_crafted"
+        ]
+    },
+    "base_las_super_heavy": {
+        "name": "Super-Heavy Las Projector",
+        "category": "Energy",
+        "description": "Super-heavy Laser weapon.",
+        "stats": {
+            "range": 43,
+            "strength": 4,
+            "ap": -2,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "laser",
+            "heavy"
+        ]
+    },
+    "base_las_titan_class": {
+        "name": "Titan-Class Las Projector",
+        "category": "Energy",
+        "description": "God-engine class Laser weapon.",
+        "stats": {
+            "range": 60,
+            "strength": 6,
+            "ap": -4,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "laser",
+            "heavy",
+            "macro"
+        ]
+    },
+    "base_bolter_weapon": {
+        "name": "Standard Bolt Weapon",
+        "category": "Ballistic",
+        "description": "Standard Rocket-propelled explosive rounds.",
+        "stats": {
+            "range": 24,
+            "strength": 4,
+            "ap": -1,
+            "attacks": 2
+        },
+        "tags": [
+            "kinetic",
+            "explosive"
+        ]
+    },
+    "base_bolter_light": {
+        "name": "Light Bolt Rifle",
+        "category": "Ballistic",
+        "description": "Light-weight Rocket-propelled explosive rounds.",
+        "stats": {
+            "range": 19,
+            "strength": 3,
+            "ap": -1,
+            "attacks": 3
+        },
+        "tags": [
+            "kinetic",
+            "explosive"
+        ]
+    },
+    "base_bolter_heavy": {
+        "name": "Heavy Bolt Rifle",
+        "category": "Ballistic",
+        "description": "Heavy mounted Rocket-propelled explosive rounds.",
+        "stats": {
+            "range": 36,
+            "strength": 5,
+            "ap": -2,
+            "attacks": 1
+        },
+        "tags": [
+            "kinetic",
+            "explosive",
+            "heavy"
+        ]
+    },
+    "base_bolter_heavy_rapid_fire": {
+        "name": "Rapid Fire Heavy Bolt Rifle",
+        "category": "Ballistic",
+        "description": "Rapid Fire modified Rocket-propelled explosive rounds.",
+        "stats": {
+            "range": 28,
+            "strength": 5,
+            "ap": -2,
+            "attacks": 2
+        },
+        "tags": [
+            "kinetic",
+            "explosive",
+            "heavy",
+            "rapid_fire"
+        ]
+    },
+    "base_bolter_heavy_sniper": {
+        "name": "Sniper Heavy Bolt Rifle",
+        "category": "Ballistic",
+        "description": "Sniper modified Rocket-propelled explosive rounds.",
+        "stats": {
+            "range": 54,
+            "strength": 5,
+            "ap": -3,
+            "attacks": 1
+        },
+        "tags": [
+            "kinetic",
+            "explosive",
+            "heavy",
+            "accurate"
+        ]
+    },
+    "base_bolter_heavy_blast": {
+        "name": "Blast Heavy Bolt Gun",
+        "category": "Ballistic",
+        "description": "Blast modified Rocket-propelled explosive rounds.",
+        "stats": {
+            "range": 36,
+            "strength": 6,
+            "ap": -2,
+            "attacks": 1
+        },
+        "tags": [
+            "kinetic",
+            "explosive",
+            "heavy",
+            "blast"
+        ]
+    },
+    "base_bolter_heavy_twin_linked": {
+        "name": "Twin-Linked Heavy Bolt Gun",
+        "category": "Ballistic",
+        "description": "Twin-Linked modified Rocket-propelled explosive rounds.",
+        "stats": {
+            "range": 36,
+            "strength": 5,
+            "ap": -2,
+            "attacks": 2
+        },
+        "tags": [
+            "kinetic",
+            "explosive",
+            "heavy",
+            "twin_linked"
+        ]
+    },
+    "base_bolter_heavy_overcharged": {
+        "name": "Overcharged Heavy Bolt Rifle",
+        "category": "Ballistic",
+        "description": "Overcharged modified Rocket-propelled explosive rounds.",
+        "stats": {
+            "range": 36,
+            "strength": 6,
+            "ap": -3,
+            "attacks": 1
+        },
+        "tags": [
+            "kinetic",
+            "explosive",
+            "heavy",
+            "hazardous",
+            "overcharged"
+        ]
+    },
+    "base_bolter_heavy_compact": {
+        "name": "Compact Heavy Bolt Gun",
+        "category": "Ballistic",
+        "description": "Compact modified Rocket-propelled explosive rounds.",
+        "stats": {
+            "range": 21,
+            "strength": 5,
+            "ap": -2,
+            "attacks": 1
+        },
+        "tags": [
+            "kinetic",
+            "explosive",
+            "heavy",
+            "assault"
+        ]
+    },
+    "base_bolter_heavy_master_crafted": {
+        "name": "Master-Crafted Heavy Bolt Rifle",
+        "category": "Ballistic",
+        "description": "Master-Crafted modified Rocket-propelled explosive rounds.",
+        "stats": {
+            "range": 36,
+            "strength": 6,
+            "ap": -3,
+            "attacks": 1
+        },
+        "tags": [
+            "kinetic",
+            "explosive",
+            "heavy",
+            "master_crafted"
+        ]
+    },
+    "base_bolter_super_heavy": {
+        "name": "Super-Heavy Bolt Gun",
+        "category": "Ballistic",
+        "description": "Super-heavy Rocket-propelled explosive rounds.",
+        "stats": {
+            "range": 43,
+            "strength": 6,
+            "ap": -3,
+            "attacks": 1
+        },
+        "tags": [
+            "kinetic",
+            "explosive",
+            "heavy"
+        ]
+    },
+    "base_bolter_titan_class": {
+        "name": "Titan-Class Bolt Gun",
+        "category": "Ballistic",
+        "description": "God-engine class Rocket-propelled explosive rounds.",
+        "stats": {
+            "range": 60,
+            "strength": 8,
+            "ap": -5,
+            "attacks": 2
+        },
+        "tags": [
+            "kinetic",
+            "explosive",
+            "heavy",
+            "macro"
+        ]
+    },
+    "base_plasma_weapon": {
+        "name": "Standard Plasma Weapon",
+        "category": "Energy",
+        "description": "Standard Superheated matter projector.",
+        "stats": {
+            "range": 24,
+            "strength": 7,
+            "ap": -3,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "plasma",
+            "high_damage"
+        ]
+    },
+    "base_plasma_light": {
+        "name": "Light Plasma Cannon",
+        "category": "Energy",
+        "description": "Light-weight Superheated matter projector.",
+        "stats": {
+            "range": 19,
+            "strength": 5,
+            "ap": -3,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "plasma",
+            "high_damage"
+        ]
+    },
+    "base_plasma_heavy": {
+        "name": "Heavy Plasma Cannon",
+        "category": "Energy",
+        "description": "Heavy mounted Superheated matter projector.",
+        "stats": {
+            "range": 36,
+            "strength": 8,
+            "ap": -4,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "plasma",
+            "high_damage",
+            "heavy"
+        ]
+    },
+    "base_plasma_heavy_rapid_fire": {
+        "name": "Rapid Fire Heavy Plasma Projector",
+        "category": "Energy",
+        "description": "Rapid Fire modified Superheated matter projector.",
+        "stats": {
+            "range": 28,
+            "strength": 8,
+            "ap": -4,
+            "attacks": 2
+        },
+        "tags": [
+            "energy",
+            "plasma",
+            "high_damage",
+            "heavy",
+            "rapid_fire"
+        ]
+    },
+    "base_plasma_heavy_sniper": {
+        "name": "Sniper Heavy Plasma Projector",
+        "category": "Energy",
+        "description": "Sniper modified Superheated matter projector.",
+        "stats": {
+            "range": 54,
+            "strength": 8,
+            "ap": -5,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "plasma",
+            "high_damage",
+            "heavy",
+            "accurate"
+        ]
+    },
+    "base_plasma_heavy_blast": {
+        "name": "Blast Heavy Plasma Cannon",
+        "category": "Energy",
+        "description": "Blast modified Superheated matter projector.",
+        "stats": {
+            "range": 36,
+            "strength": 9,
+            "ap": -4,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "plasma",
+            "high_damage",
+            "heavy",
+            "blast"
+        ]
+    },
+    "base_plasma_heavy_twin_linked": {
+        "name": "Twin-Linked Heavy Plasma Cannon",
+        "category": "Energy",
+        "description": "Twin-Linked modified Superheated matter projector.",
+        "stats": {
+            "range": 36,
+            "strength": 8,
+            "ap": -4,
+            "attacks": 2
+        },
+        "tags": [
+            "energy",
+            "plasma",
+            "high_damage",
+            "heavy",
+            "twin_linked"
+        ]
+    },
+    "base_plasma_heavy_overcharged": {
+        "name": "Overcharged Heavy Plasma Projector",
+        "category": "Energy",
+        "description": "Overcharged modified Superheated matter projector.",
+        "stats": {
+            "range": 36,
+            "strength": 10,
+            "ap": -5,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "plasma",
+            "high_damage",
+            "heavy",
+            "hazardous",
+            "overcharged"
+        ]
+    },
+    "base_plasma_heavy_compact": {
+        "name": "Compact Heavy Plasma Cannon",
+        "category": "Energy",
+        "description": "Compact modified Superheated matter projector.",
+        "stats": {
+            "range": 21,
+            "strength": 8,
+            "ap": -4,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "plasma",
+            "high_damage",
+            "heavy",
+            "assault"
+        ]
+    },
+    "base_plasma_heavy_master_crafted": {
+        "name": "Master-Crafted Heavy Plasma Cannon",
+        "category": "Energy",
+        "description": "Master-Crafted modified Superheated matter projector.",
+        "stats": {
+            "range": 36,
+            "strength": 9,
+            "ap": -5,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "plasma",
+            "high_damage",
+            "heavy",
+            "master_crafted"
+        ]
+    },
+    "base_plasma_super_heavy": {
+        "name": "Super-Heavy Plasma Projector",
+        "category": "Energy",
+        "description": "Super-heavy Superheated matter projector.",
+        "stats": {
+            "range": 43,
+            "strength": 10,
+            "ap": -5,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "plasma",
+            "high_damage",
+            "heavy"
+        ]
+    },
+    "base_plasma_titan_class": {
+        "name": "Titan-Class Plasma Cannon",
+        "category": "Energy",
+        "description": "God-engine class Superheated matter projector.",
+        "stats": {
+            "range": 60,
+            "strength": 14,
+            "ap": -7,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "plasma",
+            "high_damage",
+            "heavy",
+            "macro"
+        ]
+    },
+    "base_melta_weapon": {
+        "name": "Standard Melta Weapon",
+        "category": "Thermal",
+        "description": "Standard Thermal agitation beam.",
+        "stats": {
+            "range": 12,
+            "strength": 8,
+            "ap": -4,
+            "attacks": 1
+        },
+        "tags": [
+            "thermal",
+            "melta",
+            "anti_tank"
+        ]
+    },
+    "base_melta_light": {
+        "name": "Light Melta Cannon",
+        "category": "Thermal",
+        "description": "Light-weight Thermal agitation beam.",
+        "stats": {
+            "range": 9,
+            "strength": 6,
+            "ap": -4,
+            "attacks": 1
+        },
+        "tags": [
+            "thermal",
+            "melta",
+            "anti_tank"
+        ]
+    },
+    "base_melta_heavy": {
+        "name": "Heavy Melta Projector",
+        "category": "Thermal",
+        "description": "Heavy mounted Thermal agitation beam.",
+        "stats": {
+            "range": 18,
+            "strength": 10,
+            "ap": -5,
+            "attacks": 1
+        },
+        "tags": [
+            "thermal",
+            "melta",
+            "anti_tank",
+            "heavy"
+        ]
+    },
+    "base_melta_heavy_rapid_fire": {
+        "name": "Rapid Fire Heavy Melta Cannon",
+        "category": "Thermal",
+        "description": "Rapid Fire modified Thermal agitation beam.",
+        "stats": {
+            "range": 14,
+            "strength": 10,
+            "ap": -5,
+            "attacks": 2
+        },
+        "tags": [
+            "thermal",
+            "melta",
+            "anti_tank",
+            "heavy",
+            "rapid_fire"
+        ]
+    },
+    "base_melta_heavy_sniper": {
+        "name": "Sniper Heavy Melta Projector",
+        "category": "Thermal",
+        "description": "Sniper modified Thermal agitation beam.",
+        "stats": {
+            "range": 27,
+            "strength": 10,
+            "ap": -6,
+            "attacks": 1
+        },
+        "tags": [
+            "thermal",
+            "melta",
+            "anti_tank",
+            "heavy",
+            "accurate"
+        ]
+    },
+    "base_melta_heavy_blast": {
+        "name": "Blast Heavy Melta Cannon",
+        "category": "Thermal",
+        "description": "Blast modified Thermal agitation beam.",
+        "stats": {
+            "range": 18,
+            "strength": 12,
+            "ap": -5,
+            "attacks": 1
+        },
+        "tags": [
+            "thermal",
+            "melta",
+            "anti_tank",
+            "heavy",
+            "blast"
+        ]
+    },
+    "base_melta_heavy_twin_linked": {
+        "name": "Twin-Linked Heavy Melta Cannon",
+        "category": "Thermal",
+        "description": "Twin-Linked modified Thermal agitation beam.",
+        "stats": {
+            "range": 18,
+            "strength": 10,
+            "ap": -5,
+            "attacks": 2
+        },
+        "tags": [
+            "thermal",
+            "melta",
+            "anti_tank",
+            "heavy",
+            "twin_linked"
+        ]
+    },
+    "base_melta_heavy_overcharged": {
+        "name": "Overcharged Heavy Melta Projector",
+        "category": "Thermal",
+        "description": "Overcharged modified Thermal agitation beam.",
+        "stats": {
+            "range": 18,
+            "strength": 13,
+            "ap": -6,
+            "attacks": 1
+        },
+        "tags": [
+            "thermal",
+            "melta",
+            "anti_tank",
+            "heavy",
+            "hazardous",
+            "overcharged"
+        ]
+    },
+    "base_melta_heavy_compact": {
+        "name": "Compact Heavy Melta Cannon",
+        "category": "Thermal",
+        "description": "Compact modified Thermal agitation beam.",
+        "stats": {
+            "range": 10,
+            "strength": 10,
+            "ap": -5,
+            "attacks": 1
+        },
+        "tags": [
+            "thermal",
+            "melta",
+            "anti_tank",
+            "heavy",
+            "assault"
+        ]
+    },
+    "base_melta_heavy_master_crafted": {
+        "name": "Master-Crafted Heavy Melta Cannon",
+        "category": "Thermal",
+        "description": "Master-Crafted modified Thermal agitation beam.",
+        "stats": {
+            "range": 18,
+            "strength": 11,
+            "ap": -6,
+            "attacks": 1
+        },
+        "tags": [
+            "thermal",
+            "melta",
+            "anti_tank",
+            "heavy",
+            "master_crafted"
+        ]
+    },
+    "base_melta_super_heavy": {
+        "name": "Super-Heavy Melta Cannon",
+        "category": "Thermal",
+        "description": "Super-heavy Thermal agitation beam.",
+        "stats": {
+            "range": 21,
+            "strength": 12,
+            "ap": -6,
+            "attacks": 1
+        },
+        "tags": [
+            "thermal",
+            "melta",
+            "anti_tank",
+            "heavy"
+        ]
+    },
+    "base_melta_titan_class": {
+        "name": "Titan-Class Melta Projector",
+        "category": "Thermal",
+        "description": "God-engine class Thermal agitation beam.",
+        "stats": {
+            "range": 30,
+            "strength": 16,
+            "ap": -8,
+            "attacks": 1
+        },
+        "tags": [
+            "thermal",
+            "melta",
+            "anti_tank",
+            "heavy",
+            "macro"
+        ]
+    },
+    "base_gauss_weapon": {
+        "name": "Standard Gauss Weapon",
+        "category": "Exotic",
+        "description": "Standard Magnetic molecular flayer.",
+        "stats": {
+            "range": 24,
+            "strength": 5,
+            "ap": -2,
+            "attacks": 2
+        },
+        "tags": [
+            "exotic",
+            "gauss",
+            "rending"
+        ]
+    },
+    "base_gauss_light": {
+        "name": "Light Gauss Rifle",
+        "category": "Exotic",
+        "description": "Light-weight Magnetic molecular flayer.",
+        "stats": {
+            "range": 19,
+            "strength": 4,
+            "ap": -2,
+            "attacks": 3
+        },
+        "tags": [
+            "exotic",
+            "gauss",
+            "rending"
+        ]
+    },
+    "base_gauss_heavy": {
+        "name": "Heavy Gauss Rifle",
+        "category": "Exotic",
+        "description": "Heavy mounted Magnetic molecular flayer.",
+        "stats": {
+            "range": 36,
+            "strength": 6,
+            "ap": -3,
+            "attacks": 1
+        },
+        "tags": [
+            "exotic",
+            "gauss",
+            "rending",
+            "heavy"
+        ]
+    },
+    "base_gauss_heavy_rapid_fire": {
+        "name": "Rapid Fire Heavy Gauss Gun",
+        "category": "Exotic",
+        "description": "Rapid Fire modified Magnetic molecular flayer.",
+        "stats": {
+            "range": 28,
+            "strength": 6,
+            "ap": -3,
+            "attacks": 2
+        },
+        "tags": [
+            "exotic",
+            "gauss",
+            "rending",
+            "heavy",
+            "rapid_fire"
+        ]
+    },
+    "base_gauss_heavy_sniper": {
+        "name": "Sniper Heavy Gauss Rifle",
+        "category": "Exotic",
+        "description": "Sniper modified Magnetic molecular flayer.",
+        "stats": {
+            "range": 54,
+            "strength": 6,
+            "ap": -4,
+            "attacks": 1
+        },
+        "tags": [
+            "exotic",
+            "gauss",
+            "rending",
+            "heavy",
+            "accurate"
+        ]
+    },
+    "base_gauss_heavy_blast": {
+        "name": "Blast Heavy Gauss Gun",
+        "category": "Exotic",
+        "description": "Blast modified Magnetic molecular flayer.",
+        "stats": {
+            "range": 36,
+            "strength": 7,
+            "ap": -3,
+            "attacks": 1
+        },
+        "tags": [
+            "exotic",
+            "gauss",
+            "rending",
+            "heavy",
+            "blast"
+        ]
+    },
+    "base_gauss_heavy_twin_linked": {
+        "name": "Twin-Linked Heavy Gauss Gun",
+        "category": "Exotic",
+        "description": "Twin-Linked modified Magnetic molecular flayer.",
+        "stats": {
+            "range": 36,
+            "strength": 6,
+            "ap": -3,
+            "attacks": 2
+        },
+        "tags": [
+            "exotic",
+            "gauss",
+            "rending",
+            "heavy",
+            "twin_linked"
+        ]
+    },
+    "base_gauss_heavy_overcharged": {
+        "name": "Overcharged Heavy Gauss Gun",
+        "category": "Exotic",
+        "description": "Overcharged modified Magnetic molecular flayer.",
+        "stats": {
+            "range": 36,
+            "strength": 7,
+            "ap": -4,
+            "attacks": 1
+        },
+        "tags": [
+            "exotic",
+            "gauss",
+            "rending",
+            "heavy",
+            "hazardous",
+            "overcharged"
+        ]
+    },
+    "base_gauss_heavy_compact": {
+        "name": "Compact Heavy Gauss Rifle",
+        "category": "Exotic",
+        "description": "Compact modified Magnetic molecular flayer.",
+        "stats": {
+            "range": 21,
+            "strength": 6,
+            "ap": -3,
+            "attacks": 1
+        },
+        "tags": [
+            "exotic",
+            "gauss",
+            "rending",
+            "heavy",
+            "assault"
+        ]
+    },
+    "base_gauss_heavy_master_crafted": {
+        "name": "Master-Crafted Heavy Gauss Rifle",
+        "category": "Exotic",
+        "description": "Master-Crafted modified Magnetic molecular flayer.",
+        "stats": {
+            "range": 36,
+            "strength": 7,
+            "ap": -4,
+            "attacks": 1
+        },
+        "tags": [
+            "exotic",
+            "gauss",
+            "rending",
+            "heavy",
+            "master_crafted"
+        ]
+    },
+    "base_gauss_super_heavy": {
+        "name": "Super-Heavy Gauss Rifle",
+        "category": "Exotic",
+        "description": "Super-heavy Magnetic molecular flayer.",
+        "stats": {
+            "range": 43,
+            "strength": 7,
+            "ap": -4,
+            "attacks": 1
+        },
+        "tags": [
+            "exotic",
+            "gauss",
+            "rending",
+            "heavy"
+        ]
+    },
+    "base_gauss_titan_class": {
+        "name": "Titan-Class Gauss Rifle",
+        "category": "Exotic",
+        "description": "God-engine class Magnetic molecular flayer.",
+        "stats": {
+            "range": 60,
+            "strength": 10,
+            "ap": -6,
+            "attacks": 2
+        },
+        "tags": [
+            "exotic",
+            "gauss",
+            "rending",
+            "heavy",
+            "macro"
+        ]
+    },
+    "base_tesla_weapon": {
+        "name": "Standard Tesla Weapon",
+        "category": "Energy",
+        "description": "Standard Arcing lightning projector.",
+        "stats": {
+            "range": 18,
+            "strength": 5,
+            "ap": 0,
+            "attacks": 3
+        },
+        "tags": [
+            "energy",
+            "tesla",
+            "arcing"
+        ]
+    },
+    "base_tesla_light": {
+        "name": "Light Tesla Coil",
+        "category": "Energy",
+        "description": "Light-weight Arcing lightning projector.",
+        "stats": {
+            "range": 14,
+            "strength": 4,
+            "ap": 0,
+            "attacks": 4
+        },
+        "tags": [
+            "energy",
+            "tesla",
+            "arcing"
+        ]
+    },
+    "base_tesla_heavy": {
+        "name": "Heavy Tesla Coil",
+        "category": "Energy",
+        "description": "Heavy mounted Arcing lightning projector.",
+        "stats": {
+            "range": 27,
+            "strength": 6,
+            "ap": -1,
+            "attacks": 2
+        },
+        "tags": [
+            "energy",
+            "tesla",
+            "arcing",
+            "heavy"
+        ]
+    },
+    "base_tesla_heavy_rapid_fire": {
+        "name": "Rapid Fire Heavy Tesla Coil",
+        "category": "Energy",
+        "description": "Rapid Fire modified Arcing lightning projector.",
+        "stats": {
+            "range": 21,
+            "strength": 6,
+            "ap": -1,
+            "attacks": 4
+        },
+        "tags": [
+            "energy",
+            "tesla",
+            "arcing",
+            "heavy",
+            "rapid_fire"
+        ]
+    },
+    "base_tesla_heavy_sniper": {
+        "name": "Sniper Heavy Tesla Coil",
+        "category": "Energy",
+        "description": "Sniper modified Arcing lightning projector.",
+        "stats": {
+            "range": 40,
+            "strength": 6,
+            "ap": -2,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "tesla",
+            "arcing",
+            "heavy",
+            "accurate"
+        ]
+    },
+    "base_tesla_heavy_blast": {
+        "name": "Blast Heavy Tesla Coil",
+        "category": "Energy",
+        "description": "Blast modified Arcing lightning projector.",
+        "stats": {
+            "range": 27,
+            "strength": 7,
+            "ap": -1,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "tesla",
+            "arcing",
+            "heavy",
+            "blast"
+        ]
+    },
+    "base_tesla_heavy_twin_linked": {
+        "name": "Twin-Linked Heavy Tesla Coil",
+        "category": "Energy",
+        "description": "Twin-Linked modified Arcing lightning projector.",
+        "stats": {
+            "range": 27,
+            "strength": 6,
+            "ap": -1,
+            "attacks": 4
+        },
+        "tags": [
+            "energy",
+            "tesla",
+            "arcing",
+            "heavy",
+            "twin_linked"
+        ]
+    },
+    "base_tesla_heavy_overcharged": {
+        "name": "Overcharged Heavy Tesla Coil",
+        "category": "Energy",
+        "description": "Overcharged modified Arcing lightning projector.",
+        "stats": {
+            "range": 27,
+            "strength": 7,
+            "ap": -2,
+            "attacks": 2
+        },
+        "tags": [
+            "energy",
+            "tesla",
+            "arcing",
+            "heavy",
+            "hazardous",
+            "overcharged"
+        ]
+    },
+    "base_tesla_heavy_compact": {
+        "name": "Compact Heavy Tesla Coil",
+        "category": "Energy",
+        "description": "Compact modified Arcing lightning projector.",
+        "stats": {
+            "range": 16,
+            "strength": 6,
+            "ap": -1,
+            "attacks": 2
+        },
+        "tags": [
+            "energy",
+            "tesla",
+            "arcing",
+            "heavy",
+            "assault"
+        ]
+    },
+    "base_tesla_heavy_master_crafted": {
+        "name": "Master-Crafted Heavy Tesla Coil",
+        "category": "Energy",
+        "description": "Master-Crafted modified Arcing lightning projector.",
+        "stats": {
+            "range": 27,
+            "strength": 7,
+            "ap": -2,
+            "attacks": 2
+        },
+        "tags": [
+            "energy",
+            "tesla",
+            "arcing",
+            "heavy",
+            "master_crafted"
+        ]
+    },
+    "base_tesla_super_heavy": {
+        "name": "Super-Heavy Tesla Coil",
+        "category": "Energy",
+        "description": "Super-heavy Arcing lightning projector.",
+        "stats": {
+            "range": 32,
+            "strength": 7,
+            "ap": -2,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "tesla",
+            "arcing",
+            "heavy"
+        ]
+    },
+    "base_tesla_titan_class": {
+        "name": "Titan-Class Tesla Coil",
+        "category": "Energy",
+        "description": "God-engine class Arcing lightning projector.",
+        "stats": {
+            "range": 45,
+            "strength": 10,
+            "ap": -4,
+            "attacks": 3
+        },
+        "tags": [
+            "energy",
+            "tesla",
+            "arcing",
+            "heavy",
+            "macro"
+        ]
+    },
+    "base_rad_weapon": {
+        "name": "Standard Rad Weapon",
+        "category": "Exotic",
+        "description": "Standard Radioactive emitter.",
+        "stats": {
+            "range": 18,
+            "strength": 2,
+            "ap": 0,
+            "attacks": 1
+        },
+        "tags": [
+            "radiation",
+            "poison",
+            "anti_infantry"
+        ]
+    },
+    "base_rad_light": {
+        "name": "Light Rad System",
+        "category": "Exotic",
+        "description": "Light-weight Radioactive emitter.",
+        "stats": {
+            "range": 14,
+            "strength": 1,
+            "ap": 0,
+            "attacks": 1
+        },
+        "tags": [
+            "radiation",
+            "poison",
+            "anti_infantry"
+        ]
+    },
+    "base_rad_heavy": {
+        "name": "Heavy Rad System",
+        "category": "Exotic",
+        "description": "Heavy mounted Radioactive emitter.",
+        "stats": {
+            "range": 27,
+            "strength": 2,
+            "ap": -1,
+            "attacks": 1
+        },
+        "tags": [
+            "radiation",
+            "poison",
+            "anti_infantry",
+            "heavy"
+        ]
+    },
+    "base_rad_heavy_rapid_fire": {
+        "name": "Rapid Fire Heavy Rad System",
+        "category": "Exotic",
+        "description": "Rapid Fire modified Radioactive emitter.",
+        "stats": {
+            "range": 21,
+            "strength": 2,
+            "ap": -1,
+            "attacks": 2
+        },
+        "tags": [
+            "radiation",
+            "poison",
+            "anti_infantry",
+            "heavy",
+            "rapid_fire"
+        ]
+    },
+    "base_rad_heavy_sniper": {
+        "name": "Sniper Heavy Rad System",
+        "category": "Exotic",
+        "description": "Sniper modified Radioactive emitter.",
+        "stats": {
+            "range": 40,
+            "strength": 2,
+            "ap": -2,
+            "attacks": 1
+        },
+        "tags": [
+            "radiation",
+            "poison",
+            "anti_infantry",
+            "heavy",
+            "accurate"
+        ]
+    },
+    "base_rad_heavy_blast": {
+        "name": "Blast Heavy Rad System",
+        "category": "Exotic",
+        "description": "Blast modified Radioactive emitter.",
+        "stats": {
+            "range": 27,
+            "strength": 2,
+            "ap": -1,
+            "attacks": 1
+        },
+        "tags": [
+            "radiation",
+            "poison",
+            "anti_infantry",
+            "heavy",
+            "blast"
+        ]
+    },
+    "base_rad_heavy_twin_linked": {
+        "name": "Twin-Linked Heavy Rad System",
+        "category": "Exotic",
+        "description": "Twin-Linked modified Radioactive emitter.",
+        "stats": {
+            "range": 27,
+            "strength": 2,
+            "ap": -1,
+            "attacks": 2
+        },
+        "tags": [
+            "radiation",
+            "poison",
+            "anti_infantry",
+            "heavy",
+            "twin_linked"
+        ]
+    },
+    "base_rad_heavy_overcharged": {
+        "name": "Overcharged Heavy Rad System",
+        "category": "Exotic",
+        "description": "Overcharged modified Radioactive emitter.",
+        "stats": {
+            "range": 27,
+            "strength": 2,
+            "ap": -2,
+            "attacks": 1
+        },
+        "tags": [
+            "radiation",
+            "poison",
+            "anti_infantry",
+            "heavy",
+            "hazardous",
+            "overcharged"
+        ]
+    },
+    "base_rad_heavy_compact": {
+        "name": "Compact Heavy Rad System",
+        "category": "Exotic",
+        "description": "Compact modified Radioactive emitter.",
+        "stats": {
+            "range": 16,
+            "strength": 2,
+            "ap": -1,
+            "attacks": 1
+        },
+        "tags": [
+            "radiation",
+            "poison",
+            "anti_infantry",
+            "heavy",
+            "assault"
+        ]
+    },
+    "base_rad_heavy_master_crafted": {
+        "name": "Master-Crafted Heavy Rad System",
+        "category": "Exotic",
+        "description": "Master-Crafted modified Radioactive emitter.",
+        "stats": {
+            "range": 27,
+            "strength": 3,
+            "ap": -2,
+            "attacks": 1
+        },
+        "tags": [
+            "radiation",
+            "poison",
+            "anti_infantry",
+            "heavy",
+            "master_crafted"
+        ]
+    },
+    "base_rad_super_heavy": {
+        "name": "Super-Heavy Rad System",
+        "category": "Exotic",
+        "description": "Super-heavy Radioactive emitter.",
+        "stats": {
+            "range": 32,
+            "strength": 3,
+            "ap": -2,
+            "attacks": 1
+        },
+        "tags": [
+            "radiation",
+            "poison",
+            "anti_infantry",
+            "heavy"
+        ]
+    },
+    "base_rad_titan_class": {
+        "name": "Titan-Class Rad System",
+        "category": "Exotic",
+        "description": "God-engine class Radioactive emitter.",
+        "stats": {
+            "range": 45,
+            "strength": 4,
+            "ap": -4,
+            "attacks": 1
+        },
+        "tags": [
+            "radiation",
+            "poison",
+            "anti_infantry",
+            "heavy",
+            "macro"
+        ]
+    },
+    "base_grav_weapon": {
+        "name": "Standard Grav Weapon",
+        "category": "Exotic",
+        "description": "Standard Gravimetric crusher.",
+        "stats": {
+            "range": 18,
+            "strength": 5,
+            "ap": -3,
+            "attacks": 3
+        },
+        "tags": [
+            "gravimetric",
+            "control",
+            "anti_heavy"
+        ]
+    },
+    "base_grav_light": {
+        "name": "Light Grav System",
+        "category": "Exotic",
+        "description": "Light-weight Gravimetric crusher.",
+        "stats": {
+            "range": 14,
+            "strength": 4,
+            "ap": -3,
+            "attacks": 4
+        },
+        "tags": [
+            "gravimetric",
+            "control",
+            "anti_heavy"
+        ]
+    },
+    "base_grav_heavy": {
+        "name": "Heavy Grav System",
+        "category": "Exotic",
+        "description": "Heavy mounted Gravimetric crusher.",
+        "stats": {
+            "range": 27,
+            "strength": 6,
+            "ap": -4,
+            "attacks": 2
+        },
+        "tags": [
+            "gravimetric",
+            "control",
+            "anti_heavy",
+            "heavy"
+        ]
+    },
+    "base_grav_heavy_rapid_fire": {
+        "name": "Rapid Fire Heavy Grav System",
+        "category": "Exotic",
+        "description": "Rapid Fire modified Gravimetric crusher.",
+        "stats": {
+            "range": 21,
+            "strength": 6,
+            "ap": -4,
+            "attacks": 4
+        },
+        "tags": [
+            "gravimetric",
+            "control",
+            "anti_heavy",
+            "heavy",
+            "rapid_fire"
+        ]
+    },
+    "base_grav_heavy_sniper": {
+        "name": "Sniper Heavy Grav System",
+        "category": "Exotic",
+        "description": "Sniper modified Gravimetric crusher.",
+        "stats": {
+            "range": 40,
+            "strength": 6,
+            "ap": -5,
+            "attacks": 1
+        },
+        "tags": [
+            "gravimetric",
+            "control",
+            "anti_heavy",
+            "heavy",
+            "accurate"
+        ]
+    },
+    "base_grav_heavy_blast": {
+        "name": "Blast Heavy Grav System",
+        "category": "Exotic",
+        "description": "Blast modified Gravimetric crusher.",
+        "stats": {
+            "range": 27,
+            "strength": 7,
+            "ap": -4,
+            "attacks": 1
+        },
+        "tags": [
+            "gravimetric",
+            "control",
+            "anti_heavy",
+            "heavy",
+            "blast"
+        ]
+    },
+    "base_grav_heavy_twin_linked": {
+        "name": "Twin-Linked Heavy Grav System",
+        "category": "Exotic",
+        "description": "Twin-Linked modified Gravimetric crusher.",
+        "stats": {
+            "range": 27,
+            "strength": 6,
+            "ap": -4,
+            "attacks": 4
+        },
+        "tags": [
+            "gravimetric",
+            "control",
+            "anti_heavy",
+            "heavy",
+            "twin_linked"
+        ]
+    },
+    "base_grav_heavy_overcharged": {
+        "name": "Overcharged Heavy Grav System",
+        "category": "Exotic",
+        "description": "Overcharged modified Gravimetric crusher.",
+        "stats": {
+            "range": 27,
+            "strength": 7,
+            "ap": -5,
+            "attacks": 2
+        },
+        "tags": [
+            "gravimetric",
+            "control",
+            "anti_heavy",
+            "heavy",
+            "hazardous",
+            "overcharged"
+        ]
+    },
+    "base_grav_heavy_compact": {
+        "name": "Compact Heavy Grav System",
+        "category": "Exotic",
+        "description": "Compact modified Gravimetric crusher.",
+        "stats": {
+            "range": 16,
+            "strength": 6,
+            "ap": -4,
+            "attacks": 2
+        },
+        "tags": [
+            "gravimetric",
+            "control",
+            "anti_heavy",
+            "heavy",
+            "assault"
+        ]
+    },
+    "base_grav_heavy_master_crafted": {
+        "name": "Master-Crafted Heavy Grav System",
+        "category": "Exotic",
+        "description": "Master-Crafted modified Gravimetric crusher.",
+        "stats": {
+            "range": 27,
+            "strength": 7,
+            "ap": -5,
+            "attacks": 2
+        },
+        "tags": [
+            "gravimetric",
+            "control",
+            "anti_heavy",
+            "heavy",
+            "master_crafted"
+        ]
+    },
+    "base_grav_super_heavy": {
+        "name": "Super-Heavy Grav System",
+        "category": "Exotic",
+        "description": "Super-heavy Gravimetric crusher.",
+        "stats": {
+            "range": 32,
+            "strength": 7,
+            "ap": -5,
+            "attacks": 1
+        },
+        "tags": [
+            "gravimetric",
+            "control",
+            "anti_heavy",
+            "heavy"
+        ]
+    },
+    "base_grav_titan_class": {
+        "name": "Titan-Class Grav System",
+        "category": "Exotic",
+        "description": "God-engine class Gravimetric crusher.",
+        "stats": {
+            "range": 45,
+            "strength": 10,
+            "ap": -7,
+            "attacks": 3
+        },
+        "tags": [
+            "gravimetric",
+            "control",
+            "anti_heavy",
+            "heavy",
+            "macro"
+        ]
+    },
+    "base_volkite_weapon": {
+        "name": "Standard Volkite Weapon",
+        "category": "Thermal",
+        "description": "Standard Thermal ray that combusts targets.",
+        "stats": {
+            "range": 30,
+            "strength": 6,
+            "ap": -1,
+            "attacks": 2
+        },
+        "tags": [
+            "thermal",
+            "volkite",
+            "deflagrate"
+        ]
+    },
+    "base_volkite_light": {
+        "name": "Light Volkite Projector",
+        "category": "Thermal",
+        "description": "Light-weight Thermal ray that combusts targets.",
+        "stats": {
+            "range": 24,
+            "strength": 4,
+            "ap": -1,
+            "attacks": 3
+        },
+        "tags": [
+            "thermal",
+            "volkite",
+            "deflagrate"
+        ]
+    },
+    "base_volkite_heavy": {
+        "name": "Heavy Volkite Projector",
+        "category": "Thermal",
+        "description": "Heavy mounted Thermal ray that combusts targets.",
+        "stats": {
+            "range": 45,
+            "strength": 7,
+            "ap": -2,
+            "attacks": 1
+        },
+        "tags": [
+            "thermal",
+            "volkite",
+            "deflagrate",
+            "heavy"
+        ]
+    },
+    "base_volkite_heavy_rapid_fire": {
+        "name": "Rapid Fire Heavy Volkite Projector",
+        "category": "Thermal",
+        "description": "Rapid Fire modified Thermal ray that combusts targets.",
+        "stats": {
+            "range": 36,
+            "strength": 7,
+            "ap": -2,
+            "attacks": 2
+        },
+        "tags": [
+            "thermal",
+            "volkite",
+            "deflagrate",
+            "heavy",
+            "rapid_fire"
+        ]
+    },
+    "base_volkite_heavy_sniper": {
+        "name": "Sniper Heavy Volkite Cannon",
+        "category": "Thermal",
+        "description": "Sniper modified Thermal ray that combusts targets.",
+        "stats": {
+            "range": 67,
+            "strength": 7,
+            "ap": -3,
+            "attacks": 1
+        },
+        "tags": [
+            "thermal",
+            "volkite",
+            "deflagrate",
+            "heavy",
+            "accurate"
+        ]
+    },
+    "base_volkite_heavy_blast": {
+        "name": "Blast Heavy Volkite Projector",
+        "category": "Thermal",
+        "description": "Blast modified Thermal ray that combusts targets.",
+        "stats": {
+            "range": 45,
+            "strength": 8,
+            "ap": -2,
+            "attacks": 1
+        },
+        "tags": [
+            "thermal",
+            "volkite",
+            "deflagrate",
+            "heavy",
+            "blast"
+        ]
+    },
+    "base_volkite_heavy_twin_linked": {
+        "name": "Twin-Linked Heavy Volkite Cannon",
+        "category": "Thermal",
+        "description": "Twin-Linked modified Thermal ray that combusts targets.",
+        "stats": {
+            "range": 45,
+            "strength": 7,
+            "ap": -2,
+            "attacks": 2
+        },
+        "tags": [
+            "thermal",
+            "volkite",
+            "deflagrate",
+            "heavy",
+            "twin_linked"
+        ]
+    },
+    "base_volkite_heavy_overcharged": {
+        "name": "Overcharged Heavy Volkite Projector",
+        "category": "Thermal",
+        "description": "Overcharged modified Thermal ray that combusts targets.",
+        "stats": {
+            "range": 45,
+            "strength": 9,
+            "ap": -3,
+            "attacks": 1
+        },
+        "tags": [
+            "thermal",
+            "volkite",
+            "deflagrate",
+            "heavy",
+            "hazardous",
+            "overcharged"
+        ]
+    },
+    "base_volkite_heavy_compact": {
+        "name": "Compact Heavy Volkite Cannon",
+        "category": "Thermal",
+        "description": "Compact modified Thermal ray that combusts targets.",
+        "stats": {
+            "range": 27,
+            "strength": 7,
+            "ap": -2,
+            "attacks": 1
+        },
+        "tags": [
+            "thermal",
+            "volkite",
+            "deflagrate",
+            "heavy",
+            "assault"
+        ]
+    },
+    "base_volkite_heavy_master_crafted": {
+        "name": "Master-Crafted Heavy Volkite Projector",
+        "category": "Thermal",
+        "description": "Master-Crafted modified Thermal ray that combusts targets.",
+        "stats": {
+            "range": 45,
+            "strength": 8,
+            "ap": -3,
+            "attacks": 1
+        },
+        "tags": [
+            "thermal",
+            "volkite",
+            "deflagrate",
+            "heavy",
+            "master_crafted"
+        ]
+    },
+    "base_volkite_super_heavy": {
+        "name": "Super-Heavy Volkite Cannon",
+        "category": "Thermal",
+        "description": "Super-heavy Thermal ray that combusts targets.",
+        "stats": {
+            "range": 54,
+            "strength": 9,
+            "ap": -3,
+            "attacks": 1
+        },
+        "tags": [
+            "thermal",
+            "volkite",
+            "deflagrate",
+            "heavy"
+        ]
+    },
+    "base_volkite_titan_class": {
+        "name": "Titan-Class Volkite Cannon",
+        "category": "Thermal",
+        "description": "God-engine class Thermal ray that combusts targets.",
+        "stats": {
+            "range": 75,
+            "strength": 12,
+            "ap": -5,
+            "attacks": 2
+        },
+        "tags": [
+            "thermal",
+            "volkite",
+            "deflagrate",
+            "heavy",
+            "macro"
+        ]
+    },
+    "base_rail_weapon": {
+        "name": "Standard Rail Weapon",
+        "category": "Ballistic",
+        "description": "Standard Hyper-velocity slug thrower.",
+        "stats": {
+            "range": 60,
+            "strength": 8,
+            "ap": -3,
+            "attacks": 1
+        },
+        "tags": [
+            "kinetic",
+            "railgun",
+            "long_range"
+        ]
+    },
+    "base_rail_light": {
+        "name": "Light Rail Rifle",
+        "category": "Ballistic",
+        "description": "Light-weight Hyper-velocity slug thrower.",
+        "stats": {
+            "range": 48,
+            "strength": 6,
+            "ap": -3,
+            "attacks": 1
+        },
+        "tags": [
+            "kinetic",
+            "railgun",
+            "long_range"
+        ]
+    },
+    "base_rail_heavy": {
+        "name": "Heavy Rail Gun",
+        "category": "Ballistic",
+        "description": "Heavy mounted Hyper-velocity slug thrower.",
+        "stats": {
+            "range": 90,
+            "strength": 10,
+            "ap": -4,
+            "attacks": 1
+        },
+        "tags": [
+            "kinetic",
+            "railgun",
+            "long_range",
+            "heavy"
+        ]
+    },
+    "base_rail_heavy_rapid_fire": {
+        "name": "Rapid Fire Heavy Rail Rifle",
+        "category": "Ballistic",
+        "description": "Rapid Fire modified Hyper-velocity slug thrower.",
+        "stats": {
+            "range": 72,
+            "strength": 10,
+            "ap": -4,
+            "attacks": 2
+        },
+        "tags": [
+            "kinetic",
+            "railgun",
+            "long_range",
+            "heavy",
+            "rapid_fire"
+        ]
+    },
+    "base_rail_heavy_sniper": {
+        "name": "Sniper Heavy Rail Rifle",
+        "category": "Ballistic",
+        "description": "Sniper modified Hyper-velocity slug thrower.",
+        "stats": {
+            "range": 135,
+            "strength": 10,
+            "ap": -5,
+            "attacks": 1
+        },
+        "tags": [
+            "kinetic",
+            "railgun",
+            "long_range",
+            "heavy",
+            "accurate"
+        ]
+    },
+    "base_rail_heavy_blast": {
+        "name": "Blast Heavy Rail Gun",
+        "category": "Ballistic",
+        "description": "Blast modified Hyper-velocity slug thrower.",
+        "stats": {
+            "range": 90,
+            "strength": 12,
+            "ap": -4,
+            "attacks": 1
+        },
+        "tags": [
+            "kinetic",
+            "railgun",
+            "long_range",
+            "heavy",
+            "blast"
+        ]
+    },
+    "base_rail_heavy_twin_linked": {
+        "name": "Twin-Linked Heavy Rail Rifle",
+        "category": "Ballistic",
+        "description": "Twin-Linked modified Hyper-velocity slug thrower.",
+        "stats": {
+            "range": 90,
+            "strength": 10,
+            "ap": -4,
+            "attacks": 2
+        },
+        "tags": [
+            "kinetic",
+            "railgun",
+            "long_range",
+            "heavy",
+            "twin_linked"
+        ]
+    },
+    "base_rail_heavy_overcharged": {
+        "name": "Overcharged Heavy Rail Gun",
+        "category": "Ballistic",
+        "description": "Overcharged modified Hyper-velocity slug thrower.",
+        "stats": {
+            "range": 90,
+            "strength": 13,
+            "ap": -5,
+            "attacks": 1
+        },
+        "tags": [
+            "kinetic",
+            "railgun",
+            "long_range",
+            "heavy",
+            "hazardous",
+            "overcharged"
+        ]
+    },
+    "base_rail_heavy_compact": {
+        "name": "Compact Heavy Rail Rifle",
+        "category": "Ballistic",
+        "description": "Compact modified Hyper-velocity slug thrower.",
+        "stats": {
+            "range": 54,
+            "strength": 10,
+            "ap": -4,
+            "attacks": 1
+        },
+        "tags": [
+            "kinetic",
+            "railgun",
+            "long_range",
+            "heavy",
+            "assault"
+        ]
+    },
+    "base_rail_heavy_master_crafted": {
+        "name": "Master-Crafted Heavy Rail Gun",
+        "category": "Ballistic",
+        "description": "Master-Crafted modified Hyper-velocity slug thrower.",
+        "stats": {
+            "range": 90,
+            "strength": 11,
+            "ap": -5,
+            "attacks": 1
+        },
+        "tags": [
+            "kinetic",
+            "railgun",
+            "long_range",
+            "heavy",
+            "master_crafted"
+        ]
+    },
+    "base_rail_super_heavy": {
+        "name": "Super-Heavy Rail Gun",
+        "category": "Ballistic",
+        "description": "Super-heavy Hyper-velocity slug thrower.",
+        "stats": {
+            "range": 108,
+            "strength": 12,
+            "ap": -5,
+            "attacks": 1
+        },
+        "tags": [
+            "kinetic",
+            "railgun",
+            "long_range",
+            "heavy"
+        ]
+    },
+    "base_rail_titan_class": {
+        "name": "Titan-Class Rail Gun",
+        "category": "Ballistic",
+        "description": "God-engine class Hyper-velocity slug thrower.",
+        "stats": {
+            "range": 150,
+            "strength": 16,
+            "ap": -7,
+            "attacks": 1
+        },
+        "tags": [
+            "kinetic",
+            "railgun",
+            "long_range",
+            "heavy",
+            "macro"
+        ]
+    },
+    "base_phaser_weapon": {
+        "name": "Standard Phaser Weapon",
+        "category": "Energy",
+        "description": "Standard Phased energy beam.",
+        "stats": {
+            "range": 30,
+            "strength": 5,
+            "ap": -2,
+            "attacks": 2
+        },
+        "tags": [
+            "energy",
+            "phaser",
+            "accurate"
+        ]
+    },
+    "base_phaser_light": {
+        "name": "Light Phaser Projector",
+        "category": "Energy",
+        "description": "Light-weight Phased energy beam.",
+        "stats": {
+            "range": 24,
+            "strength": 4,
+            "ap": -2,
+            "attacks": 3
+        },
+        "tags": [
+            "energy",
+            "phaser",
+            "accurate"
+        ]
+    },
+    "base_phaser_heavy": {
+        "name": "Heavy Phaser Projector",
+        "category": "Energy",
+        "description": "Heavy mounted Phased energy beam.",
+        "stats": {
+            "range": 45,
+            "strength": 6,
+            "ap": -3,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "phaser",
+            "accurate",
+            "heavy"
+        ]
+    },
+    "base_phaser_heavy_rapid_fire": {
+        "name": "Rapid Fire Heavy Phaser Projector",
+        "category": "Energy",
+        "description": "Rapid Fire modified Phased energy beam.",
+        "stats": {
+            "range": 36,
+            "strength": 6,
+            "ap": -3,
+            "attacks": 2
+        },
+        "tags": [
+            "energy",
+            "phaser",
+            "accurate",
+            "heavy",
+            "rapid_fire"
+        ]
+    },
+    "base_phaser_heavy_sniper": {
+        "name": "Sniper Heavy Phaser Projector",
+        "category": "Energy",
+        "description": "Sniper modified Phased energy beam.",
+        "stats": {
+            "range": 67,
+            "strength": 6,
+            "ap": -4,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "phaser",
+            "accurate",
+            "heavy",
+            "accurate"
+        ]
+    },
+    "base_phaser_heavy_blast": {
+        "name": "Blast Heavy Phaser Projector",
+        "category": "Energy",
+        "description": "Blast modified Phased energy beam.",
+        "stats": {
+            "range": 45,
+            "strength": 7,
+            "ap": -3,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "phaser",
+            "accurate",
+            "heavy",
+            "blast"
+        ]
+    },
+    "base_phaser_heavy_twin_linked": {
+        "name": "Twin-Linked Heavy Phaser Cannon",
+        "category": "Energy",
+        "description": "Twin-Linked modified Phased energy beam.",
+        "stats": {
+            "range": 45,
+            "strength": 6,
+            "ap": -3,
+            "attacks": 2
+        },
+        "tags": [
+            "energy",
+            "phaser",
+            "accurate",
+            "heavy",
+            "twin_linked"
+        ]
+    },
+    "base_phaser_heavy_overcharged": {
+        "name": "Overcharged Heavy Phaser Projector",
+        "category": "Energy",
+        "description": "Overcharged modified Phased energy beam.",
+        "stats": {
+            "range": 45,
+            "strength": 7,
+            "ap": -4,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "phaser",
+            "accurate",
+            "heavy",
+            "hazardous",
+            "overcharged"
+        ]
+    },
+    "base_phaser_heavy_compact": {
+        "name": "Compact Heavy Phaser Projector",
+        "category": "Energy",
+        "description": "Compact modified Phased energy beam.",
+        "stats": {
+            "range": 27,
+            "strength": 6,
+            "ap": -3,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "phaser",
+            "accurate",
+            "heavy",
+            "assault"
+        ]
+    },
+    "base_phaser_heavy_master_crafted": {
+        "name": "Master-Crafted Heavy Phaser Projector",
+        "category": "Energy",
+        "description": "Master-Crafted modified Phased energy beam.",
+        "stats": {
+            "range": 45,
+            "strength": 7,
+            "ap": -4,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "phaser",
+            "accurate",
+            "heavy",
+            "master_crafted"
+        ]
+    },
+    "base_phaser_super_heavy": {
+        "name": "Super-Heavy Phaser Projector",
+        "category": "Energy",
+        "description": "Super-heavy Phased energy beam.",
+        "stats": {
+            "range": 54,
+            "strength": 7,
+            "ap": -4,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "phaser",
+            "accurate",
+            "heavy"
+        ]
+    },
+    "base_phaser_titan_class": {
+        "name": "Titan-Class Phaser Cannon",
+        "category": "Energy",
+        "description": "God-engine class Phased energy beam.",
+        "stats": {
+            "range": 75,
+            "strength": 10,
+            "ap": -6,
+            "attacks": 2
+        },
+        "tags": [
+            "energy",
+            "phaser",
+            "accurate",
+            "heavy",
+            "macro"
+        ]
+    },
+    "base_disruptor_weapon": {
+        "name": "Standard Disruptor Weapon",
+        "category": "Energy",
+        "description": "Standard Matter destabilizer.",
+        "stats": {
+            "range": 18,
+            "strength": 6,
+            "ap": -3,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "disruptor",
+            "brutal"
+        ]
+    },
+    "base_disruptor_light": {
+        "name": "Light Disruptor System",
+        "category": "Energy",
+        "description": "Light-weight Matter destabilizer.",
+        "stats": {
+            "range": 14,
+            "strength": 4,
+            "ap": -3,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "disruptor",
+            "brutal"
+        ]
+    },
+    "base_disruptor_heavy": {
+        "name": "Heavy Disruptor System",
+        "category": "Energy",
+        "description": "Heavy mounted Matter destabilizer.",
+        "stats": {
+            "range": 27,
+            "strength": 7,
+            "ap": -4,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "disruptor",
+            "brutal",
+            "heavy"
+        ]
+    },
+    "base_disruptor_heavy_rapid_fire": {
+        "name": "Rapid Fire Heavy Disruptor System",
+        "category": "Energy",
+        "description": "Rapid Fire modified Matter destabilizer.",
+        "stats": {
+            "range": 21,
+            "strength": 7,
+            "ap": -4,
+            "attacks": 2
+        },
+        "tags": [
+            "energy",
+            "disruptor",
+            "brutal",
+            "heavy",
+            "rapid_fire"
+        ]
+    },
+    "base_disruptor_heavy_sniper": {
+        "name": "Sniper Heavy Disruptor System",
+        "category": "Energy",
+        "description": "Sniper modified Matter destabilizer.",
+        "stats": {
+            "range": 40,
+            "strength": 7,
+            "ap": -5,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "disruptor",
+            "brutal",
+            "heavy",
+            "accurate"
+        ]
+    },
+    "base_disruptor_heavy_blast": {
+        "name": "Blast Heavy Disruptor System",
+        "category": "Energy",
+        "description": "Blast modified Matter destabilizer.",
+        "stats": {
+            "range": 27,
+            "strength": 8,
+            "ap": -4,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "disruptor",
+            "brutal",
+            "heavy",
+            "blast"
+        ]
+    },
+    "base_disruptor_heavy_twin_linked": {
+        "name": "Twin-Linked Heavy Disruptor System",
+        "category": "Energy",
+        "description": "Twin-Linked modified Matter destabilizer.",
+        "stats": {
+            "range": 27,
+            "strength": 7,
+            "ap": -4,
+            "attacks": 2
+        },
+        "tags": [
+            "energy",
+            "disruptor",
+            "brutal",
+            "heavy",
+            "twin_linked"
+        ]
+    },
+    "base_disruptor_heavy_overcharged": {
+        "name": "Overcharged Heavy Disruptor System",
+        "category": "Energy",
+        "description": "Overcharged modified Matter destabilizer.",
+        "stats": {
+            "range": 27,
+            "strength": 9,
+            "ap": -5,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "disruptor",
+            "brutal",
+            "heavy",
+            "hazardous",
+            "overcharged"
+        ]
+    },
+    "base_disruptor_heavy_compact": {
+        "name": "Compact Heavy Disruptor System",
+        "category": "Energy",
+        "description": "Compact modified Matter destabilizer.",
+        "stats": {
+            "range": 16,
+            "strength": 7,
+            "ap": -4,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "disruptor",
+            "brutal",
+            "heavy",
+            "assault"
+        ]
+    },
+    "base_disruptor_heavy_master_crafted": {
+        "name": "Master-Crafted Heavy Disruptor System",
+        "category": "Energy",
+        "description": "Master-Crafted modified Matter destabilizer.",
+        "stats": {
+            "range": 27,
+            "strength": 8,
+            "ap": -5,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "disruptor",
+            "brutal",
+            "heavy",
+            "master_crafted"
+        ]
+    },
+    "base_disruptor_super_heavy": {
+        "name": "Super-Heavy Disruptor System",
+        "category": "Energy",
+        "description": "Super-heavy Matter destabilizer.",
+        "stats": {
+            "range": 32,
+            "strength": 9,
+            "ap": -5,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "disruptor",
+            "brutal",
+            "heavy"
+        ]
+    },
+    "base_disruptor_titan_class": {
+        "name": "Titan-Class Disruptor System",
+        "category": "Energy",
+        "description": "God-engine class Matter destabilizer.",
+        "stats": {
+            "range": 45,
+            "strength": 12,
+            "ap": -7,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "disruptor",
+            "brutal",
+            "heavy",
+            "macro"
+        ]
+    },
+    "base_ion_weapon": {
+        "name": "Standard Ion Weapon",
+        "category": "Energy",
+        "description": "Standard Ionized particle stream.",
+        "stats": {
+            "range": 36,
+            "strength": 7,
+            "ap": -1,
+            "attacks": 3
+        },
+        "tags": [
+            "energy",
+            "ion",
+            "emp"
+        ]
+    },
+    "base_ion_light": {
+        "name": "Light Ion Projector",
+        "category": "Energy",
+        "description": "Light-weight Ionized particle stream.",
+        "stats": {
+            "range": 28,
+            "strength": 5,
+            "ap": -1,
+            "attacks": 4
+        },
+        "tags": [
+            "energy",
+            "ion",
+            "emp"
+        ]
+    },
+    "base_ion_heavy": {
+        "name": "Heavy Ion Cannon",
+        "category": "Energy",
+        "description": "Heavy mounted Ionized particle stream.",
+        "stats": {
+            "range": 54,
+            "strength": 8,
+            "ap": -2,
+            "attacks": 2
+        },
+        "tags": [
+            "energy",
+            "ion",
+            "emp",
+            "heavy"
+        ]
+    },
+    "base_ion_heavy_rapid_fire": {
+        "name": "Rapid Fire Heavy Ion Projector",
+        "category": "Energy",
+        "description": "Rapid Fire modified Ionized particle stream.",
+        "stats": {
+            "range": 43,
+            "strength": 8,
+            "ap": -2,
+            "attacks": 4
+        },
+        "tags": [
+            "energy",
+            "ion",
+            "emp",
+            "heavy",
+            "rapid_fire"
+        ]
+    },
+    "base_ion_heavy_sniper": {
+        "name": "Sniper Heavy Ion Projector",
+        "category": "Energy",
+        "description": "Sniper modified Ionized particle stream.",
+        "stats": {
+            "range": 81,
+            "strength": 8,
+            "ap": -3,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "ion",
+            "emp",
+            "heavy",
+            "accurate"
+        ]
+    },
+    "base_ion_heavy_blast": {
+        "name": "Blast Heavy Ion Cannon",
+        "category": "Energy",
+        "description": "Blast modified Ionized particle stream.",
+        "stats": {
+            "range": 54,
+            "strength": 9,
+            "ap": -2,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "ion",
+            "emp",
+            "heavy",
+            "blast"
+        ]
+    },
+    "base_ion_heavy_twin_linked": {
+        "name": "Twin-Linked Heavy Ion Cannon",
+        "category": "Energy",
+        "description": "Twin-Linked modified Ionized particle stream.",
+        "stats": {
+            "range": 54,
+            "strength": 8,
+            "ap": -2,
+            "attacks": 4
+        },
+        "tags": [
+            "energy",
+            "ion",
+            "emp",
+            "heavy",
+            "twin_linked"
+        ]
+    },
+    "base_ion_heavy_overcharged": {
+        "name": "Overcharged Heavy Ion Cannon",
+        "category": "Energy",
+        "description": "Overcharged modified Ionized particle stream.",
+        "stats": {
+            "range": 54,
+            "strength": 10,
+            "ap": -3,
+            "attacks": 2
+        },
+        "tags": [
+            "energy",
+            "ion",
+            "emp",
+            "heavy",
+            "hazardous",
+            "overcharged"
+        ]
+    },
+    "base_ion_heavy_compact": {
+        "name": "Compact Heavy Ion Cannon",
+        "category": "Energy",
+        "description": "Compact modified Ionized particle stream.",
+        "stats": {
+            "range": 32,
+            "strength": 8,
+            "ap": -2,
+            "attacks": 2
+        },
+        "tags": [
+            "energy",
+            "ion",
+            "emp",
+            "heavy",
+            "assault"
+        ]
+    },
+    "base_ion_heavy_master_crafted": {
+        "name": "Master-Crafted Heavy Ion Cannon",
+        "category": "Energy",
+        "description": "Master-Crafted modified Ionized particle stream.",
+        "stats": {
+            "range": 54,
+            "strength": 9,
+            "ap": -3,
+            "attacks": 2
+        },
+        "tags": [
+            "energy",
+            "ion",
+            "emp",
+            "heavy",
+            "master_crafted"
+        ]
+    },
+    "base_ion_super_heavy": {
+        "name": "Super-Heavy Ion Cannon",
+        "category": "Energy",
+        "description": "Super-heavy Ionized particle stream.",
+        "stats": {
+            "range": 64,
+            "strength": 10,
+            "ap": -3,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "ion",
+            "emp",
+            "heavy"
+        ]
+    },
+    "base_ion_titan_class": {
+        "name": "Titan-Class Ion Projector",
+        "category": "Energy",
+        "description": "God-engine class Ionized particle stream.",
+        "stats": {
+            "range": 90,
+            "strength": 14,
+            "ap": -5,
+            "attacks": 3
+        },
+        "tags": [
+            "energy",
+            "ion",
+            "emp",
+            "heavy",
+            "macro"
+        ]
+    },
+    "base_polaron_weapon": {
+        "name": "Standard Polaron Weapon",
+        "category": "Energy",
+        "description": "Standard Polaron particle beam.",
+        "stats": {
+            "range": 28,
+            "strength": 6,
+            "ap": -2,
+            "attacks": 2
+        },
+        "tags": [
+            "energy",
+            "polaron",
+            "shield_piercing"
+        ]
+    },
+    "base_polaron_light": {
+        "name": "Light Polaron Cannon",
+        "category": "Energy",
+        "description": "Light-weight Polaron particle beam.",
+        "stats": {
+            "range": 22,
+            "strength": 4,
+            "ap": -2,
+            "attacks": 3
+        },
+        "tags": [
+            "energy",
+            "polaron",
+            "shield_piercing"
+        ]
+    },
+    "base_polaron_heavy": {
+        "name": "Heavy Polaron Cannon",
+        "category": "Energy",
+        "description": "Heavy mounted Polaron particle beam.",
+        "stats": {
+            "range": 42,
+            "strength": 7,
+            "ap": -3,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "polaron",
+            "shield_piercing",
+            "heavy"
+        ]
+    },
+    "base_polaron_heavy_rapid_fire": {
+        "name": "Rapid Fire Heavy Polaron Projector",
+        "category": "Energy",
+        "description": "Rapid Fire modified Polaron particle beam.",
+        "stats": {
+            "range": 33,
+            "strength": 7,
+            "ap": -3,
+            "attacks": 2
+        },
+        "tags": [
+            "energy",
+            "polaron",
+            "shield_piercing",
+            "heavy",
+            "rapid_fire"
+        ]
+    },
+    "base_polaron_heavy_sniper": {
+        "name": "Sniper Heavy Polaron Projector",
+        "category": "Energy",
+        "description": "Sniper modified Polaron particle beam.",
+        "stats": {
+            "range": 63,
+            "strength": 7,
+            "ap": -4,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "polaron",
+            "shield_piercing",
+            "heavy",
+            "accurate"
+        ]
+    },
+    "base_polaron_heavy_blast": {
+        "name": "Blast Heavy Polaron Cannon",
+        "category": "Energy",
+        "description": "Blast modified Polaron particle beam.",
+        "stats": {
+            "range": 42,
+            "strength": 8,
+            "ap": -3,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "polaron",
+            "shield_piercing",
+            "heavy",
+            "blast"
+        ]
+    },
+    "base_polaron_heavy_twin_linked": {
+        "name": "Twin-Linked Heavy Polaron Projector",
+        "category": "Energy",
+        "description": "Twin-Linked modified Polaron particle beam.",
+        "stats": {
+            "range": 42,
+            "strength": 7,
+            "ap": -3,
+            "attacks": 2
+        },
+        "tags": [
+            "energy",
+            "polaron",
+            "shield_piercing",
+            "heavy",
+            "twin_linked"
+        ]
+    },
+    "base_polaron_heavy_overcharged": {
+        "name": "Overcharged Heavy Polaron Cannon",
+        "category": "Energy",
+        "description": "Overcharged modified Polaron particle beam.",
+        "stats": {
+            "range": 42,
+            "strength": 9,
+            "ap": -4,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "polaron",
+            "shield_piercing",
+            "heavy",
+            "hazardous",
+            "overcharged"
+        ]
+    },
+    "base_polaron_heavy_compact": {
+        "name": "Compact Heavy Polaron Cannon",
+        "category": "Energy",
+        "description": "Compact modified Polaron particle beam.",
+        "stats": {
+            "range": 25,
+            "strength": 7,
+            "ap": -3,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "polaron",
+            "shield_piercing",
+            "heavy",
+            "assault"
+        ]
+    },
+    "base_polaron_heavy_master_crafted": {
+        "name": "Master-Crafted Heavy Polaron Cannon",
+        "category": "Energy",
+        "description": "Master-Crafted modified Polaron particle beam.",
+        "stats": {
+            "range": 42,
+            "strength": 8,
+            "ap": -4,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "polaron",
+            "shield_piercing",
+            "heavy",
+            "master_crafted"
+        ]
+    },
+    "base_polaron_super_heavy": {
+        "name": "Super-Heavy Polaron Projector",
+        "category": "Energy",
+        "description": "Super-heavy Polaron particle beam.",
+        "stats": {
+            "range": 50,
+            "strength": 9,
+            "ap": -4,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "polaron",
+            "shield_piercing",
+            "heavy"
+        ]
+    },
+    "base_polaron_titan_class": {
+        "name": "Titan-Class Polaron Projector",
+        "category": "Energy",
+        "description": "God-engine class Polaron particle beam.",
+        "stats": {
+            "range": 70,
+            "strength": 12,
+            "ap": -6,
+            "attacks": 2
+        },
+        "tags": [
+            "energy",
+            "polaron",
+            "shield_piercing",
+            "heavy",
+            "macro"
+        ]
+    },
+    "base_stubber_weapon": {
+        "name": "Standard Stub Weapon",
+        "category": "Ballistic",
+        "description": "Standard Solid projectile machine gun.",
+        "stats": {
+            "range": 36,
+            "strength": 3,
+            "ap": 0,
+            "attacks": 4
+        },
+        "tags": [
+            "kinetic",
+            "rapid_fire",
+            "cheap"
+        ]
+    },
+    "base_stubber_light": {
+        "name": "Light Stub Rifle",
+        "category": "Ballistic",
+        "description": "Light-weight Solid projectile machine gun.",
+        "stats": {
+            "range": 28,
+            "strength": 2,
+            "ap": 0,
+            "attacks": 6
+        },
+        "tags": [
+            "kinetic",
+            "rapid_fire",
+            "cheap"
+        ]
+    },
+    "base_stubber_heavy": {
+        "name": "Heavy Stub Gun",
+        "category": "Ballistic",
+        "description": "Heavy mounted Solid projectile machine gun.",
+        "stats": {
+            "range": 54,
+            "strength": 3,
+            "ap": -1,
+            "attacks": 3
+        },
+        "tags": [
+            "kinetic",
+            "rapid_fire",
+            "cheap",
+            "heavy"
+        ]
+    },
+    "base_stubber_heavy_rapid_fire": {
+        "name": "Rapid Fire Heavy Stub Gun",
+        "category": "Ballistic",
+        "description": "Rapid Fire modified Solid projectile machine gun.",
+        "stats": {
+            "range": 43,
+            "strength": 3,
+            "ap": -1,
+            "attacks": 5
+        },
+        "tags": [
+            "kinetic",
+            "rapid_fire",
+            "cheap",
+            "heavy",
+            "rapid_fire"
+        ]
+    },
+    "base_stubber_heavy_sniper": {
+        "name": "Sniper Heavy Stub Rifle",
+        "category": "Ballistic",
+        "description": "Sniper modified Solid projectile machine gun.",
+        "stats": {
+            "range": 81,
+            "strength": 3,
+            "ap": -2,
+            "attacks": 1
+        },
+        "tags": [
+            "kinetic",
+            "rapid_fire",
+            "cheap",
+            "heavy",
+            "accurate"
+        ]
+    },
+    "base_stubber_heavy_blast": {
+        "name": "Blast Heavy Stub Rifle",
+        "category": "Ballistic",
+        "description": "Blast modified Solid projectile machine gun.",
+        "stats": {
+            "range": 54,
+            "strength": 3,
+            "ap": -1,
+            "attacks": 1
+        },
+        "tags": [
+            "kinetic",
+            "rapid_fire",
+            "cheap",
+            "heavy",
+            "blast"
+        ]
+    },
+    "base_stubber_heavy_twin_linked": {
+        "name": "Twin-Linked Heavy Stub Rifle",
+        "category": "Ballistic",
+        "description": "Twin-Linked modified Solid projectile machine gun.",
+        "stats": {
+            "range": 54,
+            "strength": 3,
+            "ap": -1,
+            "attacks": 6
+        },
+        "tags": [
+            "kinetic",
+            "rapid_fire",
+            "cheap",
+            "heavy",
+            "twin_linked"
+        ]
+    },
+    "base_stubber_heavy_overcharged": {
+        "name": "Overcharged Heavy Stub Rifle",
+        "category": "Ballistic",
+        "description": "Overcharged modified Solid projectile machine gun.",
+        "stats": {
+            "range": 54,
+            "strength": 3,
+            "ap": -2,
+            "attacks": 3
+        },
+        "tags": [
+            "kinetic",
+            "rapid_fire",
+            "cheap",
+            "heavy",
+            "hazardous",
+            "overcharged"
+        ]
+    },
+    "base_stubber_heavy_compact": {
+        "name": "Compact Heavy Stub Rifle",
+        "category": "Ballistic",
+        "description": "Compact modified Solid projectile machine gun.",
+        "stats": {
+            "range": 32,
+            "strength": 3,
+            "ap": -1,
+            "attacks": 3
+        },
+        "tags": [
+            "kinetic",
+            "rapid_fire",
+            "cheap",
+            "heavy",
+            "assault"
+        ]
+    },
+    "base_stubber_heavy_master_crafted": {
+        "name": "Master-Crafted Heavy Stub Rifle",
+        "category": "Ballistic",
+        "description": "Master-Crafted modified Solid projectile machine gun.",
+        "stats": {
+            "range": 54,
+            "strength": 4,
+            "ap": -2,
+            "attacks": 3
+        },
+        "tags": [
+            "kinetic",
+            "rapid_fire",
+            "cheap",
+            "heavy",
+            "master_crafted"
+        ]
+    },
+    "base_stubber_super_heavy": {
+        "name": "Super-Heavy Stub Gun",
+        "category": "Ballistic",
+        "description": "Super-heavy Solid projectile machine gun.",
+        "stats": {
+            "range": 64,
+            "strength": 4,
+            "ap": -2,
+            "attacks": 2
+        },
+        "tags": [
+            "kinetic",
+            "rapid_fire",
+            "cheap",
+            "heavy"
+        ]
+    },
+    "base_stubber_titan_class": {
+        "name": "Titan-Class Stub Gun",
+        "category": "Ballistic",
+        "description": "God-engine class Solid projectile machine gun.",
+        "stats": {
+            "range": 90,
+            "strength": 6,
+            "ap": -4,
+            "attacks": 4
+        },
+        "tags": [
+            "kinetic",
+            "rapid_fire",
+            "cheap",
+            "heavy",
+            "macro"
+        ]
+    },
+    "base_autocannon_weapon": {
+        "name": "Standard Autocannon Weapon",
+        "category": "Ballistic",
+        "description": "Standard Large caliber automatic cannon.",
+        "stats": {
+            "range": 48,
+            "strength": 7,
+            "ap": -1,
+            "attacks": 2
+        },
+        "tags": [
+            "kinetic",
+            "heavy",
+            "reliable"
+        ]
+    },
+    "base_autocannon_light": {
+        "name": "Light Autocannon Gun",
+        "category": "Ballistic",
+        "description": "Light-weight Large caliber automatic cannon.",
+        "stats": {
+            "range": 38,
+            "strength": 5,
+            "ap": -1,
+            "attacks": 3
+        },
+        "tags": [
+            "kinetic",
+            "heavy",
+            "reliable"
+        ]
+    },
+    "base_autocannon_heavy": {
+        "name": "Heavy Autocannon Rifle",
+        "category": "Ballistic",
+        "description": "Heavy mounted Large caliber automatic cannon.",
+        "stats": {
+            "range": 72,
+            "strength": 8,
+            "ap": -2,
+            "attacks": 1
+        },
+        "tags": [
+            "kinetic",
+            "heavy",
+            "reliable",
+            "heavy"
+        ]
+    },
+    "base_autocannon_heavy_rapid_fire": {
+        "name": "Rapid Fire Heavy Autocannon Rifle",
+        "category": "Ballistic",
+        "description": "Rapid Fire modified Large caliber automatic cannon.",
+        "stats": {
+            "range": 57,
+            "strength": 8,
+            "ap": -2,
+            "attacks": 2
+        },
+        "tags": [
+            "kinetic",
+            "heavy",
+            "reliable",
+            "heavy",
+            "rapid_fire"
+        ]
+    },
+    "base_autocannon_heavy_sniper": {
+        "name": "Sniper Heavy Autocannon Rifle",
+        "category": "Ballistic",
+        "description": "Sniper modified Large caliber automatic cannon.",
+        "stats": {
+            "range": 108,
+            "strength": 8,
+            "ap": -3,
+            "attacks": 1
+        },
+        "tags": [
+            "kinetic",
+            "heavy",
+            "reliable",
+            "heavy",
+            "accurate"
+        ]
+    },
+    "base_autocannon_heavy_blast": {
+        "name": "Blast Heavy Autocannon Gun",
+        "category": "Ballistic",
+        "description": "Blast modified Large caliber automatic cannon.",
+        "stats": {
+            "range": 72,
+            "strength": 9,
+            "ap": -2,
+            "attacks": 1
+        },
+        "tags": [
+            "kinetic",
+            "heavy",
+            "reliable",
+            "heavy",
+            "blast"
+        ]
+    },
+    "base_autocannon_heavy_twin_linked": {
+        "name": "Twin-Linked Heavy Autocannon Gun",
+        "category": "Ballistic",
+        "description": "Twin-Linked modified Large caliber automatic cannon.",
+        "stats": {
+            "range": 72,
+            "strength": 8,
+            "ap": -2,
+            "attacks": 2
+        },
+        "tags": [
+            "kinetic",
+            "heavy",
+            "reliable",
+            "heavy",
+            "twin_linked"
+        ]
+    },
+    "base_autocannon_heavy_overcharged": {
+        "name": "Overcharged Heavy Autocannon Gun",
+        "category": "Ballistic",
+        "description": "Overcharged modified Large caliber automatic cannon.",
+        "stats": {
+            "range": 72,
+            "strength": 10,
+            "ap": -3,
+            "attacks": 1
+        },
+        "tags": [
+            "kinetic",
+            "heavy",
+            "reliable",
+            "heavy",
+            "hazardous",
+            "overcharged"
+        ]
+    },
+    "base_autocannon_heavy_compact": {
+        "name": "Compact Heavy Autocannon Rifle",
+        "category": "Ballistic",
+        "description": "Compact modified Large caliber automatic cannon.",
+        "stats": {
+            "range": 43,
+            "strength": 8,
+            "ap": -2,
+            "attacks": 1
+        },
+        "tags": [
+            "kinetic",
+            "heavy",
+            "reliable",
+            "heavy",
+            "assault"
+        ]
+    },
+    "base_autocannon_heavy_master_crafted": {
+        "name": "Master-Crafted Heavy Autocannon Rifle",
+        "category": "Ballistic",
+        "description": "Master-Crafted modified Large caliber automatic cannon.",
+        "stats": {
+            "range": 72,
+            "strength": 9,
+            "ap": -3,
+            "attacks": 1
+        },
+        "tags": [
+            "kinetic",
+            "heavy",
+            "reliable",
+            "heavy",
+            "master_crafted"
+        ]
+    },
+    "base_autocannon_super_heavy": {
+        "name": "Super-Heavy Autocannon Rifle",
+        "category": "Ballistic",
+        "description": "Super-heavy Large caliber automatic cannon.",
+        "stats": {
+            "range": 86,
+            "strength": 10,
+            "ap": -3,
+            "attacks": 1
+        },
+        "tags": [
+            "kinetic",
+            "heavy",
+            "reliable",
+            "heavy"
+        ]
+    },
+    "base_autocannon_titan_class": {
+        "name": "Titan-Class Autocannon Gun",
+        "category": "Ballistic",
+        "description": "God-engine class Large caliber automatic cannon.",
+        "stats": {
+            "range": 120,
+            "strength": 14,
+            "ap": -5,
+            "attacks": 2
+        },
+        "tags": [
+            "kinetic",
+            "heavy",
+            "reliable",
+            "heavy",
+            "macro"
+        ]
+    },
+    "base_missile_weapon": {
+        "name": "Standard Missile Weapon",
+        "category": "Missile",
+        "description": "Standard Guided warhead.",
+        "stats": {
+            "range": 48,
+            "strength": 8,
+            "ap": -2,
+            "attacks": 1
+        },
+        "tags": [
+            "missile",
+            "explosive",
+            "guided"
+        ]
+    },
+    "base_missile_light": {
+        "name": "Light Missile Launcher",
+        "category": "Missile",
+        "description": "Light-weight Guided warhead.",
+        "stats": {
+            "range": 38,
+            "strength": 6,
+            "ap": -2,
+            "attacks": 1
+        },
+        "tags": [
+            "missile",
+            "explosive",
+            "guided"
+        ]
+    },
+    "base_missile_heavy": {
+        "name": "Heavy Missile Launcher",
+        "category": "Missile",
+        "description": "Heavy mounted Guided warhead.",
+        "stats": {
+            "range": 72,
+            "strength": 10,
+            "ap": -3,
+            "attacks": 1
+        },
+        "tags": [
+            "missile",
+            "explosive",
+            "guided",
+            "heavy"
+        ]
+    },
+    "base_missile_heavy_rapid_fire": {
+        "name": "Rapid Fire Heavy Missile Launcher",
+        "category": "Missile",
+        "description": "Rapid Fire modified Guided warhead.",
+        "stats": {
+            "range": 57,
+            "strength": 10,
+            "ap": -3,
+            "attacks": 2
+        },
+        "tags": [
+            "missile",
+            "explosive",
+            "guided",
+            "heavy",
+            "rapid_fire"
+        ]
+    },
+    "base_missile_heavy_sniper": {
+        "name": "Sniper Heavy Missile Launcher",
+        "category": "Missile",
+        "description": "Sniper modified Guided warhead.",
+        "stats": {
+            "range": 108,
+            "strength": 10,
+            "ap": -4,
+            "attacks": 1
+        },
+        "tags": [
+            "missile",
+            "explosive",
+            "guided",
+            "heavy",
+            "accurate"
+        ]
+    },
+    "base_missile_heavy_blast": {
+        "name": "Blast Heavy Missile Launcher",
+        "category": "Missile",
+        "description": "Blast modified Guided warhead.",
+        "stats": {
+            "range": 72,
+            "strength": 12,
+            "ap": -3,
+            "attacks": 1
+        },
+        "tags": [
+            "missile",
+            "explosive",
+            "guided",
+            "heavy",
+            "blast"
+        ]
+    },
+    "base_missile_heavy_twin_linked": {
+        "name": "Twin-Linked Heavy Missile Launcher",
+        "category": "Missile",
+        "description": "Twin-Linked modified Guided warhead.",
+        "stats": {
+            "range": 72,
+            "strength": 10,
+            "ap": -3,
+            "attacks": 2
+        },
+        "tags": [
+            "missile",
+            "explosive",
+            "guided",
+            "heavy",
+            "twin_linked"
+        ]
+    },
+    "base_missile_heavy_overcharged": {
+        "name": "Overcharged Heavy Missile Launcher",
+        "category": "Missile",
+        "description": "Overcharged modified Guided warhead.",
+        "stats": {
+            "range": 72,
+            "strength": 13,
+            "ap": -4,
+            "attacks": 1
+        },
+        "tags": [
+            "missile",
+            "explosive",
+            "guided",
+            "heavy",
+            "hazardous",
+            "overcharged"
+        ]
+    },
+    "base_missile_heavy_compact": {
+        "name": "Compact Heavy Missile Launcher",
+        "category": "Missile",
+        "description": "Compact modified Guided warhead.",
+        "stats": {
+            "range": 43,
+            "strength": 10,
+            "ap": -3,
+            "attacks": 1
+        },
+        "tags": [
+            "missile",
+            "explosive",
+            "guided",
+            "heavy",
+            "assault"
+        ]
+    },
+    "base_missile_heavy_master_crafted": {
+        "name": "Master-Crafted Heavy Missile Launcher",
+        "category": "Missile",
+        "description": "Master-Crafted modified Guided warhead.",
+        "stats": {
+            "range": 72,
+            "strength": 11,
+            "ap": -4,
+            "attacks": 1
+        },
+        "tags": [
+            "missile",
+            "explosive",
+            "guided",
+            "heavy",
+            "master_crafted"
+        ]
+    },
+    "base_missile_super_heavy": {
+        "name": "Super-Heavy Missile Launcher",
+        "category": "Missile",
+        "description": "Super-heavy Guided warhead.",
+        "stats": {
+            "range": 86,
+            "strength": 12,
+            "ap": -4,
+            "attacks": 1
+        },
+        "tags": [
+            "missile",
+            "explosive",
+            "guided",
+            "heavy"
+        ]
+    },
+    "base_missile_titan_class": {
+        "name": "Titan-Class Missile Launcher",
+        "category": "Missile",
+        "description": "God-engine class Guided warhead.",
+        "stats": {
+            "range": 120,
+            "strength": 16,
+            "ap": -6,
+            "attacks": 1
+        },
+        "tags": [
+            "missile",
+            "explosive",
+            "guided",
+            "heavy",
+            "macro"
+        ]
+    },
+    "base_flamer_weapon": {
+        "name": "Standard Flamer Weapon",
+        "category": "Thermal",
+        "description": "Standard Chemical INCENDIARY projector.",
+        "stats": {
+            "range": 8,
+            "strength": 4,
+            "ap": 0,
+            "attacks": 6
+        },
+        "tags": [
+            "thermal",
+            "incendiary",
+            "area"
+        ]
+    },
+    "base_flamer_light": {
+        "name": "Light Flamer System",
+        "category": "Thermal",
+        "description": "Light-weight Chemical INCENDIARY projector.",
+        "stats": {
+            "range": 6,
+            "strength": 3,
+            "ap": 0,
+            "attacks": 9
+        },
+        "tags": [
+            "thermal",
+            "incendiary",
+            "area"
+        ]
+    },
+    "base_flamer_heavy": {
+        "name": "Heavy Flamer System",
+        "category": "Thermal",
+        "description": "Heavy mounted Chemical INCENDIARY projector.",
+        "stats": {
+            "range": 12,
+            "strength": 5,
+            "ap": -1,
+            "attacks": 4
+        },
+        "tags": [
+            "thermal",
+            "incendiary",
+            "area",
+            "heavy"
+        ]
+    },
+    "base_flamer_heavy_rapid_fire": {
+        "name": "Rapid Fire Heavy Flamer System",
+        "category": "Thermal",
+        "description": "Rapid Fire modified Chemical INCENDIARY projector.",
+        "stats": {
+            "range": 9,
+            "strength": 5,
+            "ap": -1,
+            "attacks": 7
+        },
+        "tags": [
+            "thermal",
+            "incendiary",
+            "area",
+            "heavy",
+            "rapid_fire"
+        ]
+    },
+    "base_flamer_heavy_sniper": {
+        "name": "Sniper Heavy Flamer System",
+        "category": "Thermal",
+        "description": "Sniper modified Chemical INCENDIARY projector.",
+        "stats": {
+            "range": 18,
+            "strength": 5,
+            "ap": -2,
+            "attacks": 1
+        },
+        "tags": [
+            "thermal",
+            "incendiary",
+            "area",
+            "heavy",
+            "accurate"
+        ]
+    },
+    "base_flamer_heavy_blast": {
+        "name": "Blast Heavy Flamer System",
+        "category": "Thermal",
+        "description": "Blast modified Chemical INCENDIARY projector.",
+        "stats": {
+            "range": 12,
+            "strength": 6,
+            "ap": -1,
+            "attacks": 2
+        },
+        "tags": [
+            "thermal",
+            "incendiary",
+            "area",
+            "heavy",
+            "blast"
+        ]
+    },
+    "base_flamer_heavy_twin_linked": {
+        "name": "Twin-Linked Heavy Flamer System",
+        "category": "Thermal",
+        "description": "Twin-Linked modified Chemical INCENDIARY projector.",
+        "stats": {
+            "range": 12,
+            "strength": 5,
+            "ap": -1,
+            "attacks": 8
+        },
+        "tags": [
+            "thermal",
+            "incendiary",
+            "area",
+            "heavy",
+            "twin_linked"
+        ]
+    },
+    "base_flamer_heavy_overcharged": {
+        "name": "Overcharged Heavy Flamer System",
+        "category": "Thermal",
+        "description": "Overcharged modified Chemical INCENDIARY projector.",
+        "stats": {
+            "range": 12,
+            "strength": 6,
+            "ap": -2,
+            "attacks": 4
+        },
+        "tags": [
+            "thermal",
+            "incendiary",
+            "area",
+            "heavy",
+            "hazardous",
+            "overcharged"
+        ]
+    },
+    "base_flamer_heavy_compact": {
+        "name": "Compact Heavy Flamer System",
+        "category": "Thermal",
+        "description": "Compact modified Chemical INCENDIARY projector.",
+        "stats": {
+            "range": 7,
+            "strength": 5,
+            "ap": -1,
+            "attacks": 4
+        },
+        "tags": [
+            "thermal",
+            "incendiary",
+            "area",
+            "heavy",
+            "assault"
+        ]
+    },
+    "base_flamer_heavy_master_crafted": {
+        "name": "Master-Crafted Heavy Flamer System",
+        "category": "Thermal",
+        "description": "Master-Crafted modified Chemical INCENDIARY projector.",
+        "stats": {
+            "range": 12,
+            "strength": 6,
+            "ap": -2,
+            "attacks": 4
+        },
+        "tags": [
+            "thermal",
+            "incendiary",
+            "area",
+            "heavy",
+            "master_crafted"
+        ]
+    },
+    "base_flamer_super_heavy": {
+        "name": "Super-Heavy Flamer System",
+        "category": "Thermal",
+        "description": "Super-heavy Chemical INCENDIARY projector.",
+        "stats": {
+            "range": 14,
+            "strength": 6,
+            "ap": -2,
+            "attacks": 3
+        },
+        "tags": [
+            "thermal",
+            "incendiary",
+            "area",
+            "heavy"
+        ]
+    },
+    "base_flamer_titan_class": {
+        "name": "Titan-Class Flamer System",
+        "category": "Thermal",
+        "description": "God-engine class Chemical INCENDIARY projector.",
+        "stats": {
+            "range": 20,
+            "strength": 8,
+            "ap": -4,
+            "attacks": 6
+        },
+        "tags": [
+            "thermal",
+            "incendiary",
+            "area",
+            "heavy",
+            "macro"
+        ]
+    },
+    "base_sonic_weapon": {
+        "name": "Standard Sonic Weapon",
+        "category": "Exotic",
+        "description": "Standard Sound wave projector.",
+        "stats": {
+            "range": 24,
+            "strength": 4,
+            "ap": -1,
+            "attacks": 3
+        },
+        "tags": [
+            "sonic",
+            "ignore_cover",
+            "disruptor"
+        ]
+    },
+    "base_sonic_light": {
+        "name": "Light Sonic System",
+        "category": "Exotic",
+        "description": "Light-weight Sound wave projector.",
+        "stats": {
+            "range": 19,
+            "strength": 3,
+            "ap": -1,
+            "attacks": 4
+        },
+        "tags": [
+            "sonic",
+            "ignore_cover",
+            "disruptor"
+        ]
+    },
+    "base_sonic_heavy": {
+        "name": "Heavy Sonic System",
+        "category": "Exotic",
+        "description": "Heavy mounted Sound wave projector.",
+        "stats": {
+            "range": 36,
+            "strength": 5,
+            "ap": -2,
+            "attacks": 2
+        },
+        "tags": [
+            "sonic",
+            "ignore_cover",
+            "disruptor",
+            "heavy"
+        ]
+    },
+    "base_sonic_heavy_rapid_fire": {
+        "name": "Rapid Fire Heavy Sonic System",
+        "category": "Exotic",
+        "description": "Rapid Fire modified Sound wave projector.",
+        "stats": {
+            "range": 28,
+            "strength": 5,
+            "ap": -2,
+            "attacks": 4
+        },
+        "tags": [
+            "sonic",
+            "ignore_cover",
+            "disruptor",
+            "heavy",
+            "rapid_fire"
+        ]
+    },
+    "base_sonic_heavy_sniper": {
+        "name": "Sniper Heavy Sonic System",
+        "category": "Exotic",
+        "description": "Sniper modified Sound wave projector.",
+        "stats": {
+            "range": 54,
+            "strength": 5,
+            "ap": -3,
+            "attacks": 1
+        },
+        "tags": [
+            "sonic",
+            "ignore_cover",
+            "disruptor",
+            "heavy",
+            "accurate"
+        ]
+    },
+    "base_sonic_heavy_blast": {
+        "name": "Blast Heavy Sonic System",
+        "category": "Exotic",
+        "description": "Blast modified Sound wave projector.",
+        "stats": {
+            "range": 36,
+            "strength": 6,
+            "ap": -2,
+            "attacks": 1
+        },
+        "tags": [
+            "sonic",
+            "ignore_cover",
+            "disruptor",
+            "heavy",
+            "blast"
+        ]
+    },
+    "base_sonic_heavy_twin_linked": {
+        "name": "Twin-Linked Heavy Sonic System",
+        "category": "Exotic",
+        "description": "Twin-Linked modified Sound wave projector.",
+        "stats": {
+            "range": 36,
+            "strength": 5,
+            "ap": -2,
+            "attacks": 4
+        },
+        "tags": [
+            "sonic",
+            "ignore_cover",
+            "disruptor",
+            "heavy",
+            "twin_linked"
+        ]
+    },
+    "base_sonic_heavy_overcharged": {
+        "name": "Overcharged Heavy Sonic System",
+        "category": "Exotic",
+        "description": "Overcharged modified Sound wave projector.",
+        "stats": {
+            "range": 36,
+            "strength": 6,
+            "ap": -3,
+            "attacks": 2
+        },
+        "tags": [
+            "sonic",
+            "ignore_cover",
+            "disruptor",
+            "heavy",
+            "hazardous",
+            "overcharged"
+        ]
+    },
+    "base_sonic_heavy_compact": {
+        "name": "Compact Heavy Sonic System",
+        "category": "Exotic",
+        "description": "Compact modified Sound wave projector.",
+        "stats": {
+            "range": 21,
+            "strength": 5,
+            "ap": -2,
+            "attacks": 2
+        },
+        "tags": [
+            "sonic",
+            "ignore_cover",
+            "disruptor",
+            "heavy",
+            "assault"
+        ]
+    },
+    "base_sonic_heavy_master_crafted": {
+        "name": "Master-Crafted Heavy Sonic System",
+        "category": "Exotic",
+        "description": "Master-Crafted modified Sound wave projector.",
+        "stats": {
+            "range": 36,
+            "strength": 6,
+            "ap": -3,
+            "attacks": 2
+        },
+        "tags": [
+            "sonic",
+            "ignore_cover",
+            "disruptor",
+            "heavy",
+            "master_crafted"
+        ]
+    },
+    "base_sonic_super_heavy": {
+        "name": "Super-Heavy Sonic System",
+        "category": "Exotic",
+        "description": "Super-heavy Sound wave projector.",
+        "stats": {
+            "range": 43,
+            "strength": 6,
+            "ap": -3,
+            "attacks": 1
+        },
+        "tags": [
+            "sonic",
+            "ignore_cover",
+            "disruptor",
+            "heavy"
+        ]
+    },
+    "base_sonic_titan_class": {
+        "name": "Titan-Class Sonic System",
+        "category": "Exotic",
+        "description": "God-engine class Sound wave projector.",
+        "stats": {
+            "range": 60,
+            "strength": 8,
+            "ap": -5,
+            "attacks": 3
+        },
+        "tags": [
+            "sonic",
+            "ignore_cover",
+            "disruptor",
+            "heavy",
+            "macro"
+        ]
+    },
+    "base_tachyon_weapon": {
+        "name": "Standard Tachyon Weapon",
+        "category": "Exotic",
+        "description": "Standard Faster-than-light particle lance.",
+        "stats": {
+            "range": 100,
+            "strength": 10,
+            "ap": -5,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "tachyon",
+            "sniper"
+        ]
+    },
+    "base_tachyon_light": {
+        "name": "Light Tachyon Cannon",
+        "category": "Exotic",
+        "description": "Light-weight Faster-than-light particle lance.",
+        "stats": {
+            "range": 80,
+            "strength": 8,
+            "ap": -5,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "tachyon",
+            "sniper"
+        ]
+    },
+    "base_tachyon_heavy": {
+        "name": "Heavy Tachyon Projector",
+        "category": "Exotic",
+        "description": "Heavy mounted Faster-than-light particle lance.",
+        "stats": {
+            "range": 150,
+            "strength": 12,
+            "ap": -6,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "tachyon",
+            "sniper",
+            "heavy"
+        ]
+    },
+    "base_tachyon_heavy_rapid_fire": {
+        "name": "Rapid Fire Heavy Tachyon Projector",
+        "category": "Exotic",
+        "description": "Rapid Fire modified Faster-than-light particle lance.",
+        "stats": {
+            "range": 120,
+            "strength": 12,
+            "ap": -6,
+            "attacks": 2
+        },
+        "tags": [
+            "energy",
+            "tachyon",
+            "sniper",
+            "heavy",
+            "rapid_fire"
+        ]
+    },
+    "base_tachyon_heavy_sniper": {
+        "name": "Sniper Heavy Tachyon Projector",
+        "category": "Exotic",
+        "description": "Sniper modified Faster-than-light particle lance.",
+        "stats": {
+            "range": 225,
+            "strength": 12,
+            "ap": -7,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "tachyon",
+            "sniper",
+            "heavy",
+            "accurate"
+        ]
+    },
+    "base_tachyon_heavy_blast": {
+        "name": "Blast Heavy Tachyon Projector",
+        "category": "Exotic",
+        "description": "Blast modified Faster-than-light particle lance.",
+        "stats": {
+            "range": 150,
+            "strength": 14,
+            "ap": -6,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "tachyon",
+            "sniper",
+            "heavy",
+            "blast"
+        ]
+    },
+    "base_tachyon_heavy_twin_linked": {
+        "name": "Twin-Linked Heavy Tachyon Projector",
+        "category": "Exotic",
+        "description": "Twin-Linked modified Faster-than-light particle lance.",
+        "stats": {
+            "range": 150,
+            "strength": 12,
+            "ap": -6,
+            "attacks": 2
+        },
+        "tags": [
+            "energy",
+            "tachyon",
+            "sniper",
+            "heavy",
+            "twin_linked"
+        ]
+    },
+    "base_tachyon_heavy_overcharged": {
+        "name": "Overcharged Heavy Tachyon Cannon",
+        "category": "Exotic",
+        "description": "Overcharged modified Faster-than-light particle lance.",
+        "stats": {
+            "range": 150,
+            "strength": 15,
+            "ap": -7,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "tachyon",
+            "sniper",
+            "heavy",
+            "hazardous",
+            "overcharged"
+        ]
+    },
+    "base_tachyon_heavy_compact": {
+        "name": "Compact Heavy Tachyon Projector",
+        "category": "Exotic",
+        "description": "Compact modified Faster-than-light particle lance.",
+        "stats": {
+            "range": 90,
+            "strength": 12,
+            "ap": -6,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "tachyon",
+            "sniper",
+            "heavy",
+            "assault"
+        ]
+    },
+    "base_tachyon_heavy_master_crafted": {
+        "name": "Master-Crafted Heavy Tachyon Cannon",
+        "category": "Exotic",
+        "description": "Master-Crafted modified Faster-than-light particle lance.",
+        "stats": {
+            "range": 150,
+            "strength": 13,
+            "ap": -7,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "tachyon",
+            "sniper",
+            "heavy",
+            "master_crafted"
+        ]
+    },
+    "base_tachyon_super_heavy": {
+        "name": "Super-Heavy Tachyon Projector",
+        "category": "Exotic",
+        "description": "Super-heavy Faster-than-light particle lance.",
+        "stats": {
+            "range": 180,
+            "strength": 15,
+            "ap": -7,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "tachyon",
+            "sniper",
+            "heavy"
+        ]
+    },
+    "base_tachyon_titan_class": {
+        "name": "Titan-Class Tachyon Projector",
+        "category": "Exotic",
+        "description": "God-engine class Faster-than-light particle lance.",
+        "stats": {
+            "range": 250,
+            "strength": 20,
+            "ap": -9,
+            "attacks": 1
+        },
+        "tags": [
+            "energy",
+            "tachyon",
+            "sniper",
+            "heavy",
+            "macro"
+        ]
+    }
+}

@@ -1,0 +1,36 @@
+{
+    "id": "base_vehicle",
+    "name": "Base Vehicle",
+    "type": "vehicle",
+    "category": "vehicle",
+    "elemental_signature": {
+        "atom_mass": 40.0,
+        "atom_energy": 20.0,
+        "atom_cohesion": 25.0,
+        "atom_information": 5.0,
+        "atom_aether": 0.0,
+        "atom_will": 0.0,
+        "atom_volatility": 5.0,
+        "atom_frequency": 0.0,
+        "atom_stability": 5.0,
+        "atom_focus": 0.0
+    },
+    "base_stats": {
+        "hp": 300,
+        "armor": 60,
+        "damage": 25,
+        "ma": 40,
+        "md": 25,
+        "movement": 8
+    },
+    "universal_stats": {
+        "hull_structural_integrity": 1.2,
+        "weapon_kinetic_damage": 1.0,
+        "armor_kinetic_resistance": 1.5,
+        "mobility_speed_tactical": 0.8,
+        "mobility_agility_rating": 0.6
+    },
+    "default_traits": [],
+    "cost": 2500,
+    "description": "Armored vehicle template."
+}

@@ -1,0 +1,139 @@
+{
+    "base_armor": {
+        "name": "Standard Armor Plating",
+        "type": "module_defense",
+        "stats": {
+            "hp_bonus": 200,
+            "mass": 10
+        },
+        "elemental_signature": {
+            "atom_mass": 30,
+            "atom_cohesion": 30
+        }
+    },
+    "base_shield": {
+        "name": "Standard Deflector Shield",
+        "type": "module_defense",
+        "stats": {
+            "shield_bonus": 150,
+            "recharge": 20
+        },
+        "elemental_signature": {
+            "atom_energy": 30,
+            "atom_frequency": 20
+        }
+    },
+    "base_engine": {
+        "name": "Standard Ion Thruster",
+        "type": "module_utility",
+        "stats": {
+            "speed_bonus": 10,
+            "evasion": 5
+        },
+        "elemental_signature": {
+            "atom_energy": 20,
+            "atom_frequency": 20
+        }
+    },
+    "base_sensor": {
+        "name": "Standard Augur Array",
+        "type": "module_utility",
+        "stats": {
+            "range_bonus": 50,
+            "detection": 10
+        },
+        "elemental_signature": {
+            "atom_information": 30,
+            "atom_focus": 20
+        }
+    },
+    "base_reactor": {
+        "name": "Standard Fusion Core",
+        "type": "module_utility",
+        "stats": {
+            "power_output": 100
+        },
+        "elemental_signature": {
+            "atom_energy": 40,
+            "atom_volatility": 10
+        }
+    },
+    "base_interdictor": {
+        "name": "Gravity Well Generator",
+        "type": "module_utility",
+        "stats": {
+            "interdiction_power": 50
+        },
+        "abilities": [
+            "Gravity_Well"
+        ],
+        "elemental_signature": {
+            "atom_will": 40,
+            "atom_stability": 20
+        }
+    },
+    "reflective_shield": {
+        "name": "Reflective Shield Generator",
+        "type": "module_defense",
+        "stats": {
+            "shield_bonus": 100,
+            "recharge": 30
+        },
+        "tags": [
+            "anti_energy",
+            "reflective"
+        ],
+        "elemental_signature": {
+            "atom_energy": 50,
+            "atom_frequency": 40
+        }
+    },
+    "reactive_armor": {
+        "name": "Reactive Armor Plating",
+        "type": "module_defense",
+        "stats": {
+            "hp_bonus": 150,
+            "mass": 15
+        },
+        "tags": [
+            "anti_kinetic",
+            "reactive"
+        ],
+        "elemental_signature": {
+            "atom_mass": 40,
+            "atom_volatility": 20
+        }
+    },
+    "void_shield": {
+        "name": "Void Shield Generator",
+        "type": "module_defense",
+        "stats": {
+            "shield_bonus": 300,
+            "recharge": 10
+        },
+        "tags": [
+            "anti_exotic",
+            "void"
+        ],
+        "elemental_signature": {
+            "atom_void": 50,
+            "atom_energy": 20
+        }
+    },
+    "regenerative_hull": {
+        "name": "Living Metal Hull",
+        "type": "module_defense",
+        "stats": {
+            "hp_bonus": 250,
+            "mass": 10
+        },
+        "tags": [
+            "regen",
+            "self_repair"
+        ],
+        "elemental_signature": {
+            "atom_life": 50,
+            "atom_cohesion": 30
+        }
+    }
+}

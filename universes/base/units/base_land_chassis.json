@@ -1,0 +1,103 @@
+{
+    "infantry_standard": {
+        "name": "Standard Infantry Squad",
+        "category": "Infantry",
+        "base_cost": 100,
+        "base_hp": 10,
+        "base_org": 20,
+        "weight": 1,
+        "slots": {
+            "squad_size": 10,
+            "specialist_slots": 2,
+            "support_slots": 1
+        }
+    },
+    "infantry_heavy": {
+        "name": "Heavy Infantry / Exo-Suits",
+        "category": "Infantry",
+        "base_cost": 250,
+        "base_hp": 25,
+        "base_org": 30,
+        "weight": 2,
+        "slots": {
+            "squad_size": 5,
+            "specialist_slots": 5,
+            "support_slots": 0
+        }
+    },
+    "vehicle_light_tank": {
+        "name": "Light Tank",
+        "category": "Vehicle",
+        "base_cost": 500,
+        "base_hp": 100,
+        "base_armor": 10,
+        "hardpoints": {
+            "turret_main": "light",
+            "hull_mount": "light"
+        }
+    },
+    "vehicle_main_battle_tank": {
+        "name": "Main Battle Tank",
+        "category": "Vehicle",
+        "base_cost": 1200,
+        "base_hp": 250,
+        "base_armor": 30,
+        "hardpoints": {
+            "turret_main": "medium",
+            "coaxial": "micro",
+            "sponson_left": "light",
+            "sponson_right": "light"
+        }
+    },
+    "vehicle_super_heavy": {
+        "name": "Super-Heavy Fortress",
+        "category": "Vehicle",
+        "base_cost": 4000,
+        "base_hp": 800,
+        "base_armor": 60,
+        "hardpoints": {
+            "turret_main": "heavy",
+            "turret_secondary": "medium",
+            "sponson_1": "light",
+            "sponson_2": "light",
+            "sponson_3": "light",
+            "sponson_4": "light"
+        }
+    },
+    "walker_scout": {
+        "name": "Scout Walker",
+        "category": "Walker",
+        "base_cost": 300,
+        "base_hp": 60,
+        "base_armor": 5,
+        "hardpoints": {
+            "chin_mount": "light",
+            "utility": "sensor"
+        }
+    },
+    "walker_combat": {
+        "name": "Combat Walker",
+        "category": "Walker",
+        "base_cost": 900,
+        "base_hp": 180,
+        "base_armor": 20,
+        "hardpoints": {
+            "arm_left": "medium",
+            "arm_right": "medium",
+            "shoulder": "light"
+        }
+    },
+    "walker_titan": {
+        "name": "Titan",
+        "category": "Walker",
+        "base_cost": 15000,
+        "base_hp": 5000,
+        "base_armor": 100,
+        "hardpoints": {
+            "arm_left": "heavy",
+            "arm_right": "heavy",
+            "carapace_left": "medium",
+            "carapace_right": "medium"
+        }
+    }
+}

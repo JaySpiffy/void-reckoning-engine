@@ -1,0 +1,28 @@
+{
+    "default": {
+        "description": "Neutral physics (no modifications)",
+        "atom_mass": 1.0,
+        "atom_energy": 1.0,
+        "atom_cohesion": 1.0,
+        "atom_information": 1.0,
+        "atom_aether": 1.0,
+        "atom_will": 1.0,
+        "atom_volatility": 1.0,
+        "atom_frequency": 1.0,
+        "atom_stability": 1.0,
+        "atom_focus": 1.0
+    },
+    "eternal_crusade": {
+        "description": "Eternal Crusade universe physics profile",
+        "atom_mass": 1.0,
+        "atom_energy": 1.0,
+        "atom_cohesion": 1.0,
+        "atom_information": 1.0,
+        "atom_aether": 1.0,
+        "atom_will": 1.0,
+        "atom_volatility": 1.0,
+        "atom_frequency": 1.0,
+        "atom_stability": 1.0,
+        "atom_focus": 1.0
+    }
+}

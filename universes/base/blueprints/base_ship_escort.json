@@ -1,0 +1,35 @@
+{
+    "id": "base_ship_escort",
+    "name": "Base Escort Ship",
+    "type": "ship",
+    "category": "escort",
+    "elemental_signature": {
+        "atom_mass": 20.0,
+        "atom_energy": 30.0,
+        "atom_cohesion": 15.0,
+        "atom_information": 15.0,
+        "atom_aether": 0.0,
+        "atom_will": 5.0,
+        "atom_volatility": 5.0,
+        "atom_frequency": 5.0,
+        "atom_stability": 5.0,
+        "atom_focus": 0.0
+    },
+    "base_stats": {
+        "hp": 500,
+        "armor": 40,
+        "damage": 30,
+        "shield": 200,
+        "movement": 12
+    },
+    "universal_stats": {
+        "hull_structural_integrity": 1.0,
+        "weapon_kinetic_damage": 0.8,
+        "armor_kinetic_resistance": 1.0,
+        "mobility_speed_tactical": 1.5,
+        "mobility_agility_rating": 1.5
+    },
+    "default_traits": [],
+    "cost": 4000,
+    "description": "Small ship template."
+}

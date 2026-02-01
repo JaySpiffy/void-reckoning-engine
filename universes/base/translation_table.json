@@ -1,0 +1,13 @@
+{
+    "eternal_crusade": {
+        "eternal_crusade": {
+            "hull_structural_integrity": 1.0,
+            "shield_absorption_rate": 1.0,
+            "damage_output": 1.0,
+            "aether_sensitivity": 1.0
+        }
+    },
+    "default": {
+        "multiplier": 1.0
+    }
+}

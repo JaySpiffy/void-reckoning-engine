@@ -2,6 +2,7 @@
 reports/
 saves/
 universes/*
+!universes/base/
 !universes/void_reckoning/
 *.log
 debug_*.txt

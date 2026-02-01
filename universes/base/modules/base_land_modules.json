@@ -1,0 +1,97 @@
+{
+    "land_armor_light": {
+        "name": "Flak Armor",
+        "slot_type": "armor_infantry",
+        "cost": 10,
+        "stats": {
+            "hp_bonus": 5,
+            "armor_bonus": 2
+        }
+    },
+    "land_armor_medium": {
+        "name": "Carapace Armor",
+        "slot_type": "armor_infantry",
+        "cost": 50,
+        "stats": {
+            "hp_bonus": 15,
+            "armor_bonus": 5
+        }
+    },
+    "land_armor_heavy": {
+        "name": "Power Armor",
+        "slot_type": "armor_infantry",
+        "cost": 200,
+        "stats": {
+            "hp_bonus": 50,
+            "armor_bonus": 15
+        }
+    },
+    "vehicle_armor_ceramic": {
+        "name": "Ceramite Plating",
+        "slot_type": "armor_vehicle",
+        "cost": 100,
+        "stats": {
+            "hp_bonus": 50,
+            "armor_bonus": 20
+        }
+    },
+    "vehicle_armor_composite": {
+        "name": "Composite Armor",
+        "slot_type": "armor_vehicle",
+        "cost": 300,
+        "stats": {
+            "hp_bonus": 150,
+            "armor_bonus": 40
+        }
+    },
+    "vehicle_armor_void": {
+        "name": "Void Shield Generator (Miniaturized)",
+        "slot_type": "internal",
+        "cost": 500,
+        "stats": {
+            "shield_bonus": 100,
+            "regen": 10
+        }
+    },
+    "util_optic": {
+        "name": "Targeting Optics",
+        "slot_type": "utility",
+        "cost": 20,
+        "stats": {
+            "accuracy_bonus": 10
+        }
+    },
+    "util_camo": {
+        "name": "Camo Cloaks",
+        "slot_type": "utility",
+        "cost": 30,
+        "stats": {
+            "evasion_bonus": 15
+        }
+    },
+    "util_jump": {
+        "name": "Jump Packs",
+        "slot_type": "mobility",
+        "cost": 50,
+        "stats": {
+            "speed_bonus": 50,
+            "inititive_bonus": 2
+        }
+    },
+    "util_medkit": {
+        "name": "Field Medkit",
+        "slot_type": "kit",
+        "cost": 10,
+        "stats": {
+            "recovery_bonus": 5
+        }
+    },
+    "util_tool": {
+        "name": "Entrenching Tool",
+        "slot_type": "kit",
+        "cost": 5,
+        "stats": {
+            "defense_bonus": 2
+        }
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "id": "base_ranged_weapon",
+    "name": "Base Ranged Weapon",
+    "type": "weapon",
+    "category": "component",
+    "base_stats": {
+        "range": 24,
+        "strength": 4,
+        "ap": 0,
+        "attacks": 2
+    },
+    "universal_stats": {
+        "weapon_kinetic_damage": 1.0,
+        "weapon_accuracy_rating": 1.0
+    },
+    "default_traits": [],
+    "cost": 500,
+    "description": "Ranged weapon component template."
+}

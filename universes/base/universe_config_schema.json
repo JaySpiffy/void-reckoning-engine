@@ -1,0 +1,120 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Universe Configuration Schema",
+    "type": "object",
+    "required": [
+        "name",
+        "version",
+        "factions"
+    ],
+    "properties": {
+        "name": {
+            "type": "string",
+            "description": "The canonical name of the universe."
+        },
+        "version": {
+            "type": "string",
+            "description": "The version of the universe data."
+        },
+        "description": {
+            "type": "string",
+            "description": "A brief description of the universe."
+        },
+        "factions": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "List of faction names available in this universe."
+        },
+        "factions_dir": {
+            "type": "string",
+            "description": "Custom directory for faction data (default: 'factions')."
+        },
+        "infrastructure_dir": {
+            "type": "string",
+            "description": "Custom directory for infrastructure data (default: 'infrastructure')."
+        },
+        "technology_dir": {
+            "type": "string",
+            "description": "Custom directory for technology data (default: 'technology')."
+        },
+        "game_data": {
+            "type": "string",
+            "description": "Custom path for game data JSON (default: 'game_data.json')."
+        },
+        "diplomacy_data": {
+            "type": "string",
+            "description": "Custom path for diplomacy data JSON (default: 'diplomacy_data.json')."
+        },
+        "combat_rules": {
+            "oneOf": [
+                {
+                    "type": "string",
+                    "description": "Path to custom combat rules module."
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "module": {
+                            "type": "string",
+                            "description": "Path to custom combat rules module."
+                        },
+                        "phases": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "description": "Custom combat phases names."
+                        }
+                    },
+                    "required": [
+                        "module"
+                    ]
+                }
+            ]
+        },
+        "ai_personalities": {
+            "oneOf": [
+                {
+                    "type": "string",
+                    "description": "Path to custom AI personality definitions."
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "module": {
+                            "type": "string",
+                            "description": "Path to custom AI personality definitions."
+                        }
+                    },
+                    "required": [
+                        "module"
+                    ]
+                }
+            ]
+        },
+        "metadata": {
+            "type": "object",
+            "properties": {
+                "author": {
+                    "type": "string"
+                },
+                "created": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "translation_table": {
+            "type": "string",
+            "description": "Custom path for translation table JSON (default: 'translation_table.json')."
+        }
+    }
+}

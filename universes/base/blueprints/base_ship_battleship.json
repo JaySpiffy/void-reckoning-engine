@@ -1,0 +1,35 @@
+{
+    "id": "base_ship_battleship",
+    "name": "Base Battleship",
+    "type": "ship",
+    "category": "battleship",
+    "elemental_signature": {
+        "atom_mass": 45.0,
+        "atom_energy": 40.0,
+        "atom_cohesion": 30.0,
+        "atom_information": 5.0,
+        "atom_aether": 0.0,
+        "atom_will": 0.0,
+        "atom_volatility": 0.0,
+        "atom_frequency": 5.0,
+        "atom_stability": 5.0,
+        "atom_focus": 0.0
+    },
+    "base_stats": {
+        "hp": 3000,
+        "armor": 120,
+        "damage": 100,
+        "shield": 1500,
+        "movement": 4
+    },
+    "universal_stats": {
+        "hull_structural_integrity": 2.5,
+        "weapon_kinetic_damage": 2.0,
+        "armor_kinetic_resistance": 2.0,
+        "mobility_speed_tactical": 0.5,
+        "mobility_agility_rating": 0.4
+    },
+    "default_traits": [],
+    "cost": 25000,
+    "description": "Large ship template."
+}

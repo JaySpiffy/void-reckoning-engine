@@ -1,0 +1,19 @@
+{
+    "id": "base_melee_weapon",
+    "name": "Base Melee Weapon",
+    "type": "weapon",
+    "category": "component",
+    "base_stats": {
+        "range": 0,
+        "strength": 5,
+        "ap": -1,
+        "attacks": 3
+    },
+    "universal_stats": {
+        "weapon_kinetic_damage": 1.2,
+        "physical_kinetic_force": 1.5
+    },
+    "default_traits": [],
+    "cost": 400,
+    "description": "Melee weapon component template."
+}
