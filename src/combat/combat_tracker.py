@@ -150,6 +150,48 @@ class CombatTracker:
                     comp["escorts"] += 1
         return comp
 
+    def _finalize_vectorized(self, faction_units: Dict[str, List[Any]], pre_battle_counts: Dict[str, int]) -> Dict[str, Any]:
+        """Optimization 2.2: Vectorized Battle Finalization."""
+        from src.core import gpu_utils
+        xp = gpu_utils.get_xp()
+        
+        performance_data = {}
+        for f, units in faction_units.items():
+            if not units: continue
+            
+            # Batch extract data
+            costs = xp.array([getattr(u, 'cost', 150) for u in units])
+            alive = xp.array([1 if u.is_alive() else 0 for u in units])
+            domains = [getattr(u, 'domain', '') for u in units]
+            classes = [getattr(u, 'ship_class', 'Escort') for u in units]
+            tiers = xp.array([getattr(u, 'tier', 1) for u in units])
+            
+            initial_count = pre_battle_counts.get(f, len(units)) if pre_battle_counts else len(units)
+            alive_count = int(xp.sum(alive))
+            
+            res_lost = int(xp.sum(costs * (1 - alive)))
+            attrition = ((initial_count - alive_count) / initial_count * 100) if initial_count > 0 else 0.0
+            
+            # Vectorized composition
+            comp = {"capital_ships": 0, "escorts": 0, "ground_units": 0}
+            for i, u in enumerate(units):
+                if domains[i] == 'ground' or u.__class__.__name__ == 'Regiment':
+                    comp["ground_units"] += 1
+                else:
+                    if classes[i] == "Battleship" or tiers[i] >= 3:
+                        comp["capital_ships"] += 1
+                    else:
+                        comp["escorts"] += 1
+            
+            performance_data[f] = {
+                "alive": alive_count,
+                "total": len(units),
+                "resources_lost": res_lost,
+                "attrition_rate": attrition,
+                "composition": comp
+            }
+        return performance_data
+
     def finalize(self, winner: str, rounds: int, faction_units: Dict[str, List[Any]], 
                  pre_battle_counts: Dict[str, int] = None, battle_id: str = None, 
                  battle_stats: Dict[str, Any] = None, skip_save: bool = False):
@@ -157,54 +199,41 @@ class CombatTracker:
         self.meta["rounds"] = rounds
         self.meta["battle_id"] = battle_id
         
-        # Final tally of survivors
+        # Use vectorized finalization path
+        perf_data_vec = self._finalize_vectorized(faction_units, pre_battle_counts)
+        
         tally = {}
         performance_data = {}
         
-        for f, units in faction_units.items():
-            alive_count = sum(1 for u in units if u.is_alive())
+        for f, stats_vec in perf_data_vec.items():
             tally[f] = {
-                "total": len(units),
-                "alive": alive_count
+                "total": stats_vec["total"],
+                "alive": stats_vec["alive"]
             }
             
-            # Phase 42: Advanced Military Metrics
-            # Damage Dealt (extracted from battle_stats if available)
             damage_dealt = 0.0
             if battle_stats and f in battle_stats:
                 damage_dealt = battle_stats[f].get("total_damage_dealt", 0.0)
             
-            # Resources Lost (sum of cost for dead units)
-            resources_lost = sum(getattr(u, 'cost', 150) for u in units if not u.is_alive())
-            
-            # Attrition Rate
-            initial_count = pre_battle_counts.get(f, len(units)) if pre_battle_counts else len(units)
-            attrition = ((initial_count - alive_count) / initial_count * 100) if initial_count > 0 else 0.0
-            
-            # Force Composition
-            composition = self._get_force_composition(units)
-            
-            # CER
-            cer = self.calculate_combat_effectiveness_ratio(damage_dealt, resources_lost)
+            cer = self.calculate_combat_effectiveness_ratio(damage_dealt, stats_vec["resources_lost"])
             
             perf = {
                 "damage_dealt": damage_dealt,
-                "resources_lost": resources_lost,
+                "resources_lost": stats_vec["resources_lost"],
                 "cer": cer,
-                "composition": composition,
-                "attrition_rate": attrition
+                "composition": stats_vec["composition"],
+                "attrition_rate": stats_vec["attrition_rate"]
             }
             performance_data[f] = perf
             
-            # Record to Telemetry if available
             if self.telemetry_collector:
                 self.telemetry_collector.metrics.record_battle_performance(
                     battle_id=battle_id or "unknown_battle",
                     faction=f,
                     damage_dealt=damage_dealt,
-                    resources_lost=resources_lost,
-                    force_composition=composition,
-                    attrition_rate=attrition
+                    resources_lost=stats_vec["resources_lost"],
+                    force_composition=stats_vec["composition"],
+                    attrition_rate=stats_vec["attrition_rate"]
                 )
 
         self.meta["final_tally"] = tally

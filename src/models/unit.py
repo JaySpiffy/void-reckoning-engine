@@ -116,6 +116,9 @@ class Unit:
             if self.morale_comp:
                 self.morale_comp.take_damage(h_dmg)
                 
+        if h_dmg > 0 or s_dmg > 0:
+            self.invalidate_cache()
+                
         return s_dmg, h_dmg, is_destroyed, destroyed_component
 
     def to_dict(self) -> Dict[str, Any]:
@@ -179,9 +182,11 @@ class Unit:
         return self._cached_strength
 
     def invalidate_cache(self):
-        """Invalidates cached calculated values."""
+        """Invalidates cached calculated values and notifies parent fleet."""
         if hasattr(self, '_cached_strength'):
             del self._cached_strength
+        if self.fleet:
+            self.fleet.invalidate_caches()
 
     def regenerate_infantry(self) -> Tuple[bool, int]:
         """Proxy for health regeneration. Returns (was_active, amount_restored)."""
@@ -193,7 +198,7 @@ class Unit:
         amount = int(self.health_comp.current_hp - old_hp)
         
         if amount > 0:
-            self.invalidate_strength_cache()
+            self.invalidate_cache()
             return True, amount
         return False, 0
 
@@ -219,13 +224,17 @@ class Unit:
     def max_hp(self): return self.health_comp.max_hp if self.health_comp else 0
     @max_hp.setter
     def max_hp(self, v): 
-        if self.health_comp: self.health_comp.max_hp = v
+        if self.health_comp: 
+            self.health_comp.max_hp = v
+            self.invalidate_cache()
 
     @property
     def current_hp(self): return self.health_comp.current_hp if self.health_comp else 0
     @current_hp.setter
     def current_hp(self, v): 
-        if self.health_comp: self.health_comp.current_hp = v
+        if self.health_comp: 
+            self.health_comp.current_hp = v
+            self.invalidate_cache()
 
     @property
     def regen_hp_per_turn(self): return self.health_comp.regen if self.health_comp else 0
@@ -243,7 +252,9 @@ class Unit:
     @property
     def armor(self): return self.base_armor
     @armor.setter
-    def armor(self, v): self.base_armor = v
+    def armor(self, v): 
+        self.base_armor = v
+        self.invalidate_cache()
 
     @property
     def traits(self): return self.trait_comp.traits if self.trait_comp else []
@@ -314,11 +325,8 @@ class Unit:
         self.grid_y = getattr(self, 'grid_y', 0)
 
     def invalidate_strength_cache(self):
-        """Clears cached strength calculation."""
-        if hasattr(self, '_cached_strength'):
-            del self._cached_strength
-        if self.fleet:
-            self.fleet.invalidate_caches()
+        """Deprecated: Use invalidate_cache instead."""
+        self.invalidate_cache()
 
     def set_fleet(self, fleet):
         self._fleet_ref = weakref.ref(fleet) if fleet else None

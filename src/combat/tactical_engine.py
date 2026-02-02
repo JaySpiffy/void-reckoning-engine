@@ -52,7 +52,9 @@ def initialize_battle_state(armies_dict, json_log_file=None, faction_doctrines=N
     
     # [GPU ACCELERATION INITIALIZATION]
     # Check for GPU availability and initialize tracker if possible
-    if gpu_utils.is_available():
+    # [GPU ACCELERATION INITIALIZATION]
+    # Check for GPU/Vectorization availability and initialize tracker if possible
+    if gpu_utils.is_vectorization_enabled():
         all_units = []
         for units in armies_dict.values():
             all_units.extend(units)

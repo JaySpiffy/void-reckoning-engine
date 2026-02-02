@@ -45,6 +45,10 @@ class BattleManager:
         # Phase 2.1 Performance Indices
         self._fleets_by_location = {}
         self._armies_by_location = {}
+        self._fleet_index = {} # Phase 1 Optimization: O(1) Fleet Lookup
+        self._army_index = {} # Phase 1 Optimization: O(1) Army Lookup
+        self._presence_index = {} # Phase 2 Optimization: O(1) Faction-at-Location index
+        self._location_factions = {} # Map location -> set of faction names
         
         # Seeded RNG for non-battle operations (Invasions)
         self._manager_rng = random.Random()
@@ -142,7 +146,11 @@ class BattleManager:
                 if loc not in self._fleets_by_location: self._fleets_by_location[loc] = []
                 self._fleets_by_location[loc].append(f)
                 
+                # Phase 1 Optimization: O(1) Fleet Index
+                self._fleet_index[f.id] = f
+                
         self._armies_by_location = {}
+        self._army_index = {}
         for p in self.context.get_all_planets():
             if hasattr(p, 'armies'):
                 for ag in p.armies:
@@ -153,6 +161,41 @@ class BattleManager:
                         loc = ag.location if ag.location else p
                         if loc not in self._armies_by_location: self._armies_by_location[loc] = []
                         self._armies_by_location[loc].append(ag)
+                        
+                        # Phase 1 Optimization: O(1) Army Index
+                        self._army_index[ag.id] = ag
+        
+        # Phase 2 Optimization: Rebuild Presence Index
+        self._presence_index = {}
+        self._location_factions = {}
+        
+        for loc, fleets in self._fleets_by_location.items():
+            if loc not in self._location_factions: self._location_factions[loc] = set()
+            for f in fleets:
+                self._location_factions[loc].add(f.faction)
+                self._presence_index[(f.faction, loc)] = True
+                
+        for loc, armies in self._armies_by_location.items():
+            if loc not in self._location_factions: self._location_factions[loc] = set()
+            for ag in armies:
+                self._location_factions[loc].add(ag.faction)
+                self._presence_index[(ag.faction, loc)] = True
+
+    def get_factions_at(self, location: Any) -> Set[str]:
+        """O(1) lookup for all factions at a location."""
+        return self._location_factions.get(location, set())
+
+    def is_faction_at(self, faction: str, location: Any) -> bool:
+        """O(1) check if a faction is present at a location."""
+        return (faction, location) in self._presence_index
+
+    def get_fleet(self, fleet_id: str) -> Optional['Fleet']:
+        """Optimization 1.2: O(1) fleet lookup by ID."""
+        return self._fleet_index.get(fleet_id)
+
+    def get_army_group(self, army_id: str) -> Optional['ArmyGroup']:
+        """Optimization 1.2: O(1) army group lookup by ID."""
+        return self._army_index.get(army_id)
 
     @profile_method
     def resolve_battles_at(self, location: Any, update_indices: bool = True, force_domain: Optional[str] = None, aggressor_faction: Optional[str] = None) -> None:
@@ -211,8 +254,7 @@ class BattleManager:
         if not fleets_present and not armies_present: 
             return
 
-        factions_present = set([f.faction for f in fleets_present])
-        factions_present.update([ag.faction for ag in armies_present])
+        factions_present = self.get_factions_at(location)
 
         # [QUIRK] Evasion Check
         # [FEATURE] Strategic Retreat Limit: Units that already retreated this turn are forced to fight.
@@ -288,12 +330,14 @@ class BattleManager:
         
         if dm:
             # 1. Check which factions are at war with at least one other faction present
-            for f1 in factions_present:
-                for f2 in factions_present:
-                    if f1 == f2: continue
-                    if dm.get_treaty(f1, f2) == "War":
-                        active_combatants.add(f1)
-                        active_combatants.add(f2)
+            # Optimization 1.1: Use War Matrix for O(F) set intersection
+            factions_present_set = factions_present 
+            for f in factions_present:
+                # Find all enemies of f 
+                enemies = dm.get_enemies(f)
+                # If any of those enemies are also at this location, f is an active combatant
+                if any(enemy in factions_present_set for enemy in enemies):
+                    active_combatants.add(f)
             
             # 2. Check which invaders are at war with the location owner
             if loc_owner != "Neutral":
@@ -306,6 +350,7 @@ class BattleManager:
             if active_combatants:
                 fleets_present = [f for f in fleets_present if f.faction in active_combatants]
                 armies_present = [ag for ag in armies_present if ag.faction in active_combatants]
+                # Filter indices for this specific call (though index remains global)
                 factions_present = set([f.faction for f in fleets_present] + [ag.faction for ag in armies_present])
                 factions_without_owner = [f for f in factions_present if f != loc_owner]
             else:
@@ -1070,9 +1115,11 @@ class BattleManager:
             if tf_mgr:
                 for f_name, units in battle.state.armies_dict.items():
                     # For each fleet in the battle, find its TaskForce and update stats
+                    # For each fleet in the battle, find its TaskForce and update stats
                     involved_fleets = {u.fleet_id for u in units if hasattr(u, 'fleet_id')}
                     for fleet_id in involved_fleets:
-                        fleet = next((f for f in self.context.fleets if f.id == fleet_id), None)
+                        # Optimized O(1) Lookup
+                        fleet = self._fleet_index.get(fleet_id)
                         if fleet:
                             tf = tf_mgr.get_task_force_for_fleet(fleet)
                             if tf:

@@ -35,7 +35,7 @@ class PortalManager:
                 cmd = queue_mgr.outgoing_q.get_nowait()
                 if cmd.get("action") == "REMOVE_FLEET":
                     fid = cmd.get("fleet_id")
-                    target = next((f for f in self.engine.fleets if f.id == fid), None)
+                    target = self.engine.battle_manager.get_fleet(fid)
                     if target:
                         self.engine.unregister_fleet(target)
                         target.is_destroyed = True

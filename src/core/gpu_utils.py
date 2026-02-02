@@ -662,6 +662,10 @@ def is_available() -> bool:
     """Returns True if GPU acceleration is available and enabled."""
     return HAS_GPU
 
+def is_vectorization_enabled() -> bool:
+    """Returns True if either CuPy or NumPy is available for vectorized operations."""
+    return xp is not None
+
 
 def to_gpu(array_like: Any, device_id: Optional[int] = None) -> Any:
     """
@@ -872,3 +876,38 @@ class GPUTracker:
             status += f", Memory: {mem_info['used_mb']}MB/{mem_info['total_mb']}MB used ({mem_info['free_mb']}MB free)"
         
         log_target.info(status)
+
+def cleanup_gpu_resources():
+    """
+    Optimization 2.4: Explicit GPU resource cleanup and memory pool optimization.
+    Call this at the end of a turn cycle to free unused VRAM.
+    """
+    global HAS_GPU, xp
+    if not HAS_GPU or xp is None:
+        return
+        
+    try:
+        import cupy as cp
+        # Clear the memory pool
+        mempool = cp.get_default_memory_pool()
+        pinned_mempool = cp.get_default_pinned_memory_pool()
+        
+        mempool.free_all_blocks()
+        pinned_mempool.free_all_blocks()
+        
+        logger.info("[GPU] Explicit cleanup complete: Memory pools flushed.")
+    except Exception as e:
+        logger.error(f"[GPU] Error during cleanup: {e}")
+
+def set_memory_limit(limit_mb: int):
+    """Sets a limit on the amount of GPU memory CuPy can use."""
+    global HAS_GPU, xp
+    if not HAS_GPU or xp is None:
+        return
+        
+    try:
+        import cupy as cp
+        cp.get_default_memory_pool().set_limit(size=limit_mb * 1024 * 1024)
+        logger.info(f"[GPU] Memory limit set to {limit_mb} MB")
+    except Exception as e:
+        logger.error(f"[GPU] Error setting memory limit: {e}")

@@ -23,12 +23,18 @@ class DiplomacyManager:
         self.treaty_coordinator = TreatyCoordinator(factions, self.relation_service, engine)
         self.action_handler = DiplomaticActionHandler(self)
         
+        # Performance Cache
+        self._war_cache = {} # {(f1, f2): status}
+        self._war_matrix = {f: set() for f in factions} # Optimization 1.1: O(1) enemy lookup matrix
+        
         # State change cooldowns (moved to coordinator but kept locally for easier access if needed)
         # However, it's better to let TreatyCoordinator own it.
         # Phase 22: War Exhaustion
         # {faction_name: {enemy_faction: exhaustion_percentage_0_to_1}}
         self.war_exhaustion = {} 
-
+        
+        # Initial Hydration
+        self.invalidate_war_cache()
     # --- Backward Compatibility Properties ---
     @property
     def relations(self):
@@ -39,7 +45,35 @@ class DiplomacyManager:
         return self.treaty_coordinator.treaties
 
     def get_treaty(self, f1: str, f2: str) -> str:
-        return self.treaty_coordinator.get_treaty(f1, f2)
+        # Optimized with Cache (Strategy 1.1)
+        key = tuple(sorted((f1, f2)))
+        if key in self._war_cache:
+            return self._war_cache[key]
+            
+        val = self.treaty_coordinator.get_treaty(f1, f2)
+        self._war_cache[key] = val
+        return val
+
+    def get_enemies(self, faction: str) -> set:
+        """Optimization 1.1: O(1) retrieval of all factions at war with this one."""
+        return self._war_matrix.get(faction, set())
+
+    def invalidate_war_cache(self):
+        """Invalidates the treaty cache. Call whenever treaties change."""
+        self._war_cache.clear()
+        
+        # Re-hydrate matrix
+        self._war_matrix = {f: set() for f in self.factions}
+        for f1 in self.factions:
+            for f2 in self.factions:
+                 if f1 == f2: continue
+                 if self.treaty_coordinator.get_treaty(f1, f2) == "War":
+                     self._war_matrix[f1].add(f2)
+
+    def _set_treaty(self, f1: str, f2: str, treaty_type: str, **kwargs):
+        """Wrapper to set treaty and invalidate cache."""
+        self.treaty_coordinator.set_treaty(f1, f2, treaty_type, **kwargs)
+        self.invalidate_war_cache()
 
     def get_treaties(self, faction: str) -> Dict[str, str]:
         """Returns all active treaties for a given faction."""
@@ -83,7 +117,7 @@ class DiplomacyManager:
              self.engine.logger.diplomacy(f"[PEACE] {f1} collapses from War Exhaustion! Forced Status Quo with {f2}.")
              
         # Force Peace Treaty
-        self.treaty_coordinator.set_treaty(f1, f2, "Peace")
+        self._set_treaty(f1, f2, "Peace")
         
         # Reset Exhaustion for both sides (or just the exhausted one? usually resets war state)
         if f1 in self.war_exhaustion and f2 in self.war_exhaustion[f1]:
@@ -303,7 +337,7 @@ class DiplomacyManager:
         # ALLIANCE
         if rel > 60:
             if roll < alliance_chance:
-                self.treaty_coordinator.set_treaty(f1, f2, "Alliance")
+                self._set_treaty(f1, f2, "Alliance")
                 reason = "STRATEGIC DEFENSE" if threatened else "MUTUAL TRUST"
                 if self.engine and self.engine.logger:
                     self.engine.logger.diplomacy(f"[{reason}] {f1} and {f2} have formed an ALLIANCE! (Rel: {rel})")
@@ -314,7 +348,7 @@ class DiplomacyManager:
         # TRADE
         if state != "Trade" and rel > 35: # Slightly lowered threshold for emergency trade
             if roll < trade_chance:
-                self.treaty_coordinator.set_treaty(f1, f2, "Trade")
+                self._set_treaty(f1, f2, "Trade")
                 # [PHASE 25] Anti-Flicker: Enforce 5 turn stability
                 self.treaty_coordinator.update_cooldown(f1, f2, self.engine.turn_counter, duration=5)
                 
@@ -335,13 +369,13 @@ class DiplomacyManager:
                 
                 # BREAK ALLIANCE
                 if state == "Alliance" and rel < 45:
-                    self.treaty_coordinator.set_treaty(f1, f2, "Peace")
+                    self._set_treaty(f1, f2, "Peace")
                     if self.engine and self.engine.logger:
                          self.engine.logger.diplomacy(f"[DIPLOMACY] Alliance between {f1} and {f2} has dissolved due to diverging interests. (Rel: {rel})")
                 
                 # BREAK TRADE
                 elif state == "Trade" and rel < 30:
-                    self.treaty_coordinator.set_treaty(f1, f2, "Peace")
+                    self._set_treaty(f1, f2, "Peace")
                     if self.engine and self.engine.logger:
                         self.engine.logger.diplomacy(f"[DIPLOMACY] Trade treaty between {f1} and {f2} has dissolved due to cooling relations. (Rel: {rel})")
                     
@@ -393,7 +427,7 @@ class DiplomacyManager:
                     self._check_for_vassalage(f1, f2, rel, current_turn)
 
     def _declare_war(self, f1, f2, rel, current_turn, reason="Aggressive War Declaration"):
-        self.treaty_coordinator.set_treaty(f1, f2, "War")
+        self._set_treaty(f1, f2, "War")
         self.treaty_coordinator.update_cooldown(f1, f2, current_turn) # Default 5 turns
         self.relation_service.add_grudge(f2, f1, 20, reason)
         
@@ -452,7 +486,7 @@ class DiplomacyManager:
                  self.engine.logger.diplomacy(f"[EXHAUSTION] {f2} is considering PEACE with {f1} due to War Exhaustion ({war_duration} turns). Threshold relaxed.")
 
         if rel_target > peace_threshold:
-            self.treaty_coordinator.set_treaty(f1, f2, "Peace")
+            self._set_treaty(f1, f2, "Peace")
             # Mandatory 10-turn Ceasefire (Truce)
             self.treaty_coordinator.update_cooldown(f1, f2, current_turn, duration=10)
             
@@ -508,7 +542,7 @@ class DiplomacyManager:
         """Formalizes a Vassalage relationship."""
         # Overlord view: f2 is a Vassal
         # Vassal view: f1 is an Overlord
-        self.treaty_coordinator.set_treaty(overlord, vassal, "Vassal", reciprocal_state="Overlord")
+        self._set_treaty(overlord, vassal, "Vassal", reciprocal_state="Overlord")
         self.treaty_coordinator.update_cooldown(overlord, vassal, turn, duration=20) # Long term binding
         
         msg = f"[VASSALAGE] {vassal} has been subjugated by {overlord} ({reason})!"
@@ -524,7 +558,7 @@ class DiplomacyManager:
         for potential_vassal in self.factions:
             if self.treaty_coordinator.get_treaty(f2, potential_vassal) == "Vassal":
                 if self.treaty_coordinator.get_treaty(potential_vassal, f1) != "War":
-                    self.treaty_coordinator.set_treaty(potential_vassal, f1, "War")
+                    self._set_treaty(potential_vassal, f1, "War")
                     if self.engine.logger:
                         self.engine.logger.diplomacy(f"[VASSAL OBLIGATION] {potential_vassal} joins Overlord {f2} in war against {f1}!")
 
@@ -532,7 +566,7 @@ class DiplomacyManager:
         for potential_vassal in self.factions:
             if self.treaty_coordinator.get_treaty(f1, potential_vassal) == "Vassal":
                 if self.treaty_coordinator.get_treaty(potential_vassal, f2) != "War":
-                    self.treaty_coordinator.set_treaty(potential_vassal, f2, "War")
+                    self._set_treaty(potential_vassal, f2, "War")
                     if self.engine.logger:
                         self.engine.logger.diplomacy(f"[VASSAL OBLIGATION] {potential_vassal} supports Overlord {f1} against {f2}!")
 
@@ -543,7 +577,7 @@ class DiplomacyManager:
             if potential_ally == f1: continue
             if self.treaty_coordinator.get_treaty(f2, potential_ally) == "Alliance":
                 if self.treaty_coordinator.get_treaty(potential_ally, f1) != "War":
-                    self.treaty_coordinator.set_treaty(potential_ally, f1, "War")
+                    self._set_treaty(potential_ally, f1, "War")
                     # [PHASE 25] Alliance War Penalty
                     # Joining a war ruins relations, obviously.
                     self.relation_service.modify_relation(potential_ally, f1, -60) 
@@ -562,7 +596,7 @@ class DiplomacyManager:
                      
                 if self.treaty_coordinator.get_treaty(potential_ally, f2) != "War":
                     # Offensive wars are slightly less certain but for now we force it
-                    self.treaty_coordinator.set_treaty(potential_ally, f2, "War")
+                    self._set_treaty(potential_ally, f2, "War")
                     # [PHASE 25] Alliance War Penalty
                     self.relation_service.modify_relation(potential_ally, f2, -60)
                     if self.engine.logger:

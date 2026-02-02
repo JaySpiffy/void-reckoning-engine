@@ -235,8 +235,8 @@ class ShootingPhase(CombatPhase):
              logger.debug("ShootingPhase: Executing Accelerated Batch Shooting")
              
              # 2. Batch Execute (Staggered Waves to reduce overkill)
-             # Splitting into waves allows units to pick new nearest targets after the first wave kills.
-             wave_size = max(50, len(attackers_obj) // 4)
+             # Optimization 2.5: Consolidate waves to minimize GPU synchronization overhead.
+             wave_size = max(1000, len(attackers_obj) // 2)
              all_batch_results = []
              
              for i in range(0, len(attackers_obj), wave_size):
@@ -285,7 +285,7 @@ class ShootingPhase(CombatPhase):
                      tgt = res["target"]
                      if not tgt.is_alive(): continue # Don't fire at dead meat (from same wave or prev)
                      
-                     print(f"DEBUG_STDOUT: Processing shot {att.name} -> {tgt.name} Hit={res['is_hit']}")
+                     # print(f"DEBUG_STDOUT: Processing shot {att.name} -> {tgt.name} Hit={res['is_hit']}")
 
                      dmg = res["damage"]
                      if res["is_hit"]:
