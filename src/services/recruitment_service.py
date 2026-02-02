@@ -56,12 +56,39 @@ class RecruitmentService:
         
         base_commission_cost = FLEET_COMMISSION_COST
         cost = int(base_commission_cost * faction_mgr.get_modifier("recruitment_cost_mult", 1.0))
-        max_recruits = bal.RECRUIT_BATCH_SIZE_MAX 
+        # [USER REQUEST] Remove hard limits. Rely on Infrastructure (Shipyards) & Budget.
         
-        # [BALANCE] If wealthy, allow mass commissioning
-        # If we have > 50x cost, we can afford to commission more than just the batch limit
+        # Count Shipyards (Infrastructure)
+        num_shipyards = 0
+        db = get_building_database()
+        
+        for p in owned_planets:
+            p_buildings = list(p.buildings)
+            if hasattr(p, 'provinces') and p.provinces:
+                for node in p.provinces: p_buildings.extend(node.buildings)
+            
+            for b_id in p_buildings:
+                if b_id in ["Orbital Dock", "Shipyard", "Deep Space Foundry", "Raider Drydock"]:
+                    num_shipyards += 1
+                elif b_id in db:
+                    eff = db[b_id].get("effects", {}).get("description", "").lower()
+                    if "shipyard" in eff or "unlocks space ship" in eff:
+                         num_shipyards += 1
+
+        # Max Fleets Commissioned = Number of Shipyards available to coordinate them
+        # (Minimum 1 to prevent soft-lock if no shipyards exist yet fallback)
+        max_recruits = max(1, num_shipyards)
+
+        # [BALANCE] If wealthy, allow even more (hiring mercs / rushing)?
+        # User said "limited by building". So stick to shipyards.
+        # But if we have 10 shipyards, we can commission 10 fleets. That's huge.
+        # If we have 12M Requisition, we will fill that capacity.
+        
         if faction_mgr.requisition > (cost * 50):
-            max_recruits = max(max_recruits * 5, 10) # Allow up to 10 fleets/turn if rich
+             # If SUPER wealthy, maybe we can assume temporary setups?
+             # No, stick to User Request: "limited by the amount of building".
+             # So logic holds: max_recruits = num_shipyards.
+             pass
 
         count = 0
         
@@ -362,21 +389,14 @@ class RecruitmentService:
                          infra_cap += 1
                             
         max_recruits = int(infra_cap * faction_mgr.navy_recruitment_mult)
-        # High Surplus Logic (Phase 16: Nerfed 10x -> 2x)
-        # [BALANCE] Restored to 4x for actual surplus spending
-        is_wealthy = faction_mgr.requisition > (avg_cost * 50)
-        if is_wealthy:
-             max_recruits *= 4
         
-        # Scaling limit based on max_fleet_size (allow building ~10% of a full fleet per turn if rich)
-        # Instead of hard cap 20, use max(20, max_fleet_size * 0.1)
-        scale_limit = max(20, self.engine.max_fleet_size // 10)
+        # [USER REQUEST] No hard coded limits.
+        # Limit is simply the Infrastructure Capacity (infra_cap) and Budget/Wealth.
+        # Wealthy factions can afford to fill the ENTIRE capacity.
+        # Poor factions will hit budget limits inside the loop.
         
-        # [BALANCE] If wealthy, allow bursting up to 50% of fleet size or 100 ships
-        if is_wealthy:
-            scale_limit = max(scale_limit, min(100, self.engine.max_fleet_size // 2))
-            
-        max_recruits = max(1, min(max_recruits, scale_limit))
+        # Removed scale_limit clamping.
+        max_recruits = max(1, max_recruits)
         count = 0
         
 
@@ -624,10 +644,10 @@ class RecruitmentService:
                 if any(kw in b_id for kw in facilities): infra_cap += 2 # Simplified weight
         
         max_recruits = int(infra_cap * faction_mgr.army_recruitment_mult)
-        # Phase 16: Nerfed 10x -> 2x
-        if faction_mgr.requisition > (avg_cost * 100):
-             max_recruits *= 2
-        max_recruits = max(2, min(max_recruits, 1000)) 
+        # [USER REQUEST] No hard coded limits.
+        # Removed wealthy multiplier and 1000 cap.
+        # Limit is pure infrastructure capacity.
+        max_recruits = max(1, max_recruits) 
         
         skipped_log = []
         skip_caps = {}
