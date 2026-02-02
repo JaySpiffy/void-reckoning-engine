@@ -52,13 +52,22 @@ class IntelligenceManager:
 
     @functools.lru_cache(maxsize=1024)
     @profile_method
-    def get_theater_power(self, location_name: str, turn: int) -> Dict[str, int]:
+    def get_theater_power(self, location_name: str, turn: int, viewer_faction: str = None) -> Dict[str, int]:
         """
         Calculates total power for each faction at a given location.
+        If viewer_faction is provided, respects Fog of War.
         Returns: {FactionName: TotalPower}
         """
         location = self.engine.get_planet(location_name)
         if not location: return {}
+
+        # Fog of War Check
+        if viewer_faction:
+            f_obj = self.engine.get_faction(viewer_faction)
+            if f_obj and location_name not in getattr(f_obj, 'visible_planets', set()):
+                # Viewer cannot see this location; return empty or last known intel?
+                # For this method, we return empty as it represents "Active Scan".
+                return {}
         
         powers: Dict[str, int] = {}
         # Fleets
@@ -88,12 +97,19 @@ class IntelligenceManager:
     @functools.lru_cache(maxsize=1024)
     @profile_method
     def calculate_threat_level(self, location_name: str, faction: str, turn: int = 0) -> float:
-        """Calculates threat score. Cached by turn."""
+        """Calculates threat score. respects visibility if called for self-assessment."""
         location = next((p for p in self.engine.all_planets if p.name == location_name), None)
         if not location:
             return 0.5
 
-        theater_stats = self.get_theater_power(location_name, turn)
+        # Assessing threat as 'faction' at 'location_name'
+        theater_stats = self.get_theater_power(location_name, turn, viewer_faction=faction)
+        
+        # If we can't see the theater, threat is indeterminate (0.5) 
+        # unless we have intel memory (handled at a higher level)
+        if not theater_stats:
+            return 0.5
+
         my_power = sum(p for f, p in theater_stats.items() if f == faction)
         enemy_power = sum(p for f, p in theater_stats.items() if f != faction and f != "Neutral")
         
@@ -132,7 +148,7 @@ class IntelligenceManager:
         )
 
     @profile_method
-    def update_faction_visibility(self, f_name: str) -> None:
+    def update_faction_visibility(self, f_name: str, force_refresh: bool = False) -> None:
         """Calculates current visibility and updates intelligence memory."""
         faction = self.engine.factions.get(f_name)
         if not faction: return
@@ -142,7 +158,7 @@ class IntelligenceManager:
             self.clear_visibility_cache()
             self._cached_turn = self.engine.turn_counter
             
-        if f_name in self._visibility_cache:
+        if not force_refresh and f_name in self._visibility_cache:
             faction.visible_planets = self._visibility_cache[f_name]
             return
 

@@ -4,14 +4,20 @@ from typing import List, Tuple, Optional, Any, Set, Dict
 
 from src.utils.profiler import profile_method
 
+from src.core.simulation_state import SimulationState
+
 class PathfindingService:
     """
     Service for calculating paths between GraphNodes using A*.
     Manages caching and path validation.
     """
     def __init__(self):
-        self._path_cache = {} # (start_node, end_node) -> (path, cost)
+        self._path_cache = {} # (start_node, end_node, context, topo_ver, block_ver) -> (path, cost)
         self._failed_paths_logged_this_turn = set()
+        
+        # Smart Caching State
+        self._last_topo_ver = SimulationState.get_topology_version()
+        self._last_block_ver = SimulationState.get_blockade_version()
         
         # Telemetry Stats
         self._stats = {"hits": 0, "misses": 0, "requests": 0}
@@ -21,16 +27,29 @@ class PathfindingService:
         return self._stats.copy()
 
     def clear_cache(self):
-        """Clears the path cache. Should be called at the start of a turn or when topology changes."""
+        """
+        Clears the path cache. 
+        Optimization 5.1: Smart Persistence - Only clear if versions changed.
+        """
+        current_topo = SimulationState.get_topology_version()
+        current_block = SimulationState.get_blockade_version()
+        
+        # If graph state shouldn't have changed, preserve the cache
+        if current_topo == self._last_topo_ver and current_block == self._last_block_ver:
+             self._failed_paths_logged_this_turn = set()
+             return
+
+        # State changed (or first run), full clear/reset
         self._path_cache = {}
         self._failed_paths_logged_this_turn = set()
-        # Reset stats or keep cumulative? Usually cumulative per turn/session is better for analysis.
-        # Let's keep cumulative.
+        self._last_topo_ver = current_topo
+        self._last_block_ver = current_block
 
     def invalidate_portal_paths(self):
         """Clears paths involving portals (Phase 23)."""
         # Simple approach: clear all, or filter. Since this happens rarely (portal changes), full clear is safer/easier.
-        self.clear_cache()
+        self._path_cache = {}
+        self._last_topo_ver = -1 # Force reset next time
 
     def register_with_cache_manager(self, cache_manager):
         """Registers the path cache with the provided CacheManager."""
@@ -41,10 +60,15 @@ class PathfindingService:
         """
         Cached wrapper for find_path. 
         Context (e.g., universe name) is included in cache key (Comment 3).
+        Optimization 5.1: Uses versioned keys for intra-turn consistency.
         """
         self._stats["requests"] += 1
         
-        cache_key = (start_node, end_node, context)
+        # Versioning
+        t_ver = SimulationState.get_topology_version()
+        b_ver = SimulationState.get_blockade_version()
+        
+        cache_key = (start_node, end_node, context, t_ver, b_ver)
         if cache_key in self._path_cache:
             self._stats["hits"] += 1
             return self._path_cache[cache_key]

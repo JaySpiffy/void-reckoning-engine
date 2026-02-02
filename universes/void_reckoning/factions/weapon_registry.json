@@ -1,121 +1,13 @@
 {
-  "Templars_of_the_Flux_base_disruptor_weapon_0": {
-    "id": "Templars_of_the_Flux_base_disruptor_weapon_0",
-    "name": "Templars_of_the_Flux Standard Disruption Disruptor",
+  "Templars_of_the_Flux_base_tesla_weapon_2": {
+    "id": "Templars_of_the_Flux_base_tesla_weapon_2",
+    "name": "Templars_of_the_Flux Prototype Voltaic Tesla",
     "category": "Energy",
     "stats": {
-      "range": 17.94,
-      "strength": 5.79,
-      "ap": -3.17,
-      "attacks": 0.93
-    },
-    "tags": [
-      "energy",
-      "disruptor",
-      "brutal"
-    ],
-    "source_file": "procedural",
-    "source_format": "unknown"
-  },
-  "Templars_of_the_Flux_base_disruptor_weapon_1": {
-    "id": "Templars_of_the_Flux_base_disruptor_weapon_1",
-    "name": "Templars_of_the_Flux Prototype Disruption Disruptor",
-    "category": "Energy",
-    "stats": {
-      "range": 18.19,
-      "strength": 6.35,
-      "ap": -2.95,
-      "attacks": 1.03
-    },
-    "tags": [
-      "energy",
-      "disruptor",
-      "brutal"
-    ],
-    "source_file": "procedural",
-    "source_format": "unknown"
-  },
-  "Templars_of_the_Flux_base_sonic_weapon_2": {
-    "id": "Templars_of_the_Flux_base_sonic_weapon_2",
-    "name": "Templars_of_the_Flux Precision Disruption Sonic",
-    "category": "Exotic",
-    "stats": {
-      "range": 22.56,
-      "strength": 3.67,
-      "ap": -0.92,
-      "attacks": 3.01
-    },
-    "tags": [
-      "sonic",
-      "ignore_cover",
-      "disruptor"
-    ],
-    "source_file": "procedural",
-    "source_format": "unknown"
-  },
-  "Templars_of_the_Flux_base_rad_weapon_3": {
-    "id": "Templars_of_the_Flux_base_rad_weapon_3",
-    "name": "Templars_of_the_Flux MKII Rad Rad",
-    "category": "Exotic",
-    "stats": {
-      "range": 17.18,
-      "strength": 1.91,
+      "range": 19.13,
+      "strength": 4.67,
       "ap": 0.0,
-      "attacks": 1.07
-    },
-    "tags": [
-      "radiation",
-      "poison",
-      "anti_infantry"
-    ],
-    "source_file": "procedural",
-    "source_format": "unknown"
-  },
-  "Templars_of_the_Flux_base_grav_weapon_5": {
-    "id": "Templars_of_the_Flux_base_grav_weapon_5",
-    "name": "Templars_of_the_Flux Tactical Grav",
-    "category": "Exotic",
-    "stats": {
-      "range": 17.3,
-      "strength": 4.74,
-      "ap": -3.1,
-      "attacks": 2.86
-    },
-    "tags": [
-      "gravimetric",
-      "control",
-      "anti_heavy"
-    ],
-    "source_file": "procedural",
-    "source_format": "unknown"
-  },
-  "Templars_of_the_Flux_base_rad_weapon_6": {
-    "id": "Templars_of_the_Flux_base_rad_weapon_6",
-    "name": "Templars_of_the_Flux Enhanced Rad Rad",
-    "category": "Exotic",
-    "stats": {
-      "range": 17.39,
-      "strength": 2.18,
-      "ap": 0.0,
-      "attacks": 1.04
-    },
-    "tags": [
-      "radiation",
-      "poison",
-      "anti_infantry"
-    ],
-    "source_file": "procedural",
-    "source_format": "unknown"
-  },
-  "Templars_of_the_Flux_base_tesla_weapon_7": {
-    "id": "Templars_of_the_Flux_base_tesla_weapon_7",
-    "name": "Templars_of_the_Flux Enhanced Voltaic Tesla",
-    "category": "Energy",
-    "stats": {
-      "range": 19.4,
-      "strength": 4.8,
-      "ap": 0.0,
-      "attacks": 2.74
+      "attacks": 2.77
     },
     "tags": [
       "energy",
@@ -125,610 +17,30 @@
     "source_file": "procedural",
     "source_format": "unknown"
   },
-  "Templars_of_the_Flux_base_sonic_weapon_8": {
-    "id": "Templars_of_the_Flux_base_sonic_weapon_8",
-    "name": "Templars_of_the_Flux Enhanced Disruption Sonic",
-    "category": "Exotic",
-    "stats": {
-      "range": 24.81,
-      "strength": 3.74,
-      "ap": -1.08,
-      "attacks": 3.29
-    },
-    "tags": [
-      "sonic",
-      "ignore_cover",
-      "disruptor"
-    ],
-    "source_file": "procedural",
-    "source_format": "unknown"
-  },
-  "Templars_of_the_Flux_base_rad_weapon_9": {
-    "id": "Templars_of_the_Flux_base_rad_weapon_9",
-    "name": "Templars_of_the_Flux Precision Rad Rad",
-    "category": "Exotic",
-    "stats": {
-      "range": 18.98,
-      "strength": 2.0,
-      "ap": 0.0,
-      "attacks": 0.99
-    },
-    "tags": [
-      "radiation",
-      "poison",
-      "anti_infantry"
-    ],
-    "source_file": "procedural",
-    "source_format": "unknown"
-  },
-  "Transcendent_Order_base_sonic_weapon_0": {
-    "id": "Transcendent_Order_base_sonic_weapon_0",
-    "name": "Transcendent_Order Tactical Disruption Sonic",
-    "category": "Exotic",
-    "stats": {
-      "range": 23.17,
-      "strength": 3.72,
-      "ap": -1.08,
-      "attacks": 3.21
-    },
-    "tags": [
-      "sonic",
-      "ignore_cover",
-      "disruptor"
-    ],
-    "source_file": "procedural",
-    "source_format": "unknown"
-  },
-  "Transcendent_Order_base_sonic_weapon_1": {
-    "id": "Transcendent_Order_base_sonic_weapon_1",
-    "name": "Transcendent_Order Enhanced Disruption Sonic",
-    "category": "Exotic",
-    "stats": {
-      "range": 25.46,
-      "strength": 3.69,
-      "ap": -0.9,
-      "attacks": 2.92
-    },
-    "tags": [
-      "sonic",
-      "ignore_cover",
-      "disruptor"
-    ],
-    "source_file": "procedural",
-    "source_format": "unknown"
-  },
-  "Transcendent_Order_base_grav_weapon_2": {
-    "id": "Transcendent_Order_base_grav_weapon_2",
-    "name": "Transcendent_Order Tactical Inferno Grav",
-    "category": "Exotic",
-    "stats": {
-      "range": 18.17,
-      "strength": 5.05,
-      "ap": -2.76,
-      "attacks": 3.09
-    },
-    "tags": [
-      "gravimetric",
-      "control",
-      "anti_heavy",
-      "incendiary"
-    ],
-    "source_file": "procedural",
-    "source_format": "unknown"
-  },
-  "Transcendent_Order_base_volkite_weapon_6": {
-    "id": "Transcendent_Order_base_volkite_weapon_6",
-    "name": "Transcendent_Order MKII Volkite",
-    "category": "Thermal",
-    "stats": {
-      "range": 28.18,
-      "strength": 5.4,
-      "ap": -0.95,
-      "attacks": 2.19
-    },
-    "tags": [
-      "thermal",
-      "volkite",
-      "deflagrate"
-    ],
-    "source_file": "procedural",
-    "source_format": "unknown"
-  },
-  "Transcendent_Order_base_grav_weapon_7": {
-    "id": "Transcendent_Order_base_grav_weapon_7",
-    "name": "Transcendent_Order Standard Grav",
-    "category": "Exotic",
-    "stats": {
-      "range": 16.63,
-      "strength": 5.39,
-      "ap": -2.71,
-      "attacks": 2.72
-    },
-    "tags": [
-      "gravimetric",
-      "control",
-      "anti_heavy"
-    ],
-    "source_file": "procedural",
-    "source_format": "unknown"
-  },
-  "SteelBound_Syndicate_base_plasma_weapon_1": {
-    "id": "SteelBound_Syndicate_base_plasma_weapon_1",
-    "name": "SteelBound_Syndicate Tactical Sun-Fury Plasma",
-    "category": "Energy",
-    "stats": {
-      "range": 23.91,
-      "strength": 7.03,
-      "ap": -3.11,
-      "attacks": 1.02
-    },
-    "tags": [
-      "energy",
-      "plasma",
-      "high_damage"
-    ],
-    "source_file": "procedural",
-    "source_format": "unknown"
-  },
-  "SteelBound_Syndicate_base_grav_weapon_4": {
-    "id": "SteelBound_Syndicate_base_grav_weapon_4",
-    "name": "SteelBound_Syndicate Enhanced Infected Grav",
-    "category": "Exotic",
-    "stats": {
-      "range": 19.21,
-      "strength": 4.8,
-      "ap": -3.22,
-      "attacks": 2.92
-    },
-    "tags": [
-      "gravimetric",
-      "control",
-      "anti_heavy",
-      "logic_virus"
-    ],
-    "source_file": "procedural",
-    "source_format": "unknown"
-  },
-  "SteelBound_Syndicate_base_grav_weapon_6": {
-    "id": "SteelBound_Syndicate_base_grav_weapon_6",
-    "name": "SteelBound_Syndicate MKII Grav",
-    "category": "Exotic",
-    "stats": {
-      "range": 18.41,
-      "strength": 4.55,
-      "ap": -3.09,
-      "attacks": 2.79
-    },
-    "tags": [
-      "gravimetric",
-      "control",
-      "anti_heavy"
-    ],
-    "source_file": "procedural",
-    "source_format": "unknown"
-  },
-  "SteelBound_Syndicate_base_tesla_weapon_7": {
-    "id": "SteelBound_Syndicate_base_tesla_weapon_7",
-    "name": "SteelBound_Syndicate Heavy Voltaic Tesla",
-    "category": "Energy",
-    "stats": {
-      "range": 19.51,
-      "strength": 5.22,
-      "ap": 0.0,
-      "attacks": 3.11
-    },
-    "tags": [
-      "energy",
-      "tesla",
-      "arcing"
-    ],
-    "source_file": "procedural",
-    "source_format": "unknown"
-  },
-  "BioTide_Collective_base_polaron_weapon_0": {
-    "id": "BioTide_Collective_base_polaron_weapon_0",
-    "name": "BioTide_Collective MKII Polaron Polaron",
-    "category": "Energy",
-    "stats": {
-      "range": 28.39,
-      "strength": 5.68,
-      "ap": -2.07,
-      "attacks": 2.15
-    },
-    "tags": [
-      "energy",
-      "polaron",
-      "shield_piercing"
-    ],
-    "source_file": "procedural",
-    "source_format": "unknown"
-  },
-  "BioTide_Collective_base_tesla_weapon_1": {
-    "id": "BioTide_Collective_base_tesla_weapon_1",
-    "name": "BioTide_Collective Light Voltaic Tesla",
-    "category": "Energy",
-    "stats": {
-      "range": 18.91,
-      "strength": 4.7,
-      "ap": 0.0,
-      "attacks": 3.02
-    },
-    "tags": [
-      "energy",
-      "tesla",
-      "arcing",
-      "incendiary"
-    ],
-    "source_file": "procedural",
-    "source_format": "unknown"
-  },
-  "BioTide_Collective_base_tesla_weapon_4": {
-    "id": "BioTide_Collective_base_tesla_weapon_4",
-    "name": "BioTide_Collective Advanced Voltaic Tesla",
-    "category": "Energy",
-    "stats": {
-      "range": 18.08,
-      "strength": 4.59,
-      "ap": 0.0,
-      "attacks": 3.02
-    },
-    "tags": [
-      "energy",
-      "tesla",
-      "arcing"
-    ],
-    "source_file": "procedural",
-    "source_format": "unknown"
-  },
-  "BioTide_Collective_base_tesla_weapon_5": {
-    "id": "BioTide_Collective_base_tesla_weapon_5",
-    "name": "BioTide_Collective Enhanced Voltaic Tesla",
-    "category": "Energy",
-    "stats": {
-      "range": 17.58,
-      "strength": 5.37,
-      "ap": 0.0,
-      "attacks": 3.19
-    },
-    "tags": [
-      "energy",
-      "tesla",
-      "arcing"
-    ],
-    "source_file": "procedural",
-    "source_format": "unknown"
-  },
-  "BioTide_Collective_base_volkite_weapon_8": {
-    "id": "BioTide_Collective_base_volkite_weapon_8",
-    "name": "BioTide_Collective Heavy Volkite",
-    "category": "Thermal",
-    "stats": {
-      "range": 31.03,
-      "strength": 5.94,
-      "ap": -0.97,
-      "attacks": 1.85
-    },
-    "tags": [
-      "thermal",
-      "volkite",
-      "deflagrate"
-    ],
-    "source_file": "procedural",
-    "source_format": "unknown"
-  },
-  "Algorithmic_Hierarchy_base_melta_weapon_1": {
-    "id": "Algorithmic_Hierarchy_base_melta_weapon_1",
-    "name": "Algorithmic_Hierarchy Light Fusion Melta",
-    "category": "Thermal",
-    "stats": {
-      "range": 11.9,
-      "strength": 8.35,
-      "ap": -3.79,
-      "attacks": 0.96
-    },
-    "tags": [
-      "thermal",
-      "melta",
-      "anti_tank"
-    ],
-    "source_file": "procedural",
-    "source_format": "unknown"
-  },
-  "Algorithmic_Hierarchy_base_tesla_weapon_2": {
-    "id": "Algorithmic_Hierarchy_base_tesla_weapon_2",
-    "name": "Algorithmic_Hierarchy Tactical Voltaic Tesla",
-    "category": "Energy",
-    "stats": {
-      "range": 18.01,
-      "strength": 5.18,
-      "ap": 0.0,
-      "attacks": 2.97
-    },
-    "tags": [
-      "energy",
-      "tesla",
-      "arcing"
-    ],
-    "source_file": "procedural",
-    "source_format": "unknown"
-  },
-  "Algorithmic_Hierarchy_base_tesla_weapon_3": {
-    "id": "Algorithmic_Hierarchy_base_tesla_weapon_3",
-    "name": "Algorithmic_Hierarchy Precision Voltaic Tesla",
-    "category": "Energy",
-    "stats": {
-      "range": 19.03,
-      "strength": 5.49,
-      "ap": 0.0,
-      "attacks": 2.75
-    },
-    "tags": [
-      "energy",
-      "tesla",
-      "arcing"
-    ],
-    "source_file": "procedural",
-    "source_format": "unknown"
-  },
-  "Algorithmic_Hierarchy_base_phaser_weapon_5": {
-    "id": "Algorithmic_Hierarchy_base_phaser_weapon_5",
-    "name": "Algorithmic_Hierarchy Advanced Phaser",
-    "category": "Energy",
-    "stats": {
-      "range": 27.28,
-      "strength": 4.58,
-      "ap": -1.98,
-      "attacks": 1.89
-    },
-    "tags": [
-      "energy",
-      "phaser",
-      "accurate"
-    ],
-    "source_file": "procedural",
-    "source_format": "unknown"
-  },
-  "Algorithmic_Hierarchy_base_phaser_weapon_9": {
-    "id": "Algorithmic_Hierarchy_base_phaser_weapon_9",
-    "name": "Algorithmic_Hierarchy Prototype Gray-Goo Phaser",
-    "category": "Energy",
-    "stats": {
-      "range": 29.1,
-      "strength": 4.79,
-      "ap": -1.87,
-      "attacks": 2.03
-    },
-    "tags": [
-      "energy",
-      "phaser",
-      "accurate",
-      "nanite"
-    ],
-    "source_file": "procedural",
-    "source_format": "unknown"
-  },
-  "Nebula_Drifters_base_melta_weapon_0": {
-    "id": "Nebula_Drifters_base_melta_weapon_0",
-    "name": "Nebula_Drifters MKII Fusion Melta",
-    "category": "Thermal",
-    "stats": {
-      "range": 13.04,
-      "strength": 8.31,
-      "ap": -3.99,
-      "attacks": 0.92
-    },
-    "tags": [
-      "thermal",
-      "melta",
-      "anti_tank"
-    ],
-    "source_file": "procedural",
-    "source_format": "unknown"
-  },
-  "Nebula_Drifters_base_melta_weapon_1": {
-    "id": "Nebula_Drifters_base_melta_weapon_1",
-    "name": "Nebula_Drifters Heavy Fusion Melta",
-    "category": "Thermal",
-    "stats": {
-      "range": 12.24,
-      "strength": 7.98,
-      "ap": -3.97,
-      "attacks": 0.99
-    },
-    "tags": [
-      "thermal",
-      "melta",
-      "anti_tank"
-    ],
-    "source_file": "procedural",
-    "source_format": "unknown"
-  },
-  "Nebula_Drifters_base_grav_weapon_3": {
-    "id": "Nebula_Drifters_base_grav_weapon_3",
-    "name": "Nebula_Drifters Advanced Grav",
-    "category": "Exotic",
-    "stats": {
-      "range": 17.73,
-      "strength": 5.04,
-      "ap": -3.27,
-      "attacks": 2.84
-    },
-    "tags": [
-      "gravimetric",
-      "control",
-      "anti_heavy"
-    ],
-    "source_file": "procedural",
-    "source_format": "unknown"
-  },
-  "Nebula_Drifters_base_tachyon_weapon_4": {
-    "id": "Nebula_Drifters_base_tachyon_weapon_4",
-    "name": "Nebula_Drifters Enhanced Phase Tachyon",
-    "category": "Exotic",
-    "stats": {
-      "range": 95.95,
-      "strength": 10.27,
-      "ap": -4.52,
-      "attacks": 0.99
-    },
-    "tags": [
-      "energy",
-      "tachyon",
-      "sniper",
-      "phasic"
-    ],
-    "source_file": "procedural",
-    "source_format": "unknown"
-  },
-  "Nebula_Drifters_base_disruptor_weapon_5": {
-    "id": "Nebula_Drifters_base_disruptor_weapon_5",
-    "name": "Nebula_Drifters Tactical Disruption Disruptor",
-    "category": "Energy",
-    "stats": {
-      "range": 17.86,
-      "strength": 5.87,
-      "ap": -3.27,
-      "attacks": 1.02
-    },
-    "tags": [
-      "energy",
-      "disruptor",
-      "brutal"
-    ],
-    "source_file": "procedural",
-    "source_format": "unknown"
-  },
-  "Nebula_Drifters_base_bolter_weapon_6": {
-    "id": "Nebula_Drifters_base_bolter_weapon_6",
-    "name": "Nebula_Drifters Heavy Macro Bolt",
+  "Templars_of_the_Flux_base_bolter_weapon_3": {
+    "id": "Templars_of_the_Flux_base_bolter_weapon_3",
+    "name": "Templars_of_the_Flux Precision Macro Bolt",
     "category": "Ballistic",
     "stats": {
-      "range": 25.37,
-      "strength": 4.29,
-      "ap": -1.06,
-      "attacks": 2.02
-    },
-    "tags": [
-      "kinetic",
-      "explosive"
-    ],
-    "source_file": "procedural",
-    "source_format": "unknown"
-  },
-  "Nebula_Drifters_base_gauss_weapon_7": {
-    "id": "Nebula_Drifters_base_gauss_weapon_7",
-    "name": "Nebula_Drifters Light Flayer Gauss",
-    "category": "Exotic",
-    "stats": {
-      "range": 23.64,
-      "strength": 5.31,
-      "ap": -1.83,
-      "attacks": 1.94
-    },
-    "tags": [
-      "exotic",
-      "gauss",
-      "rending"
-    ],
-    "source_file": "procedural",
-    "source_format": "unknown"
-  },
-  "Nebula_Drifters_base_phaser_weapon_8": {
-    "id": "Nebula_Drifters_base_phaser_weapon_8",
-    "name": "Nebula_Drifters Prototype Phaser",
-    "category": "Energy",
-    "stats": {
-      "range": 31.78,
-      "strength": 5.35,
-      "ap": -1.9,
+      "range": 23.84,
+      "strength": 4.34,
+      "ap": -1.09,
       "attacks": 1.86
     },
     "tags": [
-      "energy",
-      "phaser",
-      "accurate"
-    ],
-    "source_file": "procedural",
-    "source_format": "unknown"
-  },
-  "Nebula_Drifters_base_sonic_weapon_9": {
-    "id": "Nebula_Drifters_base_sonic_weapon_9",
-    "name": "Nebula_Drifters Tactical Disruption Sonic",
-    "category": "Exotic",
-    "stats": {
-      "range": 22.68,
-      "strength": 3.78,
-      "ap": -0.95,
-      "attacks": 2.81
-    },
-    "tags": [
-      "sonic",
-      "ignore_cover",
-      "disruptor"
-    ],
-    "source_file": "procedural",
-    "source_format": "unknown"
-  },
-  "Aurelian_Hegemony_base_bolter_weapon_0": {
-    "id": "Aurelian_Hegemony_base_bolter_weapon_0",
-    "name": "Aurelian_Hegemony MKII Macro Bolt",
-    "category": "Ballistic",
-    "stats": {
-      "range": 21.87,
-      "strength": 3.99,
-      "ap": -1.03,
-      "attacks": 2.13
-    },
-    "tags": [
       "kinetic",
       "explosive"
     ],
     "source_file": "procedural",
     "source_format": "unknown"
   },
-  "Aurelian_Hegemony_base_phaser_weapon_5": {
-    "id": "Aurelian_Hegemony_base_phaser_weapon_5",
-    "name": "Aurelian_Hegemony Tactical Phaser",
-    "category": "Energy",
-    "stats": {
-      "range": 31.55,
-      "strength": 5.42,
-      "ap": -1.96,
-      "attacks": 1.81
-    },
-    "tags": [
-      "energy",
-      "phaser",
-      "accurate"
-    ],
-    "source_file": "procedural",
-    "source_format": "unknown"
-  },
-  "Aurelian_Hegemony_base_gauss_weapon_7": {
-    "id": "Aurelian_Hegemony_base_gauss_weapon_7",
-    "name": "Aurelian_Hegemony Prototype Flayer Gauss",
+  "Templars_of_the_Flux_base_rad_weapon_4": {
+    "id": "Templars_of_the_Flux_base_rad_weapon_4",
+    "name": "Templars_of_the_Flux Heavy Rad Rad",
     "category": "Exotic",
     "stats": {
-      "range": 23.7,
-      "strength": 4.84,
-      "ap": -1.99,
-      "attacks": 1.91
-    },
-    "tags": [
-      "exotic",
-      "gauss",
-      "rending"
-    ],
-    "source_file": "procedural",
-    "source_format": "unknown"
-  },
-  "VoidSpawn_Entities_base_rad_weapon_0": {
-    "id": "VoidSpawn_Entities_base_rad_weapon_0",
-    "name": "VoidSpawn_Entities Precision Rad Rad",
-    "category": "Exotic",
-    "stats": {
-      "range": 17.42,
-      "strength": 2.14,
+      "range": 17.56,
+      "strength": 2.07,
       "ap": 0.0,
       "attacks": 1.05
     },
@@ -740,69 +52,106 @@
     "source_file": "procedural",
     "source_format": "unknown"
   },
-  "VoidSpawn_Entities_base_plasma_weapon_1": {
-    "id": "VoidSpawn_Entities_base_plasma_weapon_1",
-    "name": "VoidSpawn_Entities Advanced Sun-Fury Plasma",
-    "category": "Energy",
-    "stats": {
-      "range": 24.22,
-      "strength": 6.9,
-      "ap": -2.95,
-      "attacks": 1.04
-    },
-    "tags": [
-      "energy",
-      "plasma",
-      "high_damage"
-    ],
-    "source_file": "procedural",
-    "source_format": "unknown"
-  },
-  "VoidSpawn_Entities_base_polaron_weapon_2": {
-    "id": "VoidSpawn_Entities_base_polaron_weapon_2",
-    "name": "VoidSpawn_Entities Light Polaron Polaron",
-    "category": "Energy",
-    "stats": {
-      "range": 26.54,
-      "strength": 5.41,
-      "ap": -2.01,
-      "attacks": 1.92
-    },
-    "tags": [
-      "energy",
-      "polaron",
-      "shield_piercing"
-    ],
-    "source_file": "procedural",
-    "source_format": "unknown"
-  },
-  "VoidSpawn_Entities_base_gauss_weapon_3": {
-    "id": "VoidSpawn_Entities_base_gauss_weapon_3",
-    "name": "VoidSpawn_Entities Enhanced Flayer Gauss",
+  "Templars_of_the_Flux_base_rad_weapon_5": {
+    "id": "Templars_of_the_Flux_base_rad_weapon_5",
+    "name": "Templars_of_the_Flux Advanced Rad Rad",
     "category": "Exotic",
     "stats": {
-      "range": 24.66,
-      "strength": 5.35,
+      "range": 17.97,
+      "strength": 2.01,
+      "ap": 0.0,
+      "attacks": 0.97
+    },
+    "tags": [
+      "radiation",
+      "poison",
+      "anti_infantry"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "Templars_of_the_Flux_base_phaser_weapon_9": {
+    "id": "Templars_of_the_Flux_base_phaser_weapon_9",
+    "name": "Templars_of_the_Flux Prototype Phaser",
+    "category": "Energy",
+    "stats": {
+      "range": 31.57,
+      "strength": 4.52,
       "ap": -1.99,
-      "attacks": 1.94
+      "attacks": 2.16
     },
     "tags": [
-      "exotic",
-      "gauss",
-      "rending"
+      "energy",
+      "phaser",
+      "accurate"
     ],
     "source_file": "procedural",
     "source_format": "unknown"
   },
-  "VoidSpawn_Entities_base_grav_weapon_4": {
-    "id": "VoidSpawn_Entities_base_grav_weapon_4",
-    "name": "VoidSpawn_Entities MKII Grav",
+  "Transcendent_Order_base_tachyon_weapon_1": {
+    "id": "Transcendent_Order_base_tachyon_weapon_1",
+    "name": "Transcendent_Order Heavy Tachyon",
     "category": "Exotic",
     "stats": {
-      "range": 19.55,
-      "strength": 5.25,
-      "ap": -2.7,
-      "attacks": 2.99
+      "range": 102.6,
+      "strength": 9.3,
+      "ap": -4.74,
+      "attacks": 0.91
+    },
+    "tags": [
+      "energy",
+      "tachyon",
+      "sniper"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "Transcendent_Order_base_melta_weapon_2": {
+    "id": "Transcendent_Order_base_melta_weapon_2",
+    "name": "Transcendent_Order Light Fusion Melta",
+    "category": "Thermal",
+    "stats": {
+      "range": 12.65,
+      "strength": 7.36,
+      "ap": -4.21,
+      "attacks": 1.03
+    },
+    "tags": [
+      "thermal",
+      "melta",
+      "anti_tank"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "Transcendent_Order_base_tesla_weapon_3": {
+    "id": "Transcendent_Order_base_tesla_weapon_3",
+    "name": "Transcendent_Order Heavy Voltaic Tesla",
+    "category": "Energy",
+    "stats": {
+      "range": 18.78,
+      "strength": 4.54,
+      "ap": 0.0,
+      "attacks": 3.0
+    },
+    "tags": [
+      "energy",
+      "tesla",
+      "arcing",
+      "phasic"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "Transcendent_Order_base_grav_weapon_4": {
+    "id": "Transcendent_Order_base_grav_weapon_4",
+    "name": "Transcendent_Order Heavy Grav",
+    "category": "Exotic",
+    "stats": {
+      "range": 17.63,
+      "strength": 4.86,
+      "ap": -2.9,
+      "attacks": 3.14
     },
     "tags": [
       "gravimetric",
@@ -812,51 +161,87 @@
     "source_file": "procedural",
     "source_format": "unknown"
   },
-  "VoidSpawn_Entities_base_tesla_weapon_5": {
-    "id": "VoidSpawn_Entities_base_tesla_weapon_5",
-    "name": "VoidSpawn_Entities Standard Voltaic Tesla",
-    "category": "Energy",
+  "Transcendent_Order_base_bolter_weapon_6": {
+    "id": "Transcendent_Order_base_bolter_weapon_6",
+    "name": "Transcendent_Order Standard Macro Bolt",
+    "category": "Ballistic",
     "stats": {
-      "range": 18.02,
-      "strength": 5.37,
-      "ap": 0.0,
-      "attacks": 3.17
+      "range": 24.4,
+      "strength": 3.61,
+      "ap": -1.03,
+      "attacks": 2.17
     },
     "tags": [
-      "energy",
-      "tesla",
-      "arcing"
+      "kinetic",
+      "explosive"
     ],
     "source_file": "procedural",
     "source_format": "unknown"
   },
-  "VoidSpawn_Entities_base_plasma_weapon_8": {
-    "id": "VoidSpawn_Entities_base_plasma_weapon_8",
-    "name": "VoidSpawn_Entities Enhanced Sun-Fury Plasma",
+  "Transcendent_Order_base_phaser_weapon_8": {
+    "id": "Transcendent_Order_base_phaser_weapon_8",
+    "name": "Transcendent_Order Standard Glacial Phaser",
     "category": "Energy",
     "stats": {
-      "range": 23.05,
-      "strength": 6.46,
-      "ap": -2.74,
-      "attacks": 0.95
+      "range": 28.67,
+      "strength": 4.82,
+      "ap": -1.83,
+      "attacks": 2.03
     },
     "tags": [
       "energy",
-      "plasma",
-      "high_damage"
+      "phaser",
+      "accurate",
+      "cryo"
     ],
     "source_file": "procedural",
     "source_format": "unknown"
   },
-  "VoidSpawn_Entities_base_gauss_weapon_9": {
-    "id": "VoidSpawn_Entities_base_gauss_weapon_9",
-    "name": "VoidSpawn_Entities Advanced Flayer Gauss",
+  "Transcendent_Order_base_sonic_weapon_9": {
+    "id": "Transcendent_Order_base_sonic_weapon_9",
+    "name": "Transcendent_Order Advanced Disruption Sonic",
     "category": "Exotic",
     "stats": {
-      "range": 23.1,
-      "strength": 5.18,
-      "ap": -1.97,
-      "attacks": 2.14
+      "range": 23.63,
+      "strength": 4.08,
+      "ap": -0.94,
+      "attacks": 2.9
+    },
+    "tags": [
+      "sonic",
+      "ignore_cover",
+      "disruptor",
+      "black_hole"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "SteelBound_Syndicate_base_bolter_weapon_0": {
+    "id": "SteelBound_Syndicate_base_bolter_weapon_0",
+    "name": "SteelBound_Syndicate Enhanced Macro Bolt",
+    "category": "Ballistic",
+    "stats": {
+      "range": 24.36,
+      "strength": 3.82,
+      "ap": -0.94,
+      "attacks": 1.91
+    },
+    "tags": [
+      "kinetic",
+      "explosive"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "SteelBound_Syndicate_base_gauss_weapon_1": {
+    "id": "SteelBound_Syndicate_base_gauss_weapon_1",
+    "name": "SteelBound_Syndicate Light Flayer Gauss",
+    "category": "Exotic",
+    "stats": {
+      "range": 23.84,
+      "strength": 4.82,
+      "ap": -1.96,
+      "attacks": 1.8
     },
     "tags": [
       "exotic",
@@ -866,15 +251,178 @@
     "source_file": "procedural",
     "source_format": "unknown"
   },
-  "ScrapLord_Marauders_base_bolter_weapon_1": {
-    "id": "ScrapLord_Marauders_base_bolter_weapon_1",
-    "name": "ScrapLord_Marauders Standard Macro Bolt",
+  "SteelBound_Syndicate_base_volkite_weapon_3": {
+    "id": "SteelBound_Syndicate_base_volkite_weapon_3",
+    "name": "SteelBound_Syndicate Prototype Volkite",
+    "category": "Thermal",
+    "stats": {
+      "range": 31.79,
+      "strength": 5.6,
+      "ap": -1.07,
+      "attacks": 2.18
+    },
+    "tags": [
+      "thermal",
+      "volkite",
+      "deflagrate"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "SteelBound_Syndicate_base_tesla_weapon_5": {
+    "id": "SteelBound_Syndicate_base_tesla_weapon_5",
+    "name": "SteelBound_Syndicate Prototype Voltaic Tesla",
+    "category": "Energy",
+    "stats": {
+      "range": 17.29,
+      "strength": 4.67,
+      "ap": 0.0,
+      "attacks": 3.16
+    },
+    "tags": [
+      "energy",
+      "tesla",
+      "arcing"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "SteelBound_Syndicate_base_tesla_weapon_6": {
+    "id": "SteelBound_Syndicate_base_tesla_weapon_6",
+    "name": "SteelBound_Syndicate Enhanced Voltaic Tesla",
+    "category": "Energy",
+    "stats": {
+      "range": 17.34,
+      "strength": 4.51,
+      "ap": 0.0,
+      "attacks": 3.3
+    },
+    "tags": [
+      "energy",
+      "tesla",
+      "arcing",
+      "radiation"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "SteelBound_Syndicate_base_bolter_weapon_7": {
+    "id": "SteelBound_Syndicate_base_bolter_weapon_7",
+    "name": "SteelBound_Syndicate Enhanced Macro Bolt",
     "category": "Ballistic",
     "stats": {
-      "range": 24.27,
-      "strength": 3.87,
-      "ap": -1.01,
-      "attacks": 1.89
+      "range": 24.94,
+      "strength": 3.83,
+      "ap": -0.97,
+      "attacks": 1.81
+    },
+    "tags": [
+      "kinetic",
+      "explosive",
+      "disruptor"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "SteelBound_Syndicate_base_plasma_weapon_9": {
+    "id": "SteelBound_Syndicate_base_plasma_weapon_9",
+    "name": "SteelBound_Syndicate Prototype Sun-Fury Plasma",
+    "category": "Energy",
+    "stats": {
+      "range": 22.46,
+      "strength": 7.4,
+      "ap": -2.85,
+      "attacks": 1.09
+    },
+    "tags": [
+      "energy",
+      "plasma",
+      "high_damage"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "BioTide_Collective_base_plasma_weapon_0": {
+    "id": "BioTide_Collective_base_plasma_weapon_0",
+    "name": "BioTide_Collective Prototype Sun-Fury Plasma",
+    "category": "Energy",
+    "stats": {
+      "range": 22.88,
+      "strength": 7.7,
+      "ap": -3.19,
+      "attacks": 1.08
+    },
+    "tags": [
+      "energy",
+      "plasma",
+      "high_damage"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "BioTide_Collective_base_melta_weapon_1": {
+    "id": "BioTide_Collective_base_melta_weapon_1",
+    "name": "BioTide_Collective Heavy Fusion Melta",
+    "category": "Thermal",
+    "stats": {
+      "range": 11.65,
+      "strength": 7.76,
+      "ap": -3.69,
+      "attacks": 0.96
+    },
+    "tags": [
+      "thermal",
+      "melta",
+      "anti_tank"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "BioTide_Collective_base_plasma_weapon_3": {
+    "id": "BioTide_Collective_base_plasma_weapon_3",
+    "name": "BioTide_Collective Precision Sun-Fury Plasma",
+    "category": "Energy",
+    "stats": {
+      "range": 25.22,
+      "strength": 6.45,
+      "ap": -2.81,
+      "attacks": 1.05
+    },
+    "tags": [
+      "energy",
+      "plasma",
+      "high_damage"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "BioTide_Collective_base_rad_weapon_4": {
+    "id": "BioTide_Collective_base_rad_weapon_4",
+    "name": "BioTide_Collective Advanced Rad Rad",
+    "category": "Exotic",
+    "stats": {
+      "range": 16.41,
+      "strength": 2.03,
+      "ap": 0.0,
+      "attacks": 1.0
+    },
+    "tags": [
+      "radiation",
+      "poison",
+      "anti_infantry"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "BioTide_Collective_base_bolter_weapon_5": {
+    "id": "BioTide_Collective_base_bolter_weapon_5",
+    "name": "BioTide_Collective MKII Macro Bolt",
+    "category": "Ballistic",
+    "stats": {
+      "range": 26.29,
+      "strength": 3.93,
+      "ap": -1.06,
+      "attacks": 1.95
     },
     "tags": [
       "kinetic",
@@ -883,14 +431,86 @@
     "source_file": "procedural",
     "source_format": "unknown"
   },
-  "ScrapLord_Marauders_base_phaser_weapon_2": {
-    "id": "ScrapLord_Marauders_base_phaser_weapon_2",
-    "name": "ScrapLord_Marauders Advanced Phaser",
+  "BioTide_Collective_base_polaron_weapon_8": {
+    "id": "BioTide_Collective_base_polaron_weapon_8",
+    "name": "BioTide_Collective Light Polaron Polaron",
     "category": "Energy",
     "stats": {
-      "range": 30.46,
-      "strength": 5.32,
-      "ap": -2.09,
+      "range": 25.74,
+      "strength": 6.48,
+      "ap": -2.18,
+      "attacks": 1.86
+    },
+    "tags": [
+      "energy",
+      "polaron",
+      "shield_piercing"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "BioTide_Collective_base_melta_weapon_9": {
+    "id": "BioTide_Collective_base_melta_weapon_9",
+    "name": "BioTide_Collective Tactical Fusion Melta",
+    "category": "Thermal",
+    "stats": {
+      "range": 12.29,
+      "strength": 8.31,
+      "ap": -3.66,
+      "attacks": 0.91
+    },
+    "tags": [
+      "thermal",
+      "melta",
+      "anti_tank"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "Algorithmic_Hierarchy_base_tesla_weapon_0": {
+    "id": "Algorithmic_Hierarchy_base_tesla_weapon_0",
+    "name": "Algorithmic_Hierarchy Tactical Voltaic Tesla",
+    "category": "Energy",
+    "stats": {
+      "range": 18.15,
+      "strength": 5.25,
+      "ap": 0.0,
+      "attacks": 3.0
+    },
+    "tags": [
+      "energy",
+      "tesla",
+      "arcing"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "Algorithmic_Hierarchy_base_rad_weapon_1": {
+    "id": "Algorithmic_Hierarchy_base_rad_weapon_1",
+    "name": "Algorithmic_Hierarchy MKII Rad Rad",
+    "category": "Exotic",
+    "stats": {
+      "range": 16.96,
+      "strength": 1.82,
+      "ap": 0.0,
+      "attacks": 1.01
+    },
+    "tags": [
+      "radiation",
+      "poison",
+      "anti_infantry"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "Algorithmic_Hierarchy_base_phaser_weapon_2": {
+    "id": "Algorithmic_Hierarchy_base_phaser_weapon_2",
+    "name": "Algorithmic_Hierarchy Prototype Phaser",
+    "category": "Energy",
+    "stats": {
+      "range": 31.38,
+      "strength": 4.51,
+      "ap": -1.84,
       "attacks": 1.91
     },
     "tags": [
@@ -901,51 +521,33 @@
     "source_file": "procedural",
     "source_format": "unknown"
   },
-  "ScrapLord_Marauders_base_bolter_weapon_3": {
-    "id": "ScrapLord_Marauders_base_bolter_weapon_3",
-    "name": "ScrapLord_Marauders Prototype Macro Bolt",
-    "category": "Ballistic",
+  "Algorithmic_Hierarchy_base_melta_weapon_3": {
+    "id": "Algorithmic_Hierarchy_base_melta_weapon_3",
+    "name": "Algorithmic_Hierarchy Precision Fusion Melta",
+    "category": "Thermal",
     "stats": {
-      "range": 22.69,
-      "strength": 4.16,
-      "ap": -1.09,
-      "attacks": 2.03
+      "range": 11.49,
+      "strength": 7.55,
+      "ap": -3.73,
+      "attacks": 1.01
     },
     "tags": [
-      "kinetic",
-      "explosive",
-      "phasic"
+      "thermal",
+      "melta",
+      "anti_tank"
     ],
     "source_file": "procedural",
     "source_format": "unknown"
   },
-  "ScrapLord_Marauders_base_rad_weapon_5": {
-    "id": "ScrapLord_Marauders_base_rad_weapon_5",
-    "name": "ScrapLord_Marauders Tactical Rad Rad",
-    "category": "Exotic",
-    "stats": {
-      "range": 17.75,
-      "strength": 2.01,
-      "ap": 0.0,
-      "attacks": 1.06
-    },
-    "tags": [
-      "radiation",
-      "poison",
-      "anti_infantry"
-    ],
-    "source_file": "procedural",
-    "source_format": "unknown"
-  },
-  "ScrapLord_Marauders_base_polaron_weapon_7": {
-    "id": "ScrapLord_Marauders_base_polaron_weapon_7",
-    "name": "ScrapLord_Marauders Precision Polaron Polaron",
+  "Algorithmic_Hierarchy_base_polaron_weapon_4": {
+    "id": "Algorithmic_Hierarchy_base_polaron_weapon_4",
+    "name": "Algorithmic_Hierarchy Enhanced Polaron Polaron",
     "category": "Energy",
     "stats": {
-      "range": 26.53,
-      "strength": 5.71,
-      "ap": -1.91,
-      "attacks": 2.15
+      "range": 27.72,
+      "strength": 5.46,
+      "ap": -2.06,
+      "attacks": 1.86
     },
     "tags": [
       "energy",
@@ -955,71 +557,33 @@
     "source_file": "procedural",
     "source_format": "unknown"
   },
-  "ScrapLord_Marauders_base_sonic_weapon_8": {
-    "id": "ScrapLord_Marauders_base_sonic_weapon_8",
-    "name": "ScrapLord_Marauders Heavy Disruption Sonic",
-    "category": "Exotic",
+  "Algorithmic_Hierarchy_base_melta_weapon_5": {
+    "id": "Algorithmic_Hierarchy_base_melta_weapon_5",
+    "name": "Algorithmic_Hierarchy Prototype Fusion Melta",
+    "category": "Thermal",
     "stats": {
-      "range": 21.68,
-      "strength": 3.93,
-      "ap": -0.93,
-      "attacks": 3.23
+      "range": 12.38,
+      "strength": 8.38,
+      "ap": -4.3,
+      "attacks": 1.05
     },
     "tags": [
-      "sonic",
-      "ignore_cover",
-      "disruptor",
-      "acidic"
+      "thermal",
+      "melta",
+      "anti_tank"
     ],
     "source_file": "procedural",
     "source_format": "unknown"
   },
-  "Primeval_Sentinels_base_gauss_weapon_2": {
-    "id": "Primeval_Sentinels_base_gauss_weapon_2",
-    "name": "Primeval_Sentinels MKII Flayer Gauss",
+  "Algorithmic_Hierarchy_base_grav_weapon_7": {
+    "id": "Algorithmic_Hierarchy_base_grav_weapon_7",
+    "name": "Algorithmic_Hierarchy Heavy Grav",
     "category": "Exotic",
     "stats": {
-      "range": 24.99,
-      "strength": 4.83,
-      "ap": -1.94,
-      "attacks": 2.11
-    },
-    "tags": [
-      "exotic",
-      "gauss",
-      "rending"
-    ],
-    "source_file": "procedural",
-    "source_format": "unknown"
-  },
-  "Primeval_Sentinels_base_disruptor_weapon_3": {
-    "id": "Primeval_Sentinels_base_disruptor_weapon_3",
-    "name": "Primeval_Sentinels Enhanced Disruption Disruptor",
-    "category": "Energy",
-    "stats": {
-      "range": 17.92,
-      "strength": 6.24,
-      "ap": -2.92,
-      "attacks": 0.92
-    },
-    "tags": [
-      "energy",
-      "disruptor",
-      "brutal",
-      "polaron"
-    ],
-    "source_file": "procedural",
-    "source_format": "unknown"
-  },
-  "Primeval_Sentinels_base_grav_weapon_5": {
-    "id": "Primeval_Sentinels_base_grav_weapon_5",
-    "name": "Primeval_Sentinels Light Grav",
-    "category": "Exotic",
-    "stats": {
-      "range": 17.72,
-      "strength": 4.52,
-      "ap": -2.79,
-      "attacks": 2.94
+      "range": 19.22,
+      "strength": 4.84,
+      "ap": -2.82,
+      "attacks": 2.81
     },
     "tags": [
       "gravimetric",
@@ -1029,20 +593,507 @@
     "source_file": "procedural",
     "source_format": "unknown"
   },
-  "Primeval_Sentinels_base_disruptor_weapon_6": {
-    "id": "Primeval_Sentinels_base_disruptor_weapon_6",
-    "name": "Primeval_Sentinels Prototype Disruption Disruptor",
+  "Algorithmic_Hierarchy_base_plasma_weapon_8": {
+    "id": "Algorithmic_Hierarchy_base_plasma_weapon_8",
+    "name": "Algorithmic_Hierarchy Precision Sun-Fury Plasma",
     "category": "Energy",
     "stats": {
-      "range": 17.38,
-      "strength": 5.41,
-      "ap": -3.26,
-      "attacks": 0.94
+      "range": 21.62,
+      "strength": 6.52,
+      "ap": -3.06,
+      "attacks": 0.91
+    },
+    "tags": [
+      "energy",
+      "plasma",
+      "high_damage"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "Algorithmic_Hierarchy_base_polaron_weapon_9": {
+    "id": "Algorithmic_Hierarchy_base_polaron_weapon_9",
+    "name": "Algorithmic_Hierarchy Advanced Polaron Polaron",
+    "category": "Energy",
+    "stats": {
+      "range": 30.54,
+      "strength": 6.5,
+      "ap": -2.13,
+      "attacks": 2.13
+    },
+    "tags": [
+      "energy",
+      "polaron",
+      "shield_piercing"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "Nebula_Drifters_base_disruptor_weapon_0": {
+    "id": "Nebula_Drifters_base_disruptor_weapon_0",
+    "name": "Nebula_Drifters MKII Disruption Disruptor",
+    "category": "Energy",
+    "stats": {
+      "range": 19.4,
+      "strength": 6.56,
+      "ap": -3.16,
+      "attacks": 1.04
     },
     "tags": [
       "energy",
       "disruptor",
       "brutal"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "Nebula_Drifters_base_bolter_weapon_3": {
+    "id": "Nebula_Drifters_base_bolter_weapon_3",
+    "name": "Nebula_Drifters Light Macro Bolt",
+    "category": "Ballistic",
+    "stats": {
+      "range": 23.74,
+      "strength": 4.37,
+      "ap": -0.99,
+      "attacks": 1.96
+    },
+    "tags": [
+      "kinetic",
+      "explosive"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "Nebula_Drifters_base_plasma_weapon_6": {
+    "id": "Nebula_Drifters_base_plasma_weapon_6",
+    "name": "Nebula_Drifters Light Sun-Fury Plasma",
+    "category": "Energy",
+    "stats": {
+      "range": 25.67,
+      "strength": 7.69,
+      "ap": -3.07,
+      "attacks": 0.95
+    },
+    "tags": [
+      "energy",
+      "plasma",
+      "high_damage"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "Nebula_Drifters_base_polaron_weapon_8": {
+    "id": "Nebula_Drifters_base_polaron_weapon_8",
+    "name": "Nebula_Drifters Advanced Polaron Polaron",
+    "category": "Energy",
+    "stats": {
+      "range": 26.74,
+      "strength": 6.02,
+      "ap": -1.83,
+      "attacks": 2.01
+    },
+    "tags": [
+      "energy",
+      "polaron",
+      "shield_piercing"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "Aurelian_Hegemony_base_volkite_weapon_1": {
+    "id": "Aurelian_Hegemony_base_volkite_weapon_1",
+    "name": "Aurelian_Hegemony Light Volkite",
+    "category": "Thermal",
+    "stats": {
+      "range": 30.56,
+      "strength": 6.29,
+      "ap": -0.98,
+      "attacks": 2.2
+    },
+    "tags": [
+      "thermal",
+      "volkite",
+      "deflagrate"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "Aurelian_Hegemony_base_phaser_weapon_2": {
+    "id": "Aurelian_Hegemony_base_phaser_weapon_2",
+    "name": "Aurelian_Hegemony Heavy Phaser",
+    "category": "Energy",
+    "stats": {
+      "range": 28.56,
+      "strength": 5.49,
+      "ap": -1.85,
+      "attacks": 2.19
+    },
+    "tags": [
+      "energy",
+      "phaser",
+      "accurate"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "Aurelian_Hegemony_base_volkite_weapon_4": {
+    "id": "Aurelian_Hegemony_base_volkite_weapon_4",
+    "name": "Aurelian_Hegemony Prototype Volkite",
+    "category": "Thermal",
+    "stats": {
+      "range": 29.93,
+      "strength": 5.84,
+      "ap": -0.95,
+      "attacks": 2.16
+    },
+    "tags": [
+      "thermal",
+      "volkite",
+      "deflagrate"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "Aurelian_Hegemony_base_rad_weapon_5": {
+    "id": "Aurelian_Hegemony_base_rad_weapon_5",
+    "name": "Aurelian_Hegemony MKII Rad Rad",
+    "category": "Exotic",
+    "stats": {
+      "range": 19.21,
+      "strength": 1.91,
+      "ap": 0.0,
+      "attacks": 1.0
+    },
+    "tags": [
+      "radiation",
+      "poison",
+      "anti_infantry"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "Aurelian_Hegemony_base_plasma_weapon_7": {
+    "id": "Aurelian_Hegemony_base_plasma_weapon_7",
+    "name": "Aurelian_Hegemony Tactical Sun-Fury Plasma",
+    "category": "Energy",
+    "stats": {
+      "range": 22.01,
+      "strength": 7.21,
+      "ap": -2.72,
+      "attacks": 0.92
+    },
+    "tags": [
+      "energy",
+      "plasma",
+      "high_damage"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "Aurelian_Hegemony_base_disruptor_weapon_8": {
+    "id": "Aurelian_Hegemony_base_disruptor_weapon_8",
+    "name": "Aurelian_Hegemony Standard Disruption Disruptor",
+    "category": "Energy",
+    "stats": {
+      "range": 19.6,
+      "strength": 6.04,
+      "ap": -3.24,
+      "attacks": 0.91
+    },
+    "tags": [
+      "energy",
+      "disruptor",
+      "brutal"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "VoidSpawn_Entities_base_disruptor_weapon_2": {
+    "id": "VoidSpawn_Entities_base_disruptor_weapon_2",
+    "name": "VoidSpawn_Entities MKII Disruption Disruptor",
+    "category": "Energy",
+    "stats": {
+      "range": 19.71,
+      "strength": 6.49,
+      "ap": -2.81,
+      "attacks": 1.05
+    },
+    "tags": [
+      "energy",
+      "disruptor",
+      "brutal",
+      "phasic"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "VoidSpawn_Entities_base_sonic_weapon_3": {
+    "id": "VoidSpawn_Entities_base_sonic_weapon_3",
+    "name": "VoidSpawn_Entities Light Disruption Sonic",
+    "category": "Exotic",
+    "stats": {
+      "range": 26.15,
+      "strength": 4.39,
+      "ap": -1.08,
+      "attacks": 3.09
+    },
+    "tags": [
+      "sonic",
+      "ignore_cover",
+      "disruptor",
+      "nanite"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "VoidSpawn_Entities_base_bolter_weapon_7": {
+    "id": "VoidSpawn_Entities_base_bolter_weapon_7",
+    "name": "VoidSpawn_Entities Light Macro Bolt",
+    "category": "Ballistic",
+    "stats": {
+      "range": 25.55,
+      "strength": 4.34,
+      "ap": -1.08,
+      "attacks": 1.92
+    },
+    "tags": [
+      "kinetic",
+      "explosive"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "VoidSpawn_Entities_base_gauss_weapon_8": {
+    "id": "VoidSpawn_Entities_base_gauss_weapon_8",
+    "name": "VoidSpawn_Entities Tactical Flayer Gauss",
+    "category": "Exotic",
+    "stats": {
+      "range": 21.65,
+      "strength": 4.96,
+      "ap": -2.07,
+      "attacks": 2.17
+    },
+    "tags": [
+      "exotic",
+      "gauss",
+      "rending"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "VoidSpawn_Entities_base_tachyon_weapon_9": {
+    "id": "VoidSpawn_Entities_base_tachyon_weapon_9",
+    "name": "VoidSpawn_Entities Advanced Gray-Goo Tachyon",
+    "category": "Exotic",
+    "stats": {
+      "range": 98.0,
+      "strength": 9.07,
+      "ap": -4.66,
+      "attacks": 0.91
+    },
+    "tags": [
+      "energy",
+      "tachyon",
+      "sniper",
+      "nanite"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "ScrapLord_Marauders_base_tachyon_weapon_0": {
+    "id": "ScrapLord_Marauders_base_tachyon_weapon_0",
+    "name": "ScrapLord_Marauders Light Tachyon",
+    "category": "Exotic",
+    "stats": {
+      "range": 109.09,
+      "strength": 10.32,
+      "ap": -4.8,
+      "attacks": 0.97
+    },
+    "tags": [
+      "energy",
+      "tachyon",
+      "sniper"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "ScrapLord_Marauders_base_melta_weapon_1": {
+    "id": "ScrapLord_Marauders_base_melta_weapon_1",
+    "name": "ScrapLord_Marauders Enhanced Fusion Melta",
+    "category": "Thermal",
+    "stats": {
+      "range": 12.3,
+      "strength": 8.11,
+      "ap": -3.88,
+      "attacks": 0.99
+    },
+    "tags": [
+      "thermal",
+      "melta",
+      "anti_tank"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "ScrapLord_Marauders_base_melta_weapon_2": {
+    "id": "ScrapLord_Marauders_base_melta_weapon_2",
+    "name": "ScrapLord_Marauders Advanced Fusion Melta",
+    "category": "Thermal",
+    "stats": {
+      "range": 11.13,
+      "strength": 8.47,
+      "ap": -4.34,
+      "attacks": 0.97
+    },
+    "tags": [
+      "thermal",
+      "melta",
+      "anti_tank"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "ScrapLord_Marauders_base_tesla_weapon_3": {
+    "id": "ScrapLord_Marauders_base_tesla_weapon_3",
+    "name": "ScrapLord_Marauders Advanced Voltaic Tesla",
+    "category": "Energy",
+    "stats": {
+      "range": 16.3,
+      "strength": 5.07,
+      "ap": 0.0,
+      "attacks": 2.74
+    },
+    "tags": [
+      "energy",
+      "tesla",
+      "arcing"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "ScrapLord_Marauders_base_plasma_weapon_4": {
+    "id": "ScrapLord_Marauders_base_plasma_weapon_4",
+    "name": "ScrapLord_Marauders Heavy Sun-Fury Plasma",
+    "category": "Energy",
+    "stats": {
+      "range": 23.06,
+      "strength": 7.19,
+      "ap": -3.04,
+      "attacks": 1.0
+    },
+    "tags": [
+      "energy",
+      "plasma",
+      "high_damage"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "ScrapLord_Marauders_base_disruptor_weapon_5": {
+    "id": "ScrapLord_Marauders_base_disruptor_weapon_5",
+    "name": "ScrapLord_Marauders Light Disruption Disruptor",
+    "category": "Energy",
+    "stats": {
+      "range": 16.55,
+      "strength": 6.0,
+      "ap": -3.22,
+      "attacks": 1.06
+    },
+    "tags": [
+      "energy",
+      "disruptor",
+      "brutal"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "ScrapLord_Marauders_base_sonic_weapon_8": {
+    "id": "ScrapLord_Marauders_base_sonic_weapon_8",
+    "name": "ScrapLord_Marauders MKII Disruption Sonic",
+    "category": "Exotic",
+    "stats": {
+      "range": 22.75,
+      "strength": 3.78,
+      "ap": -1.01,
+      "attacks": 2.71
+    },
+    "tags": [
+      "sonic",
+      "ignore_cover",
+      "disruptor"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "Primeval_Sentinels_base_phaser_weapon_1": {
+    "id": "Primeval_Sentinels_base_phaser_weapon_1",
+    "name": "Primeval_Sentinels MKII Phaser",
+    "category": "Energy",
+    "stats": {
+      "range": 29.23,
+      "strength": 5.15,
+      "ap": -2.09,
+      "attacks": 2.01
+    },
+    "tags": [
+      "energy",
+      "phaser",
+      "accurate"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "Primeval_Sentinels_base_melta_weapon_4": {
+    "id": "Primeval_Sentinels_base_melta_weapon_4",
+    "name": "Primeval_Sentinels Standard Fusion Melta",
+    "category": "Thermal",
+    "stats": {
+      "range": 11.66,
+      "strength": 8.58,
+      "ap": -4.23,
+      "attacks": 1.0
+    },
+    "tags": [
+      "thermal",
+      "melta",
+      "anti_tank"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "Primeval_Sentinels_base_phaser_weapon_5": {
+    "id": "Primeval_Sentinels_base_phaser_weapon_5",
+    "name": "Primeval_Sentinels Enhanced Phaser",
+    "category": "Energy",
+    "stats": {
+      "range": 29.06,
+      "strength": 4.97,
+      "ap": -1.89,
+      "attacks": 1.95
+    },
+    "tags": [
+      "energy",
+      "phaser",
+      "accurate"
+    ],
+    "source_file": "procedural",
+    "source_format": "unknown"
+  },
+  "Primeval_Sentinels_base_polaron_weapon_8": {
+    "id": "Primeval_Sentinels_base_polaron_weapon_8",
+    "name": "Primeval_Sentinels Advanced Polaron Polaron",
+    "category": "Energy",
+    "stats": {
+      "range": 29.14,
+      "strength": 6.14,
+      "ap": -1.91,
+      "attacks": 2.04
+    },
+    "tags": [
+      "energy",
+      "polaron",
+      "shield_piercing"
     ],
     "source_file": "procedural",
     "source_format": "unknown"

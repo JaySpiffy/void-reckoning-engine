@@ -19,15 +19,13 @@ class TaskForceManager:
         self.ai_manager = ai_manager
         self.engine = ai_manager.engine
         self.task_forces: Dict[str, List[TaskForce]] = {} # {Faction: [TaskForce]}
+        self._fleet_to_tf_map: Dict[str, TaskForce] = {} # {FleetID: TaskForce} (Inverse Index)
         self.tf_counter = 0
 
     def get_task_force_for_fleet(self, fleet: Fleet) -> Optional[TaskForce]:
-        """Finds the TaskForce containing the given fleet."""
-        faction_tfs = self.task_forces.get(fleet.faction, [])
-        for tf in faction_tfs:
-            if fleet in tf.fleets:
-                return tf
-        return None
+        """Finds the TaskForce containing the given fleet. O(1) Lookup."""
+        if not fleet: return None
+        return self._fleet_to_tf_map.get(fleet.id)
 
     def ensure_faction_list(self, faction: str) -> None:
         """Ensures the task force list exists for a faction and cleans up empty TFs."""
@@ -178,6 +176,8 @@ class TaskForceManager:
                             
                             available_fleets.remove(f_to_add)
                             tf.add_fleet(f_to_add)
+                            # Sync Map
+                            self._fleet_to_tf_map[f_to_add.id] = tf
                             reinforcements_pulled += 1
                             
                             print(f"  > [Reinforce] {faction} {tf.id} pulling reinforcements for {tf.target.name} (Power: {sum(f.power for f in tf.fleets)} vs Req: {int(defender_power * required_ratio)})")
@@ -339,7 +339,9 @@ class TaskForceManager:
         count = min(len(candidates), random.randint(2, 4))
         
         for i in range(count):
-            raid_tf.add_fleet(candidates[i])
+            f = candidates[i]
+            raid_tf.add_fleet(f)
+            self._fleet_to_tf_map[f.id] = raid_tf
             
         if raid_tf.fleets:
              self.ensure_faction_list(faction)
@@ -379,6 +381,7 @@ class TaskForceManager:
                     print(f"  > [STRATEGY] {faction} MERGING {tf2.id} into {tf1.id} for concentrated assault on {tf1.target.name}")
                     for f in tf2.fleets:
                         tf1.add_fleet(f)
+                        self._fleet_to_tf_map[f.id] = tf1 # Update Map
                     tfs_to_remove.append(tf2)
                     
         for tf in tfs_to_remove:
@@ -421,6 +424,18 @@ class TaskForceManager:
 
         # Clean up destroyed fleets from Task Force
         task_force.fleets = [f for f in task_force.fleets if not f.is_destroyed]
+        
+        # Clean up Map (remove destroyed or removed fleets)
+        # Iterate keys to find those pointing to this TF but not in fleets list
+        # This is expensive O(MapSize). Better: when fleet is destroyed, update map?
+        # Or just lazy update here.
+        # Allow lazy for now or handle in add/remove. 
+        # Adding explicitly:
+        # We need to make sure we don't have dangling refs in the map.
+        current_ids = set(f.id for f in task_force.fleets)
+        keys_to_remove = [k for k, v in self._fleet_to_tf_map.items() if v == task_force and k not in current_ids]
+        for k in keys_to_remove:
+            del self._fleet_to_tf_map[k]
 
     def split_overlarge_fleets(self, faction: str, available_fleets: List[Fleet]) -> List[Fleet]:
         """
@@ -588,6 +603,7 @@ class TaskForceManager:
         tf.mission_role = "CONSTRUCTION"
         tf.composition_type = "ENGINEER"
         tf.add_fleet(fleet)
+        self._fleet_to_tf_map[fleet.id] = tf
         
         self.ensure_faction_list(faction)
         self.task_forces[faction].append(tf)

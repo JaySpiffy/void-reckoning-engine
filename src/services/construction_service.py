@@ -266,7 +266,14 @@ class ConstructionService:
                 build_iter += 1
 
         # Phase 14: Starbase Construction (Use remaining budget)
-        spent += self._process_starbase_construction(f_name, faction_mgr, owned_planets, working_budget - spent)
+        # Pre-compute fleet locations for O(1) checks in starbase logic
+        fleet_locations = {}
+        for fleet in self.engine.fleets:
+            if fleet.faction == f_name and not fleet.is_destroyed:
+                 # If multiple fleets at same node, just keep one (sufficient for presence check)
+                 fleet_locations[fleet.location] = fleet
+                 
+        spent += self._process_starbase_construction(f_name, faction_mgr, owned_planets, working_budget - spent, fleet_locations)
 
         # Track idle construction slots and queue efficiency
         if self.engine.telemetry:
@@ -807,7 +814,7 @@ class ConstructionService:
             
         return False
 
-    def _process_starbase_construction(self, f_name: str, faction_mgr: 'Faction', owned_planets: List['Planet'], remaining_budget: int) -> int:
+    def _process_starbase_construction(self, f_name: str, faction_mgr: 'Faction', owned_planets: List['Planet'], remaining_budget: int, fleet_locations: Dict[Any, Any] = None) -> int:
         """
         [Phase 14] Starbase Construction Logic.
         AI attempts to build or upgrade Starbases in owned systems.
@@ -816,6 +823,7 @@ class ConstructionService:
         from src.models.starbase import Starbase
         
         spent = 0
+        if not fleet_locations: fleet_locations = {}
         # Loosen budget restrictions if faction is very wealthy
         min_exec_budget = 1000
         if faction_mgr.requisition > 20000:
@@ -855,11 +863,8 @@ class ConstructionService:
                 target_node = getattr(p, 'node_reference', None)
                 if not target_node: continue
                 
-                friendly_fleet = None
-                for fleet in self.engine.fleets:
-                    if fleet.faction == f_name and fleet.location == target_node and not fleet.is_destroyed:
-                        friendly_fleet = fleet
-                        break
+                # OPTIMIZATION: Use pre-computed map instead of O(N) linear scan
+                friendly_fleet = fleet_locations.get(target_node)
                 
                 # Planet supports own construction
                 has_support = True
@@ -959,7 +964,8 @@ class ConstructionService:
                     continue
                 
                 # Need fleet support for new deep space SB
-                friendly_fleet = next((f for f in self.engine.fleets if f.faction == f_name and f.location == node and not f.is_destroyed), None)
+                # OPTIMIZATION: Use pre-computed map
+                friendly_fleet = fleet_locations.get(node)
                 if not friendly_fleet: continue
                 
                 cost = 1000

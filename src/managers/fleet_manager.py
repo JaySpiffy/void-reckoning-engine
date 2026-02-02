@@ -1,4 +1,5 @@
 from typing import List, Dict, Any, Optional, TYPE_CHECKING
+from collections import defaultdict
 from src.utils.profiler import profile_method
 from src.reporting.telemetry import EventCategory
 
@@ -16,6 +17,17 @@ class FleetManager:
     def __init__(self, engine: 'CampaignEngine'):
         self.engine = engine
         self._repo = None
+        self._index = None # Lazy loaded FleetIndex
+
+    @property
+    def index(self):
+        if self._index is None:
+            from src.utils.fleet_index import FleetIndex
+            self._index = FleetIndex()
+            # Hydrate from repository to be safe
+            for f in self.repository.get_all():
+                self._index.add(f)
+        return self._index
 
     @property
     def repository(self):
@@ -29,33 +41,31 @@ class FleetManager:
 
     @property
     def fleets_by_faction(self) -> Dict[str, List['Fleet']]:
-        # Compatibility support
-        result = {}
-        for f in self.repository.get_all():
-            if f.faction not in result:
-                result[f.faction] = []
-            result[f.faction].append(f)
-        return result
+        # Optimization: Use Index
+        # Construct dict from index
+        return {f: list(fleets) for f, fleets in self.index._by_faction.items()}
 
     def get_all_fleets(self) -> List['Fleet']:
         """Returns all registered fleets."""
         return self.repository.get_all()
 
     def get_fleets_by_faction(self, faction_name: str) -> List['Fleet']:
-        """Returns active (not destroyed) fleets for a specific faction."""
-        return [f for f in self.repository.get_by_faction(faction_name) if not f.is_destroyed]
+        """Returns active (not destroyed) fleets for a specific faction using Index."""
+        return [f for f in self.index.get_by_faction(faction_name) if not f.is_destroyed]
 
     @profile_method
     def add_fleet(self, fleet: 'Fleet') -> None:
         """Central method to register a fleet in the engine state."""
         self.repository.save(fleet)
         fleet.engine = self.engine
+        self.index.add(fleet)
 
     @profile_method
     def remove_fleet(self, fleet: 'Fleet') -> None:
         """Central method to unregister a fleet from the engine state."""
         fid = getattr(fleet, 'id', str(id(fleet)))
         self.repository.delete(fid)
+        self.index.remove(fleet)
 
     def register_fleet(self, fleet: 'Fleet') -> None:
         """Adds fleet to master list and faction index via AssetManager (Compatibility)."""
@@ -70,54 +80,54 @@ class FleetManager:
     def consolidate_fleets(self, max_size=500, faction_filter: Optional[str] = None) -> int:
         """
         [DEATHBALL_LOGIC] Agnostic: Merges fleets in the same system to form larger battle groups.
-        Iterates through systems/planets and merges idle fleets of the same faction.
+        Optimization 3.1: Uses FleetIndex for O(1) location indexing.
         """
         merges_count = 0
         
-        # Build location index: {planet_obj: {faction: [fleets]}}
-        loc_index = {}
+        # New Logic: Iterate through locations present in the index
+        # This skips empty space and reduces O(N) linear scan
         
-        # Filter source fleets
-        source_fleets = self.fleets
-        if faction_filter:
-            source_fleets = [f for f in self.fleets if f.faction == faction_filter]
+        # Snapshot keys to avoid runtime error if dictionary changes during iteration (though consolidation shouldn't change location keys immediately)
+        locations_with_fleets = list(self.index._by_location.keys())
         
-        for f in source_fleets:
-            if f.is_destroyed or f.is_engaged or f.destination is not None: 
-                continue # Skip moving or fighting fleets
+        for loc_key in locations_with_fleets:
+            fleets_at_loc = self.index._by_location.get(loc_key, set())
             
-            loc = f.location
-            if not loc: continue
+            # Convert to list for stable iteration and filtering
+            fleets = list(fleets_at_loc)
             
-            if loc not in loc_index: loc_index[loc] = {}
-            if f.faction not in loc_index[loc]: loc_index[loc][f.faction] = []
-            loc_index[loc][f.faction].append(f)
-            
-        # Execute Merges
-        for loc, faction_map in loc_index.items():
-            for faction, fleets in faction_map.items():
-                if len(fleets) < 2: continue
+            # Simple grouping by faction
+            fleets_by_faction = defaultdict(list)
+            for f in fleets:
+                if f.is_destroyed or f.is_engaged or f.destination is not None:
+                     continue
+                if faction_filter and f.faction != faction_filter:
+                     continue
+                fleets_by_faction[f.faction].append(f)
                 
-                # Sort by size descending (Merge small into big)
-                fleets.sort(key=lambda x: len(x.units), reverse=True)
+            # Perform Merges
+            for faction, faction_fleets in fleets_by_faction.items():
+                if len(faction_fleets) < 2: continue
                 
-                target_fleet = fleets[0]
+                # Sort by size (largest first - merging into the largest)
+                faction_fleets.sort(key=lambda x: len(x.units), reverse=True)
                 
-                for i in range(1, len(fleets)):
-                    candidate = fleets[i]
+                target_fleet = faction_fleets[0]
+                
+                for i in range(1, len(faction_fleets)):
+                    source_fleet = faction_fleets[i]
                     
-                    # Check size limit
-                    current_size = len(target_fleet.units)
-                    candidate_size = len(candidate.units)
-                    
-                    if current_size + candidate_size <= max_size:
-                        if target_fleet.merge_with(candidate):
-                            merges_count += 1
-                            # Candidate automatically marked destroyed by merge_with
-                            # Remove from engine via manager
-                            self.remove_fleet(candidate)
-                            
-        if merges_count > 0 and self.engine and self.engine.logger:
-             self.engine.logger.campaign(f"[FLEET] Consolidated {merges_count} fleets into larger battle groups.")
-             
+                    if len(target_fleet.units) >= max_size:
+                        # Target full, switch target to this one (next largest)
+                        target_fleet = source_fleet
+                        continue
+                     
+                    # Optimization 3.3: Use Set-Based Merge
+                    # merge_with handles unit transfer, duplicate checks, and resource merging
+                    if target_fleet.merge_with(source_fleet):
+                        merges_count += 1
+                        # Source fleet is cleared and marked destroyed by merge_with
+                        # Remove from engine via manager
+                        self.remove_fleet(source_fleet)
+                        
         return merges_count

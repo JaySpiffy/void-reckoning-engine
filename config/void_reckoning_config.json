@@ -8,7 +8,7 @@
     "procedural_faction_limit": 0,
     "campaign": {
         "turns": 500,
-        "num_systems": 20,
+        "num_systems": 11,
         "min_planets": 10,
         "max_planets": 10,
         "combat_rounds": 2000,
@@ -22,7 +22,7 @@
         "base_income_req": 2000000,
         "base_income_prom": 1500,
         "colonization_cost": 0,
-        "starting_requisition": 500000000000
+        "starting_requisition": 50000000
     },
     "units": {
         "max_fleet_size": 400,

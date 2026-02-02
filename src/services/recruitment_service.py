@@ -61,29 +61,18 @@ class RecruitmentService:
         
         # Override Budget if Stockpile is HUGE
         # Phase 106: Disable override during CRISIS or RECOVERY to prevent debt-scrap-recruit death spiral
-        # Phase 106: Disable override during CRISIS or RECOVERY to prevent debt-scrap-recruit death spiral
-        # Phase 107: Re-enable for RECOVERY mode (limited budget passed by EconomyManager)
+        # Phase 108: Harden - Stockpile override ONLY works if requisition > 0. 
+        # Prevents "spending your way out of debt" which causes deep negative requisition.
         is_crisis = mode in ["CRISIS"]
         is_recovery = mode == "RECOVERY"
-        # If RECOVERY, we allow override if we can afford the specific cost (handled by loop check against budget)
-        # But we need stockpile_override to remain False if we want to respect the small budget?
-        # Actually, if Req < 0, stockpile_override calculates False anyway (Req > Threshold).
-        # We need a flag to say "Ignore Hard Insolvency Check".
+        
         stockpile_override = faction_mgr.requisition > (cost * bal.RECRUIT_STOCKPILE_OVERRIDE_MULT) and not is_crisis
-        
-        # New: Auto-pass hard insolvency for RECOVERY mode (but still check affordability)
-        # The while loop will break if (spent + cost) > budget. 
-        # Since EconomyManager passes specific budget for Recovery, we should trust it.
-        
-        # High Surplus Multiplier: If stockpile is massive, allow recruiting even more
-        # Phase 16: Nerfed 10x -> 2x
-        if faction_mgr.requisition > (cost * 100):
-            max_recruits *= 2
-
-        recruited_fleets_count = 0
-        
+        if faction_mgr.requisition <= 0:
+            stockpile_override = False # Strictly forbid override if in debt
+            
         # Early Exit: Hard Insolvency Check
-        # EXCEPTION: If in RECOVERY mode, we allow spending if budget permits (Grants etc.)
+        # EXCEPTION: If in RECOVERY mode, we allow spending ONLY if budget permits (Grants etc.) 
+        # AND requisition is not deeply negative.
         if faction_mgr.requisition < FLEET_COMMISSION_THRESHOLD and not stockpile_override and not is_recovery:
             if self.engine.telemetry:
                  self.engine.telemetry.log_event(
@@ -103,6 +92,10 @@ class RecruitmentService:
         
         while spent < budget and count < max_recruits:
             # Inline Check (Shadowing Protection)
+            # Phase 108: Cannot recruit shell if requisition < 0 (must recover first)
+            if faction_mgr.requisition < 0:
+                break
+                
             if faction_mgr.requisition < FLEET_COMMISSION_THRESHOLD and not stockpile_override and not is_recovery:
                 break
                 
@@ -200,7 +193,8 @@ class RecruitmentService:
                     u = rng.choice(bps)
                     
                     # [FIX] Check affordability per unit to prevent massive overspend debt spiral
-                    if not faction_mgr.can_afford(u.cost) and not stockpile_override:
+                    # Phase 108: Forbid unit recruitment if requisition < 0
+                    if faction_mgr.requisition < 0 or (not faction_mgr.can_afford(u.cost) and not stockpile_override):
                         break
                         
                     new_fleet.add_unit(u)
@@ -381,6 +375,10 @@ class RecruitmentService:
             
         while count < max_recruits:
             is_crisis = mode in ["CRISIS", "RECOVERY"]
+            # Phase 108: Hard block on production if in debt
+            if faction_mgr.requisition < 0:
+                break
+
             if (spent + avg_cost) > budget:
                 # Debt Protection (Inline)
                 if is_crisis or faction_mgr.requisition < bal.ECON_STOCKPILE_OVERRIDE_THRESHOLD:

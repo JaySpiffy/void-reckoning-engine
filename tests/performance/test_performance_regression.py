@@ -131,7 +131,7 @@ def test_economy_processing_performance():
     # Manually trigger economy steps for all factions
     for faction in engine.factions.values():
          if faction.name == "Neutral": continue
-         engine.economy_manager.process_faction_economy(faction)
+         engine.economy_manager.process_faction_economy(faction.name)
          
     duration = (time.time() - start_time) * 1000
     

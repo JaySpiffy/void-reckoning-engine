@@ -427,10 +427,17 @@ class StrategicAI:
         return f_mgr.visible_planets if f_mgr else set()
                 
     def get_cached_theater_power(self, location, requesting_faction):
-        """Optimized version of get_theater_power using cache."""
-        # If cache miss (e.g. called outside process_turn loop?), fall back
+        """Optimized version of get_theater_power using cache. Respects Fog of War."""
+        # 0. Visibility Check (Fog of War)
+        f_mgr = self.engine.factions.get(requesting_faction)
+        if f_mgr and hasattr(location, 'name') and location.name not in getattr(f_mgr, 'visible_planets', set()):
+             # AI cannot see this location; fallback to intelligence memory if possible, 
+             # but for this specific method (live power) we return 0/empty.
+             return {}
+
+        # If cache miss (e.g. called outside process_turn loop?), fall back to IM
         if not hasattr(self, 'turn_cache') or "fleets_by_loc" not in self.turn_cache:
-            return self.engine.intel_manager.get_theater_power(location.name, self.engine.turn_counter)
+            return self.engine.intel_manager.get_theater_power(location.name, self.engine.turn_counter, viewer_faction=requesting_faction)
             
         powers = {}
         loc_id = id(location)

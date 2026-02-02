@@ -1,6 +1,9 @@
+
 import math
-from typing import Dict, Any
+import numpy as np
+from typing import List, Dict, Any, Optional, Tuple
 from src.core.simulation_topology import GraphNode
+from src.core.simulation_state import SimulationState
 
 class StarSystem:
     def __init__(self, name, x, y):
@@ -25,16 +28,22 @@ class StarSystem:
         
         # Phase 14: Starbase System
         self.starbases = [] # List of Starbase units in the system
+        
+        # Performance Cache
+        self._topology_cached: Optional[List[GraphNode]] = None
 
     def add_planet(self, planet):
         self.planets.append(planet)
         
-    def generate_topology(self):
+    def generate_topology(self, force=False):
         """
         Generates the internal System Graph using a Spiral Mesh Algorithm (Golden Angle Distribution).
         
         Creates ~100 nodes distributed organically, connected via KNN Mesh.
         """
+        if self._topology_cached is not None and not force:
+            return self._topology_cached
+
         self.nodes = []
         self.flux_points = []
         
@@ -108,48 +117,56 @@ class StarSystem:
         # 2. Connect Mesh (Hub-and-Spoke Choke Points)
         # To create "Choke Points", we limit global connectivity and force travel through Hubs.
         
+        # 2. Connect Mesh (Hub-and-Spoke Choke Points) using NumPy
+        # Extract positions for vectorized calculation
+        positions = np.array([n.position for n in temp_nodes])
+        
+        # Calculate all-pairs squared Euclidean distance
+        # (N, 1, 2) - (1, N, 2) -> (N, N, 2) -> sum -> (N, N)
+        diff = positions[:, np.newaxis, :] - positions[np.newaxis, :, :]
+        dist_sq_matrix = np.sum(diff**2, axis=-1)
+
+        # Identify hubs early for logic
         hubs = [n for i, n in enumerate(temp_nodes) if i % 30 == 0 or i == 0 or n.type == "FluxPoint"]
         for h in hubs:
             h.metadata["is_hub"] = True
             h.name += " [HUB]"
             
         for i, node in enumerate(temp_nodes):
-            # Find distances
-            distances = []
-            for j, other in enumerate(temp_nodes):
-                if i == j: continue
-                dist_sq = (node.position[0] - other.position[0])**2 + (node.position[1] - other.position[1])**2
-                distances.append( (dist_sq, other) )
-            
-            distances.sort(key=lambda x: x[0])
-            
-            # CONNECTIVITY LOGIC
-            # Hubs get high connectivity (Cross-System Highways)
-            # Regular nodes get low connectivity (Local Paths)
-            
             is_hub = node.metadata.get("is_hub", False)
-            k_neighbors = 6 if is_hub else 2 # Regular nodes only have 2 paths (Linear movement)
+            k_neighbors = 6 if is_hub else 2
+            
+            # Get sorted indices of neighbors by distance
+            # N=300 is small enough that full sort is efficient and simpler than argpartition+sort
+            sorted_indices = np.argsort(dist_sq_matrix[i])
             
             connected = 0
-            for dist_sq, other in distances:
-                if connected >= k_neighbors: break
+            
+            # Iterate through sorted neighbors (skipping self at index 0 which has dist 0)
+            for neighbor_idx in sorted_indices:
+                if neighbor_idx == i:
+                    continue
+                    
+                if connected >= k_neighbors:
+                    break
                 
-                # CHOKE POINT ENFORCEMENT
-                # Regular nodes should prefer connecting to Hubs or extremely close neighbors
-                # If we are not a hub, and the target is not a hub, the distance must be super short
-                
-                is_other_hub = other.metadata.get("is_hub", False)
+                other = temp_nodes[neighbor_idx]
+                dist_sq = dist_sq_matrix[i, neighbor_idx]
                 phys_dist = math.sqrt(dist_sq)
+
+                # CHOKE POINT ENFORCEMENT
+                is_other_hub = other.metadata.get("is_hub", False)
                 
                 # Logic:
                 # 1. Always connect very close neighbors (Visual coherence)
                 # 2. Prefer connecting to Hubs (Funneling)
                 # 3. Avoid long-range connections between two non-hubs (Bypasses choke points)
-                
                 if not is_hub and not is_other_hub:
-                    if phys_dist > (scale * 2.0): continue # Block long "bypass" edges
+                     if phys_dist > (scale * 2.0):
+                         continue # Block long "bypass" edges
                 
-                # Check exist
+                # Check for existing edge to avoid duplicates (though our logic iterates unique nodes usually)
+                # Note: node.edges contains Edge objects where edge.target is the other node
                 has_edge = any(e.target == other for e in node.edges)
                 if not has_edge:
                     cost = max(1, int(phys_dist))
@@ -160,6 +177,12 @@ class StarSystem:
                     node.add_edge(other, distance=cost)
                     other.add_edge(node, distance=cost)
                     connected += 1
+
+        self._topology_cached = self.nodes
+        SimulationState.inc_topology_version() # Optimization 5.1
+        return self.nodes
+
+
 
     def get_primary_node(self) -> GraphNode:
         """Returns the central Star node (Node 0)."""

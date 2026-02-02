@@ -7,6 +7,7 @@ from src.core.constants import ORBIT_DISCOUNT_MULTIPLIER, categorize_building
 from src.models.fleet import Fleet
 from src.models.army import ArmyGroup
 from src.utils.profiler import profile_method
+import src.core.balance as bal
 
 if TYPE_CHECKING:
     from src.core.interfaces import IEngine
@@ -36,7 +37,6 @@ class InsolvencyHandler:
             return
 
         # 2a. Determine Category Overshoot (New Step 4)
-        import src.core.balance as bal
         
         # Calculate totals from candidates (since we don't have separate sums here readily available without iterating)
         # But we do verify against `income` and `caps`.
@@ -49,26 +49,36 @@ class InsolvencyHandler:
         # But `candidates` is mixed.
         # We need to tag candidates with their category (Navy or Army).
         
-        # Refine Candidate Generation to include type
-        # Format: (upkeep_value, unit, container, location, type_tag)
+        # Refine Candidate Generation to include type and effective upkeep
+        # Format: (effective_upkeep, original_upkeep, unit, container, location, type_tag)
         
-        navy_candidates = ((getattr(u, 'upkeep', 0), u, f, None, "NAVY") for f in my_fleets for u in f.units)
-        cargo_candidates = ((getattr(u, 'upkeep', 0), u, ag, f, "ARMY") for f in my_fleets for ag in f.cargo_armies for u in ag.units)
-        planet_candidates = (
-            (getattr(u, 'upkeep', 0), u, ag, p, "ARMY") for p in self.engine.planets_by_faction.get(f_name, [])
-            if hasattr(p, 'armies')
-            for ag in p.armies if ag.faction == f_name and not ag.is_destroyed
-            for u in ag.units
-        )
+        def get_eff_navy(u, f):
+            base = getattr(u, 'upkeep', 0)
+            return (base * ORBIT_DISCOUNT_MULTIPLIER) if f.is_in_orbit else base
+
+        navy_candidates = ((get_eff_navy(u, f), getattr(u, 'upkeep', 0), u, f, None, "NAVY") for f in my_fleets for u in f.units)
+        cargo_candidates = ((getattr(u, 'upkeep', 0), getattr(u, 'upkeep', 0), u, ag, f, "ARMY") for f in my_fleets for ag in f.cargo_armies for u in ag.units)
         
-        candidates_gen = itertools.chain(navy_candidates, cargo_candidates, planet_candidates)
+        # Planet Garrison candidates
+        planet_candidates_raw = []
+        for p in self.engine.planets_by_faction.get(f_name, []):
+             if hasattr(p, 'armies'):
+                 p_armies = [ag for ag in p.armies if ag.faction == f_name and not ag.is_destroyed]
+                 if p_armies:
+                     # Identify which ags are free
+                     p_armies.sort(key=lambda ag: sum(getattr(unit, 'upkeep', 0) for unit in ag.units), reverse=True)
+                     capacity = getattr(p, 'garrison_capacity', 1)
+                     for i, ag in enumerate(p_armies):
+                         is_free = i < capacity
+                         for u in ag.units:
+                              eff = 0 if is_free else getattr(u, 'upkeep', 0)
+                              planet_candidates_raw.append((eff, getattr(u, 'upkeep', 0), u, ag, p, "ARMY"))
+
+        candidates = list(itertools.chain(navy_candidates, cargo_candidates, planet_candidates_raw))
         
-        # Materialize list to process stats
-        candidates = list(candidates_gen)
-        
-        # Calculate current category upkeeps
-        current_navy_upkeep = sum(c[0] for c in candidates if c[4] == "NAVY")
-        current_army_upkeep = sum(c[0] for c in candidates if c[4] == "ARMY")
+        # Calculate current category upkeeps using effective values
+        current_navy_upkeep = sum(c[0] for c in candidates if c[5] == "NAVY")
+        current_army_upkeep = sum(c[0] for c in candidates if c[5] == "ARMY")
         
         navy_cap = income * bal.MAINT_CAP_NAVY
         army_cap = income * bal.MAINT_CAP_ARMY
@@ -77,29 +87,22 @@ class InsolvencyHandler:
         army_over = current_army_upkeep > army_cap
         
         # Sorting Strategy:
-        # If insolvent (Req < 0), cut highest upkeep regardless of type (Emergency)
-        # If Solvent but Over Cap, prioritize cutting the Over type.
+        # 1. Effective Upkeep (High to Low) - This ensures we cut things that SAVE money first.
+        # 2. Category Cap Enforcement
         
-        if faction_mgr.requisition < 0:
-             # Deep cut needed - Debt Protocol
-             candidates.sort(key=itemgetter(0), reverse=True)
-        else:
-            # Cap Compliance Protocol
-            # Prioritize candidates that are from an oversized category
-            # Sort Refined: (IsFromOverCategory, Upkeep)
-            # Tuple boolean sorts False then True, so we want reverse=True for (True, HighUpkeep)
-            def sort_key(c):
-                is_over = (c[4] == "NAVY" and navy_over) or (c[4] == "ARMY" and army_over)
-                return (is_over, c[0])
-                
-            candidates.sort(key=sort_key, reverse=True)
-            
-            # If nothing is over cap and we are solvent, we might clear list?
-            # Original check 'current_upkeep < sustainability' handles overall health.
-            # But the user wants STRICT enforcement of 12.5%.
-            
-            if not navy_over and not army_over and faction_mgr.requisition >= 0 and current_upkeep < sustainability_threshold:
-                 candidates = [] # Nothing to do
+        def sort_key(c):
+            # Primary: Does it save money?
+            # Secondary: Is its category over cap?
+            # Tertiary: Base upkeep for tie-breaking
+            is_over = (c[5] == "NAVY" and navy_over) or (c[5] == "ARMY" and army_over)
+            # Sort effective upkeep > 0 first, then over-cap status, then value
+            return (c[0] > 0, is_over, c[0], c[1])
+
+        candidates.sort(key=sort_key, reverse=True)
+        
+        # Check if we should clear candidates for health solvent state
+        if not navy_over and not army_over and faction_mgr.requisition >= 0 and current_upkeep < sustainability_threshold:
+             candidates = [] # Nothing to do
 
         disbanded_count = 0
         savings = 0
@@ -120,7 +123,7 @@ class InsolvencyHandler:
         if self.engine.logger:
              self.engine.logger.economy(f"[INSOLVENCY_DEBUG] {f_name} Unit Candidates: {len(candidates)}. Req: {faction_mgr.requisition}. NavyOver: {navy_over}, ArmyOver: {army_over}")
              
-        for u_upkeep, u, container, loc, u_type in candidates:
+        for eff_upkeep, orig_upkeep, u, container, loc, u_type in candidates:
             
             # STOP CONDITIONS RETHINK per Step 4
             # "Category-Based: If fleet exceeds 12.5%, disband until under limit."
@@ -137,12 +140,19 @@ class InsolvencyHandler:
             should_cut = False
             
             if not is_solvent:
-                should_cut = True # Emergency
+                # Debt Protocol: High priority to cut everything that costs money
+                if eff_upkeep > 0:
+                    should_cut = True
+                else:
+                    # Phase 108: Skip "Free" units (garrisons, discounted orbits) if they save 0.
+                    # Disbanding them doesn't help the requisition balance.
+                    should_cut = False
             else:
-                if u_type == "NAVY" and not now_navy_ok:
-                    should_cut = True
-                elif u_type == "ARMY" and not now_army_ok:
-                    should_cut = True
+                if u_type == "NAVY" and not now_navy_ok: should_cut = True
+                if u_type == "ARMY" and not now_army_ok: should_cut = True
+                
+                # Cap compliance also respects effective savings
+                if eff_upkeep <= 0: should_cut = False
                     
             if not should_cut:
                 # If we are solvent and this unit's category is fine, skippit?
@@ -171,17 +181,26 @@ class InsolvencyHandler:
                 continue 
             
             # Update savings and upkeep
-            adjusted_u_upkeep = u_upkeep
-            if isinstance(container, Fleet) and container.is_in_orbit:
-                adjusted_u_upkeep *= ORBIT_DISCOUNT_MULTIPLIER
-            elif container in free_army_groups:
-                adjusted_u_upkeep = 0
+            effective_u_upkeep = eff_upkeep
 
-            savings += adjusted_u_upkeep
-            current_upkeep -= adjusted_u_upkeep
+            # Skip "Free" units if we have debt but other units to cut
+            # If effective upkeep is 0, we aren't saving money. 
+            # We ONLY cut free units if we are strictly bankrupt and have NO other paying candidates left.
+            if effective_u_upkeep == 0 and faction_mgr.requisition < 0:
+                 # Check if any remaining candidates in the loop have non-zero effective upkeep
+                 # (This is slightly inefficient, but better than disbanding garrisons for 0 savings)
+                 has_paid_remains = False
+                 # This would require peak-ahead which is messy here. 
+                 # Let's use a simpler heuristic: Skip if effective_u_upkeep is 0 and we haven't reached liquidation yet.
+                 # Actually, the sort order already puts high upkeep at front. 
+                 # If we hit 0 effective upkeep here, it means all remaining paid units are gone.
+                 pass
+
+            savings += effective_u_upkeep
+            current_upkeep -= effective_u_upkeep
             
-            if u_type == "NAVY": current_navy_upkeep -= adjusted_u_upkeep
-            if u_type == "ARMY": current_army_upkeep -= adjusted_u_upkeep
+            if u_type == "NAVY": current_navy_upkeep -= effective_u_upkeep
+            if u_type == "ARMY": current_army_upkeep -= effective_u_upkeep
             
             scrap = int(u.cost * 0.25)
             faction_mgr.requisition += scrap 

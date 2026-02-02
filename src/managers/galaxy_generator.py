@@ -31,6 +31,27 @@ def init_galaxy_rng(seed: Optional[int] = None):
     """Initializes the galaxy RNG with a specific seed."""
     _galaxy_rng.seed(seed)
 
+import multiprocessing
+
+def _generate_topology_worker(system_data):
+    """
+    Worker function for parallel topology generation.
+    Args:
+        system_data: Tuple (system_obj, force_flag)
+    Returns:
+        system_obj: The system object with generated nodes (though usually objects aren't mutated across processes easily without return).
+                    Actually, passing objects across processes pickles them. 
+                    We need to return the modified object.
+    """
+    system, force = system_data
+    # Initialize RNG state for this process/system if needed, 
+    # but generate_topology uses deterministic math or system-local state?
+    # It uses math.sqrt(i) etc. It does NOT use global RNG for the spiral itself, only for 'flavor' types (asteroids/nebula).
+    # flavor types use `i % 10`. So it is deterministic.
+    # We can just call the method.
+    system.generate_topology(force=force)
+    return system
+
 class GalaxyGenerator:
     """
     Handles the creation of the galaxy map, star systems, and initial population.
@@ -430,11 +451,51 @@ class GalaxyGenerator:
                         s1.connections.append(s2)
                         s2.connections.append(s1)
 
-        # 4. Generate Internal Topologies
-        for s in self.systems:
-            s.generate_topology()
-            # [Optimization] Province generation is now lazy-loaded in Planet.provinces
-            # The orbital-capital link is handled inside _generate_provinces_lazy if applicable
+        # 4. Generate Internal Topologies (Parallelized)
+        # Optimization 4.1: Use Multiprocessing
+        try:
+            # Prepare arguments
+            tasks = [(s, False) for s in self.systems]
+            
+            # Use 75% of CPU cores or at least 1, max 8
+            cpu_count = multiprocessing.cpu_count()
+            workers = max(1, min(8, int(cpu_count * 0.75)))
+            
+            logger.info(f"Generating Topologies in parallel with {workers} workers...")
+            
+            # Use "spawn" context if on Windows to avoid issues, though default is usually fine for simple objects
+            # But here we are at top level, so it should be okay.
+            with multiprocessing.Pool(processes=workers) as pool:
+                # Map works by pickling inputs and unpickling outputs
+                # This replaces the original system objects with the returned ones (which have nodes populated)
+                # Important: We must update references in self.all_planets because those planet objects point to OLD system objects.
+                # Since StarSystem holds planets, and we get back a NEW system object with (presumably) NEW planet objects inside it?
+                # Yes, pickle creates a deep copy of the structure being pickled usually.
+                processed_systems = pool.map(_generate_topology_worker, tasks)
+                
+            # REFERENCE RE-BINDING
+            # We must update self.systems
+            self.systems = processed_systems
+            
+            # And we must update self.all_planets to point to the new planets inside the new systems
+            # Otherwise other managers accessing self.all_planets will modify old stale objects
+            
+            self.all_planets = []
+            for s in self.systems:
+                # Re-bind system back-reference just in case (though it should be preserved)
+                for p in s.planets:
+                    p.system = s
+                    self.all_planets.append(p)
+                    
+            logger.info("Parallel Topology Generation Complete.")
+            
+        except Exception as e:
+            logger.warning(f"Parallel Generation Failed ({e}), falling back to sequential.")
+            import traceback
+            traceback.print_exc()
+            # Fallback
+            for s in self.systems:
+                s.generate_topology()
 
         # 5. Link Inter-System Flux Gates
         for s in self.systems:

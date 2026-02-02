@@ -1,4 +1,5 @@
 from typing import List, Dict, Any, Optional, Tuple
+import weakref
 from src.combat.components.health_component import HealthComponent
 from src.combat.components.armor_component import ArmorComponent
 from src.combat.components.weapon_component import WeaponComponent
@@ -30,6 +31,7 @@ class Unit:
         
         # Composition: Components are injected
         self.health_comp: Optional[HealthComponent] = None
+        self._fleet_ref = None # Weakref to parent fleet
         self.armor_comp: Optional[ArmorComponent] = None
         self.weapon_comps: List[WeaponComponent] = []
         self.morale_comp: Optional[MoraleComponent] = None
@@ -143,12 +145,8 @@ class Unit:
     def is_alive(self):
         return self.health_comp.is_alive() if self.health_comp else False
 
-    @property
-    def strength(self) -> int:
-        """Calculates effective combat power of this unit (Cached)."""
-        if hasattr(self, '_cached_strength'):
-            return self._cached_strength
-            
+    def _calculate_strength(self) -> int:
+        """Internal strength calculation logic."""
         # Base power from cost or power_rating
         base_power = getattr(self, "power_rating", self.cost * 0.1)
         
@@ -162,10 +160,28 @@ class Unit:
         if self.stats_comp:
             # Average of offensive stats as a multiplier
             # Using __getattr__ for ma, md, damage
-            stats_mult = (self.ma + self.md + self.damage) / 150.0 # Normalized around 50s
+            # Note: Unit class might not expose ma/md directly if they are in stats_comp.
+            # Safe access via stats_comp directly
+            ma = self.stats_comp.ma
+            md = self.stats_comp.md
+            damage = self.stats_comp.damage
+            stats_mult = (ma + md + damage) / 150.0 # Normalized around 50s
             
-        self._cached_strength = max(1, int(base_power * health_ratio * stats_mult))
+        return max(1, int(base_power * health_ratio * stats_mult))
+
+    @property
+    def strength(self) -> int:
+        """Calculates effective combat power of this unit (Cached)."""
+        if hasattr(self, '_cached_strength'):
+            return self._cached_strength
+            
+        self._cached_strength = self._calculate_strength()
         return self._cached_strength
+
+    def invalidate_cache(self):
+        """Invalidates cached calculated values."""
+        if hasattr(self, '_cached_strength'):
+            del self._cached_strength
 
     def regenerate_infantry(self) -> Tuple[bool, int]:
         """Proxy for health regeneration. Returns (was_active, amount_restored)."""
@@ -301,6 +317,15 @@ class Unit:
         """Clears cached strength calculation."""
         if hasattr(self, '_cached_strength'):
             del self._cached_strength
+        if self.fleet:
+            self.fleet.invalidate_caches()
+
+    def set_fleet(self, fleet):
+        self._fleet_ref = weakref.ref(fleet) if fleet else None
+        
+    @property
+    def fleet(self):
+        return self._fleet_ref() if hasattr(self, '_fleet_ref') and self._fleet_ref else None
 
     def apply_traits(self, trait_mods: Dict[str, Dict[str, Any]]):
         """Applies trait modifications to unit stats."""

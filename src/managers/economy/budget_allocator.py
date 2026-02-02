@@ -113,6 +113,15 @@ class BudgetAllocator:
         growth_funds = total_inflow
         if faction_mgr.requisition < 0:
             # If in debt, 100% of net profit must go to debt clearance before any new spending.
+            # Phase 108: Forfeit all existing stagnant budgets to debt clearance.
+            for k in list(faction_mgr.budgets.keys()):
+                if faction_mgr.budgets[k] > 0:
+                    forfeited = faction_mgr.budgets[k]
+                    faction_mgr.requisition += forfeited
+                    faction_mgr.budgets[k] = 0
+                    if self.engine.logger:
+                        self.engine.logger.economy(f"[DEBT_FORFEIT] {f_name} forfeited {forfeited}R from {k} budget to pay down debt.")
+
             if growth_funds > 0:
                 faction_mgr.requisition += growth_funds
                 if self.engine.logger:

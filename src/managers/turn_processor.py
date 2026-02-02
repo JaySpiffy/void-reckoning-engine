@@ -29,16 +29,32 @@ class TurnProcessor:
         # Global pre-calculation for economy
         self.engine.economy_manager.faction_econ_cache = self.engine.economy_manager.resource_handler.precalculate_economics()
         
-        # Global pre-calculation for strategy (FIX: Ensure Frontiers are calculated)
-        if hasattr(self.engine, 'strategic_ai'):
-            self.engine.strategic_ai.build_turn_cache()
-
         # Phase 6: Capture living factions before they process their turn
         prior_living = [f.name for f in self.engine.get_all_factions() if f.is_alive and f.name != "Neutral"]
 
         for f_name in ordered_factions:
+            # [TOTAL WAR STYLE] Refresh AI Caches for current world state
+            if hasattr(self.engine, 'strategic_ai'):
+                self.engine.strategic_ai.build_turn_cache()
+            # [TOTAL WAR STYLE] Faction Window Isolation
+            if self.engine.telemetry:
+                self.engine.telemetry.log_event(EventCategory.CAMPAIGN, 'faction_turn_start', {
+                    'faction': f_name, 
+                    'turn': self.engine.turn_counter
+                })
+
             self.process_faction_turn(f_name, fast_resolve=fast_resolve)
             
+            if self.engine.telemetry:
+                self.engine.telemetry.log_event(EventCategory.CAMPAIGN, 'faction_turn_end', {
+                    'faction': f_name, 
+                    'turn': self.engine.turn_counter
+                })
+
+        # --- WORLD PHASE (Global Logic & Cleanup) ---
+        if self.engine.logger:
+            self.engine.logger.system("<<< WORLD PHASE >>>")
+
         # Phase 6: Check for eliminations after all faction turns
         if logging_config.LOGGING_FEATURES.get('faction_elimination_analysis', False):
             post_living = [f.name for f in self.engine.get_all_factions() if f.is_alive and f.name != "Neutral"]
@@ -112,7 +128,8 @@ class TurnProcessor:
         if self.engine.logger:
              self.engine.logger.system(f"=== END OF TURN {self.engine.turn_counter} ===")
              
-        # Phase 4.5: Resolve End-of-Turn Combat (Space & Ground)
+        # [TOTAL WAR STYLE] Final World Resolution
+        # Handling everything that isn't specific to a single faction's agency phase
         # Moved to Faction Turn (Total War Style)
         # if hasattr(self.engine.battle_manager, 'process_active_battles'):
         #    self.engine.battle_manager.process_active_battles()
@@ -172,9 +189,9 @@ class TurnProcessor:
 
     @profile_method
     def process_faction_turn(self, f_name: str, fast_resolve: bool = False) -> None:
-        """Processes a single faction's turn sequentially."""
+        """Processes a single faction's turn sequentially (Total War Window)."""
         if self.engine.logger:
-            self.engine.logger.system(f">>> {f_name.upper()} PHASE <<<")
+            self.engine.logger.system(f"|--- {f_name.upper()} ACTIVE WINDOW ---|")
             
         faction = self.engine.get_faction(f_name)
         context = {"faction": faction, "engine": self.engine, "turn": self.engine.turn_counter}
@@ -237,6 +254,10 @@ class TurnProcessor:
         self.engine.economy_manager.process_faction_economy(f_name)
         
         # 1.5 Orders for idle fleets
+        # OPTIMIZATION: Update spatial indices ONCE before movement processing
+        if hasattr(self.engine.battle_manager, '_update_presence_indices'):
+            self.engine.battle_manager._update_presence_indices()
+
         faction_fleets = [f for f in self.engine.fleets if f.faction == f_name and not f.is_destroyed]
         for fleet in faction_fleets:
             landed_this_move = False
@@ -250,11 +271,15 @@ class TurnProcessor:
                     self.engine.logger.campaign(f"{fleet.id} {arrival_type} {loc_name}")
                 
                 # Update visibility immediately upon arrival (before combat can kill the scout)
-                self.engine.intel_manager.update_faction_visibility(f_name)
+                self.engine.intel_manager.update_faction_visibility(f_name, force_refresh=True)
+                
+                # Update indices globally ONCE per faction turn (or sub-step if needed)
+                # self.engine.battle_manager._update_presence_indices() # Assume done at start of turn or explicitly here if needed
                 
                 # Resolve battles regardless of whether it was the target or an intercept
                 # Phase 16.5: Explicitly mark current faction as Aggressor (Total War Style)
-                self.engine.battle_manager.resolve_battles_at(fleet.location, force_domain="space", aggressor_faction=f_name)
+                # OPTIMIZATION: update_indices=False to avoid O(N^2) rebuild inside loop
+                self.engine.battle_manager.resolve_battles_at(fleet.location, update_indices=False, force_domain="space", aggressor_faction=f_name)
             
         # 3. Transport & Invasions (Check all fleets for this faction every turn)
         self.engine.battle_manager.process_invasions(faction_filter=f_name)

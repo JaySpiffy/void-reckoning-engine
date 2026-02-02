@@ -10,6 +10,7 @@ from src.utils.profiler import profile_method
 from src.reporting.telemetry import EventCategory
 from src.config import logging_config
 import json
+import weakref
 
 # Combat Doctrines
 DOCTRINE_CHARGE = "CHARGE"
@@ -139,6 +140,8 @@ class Fleet:
             start_planet=location
         )
         fleet.units = [UnitBuilder.from_dict(u_data) for u_data in data.get("units", [])]
+        for u in fleet.units:
+             if hasattr(u, 'set_fleet'): u.set_fleet(fleet)
         fleet.travel_progress = data.get("travel_progress", 0)
         fleet.travel_duration = data.get("travel_duration", 0)
         fleet.is_destroyed = data.get("is_destroyed", False)
@@ -201,13 +204,130 @@ class Fleet:
             return True
         return False
 
+    # Optimization 4.2: Cached Upkeep
+    def update_upkeep_cache(self):
+        """Recalculates cached upkeep."""
+        total = 0
+        for u in self.units:
+            total += getattr(u, 'upkeep', 0)
+        
+        # Cargo (Armies)
+        for ag in self.cargo_armies:
+            for u in ag.units:
+                total += getattr(u, 'upkeep', 0)
+                
+        self._cached_upkeep = total
+
+    @property
+    def upkeep(self):
+        """Returns total upkeep of the fleet (Cached)."""
+        if not hasattr(self, '_cached_upkeep'):
+             self.update_upkeep_cache()
+        return self._cached_upkeep
+
+    def merge_with(self, other_fleet: 'Fleet') -> bool:
+        """
+        Optimization 3.3: Set-Based Fleet Merging.
+        Transfers all units from other_fleet to self efficiently.
+        Returns True if successful.
+        """
+        if not other_fleet or other_fleet.is_destroyed:
+            return False
+            
+        if other_fleet == self:
+            return False
+
+        # Optimization: Use sets for O(1) duplicate checks
+        my_unit_ids = {u.id for u in self.units}
+        transferred_count = 0
+        
+        # Transfer Units
+        # We copy the list slice to avoid modification issues during iteration, 
+        # though we are clearing the other fleet anyway.
+        for unit in list(other_fleet.units):
+            # Duplicate Guard
+            if unit.id in my_unit_ids:
+                # If it's the exact same object, easy.
+                continue
+                
+            # Transfer ownership
+            # Use set_fleet method as fleet is a read-only property on Unit
+            if hasattr(unit, 'set_fleet'):
+                unit.set_fleet(self)
+            else:
+                # Fallback for mocks or legacy objects
+                unit.fleet = self
+            
+            # Update internal references if needed (handled by set_fleet usually)
+            
+            self.units.append(unit)
+            my_unit_ids.add(unit.id)
+            transferred_count += 1
+            
+        # Transfer Cargo/Armies
+        if hasattr(other_fleet, 'cargo_armies'):
+            for army in list(other_fleet.cargo_armies):
+                if army not in self.cargo_armies:
+                    # check capacity? 'Deathball' usually implies forcing merge regardless of capacity overflow risks?
+                    # Or we should respect it.
+                    # For now, we transfer ownership.
+                    self.cargo_armies.append(army)
+                    # Army parent/fleet ref update?
+                    # ArmyGroup doesn't strictly link to Fleet object, usually just tracking location.
+                    pass
+        
+        # Transfer Resources
+        self.requisition += other_fleet.requisition
+        other_fleet.requisition = 0
+        
+        # Invalidate Caches
+        self.invalidate_caches() # Changed from invalidate_power_cache() to existing invalidate_caches()
+        self.update_upkeep_cache() # New Optimization 4.2
+        
+        # Clear Data from Other
+        other_fleet.units.clear()
+        other_fleet.cargo_armies.clear()
+        other_fleet.is_destroyed = True
+        
+        return transferred_count > 0
+
+    @property
+    def alive_units(self):
+        """Generator yielding only active/alive units."""
+        for u in self.units:
+            if u.is_alive():
+                yield u
+
+    @property
+    def alive_ships(self):
+        """Generator yielding only active/alive ships."""
+        for u in self.units:
+            if isinstance(u, Ship) and u.is_alive():
+                yield u
+    
+
+
+    def batch_calculate_power(self) -> int:
+        """
+        Optimization 2.3: Batch Power Calculation
+        Updates unit strengths and sums fleet power in a single pass.
+        """
+        total = 0
+        # Optimization 3.2: Use generator for filtered view
+        for u in self.alive_units:
+            # If unit has no cached strength (it was invalidated), recalculate it
+            if not hasattr(u, '_cached_strength'):
+                 u._cached_strength = u._calculate_strength()
+            total += u._cached_strength
+        return total
+
     @property
     def power(self):
         """Calculates total combat power of all ships in fleet. (Cached)"""
         if not self._power_dirty:
             return self._cached_power
             
-        self._cached_power = sum(u.strength for u in self.units if u.is_alive())
+        self._cached_power = self.batch_calculate_power()
         self._power_dirty = False
         return self._cached_power
 
@@ -227,7 +347,7 @@ class Fleet:
             "Scout": 0
         }
         
-        for u in self.units:
+        for u in self.alive_units:
             # 1. Base Class Roles
             s_class = getattr(u, 'ship_class', 'Escort')
             if s_class in matrix:
@@ -367,7 +487,9 @@ class Fleet:
         new_unit.detection_range = getattr(unit_template, "detection_range", bal.DETECTION_RANGE_BASE)
 
         self.units.append(new_unit)
+        if hasattr(new_unit, 'set_fleet'): new_unit.set_fleet(self)
         self.invalidate_caches()
+        self.update_upkeep_cache() # Optimization 4.2
 
     @classmethod
     def merge_multiple_fleets(cls, target_fleet, other_fleets):
@@ -377,6 +499,8 @@ class Fleet:
             if f.faction != target_fleet.faction: continue
             
             target_fleet.units.extend(f.units)
+            for u in f.units:
+                 if hasattr(u, 'set_fleet'): u.set_fleet(target_fleet)
             target_fleet.requisition += f.requisition
             target_fleet.cargo_armies.extend(f.cargo_armies)
             for ag in f.cargo_armies:
@@ -399,6 +523,8 @@ class Fleet:
             
         # 1. Combine Units
         self.units.extend(other_fleet.units)
+        for u in other_fleet.units:
+             if hasattr(u, 'set_fleet'): u.set_fleet(self)
         
         # 2. Combine Fleet Funds
         self.requisition += other_fleet.requisition
@@ -449,6 +575,8 @@ class Fleet:
         
         new_fleet = self.__class__(new_id, self.faction, self.location)
         new_fleet.units = new_units
+        for u in new_units:
+             if hasattr(u, 'set_fleet'): u.set_fleet(new_fleet)
         new_fleet.requisition = req_to_move
         
         # 4. Finalize

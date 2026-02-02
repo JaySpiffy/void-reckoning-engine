@@ -79,14 +79,18 @@ class ResourceHandler:
             
             base_income = 0
             army_upkeep = 0
+            infra_upkeep = 0 # Initialized here
+            rp_income = 0
             income_by_category = {"Tax": 0, "Mining": 0, "Trade": 0, "Conquest": 0}
             
+            # 1b. Use Cached Planet Output
             for p in planets:
-                # Generate Resources with Breakdown
-                generation = p.generate_resources()
+                # This call now uses _cached_econ_output internally if available
+                generation = p.generate_resources() 
+                
+                # ... Categorization logic remains similar but faster ...
                 res_breakdown = generation.get("breakdown", {})
                 
-                # Categorization
                 income_by_category["Tax"] += res_breakdown.get("base", 0)
                 income_by_category["Mining"] += res_breakdown.get("buildings", 0) + res_breakdown.get("provinces", 0)
                 
@@ -98,6 +102,12 @@ class ResourceHandler:
                 income_by_category["Tax"] += base_planet_income
                 base_income += base_planet_income
                 
+                # Add pre-calc Maintenance
+                infra_upkeep += generation.get("infrastructure_upkeep", 0)
+                
+                # Research Output (Passed through generation result now)
+                rp_income += generation.get("research", 0)
+
                 # Inline Army Upkeep calculation (Ground Armies)
                 if hasattr(p, 'armies'):
                     p_armies = [ag for ag in p.armies if ag.faction == f_name and not ag.is_destroyed]
@@ -105,6 +115,8 @@ class ResourceHandler:
                         capacity = getattr(p, 'garrison_capacity', 1)
                         # [FIX] Apply GARRISON_UPKEEP_MULTIPLIER to armies within capacity
                         # This rewards factions for maintaining defensive garrisons
+                        
+                        # Note: Could cache ArmyGroup upkeep too, but they are fewer than fleets.
                         costs = [sum(getattr(u, 'upkeep', 0) for u in ag.units) for ag in p_armies]
                         costs.sort(reverse=True) # Garrison the most expensive units first
                         
@@ -128,22 +140,13 @@ class ResourceHandler:
             trade_income = int(base_income * income_mult * (trade_bonus - 1.0)) if trade_bonus > 1.0 else 0
             income_by_category["Trade"] = trade_income
             
-            # Infrastructure Maintenance
-            infra_upkeep = 0
-            building_db = self.engine.universe_data.get_building_database()
-            for p in planets:
-                for b_id in p.buildings:
-                    if b_id in building_db:
-                        infra_upkeep += building_db[b_id].get("maintenance", 0)
-                if hasattr(p, 'provinces'):
-                    for node in p.provinces:
-                        for b_id in node.buildings:
-                            if b_id in building_db:
-                                infra_upkeep += building_db[b_id].get("maintenance", 0)
-
+            # Research Speed
+            rp_mult = f_mgr.get_modifier("research_speed_mult", 1.0)
+            f_cache["research_income"] = int(rp_income * rp_mult)
+            
             f_cache["income"] = int(base_income * income_mult * trade_bonus)
             
-            # Ground Raid Income (Raiding without fleets)
+            # Ground Raid Income
             raid_income = self.calculate_ground_raid_income(f_name)
             f_cache["income"] += raid_income
             if raid_income > 0 and self.engine.logger:
@@ -153,28 +156,6 @@ class ResourceHandler:
             f_cache["army_upkeep"] = army_upkeep
             f_cache["infrastructure_upkeep"] = infra_upkeep
             f_cache["planets_count"] = len(planets)
-            
-            # Research Points
-            rp_income = 0
-            for p in planets:
-                for b_id in p.buildings:
-                    b_data = building_db.get(b_id, {})
-                    if "research_output" in b_data:
-                        rp_income += b_data["research_output"]
-                    elif categorize_building(b_id, b_data) == "Research":
-                        rp_income += 10
-                        
-                if hasattr(p, 'provinces'):
-                    for node in p.provinces:
-                        for b_id in node.buildings:
-                            b_data = building_db.get(b_id, {})
-                            if "research_output" in b_data:
-                                rp_income += b_data["research_output"]
-                            elif categorize_building(b_id, b_data) == "Research":
-                                rp_income += 10
-                                
-            rp_mult = f_mgr.get_modifier("research_speed_mult", 1.0)
-            f_cache["research_income"] = int(rp_income * rp_mult)
 
 
         # 2. Optimized Fleet Upkeep pass
@@ -186,10 +167,9 @@ class ResourceHandler:
             for f in fleets:
                 if f.is_destroyed: continue
                 
-                f_upkeep = sum(getattr(u, 'upkeep', 0) for u in f.units)
-                cargo_upkeep = sum(getattr(u, 'upkeep', 0) for ag in f.cargo_armies for u in ag.units)
+                # optimization 4.2: Use Cached Upkeep
+                fleet_total = f.upkeep # Property uses _cached_upkeep
                 
-                fleet_total = f_upkeep + cargo_upkeep
                 if f.is_in_orbit:
                     fleet_total *= ORBIT_DISCOUNT_MULTIPLIER
                 
