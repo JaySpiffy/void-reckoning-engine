@@ -1,0 +1,200 @@
+﻿ Event: unit_production_started
+ Event: resource_transaction
+ Event: unit_production_started
+ Event: resource_transaction
+ Event: unit_production_started
+ Event: resource_transaction
+ Event: unit_production_started
+ Event: resource_transaction
+ Event: unit_production_started
+ Event: resource_transaction
+ Event: unit_production_started
+ Event: resource_transaction
+ Event: unit_production_started
+ Event: resource_transaction
+ Event: unit_production_started
+ Event: resource_transaction
+ Event: unit_production_started
+ Event: resource_transaction
+ Event: unit_production_started
+ Event: resource_transaction
+ Event: unit_production_started
+ Event: resource_transaction
+ Event: unit_production_started
+ Event: resource_transaction
+ Event: unit_production_started
+ Event: resource_transaction
+ Event: unit_production_started
+ Event: resource_transaction
+ Event: unit_production_started
+ Event: resource_transaction
+ Event: unit_production_started
+ Event: resource_transaction
+ Event: unit_production_started
+ Event: resource_transaction
+ Event: unit_production_started
+ Event: resource_transaction
+ Event: unit_production_started
+ Event: resource_transaction
+ Event: unit_production_started
+ Event: resource_transaction
+ Event: unit_production_started
+ Event: resource_transaction
+ Event: unit_production_started
+ Event: resource_transaction
+ Event: unit_production_started
+ Event: resource_transaction
+ Event: unit_production_started
+ Event: recruitment_skip_reason
+ Event: economic_health_score
+ Event: fleet_movement
+  > [CAMPAIGN] Aurelian_Hegemony Fleet 13 arrived at Quakitis Prime Quintus
+[DEBUG] Resolve At Quakitis Prime Quintus: Fleets=1, ActiveCombatants=set(), Owner=Aurelian_Hegemony, Conflict=False
+  > [INTERCEPTED] Fleet Aurelian_Hegemony Fleet 31 stopped at Kelius 10 by hostile forces (VoidSpawn_Entities)!
+ Event: fleet_movement
+  > [CAMPAIGN] Aurelian_Hegemony Fleet 31 INTERCEPTED at Kelius 10
+[DEBUG] Resolve At Kelius 10: Fleets=3, ActiveCombatants={'Aurelian_Hegemony', 'VoidSpawn_Entities'}, Owner=Aurelian_Hegemony, Conflict=True
+[DEBUG] STARTING BATTLE at Kelius 10
+[DEBUG] _initialize_new_battle: Fleets=3, Armies=0, ArmiesDict Keys=['Aurelian_Hegemony', 'VoidSpawn_Entities']
+[DEBUG] Fleet Aurelian_Hegemony Fleet 31 (Faction: Aurelian_Hegemony): 166 units
+  - Unit 0: Stealth-Suit (Assault) (Class: Regiment), is_ship=False, is_alive=True, HP=60/60
+  - Unit 1: Cadre (Melta) (Class: Regiment), is_ship=False, is_alive=True, HP=10/10
+  - Unit 2: Aurelian_Hegemony Elite Super-Heavy Fortress (Class: Regiment), is_ship=False, is_alive=True, HP=800/800
+[DEBUG] Fleet VoidSpawn_Entities Fleet 35 (Faction: VoidSpawn_Entities): 26 units
+  - Unit 0: Infernal Battleship (Class: Ship), is_ship=True, is_alive=True, HP=4000/4000
+  - Unit 1: Greater Daemon (Shield) (Class: Regiment), is_ship=False, is_alive=True, HP=115/115
+  - Unit 2: Flux Healer (Class: Regiment), is_ship=False, is_alive=True, HP=140/140
+[DEBUG] Fleet Aurelian_Hegemony Fleet 45 (Faction: Aurelian_Hegemony): 17 units
+  - Unit 0: Aurelian_Hegemony Assault Heavy Infantry / Exo-Suits (Class: Regiment), is_ship=False, is_alive=True, HP=25/25
+  - Unit 1: Aurelian_Hegemony Standard Bomber (Class: Regiment), is_ship=False, is_alive=True, HP=120/120
+  - Unit 2: Hammerhead (Missile) (Class: Regiment), is_ship=False, is_alive=True, HP=250/250
+DEBUG: Battle at Kelius 10 [Aurelian_Hegemony] Res: 10000R
+  Faction Aurelian_Hegemony: 49/49 alive. HP samples: [2100, 2000, 61000, 8000, 70]
+  Faction VoidSpawn_Entities: 8/8 alive. HP samples: [4000, 100, 1500, 2500, 400]
+ Event: battle_start
+  > [COMBAT] BATTLE STARTED at Kelius 10 between ['Aurelian_Hegemony', 'VoidSpawn_Entities']
+  > [COMBAT] Resolving battle at Kelius 10 Prime (Real-Time)...
+
+--- REAL-TIME COMBAT STARTED ---
+Total Units: 43 across 2 Factions
+Combat timed out after 60.0s
+[DEBUG] Stalemate Resolved: VoidSpawn_Entities wins via Integrity/Size Check (Forced Retreats).
+PAR Generated: C:\Users\whitt\OneDrive\Desktop\New folder (4)\reports\multi_universe_20260202_085431\void_reckoning\runs\run_001\battles\battle_048_Kelius_10_Prime_1770022680234_par.html, Log: C:\Users\whitt\OneDrive\Desktop\New folder (4)\reports\multi_universe_20260202_085431\void_reckoning\runs\run_001\battles\battle_048_Kelius_10_Prime_1770022680234.txt
+ Event: battle_composition
+ Event: battle_composition
+ Event: battle_end
+ Event: combat_engagement_analysis
+ [Tech] VoidSpawn_Entities is unlocking technology: Tech_aurelian_hegemony_Advanced_Flux_I
+[ESPIONAGE] VoidSpawn_Entities STOLE Tech_aurelian_hegemony_Advanced_Flux_I from Aurelian_Hegemony!
+ [Tech] VoidSpawn_Entities is unlocking technology: Tech_aurelian_hegemony_Advanced_Flux_I
+[ESPIONAGE] VoidSpawn_Entities stole Tech_aurelian_hegemony_Advanced_Flux_I from Aurelian_Hegemony!
+ [SCAVENGE] VoidSpawn_Entities forces recovered Tech_aurelian_hegemony_Advanced_Flux_I from Aurelian_Hegemony wreckage!
+  > [COMBAT] BATTLE ENDED at Kelius 10 Prime. Winner: VoidSpawn_Entities (Rounds: 60, Duration: 1.03s)
+ Event: battle_decisiveness
+  > [COMBAT] Resolving battle at Kelius 10 (Real-Time)...
+
+--- REAL-TIME COMBAT STARTED ---
+Total Units: 57 across 2 Factions
+Combat timed out after 60.0s
+[DEBUG] Stalemate Resolved: Aurelian_Hegemony wins via Integrity/Size Check (Forced Retreats).
+PAR Generated: C:\Users\whitt\OneDrive\Desktop\New folder (4)\reports\multi_universe_20260202_085431\void_reckoning\runs\run_001\battles\battle_049_Kelius_10_1770022680505_par.html, Log: C:\Users\whitt\OneDrive\Desktop\New folder (4)\reports\multi_universe_20260202_085431\void_reckoning\runs\run_001\battles\battle_049_Kelius_10_1770022680505.txt
+ Event: battle_composition
+ Event: battle_composition
+ Event: battle_end
+ Event: combat_engagement_analysis
+ [Tech] Aurelian_Hegemony is unlocking technology: Tech_VoidSpawn_Entities_Trade Networks
+[ESPIONAGE] Aurelian_Hegemony STOLE Tech_VoidSpawn_Entities_Trade Networks from VoidSpawn_Entities!
+ [Tech] Aurelian_Hegemony is unlocking technology: Tech_VoidSpawn_Entities_Trade Networks
+[ESPIONAGE] Aurelian_Hegemony stole Tech_VoidSpawn_Entities_Trade Networks from VoidSpawn_Entities!
+ [SCAVENGE] Aurelian_Hegemony forces recovered Tech_VoidSpawn_Entities_Trade Networks from VoidSpawn_Entities wreckage!
+  > [COMBAT] [DESTROYED] Fleet Aurelian_Hegemony Fleet 28 destroyed.
+ Event: unit_losses_report
+ Event: unit_losses_report
+  > [COMBAT] BATTLE ENDED at Kelius 10. Winner: Aurelian_Hegemony (Rounds: 60, Duration: 2.71s)
+ Event: battle_decisiveness
+ Event: doctrine_combat_performance
+ Event: doctrine_combat_performance
+[DEBUG] STARTING BATTLE at Kelius 10 Prime
+[DEBUG] _initialize_new_battle: Fleets=0, Armies=3, ArmiesDict Keys=['VoidSpawn_Entities', 'Aurelian_Hegemony']
+DEBUG: Battle at [Capital] Kelius 10 Prime
+  Faction VoidSpawn_Entities: 42/42 alive. HP samples: [60, 150, 60, 120, 10]
+  Faction Aurelian_Hegemony: 1/1 alive. HP samples: [96]
+ Event: battle_start
+  > [COMBAT] BATTLE STARTED at Kelius 10 Prime between ['Aurelian_Hegemony', 'VoidSpawn_Entities']
+ Event: planet_update
+  > [CAMPAIGN] [CONQUEST] Aurelian_Hegemony has captured Quakitis Prime Prime from VoidSpawn_Entities via occupation!
+ Event: planet_annexed
+ Event: grudge_lifecycle
+  > [DIPLOMACY] [GRUDGE] VoidSpawn_Entities holds a GRUDGE against Aurelian_Hegemony for 'Lost Quakitis Prime Prime to occupation' (Value: 120.5)
+ Event: grudge_added
+ Event: resource_transaction
+ >>> BIOTIDE_COLLECTIVE PHASE <<<
+ Event: unit_production_completed
+ Event: unit_created
+ Event: unit_built
+ Event: unit_production_completed
+ Event: unit_created
+ Event: unit_built
+ Event: unit_production_completed
+ Event: unit_created
+ Event: unit_built
+ Event: unit_production_completed
+ Event: unit_created
+ Event: unit_built
+ Event: unit_production_completed
+ Event: unit_created
+ Event: unit_built
+ Event: unit_production_completed
+ Event: unit_created
+ Event: unit_built
+ Event: unit_production_completed
+ Event: unit_created
+ Event: unit_built
+ Event: unit_production_completed
+ Event: unit_created
+ Event: unit_built
+ Event: unit_production_completed
+ Event: unit_created
+ Event: unit_built
+ Event: unit_production_completed
+ Event: unit_created
+ Event: unit_built
+ Event: unit_production_completed
+ Event: unit_created
+ Event: unit_built
+ Event: unit_production_completed
+ Event: unit_created
+ Event: unit_built
+ Event: unit_production_completed
+ Event: unit_created
+ Event: unit_built
+ Event: unit_production_completed
+ Event: unit_created
+ Event: unit_built
+ Event: unit_production_completed
+ Event: unit_created
+ Event: unit_built
+ Event: unit_production_completed
+ Event: unit_created
+ Event: unit_built
+ Event: unit_production_completed
+ Event: unit_created
+ Event: unit_built
+ Event: unit_production_completed
+ Event: unit_created
+ Event: unit_built
+ Event: unit_production_completed
+ Event: unit_created
+ Event: unit_built
+ Event: unit_production_completed
+ Event: unit_created
+ Event: unit_built
+ Event: unit_production_completed
+ Event: unit_created
+ Event: unit_built
+  > [STRATEGY] BioTide_Collective MERGING TF-498 into TF-355 for concentrated assault on Gamma Secundus 5
+  > [STRATEGY] {"event_type": "planet_strategic_value_assessment", "faction": "BioTide_Collective", "planet": "Gamma Secundus 5", "turn": 49, "score_breakdown": {"base_value": 8000.0, "capital_mult": 2.0, "strategic_value": 1.0, "dist_factor": 10.0, "threat_mult": 1.0}, "final_score": 160000.0}
+  > [STRATEGY] {"event_type": "planet_strategic_value_assessment", "faction": "BioTide_Collective", "planet": "Quathos", "turn": 49, "score_breakdown": {"base_value": 37440.0, "capital_mult": 1.0, "strategic_value": 1.0, "dist_factor": 2.0244408254472903, "threat_mult": 1.0}, "final_score": 75795.06450474655}
+  > [CAMPAIGN] [BioTide_Collective] Formulated CONQUEST plan. RALLYING 1 fleets at Sigma Sector 7 Tertius before striking Gamma Secundus 5
+ Event: path_efficiency
+Fleet BioTide_Collective Fleet 21 plotting course to Vorgar Primary Star [HUB]. Path: ['Sector Vorgar-172', 'Sector Vorgar-138', 'Sector Vorgar-104', 'Sector Vorgar-83', 'Sector Vorgar-62', 'Sector Vorgar-49', 'Sector Vorgar-28', 'Sector Vorgar-15', 'Sector Vorgar-7', 'Sector Vorgar-2', 'Vorgar Primary Star [HUB]'] (Est: 11 turns).

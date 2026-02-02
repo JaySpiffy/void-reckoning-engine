@@ -1,0 +1,38 @@
+﻿
+reports\multi_universe_20260202_085431\void_reckoning\runs\run_001\telemetry\events.json:156090:{"timestamp": 
+"2026-02-02T09:03:07.371078Z", "universe": "void_reckoning", "category": "movement", "event_type": "path_efficiency", 
+"turn": 64, "faction": null, "data": {"fleet_id": "Algorithmic_Hierarchy Fleet 12", "faction": 
+"Algorithmic_Hierarchy", "turn": 64, "pathfinding_time": 9.5367431640625e-05, "path_length": 1, "optimal_path_length": 
+9, "efficiency_ratio": 0.1111111111111111, "cache_hit": false, "cache_stats": {"hits": 355, "misses": 750, "requests": 
+1105}, "source_location": "Epsilon Secundus 17 Quintus", "destination": "Axinbor Primary Star [HUB]", "fleet_speed": 
+12, "is_scout": false}}
+reports\multi_universe_20260202_085431\void_reckoning\runs\run_001\telemetry\events.json:156092:{"timestamp": 
+"2026-02-02T09:03:07.374321Z", "universe": "void_reckoning", "category": "movement", "event_type": "path_efficiency", 
+"turn": 64, "faction": null, "data": {"fleet_id": "Algorithmic_Hierarchy Fleet 16", "faction": 
+"Algorithmic_Hierarchy", "turn": 64, "pathfinding_time": 0.0024271011352539062, "path_length": 1, 
+"optimal_path_length": 25, "efficiency_ratio": 0.04, "cache_hit": false, "cache_stats": {"hits": 355, "misses": 751, 
+"requests": 1106}, "source_location": "Kelius Sextus", "destination": "Vorgar Primary Star [HUB]", "fleet_speed": 12, 
+"is_scout": false}}
+reports\multi_universe_20260202_085431\void_reckoning\runs\run_001\telemetry\events.json:156094:{"timestamp": 
+"2026-02-02T09:03:07.380840Z", "universe": "void_reckoning", "category": "movement", "event_type": "path_efficiency", 
+"turn": 64, "faction": null, "data": {"fleet_id": "Algorithmic_Hierarchy Fleet 18", "faction": 
+"Algorithmic_Hierarchy", "turn": 64, "pathfinding_time": 0.0007753372192382812, "path_length": 1, 
+"optimal_path_length": 8, "efficiency_ratio": 0.125, "cache_hit": false, "cache_stats": {"hits": 355, "misses": 752, 
+"requests": 1107}, "source_location": "Kelius Sextus", "destination": "Axuthos 10", "fleet_speed": 12, "is_scout": 
+false}}
+reports\multi_universe_20260202_085431\void_reckoning\runs\run_001\telemetry\events.json:156096:{"timestamp": 
+"2026-02-02T09:03:07.398633Z", "universe": "void_reckoning", "category": "movement", "event_type": "path_efficiency", 
+"turn": 64, "faction": null, "data": {"fleet_id": "Algorithmic_Hierarchy Fleet 63", "faction": 
+"Algorithmic_Hierarchy", "turn": 64, "pathfinding_time": 0.006827592849731445, "path_length": 1, 
+"optimal_path_length": 37, "efficiency_ratio": 0.02702702702702703, "cache_hit": false, "cache_stats": {"hits": 355, 
+"misses": 753, "requests": 1108}, "source_location": "Axuthos Sextus", "destination": "Epsilon Secundus 17 Quintus", 
+"fleet_speed": 12, "is_scout": false}}
+reports\multi_universe_20260202_085431\void_reckoning\runs\run_001\telemetry\events.json:156098:{"timestamp": 
+"2026-02-02T09:03:07.399003Z", "universe": "void_reckoning", "category": "movement", "event_type": "path_efficiency", 
+"turn": 64, "faction": null, "data": {"fleet_id": "SB_Beta Prime 20 9_Algorithmic_Hierarchy", "faction": 
+"Algorithmic_Hierarchy", "turn": 64, "pathfinding_time": 6.9141387939453125e-06, "path_length": 1, 
+"optimal_path_length": 1, "efficiency_ratio": 1.0, "cache_hit": false, "cache_stats": {"hits": 355, "misses": 754, 
+"requests": 1109}, "source_location": "Beta Prime 20 9", "destination": "Beta Prime 20 9", "fleet_speed": 12, 
+"is_scout": false}}
+
+

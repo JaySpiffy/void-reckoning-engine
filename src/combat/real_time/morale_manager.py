@@ -82,19 +82,23 @@ class MoraleManager:
         # 6. Clamp & State Transitions
         unit.morale_current = max(0, min(unit.morale_max, unit.morale_current))
         
-        prev_state = unit.morale_state
-        
+        # [FIX] State Hysteresis: Prevent "Morale Yo-Yo" by requiring thresholds to rally.
         if unit.morale_current <= 0:
             unit.morale_state = "Routing"
-        elif unit.morale_current < 30:
-            unit.morale_state = "Shaken"
         else:
-            # Only rally if morale is sufficiently high (e.g. 50+)
-            if unit.morale_state == "Routing" and unit.morale_current > 50:
-                 unit.morale_state = "Steady"
-                 # print(f"RALLY: {unit.name} has regrouped!")
-            elif unit.morale_state == "Shaken" and unit.morale_current > 40:
-                 unit.morale_state = "Steady"
+            if unit.morale_state == "Routing":
+                # Unit is Routing. It only stops routing if it rallies (Morale > 50)
+                if unit.morale_current > 50:
+                    unit.morale_state = "Shaken" # Transition to Shaken first
+            elif unit.morale_state == "Shaken":
+                # Unit is Shaken. It rallies to Steady if Morale > 40, 
+                # or breaks to Routing if Morale <= 0 (handled above)
+                if unit.morale_current > 40:
+                    unit.morale_state = "Steady"
+            else:
+                # Unit is Steady. It becomes Shaken if Morale < 30
+                if unit.morale_current < 30:
+                    unit.morale_state = "Shaken"
 
         # if unit.morale_state == "Routing" and prev_state != "Routing":
             # print(f"BREAK: {unit.name} is routing!")
