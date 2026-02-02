@@ -50,6 +50,12 @@ def _generate_topology_worker(system_data):
     # flavor types use `i % 10`. So it is deterministic.
     # We can just call the method.
     system.generate_topology(force=force)
+    
+    # [FIX] Break circular references to avoid RecursionError during pickling
+    system.connections = [] 
+    for p in system.planets:
+        p.system = None
+        
     return system
 
 class GalaxyGenerator:
@@ -467,6 +473,10 @@ class GalaxyGenerator:
                 logger.warning("Running in daemon process, falling back to sequential topology generation.")
                 raise ChildProcessError("Cannot spawn children from daemon process")
                 
+            # [FIX] Capture connection topology before parallel processing kills the references
+            # We map System Name -> List of Connected System Names
+            connection_map = {s.name: [c.name for c in s.connections] for s in self.systems}
+            
             # Use "spawn" context if on Windows to avoid issues, though default is usually fine for simple objects
             logger.info(f"Generating Topologies in parallel with {workers} workers...")
             with multiprocessing.Pool(processes=workers) as pool:
@@ -480,6 +490,15 @@ class GalaxyGenerator:
             # REFERENCE RE-BINDING
             # We must update self.systems
             self.systems = processed_systems
+            
+            # [FIX] Restore Connections from Map
+            # The returned systems have valid nodes but empty connections (stripped in worker)
+            new_sys_map = {s.name: s for s in self.systems}
+            for s in self.systems:
+                # Restore the object references using the new system objects
+                if s.name in connection_map:
+                    s.connections = [new_sys_map[c_name] for c_name in connection_map[s.name] if c_name in new_sys_map]
+            
             
             # And we must update self.all_planets to point to the new planets inside the new systems
             # Otherwise other managers accessing self.all_planets will modify old stale objects
