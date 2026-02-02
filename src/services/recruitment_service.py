@@ -57,6 +57,12 @@ class RecruitmentService:
         base_commission_cost = FLEET_COMMISSION_COST
         cost = int(base_commission_cost * faction_mgr.get_modifier("recruitment_cost_mult", 1.0))
         max_recruits = bal.RECRUIT_BATCH_SIZE_MAX 
+        
+        # [BALANCE] If wealthy, allow mass commissioning
+        # If we have > 50x cost, we can afford to commission more than just the batch limit
+        if faction_mgr.requisition > (cost * 50):
+            max_recruits = max(max_recruits * 5, 10) # Allow up to 10 fleets/turn if rich
+
         count = 0
         
         # Override Budget if Stockpile is HUGE
