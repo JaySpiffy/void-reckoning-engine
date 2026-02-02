@@ -423,15 +423,41 @@ class ShootingPhase(CombatPhase):
             else:
                  def_mods = apply_doctrine_modifiers(defender, def_doctrine, "SHOOTING", def_f_doctrine, def_intensity)
             
+            # [PHASE 6.1] Robust Tag Detection
+            tags = getattr(attacker, 'tags', [])
+            if not tags and hasattr(attacker, 'abilities'):
+                tags = attacker.abilities.get("Tags", [])
+            
+            is_massive = any(t in tags for t in ["Massive", "Starbase", "Titan"])
+            primary_target, _ = select_target_by_doctrine(attacker, enemies, doctrine, grid)
+            
             for comp in attacker.components:
                 if comp.type == "Weapon" and not comp.is_destroyed:
-                    result = WeaponExecutor.execute_weapon_fire(attacker, defender, comp, dist, grid, doctrine, 
+                    current_defender = primary_target
+                    
+                    # [PHASE 6] Split Fire Logic (EaW Style)
+                    # If massive, evaluate if this specific weapon should target something else
+                    if is_massive or not current_defender:
+                         w_range = comp.weapon_stats.get("Range", 24)
+                         # If no primary or primary is out of reach/arc, find a better one FOR THIS WEAPON
+                         if not current_defender or grid.get_distance(attacker, current_defender) > w_range:
+                              # Query neighbors for a valid target for this specific weapon
+                              nearby = grid.query_units_in_range(attacker.grid_x, attacker.grid_y, radius=w_range)
+                              valid_nearby = [e for e in nearby if e.is_alive() and e.faction != att_faction]
+                              if valid_nearby:
+                                   # Simple heuristic: Nearest valid enemy
+                                   current_defender = min(valid_nearby, key=lambda e: grid.get_distance(attacker, e))
+                    
+                    if not current_defender: continue
+                    dist = grid.get_distance(attacker, current_defender)
+
+                    result = WeaponExecutor.execute_weapon_fire(attacker, current_defender, comp, dist, grid, doctrine, 
                                                doc_mods, def_mods, round_num, tracker,
                                                battle_stats=manager.battle_stats if manager else None)
                     
                     if result and detailed_log_file:
                         with open(detailed_log_file, "a", encoding='utf-8') as f:
-                            f.write(f"Round {round_num}: {attacker.name} fires {comp.name} at {defender.name} (Dist {dist:.1f}) -> {int(result['damage'])} dmg\n")
+                            f.write(f"Round {round_num}: {attacker.name} fires {comp.name} at {current_defender.name} (Dist {dist:.1f}) -> {int(result['damage'])} dmg\n")
 
 
 class AbilityPhase(CombatPhase):

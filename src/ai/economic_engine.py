@@ -110,7 +110,8 @@ class EconomicEngine:
 
         # 2. Get Available Research
         # Includes Base Tree + Infinite Procedural Tiers
-        candidates = self.engine.tech_manager.get_available_research(f)
+        # [MODIFIED] Use "Card" System (Stellaris-style)
+        candidates = self.engine.tech_manager.draw_research_cards(f, num_cards=3)
         if not candidates: return
 
         

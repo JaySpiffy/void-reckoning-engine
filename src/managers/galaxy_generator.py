@@ -821,9 +821,14 @@ class GalaxyGenerator:
                      engine.logger.debug(f"[SPAWN] {faction} Navies available: {len(navies)} (First: {navies[0].name if navies else 'None'})")
                 
                 if navies:
+                    # [FIX] Filter for Starter Ships only (Corvettes/Frigates) to respect Tech Progression
+                    starter_ships = [s for s in navies if s.unit_class.lower() in ["corvette", "frigate", "fighter", "scout", "transport"]]
+                    if not starter_ships: 
+                        starter_ships = navies # Fallback if no low-tier defined
+                    
                     num_ships = _galaxy_rng.randint(3, 5)
                     for _ in range(num_ships):
-                        ship = _galaxy_rng.choice(navies)
+                        ship = _galaxy_rng.choice(starter_ships)
                         fleet.add_unit(ship)
 
                 armies = engine.army_blueprints.get(faction, [])

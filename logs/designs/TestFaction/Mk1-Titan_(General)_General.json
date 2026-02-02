@@ -1,0 +1,371 @@
+{
+    "name": "Mk1-Titan (General)",
+    "class": "Titan",
+    "role": "General",
+    "cost": 1600,
+    "components": [
+        {
+            "name": "Spinal Lance",
+            "type": "Weapon",
+            "size": "X",
+            "stats": {
+                "range": 80,
+                "damage": 225,
+                "cost": 250
+            },
+            "weapon_stats": {
+                "Name": "Spinal Lance",
+                "Range": 80,
+                "S": 12,
+                "AP": 5,
+                "D": 15,
+                "cost": 250,
+                "Size": "X"
+            }
+        },
+        {
+            "name": "Spinal Lance",
+            "type": "Weapon",
+            "size": "X",
+            "stats": {
+                "range": 80,
+                "damage": 225,
+                "cost": 250
+            },
+            "weapon_stats": {
+                "Name": "Spinal Lance",
+                "Range": 80,
+                "S": 12,
+                "AP": 5,
+                "D": 15,
+                "cost": 250,
+                "Size": "X"
+            }
+        },
+        {
+            "name": "Heavy Turbolaser",
+            "type": "Weapon",
+            "size": "L",
+            "stats": {
+                "range": 45,
+                "damage": 30,
+                "cost": 80
+            },
+            "weapon_stats": {
+                "Name": "Heavy Turbolaser",
+                "Range": 45,
+                "S": 9,
+                "AP": 3,
+                "D": 5,
+                "cost": 80,
+                "Size": "L"
+            }
+        },
+        {
+            "name": "Heavy Turbolaser",
+            "type": "Weapon",
+            "size": "L",
+            "stats": {
+                "range": 45,
+                "damage": 30,
+                "cost": 80
+            },
+            "weapon_stats": {
+                "Name": "Heavy Turbolaser",
+                "Range": 45,
+                "S": 9,
+                "AP": 3,
+                "D": 5,
+                "cost": 80,
+                "Size": "L"
+            }
+        },
+        {
+            "name": "Heavy Turbolaser",
+            "type": "Weapon",
+            "size": "L",
+            "stats": {
+                "range": 45,
+                "damage": 30,
+                "cost": 80
+            },
+            "weapon_stats": {
+                "Name": "Heavy Turbolaser",
+                "Range": 45,
+                "S": 9,
+                "AP": 3,
+                "D": 5,
+                "cost": 80,
+                "Size": "L"
+            }
+        },
+        {
+            "name": "Heavy Turbolaser",
+            "type": "Weapon",
+            "size": "L",
+            "stats": {
+                "range": 45,
+                "damage": 30,
+                "cost": 80
+            },
+            "weapon_stats": {
+                "Name": "Heavy Turbolaser",
+                "Range": 45,
+                "S": 9,
+                "AP": 3,
+                "D": 5,
+                "cost": 80,
+                "Size": "L"
+            }
+        },
+        {
+            "name": "Heavy Turbolaser",
+            "type": "Weapon",
+            "size": "L",
+            "stats": {
+                "range": 45,
+                "damage": 30,
+                "cost": 80
+            },
+            "weapon_stats": {
+                "Name": "Heavy Turbolaser",
+                "Range": 45,
+                "S": 9,
+                "AP": 3,
+                "D": 5,
+                "cost": 80,
+                "Size": "L"
+            }
+        },
+        {
+            "name": "Heavy Turbolaser",
+            "type": "Weapon",
+            "size": "L",
+            "stats": {
+                "range": 45,
+                "damage": 30,
+                "cost": 80
+            },
+            "weapon_stats": {
+                "Name": "Heavy Turbolaser",
+                "Range": 45,
+                "S": 9,
+                "AP": 3,
+                "D": 5,
+                "cost": 80,
+                "Size": "L"
+            }
+        },
+        {
+            "name": "Reinforced Plating",
+            "type": "Defense",
+            "stats": {
+                "hp": 50,
+                "cost": 20
+            }
+        },
+        {
+            "name": "Reinforced Plating",
+            "type": "Defense",
+            "stats": {
+                "hp": 50,
+                "cost": 20
+            }
+        },
+        {
+            "name": "Reinforced Plating",
+            "type": "Defense",
+            "stats": {
+                "hp": 50,
+                "cost": 20
+            }
+        },
+        {
+            "name": "Reinforced Plating",
+            "type": "Defense",
+            "stats": {
+                "hp": 50,
+                "cost": 20
+            }
+        },
+        {
+            "name": "Reinforced Plating",
+            "type": "Defense",
+            "stats": {
+                "hp": 50,
+                "cost": 20
+            }
+        },
+        {
+            "name": "Reinforced Plating",
+            "type": "Defense",
+            "stats": {
+                "hp": 50,
+                "cost": 20
+            }
+        },
+        {
+            "name": "Reinforced Plating",
+            "type": "Defense",
+            "stats": {
+                "hp": 50,
+                "cost": 20
+            }
+        },
+        {
+            "name": "Reinforced Plating",
+            "type": "Defense",
+            "stats": {
+                "hp": 50,
+                "cost": 20
+            }
+        },
+        {
+            "name": "Reinforced Plating",
+            "type": "Defense",
+            "stats": {
+                "hp": 50,
+                "cost": 20
+            }
+        },
+        {
+            "name": "Reinforced Plating",
+            "type": "Defense",
+            "stats": {
+                "hp": 50,
+                "cost": 20
+            }
+        },
+        {
+            "name": "Reinforced Plating",
+            "type": "Defense",
+            "stats": {
+                "hp": 50,
+                "cost": 20
+            }
+        },
+        {
+            "name": "Reinforced Plating",
+            "type": "Defense",
+            "stats": {
+                "hp": 50,
+                "cost": 20
+            }
+        },
+        {
+            "name": "Reinforced Plating",
+            "type": "Defense",
+            "stats": {
+                "hp": 50,
+                "cost": 20
+            }
+        },
+        {
+            "name": "Reinforced Plating",
+            "type": "Defense",
+            "stats": {
+                "hp": 50,
+                "cost": 20
+            }
+        },
+        {
+            "name": "Reinforced Plating",
+            "type": "Defense",
+            "stats": {
+                "hp": 50,
+                "cost": 20
+            }
+        },
+        {
+            "name": "Reinforced Plating",
+            "type": "Defense",
+            "stats": {
+                "hp": 50,
+                "cost": 20
+            }
+        },
+        {
+            "name": "Reinforced Plating",
+            "type": "Defense",
+            "stats": {
+                "hp": 50,
+                "cost": 20
+            }
+        },
+        {
+            "name": "Reinforced Plating",
+            "type": "Defense",
+            "stats": {
+                "hp": 50,
+                "cost": 20
+            }
+        },
+        {
+            "name": "Reinforced Plating",
+            "type": "Defense",
+            "stats": {
+                "hp": 50,
+                "cost": 20
+            }
+        },
+        {
+            "name": "Reinforced Plating",
+            "type": "Defense",
+            "stats": {
+                "hp": 50,
+                "cost": 20
+            }
+        },
+        {
+            "name": "Reinforced Plating",
+            "type": "Defense",
+            "stats": {
+                "hp": 50,
+                "cost": 20
+            }
+        },
+        {
+            "name": "Reinforced Plating",
+            "type": "Defense",
+            "stats": {
+                "hp": 50,
+                "cost": 20
+            }
+        },
+        {
+            "name": "Standard Engine",
+            "type": "Engine",
+            "stats": {
+                "cost": 20
+            }
+        },
+        {
+            "name": "Standard Engine",
+            "type": "Engine",
+            "stats": {
+                "cost": 20
+            }
+        },
+        {
+            "name": "Standard Engine",
+            "type": "Engine",
+            "stats": {
+                "cost": 20
+            }
+        },
+        {
+            "name": "Standard Engine",
+            "type": "Engine",
+            "stats": {
+                "cost": 20
+            }
+        }
+    ],
+    "stats": {
+        "cost": 1500,
+        "damage": 630,
+        "hp": 6100,
+        "armor": 25,
+        "shield": 2000
+    }
+}

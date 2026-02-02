@@ -1,0 +1,551 @@
+{
+    "Energy_Directed": {
+        "phaser_bank": {
+            "name": "Phaser Bank",
+            "flavor": "Star Trek",
+            "description": "Standard directed energy weapon used by the Federation. Versatile and precise.",
+            "sizes": [
+                "S",
+                "M"
+            ],
+            "cost": 100,
+            "stats": {
+                "S": {
+                    "range": 3000,
+                    "damage": 10,
+                    "accuracy": 90,
+                    "cooldown": 2
+                },
+                "M": {
+                    "range": 5000,
+                    "damage": 25,
+                    "accuracy": 85,
+                    "cooldown": 3
+                }
+            },
+            "tech_tier": 1,
+            "tags": [
+                "beam",
+                "shield_strip"
+            ]
+        },
+        "phaser_array": {
+            "name": "Phaser Array",
+            "flavor": "Star Trek",
+            "description": "Advanced Federation beam arrays capable of broadside fire.",
+            "sizes": [
+                "M",
+                "L"
+            ],
+            "cost": 250,
+            "stats": {
+                "M": {
+                    "range": 6000,
+                    "damage": 35,
+                    "accuracy": 90,
+                    "cooldown": 3
+                },
+                "L": {
+                    "range": 10000,
+                    "damage": 80,
+                    "accuracy": 85,
+                    "cooldown": 4
+                }
+            },
+            "tech_tier": 2,
+            "tags": [
+                "beam",
+                "tracking"
+            ]
+        },
+        "turbolaser": {
+            "name": "Turbolaser Battery",
+            "flavor": "Star Wars",
+            "description": "Heavy laser cannons used by the Galactic Empire. inaccurate but devastating.",
+            "sizes": [
+                "M",
+                "L",
+                "X"
+            ],
+            "cost": 200,
+            "stats": {
+                "M": {
+                    "range": 5000,
+                    "damage": 40,
+                    "accuracy": 60,
+                    "cooldown": 4
+                },
+                "L": {
+                    "range": 12000,
+                    "damage": 100,
+                    "accuracy": 50,
+                    "cooldown": 6
+                },
+                "X": {
+                    "range": 25000,
+                    "damage": 400,
+                    "accuracy": 40,
+                    "cooldown": 12
+                }
+            },
+            "tech_tier": 1,
+            "tags": [
+                "heavy",
+                "armor_piercing"
+            ]
+        },
+        "mega_turbolaser": {
+            "name": "Mega-Turbolaser",
+            "flavor": "Star Wars",
+            "description": "Massive siege weapon found on Star Destroyers.",
+            "sizes": [
+                "X"
+            ],
+            "cost": 800,
+            "stats": {
+                "X": {
+                    "range": 30000,
+                    "damage": 800,
+                    "accuracy": 35,
+                    "cooldown": 15
+                }
+            },
+            "tech_tier": 3,
+            "tags": [
+                "siege",
+                "orbital_bombardment"
+            ]
+        },
+        "lance_battery": {
+            "name": "Lance Battery",
+            "flavor": "Warhammer 40k",
+            "description": "Focused high-energy beam that cuts through armor like paper.",
+            "sizes": [
+                "L",
+                "X"
+            ],
+            "cost": 500,
+            "stats": {
+                "L": {
+                    "range": 15000,
+                    "damage": 150,
+                    "accuracy": 100,
+                    "cooldown": 10
+                },
+                "X": {
+                    "range": 40000,
+                    "damage": 600,
+                    "accuracy": 100,
+                    "cooldown": 15
+                }
+            },
+            "tech_tier": 2,
+            "tags": [
+                "beam",
+                "perfect_accuracy",
+                "high_ap"
+            ]
+        },
+        "ion_cannon": {
+            "name": "Ion Cannon",
+            "flavor": "Star Wars",
+            "description": "Disables enemy systems and shields.",
+            "sizes": [
+                "M",
+                "L",
+                "H"
+            ],
+            "cost": 150,
+            "stats": {
+                "M": {
+                    "range": 4000,
+                    "damage": 5,
+                    "system_damage": 50,
+                    "accuracy": 75,
+                    "cooldown": 3
+                },
+                "L": {
+                    "range": 8000,
+                    "damage": 10,
+                    "system_damage": 150,
+                    "accuracy": 70,
+                    "cooldown": 5
+                },
+                "H": {
+                    "range": 10000,
+                    "damage": 20,
+                    "system_damage": 300,
+                    "accuracy": 60,
+                    "cooldown": 8
+                }
+            },
+            "tech_tier": 1,
+            "tags": [
+                "ion",
+                "disabling"
+            ]
+        },
+        "plasma_blastgun": {
+            "name": "Plasma Blastgun",
+            "flavor": "Warhammer 40k",
+            "description": "Volatile plasma weaponry usually mounted on Titans.",
+            "sizes": [
+                "L",
+                "X"
+            ],
+            "cost": 600,
+            "stats": {
+                "L": {
+                    "range": 8000,
+                    "damage": 200,
+                    "accuracy": 65,
+                    "cooldown": 8
+                },
+                "X": {
+                    "range": 15000,
+                    "damage": 500,
+                    "accuracy": 60,
+                    "cooldown": 12
+                }
+            },
+            "tech_tier": 3,
+            "tags": [
+                "plasma",
+                "aoe"
+            ]
+        }
+    },
+    "Ballistic_Kinetic": {
+        "macro_cannon": {
+            "name": "Macro Cannon",
+            "flavor": "Warhammer 40k",
+            "description": "Giant ballistic cannons that fire house-sized shells.",
+            "sizes": [
+                "M",
+                "L"
+            ],
+            "cost": 120,
+            "stats": {
+                "M": {
+                    "range": 6000,
+                    "damage": 50,
+                    "accuracy": 55,
+                    "cooldown": 5
+                },
+                "L": {
+                    "range": 12000,
+                    "damage": 120,
+                    "accuracy": 45,
+                    "cooldown": 8
+                }
+            },
+            "tech_tier": 1,
+            "tags": [
+                "kinetic",
+                "shield_breaking"
+            ]
+        },
+        "railgun": {
+            "name": "Railgun Battery",
+            "flavor": "Generic Sci-Fi",
+            "description": "Electromagnetic accelerator for high-velocity slugs.",
+            "sizes": [
+                "S",
+                "M",
+                "L",
+                "X"
+            ],
+            "cost": 180,
+            "stats": {
+                "S": {
+                    "range": 4000,
+                    "damage": 15,
+                    "accuracy": 80,
+                    "cooldown": 2
+                },
+                "M": {
+                    "range": 8000,
+                    "damage": 45,
+                    "accuracy": 75,
+                    "cooldown": 4
+                },
+                "L": {
+                    "range": 16000,
+                    "damage": 110,
+                    "accuracy": 70,
+                    "cooldown": 7
+                },
+                "X": {
+                    "range": 35000,
+                    "damage": 350,
+                    "accuracy": 85,
+                    "cooldown": 14
+                }
+            },
+            "tech_tier": 2,
+            "tags": [
+                "kinetic",
+                "high_velocity"
+            ]
+        },
+        "mass_driver": {
+            "name": "Mass Driver",
+            "flavor": "Generic Sci-Fi",
+            "description": "Basic kinetic weaponry.",
+            "sizes": [
+                "S",
+                "M"
+            ],
+            "cost": 50,
+            "stats": {
+                "S": {
+                    "range": 2000,
+                    "damage": 8,
+                    "accuracy": 70,
+                    "cooldown": 1.5
+                },
+                "M": {
+                    "range": 4000,
+                    "damage": 20,
+                    "accuracy": 65,
+                    "cooldown": 2.5
+                }
+            },
+            "tech_tier": 0,
+            "tags": [
+                "kinetic",
+                "cheap"
+            ]
+        },
+        "vulcan_mega_bolter": {
+            "name": "Vulcan Mega-Bolter",
+            "flavor": "Warhammer 40k",
+            "description": "Rapid firing explosive rounds.",
+            "sizes": [
+                "M"
+            ],
+            "cost": 300,
+            "stats": {
+                "M": {
+                    "range": 3000,
+                    "damage": 15,
+                    "accuracy": 60,
+                    "cooldown": 0.2,
+                    "burst": 10
+                }
+            },
+            "tech_tier": 3,
+            "tags": [
+                "rapid_fire",
+                "point_defense_capable"
+            ]
+        },
+        "point_defense_cannon": {
+            "name": "Point Defense Gatling",
+            "flavor": "Generic Sci-Fi",
+            "description": "Anti-fighter and anti-missile automated turrets.",
+            "sizes": [
+                "P"
+            ],
+            "cost": 30,
+            "stats": {
+                "P": {
+                    "range": 1000,
+                    "damage": 2,
+                    "accuracy": 95,
+                    "cooldown": 0.1
+                }
+            },
+            "tech_tier": 1,
+            "tags": [
+                "point_defense"
+            ]
+        }
+    },
+    "Missile_Ordnance": {
+        "photon_torpedo": {
+            "name": "Photon Torpedo",
+            "flavor": "Star Trek",
+            "description": "Antimatter warheads tailored for maximum yield.",
+            "sizes": [
+                "M",
+                "L"
+            ],
+            "cost": 200,
+            "stats": {
+                "M": {
+                    "range": 15000,
+                    "damage": 80,
+                    "accuracy": 80,
+                    "cooldown": 10
+                },
+                "L": {
+                    "range": 25000,
+                    "damage": 180,
+                    "accuracy": 75,
+                    "cooldown": 15
+                }
+            },
+            "tech_tier": 2,
+            "tags": [
+                "missile",
+                "shield_penetrating"
+            ]
+        },
+        "quantum_torpedo": {
+            "name": "Quantum Torpedo",
+            "flavor": "Star Trek",
+            "description": "Zero-point energy warheads with massive destructive potential.",
+            "sizes": [
+                "L",
+                "X"
+            ],
+            "cost": 600,
+            "stats": {
+                "L": {
+                    "range": 20000,
+                    "damage": 300,
+                    "accuracy": 85,
+                    "cooldown": 20
+                },
+                "X": {
+                    "range": 40000,
+                    "damage": 800,
+                    "accuracy": 90,
+                    "cooldown": 30
+                }
+            },
+            "tech_tier": 4,
+            "tags": [
+                "missile",
+                "devastating"
+            ]
+        },
+        "concussion_missile": {
+            "name": "Concussion Missile",
+            "flavor": "Star Wars",
+            "description": "Fast missiles designed to stagger enemy ships.",
+            "sizes": [
+                "S",
+                "M"
+            ],
+            "cost": 80,
+            "stats": {
+                "S": {
+                    "range": 5000,
+                    "damage": 20,
+                    "accuracy": 80,
+                    "cooldown": 4
+                },
+                "M": {
+                    "range": 10000,
+                    "damage": 50,
+                    "accuracy": 75,
+                    "cooldown": 6
+                }
+            },
+            "tech_tier": 1,
+            "tags": [
+                "missile"
+            ]
+        },
+        "proton_torpedo": {
+            "name": "Proton Torpedo",
+            "flavor": "Star Wars",
+            "description": "Heavy ordnance with shield-bypassing properties.",
+            "sizes": [
+                "S",
+                "G"
+            ],
+            "cost": 120,
+            "stats": {
+                "S": {
+                    "range": 4000,
+                    "damage": 60,
+                    "accuracy": 60,
+                    "cooldown": 12
+                },
+                "G": {
+                    "range": 3000,
+                    "damage": 400,
+                    "accuracy": 50,
+                    "cooldown": 20
+                }
+            },
+            "tech_tier": 2,
+            "tags": [
+                "missile",
+                "bomber_weapon"
+            ]
+        }
+    },
+    "Strike_Craft": {
+        "tie_fighter_squadron": {
+            "name": "TIE Fighter Squadron",
+            "flavor": "Star Wars",
+            "description": "Fast, fragile swarm fighters.",
+            "sizes": [
+                "H"
+            ],
+            "cost": 50,
+            "stats": {
+                "H": {
+                    "range": 5000,
+                    "count": 12,
+                    "damage": 5,
+                    "speed": 100
+                }
+            },
+            "tech_tier": 1,
+            "tags": [
+                "fighter",
+                "swarm"
+            ]
+        },
+        "x_wing_squadron": {
+            "name": "X-Wing Squadron",
+            "flavor": "Star Wars",
+            "description": "Multirole strike fighters with shields.",
+            "sizes": [
+                "H"
+            ],
+            "cost": 100,
+            "stats": {
+                "H": {
+                    "range": 5000,
+                    "count": 6,
+                    "damage": 15,
+                    "speed": 80,
+                    "shield": 20
+                }
+            },
+            "tech_tier": 2,
+            "tags": [
+                "fighter",
+                "bomber"
+            ]
+        },
+        "thunderhawk_squadron": {
+            "name": "Thunderhawk Gunship Squadron",
+            "flavor": "Warhammer 40k",
+            "description": "Heavily armored gunships.",
+            "sizes": [
+                "H"
+            ],
+            "cost": 150,
+            "stats": {
+                "H": {
+                    "range": 4000,
+                    "count": 3,
+                    "damage": 30,
+                    "speed": 60,
+                    "armor": 50
+                }
+            },
+            "tech_tier": 2,
+            "tags": [
+                "heavy_fighter"
+            ]
+        }
+    }
+}

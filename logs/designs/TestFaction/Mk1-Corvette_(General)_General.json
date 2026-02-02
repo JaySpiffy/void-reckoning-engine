@@ -1,0 +1,68 @@
+{
+    "name": "Mk1-Corvette (General)",
+    "class": "Corvette",
+    "role": "General",
+    "cost": 640,
+    "components": [
+        {
+            "name": "Spinal Lance",
+            "type": "Weapon",
+            "size": "S",
+            "stats": {
+                "range": 80,
+                "damage": 30,
+                "cost": 250
+            },
+            "weapon_stats": {
+                "Name": "Spinal Lance",
+                "Range": 80,
+                "S": 12,
+                "AP": 5,
+                "D": 15,
+                "cost": 250,
+                "Size": "X"
+            }
+        },
+        {
+            "name": "Spinal Lance",
+            "type": "Weapon",
+            "size": "S",
+            "stats": {
+                "range": 80,
+                "damage": 30,
+                "cost": 250
+            },
+            "weapon_stats": {
+                "Name": "Spinal Lance",
+                "Range": 80,
+                "S": 12,
+                "AP": 5,
+                "D": 15,
+                "cost": 250,
+                "Size": "X"
+            }
+        },
+        {
+            "name": "Reinforced Plating",
+            "type": "Defense",
+            "stats": {
+                "hp": 50,
+                "cost": 20
+            }
+        },
+        {
+            "name": "Standard Engine",
+            "type": "Engine",
+            "stats": {
+                "cost": 20
+            }
+        }
+    ],
+    "stats": {
+        "cost": 540,
+        "damage": 60,
+        "hp": 130,
+        "armor": 5,
+        "shield": 20
+    }
+}

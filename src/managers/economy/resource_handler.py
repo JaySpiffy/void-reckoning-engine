@@ -80,7 +80,8 @@ class ResourceHandler:
             base_income = 0
             army_upkeep = 0
             infra_upkeep = 0 # Initialized here
-            rp_income = 0
+            # [TUNING] Base Faction Research to ensure progression (Target: ~15 turns for Tier 1)
+            rp_income = 225
             income_by_category = {"Tax": 0, "Mining": 0, "Trade": 0, "Conquest": 0}
             
             # 1b. Use Cached Planet Output
@@ -107,6 +108,8 @@ class ResourceHandler:
                 
                 # Research Output (Passed through generation result now)
                 rp_income += generation.get("research", 0)
+                # [TUNING] Passive Planetary Research (Pop/Infrastructure base)
+                rp_income += 5
 
                 # Inline Army Upkeep calculation (Ground Armies)
                 if hasattr(p, 'armies'):

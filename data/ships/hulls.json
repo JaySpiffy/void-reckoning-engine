@@ -4,6 +4,7 @@
             "id": "corvette",
             "name": "Corvette",
             "size": 1,
+            "tech_tier": 1,
             "base_stats": {
                 "hp": 300,
                 "evasion": 0.60,
@@ -24,6 +25,8 @@
             "id": "destroyer",
             "name": "Destroyer",
             "size": 2,
+            "tech_tier": 2,
+            "unlock_tech": "Tech_Unlock_Destroyer_Hull",
             "base_stats": {
                 "hp": 800,
                 "evasion": 0.35,
@@ -45,6 +48,8 @@
             "id": "cruiser",
             "name": "Cruiser",
             "size": 4,
+            "tech_tier": 3,
+            "unlock_tech": "Tech_Unlock_Cruiser_Hull",
             "base_stats": {
                 "hp": 1800,
                 "evasion": 0.15,
@@ -67,6 +72,8 @@
             "id": "battleship",
             "name": "Battleship",
             "size": 8,
+            "tech_tier": 4,
+            "unlock_tech": "Tech_Unlock_Battleship_Hull",
             "base_stats": {
                 "hp": 4000,
                 "evasion": 0.05,
@@ -83,6 +90,30 @@
                 "SENSOR": 1,
                 "COMPUTER": 1,
                 "A": 10
+            }
+        },
+        {
+            "id": "titan",
+            "name": "Titan",
+            "size": 16,
+            "tech_tier": 5,
+            "unlock_tech": "Tech_Unlock_Titan_Hull",
+            "base_stats": {
+                "hp": 15000,
+                "evasion": 0.01,
+                "armor": 50,
+                "speed": 60
+            },
+            "slots": {
+                "X": 10,
+                "L": 5,
+                "M": 5,
+                "REACTOR": 2,
+                "THRUSTER": 2,
+                "FTL": 1,
+                "SENSOR": 1,
+                "COMPUTER": 1,
+                "A": 20
             }
         }
     ]

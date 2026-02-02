@@ -4,19 +4,18 @@ import src.core.balance as bal
 
 class Starbase(Unit):
     def __init__(self, name, faction, system, tier=1, blueprint_id=None, hp=2500, shield=1000, 
-                 damage=50, armor=20, abilities=None, under_construction=False):
+                 damage=50, armor=20, abilities=None, under_construction=False, design_data=None):
         """
         Represents a static Space Station / Starbase.
         Inherits from Unit to participate in combat as a 'super-heavy' entity.
-        
-        Args:
-            name (str): Display Name (e.g. "Alpha Base")
-            faction (str): Owner Faction
-            system (StarSystem): Parent System
-            tier (int): Upgrade Level (1-5)
         """
         self.tier = tier
-        # print(f"DEBUG: Starbase.__init__ sets self.tier = {self.tier}")
+        self.design_data = design_data
+        
+        # Override name if design provided
+        if design_data:
+            name = design_data.get("name", name)
+            
         ma = 60 # High Accuracy
         md = 10 # 0 Evasion (Static)
         
@@ -29,7 +28,7 @@ class Starbase(Unit):
             damage=damage,
             abilities=abilities or {"Turrets": 5 + (tier * 2), "Tags": ["Starbase", "Static", "Massive"]},
             faction=faction,
-            cost=1000 * tier,
+            cost=design_data.get("cost", 1000 * tier) if design_data else 1000 * tier,
             shield=shield,
             movement_points=0, # Static
             blueprint_id=blueprint_id or f"starbase_{faction.lower()}_t{tier}",
@@ -39,29 +38,26 @@ class Starbase(Unit):
         )
         
         self.system = system
-        self.modules = [] # List of Strings (Module IDs) or Objects
+        self.modules = [] 
         self.hangar_capacity = 0
         self.docked_fleets = []
-        self.naval_slots = 0 # Shipyard capacity (Phase 14 Improvement)
-        self.unit_queue = [] # List of {'bp': UnitBlueprint, 'turns_left': int, 'type': 'fleet'} (Phase 16)
+        self.naval_slots = 0 
+        self.unit_queue = [] 
         
-        # [PHASE 18] Starbase Construction
         self.turns_left = 5 if under_construction and tier == 1 else 0
         self.is_under_construction = under_construction
         self.is_destroyed = False
         
-        # [PHASE 14] Starbase Economics
-        # Override unit upkeep with a heavier stationary cost
-        # T1: 250, T2: 500, T3: 1000, T4: 1500, T5: 2500
+        # Override upkeep based on design if available
         self.upkeep = int(self.cost * 0.25)
         
         # Starbase Properties
-        self.ftl_inhibitor = False # If True, blocks enemy movement
-        self.sensor_range = 2 # System-wide usually
+        self.ftl_inhibitor = False 
+        self.sensor_range = 2 
         
         # Initialize Logic
-        self.recalc_tier_stats(reset_hp=(hp == 2500)) # Only reset if using default constructor val
-        # self.generate_components() is called by Unit.__init__
+        self.recalc_tier_stats(reset_hp=(hp == 2500)) 
+        self.generate_components()
         
     def recalc_tier_stats(self, reset_hp=True):
         """Updates stats based on current Tier."""
@@ -70,15 +66,15 @@ class Starbase(Unit):
         # Tier 5: Fortress
         mult = self.tier
         
-        self.base_hp = 2000 * mult
+        self.base_hp = 3000 * mult
         if reset_hp:
             self.current_hp = self.base_hp
             
-        self.shield_max = 1000 * mult
+        self.shield_max = 2000 * mult
         if reset_hp:
             self.shield_current = self.shield_max
-        self.base_damage = 50 * mult
-        self.armor = 20 + (mult * 5)
+        self.base_damage = 75 * mult
+        self.armor = 25 + (mult * 10)
         
         self.hangar_capacity = (mult - 1) * 2 # T1=0, T2=2, T3=4...
         
@@ -188,31 +184,55 @@ class Starbase(Unit):
             
     def generate_components(self):
         """Generates components based on tier. Overrides Unit.generate_components."""
-        # print(f"DEBUG: Starbase.generate_components called. self.tier = {self.tier}")
         self.components = []
         
-        # 1. Hull
+        # 1. Hull & Shields (Always present)
         self.components.append(Component(f"Starbase Core T{self.tier}", self.base_hp, "Hull"))
-        
-        # 2. Shields
         if self.shield_max > 0:
             self.components.append(Component(f"Void Shield Generator T{self.tier}", self.shield_max, "Shield"))
+
+        # 2. AI-Designed Faction Weapons
+        if self.design_data and "components" in self.design_data:
+            print(f"  > [STATION] Applying AI Design for {self.faction} ({self.name})")
+            for comp_data in self.design_data["components"]:
+                # Wrap dict into Component object
+                name = comp_data.get("name", "Unknown System")
+                ctype = comp_data.get("type", "Weapon")
+                stats = comp_data.get("stats", {})
+                w_stats = comp_data.get("weapon_stats")
+                
+                # Check for Hangar type
+                if ctype == "Hangar":
+                    self.hangar_capacity += 5 # Bonus capacity from hangar modules
+                
+                self.components.append(Component(name, stats.get("hp", 100), ctype, weapon_stats=w_stats))
+                
+        else:
+            # 3. Fallback: Generic High-Power Batteries
+            macro_stats = {
+                "Str": 6 + self.tier, 
+                "AP": -1 - (self.tier // 2), 
+                "D": 2, 
+                "Attacks": 6 * self.tier, 
+                "Range": 60 
+            }
+            self.components.append(Component(f"Macro-Cannon Grid T{self.tier}", 100, "Weapon", weapon_stats=macro_stats))
             
-        # 3. Weapons (Abstracted batteries)
-        # Add 'Macro Batteries' component
-        w_stats = {
-            "Str": 6 + self.tier, # Escaling Strength
-            "AP": -1 - (self.tier // 2), 
-            "D": 2, 
-            "Attacks": 4 * self.tier, 
-            "Range": 60 # Long range
-        }
-        self.components.append(Component(f"Defense Batteries T{self.tier}", 100, "Weapon", weapon_stats=w_stats))
-        
-        if self.tier >= 3:
-             # Add Lance/Torpedo
-             l_stats = {"Str": 10, "AP": -4, "D": d6_avg(), "Attacks": self.tier, "Range": 100}
-             self.components.append(Component("Orbital Lance", 50, "Weapon", weapon_stats=l_stats))
+            if self.tier >= 2:
+                pd_stats = {"Str": 4, "AP": 0, "D": 1, "Attacks": 10, "Range": 20}
+                self.components.append(Component(f"Point Defense Grid T{self.tier}", 50, "Weapon", weapon_stats=pd_stats))
+
+            if self.tier >= 3:
+                h_stats = {"Str": 5, "AP": -2, "D": 3, "Attacks": 2 * self.tier, "Range": 150}
+                self.components.append(Component(f"Heavy Hangar Bay T{self.tier}", 100, "Hangar", weapon_stats=h_stats))
+            
+            if self.tier >= 4:
+                 is_t5 = (self.tier == 5)
+                 l_name = "Exterminatus Array" if is_t5 else "Orbital Lance"
+                 l_str = 15 if is_t5 else 10
+                 l_ap = -6 if is_t5 else -4
+                 l_stats = {"Str": l_str, "AP": l_ap, "D": d6_avg() * (2 if is_t5 else 1), "Attacks": self.tier - 2, "Range": 120}
+                 self.components.append(Component(l_name, 50, "Weapon", weapon_stats=l_stats))
 
     def is_ship(self):
         return True # Treated as a ship for combat resolution steps (shields, etc) but static

@@ -180,9 +180,9 @@ class TerminalDashboard:
                 pair = entry['members']
                 n1, n2 = pair[0], pair[1]
                 
-                # Super compact names (3 chars)
-                n1_s = n1[:3].upper()
-                n2_s = n2[:3].upper()
+                # Use Standard Abbreviations
+                n1_s = FACTION_ABBREVIATIONS.get(n1, n1[:3].upper())
+                n2_s = FACTION_ABBREVIATIONS.get(n2, n2[:3].upper())
                 
                 t_type = entry['type']
                 if t_type == 'War':

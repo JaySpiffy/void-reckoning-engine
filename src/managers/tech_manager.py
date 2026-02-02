@@ -7,7 +7,9 @@ import src.core.config as config
 from src.factories.tech_factory import ProceduralTechGenerator
 
 class TechManager:
-    """Manages tech trees and dependencies for all factions."""
+    """
+    Manages tech trees, dependencies, and the new 'Card-Based' research system.
+    """
     def __init__(self, tech_dir: Optional[str] = None, game_config: Optional[dict] = None):
         """
         Initializes the TechManager and loads all tech trees.
@@ -18,7 +20,7 @@ class TechManager:
         self.tech_dir = tech_dir
         self.config = game_config or {}
         
-        # Determine Cost Multiplier (Item 11.2)
+        # Determine Cost Multiplier
         multiplier = 1.0
         if hasattr(self.config, "tech_cost_multiplier"):
              multiplier = self.config.tech_cost_multiplier
@@ -30,6 +32,11 @@ class TechManager:
         self.faction_tech_trees = {} 
         self.hybrid_tech_trees = {} # Store cross-universe tech data
         self.tech_effects = {} # {tech_id: [parsed_effects]}
+        
+        # [NEW] Research State
+        # {faction_id: {"current_project": str, "progress": 0.0, "drawn_cards": []}}
+        self.research_state = {} 
+
         self.load_tech_trees()
         self.load_hybrid_tech_trees()
         
@@ -50,6 +57,112 @@ class TechManager:
             tree["units"] = result["units"]
             
         print(f"[TechManager] Evolution Complete.")
+
+    def draw_research_cards(self, faction: Any, num_cards: int = 3) -> List[str]:
+        """
+        Draws X random available techs from the faction's tree.
+        Respects prerequisites.
+        Adds weighting to prioritize 'Unlock' techs (Weapons/Hulls).
+        """
+        # Support both ID string and Faction Object
+        if isinstance(faction, str):
+            faction_id = faction
+            # We need the actual faction object to check unlocked_techs
+            # For now return empty if we can't access unlocked_techs
+            return [] 
+        else:
+            faction_id = faction.name.replace(" ", "_").lower()
+            
+        tree = self.faction_tech_trees.get(faction_id)
+        if not tree:
+            # Fallback to default if custom tree not found
+            tree = self.faction_tech_trees.get("default")
+            if not tree: return []
+
+        available = []
+        researched = set(faction.unlocked_techs)
+        
+        # Check prerequisites
+        for tech_id, cost in tree["techs"].items():
+            if tech_id in researched: continue
+            
+            # Check prerequisites
+            reqs = tree.get("prerequisites", {}).get(tech_id, [])
+            if not reqs:
+                available.append(tech_id)
+            else:
+                # ALL prereqs must be met
+                if all(r in researched for r in reqs):
+                    available.append(tech_id)
+        
+        if not available: return []
+        
+        # [WEIGHTING LOGIC]
+        # User requested: "make sure (unlock) tecs come up not just random ones"
+        weights = []
+        for t in available:
+            w = 1.0
+            if "Unlock" in t: 
+                w = 10.0 # High priority for Unlocks
+            if "Tech_Unlock_Titan" in t:
+                w = 50.0 # Legendary Priority
+            weights.append(w)
+            
+        # If pool < num_cards, return all.
+        if len(available) <= num_cards:
+            drawn = available
+        else:
+            # Weighted pull without replacement is tricky in pure random module.
+            # Simpler: Shuffle with weights? Or iterative weighted choice.
+            drawn = []
+            pool = list(zip(available, weights))
+            
+            for _ in range(num_cards):
+                if not pool: break
+                # Extract for choices
+                choices = [p[0] for p in pool]
+                wts = [p[1] for p in pool]
+                
+                import random
+                picked = random.choices(choices, weights=wts, k=1)[0]
+                drawn.append(picked)
+                
+                # Remove from pool
+                pool = [p for p in pool if p[0] != picked]
+
+        # Update State
+        if faction_id not in self.research_state:
+            self.research_state[faction_id] = {"current_project": None, "progress": 0.0, "drawn_cards": []}
+            
+        self.research_state[faction_id]["drawn_cards"] = drawn
+        self.logger.info(f"[Research] {faction_id} drew cards: {drawn}")
+        return drawn
+
+    def select_research_project(self, faction: Any, tech_id: str):
+        """
+        Locks in a research project from the hand.
+        """
+        faction_id = faction.name
+        if faction_id not in self.research_state:
+             self.research_state[faction_id] = {"current_project": None, "progress": 0.0, "drawn_cards": []}
+             
+        state = self.research_state[faction_id]
+        
+        # Validation: Must be in drawn cards OR (Debug bypass)
+        if tech_id not in state["drawn_cards"]:
+            self.logger.warning(f"[Research] {faction_id} tried to pick {tech_id} which was NOT in hand {state['drawn_cards']}. Allowing for now (debug).")
+            
+        state["current_project"] = tech_id
+        state["progress"] = 0.0
+        
+        # Update Faction Object State as well (if we want to mirror it)
+        faction.active_research = tech_id
+        
+        self.logger.info(f"[Research] {faction_id} started researching: {tech_id}")
+
+    def _get_researched_techs(self, faction_id: str) -> List[str]:
+        # Deprecated / Unused now that we use faction object
+        return []
 
     def upgrade_weapon(self, faction_name: str, weapon_id: str, arsenal: Dict) -> Optional[Dict]:
         """
@@ -670,19 +783,34 @@ class TechManager:
             self.logger.debug(f"[TechManager] Generated Infinite Tech: {new_id} (Cost: {new_cost}) for {faction_name}")
         return new_id
 
-    def get_available_research(self, faction: 'Faction') -> List[Dict[str, Any]]:
+    def draw_research_cards(self, faction, num_cards: int = 3) -> List[dict]:
         """
-        Returns a list of all researchable technologies for a faction.
-        Includes base tree unlockables + Procedurally generated next steps.
+        Draws N random research options from available techs.
+        Used for the 'Card System' (Stellaris-style).
+        """
+        available = self.get_available_research(faction)
+        if not available:
+             return []
+             
+        # If fewer options than cards, return all
+        if len(available) <= num_cards:
+            return available
+            
+        # Random draw
+        # Future: Implement weighting logic here if needed (e.g. bias towards cheaper or cheaper+synergy)
+        # For now, uniform random is fair enough for the specific 'Draw' mechanic.
+        import random
+        return random.sample(available, num_cards)
+
+    def get_available_research(self, faction) -> List[dict]:
+        """
+        Returns a list of all currently researchable technologies.
+        Includes base tree unlockables and next-tier procedural techs.
         """
         available = []
-        f_lower = faction.name.lower()
-        tree = self.faction_tech_trees.get(f_lower)
-        if not tree: return []
+        all_techs = self.faction_tech_trees.get(faction.name.lower(), {}).get("techs", {})
         
-        all_techs = tree["techs"]
-        
-        # 1. Check existing static tree
+        # 1. Base Techs
         for tech_id, cost in all_techs.items():
             if tech_id in ["None", "Headquarters"]: continue
             if tech_id in faction.unlocked_techs: continue
@@ -704,7 +832,11 @@ class TechManager:
                   if next_id in [p.tech_id for p in faction.research_queue]: continue
                   
                   # It's available
-                  cost = all_techs[next_id]
+                  cost = all_techs.get(next_id, 2000) # Default cost if not in tree yet? 
+                  # generate_next_tier_tech updates the tree, so it should be there.
+                  if next_id in all_techs:
+                       cost = all_techs[next_id]
+                  
                   available.append({"id": next_id, "cost": cost})
                   
         return available

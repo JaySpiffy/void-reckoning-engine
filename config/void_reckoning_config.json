@@ -7,8 +7,8 @@
     "sandbox_mode": true,
     "procedural_faction_limit": 0,
     "campaign": {
-        "turns": 500,
-        "num_systems": 10,
+        "turns": 50,
+        "num_systems": 20,
         "min_planets": 10,
         "max_planets": 10,
         "combat_rounds": 2000,
@@ -38,8 +38,8 @@
             "eruption_threshold": 0.15,
             "subsidence_threshold": 0.25,
             "max_storm_percentage": 5.0,
-            "min_duration": 5,
-            "max_duration": 20,
+            "min_duration": 1,
+            "max_duration": 2,
             "storm_chance_per_turn": 0.01
         },
         "ai_economy": {

@@ -427,9 +427,14 @@ class RecruitmentService:
             # --- SMART COMPOSITION LOGIC ---
             # Desired Ratios (Baseline)
             navy_ratios = {
-                "Battleship": 0.15,
-                "Cruiser": 0.35,
-                "Escort": 0.50
+                "Titan": 0.02,
+                "Battleship": 0.08,
+                "Carrier": 0.10,
+                "Cruiser": 0.20,
+                "Destroyer": 0.20,
+                "Frigate": 0.20,
+                "Corvette": 0.20,
+                "Escort": 0.00 # Legacy/Replaced
             }
             
             # Dynamic Tactics Adjustment (User Request)
@@ -453,16 +458,33 @@ class RecruitmentService:
             if use_procedural:
                 # CONSTRUCTOR PRIORITY
                 if faction_mgr.get_constructor_count() < 1:
-                    target_class = "Escort" # Use escort hull for constructor
+                    target_class = "Corvette" # Use Corvette/Escort hull for constructor
                     target_role = "Constructor"
                 else:
-                    # 1. Pick Class based on Ratios
-                    classes = list(navy_ratios.keys())
-                    weights = [navy_ratios[k] for k in classes]
+                    # [PHASE 18] Filter by Unlocked Hulls (Tech/Hull Logic)
+                    designer = getattr(self.engine, 'design_service', None)
+                    if not designer:
+                        # Fallback instantiation if service not attached (rare)
+                        from src.services.ship_design_service import ShipDesignService
+                        designer = ShipDesignService(self.engine.ai_manager)
+                        # Cache it? self.engine.design_service = designer 
                     
-                    target_class = rng.choices(classes, weights=weights, k=1)[0]
+                    unlocked_hulls = designer.get_available_hulls(f_name) # e.g. ["Corvette", "Destroyer"]
                     
-                    # 2. Pick Role (Sub-selection)
+                    # 1. Intersect navy_ratios keys with unlocked_hulls
+                    # Note: navy_ratios has keys like "Frigate" or "Carrier" which might not be in hulls.json
+                    # We only allow classes that exist in our valid unlocked list.
+                    available_classes = [k for k in navy_ratios.keys() if k in unlocked_hulls]
+                    
+                    if not available_classes: 
+                        available_classes = ["Corvette"] # Fallback
+                        
+                    # 2. Re-calculate weights
+                    weights = [navy_ratios.get(k, 0.1) for k in available_classes]
+                    
+                    target_class = rng.choices(available_classes, weights=weights, k=1)[0]
+                    
+                    # 3. Pick Role (Sub-selection)
                     target_role = "General"
                     
                     # [PHASE 24] Interdiction Logic
@@ -496,13 +518,8 @@ class RecruitmentService:
                     # Map stats to Ship constructor args
                     s_stats = design_data.get('stats', {})
                     
-                    # Base Hull Stats (Simplification)
-                    hull_map = {
-                        "Escort": {"hp": 150, "armor": 10, "ma": 30, "md": 30, "shield": 50},
-                        "Cruiser": {"hp": 500, "armor": 12, "ma": 40, "md": 20, "shield": 200},
-                        "Battleship": {"hp": 1200, "armor": 14, "ma": 50, "md": 10, "shield": 500}
-                    }
-                    base = hull_map.get(target_class, hull_map["Escort"])
+                    # Base Hull Stats (Shared from balance.py)
+                    base = bal.HULL_BASE_STATS.get(target_class, bal.HULL_BASE_STATS["Escort"])
                     
                     bp = Ship(
                         name=design_data['name'],

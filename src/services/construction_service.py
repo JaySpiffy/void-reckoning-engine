@@ -917,7 +917,16 @@ class ConstructionService:
 
                         # Check for construction ship or local capability?
                         # For simplicity, we assume if we own the planet, we can build a starbase in orbit.
-                        new_sb = Starbase(f"{p.name} Station", f_name, system, tier=1, under_construction=True)
+                        # AI DESIGN HOOK
+                        designer = getattr(self.engine, 'design_service', None)
+                        if not designer:
+                            from src.services.ship_design_service import ShipDesignService
+                            designer = ShipDesignService(self.ai_manager)
+                        
+                        design = designer.generate_starbase_design(f_name, 1) # Tier 1
+                        
+                        new_sb = Starbase(f"{p.name} Station", f_name, system, tier=1, 
+                                         under_construction=True, design_data=design)
                         p.starbase = new_sb
                         system.starbases.append(new_sb)
                         
@@ -1000,7 +1009,16 @@ class ConstructionService:
                 if faction_mgr.can_afford(cost) and cost <= (remaining_budget - spent) and faction_mgr.requisition > (cost * 2.0):
                     # For mining stations, we want to expand aggressively if we have the budget
                     
-                    new_struct = Starbase(f"{node.name} {name_suffix}", f_name, system, tier=1, under_construction=True)
+                    # AI DESIGN HOOK
+                    designer = getattr(self.engine, 'design_service', None)
+                    if not designer:
+                        from src.services.ship_design_service import ShipDesignService
+                        designer = ShipDesignService(self.ai_manager)
+                    
+                    design = designer.generate_starbase_design(f_name, 1)
+                    
+                    new_struct = Starbase(f"{node.name} {name_suffix}", f_name, system, 
+                                         tier=1, under_construction=True, design_data=design)
                     new_struct.unit_class = struct_type # Override class
                     
                     system.starbases.append(new_struct)

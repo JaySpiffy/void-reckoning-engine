@@ -77,6 +77,9 @@ The engine uses a high-frequency real-time resolution for battles, allowing for 
 - 🛡️ **Cover & Terrain**: Dynamic cover system (Light/Heavy/Urban) affecting unit accuracy and survival.
 - 🔒 **Reality Anchors**: Physics override zones (Null zones, Warp Rifts, Gellar Fields) that distort the tactical battlefield.
 - 🎲 **Faction Mechanics**: Unique resource systems and 11+ ability types synchronized with real-time state.
+- 🏗️ **Modular Ship Design**: **Stellaris/Thrawn's Revenge Style** architecture with Bow/Core/Stern sections and specialized slot types (S/M/L/X/P/G/H).
+- 🧬 **Research & Tech Tree**: **Stellaris-Style** card draw system with Hull Tech Locks, infinite procedural tech scaling, and RP-based progression.
+- 🔫 **Unified Weapon Database**: Cross-Universe schema integrating Warhammer 40k, Star Wars, and Star Trek weapon archetypes.
 
 ### Performance & Analytics
 
@@ -1120,6 +1123,11 @@ Comprehensive documentation is available in the [`docs/`](docs/) directory.
 - [x] Theater Manager for Multi-Front Operations
 - [x] AI Strategic Planner & Personality Manager
 - [x] CPU Affinity & Parallel Runner Optimization
+- [x] **Massive Ship Expansion**: 11+ Hulls (Corvettes to Mobile Fortresses), Modular Sections, and Hardpoints
+- [x] **Unified Weapon Database**: Cross-Universe Schema (W40k, Star Wars, Star Trek)
+- [x] **Research Overhaul**: Stellaris-Style Tech Card System & Hull Tech Locks
+- [x] **Starbase Overhaul**: Higher HP, Critical Defensive Roles, and Faction Logic
+- [x] **Faction Tag Consistency**: Unified Naming Standards (TPL, PRM) in Dashboards
 
 ### Planned Features
 

@@ -1,0 +1,80 @@
+{
+    "mode": "multi",
+    "sandbox_mode": true,
+    "procedural_faction_limit": 0,
+    "campaign": {
+        "turns": 30,
+        "num_systems": 10,
+        "min_planets": 10,
+        "max_planets": 10,
+        "combat_rounds": 2000,
+        "rounds_per_turn": 2000
+    },
+    "combat": {
+        "real_time_headless": true,
+        "rounds_per_turn": 2000
+    },
+    "economy": {
+        "base_income_req": 2000000,
+        "base_income_prom": 1500,
+        "colonization_cost": 0,
+        "starting_requisition": 50000000
+    },
+    "units": {
+        "max_fleet_size": 400,
+        "max_land_army_size": 100
+    },
+    "mechanics": {
+        "enable_diplomacy": true,
+        "enable_portals": true,
+        "enable_weather": true,
+        "weather_config": {
+            "enabled": true,
+            "fluctuation_magnitude": 0.2
+        },
+        "ai_economy": {
+            "sustainability_check": true
+        }
+    },
+    "reporting": {
+        "formats": [
+            "json",
+            "markdown"
+        ]
+    },
+    "universes": [
+        {
+            "name": "void_reckoning",
+            "enabled": true,
+            "processor_affinity": [],
+            "num_runs": 1,
+            "economy": {
+                "base_income_req": 10000
+            }
+        }
+    ],
+    "multi_universe_settings": {
+        "sync_turns": false,
+        "cross_universe_events": false,
+        "aggregate_reports": true
+    },
+    "gpu": {
+        "enabled": true,
+        "selection_strategy": "auto"
+    },
+    "simulation": {
+        "max_workers": 8,
+        "debug_mode": false,
+        "save_interval": 50,
+        "output_dir": "reports/verification_sim",
+        "log_level": "INFO",
+        "random_seed": null,
+        "faction_instances": 1,
+        "enable_mayhem": false
+    },
+    "performance": {
+        "logging_level": "summary",
+        "log_interval": 10,
+        "profile_methods": false
+    }
+}

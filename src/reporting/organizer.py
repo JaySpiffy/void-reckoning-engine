@@ -24,7 +24,7 @@ class ReportOrganizer:
         self.run_path = os.path.join(self.runs_dir, self.run_id)
         
         # Top-Level Categories (formerly inside turns)
-        self.categories = ["battles", "economy", "diplomacy", "movements", "factions"]
+        self.categories = ["battles", "economy", "diplomacy", "movements", "factions", "designs"]
         self.timeline_path = os.path.join(self.run_path, "timeline.md")
         self.integrity_errors = []
         

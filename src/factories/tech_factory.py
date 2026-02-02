@@ -43,14 +43,17 @@ class ProceduralTechGenerator:
             "units": evolved_units
         }
         
+    
     def generate_procedural_tree(self, faction_name: str, base_tree: Dict[str, Any]) -> Dict[str, Any]:
         """
         Extends the existing tree with procedurally generated nodes.
+        Includes Generic Categories AND Specific Weapon Unlocks from Universal Registry.
         """
         techs = base_tree.get("techs", {}).copy()
         prereqs = base_tree.get("prerequisites", {}).copy()
         effects = {}
         
+        # 1. Generic Improvements
         categories = {
             "Offense": ["Laser", "Plasma", "Kinetic", "Missile", "Melee"],
             "Defense": ["Shield", "Armor", "Hull", "Point-Defense", "Stealth"],
@@ -61,11 +64,12 @@ class ProceduralTechGenerator:
         roots = [t for t in techs if "Basic" in t or "Tier 1" in t or techs[t] <= 1000]
         if not roots: roots = list(techs.keys())[:1]
         
+        # ... (Existing Generic Generation) ...
         for cat_name, subcats in categories.items():
             prev_tech = self.rng.choice(roots) if roots else None
             for tier in range(1, 11):
                 for sub in subcats:
-                    if self.rng.random() < 0.7: 
+                    if self.rng.random() < 0.2: # Reduced chance for generics to make room for Weapons 
                         name = self._generate_tech_name(faction_name, cat_name, sub, tier)
                         t_id = f"Tech_{faction_name}_{name.replace(' ', '_')}"
                         cost = int(1000 * (tier ** 1.5))
@@ -79,6 +83,80 @@ class ProceduralTechGenerator:
                         if self.rng.random() < 0.5:
                             prev_tech = t_id
                             
+        # 2. Universal Weaponry Integration (Grand Sci-Fi Unification)
+        # Load Registry
+        try:
+            import os
+            reg_path = os.path.join("src", "data", "universal_weaponry.json")
+            if os.path.exists(reg_path):
+                with open(reg_path, 'r') as f:
+                    weapon_db = json.load(f)
+                    
+                for category, w_list in weapon_db.items():
+                    for w_id, w_data in w_list.items():
+                        # Determine Cost & Tier
+                        tier = w_data.get("tech_tier", 1)
+                        cost = int(800 * (tier ** 1.8))
+                        
+                        tech_name = f"Unlock {w_data['name']}"
+                        tech_key = f"Tech_Unlock_{w_id}"
+                        
+                        # Add to Tree
+                        techs[tech_key] = cost
+                        
+                        # Add Effects (Unlocks)
+                        effects[tech_key] = [f"Unlocks: {w_data['name']}"]
+                        
+                        # Link Prerequisite (To a root or generic)
+                        # Ideally, link to a Generic of the same type (e.g. Laser unlock needs Laser I)
+                        # For now, link to Root if Tier 1, or Random Generic if Tier > 1
+                        if tier == 1:
+                            if roots:
+                                prereqs.setdefault(tech_key, []).append(self.rng.choice(roots))
+                        else:
+                            # Find a generic tech of roughly lower tier
+                            candidates = [t for t, c in techs.items() if c < cost and c > cost*0.1]
+                            if candidates:
+                                prereqs.setdefault(tech_key, []).append(self.rng.choice(candidates))
+                                
+        except Exception as e:
+            print(f"[TechFactory] Failed to load universal weaponry: {e}")
+
+        # 3. Ship Hull Integration (Class Unlocks)
+        try:
+            hull_path = os.path.join("data", "ships", "hulls.json")
+            if os.path.exists(hull_path):
+                with open(hull_path, 'r') as f:
+                    hull_db = json.load(f)
+                    
+                for hull in hull_db.get("hulls", []):
+                    unlock_key = hull.get("unlock_tech")
+                    if not unlock_key: continue
+                    
+                    tier = hull.get("tech_tier", 1)
+                    # Hull research is expensive
+                    cost = int(2500 * (tier ** 1.8))
+                    
+                    # Add to Tree
+                    techs[unlock_key] = cost
+                    effects[unlock_key] = [f"Unlocks Class: {hull['name']}"]
+                    
+                    # Prerequisites
+                    # Link to lower tier hulls if possible?
+                    # E.g. Destroyer needs Corvette? No, Corvette is default.
+                    # Link to Generic Engineering to keep it clean.
+                    
+                    # Simple Tier-based Prereq (Link to Generic Tier-1 improvement)
+                    # Or force linear progression: Battlecruiser needs Cruiser?
+                    # The JSON doesn't define linear path.
+                    # Let's link to RANDOM known tech of comparable cost/tier.
+                    candidates = [t for t, c in techs.items() if c < cost and c > cost * 0.2]
+                    if candidates:
+                        prereqs.setdefault(unlock_key, []).append(self.rng.choice(candidates))
+
+        except Exception as e:
+            print(f"[TechFactory] Failed to load hull tech: {e}")
+
         return {
             "techs": techs,
             "prerequisites": prereqs,
@@ -94,7 +172,9 @@ class ProceduralTechGenerator:
         }
         f_key = "Default"
         for k in prefixes:
-            if k in faction: f_key = k
+             if k in faction: f_key = k
+        if faction in prefixes: f_key = faction
+        
         prefix = prefixes[f_key][(tier - 1) % len(prefixes[f_key])]
         return f"{prefix} {subcat} {roman[tier-1]}"
 

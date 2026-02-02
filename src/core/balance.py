@@ -38,6 +38,21 @@ UNIT_BASE_MOVEMENT = 6
 UNIT_BASE_TOUGHNESS = 4
 UNIT_BASE_BS = 35
 UNIT_BASE_RANGE = 24
+HULL_BASE_STATS = {
+    "Corvette": {"hp": 80, "armor": 5, "ma": 50, "md": 50, "shield": 20},
+    "Frigate": {"hp": 200, "armor": 8, "ma": 40, "md": 40, "shield": 100},
+    "Destroyer": {"hp": 350, "armor": 10, "ma": 35, "md": 25, "shield": 150},
+    "Escort": {"hp": 150, "armor": 10, "ma": 30, "md": 30, "shield": 50},
+    "Cruiser": {"hp": 500, "armor": 12, "ma": 40, "md": 20, "shield": 200},
+    "Carrier": {"hp": 800, "armor": 12, "ma": 20, "md": 10, "shield": 400},
+    "Battleship": {"hp": 1200, "armor": 14, "ma": 50, "md": 10, "shield": 500},
+    "Titan": {"hp": 5000, "armor": 25, "ma": 10, "md": 5, "shield": 2000},
+    "World Devastator": {"hp": 15000, "armor": 40, "ma": 8, "md": 4, "shield": 2000},
+    "Reality Breaker": {"hp": 13500, "armor": 36, "ma": 12, "md": 6, "shield": 2500},
+    "Thought Weaver": {"hp": 17250, "armor": 40, "ma": 5, "md": 3, "shield": 4000},
+    "Solar-Anchor": {"hp": 14000, "armor": 25, "ma": 5, "md": 5, "shield": 6000},
+    "Mothership": {"hp": 25000, "armor": 60, "ma": 4, "md": 2, "shield": 5000}
+}
 
 ARMOR_FACING_FRONT_MULT = 1.0
 ARMOR_FACING_SIDE_MULT = 0.75
