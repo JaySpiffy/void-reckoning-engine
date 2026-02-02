@@ -6,6 +6,8 @@
 [![GPU Support](https://img.shields.io/badge/GPU-CuPy%20%7C%20CUDA-green.svg)](#gpu-acceleration)
 [![Dashboard](https://img.shields.io/badge/Dashboard-In--Progress-orange.svg)](#dashboard)
 
+![Terminal Dashboard Demo](docs/images/dashboard_demo.png)
+
 A complex, text-based 4X strategy engine featuring trait-based faction evolution and professional architectural patterns.
 
 > **The "Gap" in the Python Market**: Unlike simple hobby projects or massive C++ engines, this framework provides a serious, architecturally mature simulation engine in Python, utilizing advanced patterns (Dependency Injection, Managers, Event Bus) for deep economic, diplomatic, and genetic modeling.
@@ -719,6 +721,7 @@ python run.py cross-universe-battle --universe1 void_reckoning --universe2 custo
 ## Terminal Dashboard
 
 The engine includes a high-fidelity **Terminal Dashboard** optimized for performance and reliability. This is the recommended interface for monitoring long-running simulations and batch campaigns.
+
 
 ### Key Features
 
