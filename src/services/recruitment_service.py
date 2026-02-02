@@ -135,7 +135,8 @@ class RecruitmentService:
                 if fill_ratio < threshold and not is_under_attack:
                     # Exception: If we have very few fleets (e.g. < 3), allow commissioning to get presence
                     # Also exception: If we are WEALTHY, we can afford parallel tracks
-                    wealthy_override = faction_mgr.requisition > (cost * 100)
+                    # [BALANCE] Lowered threshold to 50x cost to encourage spending surplus
+                    wealthy_override = faction_mgr.requisition > (cost * 50)
                     
                     if len(existing_fleets) >= 3 and not wealthy_override:
                         if self.engine.logger and count == 0: # Log once
@@ -356,12 +357,19 @@ class RecruitmentService:
                             
         max_recruits = int(infra_cap * faction_mgr.navy_recruitment_mult)
         # High Surplus Logic (Phase 16: Nerfed 10x -> 2x)
-        if faction_mgr.requisition > (avg_cost * 100):
-             max_recruits *= 2
+        # [BALANCE] Restored to 4x for actual surplus spending
+        is_wealthy = faction_mgr.requisition > (avg_cost * 50)
+        if is_wealthy:
+             max_recruits *= 4
         
         # Scaling limit based on max_fleet_size (allow building ~10% of a full fleet per turn if rich)
         # Instead of hard cap 20, use max(20, max_fleet_size * 0.1)
         scale_limit = max(20, self.engine.max_fleet_size // 10)
+        
+        # [BALANCE] If wealthy, allow bursting up to 50% of fleet size or 100 ships
+        if is_wealthy:
+            scale_limit = max(scale_limit, min(100, self.engine.max_fleet_size // 2))
+            
         max_recruits = max(1, min(max_recruits, scale_limit))
         count = 0
         
@@ -369,7 +377,7 @@ class RecruitmentService:
         
         # Early Exit
         is_crisis = mode in ["CRISIS", "RECOVERY"]
-        if faction_mgr.requisition < bal.ECON_STOCKPILE_OVERRIDE_THRESHOLD and not is_crisis:
+        if faction_mgr.requisition < FLEET_COMMISSION_THRESHOLD and not is_crisis:
             self._log_skip_event(f_name, "navy", [], {"insolvency": True})
             return 0
             
@@ -417,44 +425,44 @@ class RecruitmentService:
             bp = None
             
             if use_procedural:
-                # 1. Pick Class based on Ratios
-                classes = list(navy_ratios.keys())
-                weights = [navy_ratios[k] for k in classes]
-                
-                # Check Infrastructure/Tech Limits?
-                # For now, simple tech gating (Battleships require Tech 5 etc.)
-                # Heuristic: If req < 2000, don't try Battleship (300)
-                # If budget < 100, don't try Cruiser
-                
-                target_class = rng.choices(classes, weights=weights, k=1)[0]
-                
-                # 2. Pick Role (Sub-selection)
-                target_role = "General"
-                
-                # [PHASE 24] Interdiction Logic
-                pref = getattr(faction_mgr, 'design_preference', 'BALANCED')
-                if pref == "INTERDICTION":
-                     # [PHASE 24] Module-based Interdiction (Handled in ShipDesignFactory)
-                     # We rely on ShipDesignFactory to inject the module into standard roles.
-                     roll = rng.random()
-                     if roll < 0.3: target_role = "Brawler"
-                     elif roll < 0.6: target_role = "Sniper"
-                     else: target_role = "General"
-                elif pref == "ANTI_SHIELD":
-                     target_role = "Sniper"
-                elif pref == "ANTI_ARMOR":
-                     target_role = "Brawler"
-                     
+                # CONSTRUCTOR PRIORITY
+                if faction_mgr.get_constructor_count() < 1:
+                    target_class = "Escort" # Use escort hull for constructor
+                    target_role = "Constructor"
                 else:
-                    roll = rng.random()
-                    if roll < 0.3: target_role = "Brawler"
-                    elif roll < 0.6: target_role = "Sniper"
+                    # 1. Pick Class based on Ratios
+                    classes = list(navy_ratios.keys())
+                    weights = [navy_ratios[k] for k in classes]
+                    
+                    target_class = rng.choices(classes, weights=weights, k=1)[0]
+                    
+                    # 2. Pick Role (Sub-selection)
+                    target_role = "General"
+                    
+                    # [PHASE 24] Interdiction Logic
+                    pref = getattr(faction_mgr, 'design_preference', 'BALANCED')
+                    if pref == "INTERDICTION":
+                         roll = rng.random()
+                         if roll < 0.3: target_role = "Brawler"
+                         elif roll < 0.6: target_role = "Sniper"
+                         else: target_role = "General"
+                    elif pref == "ANTI_SHIELD":
+                         target_role = "Sniper"
+                    elif pref == "ANTI_ARMOR":
+                         target_role = "Brawler"
+                    else:
+                        roll = rng.random()
+                        if roll < 0.3: target_role = "Brawler"
+                        elif roll < 0.6: target_role = "Sniper"
                 
                 # 3. Generate Design
                 try:
-                    from src.services.ship_design_service import ShipDesignService
-                    # Cache/Singleton check? We instantiate fresh for now (lightweight)
-                    designer = ShipDesignService(self.engine.ai_manager)
+                    # [PHASE 5] Use central design service
+                    designer = getattr(self.engine, 'design_service', None)
+                    if not designer:
+                        from src.services.ship_design_service import ShipDesignService
+                        designer = ShipDesignService(self.engine.ai_manager)
+                    
                     design_data = designer.generate_design(f_name, target_class, target_role)
                     
                     # 4. Inflate to Ship/Unit Object (Blueprint)
@@ -479,12 +487,9 @@ class RecruitmentService:
                         faction=f_name,
                         cost=design_data['cost'],
                         shield=base['shield'] + s_stats.get('shield', 0),
-                        unit_class=target_class,
-                        components_data=design_data['components'] # [FIX] Pass to init for rehydration
+                        unit_class="constructor" if target_role == "Constructor" else target_class, 
+                        components_data=design_data['components'] 
                     )
-                    
-                    # [FIX] Removed manual injection. super().__init__ -> generate_components() will handle it.
-                        
                 except Exception as e:
                     if self.engine.logger: self.engine.logger.error(f"Design Gen Failed: {e}")
                     bp = None
