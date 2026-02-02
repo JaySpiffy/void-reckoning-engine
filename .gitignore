@@ -27,7 +27,6 @@ __pycache__/
 
 # Experimental / WIP
 docker/
-frontend/
 Dockerfile.*
 .dockerignore
 
