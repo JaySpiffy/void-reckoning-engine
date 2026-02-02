@@ -6,29 +6,29 @@
     "faction": "Templars_of_the_Flux",
     "category": "Infantry",
     "base_stats": {
-      "hp": 12.0,
-      "organization": 24.0,
-      "soft_attack": 17.2,
-      "hard_attack": 3.44,
+      "hp": 10,
+      "organization": 20,
+      "soft_attack": 18.2,
+      "hard_attack": 3.64,
       "manpower": 10
     },
     "components": [
       {
         "slot": "standard_issue",
-        "component": "land_small_Templars_of_the_Flux_base_melta_weapon_7"
+        "component": "land_small_Templars_of_the_Flux_base_sonic_weapon_3"
       },
       {
         "slot": "special_issue",
-        "component": "land_small_Templars_of_the_Flux_base_plasma_weapon_3"
+        "component": "land_small_Templars_of_the_Flux_base_plasma_weapon_9"
       }
     ],
     "composition": {
-      "Rifleman": 6,
+      "Rifleman": 7,
       "Specialist": 2,
-      "Medic": 1,
+      "Medic": 0,
       "Leader": 1
     },
-    "cost": 134.4
+    "cost": 136.4
   },
   "templars_of_the_flux_infantry_standard_assault_squad": {
     "blueprint_id": "templars_of_the_flux_infantry_standard_assault_squad",
@@ -37,16 +37,16 @@
     "faction": "Templars_of_the_Flux",
     "category": "Infantry",
     "base_stats": {
-      "hp": 10,
-      "organization": 20,
-      "soft_attack": 26.2,
-      "hard_attack": 5.24,
+      "hp": 12.0,
+      "organization": 24.0,
+      "soft_attack": 25.2,
+      "hard_attack": 5.04,
       "manpower": 10
     },
     "components": [
       {
         "slot": "standard_issue",
-        "component": "land_small_Templars_of_the_Flux_base_plasma_weapon_3"
+        "component": "land_small_Templars_of_the_Flux_base_disruptor_weapon_0"
       },
       {
         "slot": "special_issue",
@@ -54,12 +54,12 @@
       }
     ],
     "composition": {
-      "Rifleman": 5,
+      "Rifleman": 4,
       "Specialist": 4,
-      "Medic": 0,
+      "Medic": 1,
       "Leader": 1
     },
-    "cost": 152.4
+    "cost": 150.4
   },
   "templars_of_the_flux_infantry_heavy_standard_squad": {
     "blueprint_id": "templars_of_the_flux_infantry_heavy_standard_squad",
@@ -77,11 +77,11 @@
     "components": [
       {
         "slot": "standard_issue",
-        "component": "land_small_Templars_of_the_Flux_base_bolter_weapon_0"
+        "component": "land_small_Templars_of_the_Flux_base_sonic_weapon_2"
       },
       {
         "slot": "special_issue",
-        "component": "land_small_Templars_of_the_Flux_base_plasma_weapon_9"
+        "component": "land_small_Templars_of_the_Flux_base_tesla_weapon_5"
       }
     ],
     "composition": {
@@ -108,11 +108,11 @@
     "components": [
       {
         "slot": "standard_issue",
-        "component": "land_small_Templars_of_the_Flux_base_plasma_weapon_3"
+        "component": "land_small_Templars_of_the_Flux_base_phaser_weapon_4"
       },
       {
         "slot": "special_issue",
-        "component": "land_small_Templars_of_the_Flux_base_bolter_weapon_0"
+        "component": "land_small_Templars_of_the_Flux_base_sonic_weapon_2"
       }
     ],
     "composition": {
@@ -139,11 +139,11 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_Templars_of_the_Flux_base_bolter_weapon_0"
+        "component": "land_vehicle_Templars_of_the_Flux_base_melta_weapon_7"
       },
       {
         "slot": "hull_mount",
-        "component": "land_vehicle_Templars_of_the_Flux_base_bolter_weapon_0"
+        "component": "land_vehicle_Templars_of_the_Flux_base_plasma_weapon_8"
       }
     ],
     "cost": 530.0
@@ -164,19 +164,19 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_Templars_of_the_Flux_base_bolter_weapon_0"
+        "component": "land_vehicle_Templars_of_the_Flux_base_plasma_weapon_8"
       },
       {
         "slot": "coaxial",
-        "component": "land_vehicle_Templars_of_the_Flux_base_bolter_weapon_0"
+        "component": "land_vehicle_Templars_of_the_Flux_base_sonic_weapon_2"
       },
       {
         "slot": "sponson_left",
-        "component": "land_vehicle_Templars_of_the_Flux_base_bolter_weapon_0"
+        "component": "land_vehicle_Templars_of_the_Flux_base_sonic_weapon_2"
       },
       {
         "slot": "sponson_right",
-        "component": "land_vehicle_Templars_of_the_Flux_base_bolter_weapon_0"
+        "component": "land_vehicle_Templars_of_the_Flux_base_plasma_weapon_8"
       }
     ],
     "cost": 1258.0
@@ -197,19 +197,19 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_Templars_of_the_Flux_base_bolter_weapon_6"
+        "component": "land_vehicle_Templars_of_the_Flux_base_phaser_weapon_4"
       },
       {
         "slot": "coaxial",
-        "component": "land_vehicle_Templars_of_the_Flux_base_bolter_weapon_0"
+        "component": "land_vehicle_Templars_of_the_Flux_base_sonic_weapon_3"
       },
       {
         "slot": "sponson_left",
-        "component": "land_vehicle_Templars_of_the_Flux_base_plasma_weapon_3"
+        "component": "land_vehicle_Templars_of_the_Flux_base_tesla_weapon_5"
       },
       {
         "slot": "sponson_right",
-        "component": "land_vehicle_Templars_of_the_Flux_base_plasma_weapon_3"
+        "component": "land_vehicle_Templars_of_the_Flux_base_sonic_weapon_3"
       }
     ],
     "cost": 1258.0
@@ -234,23 +234,23 @@
       },
       {
         "slot": "turret_secondary",
-        "component": "land_vehicle_Templars_of_the_Flux_base_plasma_weapon_9"
+        "component": "land_vehicle_Templars_of_the_Flux_base_sonic_weapon_2"
       },
       {
         "slot": "sponson_1",
-        "component": "land_vehicle_Templars_of_the_Flux_base_plasma_weapon_9"
+        "component": "land_vehicle_Templars_of_the_Flux_base_tesla_weapon_5"
       },
       {
         "slot": "sponson_2",
-        "component": "land_vehicle_Templars_of_the_Flux_base_melta_weapon_7"
+        "component": "land_vehicle_Templars_of_the_Flux_base_sonic_weapon_2"
       },
       {
         "slot": "sponson_3",
-        "component": "land_vehicle_Templars_of_the_Flux_base_bolter_weapon_6"
+        "component": "land_vehicle_Templars_of_the_Flux_base_melta_weapon_7"
       },
       {
         "slot": "sponson_4",
-        "component": "land_vehicle_Templars_of_the_Flux_base_plasma_weapon_3"
+        "component": "land_vehicle_Templars_of_the_Flux_base_plasma_weapon_8"
       }
     ],
     "cost": 4088.0
@@ -271,27 +271,27 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_Templars_of_the_Flux_base_plasma_weapon_9"
-      },
-      {
-        "slot": "turret_secondary",
-        "component": "land_vehicle_Templars_of_the_Flux_base_plasma_weapon_3"
-      },
-      {
-        "slot": "sponson_1",
-        "component": "land_vehicle_Templars_of_the_Flux_base_bolter_weapon_6"
-      },
-      {
-        "slot": "sponson_2",
         "component": "land_vehicle_Templars_of_the_Flux_base_melta_weapon_7"
       },
       {
+        "slot": "turret_secondary",
+        "component": "land_vehicle_Templars_of_the_Flux_base_plasma_weapon_9"
+      },
+      {
+        "slot": "sponson_1",
+        "component": "land_vehicle_Templars_of_the_Flux_base_melta_weapon_7"
+      },
+      {
+        "slot": "sponson_2",
+        "component": "land_vehicle_Templars_of_the_Flux_base_tesla_weapon_5"
+      },
+      {
         "slot": "sponson_3",
-        "component": "land_vehicle_Templars_of_the_Flux_base_plasma_weapon_3"
+        "component": "land_vehicle_Templars_of_the_Flux_base_phaser_weapon_4"
       },
       {
         "slot": "sponson_4",
-        "component": "land_vehicle_Templars_of_the_Flux_base_plasma_weapon_3"
+        "component": "land_vehicle_Templars_of_the_Flux_base_sonic_weapon_2"
       }
     ],
     "cost": 4088.0
@@ -312,11 +312,11 @@
     "components": [
       {
         "slot": "chin_mount",
-        "component": "land_vehicle_Templars_of_the_Flux_base_bolter_weapon_0"
+        "component": "land_vehicle_Templars_of_the_Flux_base_sonic_weapon_2"
       },
       {
         "slot": "utility",
-        "component": "land_vehicle_Templars_of_the_Flux_base_plasma_weapon_9"
+        "component": "land_vehicle_Templars_of_the_Flux_base_sonic_weapon_3"
       }
     ],
     "cost": 330.0
@@ -337,15 +337,15 @@
     "components": [
       {
         "slot": "arm_left",
-        "component": "land_vehicle_Templars_of_the_Flux_base_bolter_weapon_6"
+        "component": "land_vehicle_Templars_of_the_Flux_base_plasma_weapon_9"
       },
       {
         "slot": "arm_right",
-        "component": "land_vehicle_Templars_of_the_Flux_base_bolter_weapon_6"
+        "component": "land_vehicle_Templars_of_the_Flux_base_tesla_weapon_5"
       },
       {
         "slot": "shoulder",
-        "component": "land_vehicle_Templars_of_the_Flux_base_bolter_weapon_6"
+        "component": "land_vehicle_Templars_of_the_Flux_base_disruptor_weapon_0"
       }
     ],
     "cost": 941.0
@@ -366,11 +366,11 @@
     "components": [
       {
         "slot": "arm_left",
-        "component": "land_vehicle_Templars_of_the_Flux_base_bolter_weapon_0"
+        "component": "land_vehicle_Templars_of_the_Flux_base_tesla_weapon_5"
       },
       {
         "slot": "arm_right",
-        "component": "land_vehicle_Templars_of_the_Flux_base_bolter_weapon_0"
+        "component": "land_vehicle_Templars_of_the_Flux_base_tesla_weapon_5"
       },
       {
         "slot": "shoulder",
@@ -395,19 +395,19 @@
     "components": [
       {
         "slot": "arm_left",
-        "component": "land_vehicle_Templars_of_the_Flux_base_bolter_weapon_6"
+        "component": "land_vehicle_Templars_of_the_Flux_base_tesla_weapon_5"
       },
       {
         "slot": "arm_right",
-        "component": "land_vehicle_Templars_of_the_Flux_base_melta_weapon_7"
+        "component": "land_vehicle_Templars_of_the_Flux_base_disruptor_weapon_0"
       },
       {
         "slot": "carapace_left",
-        "component": "land_vehicle_Templars_of_the_Flux_base_bolter_weapon_6"
+        "component": "land_vehicle_Templars_of_the_Flux_base_phaser_weapon_4"
       },
       {
         "slot": "carapace_right",
-        "component": "land_vehicle_Templars_of_the_Flux_base_plasma_weapon_9"
+        "component": "land_vehicle_Templars_of_the_Flux_base_plasma_weapon_8"
       }
     ],
     "cost": 15056.0
@@ -428,19 +428,19 @@
     "components": [
       {
         "slot": "arm_left",
-        "component": "land_vehicle_Templars_of_the_Flux_base_plasma_weapon_9"
+        "component": "land_vehicle_Templars_of_the_Flux_base_melta_weapon_7"
       },
       {
         "slot": "arm_right",
-        "component": "land_vehicle_Templars_of_the_Flux_base_bolter_weapon_0"
+        "component": "land_vehicle_Templars_of_the_Flux_base_phaser_weapon_4"
       },
       {
         "slot": "carapace_left",
-        "component": "land_vehicle_Templars_of_the_Flux_base_plasma_weapon_3"
+        "component": "land_vehicle_Templars_of_the_Flux_base_tesla_weapon_5"
       },
       {
         "slot": "carapace_right",
-        "component": "land_vehicle_Templars_of_the_Flux_base_plasma_weapon_3"
+        "component": "land_vehicle_Templars_of_the_Flux_base_sonic_weapon_2"
       }
     ],
     "cost": 15056.0
@@ -452,29 +452,29 @@
     "faction": "Transcendent_Order",
     "category": "Infantry",
     "base_stats": {
-      "hp": 12.0,
-      "organization": 24.0,
-      "soft_attack": 17.2,
-      "hard_attack": 3.44,
+      "hp": 10,
+      "organization": 20,
+      "soft_attack": 18.2,
+      "hard_attack": 3.64,
       "manpower": 10
     },
     "components": [
       {
         "slot": "standard_issue",
-        "component": "land_small_Transcendent_Order_base_polaron_weapon_4"
+        "component": "land_small_Transcendent_Order_base_grav_weapon_9"
       },
       {
         "slot": "special_issue",
-        "component": "land_small_Transcendent_Order_base_polaron_weapon_8"
+        "component": "land_small_Transcendent_Order_base_melta_weapon_1"
       }
     ],
     "composition": {
-      "Rifleman": 6,
+      "Rifleman": 7,
       "Specialist": 2,
-      "Medic": 1,
+      "Medic": 0,
       "Leader": 1
     },
-    "cost": 134.4
+    "cost": 136.4
   },
   "transcendent_order_infantry_standard_assault_squad": {
     "blueprint_id": "transcendent_order_infantry_standard_assault_squad",
@@ -483,29 +483,29 @@
     "faction": "Transcendent_Order",
     "category": "Infantry",
     "base_stats": {
-      "hp": 12.0,
-      "organization": 24.0,
-      "soft_attack": 25.2,
-      "hard_attack": 5.04,
+      "hp": 10,
+      "organization": 20,
+      "soft_attack": 26.2,
+      "hard_attack": 5.24,
       "manpower": 10
     },
     "components": [
       {
         "slot": "standard_issue",
-        "component": "land_small_Transcendent_Order_base_polaron_weapon_8"
+        "component": "land_small_Transcendent_Order_base_grav_weapon_4"
       },
       {
         "slot": "special_issue",
-        "component": "land_small_Transcendent_Order_base_tesla_weapon_9"
+        "component": "land_small_Transcendent_Order_base_melta_weapon_1"
       }
     ],
     "composition": {
-      "Rifleman": 4,
+      "Rifleman": 5,
       "Specialist": 4,
-      "Medic": 1,
+      "Medic": 0,
       "Leader": 1
     },
-    "cost": 150.4
+    "cost": 152.4
   },
   "transcendent_order_infantry_heavy_standard_squad": {
     "blueprint_id": "transcendent_order_infantry_heavy_standard_squad",
@@ -523,11 +523,11 @@
     "components": [
       {
         "slot": "standard_issue",
-        "component": "land_small_Transcendent_Order_base_polaron_weapon_8"
+        "component": "land_small_Transcendent_Order_base_grav_weapon_0"
       },
       {
         "slot": "special_issue",
-        "component": "land_small_Transcendent_Order_base_sonic_weapon_1"
+        "component": "land_small_Transcendent_Order_base_grav_weapon_0"
       }
     ],
     "composition": {
@@ -554,11 +554,11 @@
     "components": [
       {
         "slot": "standard_issue",
-        "component": "land_small_Transcendent_Order_base_phaser_weapon_5"
+        "component": "land_small_Transcendent_Order_base_grav_weapon_4"
       },
       {
         "slot": "special_issue",
-        "component": "land_small_Transcendent_Order_base_tesla_weapon_9"
+        "component": "land_small_Transcendent_Order_base_plasma_weapon_2"
       }
     ],
     "composition": {
@@ -585,11 +585,11 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_Transcendent_Order_base_tesla_weapon_3"
+        "component": "land_vehicle_Transcendent_Order_base_grav_weapon_9"
       },
       {
         "slot": "hull_mount",
-        "component": "land_vehicle_Transcendent_Order_base_polaron_weapon_4"
+        "component": "land_vehicle_Transcendent_Order_base_grav_weapon_0"
       }
     ],
     "cost": 530.0
@@ -610,19 +610,19 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_Transcendent_Order_base_phaser_weapon_5"
+        "component": "land_vehicle_Transcendent_Order_base_melta_weapon_1"
       },
       {
         "slot": "coaxial",
-        "component": "land_vehicle_Transcendent_Order_base_polaron_weapon_4"
+        "component": "land_vehicle_Transcendent_Order_base_melta_weapon_1"
       },
       {
         "slot": "sponson_left",
-        "component": "land_vehicle_Transcendent_Order_base_polaron_weapon_4"
+        "component": "land_vehicle_Transcendent_Order_base_grav_weapon_4"
       },
       {
         "slot": "sponson_right",
-        "component": "land_vehicle_Transcendent_Order_base_sonic_weapon_1"
+        "component": "land_vehicle_Transcendent_Order_base_grav_weapon_4"
       }
     ],
     "cost": 1258.0
@@ -643,19 +643,19 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_Transcendent_Order_base_tesla_weapon_9"
+        "component": "land_vehicle_Transcendent_Order_base_grav_weapon_9"
       },
       {
         "slot": "coaxial",
-        "component": "land_vehicle_Transcendent_Order_base_phaser_weapon_5"
+        "component": "land_vehicle_Transcendent_Order_base_gauss_weapon_3"
       },
       {
         "slot": "sponson_left",
-        "component": "land_vehicle_Transcendent_Order_base_phaser_weapon_5"
+        "component": "land_vehicle_Transcendent_Order_base_grav_weapon_4"
       },
       {
         "slot": "sponson_right",
-        "component": "land_vehicle_Transcendent_Order_base_phaser_weapon_5"
+        "component": "land_vehicle_Transcendent_Order_base_gauss_weapon_3"
       }
     ],
     "cost": 1258.0
@@ -676,27 +676,27 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_Transcendent_Order_base_sonic_weapon_0"
+        "component": "land_vehicle_Transcendent_Order_base_grav_weapon_0"
       },
       {
         "slot": "turret_secondary",
-        "component": "land_vehicle_Transcendent_Order_base_tesla_weapon_9"
+        "component": "land_vehicle_Transcendent_Order_base_gauss_weapon_3"
       },
       {
         "slot": "sponson_1",
-        "component": "land_vehicle_Transcendent_Order_base_tesla_weapon_3"
+        "component": "land_vehicle_Transcendent_Order_base_gauss_weapon_3"
       },
       {
         "slot": "sponson_2",
-        "component": "land_vehicle_Transcendent_Order_base_sonic_weapon_1"
+        "component": "land_vehicle_Transcendent_Order_base_grav_weapon_9"
       },
       {
         "slot": "sponson_3",
-        "component": "land_vehicle_Transcendent_Order_base_tesla_weapon_9"
+        "component": "land_vehicle_Transcendent_Order_base_melta_weapon_1"
       },
       {
         "slot": "sponson_4",
-        "component": "land_vehicle_Transcendent_Order_base_tesla_weapon_3"
+        "component": "land_vehicle_Transcendent_Order_base_grav_weapon_4"
       }
     ],
     "cost": 4088.0
@@ -717,27 +717,27 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_Transcendent_Order_base_sonic_weapon_1"
+        "component": "land_vehicle_Transcendent_Order_base_gauss_weapon_3"
       },
       {
         "slot": "turret_secondary",
-        "component": "land_vehicle_Transcendent_Order_base_polaron_weapon_4"
+        "component": "land_vehicle_Transcendent_Order_base_grav_weapon_0"
       },
       {
         "slot": "sponson_1",
-        "component": "land_vehicle_Transcendent_Order_base_sonic_weapon_0"
+        "component": "land_vehicle_Transcendent_Order_base_gauss_weapon_3"
       },
       {
         "slot": "sponson_2",
-        "component": "land_vehicle_Transcendent_Order_base_polaron_weapon_8"
+        "component": "land_vehicle_Transcendent_Order_base_grav_weapon_4"
       },
       {
         "slot": "sponson_3",
-        "component": "land_vehicle_Transcendent_Order_base_tesla_weapon_9"
+        "component": "land_vehicle_Transcendent_Order_base_melta_weapon_1"
       },
       {
         "slot": "sponson_4",
-        "component": "land_vehicle_Transcendent_Order_base_tesla_weapon_3"
+        "component": "land_vehicle_Transcendent_Order_base_gauss_weapon_3"
       }
     ],
     "cost": 4088.0
@@ -758,11 +758,11 @@
     "components": [
       {
         "slot": "chin_mount",
-        "component": "land_vehicle_Transcendent_Order_base_polaron_weapon_4"
+        "component": "land_vehicle_Transcendent_Order_base_grav_weapon_0"
       },
       {
         "slot": "utility",
-        "component": "land_vehicle_Transcendent_Order_base_polaron_weapon_4"
+        "component": "land_vehicle_Transcendent_Order_base_plasma_weapon_2"
       }
     ],
     "cost": 330.0
@@ -783,15 +783,15 @@
     "components": [
       {
         "slot": "arm_left",
-        "component": "land_vehicle_Transcendent_Order_base_sonic_weapon_1"
+        "component": "land_vehicle_Transcendent_Order_base_grav_weapon_4"
       },
       {
         "slot": "arm_right",
-        "component": "land_vehicle_Transcendent_Order_base_polaron_weapon_4"
+        "component": "land_vehicle_Transcendent_Order_base_plasma_weapon_2"
       },
       {
         "slot": "shoulder",
-        "component": "land_vehicle_Transcendent_Order_base_polaron_weapon_8"
+        "component": "land_vehicle_Transcendent_Order_base_grav_weapon_9"
       }
     ],
     "cost": 941.0
@@ -812,15 +812,15 @@
     "components": [
       {
         "slot": "arm_left",
-        "component": "land_vehicle_Transcendent_Order_base_volkite_weapon_6"
+        "component": "land_vehicle_Transcendent_Order_base_plasma_weapon_2"
       },
       {
         "slot": "arm_right",
-        "component": "land_vehicle_Transcendent_Order_base_tesla_weapon_3"
+        "component": "land_vehicle_Transcendent_Order_base_gauss_weapon_3"
       },
       {
         "slot": "shoulder",
-        "component": "land_vehicle_Transcendent_Order_base_tesla_weapon_9"
+        "component": "land_vehicle_Transcendent_Order_base_grav_weapon_9"
       }
     ],
     "cost": 941.0
@@ -841,19 +841,19 @@
     "components": [
       {
         "slot": "arm_left",
-        "component": "land_vehicle_Transcendent_Order_base_sonic_weapon_0"
+        "component": "land_vehicle_Transcendent_Order_base_grav_weapon_4"
       },
       {
         "slot": "arm_right",
-        "component": "land_vehicle_Transcendent_Order_base_sonic_weapon_1"
+        "component": "land_vehicle_Transcendent_Order_base_grav_weapon_4"
       },
       {
         "slot": "carapace_left",
-        "component": "land_vehicle_Transcendent_Order_base_volkite_weapon_6"
+        "component": "land_vehicle_Transcendent_Order_base_melta_weapon_1"
       },
       {
         "slot": "carapace_right",
-        "component": "land_vehicle_Transcendent_Order_base_polaron_weapon_8"
+        "component": "land_vehicle_Transcendent_Order_base_plasma_weapon_2"
       }
     ],
     "cost": 15056.0
@@ -874,19 +874,19 @@
     "components": [
       {
         "slot": "arm_left",
-        "component": "land_vehicle_Transcendent_Order_base_sonic_weapon_0"
+        "component": "land_vehicle_Transcendent_Order_base_grav_weapon_9"
       },
       {
         "slot": "arm_right",
-        "component": "land_vehicle_Transcendent_Order_base_tesla_weapon_3"
+        "component": "land_vehicle_Transcendent_Order_base_grav_weapon_9"
       },
       {
         "slot": "carapace_left",
-        "component": "land_vehicle_Transcendent_Order_base_tesla_weapon_9"
+        "component": "land_vehicle_Transcendent_Order_base_grav_weapon_0"
       },
       {
         "slot": "carapace_right",
-        "component": "land_vehicle_Transcendent_Order_base_volkite_weapon_6"
+        "component": "land_vehicle_Transcendent_Order_base_grav_weapon_4"
       }
     ],
     "cost": 15056.0
@@ -898,29 +898,29 @@
     "faction": "SteelBound_Syndicate",
     "category": "Infantry",
     "base_stats": {
-      "hp": 12.0,
-      "organization": 24.0,
-      "soft_attack": 17.2,
-      "hard_attack": 3.44,
+      "hp": 10,
+      "organization": 20,
+      "soft_attack": 18.2,
+      "hard_attack": 3.64,
       "manpower": 10
     },
     "components": [
       {
         "slot": "standard_issue",
-        "component": "land_small_SteelBound_Syndicate_base_melta_weapon_4"
+        "component": "land_small_SteelBound_Syndicate_base_tachyon_weapon_0"
       },
       {
         "slot": "special_issue",
-        "component": "land_small_SteelBound_Syndicate_base_melta_weapon_4"
+        "component": "land_small_SteelBound_Syndicate_base_disruptor_weapon_8"
       }
     ],
     "composition": {
-      "Rifleman": 6,
+      "Rifleman": 7,
       "Specialist": 2,
-      "Medic": 1,
+      "Medic": 0,
       "Leader": 1
     },
-    "cost": 134.4
+    "cost": 136.4
   },
   "steelbound_syndicate_infantry_standard_assault_squad": {
     "blueprint_id": "steelbound_syndicate_infantry_standard_assault_squad",
@@ -938,11 +938,11 @@
     "components": [
       {
         "slot": "standard_issue",
-        "component": "land_small_SteelBound_Syndicate_base_phaser_weapon_5"
+        "component": "land_small_SteelBound_Syndicate_base_disruptor_weapon_8"
       },
       {
         "slot": "special_issue",
-        "component": "land_small_SteelBound_Syndicate_base_phaser_weapon_5"
+        "component": "land_small_SteelBound_Syndicate_base_disruptor_weapon_8"
       }
     ],
     "composition": {
@@ -969,11 +969,11 @@
     "components": [
       {
         "slot": "standard_issue",
-        "component": "land_small_SteelBound_Syndicate_base_phaser_weapon_9"
+        "component": "land_small_SteelBound_Syndicate_base_tachyon_weapon_0"
       },
       {
         "slot": "special_issue",
-        "component": "land_small_SteelBound_Syndicate_base_plasma_weapon_6"
+        "component": "land_small_SteelBound_Syndicate_base_tesla_weapon_7"
       }
     ],
     "composition": {
@@ -1000,11 +1000,11 @@
     "components": [
       {
         "slot": "standard_issue",
-        "component": "land_small_SteelBound_Syndicate_base_phaser_weapon_9"
+        "component": "land_small_SteelBound_Syndicate_base_melta_weapon_9"
       },
       {
         "slot": "special_issue",
-        "component": "land_small_SteelBound_Syndicate_base_phaser_weapon_9"
+        "component": "land_small_SteelBound_Syndicate_base_tachyon_weapon_0"
       }
     ],
     "composition": {
@@ -1031,11 +1031,11 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_SteelBound_Syndicate_base_grav_weapon_1"
+        "component": "land_vehicle_SteelBound_Syndicate_base_tachyon_weapon_0"
       },
       {
         "slot": "hull_mount",
-        "component": "land_vehicle_SteelBound_Syndicate_base_grav_weapon_1"
+        "component": "land_vehicle_SteelBound_Syndicate_base_disruptor_weapon_8"
       }
     ],
     "cost": 530.0
@@ -1056,19 +1056,19 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_SteelBound_Syndicate_base_grav_weapon_1"
+        "component": "land_vehicle_SteelBound_Syndicate_base_volkite_weapon_4"
       },
       {
         "slot": "coaxial",
-        "component": "land_vehicle_SteelBound_Syndicate_base_grav_weapon_1"
+        "component": "land_vehicle_SteelBound_Syndicate_base_disruptor_weapon_8"
       },
       {
         "slot": "sponson_left",
-        "component": "land_vehicle_SteelBound_Syndicate_base_melta_weapon_4"
+        "component": "land_vehicle_SteelBound_Syndicate_base_polaron_weapon_6"
       },
       {
         "slot": "sponson_right",
-        "component": "land_vehicle_SteelBound_Syndicate_base_plasma_weapon_6"
+        "component": "land_vehicle_SteelBound_Syndicate_base_disruptor_weapon_8"
       }
     ],
     "cost": 1258.0
@@ -1089,19 +1089,19 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_SteelBound_Syndicate_base_grav_weapon_1"
+        "component": "land_vehicle_SteelBound_Syndicate_base_melta_weapon_9"
       },
       {
         "slot": "coaxial",
-        "component": "land_vehicle_SteelBound_Syndicate_base_phaser_weapon_9"
+        "component": "land_vehicle_SteelBound_Syndicate_base_polaron_weapon_6"
       },
       {
         "slot": "sponson_left",
-        "component": "land_vehicle_SteelBound_Syndicate_base_grav_weapon_1"
+        "component": "land_vehicle_SteelBound_Syndicate_base_tesla_weapon_7"
       },
       {
         "slot": "sponson_right",
-        "component": "land_vehicle_SteelBound_Syndicate_base_grav_weapon_1"
+        "component": "land_vehicle_SteelBound_Syndicate_base_polaron_weapon_6"
       }
     ],
     "cost": 1258.0
@@ -1122,27 +1122,27 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_SteelBound_Syndicate_base_grav_weapon_1"
+        "component": "land_vehicle_SteelBound_Syndicate_base_polaron_weapon_6"
       },
       {
         "slot": "turret_secondary",
-        "component": "land_vehicle_SteelBound_Syndicate_base_phaser_weapon_9"
+        "component": "land_vehicle_SteelBound_Syndicate_base_volkite_weapon_4"
       },
       {
         "slot": "sponson_1",
-        "component": "land_vehicle_SteelBound_Syndicate_base_plasma_weapon_6"
+        "component": "land_vehicle_SteelBound_Syndicate_base_volkite_weapon_4"
       },
       {
         "slot": "sponson_2",
-        "component": "land_vehicle_SteelBound_Syndicate_base_grav_weapon_1"
+        "component": "land_vehicle_SteelBound_Syndicate_base_disruptor_weapon_8"
       },
       {
         "slot": "sponson_3",
-        "component": "land_vehicle_SteelBound_Syndicate_base_phaser_weapon_5"
+        "component": "land_vehicle_SteelBound_Syndicate_base_tachyon_weapon_0"
       },
       {
         "slot": "sponson_4",
-        "component": "land_vehicle_SteelBound_Syndicate_base_melta_weapon_4"
+        "component": "land_vehicle_SteelBound_Syndicate_base_polaron_weapon_6"
       }
     ],
     "cost": 4088.0
@@ -1163,27 +1163,27 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_SteelBound_Syndicate_base_melta_weapon_4"
+        "component": "land_vehicle_SteelBound_Syndicate_base_melta_weapon_9"
       },
       {
         "slot": "turret_secondary",
-        "component": "land_vehicle_SteelBound_Syndicate_base_grav_weapon_1"
+        "component": "land_vehicle_SteelBound_Syndicate_base_polaron_weapon_6"
       },
       {
         "slot": "sponson_1",
-        "component": "land_vehicle_SteelBound_Syndicate_base_grav_weapon_1"
+        "component": "land_vehicle_SteelBound_Syndicate_base_tachyon_weapon_0"
       },
       {
         "slot": "sponson_2",
-        "component": "land_vehicle_SteelBound_Syndicate_base_grav_weapon_1"
+        "component": "land_vehicle_SteelBound_Syndicate_base_melta_weapon_9"
       },
       {
         "slot": "sponson_3",
-        "component": "land_vehicle_SteelBound_Syndicate_base_grav_weapon_1"
+        "component": "land_vehicle_SteelBound_Syndicate_base_volkite_weapon_4"
       },
       {
         "slot": "sponson_4",
-        "component": "land_vehicle_SteelBound_Syndicate_base_melta_weapon_4"
+        "component": "land_vehicle_SteelBound_Syndicate_base_tachyon_weapon_0"
       }
     ],
     "cost": 4088.0
@@ -1204,11 +1204,11 @@
     "components": [
       {
         "slot": "chin_mount",
-        "component": "land_vehicle_SteelBound_Syndicate_base_phaser_weapon_5"
+        "component": "land_vehicle_SteelBound_Syndicate_base_volkite_weapon_4"
       },
       {
         "slot": "utility",
-        "component": "land_vehicle_SteelBound_Syndicate_base_phaser_weapon_5"
+        "component": "land_vehicle_SteelBound_Syndicate_base_disruptor_weapon_8"
       }
     ],
     "cost": 330.0
@@ -1229,15 +1229,15 @@
     "components": [
       {
         "slot": "arm_left",
-        "component": "land_vehicle_SteelBound_Syndicate_base_phaser_weapon_9"
+        "component": "land_vehicle_SteelBound_Syndicate_base_volkite_weapon_4"
       },
       {
         "slot": "arm_right",
-        "component": "land_vehicle_SteelBound_Syndicate_base_phaser_weapon_5"
+        "component": "land_vehicle_SteelBound_Syndicate_base_melta_weapon_9"
       },
       {
         "slot": "shoulder",
-        "component": "land_vehicle_SteelBound_Syndicate_base_plasma_weapon_6"
+        "component": "land_vehicle_SteelBound_Syndicate_base_tesla_weapon_7"
       }
     ],
     "cost": 941.0
@@ -1258,15 +1258,15 @@
     "components": [
       {
         "slot": "arm_left",
-        "component": "land_vehicle_SteelBound_Syndicate_base_plasma_weapon_6"
+        "component": "land_vehicle_SteelBound_Syndicate_base_disruptor_weapon_8"
       },
       {
         "slot": "arm_right",
-        "component": "land_vehicle_SteelBound_Syndicate_base_phaser_weapon_5"
+        "component": "land_vehicle_SteelBound_Syndicate_base_polaron_weapon_6"
       },
       {
         "slot": "shoulder",
-        "component": "land_vehicle_SteelBound_Syndicate_base_grav_weapon_1"
+        "component": "land_vehicle_SteelBound_Syndicate_base_polaron_weapon_6"
       }
     ],
     "cost": 941.0
@@ -1287,19 +1287,19 @@
     "components": [
       {
         "slot": "arm_left",
-        "component": "land_vehicle_SteelBound_Syndicate_base_phaser_weapon_5"
+        "component": "land_vehicle_SteelBound_Syndicate_base_disruptor_weapon_8"
       },
       {
         "slot": "arm_right",
-        "component": "land_vehicle_SteelBound_Syndicate_base_plasma_weapon_6"
+        "component": "land_vehicle_SteelBound_Syndicate_base_disruptor_weapon_8"
       },
       {
         "slot": "carapace_left",
-        "component": "land_vehicle_SteelBound_Syndicate_base_melta_weapon_4"
+        "component": "land_vehicle_SteelBound_Syndicate_base_polaron_weapon_6"
       },
       {
         "slot": "carapace_right",
-        "component": "land_vehicle_SteelBound_Syndicate_base_melta_weapon_4"
+        "component": "land_vehicle_SteelBound_Syndicate_base_tachyon_weapon_0"
       }
     ],
     "cost": 15056.0
@@ -1320,19 +1320,19 @@
     "components": [
       {
         "slot": "arm_left",
-        "component": "land_vehicle_SteelBound_Syndicate_base_phaser_weapon_5"
+        "component": "land_vehicle_SteelBound_Syndicate_base_tesla_weapon_7"
       },
       {
         "slot": "arm_right",
-        "component": "land_vehicle_SteelBound_Syndicate_base_grav_weapon_1"
+        "component": "land_vehicle_SteelBound_Syndicate_base_volkite_weapon_4"
       },
       {
         "slot": "carapace_left",
-        "component": "land_vehicle_SteelBound_Syndicate_base_plasma_weapon_6"
+        "component": "land_vehicle_SteelBound_Syndicate_base_disruptor_weapon_8"
       },
       {
         "slot": "carapace_right",
-        "component": "land_vehicle_SteelBound_Syndicate_base_phaser_weapon_5"
+        "component": "land_vehicle_SteelBound_Syndicate_base_polaron_weapon_6"
       }
     ],
     "cost": 15056.0
@@ -1344,29 +1344,29 @@
     "faction": "BioTide_Collective",
     "category": "Infantry",
     "base_stats": {
-      "hp": 12.0,
-      "organization": 24.0,
-      "soft_attack": 17.2,
-      "hard_attack": 3.44,
+      "hp": 10,
+      "organization": 20,
+      "soft_attack": 18.2,
+      "hard_attack": 3.64,
       "manpower": 10
     },
     "components": [
       {
         "slot": "standard_issue",
-        "component": "land_small_BioTide_Collective_base_rad_weapon_8"
+        "component": "land_small_BioTide_Collective_base_polaron_weapon_6"
       },
       {
         "slot": "special_issue",
-        "component": "land_small_BioTide_Collective_base_disruptor_weapon_7"
+        "component": "land_small_BioTide_Collective_base_tesla_weapon_9"
       }
     ],
     "composition": {
-      "Rifleman": 6,
+      "Rifleman": 7,
       "Specialist": 2,
-      "Medic": 1,
+      "Medic": 0,
       "Leader": 1
     },
-    "cost": 134.4
+    "cost": 136.4
   },
   "biotide_collective_infantry_standard_assault_squad": {
     "blueprint_id": "biotide_collective_infantry_standard_assault_squad",
@@ -1375,29 +1375,29 @@
     "faction": "BioTide_Collective",
     "category": "Infantry",
     "base_stats": {
-      "hp": 12.0,
-      "organization": 24.0,
-      "soft_attack": 25.2,
-      "hard_attack": 5.04,
+      "hp": 10,
+      "organization": 20,
+      "soft_attack": 26.2,
+      "hard_attack": 5.24,
       "manpower": 10
     },
     "components": [
       {
         "slot": "standard_issue",
-        "component": "land_small_BioTide_Collective_base_rad_weapon_8"
+        "component": "land_small_BioTide_Collective_base_melta_weapon_8"
       },
       {
         "slot": "special_issue",
-        "component": "land_small_BioTide_Collective_base_sonic_weapon_5"
+        "component": "land_small_BioTide_Collective_base_melta_weapon_8"
       }
     ],
     "composition": {
-      "Rifleman": 4,
+      "Rifleman": 5,
       "Specialist": 4,
-      "Medic": 1,
+      "Medic": 0,
       "Leader": 1
     },
-    "cost": 150.4
+    "cost": 152.4
   },
   "biotide_collective_infantry_heavy_standard_squad": {
     "blueprint_id": "biotide_collective_infantry_heavy_standard_squad",
@@ -1415,11 +1415,11 @@
     "components": [
       {
         "slot": "standard_issue",
-        "component": "land_small_BioTide_Collective_base_rad_weapon_8"
+        "component": "land_small_BioTide_Collective_base_polaron_weapon_6"
       },
       {
         "slot": "special_issue",
-        "component": "land_small_BioTide_Collective_base_grav_weapon_6"
+        "component": "land_small_BioTide_Collective_base_melta_weapon_8"
       }
     ],
     "composition": {
@@ -1446,11 +1446,11 @@
     "components": [
       {
         "slot": "standard_issue",
-        "component": "land_small_BioTide_Collective_base_grav_weapon_6"
+        "component": "land_small_BioTide_Collective_base_phaser_weapon_1"
       },
       {
         "slot": "special_issue",
-        "component": "land_small_BioTide_Collective_base_tesla_weapon_3"
+        "component": "land_small_BioTide_Collective_base_tesla_weapon_9"
       }
     ],
     "composition": {
@@ -1477,11 +1477,11 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_BioTide_Collective_base_tesla_weapon_3"
+        "component": "land_vehicle_BioTide_Collective_base_tesla_weapon_9"
       },
       {
         "slot": "hull_mount",
-        "component": "land_vehicle_BioTide_Collective_base_disruptor_weapon_7"
+        "component": "land_vehicle_BioTide_Collective_base_polaron_weapon_6"
       }
     ],
     "cost": 530.0
@@ -1502,19 +1502,19 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_BioTide_Collective_base_tesla_weapon_9"
+        "component": "land_vehicle_BioTide_Collective_base_polaron_weapon_6"
       },
       {
         "slot": "coaxial",
-        "component": "land_vehicle_BioTide_Collective_base_grav_weapon_6"
+        "component": "land_vehicle_BioTide_Collective_base_bolter_weapon_0"
       },
       {
         "slot": "sponson_left",
-        "component": "land_vehicle_BioTide_Collective_base_tesla_weapon_3"
+        "component": "land_vehicle_BioTide_Collective_base_bolter_weapon_2"
       },
       {
         "slot": "sponson_right",
-        "component": "land_vehicle_BioTide_Collective_base_disruptor_weapon_7"
+        "component": "land_vehicle_BioTide_Collective_base_tesla_weapon_9"
       }
     ],
     "cost": 1258.0
@@ -1535,19 +1535,19 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_BioTide_Collective_base_tesla_weapon_9"
+        "component": "land_vehicle_BioTide_Collective_base_bolter_weapon_0"
       },
       {
         "slot": "coaxial",
-        "component": "land_vehicle_BioTide_Collective_base_tesla_weapon_9"
+        "component": "land_vehicle_BioTide_Collective_base_gauss_weapon_4"
       },
       {
         "slot": "sponson_left",
-        "component": "land_vehicle_BioTide_Collective_base_rad_weapon_8"
+        "component": "land_vehicle_BioTide_Collective_base_bolter_weapon_2"
       },
       {
         "slot": "sponson_right",
-        "component": "land_vehicle_BioTide_Collective_base_rad_weapon_8"
+        "component": "land_vehicle_BioTide_Collective_base_bolter_weapon_0"
       }
     ],
     "cost": 1258.0
@@ -1568,19 +1568,19 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_BioTide_Collective_base_disruptor_weapon_7"
+        "component": "land_vehicle_BioTide_Collective_base_polaron_weapon_6"
       },
       {
         "slot": "turret_secondary",
-        "component": "land_vehicle_BioTide_Collective_base_rad_weapon_8"
+        "component": "land_vehicle_BioTide_Collective_base_polaron_weapon_6"
       },
       {
         "slot": "sponson_1",
-        "component": "land_vehicle_BioTide_Collective_base_disruptor_weapon_7"
+        "component": "land_vehicle_BioTide_Collective_base_gauss_weapon_4"
       },
       {
         "slot": "sponson_2",
-        "component": "land_vehicle_BioTide_Collective_base_rad_weapon_8"
+        "component": "land_vehicle_BioTide_Collective_base_tesla_weapon_9"
       },
       {
         "slot": "sponson_3",
@@ -1588,7 +1588,7 @@
       },
       {
         "slot": "sponson_4",
-        "component": "land_vehicle_BioTide_Collective_base_plasma_weapon_2"
+        "component": "land_vehicle_BioTide_Collective_base_phaser_weapon_1"
       }
     ],
     "cost": 4088.0
@@ -1609,27 +1609,27 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_BioTide_Collective_base_tesla_weapon_3"
+        "component": "land_vehicle_BioTide_Collective_base_tesla_weapon_9"
       },
       {
         "slot": "turret_secondary",
-        "component": "land_vehicle_BioTide_Collective_base_rad_weapon_8"
+        "component": "land_vehicle_BioTide_Collective_base_gauss_weapon_4"
       },
       {
         "slot": "sponson_1",
-        "component": "land_vehicle_BioTide_Collective_base_grav_weapon_6"
+        "component": "land_vehicle_BioTide_Collective_base_melta_weapon_8"
       },
       {
         "slot": "sponson_2",
-        "component": "land_vehicle_BioTide_Collective_base_sonic_weapon_5"
+        "component": "land_vehicle_BioTide_Collective_base_polaron_weapon_6"
       },
       {
         "slot": "sponson_3",
-        "component": "land_vehicle_BioTide_Collective_base_disruptor_weapon_7"
+        "component": "land_vehicle_BioTide_Collective_base_bolter_weapon_2"
       },
       {
         "slot": "sponson_4",
-        "component": "land_vehicle_BioTide_Collective_base_sonic_weapon_5"
+        "component": "land_vehicle_BioTide_Collective_base_gauss_weapon_4"
       }
     ],
     "cost": 4088.0
@@ -1650,11 +1650,11 @@
     "components": [
       {
         "slot": "chin_mount",
-        "component": "land_vehicle_BioTide_Collective_base_plasma_weapon_2"
+        "component": "land_vehicle_BioTide_Collective_base_bolter_weapon_2"
       },
       {
         "slot": "utility",
-        "component": "land_vehicle_BioTide_Collective_base_plasma_weapon_2"
+        "component": "land_vehicle_BioTide_Collective_base_polaron_weapon_6"
       }
     ],
     "cost": 330.0
@@ -1675,15 +1675,15 @@
     "components": [
       {
         "slot": "arm_left",
-        "component": "land_vehicle_BioTide_Collective_base_plasma_weapon_0"
+        "component": "land_vehicle_BioTide_Collective_base_bolter_weapon_2"
       },
       {
         "slot": "arm_right",
-        "component": "land_vehicle_BioTide_Collective_base_rad_weapon_8"
+        "component": "land_vehicle_BioTide_Collective_base_bolter_weapon_0"
       },
       {
         "slot": "shoulder",
-        "component": "land_vehicle_BioTide_Collective_base_plasma_weapon_2"
+        "component": "land_vehicle_BioTide_Collective_base_bolter_weapon_2"
       }
     ],
     "cost": 941.0
@@ -1704,15 +1704,15 @@
     "components": [
       {
         "slot": "arm_left",
-        "component": "land_vehicle_BioTide_Collective_base_plasma_weapon_0"
+        "component": "land_vehicle_BioTide_Collective_base_gauss_weapon_4"
       },
       {
         "slot": "arm_right",
-        "component": "land_vehicle_BioTide_Collective_base_disruptor_weapon_7"
+        "component": "land_vehicle_BioTide_Collective_base_polaron_weapon_6"
       },
       {
         "slot": "shoulder",
-        "component": "land_vehicle_BioTide_Collective_base_plasma_weapon_2"
+        "component": "land_vehicle_BioTide_Collective_base_bolter_weapon_2"
       }
     ],
     "cost": 941.0
@@ -1733,19 +1733,19 @@
     "components": [
       {
         "slot": "arm_left",
-        "component": "land_vehicle_BioTide_Collective_base_sonic_weapon_5"
+        "component": "land_vehicle_BioTide_Collective_base_melta_weapon_8"
       },
       {
         "slot": "arm_right",
-        "component": "land_vehicle_BioTide_Collective_base_tesla_weapon_9"
+        "component": "land_vehicle_BioTide_Collective_base_polaron_weapon_6"
       },
       {
         "slot": "carapace_left",
-        "component": "land_vehicle_BioTide_Collective_base_plasma_weapon_2"
+        "component": "land_vehicle_BioTide_Collective_base_tesla_weapon_9"
       },
       {
         "slot": "carapace_right",
-        "component": "land_vehicle_BioTide_Collective_base_grav_weapon_6"
+        "component": "land_vehicle_BioTide_Collective_base_gauss_weapon_4"
       }
     ],
     "cost": 15056.0
@@ -1766,19 +1766,19 @@
     "components": [
       {
         "slot": "arm_left",
-        "component": "land_vehicle_BioTide_Collective_base_plasma_weapon_0"
+        "component": "land_vehicle_BioTide_Collective_base_melta_weapon_8"
       },
       {
         "slot": "arm_right",
-        "component": "land_vehicle_BioTide_Collective_base_tesla_weapon_9"
+        "component": "land_vehicle_BioTide_Collective_base_bolter_weapon_0"
       },
       {
         "slot": "carapace_left",
-        "component": "land_vehicle_BioTide_Collective_base_plasma_weapon_2"
+        "component": "land_vehicle_BioTide_Collective_base_melta_weapon_8"
       },
       {
         "slot": "carapace_right",
-        "component": "land_vehicle_BioTide_Collective_base_disruptor_weapon_7"
+        "component": "land_vehicle_BioTide_Collective_base_bolter_weapon_0"
       }
     ],
     "cost": 15056.0
@@ -1799,11 +1799,11 @@
     "components": [
       {
         "slot": "standard_issue",
-        "component": "land_small_Algorithmic_Hierarchy_base_tesla_weapon_0"
+        "component": "land_small_Algorithmic_Hierarchy_base_grav_weapon_4"
       },
       {
         "slot": "special_issue",
-        "component": "land_small_Algorithmic_Hierarchy_base_polaron_weapon_4"
+        "component": "land_small_Algorithmic_Hierarchy_base_grav_weapon_4"
       }
     ],
     "composition": {
@@ -1821,29 +1821,29 @@
     "faction": "Algorithmic_Hierarchy",
     "category": "Infantry",
     "base_stats": {
-      "hp": 10,
-      "organization": 20,
-      "soft_attack": 26.2,
-      "hard_attack": 5.24,
+      "hp": 12.0,
+      "organization": 24.0,
+      "soft_attack": 25.2,
+      "hard_attack": 5.04,
       "manpower": 10
     },
     "components": [
       {
         "slot": "standard_issue",
-        "component": "land_small_Algorithmic_Hierarchy_base_volkite_weapon_2"
+        "component": "land_small_Algorithmic_Hierarchy_base_melta_weapon_9"
       },
       {
         "slot": "special_issue",
-        "component": "land_small_Algorithmic_Hierarchy_base_tesla_weapon_8"
+        "component": "land_small_Algorithmic_Hierarchy_base_phaser_weapon_5"
       }
     ],
     "composition": {
-      "Rifleman": 5,
+      "Rifleman": 4,
       "Specialist": 4,
-      "Medic": 0,
+      "Medic": 1,
       "Leader": 1
     },
-    "cost": 152.4
+    "cost": 150.4
   },
   "algorithmic_hierarchy_infantry_heavy_standard_squad": {
     "blueprint_id": "algorithmic_hierarchy_infantry_heavy_standard_squad",
@@ -1861,11 +1861,11 @@
     "components": [
       {
         "slot": "standard_issue",
-        "component": "land_small_Algorithmic_Hierarchy_base_tachyon_weapon_3"
+        "component": "land_small_Algorithmic_Hierarchy_base_gauss_weapon_7"
       },
       {
         "slot": "special_issue",
-        "component": "land_small_Algorithmic_Hierarchy_base_tesla_weapon_8"
+        "component": "land_small_Algorithmic_Hierarchy_base_phaser_weapon_5"
       }
     ],
     "composition": {
@@ -1892,11 +1892,11 @@
     "components": [
       {
         "slot": "standard_issue",
-        "component": "land_small_Algorithmic_Hierarchy_base_tesla_weapon_5"
+        "component": "land_small_Algorithmic_Hierarchy_base_gauss_weapon_7"
       },
       {
         "slot": "special_issue",
-        "component": "land_small_Algorithmic_Hierarchy_base_grav_weapon_1"
+        "component": "land_small_Algorithmic_Hierarchy_base_phaser_weapon_1"
       }
     ],
     "composition": {
@@ -1923,11 +1923,11 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_Algorithmic_Hierarchy_base_tachyon_weapon_3"
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_gauss_weapon_7"
       },
       {
         "slot": "hull_mount",
-        "component": "land_vehicle_Algorithmic_Hierarchy_base_tesla_weapon_0"
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_grav_weapon_4"
       }
     ],
     "cost": 530.0
@@ -1948,19 +1948,19 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_Algorithmic_Hierarchy_base_volkite_weapon_2"
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_phaser_weapon_5"
       },
       {
         "slot": "coaxial",
-        "component": "land_vehicle_Algorithmic_Hierarchy_base_tesla_weapon_0"
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_phaser_weapon_1"
       },
       {
         "slot": "sponson_left",
-        "component": "land_vehicle_Algorithmic_Hierarchy_base_tachyon_weapon_3"
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_melta_weapon_9"
       },
       {
         "slot": "sponson_right",
-        "component": "land_vehicle_Algorithmic_Hierarchy_base_volkite_weapon_2"
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_phaser_weapon_5"
       }
     ],
     "cost": 1258.0
@@ -1981,19 +1981,19 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_Algorithmic_Hierarchy_base_grav_weapon_1"
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_phaser_weapon_1"
       },
       {
         "slot": "coaxial",
-        "component": "land_vehicle_Algorithmic_Hierarchy_base_grav_weapon_1"
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_plasma_weapon_8"
       },
       {
         "slot": "sponson_left",
-        "component": "land_vehicle_Algorithmic_Hierarchy_base_polaron_weapon_4"
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_grav_weapon_4"
       },
       {
         "slot": "sponson_right",
-        "component": "land_vehicle_Algorithmic_Hierarchy_base_tesla_weapon_8"
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_phaser_weapon_1"
       }
     ],
     "cost": 1258.0
@@ -2014,27 +2014,27 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_Algorithmic_Hierarchy_base_polaron_weapon_4"
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_phaser_weapon_1"
       },
       {
         "slot": "turret_secondary",
-        "component": "land_vehicle_Algorithmic_Hierarchy_base_volkite_weapon_2"
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_plasma_weapon_8"
       },
       {
         "slot": "sponson_1",
-        "component": "land_vehicle_Algorithmic_Hierarchy_base_tesla_weapon_8"
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_gauss_weapon_7"
       },
       {
         "slot": "sponson_2",
-        "component": "land_vehicle_Algorithmic_Hierarchy_base_tesla_weapon_0"
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_gauss_weapon_7"
       },
       {
         "slot": "sponson_3",
-        "component": "land_vehicle_Algorithmic_Hierarchy_base_tesla_weapon_5"
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_gauss_weapon_7"
       },
       {
         "slot": "sponson_4",
-        "component": "land_vehicle_Algorithmic_Hierarchy_base_grav_weapon_1"
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_phaser_weapon_1"
       }
     ],
     "cost": 4088.0
@@ -2055,27 +2055,27 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_Algorithmic_Hierarchy_base_tesla_weapon_0"
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_grav_weapon_4"
       },
       {
         "slot": "turret_secondary",
-        "component": "land_vehicle_Algorithmic_Hierarchy_base_polaron_weapon_4"
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_phaser_weapon_1"
       },
       {
         "slot": "sponson_1",
-        "component": "land_vehicle_Algorithmic_Hierarchy_base_tesla_weapon_8"
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_phaser_weapon_5"
       },
       {
         "slot": "sponson_2",
-        "component": "land_vehicle_Algorithmic_Hierarchy_base_volkite_weapon_9"
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_phaser_weapon_5"
       },
       {
         "slot": "sponson_3",
-        "component": "land_vehicle_Algorithmic_Hierarchy_base_polaron_weapon_4"
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_phaser_weapon_1"
       },
       {
         "slot": "sponson_4",
-        "component": "land_vehicle_Algorithmic_Hierarchy_base_tesla_weapon_5"
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_phaser_weapon_5"
       }
     ],
     "cost": 4088.0
@@ -2096,11 +2096,11 @@
     "components": [
       {
         "slot": "chin_mount",
-        "component": "land_vehicle_Algorithmic_Hierarchy_base_volkite_weapon_2"
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_gauss_weapon_7"
       },
       {
         "slot": "utility",
-        "component": "land_vehicle_Algorithmic_Hierarchy_base_polaron_weapon_4"
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_plasma_weapon_8"
       }
     ],
     "cost": 330.0
@@ -2121,15 +2121,15 @@
     "components": [
       {
         "slot": "arm_left",
-        "component": "land_vehicle_Algorithmic_Hierarchy_base_tachyon_weapon_3"
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_melta_weapon_9"
       },
       {
         "slot": "arm_right",
-        "component": "land_vehicle_Algorithmic_Hierarchy_base_polaron_weapon_4"
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_plasma_weapon_8"
       },
       {
         "slot": "shoulder",
-        "component": "land_vehicle_Algorithmic_Hierarchy_base_tesla_weapon_8"
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_phaser_weapon_1"
       }
     ],
     "cost": 941.0
@@ -2150,15 +2150,15 @@
     "components": [
       {
         "slot": "arm_left",
-        "component": "land_vehicle_Algorithmic_Hierarchy_base_volkite_weapon_9"
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_phaser_weapon_5"
       },
       {
         "slot": "arm_right",
-        "component": "land_vehicle_Algorithmic_Hierarchy_base_tesla_weapon_5"
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_plasma_weapon_8"
       },
       {
         "slot": "shoulder",
-        "component": "land_vehicle_Algorithmic_Hierarchy_base_polaron_weapon_4"
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_melta_weapon_9"
       }
     ],
     "cost": 941.0
@@ -2179,19 +2179,19 @@
     "components": [
       {
         "slot": "arm_left",
-        "component": "land_vehicle_Algorithmic_Hierarchy_base_grav_weapon_1"
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_grav_weapon_4"
       },
       {
         "slot": "arm_right",
-        "component": "land_vehicle_Algorithmic_Hierarchy_base_volkite_weapon_2"
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_phaser_weapon_1"
       },
       {
         "slot": "carapace_left",
-        "component": "land_vehicle_Algorithmic_Hierarchy_base_volkite_weapon_2"
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_phaser_weapon_5"
       },
       {
         "slot": "carapace_right",
-        "component": "land_vehicle_Algorithmic_Hierarchy_base_polaron_weapon_4"
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_melta_weapon_9"
       }
     ],
     "cost": 15056.0
@@ -2212,19 +2212,19 @@
     "components": [
       {
         "slot": "arm_left",
-        "component": "land_vehicle_Algorithmic_Hierarchy_base_polaron_weapon_4"
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_plasma_weapon_8"
       },
       {
         "slot": "arm_right",
-        "component": "land_vehicle_Algorithmic_Hierarchy_base_tachyon_weapon_3"
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_melta_weapon_9"
       },
       {
         "slot": "carapace_left",
-        "component": "land_vehicle_Algorithmic_Hierarchy_base_tesla_weapon_5"
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_grav_weapon_4"
       },
       {
         "slot": "carapace_right",
-        "component": "land_vehicle_Algorithmic_Hierarchy_base_tesla_weapon_5"
+        "component": "land_vehicle_Algorithmic_Hierarchy_base_grav_weapon_4"
       }
     ],
     "cost": 15056.0
@@ -2245,11 +2245,11 @@
     "components": [
       {
         "slot": "standard_issue",
-        "component": "land_small_Nebula_Drifters_base_phaser_weapon_3"
+        "component": "land_small_Nebula_Drifters_base_rad_weapon_0"
       },
       {
         "slot": "special_issue",
-        "component": "land_small_Nebula_Drifters_base_tesla_weapon_5"
+        "component": "land_small_Nebula_Drifters_base_rad_weapon_5"
       }
     ],
     "composition": {
@@ -2276,11 +2276,11 @@
     "components": [
       {
         "slot": "standard_issue",
-        "component": "land_small_Nebula_Drifters_base_melta_weapon_7"
+        "component": "land_small_Nebula_Drifters_base_volkite_weapon_2"
       },
       {
         "slot": "special_issue",
-        "component": "land_small_Nebula_Drifters_base_gauss_weapon_1"
+        "component": "land_small_Nebula_Drifters_base_bolter_weapon_6"
       }
     ],
     "composition": {
@@ -2307,11 +2307,11 @@
     "components": [
       {
         "slot": "standard_issue",
-        "component": "land_small_Nebula_Drifters_base_gauss_weapon_6"
+        "component": "land_small_Nebula_Drifters_base_volkite_weapon_2"
       },
       {
         "slot": "special_issue",
-        "component": "land_small_Nebula_Drifters_base_gauss_weapon_6"
+        "component": "land_small_Nebula_Drifters_base_volkite_weapon_2"
       }
     ],
     "composition": {
@@ -2338,11 +2338,11 @@
     "components": [
       {
         "slot": "standard_issue",
-        "component": "land_small_Nebula_Drifters_base_tesla_weapon_5"
+        "component": "land_small_Nebula_Drifters_base_rad_weapon_0"
       },
       {
         "slot": "special_issue",
-        "component": "land_small_Nebula_Drifters_base_phaser_weapon_3"
+        "component": "land_small_Nebula_Drifters_base_disruptor_weapon_3"
       }
     ],
     "composition": {
@@ -2369,11 +2369,11 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_Nebula_Drifters_base_gauss_weapon_1"
+        "component": "land_vehicle_Nebula_Drifters_base_bolter_weapon_6"
       },
       {
         "slot": "hull_mount",
-        "component": "land_vehicle_Nebula_Drifters_base_bolter_weapon_8"
+        "component": "land_vehicle_Nebula_Drifters_base_rad_weapon_5"
       }
     ],
     "cost": 530.0
@@ -2394,19 +2394,19 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_Nebula_Drifters_base_tesla_weapon_0"
+        "component": "land_vehicle_Nebula_Drifters_base_rad_weapon_5"
       },
       {
         "slot": "coaxial",
-        "component": "land_vehicle_Nebula_Drifters_base_gauss_weapon_6"
+        "component": "land_vehicle_Nebula_Drifters_base_rad_weapon_0"
       },
       {
         "slot": "sponson_left",
-        "component": "land_vehicle_Nebula_Drifters_base_gauss_weapon_6"
+        "component": "land_vehicle_Nebula_Drifters_base_rad_weapon_5"
       },
       {
         "slot": "sponson_right",
-        "component": "land_vehicle_Nebula_Drifters_base_phaser_weapon_3"
+        "component": "land_vehicle_Nebula_Drifters_base_rad_weapon_5"
       }
     ],
     "cost": 1258.0
@@ -2427,19 +2427,19 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_Nebula_Drifters_base_gauss_weapon_6"
+        "component": "land_vehicle_Nebula_Drifters_base_rad_weapon_0"
       },
       {
         "slot": "coaxial",
-        "component": "land_vehicle_Nebula_Drifters_base_tesla_weapon_5"
+        "component": "land_vehicle_Nebula_Drifters_base_disruptor_weapon_3"
       },
       {
         "slot": "sponson_left",
-        "component": "land_vehicle_Nebula_Drifters_base_tesla_weapon_0"
+        "component": "land_vehicle_Nebula_Drifters_base_volkite_weapon_2"
       },
       {
         "slot": "sponson_right",
-        "component": "land_vehicle_Nebula_Drifters_base_phaser_weapon_4"
+        "component": "land_vehicle_Nebula_Drifters_base_rad_weapon_0"
       }
     ],
     "cost": 1258.0
@@ -2460,27 +2460,27 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_Nebula_Drifters_base_gauss_weapon_1"
+        "component": "land_vehicle_Nebula_Drifters_base_bolter_weapon_6"
       },
       {
         "slot": "turret_secondary",
-        "component": "land_vehicle_Nebula_Drifters_base_gauss_weapon_6"
+        "component": "land_vehicle_Nebula_Drifters_base_bolter_weapon_6"
       },
       {
         "slot": "sponson_1",
-        "component": "land_vehicle_Nebula_Drifters_base_phaser_weapon_3"
+        "component": "land_vehicle_Nebula_Drifters_base_disruptor_weapon_3"
       },
       {
         "slot": "sponson_2",
-        "component": "land_vehicle_Nebula_Drifters_base_tesla_weapon_0"
+        "component": "land_vehicle_Nebula_Drifters_base_disruptor_weapon_3"
       },
       {
         "slot": "sponson_3",
-        "component": "land_vehicle_Nebula_Drifters_base_melta_weapon_7"
+        "component": "land_vehicle_Nebula_Drifters_base_rad_weapon_5"
       },
       {
         "slot": "sponson_4",
-        "component": "land_vehicle_Nebula_Drifters_base_phaser_weapon_3"
+        "component": "land_vehicle_Nebula_Drifters_base_disruptor_weapon_3"
       }
     ],
     "cost": 4088.0
@@ -2501,27 +2501,27 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_Nebula_Drifters_base_tesla_weapon_5"
+        "component": "land_vehicle_Nebula_Drifters_base_bolter_weapon_6"
       },
       {
         "slot": "turret_secondary",
-        "component": "land_vehicle_Nebula_Drifters_base_tesla_weapon_5"
+        "component": "land_vehicle_Nebula_Drifters_base_volkite_weapon_2"
       },
       {
         "slot": "sponson_1",
-        "component": "land_vehicle_Nebula_Drifters_base_tesla_weapon_5"
+        "component": "land_vehicle_Nebula_Drifters_base_volkite_weapon_2"
       },
       {
         "slot": "sponson_2",
-        "component": "land_vehicle_Nebula_Drifters_base_melta_weapon_7"
+        "component": "land_vehicle_Nebula_Drifters_base_rad_weapon_0"
       },
       {
         "slot": "sponson_3",
-        "component": "land_vehicle_Nebula_Drifters_base_tesla_weapon_0"
+        "component": "land_vehicle_Nebula_Drifters_base_rad_weapon_0"
       },
       {
         "slot": "sponson_4",
-        "component": "land_vehicle_Nebula_Drifters_base_tesla_weapon_5"
+        "component": "land_vehicle_Nebula_Drifters_base_rad_weapon_0"
       }
     ],
     "cost": 4088.0
@@ -2542,11 +2542,11 @@
     "components": [
       {
         "slot": "chin_mount",
-        "component": "land_vehicle_Nebula_Drifters_base_bolter_weapon_8"
+        "component": "land_vehicle_Nebula_Drifters_base_rad_weapon_5"
       },
       {
         "slot": "utility",
-        "component": "land_vehicle_Nebula_Drifters_base_melta_weapon_7"
+        "component": "land_vehicle_Nebula_Drifters_base_rad_weapon_0"
       }
     ],
     "cost": 330.0
@@ -2567,15 +2567,15 @@
     "components": [
       {
         "slot": "arm_left",
-        "component": "land_vehicle_Nebula_Drifters_base_bolter_weapon_8"
+        "component": "land_vehicle_Nebula_Drifters_base_volkite_weapon_2"
       },
       {
         "slot": "arm_right",
-        "component": "land_vehicle_Nebula_Drifters_base_gauss_weapon_1"
+        "component": "land_vehicle_Nebula_Drifters_base_rad_weapon_0"
       },
       {
         "slot": "shoulder",
-        "component": "land_vehicle_Nebula_Drifters_base_phaser_weapon_4"
+        "component": "land_vehicle_Nebula_Drifters_base_volkite_weapon_2"
       }
     ],
     "cost": 941.0
@@ -2596,15 +2596,15 @@
     "components": [
       {
         "slot": "arm_left",
-        "component": "land_vehicle_Nebula_Drifters_base_bolter_weapon_8"
+        "component": "land_vehicle_Nebula_Drifters_base_volkite_weapon_2"
       },
       {
         "slot": "arm_right",
-        "component": "land_vehicle_Nebula_Drifters_base_melta_weapon_7"
+        "component": "land_vehicle_Nebula_Drifters_base_volkite_weapon_2"
       },
       {
         "slot": "shoulder",
-        "component": "land_vehicle_Nebula_Drifters_base_gauss_weapon_1"
+        "component": "land_vehicle_Nebula_Drifters_base_rad_weapon_0"
       }
     ],
     "cost": 941.0
@@ -2625,19 +2625,19 @@
     "components": [
       {
         "slot": "arm_left",
-        "component": "land_vehicle_Nebula_Drifters_base_gauss_weapon_1"
+        "component": "land_vehicle_Nebula_Drifters_base_bolter_weapon_6"
       },
       {
         "slot": "arm_right",
-        "component": "land_vehicle_Nebula_Drifters_base_tesla_weapon_0"
+        "component": "land_vehicle_Nebula_Drifters_base_rad_weapon_0"
       },
       {
         "slot": "carapace_left",
-        "component": "land_vehicle_Nebula_Drifters_base_tesla_weapon_0"
+        "component": "land_vehicle_Nebula_Drifters_base_volkite_weapon_2"
       },
       {
         "slot": "carapace_right",
-        "component": "land_vehicle_Nebula_Drifters_base_melta_weapon_7"
+        "component": "land_vehicle_Nebula_Drifters_base_rad_weapon_0"
       }
     ],
     "cost": 15056.0
@@ -2658,19 +2658,19 @@
     "components": [
       {
         "slot": "arm_left",
-        "component": "land_vehicle_Nebula_Drifters_base_tesla_weapon_5"
+        "component": "land_vehicle_Nebula_Drifters_base_rad_weapon_5"
       },
       {
         "slot": "arm_right",
-        "component": "land_vehicle_Nebula_Drifters_base_gauss_weapon_6"
+        "component": "land_vehicle_Nebula_Drifters_base_rad_weapon_5"
       },
       {
         "slot": "carapace_left",
-        "component": "land_vehicle_Nebula_Drifters_base_bolter_weapon_8"
+        "component": "land_vehicle_Nebula_Drifters_base_volkite_weapon_2"
       },
       {
         "slot": "carapace_right",
-        "component": "land_vehicle_Nebula_Drifters_base_bolter_weapon_8"
+        "component": "land_vehicle_Nebula_Drifters_base_disruptor_weapon_3"
       }
     ],
     "cost": 15056.0
@@ -2682,29 +2682,29 @@
     "faction": "Aurelian_Hegemony",
     "category": "Infantry",
     "base_stats": {
-      "hp": 12.0,
-      "organization": 24.0,
-      "soft_attack": 17.2,
-      "hard_attack": 3.44,
+      "hp": 10,
+      "organization": 20,
+      "soft_attack": 18.2,
+      "hard_attack": 3.64,
       "manpower": 10
     },
     "components": [
       {
         "slot": "standard_issue",
-        "component": "land_small_Aurelian_Hegemony_base_polaron_weapon_6"
+        "component": "land_small_Aurelian_Hegemony_base_phaser_weapon_9"
       },
       {
         "slot": "special_issue",
-        "component": "land_small_Aurelian_Hegemony_base_gauss_weapon_1"
+        "component": "land_small_Aurelian_Hegemony_base_melta_weapon_7"
       }
     ],
     "composition": {
-      "Rifleman": 6,
+      "Rifleman": 7,
       "Specialist": 2,
-      "Medic": 1,
+      "Medic": 0,
       "Leader": 1
     },
-    "cost": 134.4
+    "cost": 136.4
   },
   "aurelian_hegemony_infantry_standard_assault_squad": {
     "blueprint_id": "aurelian_hegemony_infantry_standard_assault_squad",
@@ -2722,11 +2722,11 @@
     "components": [
       {
         "slot": "standard_issue",
-        "component": "land_small_Aurelian_Hegemony_base_gauss_weapon_1"
+        "component": "land_small_Aurelian_Hegemony_base_melta_weapon_7"
       },
       {
         "slot": "special_issue",
-        "component": "land_small_Aurelian_Hegemony_base_phaser_weapon_4"
+        "component": "land_small_Aurelian_Hegemony_base_melta_weapon_7"
       }
     ],
     "composition": {
@@ -2753,11 +2753,11 @@
     "components": [
       {
         "slot": "standard_issue",
-        "component": "land_small_Aurelian_Hegemony_base_bolter_weapon_5"
+        "component": "land_small_Aurelian_Hegemony_base_tachyon_weapon_5"
       },
       {
         "slot": "special_issue",
-        "component": "land_small_Aurelian_Hegemony_base_bolter_weapon_5"
+        "component": "land_small_Aurelian_Hegemony_base_melta_weapon_3"
       }
     ],
     "composition": {
@@ -2784,11 +2784,11 @@
     "components": [
       {
         "slot": "standard_issue",
-        "component": "land_small_Aurelian_Hegemony_base_bolter_weapon_5"
+        "component": "land_small_Aurelian_Hegemony_base_rad_weapon_8"
       },
       {
         "slot": "special_issue",
-        "component": "land_small_Aurelian_Hegemony_base_gauss_weapon_1"
+        "component": "land_small_Aurelian_Hegemony_base_rad_weapon_8"
       }
     ],
     "composition": {
@@ -2815,11 +2815,11 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_Aurelian_Hegemony_base_polaron_weapon_6"
+        "component": "land_vehicle_Aurelian_Hegemony_base_melta_weapon_7"
       },
       {
         "slot": "hull_mount",
-        "component": "land_vehicle_Aurelian_Hegemony_base_phaser_weapon_4"
+        "component": "land_vehicle_Aurelian_Hegemony_base_rad_weapon_8"
       }
     ],
     "cost": 530.0
@@ -2840,19 +2840,19 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_Aurelian_Hegemony_base_gauss_weapon_1"
+        "component": "land_vehicle_Aurelian_Hegemony_base_phaser_weapon_9"
       },
       {
         "slot": "coaxial",
-        "component": "land_vehicle_Aurelian_Hegemony_base_disruptor_weapon_3"
+        "component": "land_vehicle_Aurelian_Hegemony_base_tachyon_weapon_5"
       },
       {
         "slot": "sponson_left",
-        "component": "land_vehicle_Aurelian_Hegemony_base_bolter_weapon_5"
+        "component": "land_vehicle_Aurelian_Hegemony_base_tachyon_weapon_5"
       },
       {
         "slot": "sponson_right",
-        "component": "land_vehicle_Aurelian_Hegemony_base_tesla_weapon_9"
+        "component": "land_vehicle_Aurelian_Hegemony_base_melta_weapon_3"
       }
     ],
     "cost": 1258.0
@@ -2873,19 +2873,19 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_Aurelian_Hegemony_base_polaron_weapon_6"
+        "component": "land_vehicle_Aurelian_Hegemony_base_rad_weapon_8"
       },
       {
         "slot": "coaxial",
-        "component": "land_vehicle_Aurelian_Hegemony_base_gauss_weapon_1"
+        "component": "land_vehicle_Aurelian_Hegemony_base_phaser_weapon_9"
       },
       {
         "slot": "sponson_left",
-        "component": "land_vehicle_Aurelian_Hegemony_base_phaser_weapon_4"
+        "component": "land_vehicle_Aurelian_Hegemony_base_melta_weapon_7"
       },
       {
         "slot": "sponson_right",
-        "component": "land_vehicle_Aurelian_Hegemony_base_tesla_weapon_9"
+        "component": "land_vehicle_Aurelian_Hegemony_base_melta_weapon_7"
       }
     ],
     "cost": 1258.0
@@ -2906,27 +2906,27 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_Aurelian_Hegemony_base_phaser_weapon_4"
+        "component": "land_vehicle_Aurelian_Hegemony_base_disruptor_weapon_2"
       },
       {
         "slot": "turret_secondary",
-        "component": "land_vehicle_Aurelian_Hegemony_base_bolter_weapon_5"
+        "component": "land_vehicle_Aurelian_Hegemony_base_rad_weapon_8"
       },
       {
         "slot": "sponson_1",
-        "component": "land_vehicle_Aurelian_Hegemony_base_polaron_weapon_6"
+        "component": "land_vehicle_Aurelian_Hegemony_base_disruptor_weapon_2"
       },
       {
         "slot": "sponson_2",
-        "component": "land_vehicle_Aurelian_Hegemony_base_phaser_weapon_4"
+        "component": "land_vehicle_Aurelian_Hegemony_base_melta_weapon_3"
       },
       {
         "slot": "sponson_3",
-        "component": "land_vehicle_Aurelian_Hegemony_base_bolter_weapon_5"
+        "component": "land_vehicle_Aurelian_Hegemony_base_phaser_weapon_9"
       },
       {
         "slot": "sponson_4",
-        "component": "land_vehicle_Aurelian_Hegemony_base_gauss_weapon_1"
+        "component": "land_vehicle_Aurelian_Hegemony_base_rad_weapon_8"
       }
     ],
     "cost": 4088.0
@@ -2947,27 +2947,27 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_Aurelian_Hegemony_base_polaron_weapon_6"
+        "component": "land_vehicle_Aurelian_Hegemony_base_rad_weapon_8"
       },
       {
         "slot": "turret_secondary",
-        "component": "land_vehicle_Aurelian_Hegemony_base_gauss_weapon_1"
+        "component": "land_vehicle_Aurelian_Hegemony_base_tachyon_weapon_5"
       },
       {
         "slot": "sponson_1",
-        "component": "land_vehicle_Aurelian_Hegemony_base_polaron_weapon_6"
+        "component": "land_vehicle_Aurelian_Hegemony_base_melta_weapon_7"
       },
       {
         "slot": "sponson_2",
-        "component": "land_vehicle_Aurelian_Hegemony_base_phaser_weapon_4"
+        "component": "land_vehicle_Aurelian_Hegemony_base_disruptor_weapon_2"
       },
       {
         "slot": "sponson_3",
-        "component": "land_vehicle_Aurelian_Hegemony_base_tesla_weapon_9"
+        "component": "land_vehicle_Aurelian_Hegemony_base_tachyon_weapon_5"
       },
       {
         "slot": "sponson_4",
-        "component": "land_vehicle_Aurelian_Hegemony_base_phaser_weapon_4"
+        "component": "land_vehicle_Aurelian_Hegemony_base_phaser_weapon_9"
       }
     ],
     "cost": 4088.0
@@ -2988,11 +2988,11 @@
     "components": [
       {
         "slot": "chin_mount",
-        "component": "land_vehicle_Aurelian_Hegemony_base_bolter_weapon_5"
+        "component": "land_vehicle_Aurelian_Hegemony_base_rad_weapon_8"
       },
       {
         "slot": "utility",
-        "component": "land_vehicle_Aurelian_Hegemony_base_gauss_weapon_1"
+        "component": "land_vehicle_Aurelian_Hegemony_base_melta_weapon_3"
       }
     ],
     "cost": 330.0
@@ -3013,15 +3013,15 @@
     "components": [
       {
         "slot": "arm_left",
-        "component": "land_vehicle_Aurelian_Hegemony_base_bolter_weapon_5"
+        "component": "land_vehicle_Aurelian_Hegemony_base_melta_weapon_7"
       },
       {
         "slot": "arm_right",
-        "component": "land_vehicle_Aurelian_Hegemony_base_polaron_weapon_6"
+        "component": "land_vehicle_Aurelian_Hegemony_base_melta_weapon_3"
       },
       {
         "slot": "shoulder",
-        "component": "land_vehicle_Aurelian_Hegemony_base_gauss_weapon_1"
+        "component": "land_vehicle_Aurelian_Hegemony_base_tachyon_weapon_5"
       }
     ],
     "cost": 941.0
@@ -3042,15 +3042,15 @@
     "components": [
       {
         "slot": "arm_left",
-        "component": "land_vehicle_Aurelian_Hegemony_base_disruptor_weapon_3"
+        "component": "land_vehicle_Aurelian_Hegemony_base_melta_weapon_7"
       },
       {
         "slot": "arm_right",
-        "component": "land_vehicle_Aurelian_Hegemony_base_tesla_weapon_9"
+        "component": "land_vehicle_Aurelian_Hegemony_base_melta_weapon_3"
       },
       {
         "slot": "shoulder",
-        "component": "land_vehicle_Aurelian_Hegemony_base_polaron_weapon_6"
+        "component": "land_vehicle_Aurelian_Hegemony_base_melta_weapon_7"
       }
     ],
     "cost": 941.0
@@ -3071,19 +3071,19 @@
     "components": [
       {
         "slot": "arm_left",
-        "component": "land_vehicle_Aurelian_Hegemony_base_phaser_weapon_4"
+        "component": "land_vehicle_Aurelian_Hegemony_base_disruptor_weapon_2"
       },
       {
         "slot": "arm_right",
-        "component": "land_vehicle_Aurelian_Hegemony_base_tesla_weapon_9"
+        "component": "land_vehicle_Aurelian_Hegemony_base_disruptor_weapon_2"
       },
       {
         "slot": "carapace_left",
-        "component": "land_vehicle_Aurelian_Hegemony_base_disruptor_weapon_3"
+        "component": "land_vehicle_Aurelian_Hegemony_base_phaser_weapon_9"
       },
       {
         "slot": "carapace_right",
-        "component": "land_vehicle_Aurelian_Hegemony_base_disruptor_weapon_3"
+        "component": "land_vehicle_Aurelian_Hegemony_base_tachyon_weapon_5"
       }
     ],
     "cost": 15056.0
@@ -3104,19 +3104,19 @@
     "components": [
       {
         "slot": "arm_left",
-        "component": "land_vehicle_Aurelian_Hegemony_base_gauss_weapon_1"
+        "component": "land_vehicle_Aurelian_Hegemony_base_rad_weapon_8"
       },
       {
         "slot": "arm_right",
-        "component": "land_vehicle_Aurelian_Hegemony_base_phaser_weapon_4"
+        "component": "land_vehicle_Aurelian_Hegemony_base_melta_weapon_7"
       },
       {
         "slot": "carapace_left",
-        "component": "land_vehicle_Aurelian_Hegemony_base_disruptor_weapon_3"
+        "component": "land_vehicle_Aurelian_Hegemony_base_phaser_weapon_9"
       },
       {
         "slot": "carapace_right",
-        "component": "land_vehicle_Aurelian_Hegemony_base_disruptor_weapon_3"
+        "component": "land_vehicle_Aurelian_Hegemony_base_phaser_weapon_9"
       }
     ],
     "cost": 15056.0
@@ -3128,29 +3128,29 @@
     "faction": "VoidSpawn_Entities",
     "category": "Infantry",
     "base_stats": {
-      "hp": 10,
-      "organization": 20,
-      "soft_attack": 18.2,
-      "hard_attack": 3.64,
+      "hp": 12.0,
+      "organization": 24.0,
+      "soft_attack": 17.2,
+      "hard_attack": 3.44,
       "manpower": 10
     },
     "components": [
       {
         "slot": "standard_issue",
-        "component": "land_small_VoidSpawn_Entities_base_grav_weapon_8"
+        "component": "land_small_VoidSpawn_Entities_base_bolter_weapon_7"
       },
       {
         "slot": "special_issue",
-        "component": "land_small_VoidSpawn_Entities_base_tesla_weapon_6"
+        "component": "land_small_VoidSpawn_Entities_base_bolter_weapon_8"
       }
     ],
     "composition": {
-      "Rifleman": 7,
+      "Rifleman": 6,
       "Specialist": 2,
-      "Medic": 0,
+      "Medic": 1,
       "Leader": 1
     },
-    "cost": 136.4
+    "cost": 134.4
   },
   "voidspawn_entities_infantry_standard_assault_squad": {
     "blueprint_id": "voidspawn_entities_infantry_standard_assault_squad",
@@ -3168,11 +3168,11 @@
     "components": [
       {
         "slot": "standard_issue",
-        "component": "land_small_VoidSpawn_Entities_base_tesla_weapon_6"
+        "component": "land_small_VoidSpawn_Entities_base_rad_weapon_3"
       },
       {
         "slot": "special_issue",
-        "component": "land_small_VoidSpawn_Entities_base_phaser_weapon_4"
+        "component": "land_small_VoidSpawn_Entities_base_rad_weapon_3"
       }
     ],
     "composition": {
@@ -3199,11 +3199,11 @@
     "components": [
       {
         "slot": "standard_issue",
-        "component": "land_small_VoidSpawn_Entities_base_melta_weapon_5"
+        "component": "land_small_VoidSpawn_Entities_base_bolter_weapon_7"
       },
       {
         "slot": "special_issue",
-        "component": "land_small_VoidSpawn_Entities_base_grav_weapon_8"
+        "component": "land_small_VoidSpawn_Entities_base_bolter_weapon_8"
       }
     ],
     "composition": {
@@ -3230,11 +3230,11 @@
     "components": [
       {
         "slot": "standard_issue",
-        "component": "land_small_VoidSpawn_Entities_base_phaser_weapon_4"
+        "component": "land_small_VoidSpawn_Entities_base_bolter_weapon_2"
       },
       {
         "slot": "special_issue",
-        "component": "land_small_VoidSpawn_Entities_base_phaser_weapon_4"
+        "component": "land_small_VoidSpawn_Entities_base_rad_weapon_3"
       }
     ],
     "composition": {
@@ -3261,11 +3261,11 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_VoidSpawn_Entities_base_tesla_weapon_6"
+        "component": "land_vehicle_VoidSpawn_Entities_base_bolter_weapon_2"
       },
       {
         "slot": "hull_mount",
-        "component": "land_vehicle_VoidSpawn_Entities_base_tesla_weapon_0"
+        "component": "land_vehicle_VoidSpawn_Entities_base_rad_weapon_3"
       }
     ],
     "cost": 530.0
@@ -3286,19 +3286,19 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_VoidSpawn_Entities_base_tesla_weapon_6"
+        "component": "land_vehicle_VoidSpawn_Entities_base_bolter_weapon_8"
       },
       {
         "slot": "coaxial",
-        "component": "land_vehicle_VoidSpawn_Entities_base_tesla_weapon_0"
+        "component": "land_vehicle_VoidSpawn_Entities_base_rad_weapon_3"
       },
       {
         "slot": "sponson_left",
-        "component": "land_vehicle_VoidSpawn_Entities_base_tesla_weapon_6"
+        "component": "land_vehicle_VoidSpawn_Entities_base_bolter_weapon_0"
       },
       {
         "slot": "sponson_right",
-        "component": "land_vehicle_VoidSpawn_Entities_base_melta_weapon_5"
+        "component": "land_vehicle_VoidSpawn_Entities_base_bolter_weapon_7"
       }
     ],
     "cost": 1258.0
@@ -3319,19 +3319,19 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_VoidSpawn_Entities_base_tesla_weapon_6"
+        "component": "land_vehicle_VoidSpawn_Entities_base_bolter_weapon_8"
       },
       {
         "slot": "coaxial",
-        "component": "land_vehicle_VoidSpawn_Entities_base_phaser_weapon_4"
+        "component": "land_vehicle_VoidSpawn_Entities_base_bolter_weapon_7"
       },
       {
         "slot": "sponson_left",
-        "component": "land_vehicle_VoidSpawn_Entities_base_tesla_weapon_6"
+        "component": "land_vehicle_VoidSpawn_Entities_base_bolter_weapon_7"
       },
       {
         "slot": "sponson_right",
-        "component": "land_vehicle_VoidSpawn_Entities_base_melta_weapon_5"
+        "component": "land_vehicle_VoidSpawn_Entities_base_bolter_weapon_2"
       }
     ],
     "cost": 1258.0
@@ -3352,27 +3352,27 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_VoidSpawn_Entities_base_phaser_weapon_4"
+        "component": "land_vehicle_VoidSpawn_Entities_base_bolter_weapon_0"
       },
       {
         "slot": "turret_secondary",
-        "component": "land_vehicle_VoidSpawn_Entities_base_tesla_weapon_6"
+        "component": "land_vehicle_VoidSpawn_Entities_base_bolter_weapon_7"
       },
       {
         "slot": "sponson_1",
-        "component": "land_vehicle_VoidSpawn_Entities_base_phaser_weapon_4"
+        "component": "land_vehicle_VoidSpawn_Entities_base_bolter_weapon_2"
       },
       {
         "slot": "sponson_2",
-        "component": "land_vehicle_VoidSpawn_Entities_base_grav_weapon_8"
+        "component": "land_vehicle_VoidSpawn_Entities_base_bolter_weapon_2"
       },
       {
         "slot": "sponson_3",
-        "component": "land_vehicle_VoidSpawn_Entities_base_tesla_weapon_0"
+        "component": "land_vehicle_VoidSpawn_Entities_base_rad_weapon_3"
       },
       {
         "slot": "sponson_4",
-        "component": "land_vehicle_VoidSpawn_Entities_base_tesla_weapon_6"
+        "component": "land_vehicle_VoidSpawn_Entities_base_bolter_weapon_0"
       }
     ],
     "cost": 4088.0
@@ -3393,27 +3393,27 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_VoidSpawn_Entities_base_melta_weapon_5"
+        "component": "land_vehicle_VoidSpawn_Entities_base_bolter_weapon_8"
       },
       {
         "slot": "turret_secondary",
-        "component": "land_vehicle_VoidSpawn_Entities_base_melta_weapon_5"
+        "component": "land_vehicle_VoidSpawn_Entities_base_bolter_weapon_7"
       },
       {
         "slot": "sponson_1",
-        "component": "land_vehicle_VoidSpawn_Entities_base_melta_weapon_5"
+        "component": "land_vehicle_VoidSpawn_Entities_base_bolter_weapon_2"
       },
       {
         "slot": "sponson_2",
-        "component": "land_vehicle_VoidSpawn_Entities_base_phaser_weapon_4"
+        "component": "land_vehicle_VoidSpawn_Entities_base_rad_weapon_3"
       },
       {
         "slot": "sponson_3",
-        "component": "land_vehicle_VoidSpawn_Entities_base_tesla_weapon_0"
+        "component": "land_vehicle_VoidSpawn_Entities_base_bolter_weapon_0"
       },
       {
         "slot": "sponson_4",
-        "component": "land_vehicle_VoidSpawn_Entities_base_phaser_weapon_4"
+        "component": "land_vehicle_VoidSpawn_Entities_base_bolter_weapon_2"
       }
     ],
     "cost": 4088.0
@@ -3434,11 +3434,11 @@
     "components": [
       {
         "slot": "chin_mount",
-        "component": "land_vehicle_VoidSpawn_Entities_base_phaser_weapon_4"
+        "component": "land_vehicle_VoidSpawn_Entities_base_bolter_weapon_7"
       },
       {
         "slot": "utility",
-        "component": "land_vehicle_VoidSpawn_Entities_base_tesla_weapon_0"
+        "component": "land_vehicle_VoidSpawn_Entities_base_bolter_weapon_7"
       }
     ],
     "cost": 330.0
@@ -3459,15 +3459,15 @@
     "components": [
       {
         "slot": "arm_left",
-        "component": "land_vehicle_VoidSpawn_Entities_base_tesla_weapon_6"
+        "component": "land_vehicle_VoidSpawn_Entities_base_bolter_weapon_8"
       },
       {
         "slot": "arm_right",
-        "component": "land_vehicle_VoidSpawn_Entities_base_tesla_weapon_0"
+        "component": "land_vehicle_VoidSpawn_Entities_base_bolter_weapon_2"
       },
       {
         "slot": "shoulder",
-        "component": "land_vehicle_VoidSpawn_Entities_base_phaser_weapon_4"
+        "component": "land_vehicle_VoidSpawn_Entities_base_bolter_weapon_7"
       }
     ],
     "cost": 941.0
@@ -3488,15 +3488,15 @@
     "components": [
       {
         "slot": "arm_left",
-        "component": "land_vehicle_VoidSpawn_Entities_base_melta_weapon_5"
+        "component": "land_vehicle_VoidSpawn_Entities_base_bolter_weapon_0"
       },
       {
         "slot": "arm_right",
-        "component": "land_vehicle_VoidSpawn_Entities_base_grav_weapon_8"
+        "component": "land_vehicle_VoidSpawn_Entities_base_bolter_weapon_0"
       },
       {
         "slot": "shoulder",
-        "component": "land_vehicle_VoidSpawn_Entities_base_grav_weapon_8"
+        "component": "land_vehicle_VoidSpawn_Entities_base_rad_weapon_3"
       }
     ],
     "cost": 941.0
@@ -3517,19 +3517,19 @@
     "components": [
       {
         "slot": "arm_left",
-        "component": "land_vehicle_VoidSpawn_Entities_base_grav_weapon_8"
+        "component": "land_vehicle_VoidSpawn_Entities_base_bolter_weapon_7"
       },
       {
         "slot": "arm_right",
-        "component": "land_vehicle_VoidSpawn_Entities_base_phaser_weapon_4"
+        "component": "land_vehicle_VoidSpawn_Entities_base_rad_weapon_3"
       },
       {
         "slot": "carapace_left",
-        "component": "land_vehicle_VoidSpawn_Entities_base_melta_weapon_5"
+        "component": "land_vehicle_VoidSpawn_Entities_base_bolter_weapon_0"
       },
       {
         "slot": "carapace_right",
-        "component": "land_vehicle_VoidSpawn_Entities_base_tesla_weapon_6"
+        "component": "land_vehicle_VoidSpawn_Entities_base_rad_weapon_3"
       }
     ],
     "cost": 15056.0
@@ -3550,19 +3550,19 @@
     "components": [
       {
         "slot": "arm_left",
-        "component": "land_vehicle_VoidSpawn_Entities_base_tesla_weapon_0"
+        "component": "land_vehicle_VoidSpawn_Entities_base_bolter_weapon_7"
       },
       {
         "slot": "arm_right",
-        "component": "land_vehicle_VoidSpawn_Entities_base_phaser_weapon_4"
+        "component": "land_vehicle_VoidSpawn_Entities_base_bolter_weapon_2"
       },
       {
         "slot": "carapace_left",
-        "component": "land_vehicle_VoidSpawn_Entities_base_tesla_weapon_0"
+        "component": "land_vehicle_VoidSpawn_Entities_base_bolter_weapon_0"
       },
       {
         "slot": "carapace_right",
-        "component": "land_vehicle_VoidSpawn_Entities_base_melta_weapon_5"
+        "component": "land_vehicle_VoidSpawn_Entities_base_bolter_weapon_0"
       }
     ],
     "cost": 15056.0
@@ -3583,11 +3583,11 @@
     "components": [
       {
         "slot": "standard_issue",
-        "component": "land_small_ScrapLord_Marauders_base_plasma_weapon_9"
+        "component": "land_small_ScrapLord_Marauders_base_volkite_weapon_4"
       },
       {
         "slot": "special_issue",
-        "component": "land_small_ScrapLord_Marauders_base_tachyon_weapon_5"
+        "component": "land_small_ScrapLord_Marauders_base_melta_weapon_2"
       }
     ],
     "composition": {
@@ -3614,11 +3614,11 @@
     "components": [
       {
         "slot": "standard_issue",
-        "component": "land_small_ScrapLord_Marauders_base_polaron_weapon_0"
+        "component": "land_small_ScrapLord_Marauders_base_bolter_weapon_6"
       },
       {
         "slot": "special_issue",
-        "component": "land_small_ScrapLord_Marauders_base_plasma_weapon_9"
+        "component": "land_small_ScrapLord_Marauders_base_sonic_weapon_9"
       }
     ],
     "composition": {
@@ -3645,11 +3645,11 @@
     "components": [
       {
         "slot": "standard_issue",
-        "component": "land_small_ScrapLord_Marauders_base_tachyon_weapon_5"
+        "component": "land_small_ScrapLord_Marauders_base_sonic_weapon_9"
       },
       {
         "slot": "special_issue",
-        "component": "land_small_ScrapLord_Marauders_base_plasma_weapon_9"
+        "component": "land_small_ScrapLord_Marauders_base_sonic_weapon_9"
       }
     ],
     "composition": {
@@ -3676,11 +3676,11 @@
     "components": [
       {
         "slot": "standard_issue",
-        "component": "land_small_ScrapLord_Marauders_base_plasma_weapon_9"
+        "component": "land_small_ScrapLord_Marauders_base_melta_weapon_2"
       },
       {
         "slot": "special_issue",
-        "component": "land_small_ScrapLord_Marauders_base_plasma_weapon_3"
+        "component": "land_small_ScrapLord_Marauders_base_melta_weapon_2"
       }
     ],
     "composition": {
@@ -3707,11 +3707,11 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_ScrapLord_Marauders_base_plasma_weapon_9"
+        "component": "land_vehicle_ScrapLord_Marauders_base_disruptor_weapon_8"
       },
       {
         "slot": "hull_mount",
-        "component": "land_vehicle_ScrapLord_Marauders_base_tachyon_weapon_5"
+        "component": "land_vehicle_ScrapLord_Marauders_base_bolter_weapon_6"
       }
     ],
     "cost": 530.0
@@ -3732,19 +3732,19 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_ScrapLord_Marauders_base_plasma_weapon_9"
+        "component": "land_vehicle_ScrapLord_Marauders_base_volkite_weapon_4"
       },
       {
         "slot": "coaxial",
-        "component": "land_vehicle_ScrapLord_Marauders_base_plasma_weapon_3"
+        "component": "land_vehicle_ScrapLord_Marauders_base_melta_weapon_2"
       },
       {
         "slot": "sponson_left",
-        "component": "land_vehicle_ScrapLord_Marauders_base_tachyon_weapon_5"
+        "component": "land_vehicle_ScrapLord_Marauders_base_melta_weapon_2"
       },
       {
         "slot": "sponson_right",
-        "component": "land_vehicle_ScrapLord_Marauders_base_polaron_weapon_0"
+        "component": "land_vehicle_ScrapLord_Marauders_base_bolter_weapon_6"
       }
     ],
     "cost": 1258.0
@@ -3765,19 +3765,19 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_ScrapLord_Marauders_base_plasma_weapon_3"
+        "component": "land_vehicle_ScrapLord_Marauders_base_melta_weapon_2"
       },
       {
         "slot": "coaxial",
-        "component": "land_vehicle_ScrapLord_Marauders_base_polaron_weapon_0"
+        "component": "land_vehicle_ScrapLord_Marauders_base_tachyon_weapon_5"
       },
       {
         "slot": "sponson_left",
-        "component": "land_vehicle_ScrapLord_Marauders_base_plasma_weapon_3"
+        "component": "land_vehicle_ScrapLord_Marauders_base_tachyon_weapon_5"
       },
       {
         "slot": "sponson_right",
-        "component": "land_vehicle_ScrapLord_Marauders_base_plasma_weapon_3"
+        "component": "land_vehicle_ScrapLord_Marauders_base_tachyon_weapon_5"
       }
     ],
     "cost": 1258.0
@@ -3798,27 +3798,27 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_ScrapLord_Marauders_base_polaron_weapon_0"
+        "component": "land_vehicle_ScrapLord_Marauders_base_volkite_weapon_4"
       },
       {
         "slot": "turret_secondary",
-        "component": "land_vehicle_ScrapLord_Marauders_base_tachyon_weapon_5"
+        "component": "land_vehicle_ScrapLord_Marauders_base_plasma_weapon_0"
       },
       {
         "slot": "sponson_1",
-        "component": "land_vehicle_ScrapLord_Marauders_base_plasma_weapon_3"
+        "component": "land_vehicle_ScrapLord_Marauders_base_plasma_weapon_0"
       },
       {
         "slot": "sponson_2",
-        "component": "land_vehicle_ScrapLord_Marauders_base_plasma_weapon_9"
+        "component": "land_vehicle_ScrapLord_Marauders_base_tachyon_weapon_5"
       },
       {
         "slot": "sponson_3",
-        "component": "land_vehicle_ScrapLord_Marauders_base_plasma_weapon_9"
+        "component": "land_vehicle_ScrapLord_Marauders_base_volkite_weapon_4"
       },
       {
         "slot": "sponson_4",
-        "component": "land_vehicle_ScrapLord_Marauders_base_polaron_weapon_0"
+        "component": "land_vehicle_ScrapLord_Marauders_base_plasma_weapon_0"
       }
     ],
     "cost": 4088.0
@@ -3839,27 +3839,27 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_ScrapLord_Marauders_base_plasma_weapon_9"
+        "component": "land_vehicle_ScrapLord_Marauders_base_volkite_weapon_4"
       },
       {
         "slot": "turret_secondary",
-        "component": "land_vehicle_ScrapLord_Marauders_base_polaron_weapon_0"
+        "component": "land_vehicle_ScrapLord_Marauders_base_sonic_weapon_9"
       },
       {
         "slot": "sponson_1",
-        "component": "land_vehicle_ScrapLord_Marauders_base_plasma_weapon_3"
+        "component": "land_vehicle_ScrapLord_Marauders_base_disruptor_weapon_8"
       },
       {
         "slot": "sponson_2",
-        "component": "land_vehicle_ScrapLord_Marauders_base_plasma_weapon_9"
+        "component": "land_vehicle_ScrapLord_Marauders_base_bolter_weapon_6"
       },
       {
         "slot": "sponson_3",
-        "component": "land_vehicle_ScrapLord_Marauders_base_plasma_weapon_3"
+        "component": "land_vehicle_ScrapLord_Marauders_base_plasma_weapon_0"
       },
       {
         "slot": "sponson_4",
-        "component": "land_vehicle_ScrapLord_Marauders_base_plasma_weapon_9"
+        "component": "land_vehicle_ScrapLord_Marauders_base_volkite_weapon_4"
       }
     ],
     "cost": 4088.0
@@ -3880,11 +3880,11 @@
     "components": [
       {
         "slot": "chin_mount",
-        "component": "land_vehicle_ScrapLord_Marauders_base_polaron_weapon_0"
+        "component": "land_vehicle_ScrapLord_Marauders_base_disruptor_weapon_8"
       },
       {
         "slot": "utility",
-        "component": "land_vehicle_ScrapLord_Marauders_base_polaron_weapon_0"
+        "component": "land_vehicle_ScrapLord_Marauders_base_plasma_weapon_0"
       }
     ],
     "cost": 330.0
@@ -3905,7 +3905,7 @@
     "components": [
       {
         "slot": "arm_left",
-        "component": "land_vehicle_ScrapLord_Marauders_base_tachyon_weapon_5"
+        "component": "land_vehicle_ScrapLord_Marauders_base_bolter_weapon_6"
       },
       {
         "slot": "arm_right",
@@ -3913,7 +3913,7 @@
       },
       {
         "slot": "shoulder",
-        "component": "land_vehicle_ScrapLord_Marauders_base_tachyon_weapon_5"
+        "component": "land_vehicle_ScrapLord_Marauders_base_melta_weapon_2"
       }
     ],
     "cost": 941.0
@@ -3934,15 +3934,15 @@
     "components": [
       {
         "slot": "arm_left",
-        "component": "land_vehicle_ScrapLord_Marauders_base_tachyon_weapon_5"
+        "component": "land_vehicle_ScrapLord_Marauders_base_bolter_weapon_6"
       },
       {
         "slot": "arm_right",
-        "component": "land_vehicle_ScrapLord_Marauders_base_plasma_weapon_9"
+        "component": "land_vehicle_ScrapLord_Marauders_base_melta_weapon_2"
       },
       {
         "slot": "shoulder",
-        "component": "land_vehicle_ScrapLord_Marauders_base_plasma_weapon_3"
+        "component": "land_vehicle_ScrapLord_Marauders_base_tachyon_weapon_5"
       }
     ],
     "cost": 941.0
@@ -3963,19 +3963,19 @@
     "components": [
       {
         "slot": "arm_left",
-        "component": "land_vehicle_ScrapLord_Marauders_base_plasma_weapon_3"
+        "component": "land_vehicle_ScrapLord_Marauders_base_sonic_weapon_9"
       },
       {
         "slot": "arm_right",
-        "component": "land_vehicle_ScrapLord_Marauders_base_tachyon_weapon_5"
+        "component": "land_vehicle_ScrapLord_Marauders_base_volkite_weapon_4"
       },
       {
         "slot": "carapace_left",
-        "component": "land_vehicle_ScrapLord_Marauders_base_plasma_weapon_9"
+        "component": "land_vehicle_ScrapLord_Marauders_base_volkite_weapon_4"
       },
       {
         "slot": "carapace_right",
-        "component": "land_vehicle_ScrapLord_Marauders_base_tachyon_weapon_5"
+        "component": "land_vehicle_ScrapLord_Marauders_base_melta_weapon_2"
       }
     ],
     "cost": 15056.0
@@ -3996,19 +3996,19 @@
     "components": [
       {
         "slot": "arm_left",
-        "component": "land_vehicle_ScrapLord_Marauders_base_plasma_weapon_3"
+        "component": "land_vehicle_ScrapLord_Marauders_base_bolter_weapon_6"
       },
       {
         "slot": "arm_right",
-        "component": "land_vehicle_ScrapLord_Marauders_base_plasma_weapon_9"
+        "component": "land_vehicle_ScrapLord_Marauders_base_bolter_weapon_6"
       },
       {
         "slot": "carapace_left",
-        "component": "land_vehicle_ScrapLord_Marauders_base_plasma_weapon_3"
+        "component": "land_vehicle_ScrapLord_Marauders_base_sonic_weapon_9"
       },
       {
         "slot": "carapace_right",
-        "component": "land_vehicle_ScrapLord_Marauders_base_polaron_weapon_0"
+        "component": "land_vehicle_ScrapLord_Marauders_base_sonic_weapon_9"
       }
     ],
     "cost": 15056.0
@@ -4029,11 +4029,11 @@
     "components": [
       {
         "slot": "standard_issue",
-        "component": "land_small_Primeval_Sentinels_base_rad_weapon_2"
+        "component": "land_small_Primeval_Sentinels_base_tesla_weapon_7"
       },
       {
         "slot": "special_issue",
-        "component": "land_small_Primeval_Sentinels_base_rad_weapon_7"
+        "component": "land_small_Primeval_Sentinels_base_rad_weapon_1"
       }
     ],
     "composition": {
@@ -4060,11 +4060,11 @@
     "components": [
       {
         "slot": "standard_issue",
-        "component": "land_small_Primeval_Sentinels_base_bolter_weapon_0"
+        "component": "land_small_Primeval_Sentinels_base_tesla_weapon_7"
       },
       {
         "slot": "special_issue",
-        "component": "land_small_Primeval_Sentinels_base_rad_weapon_3"
+        "component": "land_small_Primeval_Sentinels_base_rad_weapon_1"
       }
     ],
     "composition": {
@@ -4091,11 +4091,11 @@
     "components": [
       {
         "slot": "standard_issue",
-        "component": "land_small_Primeval_Sentinels_base_bolter_weapon_0"
+        "component": "land_small_Primeval_Sentinels_base_rad_weapon_1"
       },
       {
         "slot": "special_issue",
-        "component": "land_small_Primeval_Sentinels_base_melta_weapon_6"
+        "component": "land_small_Primeval_Sentinels_base_tesla_weapon_7"
       }
     ],
     "composition": {
@@ -4122,11 +4122,11 @@
     "components": [
       {
         "slot": "standard_issue",
-        "component": "land_small_Primeval_Sentinels_base_rad_weapon_3"
+        "component": "land_small_Primeval_Sentinels_base_disruptor_weapon_3"
       },
       {
         "slot": "special_issue",
-        "component": "land_small_Primeval_Sentinels_base_rad_weapon_3"
+        "component": "land_small_Primeval_Sentinels_base_disruptor_weapon_3"
       }
     ],
     "composition": {
@@ -4153,11 +4153,11 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_Primeval_Sentinels_base_bolter_weapon_0"
+        "component": "land_vehicle_Primeval_Sentinels_base_tesla_weapon_7"
       },
       {
         "slot": "hull_mount",
-        "component": "land_vehicle_Primeval_Sentinels_base_bolter_weapon_0"
+        "component": "land_vehicle_Primeval_Sentinels_base_rad_weapon_1"
       }
     ],
     "cost": 530.0
@@ -4178,19 +4178,19 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_Primeval_Sentinels_base_rad_weapon_7"
+        "component": "land_vehicle_Primeval_Sentinels_base_disruptor_weapon_3"
       },
       {
         "slot": "coaxial",
-        "component": "land_vehicle_Primeval_Sentinels_base_bolter_weapon_0"
+        "component": "land_vehicle_Primeval_Sentinels_base_disruptor_weapon_3"
       },
       {
         "slot": "sponson_left",
-        "component": "land_vehicle_Primeval_Sentinels_base_melta_weapon_6"
+        "component": "land_vehicle_Primeval_Sentinels_base_rad_weapon_1"
       },
       {
         "slot": "sponson_right",
-        "component": "land_vehicle_Primeval_Sentinels_base_melta_weapon_6"
+        "component": "land_vehicle_Primeval_Sentinels_base_tesla_weapon_7"
       }
     ],
     "cost": 1258.0
@@ -4211,19 +4211,19 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_Primeval_Sentinels_base_rad_weapon_7"
+        "component": "land_vehicle_Primeval_Sentinels_base_rad_weapon_1"
       },
       {
         "slot": "coaxial",
-        "component": "land_vehicle_Primeval_Sentinels_base_bolter_weapon_0"
+        "component": "land_vehicle_Primeval_Sentinels_base_disruptor_weapon_3"
       },
       {
         "slot": "sponson_left",
-        "component": "land_vehicle_Primeval_Sentinels_base_rad_weapon_2"
+        "component": "land_vehicle_Primeval_Sentinels_base_tesla_weapon_7"
       },
       {
         "slot": "sponson_right",
-        "component": "land_vehicle_Primeval_Sentinels_base_melta_weapon_6"
+        "component": "land_vehicle_Primeval_Sentinels_base_disruptor_weapon_3"
       }
     ],
     "cost": 1258.0
@@ -4244,27 +4244,27 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_Primeval_Sentinels_base_bolter_weapon_0"
+        "component": "land_vehicle_Primeval_Sentinels_base_disruptor_weapon_3"
       },
       {
         "slot": "turret_secondary",
-        "component": "land_vehicle_Primeval_Sentinels_base_polaron_weapon_8"
+        "component": "land_vehicle_Primeval_Sentinels_base_tesla_weapon_7"
       },
       {
         "slot": "sponson_1",
-        "component": "land_vehicle_Primeval_Sentinels_base_polaron_weapon_8"
+        "component": "land_vehicle_Primeval_Sentinels_base_rad_weapon_1"
       },
       {
         "slot": "sponson_2",
-        "component": "land_vehicle_Primeval_Sentinels_base_rad_weapon_3"
+        "component": "land_vehicle_Primeval_Sentinels_base_rad_weapon_1"
       },
       {
         "slot": "sponson_3",
-        "component": "land_vehicle_Primeval_Sentinels_base_melta_weapon_6"
+        "component": "land_vehicle_Primeval_Sentinels_base_rad_weapon_1"
       },
       {
         "slot": "sponson_4",
-        "component": "land_vehicle_Primeval_Sentinels_base_rad_weapon_3"
+        "component": "land_vehicle_Primeval_Sentinels_base_tesla_weapon_7"
       }
     ],
     "cost": 4088.0
@@ -4285,27 +4285,27 @@
     "components": [
       {
         "slot": "turret_main",
-        "component": "land_vehicle_Primeval_Sentinels_base_bolter_weapon_0"
+        "component": "land_vehicle_Primeval_Sentinels_base_disruptor_weapon_3"
       },
       {
         "slot": "turret_secondary",
-        "component": "land_vehicle_Primeval_Sentinels_base_melta_weapon_6"
+        "component": "land_vehicle_Primeval_Sentinels_base_rad_weapon_1"
       },
       {
         "slot": "sponson_1",
-        "component": "land_vehicle_Primeval_Sentinels_base_polaron_weapon_8"
+        "component": "land_vehicle_Primeval_Sentinels_base_disruptor_weapon_3"
       },
       {
         "slot": "sponson_2",
-        "component": "land_vehicle_Primeval_Sentinels_base_polaron_weapon_8"
+        "component": "land_vehicle_Primeval_Sentinels_base_tesla_weapon_7"
       },
       {
         "slot": "sponson_3",
-        "component": "land_vehicle_Primeval_Sentinels_base_bolter_weapon_0"
+        "component": "land_vehicle_Primeval_Sentinels_base_tesla_weapon_7"
       },
       {
         "slot": "sponson_4",
-        "component": "land_vehicle_Primeval_Sentinels_base_rad_weapon_3"
+        "component": "land_vehicle_Primeval_Sentinels_base_disruptor_weapon_3"
       }
     ],
     "cost": 4088.0
@@ -4326,11 +4326,11 @@
     "components": [
       {
         "slot": "chin_mount",
-        "component": "land_vehicle_Primeval_Sentinels_base_rad_weapon_3"
+        "component": "land_vehicle_Primeval_Sentinels_base_disruptor_weapon_3"
       },
       {
         "slot": "utility",
-        "component": "land_vehicle_Primeval_Sentinels_base_rad_weapon_7"
+        "component": "land_vehicle_Primeval_Sentinels_base_tesla_weapon_7"
       }
     ],
     "cost": 330.0
@@ -4351,15 +4351,15 @@
     "components": [
       {
         "slot": "arm_left",
-        "component": "land_vehicle_Primeval_Sentinels_base_polaron_weapon_8"
+        "component": "land_vehicle_Primeval_Sentinels_base_disruptor_weapon_3"
       },
       {
         "slot": "arm_right",
-        "component": "land_vehicle_Primeval_Sentinels_base_rad_weapon_2"
+        "component": "land_vehicle_Primeval_Sentinels_base_disruptor_weapon_3"
       },
       {
         "slot": "shoulder",
-        "component": "land_vehicle_Primeval_Sentinels_base_melta_weapon_6"
+        "component": "land_vehicle_Primeval_Sentinels_base_disruptor_weapon_3"
       }
     ],
     "cost": 941.0
@@ -4380,15 +4380,15 @@
     "components": [
       {
         "slot": "arm_left",
-        "component": "land_vehicle_Primeval_Sentinels_base_bolter_weapon_0"
+        "component": "land_vehicle_Primeval_Sentinels_base_disruptor_weapon_3"
       },
       {
         "slot": "arm_right",
-        "component": "land_vehicle_Primeval_Sentinels_base_rad_weapon_2"
+        "component": "land_vehicle_Primeval_Sentinels_base_rad_weapon_1"
       },
       {
         "slot": "shoulder",
-        "component": "land_vehicle_Primeval_Sentinels_base_polaron_weapon_8"
+        "component": "land_vehicle_Primeval_Sentinels_base_tesla_weapon_7"
       }
     ],
     "cost": 941.0
@@ -4409,19 +4409,19 @@
     "components": [
       {
         "slot": "arm_left",
-        "component": "land_vehicle_Primeval_Sentinels_base_melta_weapon_6"
+        "component": "land_vehicle_Primeval_Sentinels_base_rad_weapon_1"
       },
       {
         "slot": "arm_right",
-        "component": "land_vehicle_Primeval_Sentinels_base_melta_weapon_6"
+        "component": "land_vehicle_Primeval_Sentinels_base_tesla_weapon_7"
       },
       {
         "slot": "carapace_left",
-        "component": "land_vehicle_Primeval_Sentinels_base_rad_weapon_2"
+        "component": "land_vehicle_Primeval_Sentinels_base_tesla_weapon_7"
       },
       {
         "slot": "carapace_right",
-        "component": "land_vehicle_Primeval_Sentinels_base_rad_weapon_2"
+        "component": "land_vehicle_Primeval_Sentinels_base_disruptor_weapon_3"
       }
     ],
     "cost": 15056.0
@@ -4442,19 +4442,19 @@
     "components": [
       {
         "slot": "arm_left",
-        "component": "land_vehicle_Primeval_Sentinels_base_rad_weapon_3"
+        "component": "land_vehicle_Primeval_Sentinels_base_disruptor_weapon_3"
       },
       {
         "slot": "arm_right",
-        "component": "land_vehicle_Primeval_Sentinels_base_polaron_weapon_8"
+        "component": "land_vehicle_Primeval_Sentinels_base_tesla_weapon_7"
       },
       {
         "slot": "carapace_left",
-        "component": "land_vehicle_Primeval_Sentinels_base_polaron_weapon_8"
+        "component": "land_vehicle_Primeval_Sentinels_base_disruptor_weapon_3"
       },
       {
         "slot": "carapace_right",
-        "component": "land_vehicle_Primeval_Sentinels_base_rad_weapon_2"
+        "component": "land_vehicle_Primeval_Sentinels_base_rad_weapon_1"
       }
     ],
     "cost": 15056.0

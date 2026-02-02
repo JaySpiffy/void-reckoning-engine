@@ -71,8 +71,16 @@ class IntelligenceManager:
         
         powers: Dict[str, int] = {}
         # Fleets
+        orbit_node = getattr(location, 'node_reference', None)
         for f in self.engine.fleets:
-            if not f.is_destroyed and f.location == location:
+            if f.is_destroyed: continue
+            
+            # Check if fleet is AT the planet or IN ORBIT of the planet
+            is_here = (f.location == location)
+            if not is_here and orbit_node and f.location == orbit_node:
+                is_here = True
+                
+            if is_here:
                 powers[f.faction] = powers.get(f.faction, 0) + f.power
         
         # Planet Garrison / Armies
@@ -81,9 +89,10 @@ class IntelligenceManager:
                 if not ag.is_destroyed:
                     powers[ag.faction] = powers.get(ag.faction, 0) + ag.power
         
-        # Planet base defense (if any)
+        # Planet base defense (Natural fortifications)
         if hasattr(location, 'defense_level') and location.owner != "Neutral":
-             powers[location.owner] = powers.get(location.owner, 0) + (location.defense_level * 500)
+             # [TUNING] Lowered base defense multiplier to 250 (from 500) to reduce early-game paralysis
+             powers[location.owner] = powers.get(location.owner, 0) + (location.defense_level * 250)
         
         return powers
         

@@ -22,14 +22,12 @@ class FluxStormManager:
                 for edge in node.edges:
                     # If this is a Flux Route (connected to FluxPoint), track it.
                     if edge.source.type == "FluxPoint" or edge.target.type == "FluxPoint":
-                        # Deduplication Logic: Treat A->B and B->A as the same "Link" for weather purposes?
-                        # Actually, better to just track them individually but allow filtering.
-                        # Using sorted ID pair to identify the "link"
-                        # Assuming source/target have unique IDs or names
+                        # Deduplication Logic: Treat A->B and B->A as the same "Link" for weather purposes.
                         link_id = tuple(sorted((id(edge.source), id(edge.target))))
-                        
-                        # We append ALL edges, but we can regulate count later.
-                        # For now, let's just append.
+                        if link_id in seen_links:
+                            continue
+                            
+                        seen_links.add(link_id)
                         self.edges.append(edge)
 
         if self.engine.logger:
@@ -110,8 +108,7 @@ class FluxStormManager:
                         current_count += 1
 
         # Summary Log Only
-        if self.engine.logger and current_count > 0:
-             # Only log periodically or if count changes?
-             # For now, keep it every turn but concise
-             pass 
-             # self.engine.logger.environment(f"[WEATHER] Active Flux Storms: {len(self.active_storms)}/{max_storms}")
+        if self.engine.logger:
+             # Periodically log storm summary
+             if self.engine.turn_counter % 5 == 0:
+                 self.engine.logger.environment(f"[WEATHER] Active Flux Storms: {len(self.active_storms)}/{max_storms} (Total nav-vectors: {len(self.edges)})")

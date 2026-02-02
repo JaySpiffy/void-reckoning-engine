@@ -70,7 +70,7 @@ class StarSystem:
             if i == 0:
                 n_type = "Star"
                 n_name = f"{self.name} Primary Star"
-            elif i >= num_nodes - 5: # Phase 40: Increased Gates to 5
+            elif i >= num_nodes - 10: # Phase 40: Increased Gates to 10
                 n_type = "FluxPoint" # Outer edge gates
                 n_name = f"Flux Gate {i}"
             

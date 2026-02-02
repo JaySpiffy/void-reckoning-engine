@@ -502,6 +502,12 @@ class GalaxyGenerator:
                 s.generate_topology()
 
         # 5. Link Inter-System Flux Gates
+        # Re-sync connections after parallel generation (pickle artifacts)
+        sys_map = {s.name: s for s in self.systems}
+        for s in self.systems:
+            s.connections = [sys_map[c.name] for c in s.connections]
+
+        total_links = 0
         for s in self.systems:
             available_wps = [n for n in s.nodes if n.type == "FluxPoint"]
             for i, neighbor in enumerate(s.connections):
@@ -509,6 +515,8 @@ class GalaxyGenerator:
                     wp = available_wps[i]
                     wp.metadata["target_system"] = neighbor
                     wp.name = f"Gate to {neighbor.name}"
+                else:
+                    logger.warning(f"System {s.name} has more connections ({len(s.connections)}) than FluxPoints ({len(available_wps)})!")
 
         for s1 in self.systems:
             for s1_node in s1.nodes:
@@ -520,6 +528,12 @@ class GalaxyGenerator:
                              if not any(e.target == target_wp for e in s1_node.edges):
                                  s1_node.add_edge(target_wp, distance=10)
                                  target_wp.add_edge(s1_node, distance=10)
+                                 total_links += 1
+                         else:
+                             # This is a critical failure point for connectivity
+                             logger.debug(f"Failed to find return gate in {target_sys.name} facing {s1.name}")
+
+        logger.info(f"Galaxy Connectivity: Linked {total_links} inter-system flux gates.")
                                  
         # 6. Portal Generation (Phase 22)
         try:

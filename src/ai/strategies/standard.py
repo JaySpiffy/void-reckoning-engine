@@ -56,28 +56,39 @@ class StandardStrategy(FactionAIStrategy):
         def is_safe(planet):
             # 1. Use Intelligence Memory first
             intel = engine.intel_manager.get_cached_intel(fleet.faction, planet.name, engine.turn_counter)
+            
+            # [TUNING] Dynamic Threat Tolerance based on Personality and Target Type
+            # Expansionist factions (high aggression/expansion) are willing to take more risks.
+            aggression = getattr(f_mgr, 'aggression', 1.0)
+            expansion = getattr(f_mgr, 'expansion_bias', 0.8)
+            
+            # Base tolerance is 1.2. High aggression increases it.
+            # e.g., Aggression 2.0 -> Tolerance 1.4
+            tolerance = 1.0 + (aggression * 0.2)
+            
+            # If the planet is Neutral, we are even more willing to risk it (Colonization urgency)
+            if planet.owner == "Neutral":
+                tolerance *= 1.5 # 1.2 * 1.5 = 1.8
+            
             if intel and intel[0] > 0: # Check if last_seen_turn > 0
                 start_turn = intel[0]
                 if engine.turn_counter - start_turn < 4:
-                     return intel[3] < 1.2 # threat
+                     return intel[3] < tolerance # threat
 
             # 2. Fallback: If visible, use accurate threat
             if planet.name in f_mgr.visible_planets:
-                return engine.intel_manager.calculate_threat_level(planet.name, fleet.faction, engine.turn_counter) < 1.2
+                return engine.intel_manager.calculate_threat_level(planet.name, fleet.faction, engine.turn_counter) < tolerance
 
             # 3. Completely Unknown (Fog of War)
             if getattr(fleet, 'is_scout', False): return True
-            # 3. Completely Unknown (Fog of War) - Use Cached Intel if available, else risk it
-            if getattr(fleet, 'is_scout', False): return True
             
             # [INTEL] Use cached intel for "real" threat estimation (simulating memory)
-            intel = engine.intel_manager.get_cached_intel(fleet.faction, planet.name, engine.turn_counter)
             cached_threat = intel[3]
             
             # If we have NO intel (never seen), assume it's risky but explorable
             if intel[0] == 0: return True 
             
-            return (cached_threat * 1.3) < 1.2
+            return (cached_threat * 1.3) < tolerance
 
         candidates = [p for p in nearby if p.name in f_mgr.known_planets or (hasattr(fleet.location, 'system') and p in nearby)]
         safe_targets = []
