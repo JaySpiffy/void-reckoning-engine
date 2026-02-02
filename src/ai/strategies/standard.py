@@ -25,6 +25,71 @@ class StandardStrategy(FactionAIStrategy):
         f_mgr = engine.factions.get(fleet.faction)
         if not f_mgr: return None
 
+        # [NEW] CONSTRUCTOR TASKING
+        is_constructor_fleet = any(getattr(u, 'unit_class', '') == 'constructor' for u in fleet.units)
+        if is_constructor_fleet:
+            # 1. Prioritize Starbases under construction
+            for sb_fleet in engine.fleets:
+                if sb_fleet.faction == fleet.faction and not sb_fleet.is_destroyed:
+                    if any(getattr(u, 'unit_class', '') == 'Starbase' and getattr(u, 'is_under_construction', False) for u in sb_fleet.units):
+                        # Move to support the construction
+                        if sb_fleet.location != fleet.location:
+                             return sb_fleet.location
+            
+            # 2. If already at construction site, stay there!
+            at_site = False
+            for u in fleet.units:
+                 # Check if we are already at a site with a construction project
+                 for other_f in engine.fleets:
+                     if other_f.location == fleet.location and other_f.faction == fleet.faction:
+                          if any(getattr(unit, 'unit_class', '') == 'Starbase' and getattr(unit, 'is_under_construction', False) for unit in other_f.units):
+                               at_site = True
+                               break
+            if at_site: return None # Stay put
+
+            # 2.5 [NEW] Strategic Construction Projects
+            # If wealthy, expand infrastructure to specialized nodes
+            if f_mgr.requisition > 3000:
+                valid_targets = []
+                # Scan known systems (via known planets)
+                known_planet_names = set(f_mgr.known_planets)
+                known_systems = set()
+                
+                # Resolve systems from known planets
+                # Resolve systems from known planets
+                for p in engine.all_planets:
+                    if p.name in known_planet_names and hasattr(p, 'node_reference'):
+                        sys = p.node_reference.metadata.get("system")
+                        if sys: known_systems.add(sys)
+                
+                # print(f"DEBUG: {fleet.faction} Constructor scanning {len(known_systems)} systems for targets.")
+                for sys in known_systems:
+                     for node in sys.nodes:
+                         if node.type in ["AsteroidField", "Nebula", "FluxPoint"]:
+                             # Check if occupied by ANY structure
+                             is_occupied = False
+                             # Optimization: Use fleet location map if available, else loop
+                             for f in engine.fleets:
+                                 if f.location == node and not f.is_destroyed:
+                                      # Check for any static structure
+                                      if any(getattr(u, 'unit_class', '') in ['Starbase', 'MiningStation', 'ResearchOutpost', 'ListeningPost'] for u in f.units):
+                                          is_occupied = True
+                                          break
+                             
+                             if not is_occupied:
+                                  valid_targets.append(node)
+                
+                if valid_targets:
+                     # Prioritize closest
+                     target = min(valid_targets, key=lambda n: engine.intel_manager.calculate_distance(fleet.location.name, n.name))
+                     print(f"DEBUG: {fleet.faction} Constructor selected {target.name} ({target.type})")
+                     return target
+
+            # 3. Fallback: Return to a safe shipyard for protection
+            home_planets = engine.planets_by_faction.get(fleet.faction, [])
+            if home_planets: return _ai_rng.choice(home_planets)
+            return None
+
         # CurrentLocation Assessment
         theater_stats = engine.intel_manager.get_theater_power(fleet.location.name, engine.turn_counter)
         my_side_power = sum(p for f, p in theater_stats.items() if f == fleet.faction)

@@ -59,7 +59,13 @@ class ShipDesignService:
         # If mandate suggest "Tech Stealing" -> Ion Weapons?
         # Future: Check mandates to see if we need Anti-Shield or Anti-Armor
         
-        slots = self._get_slots_for_hull(hull_class)
+        if role == "Constructor":
+            # Constructors have 0 weapons, only Engines and specialized support (Defense)
+            # We can represent the constructor module as a high-cost component or just hull trait.
+            slots = ["Engine", "Defense", "Engine"]
+        else:
+            slots = self._get_slots_for_hull(hull_class)
+            
         for slot in slots:
             if slot == "Weapon":
                 w = self._pick_weapon(faction, role)
@@ -182,6 +188,9 @@ class ShipDesignService:
         elif faction == "Hierarchs": prefix = "Dynastic"
         elif faction == "Marauders": prefix = "Krump"
         
+        if role == "Constructor":
+            return f"{prefix} Construction Platform"
+            
         return f"{prefix}-{hull} ({role})"
 
     def _aggregate_stats(self, components: List[Dict[str, Any]]) -> Dict[str, Any]:

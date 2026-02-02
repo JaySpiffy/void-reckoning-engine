@@ -170,3 +170,7 @@ FACTION_ABBREVIATIONS = {
     "Primeval_Sentinels": "PRM"
 }
 
+# --- PHASE 23: LOGISTICS ---
+UNIT_CLASS_CONSTRUCTOR = "constructor"
+CONSTRUCTOR_UPKEEP_MULT = 1.2
+

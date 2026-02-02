@@ -178,6 +178,22 @@ class ResourceHandler:
                     fleet_total *= bal.FLEET_MAINTENANCE_SCALAR
                 
                 total_fleet_upkeep += int(fleet_total)
+
+                # [NEW] orbital infrastructure Income
+                for u in f.units:
+                    if getattr(u, 'unit_class', '') == 'MiningStation':
+                         mining_yield = 500
+                         f_cache["income"] += mining_yield
+                         if "income_by_category" in f_cache:
+                             f_cache["income_by_category"]["Mining"] += mining_yield
+                             
+                    elif getattr(u, 'unit_class', '') == 'ResearchOutpost':
+                         research_yield = 10
+                         # Apply research speed multiplier
+                         f_mgr = self.engine.get_faction(f_name)
+                         rp_mult = f_mgr.get_modifier("research_speed_mult", 1.0) if f_mgr else 1.0
+                         
+                         f_cache["research_income"] = f_cache.get("research_income", 0) + int(research_yield * rp_mult)
             
             f_cache["fleet_upkeep"] = total_fleet_upkeep
             f_cache["military_upkeep"] = total_fleet_upkeep + f_cache.get("army_upkeep", 0)

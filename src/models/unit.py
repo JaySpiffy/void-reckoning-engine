@@ -380,8 +380,8 @@ class Unit:
 class Ship(Unit):
     def __init__(self, name, faction, **kwargs):
         kwargs.pop("domain", None)
-        super().__init__(name, faction, domain="space", **kwargs)
-        self.unit_class = "ship"
+        u_class = kwargs.pop("unit_class", "ship")
+        super().__init__(name, faction, unit_class=u_class, domain="space", **kwargs)
     
     def is_ship(self):
         return True
@@ -389,8 +389,8 @@ class Ship(Unit):
 class Regiment(Unit):
     def __init__(self, name, faction, **kwargs):
         kwargs.pop("domain", None)
-        super().__init__(name, faction, domain="ground", **kwargs)
-        self.unit_class = "regiment"
+        u_class = kwargs.pop("unit_class", "regiment")
+        super().__init__(name, faction, unit_class=u_class, domain="ground", **kwargs)
 
     # is_ship() inherited as False from Unit
 

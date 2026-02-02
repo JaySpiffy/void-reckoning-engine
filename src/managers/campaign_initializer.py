@@ -62,8 +62,8 @@ class CampaignInitializer:
         self._setup_state_managers()
         self._setup_core_managers()
         self._setup_sub_managers()
-        self._setup_services()
         self._setup_strategies_and_mechanics()
+        self._setup_services()
         
         # [ORDER FIX] Template support must run AFTER all blueprints and managers are ready
         self._setup_template_support()
@@ -280,9 +280,11 @@ class CampaignInitializer:
             self.engine.telemetry = TelemetryCollector(tele_dir, verbosity=verbosity, universe_name=self.engine.universe_config.name, logger=self.engine.logger)
 
     def _setup_services(self):
+        from src.services.ship_design_service import ShipDesignService
         self.engine.pathfinder = PathfindingService()
         self.engine.portal_manager = PortalManager(self.engine)
         self.engine.construction_service = ConstructionService(self.engine)
+        self.engine.design_service = ShipDesignService(self.engine.ai_manager)
         
         # Blueprints & DB
         # unit_blueprints, navy_blueprints, army_blueprints are now populated in _setup_sub_managers
@@ -301,6 +303,7 @@ class CampaignInitializer:
         self.engine.default_strategy = StandardStrategy()
         self.engine.strategies = {}
         self.engine.strategic_ai = self.manager_overrides.get("strategic_ai") or StrategicAI(self.engine)
+        self.engine.ai_manager = self.engine.strategic_ai # [ALIAS] For legacy/shared access
         self.engine.strategic_ai.load_personalities(self.engine.universe_config.name)
         
         # Mechanics

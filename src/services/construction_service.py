@@ -935,18 +935,24 @@ class ConstructionService:
                         # Log Telemetry
                         self._log_starbase_deployment(f_name, p.name, 1, cost, "New Construction", "started")
             
-            # Additional logic for deep space nodes (FluxPoint/Portal)
+            # Additional logic for deep space nodes (FluxPoint/Portal/Asteroid/Nebula)
             # Find all nodes that are strategic but not planets
-            strategic_nodes = [n for n in system.nodes if n.type in ["FluxPoint", "Portal"]]
+            strategic_nodes = [n for n in system.nodes if n.type in ["FluxPoint", "Portal", "AsteroidField", "Nebula"]]
             for node in strategic_nodes:
                 if spent >= remaining_budget: break
                 
-                # Check for existing starbase at this node
-                existing_sb_fleet = next((f for f in self.engine.fleets if f.location == node and any(u.unit_class == "Starbase" for u in f.units)), None)
+                # Check for existing starbase/structure at this node
+                existing_sb_fleet = next((f for f in self.engine.fleets if f.location == node and any(u.unit_class in ["Starbase", "MiningStation", "ResearchOutpost"] for u in f.units) and not f.is_destroyed), None)
+                
                 if existing_sb_fleet:
-                    # Upgrade logic for node-based starbase
-                    sb = next(u for u in existing_sb_fleet.units if u.unit_class == "Starbase")
-                    if sb.faction != f_name or sb.tier >= 5: continue
+                    # Upgrade logic for node-based starbase (Only Starbases upgrade relationally for now)
+                    sb = next(u for u in existing_sb_fleet.units if u.unit_class in ["Starbase", "MiningStation", "ResearchOutpost"])
+                    if sb.faction != f_name: continue
+                    
+                    # Mining/Research Stations don't upgrade yet
+                    if sb.unit_class != "Starbase": continue
+                    
+                    if sb.tier >= 5: continue
                     
                     cost = 1000 * (sb.tier + 1)
                     if faction_mgr.can_afford(cost) and cost <= (remaining_budget - spent) and faction_mgr.requisition > cost * 3.0:
@@ -968,16 +974,42 @@ class ConstructionService:
                 friendly_fleet = fleet_locations.get(node)
                 if not friendly_fleet: continue
                 
+                # STRUCTURE DEFINITION
+                struct_type = "Starbase"
                 cost = 1000
-                if faction_mgr.can_afford(cost) and cost <= (remaining_budget - spent) and faction_mgr.requisition > 15000:
-                    new_sb = Starbase(f"{node.name} Station", f_name, system, tier=1, under_construction=True)
-                    system.starbases.append(new_sb)
-                    fid = f"SB_{node.id}_{f_name}"
-                    self.engine.create_fleet(f_name, node, units=[new_sb], fid=fid)
+                name_suffix = "Station"
+                
+                # Asteroid Mining Logic
+                if node.type == "AsteroidField":
+                    struct_type = "MiningStation"
+                    cost = 500
+                    name_suffix = "Mining Platform"
+                
+                # Nebula Research Logic
+                elif node.type == "Nebula":
+                    struct_type = "ResearchOutpost"
+                    cost = 750
+                    name_suffix = "Research Hub"
+
+                # Listening Post Logic (Flux Nodes)
+                elif node.type == "FluxPoint":
+                    struct_type = "ListeningPost"
+                    cost = 750
+                    name_suffix = "Listening Post"
+                
+                if faction_mgr.can_afford(cost) and cost <= (remaining_budget - spent) and faction_mgr.requisition > (cost * 2.0):
+                    # For mining stations, we want to expand aggressively if we have the budget
+                    
+                    new_struct = Starbase(f"{node.name} {name_suffix}", f_name, system, tier=1, under_construction=True)
+                    new_struct.unit_class = struct_type # Override class
+                    
+                    system.starbases.append(new_struct)
+                    fid = f"STR_{node.id}_{f_name}"
+                    self.engine.create_fleet(f_name, node, units=[new_struct], fid=fid)
                     faction_mgr.deduct_cost(cost)
                     spent += cost
                     if self.engine.logger:
-                        self.engine.logger.economy(f"[CONSTRUCTION] {f_name} started Deep Space Starbase at {node.name}")
+                        self.engine.logger.economy(f"[CONSTRUCTION] {f_name} started {struct_type} at {node.name}")
                     # Log Telemetry
                     self._log_starbase_deployment(f_name, f"Deep Space {node.name}", 1, cost, "Deep Space New", "started")
         return spent
@@ -1000,21 +1032,17 @@ class ConstructionService:
                         if p_obj and p_obj.owner == f_name:
                             is_owned_planet_node = True
                     
-                    has_fleet = False
-                    if is_owned_planet_node:
-                        has_fleet = True # Planet provides support
-                    else:
-                        # Deep Space / Star Node / Flux Point -> Needs escort at the node
-                        for f in self.engine.fleets:
-                            if f.faction == f_name and f.location == target_node and not f.is_destroyed:
-                                if f != sb_fleet or len(f.units) > 1:
-                                    has_fleet = True
-                                    break
+                    has_constructor = False
+                    for f in self.engine.fleets:
+                        if f.faction == f_name and f.location == target_node and not f.is_destroyed:
+                            if any(getattr(u, 'unit_class', '') == 'constructor' for u in f.units):
+                                has_constructor = True
+                                break
                     
-                    if has_fleet:
+                    if has_constructor:
                         sb.turns_left -= 1
                         if sb.turns_left <= 0:
                             sb.finalize_construction()
                     else:
                         if self.engine.logger:
-                            self.engine.logger.economy(f"[STATION] Construction stalled at {target_node.name} - No fleet present.")
+                            self.engine.logger.economy(f"[STATION] Construction stalled at {target_node.name} - No Construction Ship present.")

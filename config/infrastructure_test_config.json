@@ -1,0 +1,23 @@
+{
+    "simulation": {
+        "turns": 50,
+        "save_interval": 10,
+        "random_seed": 9999,
+        "max_fleets": 200,
+        "galaxy_size": 100,
+        "system_density": 0.5,
+        "lane_density": 0.2
+    },
+    "logging": {
+        "level": "INFO",
+        "features": {
+            "economy": true,
+            "combat": false,
+            "ai": true
+        }
+    },
+    "output": {
+        "directory": "logs/infrastructure_test",
+        "save_history": false
+    }
+}

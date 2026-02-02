@@ -199,6 +199,10 @@ class IntelligenceManager:
             scan_radius = getattr(fleet, "scanning_range", 3)
             if getattr(fleet, "is_scout", False):
                 scan_radius += 2
+            
+            # Listening Post Benefit
+            if any(getattr(u, 'unit_class', '') == 'ListeningPost' for u in fleet.units):
+                scan_radius = max(scan_radius, 5) # Sets base range to 5
 
             if (scan_node.id, scan_radius) in scanned_nodes_this_pass:
                 continue

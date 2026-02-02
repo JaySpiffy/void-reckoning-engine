@@ -529,6 +529,18 @@ class Faction:
              else:
                  print(msg)
 
+
+
+    def get_constructor_count(self) -> int:
+        """Returns the number of active construction ships."""
+        count = 0
+        for fleet in getattr(self, 'fleets', []):
+            if fleet.is_destroyed: continue
+            for unit in fleet.units:
+                if getattr(unit, 'unit_class', '') == 'constructor':
+                    count += 1
+        return count
+
     @property
     def learned_personality(self):
         """Returns the active personality profile."""
