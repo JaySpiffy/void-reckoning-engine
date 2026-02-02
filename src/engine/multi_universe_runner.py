@@ -211,8 +211,9 @@ class MultiUniverseRunner:
             workers = max(1, multiprocessing.cpu_count() // 2)
             
         # 5. Execute Runs
-        # We use a Pool here to run the simulations for this universe in parallel across the assigned cores
-        pool = multiprocessing.Pool(
+        # We use a NoDaemonPool here to run the simulations for this universe in parallel across the assigned cores.
+        # This allows workers to spawn their own sub-pools (e.g. for galaxy generation).
+        pool = NoDaemonPool(
             processes=workers, 
             initializer=pool_worker_init, 
             initargs=(progress_queue, universe_name, incoming_fleet_q, outgoing_fleet_q)

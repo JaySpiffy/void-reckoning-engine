@@ -461,10 +461,14 @@ class GalaxyGenerator:
             cpu_count = multiprocessing.cpu_count()
             workers = max(1, min(8, int(cpu_count * 0.75)))
             
-            logger.info(f"Generating Topologies in parallel with {workers} workers...")
-            
+            # Optimization 4.1: Use Multiprocessing
+            # [FIX] Check if we are in a daemon process (daemon processes cannot have children)
+            if multiprocessing.current_process().daemon:
+                logger.warning("Running in daemon process, falling back to sequential topology generation.")
+                raise ChildProcessError("Cannot spawn children from daemon process")
+                
             # Use "spawn" context if on Windows to avoid issues, though default is usually fine for simple objects
-            # But here we are at top level, so it should be okay.
+            logger.info(f"Generating Topologies in parallel with {workers} workers...")
             with multiprocessing.Pool(processes=workers) as pool:
                 # Map works by pickling inputs and unpickling outputs
                 # This replaces the original system objects with the returned ones (which have nodes populated)
