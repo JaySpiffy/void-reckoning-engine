@@ -67,6 +67,10 @@ class Unit:
                  hp=kwargs.get("hp", kwargs.get("base_hp", 100)),
                  leadership=kwargs.get("leadership", 50)
              ))
+        self.cooldowns = {} # Map[ability_id] -> ready_at_timestamp
+        
+        # Core Stats
+        self.max_hp_base = kwargs.get("max_hp", 100.0)
 
     def add_component(self, component: Any) -> None:
         """Adds a component to unit."""
@@ -386,37 +390,45 @@ class Unit:
 
     def level_up(self, context: Optional[Dict[str, Any]] = None):
         """Increments level and discovers a new ability."""
-        self.level += 1
-        
-        # Trigger ability discovery if context provides an AbilityManager
-        if context and "ability_manager" in context:
-            am = context["ability_manager"]
-            new_ability_id = am.get_random_applicable_ability(self)
-            if new_ability_id:
-                
-                # If this is an upgrade, remove the old version
-                if "_v" in new_ability_id:
-                    base = new_ability_id.rsplit("_v", 1)[0]
-                    to_remove = [k for k in self.abilities.keys() if k.startswith(base) and k != new_ability_id]
-                    for k in to_remove:
-                        del self.abilities[k]
+        # Recursion Guard
+        if getattr(self, "_level_up_lock", False):
+            return
+            
+        self._level_up_lock = True
+        try:
+            self.level += 1
+            
+            # Trigger ability discovery if context provides an AbilityManager
+            if context and "ability_manager" in context:
+                am = context["ability_manager"]
+                new_ability_id = am.get_random_applicable_ability(self)
+                if new_ability_id:
+                    
+                    # If this is an upgrade, remove the old version
+                    if "_v" in new_ability_id:
+                        base = new_ability_id.rsplit("_v", 1)[0]
+                        to_remove = [k for k in self.abilities.keys() if k.startswith(base) and k != new_ability_id]
+                        for k in to_remove:
+                            del self.abilities[k]
 
-                # Add to unit abilities
-                self.abilities[new_ability_id] = am.registry[new_ability_id]
-                print(f"DEBUG: Unit {self.name} learned {new_ability_id}")
-                
-                # Log event if possible
-                if "battle_state" in context and context["battle_state"].tracker:
-                    context["battle_state"].tracker.log_event(
-                        "ability_discovered", 
-                        self, 
-                        None, 
-                        description=f"Unit leveled up to {self.level} and learned {new_ability_id}!"
-                    )
+                    # Add to unit abilities
+                    self.abilities[new_ability_id] = am.registry[new_ability_id]
+                    print(f"DEBUG: Unit {self.name} learned {new_ability_id}")
+                    
+                    # Log event if possible
+                    if "battle_state" in context and context["battle_state"].tracker:
+                        context["battle_state"].tracker.log_event(
+                            "ability_discovered", 
+                            self, 
+                            None, 
+                            description=f"Unit leveled up to {self.level} and learned {new_ability_id}!"
+                        )
+                else:
+                    print(f"DEBUG: Unit {self.name} failed to find ability. Registry size in context: {len(am.registry)}")
             else:
-                print(f"DEBUG: Unit {self.name} failed to find ability. Registry size in context: {len(am.registry)}")
-        else:
-            print("DEBUG: Level up called without ability_manager in context")
+                print("DEBUG: Level up called without ability_manager in context")
+        finally:
+             self._level_up_lock = False
 
     # Add other proxies as needed (ma, md, etc.) to prevent crashes
     def __getattr__(self, name):

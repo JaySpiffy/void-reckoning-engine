@@ -20,6 +20,39 @@ class AbilityManager:
     def set_rng_seed(self, seed: int):
         self._rng.seed(seed)
 
+    def _check_cooldown(self, source, ability_id: str, context: Optional[Dict[str, Any]]) -> bool:
+        """
+        Checks if the ability is on cooldown.
+        Returns True if ready, False if on cooldown.
+        """
+        if not hasattr(source, "cooldowns"):
+            return True
+            
+        ready_at = source.cooldowns.get(ability_id, 0.0)
+        
+        current_time = 0.0
+        if context and "battle_state" in context:
+            state = context["battle_state"]
+            if hasattr(state, "total_sim_time"):
+                current_time = state.total_sim_time
+                
+        return current_time >= ready_at
+
+    def _apply_cooldown(self, source, ability_id: str, ability_def: Dict[str, Any], context: Optional[Dict[str, Any]]) -> None:
+        """Sets the cooldown timestamp for the ability."""
+        if not hasattr(source, "cooldowns"):
+            source.cooldowns = {}
+            
+        current_time = 0.0
+        if context and "battle_state" in context:
+            state = context["battle_state"]
+            if hasattr(state, "total_sim_time"):
+                current_time = state.total_sim_time
+                
+        # Get duration from def or default to 5s to prevent spam
+        duration = ability_def.get("cooldown", 5.0)
+        source.cooldowns[ability_id] = current_time + duration
+
     @profile_method
     def execute_ability(self, source, target, ability_id: str, context: Dict[str, Any] = None) -> Dict[str, Any]:
         """
@@ -30,6 +63,10 @@ class AbilityManager:
             
         ability_def = self.registry[ability_id]
         payload_type = ability_def.get("payload_type", "damage")
+        
+        # Cooldown Check
+        if not self._check_cooldown(source, ability_id, context):
+             return {"success": False, "reason": "Ability on cooldown"}
         
         # Resource Check
         if not self._check_cost(source, ability_def, context):
@@ -83,27 +120,31 @@ class AbilityManager:
             result["reason"] = f"Unknown payload type: {payload_type}"
             
         # Hook for Mechanics Engine if context is provided
-        if context and "mechanics_engine" in context:
-             engine = context["mechanics_engine"]
-             if engine:
-                  # Trigger 'on_ability_use' mechanic hook
-                  mech_context = {
-                      "caster": source,
-                      "target": target,
-                      "ability_id": ability_id,
-                      "result": result
-                  }
-                  # We need the faction name of the caster
-                  manager = context.get("battle_state")
-                  faction_name = None
-                  if manager:
-                       for f, units in manager.armies_dict.items():
-                            if source in units:
-                                 faction_name = f
-                                 break
-                  
-                  if faction_name:
-                       engine.apply_mechanics(faction_name, "on_ability_use", mech_context)
+        if result["success"]:
+            # Apply Cooldown
+            self._apply_cooldown(source, ability_id, ability_def, context)
+            
+            if context and "mechanics_engine" in context:
+                 engine = context["mechanics_engine"]
+                 if engine:
+                      # Trigger 'on_ability_use' mechanic hook
+                      mech_context = {
+                          "caster": source,
+                          "target": target,
+                          "ability_id": ability_id,
+                          "result": result
+                      }
+                      # We need the faction name of the caster
+                      manager = context.get("battle_state")
+                      faction_name = None
+                      if manager:
+                           for f, units in manager.armies_dict.items():
+                                if source in units:
+                                     faction_name = f
+                                     break
+                      
+                      if faction_name:
+                           engine.apply_mechanics(faction_name, "on_ability_use", mech_context)
 
         return result
 

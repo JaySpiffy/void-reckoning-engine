@@ -11,17 +11,7 @@
     "source_file": "config",
     "source_format": "config",
     "personality_id": null,
-    "unit_files": [
-      "units/templars_of_the_flux_capital_ships.json",
-      "units/templars_of_the_flux_ground_reinforcements.json",
-      "units/templars_of_the_flux_heroes.json",
-      "units/templars_of_the_flux_roster.json",
-      "units/templars_of_the_flux_roster_variants.json",
-      "units/templars_of_the_flux_space_units.json",
-      "units/templars_of_the_flux_specialists.json",
-      "units/templars_of_the_flux_specialists_variants.json",
-      "units/templars_of_the_flux_strategic_ground.json"
-    ]
+    "unit_files": []
   },
   "Transcendent_Order": {
     "id": "Transcendent_Order",
@@ -35,17 +25,7 @@
     "source_file": "config",
     "source_format": "config",
     "personality_id": null,
-    "unit_files": [
-      "units/transcendent_order_capital_ships.json",
-      "units/transcendent_order_ground_reinforcements.json",
-      "units/transcendent_order_heroes.json",
-      "units/transcendent_order_roster.json",
-      "units/transcendent_order_roster_variants.json",
-      "units/transcendent_order_space_units.json",
-      "units/transcendent_order_specialists.json",
-      "units/transcendent_order_specialists_variants.json",
-      "units/transcendent_order_strategic_ground.json"
-    ]
+    "unit_files": []
   },
   "SteelBound_Syndicate": {
     "id": "SteelBound_Syndicate",
@@ -59,17 +39,7 @@
     "source_file": "config",
     "source_format": "config",
     "personality_id": null,
-    "unit_files": [
-      "units/steelbound_syndicate_capital_ships.json",
-      "units/steelbound_syndicate_ground_reinforcements.json",
-      "units/steelbound_syndicate_heroes.json",
-      "units/steelbound_syndicate_roster.json",
-      "units/steelbound_syndicate_roster_variants.json",
-      "units/steelbound_syndicate_space_units.json",
-      "units/steelbound_syndicate_specialists.json",
-      "units/steelbound_syndicate_specialists_variants.json",
-      "units/steelbound_syndicate_strategic_ground.json"
-    ]
+    "unit_files": []
   },
   "BioTide_Collective": {
     "id": "BioTide_Collective",
@@ -83,17 +53,7 @@
     "source_file": "config",
     "source_format": "config",
     "personality_id": null,
-    "unit_files": [
-      "units/biotide_collective_capital_ships.json",
-      "units/biotide_collective_ground_reinforcements.json",
-      "units/biotide_collective_heroes.json",
-      "units/biotide_collective_roster.json",
-      "units/biotide_collective_roster_variants.json",
-      "units/biotide_collective_space_units.json",
-      "units/biotide_collective_specialists.json",
-      "units/biotide_collective_specialists_variants.json",
-      "units/biotide_collective_strategic_ground.json"
-    ]
+    "unit_files": []
   },
   "Algorithmic_Hierarchy": {
     "id": "Algorithmic_Hierarchy",
@@ -107,17 +67,7 @@
     "source_file": "config",
     "source_format": "config",
     "personality_id": null,
-    "unit_files": [
-      "units/algorithmic_hierarchy_capital_ships.json",
-      "units/algorithmic_hierarchy_ground_reinforcements.json",
-      "units/algorithmic_hierarchy_heroes.json",
-      "units/algorithmic_hierarchy_roster.json",
-      "units/algorithmic_hierarchy_roster_variants.json",
-      "units/algorithmic_hierarchy_space_units.json",
-      "units/algorithmic_hierarchy_specialists.json",
-      "units/algorithmic_hierarchy_specialists_variants.json",
-      "units/algorithmic_hierarchy_strategic_ground.json"
-    ]
+    "unit_files": []
   },
   "Nebula_Drifters": {
     "id": "Nebula_Drifters",
@@ -131,17 +81,7 @@
     "source_file": "config",
     "source_format": "config",
     "personality_id": null,
-    "unit_files": [
-      "units/nebula_drifters_capital_ships.json",
-      "units/nebula_drifters_ground_reinforcements.json",
-      "units/nebula_drifters_heroes.json",
-      "units/nebula_drifters_roster.json",
-      "units/nebula_drifters_roster_variants.json",
-      "units/nebula_drifters_space_units.json",
-      "units/nebula_drifters_specialists.json",
-      "units/nebula_drifters_specialists_variants.json",
-      "units/nebula_drifters_strategic_ground.json"
-    ]
+    "unit_files": []
   },
   "Aurelian_Hegemony": {
     "id": "Aurelian_Hegemony",
@@ -155,17 +95,7 @@
     "source_file": "config",
     "source_format": "config",
     "personality_id": null,
-    "unit_files": [
-      "units/aurelian_hegemony_capital_ships.json",
-      "units/aurelian_hegemony_ground_reinforcements.json",
-      "units/aurelian_hegemony_heroes.json",
-      "units/aurelian_hegemony_roster.json",
-      "units/aurelian_hegemony_roster_variants.json",
-      "units/aurelian_hegemony_space_units.json",
-      "units/aurelian_hegemony_specialists.json",
-      "units/aurelian_hegemony_specialists_variants.json",
-      "units/aurelian_hegemony_strategic_ground.json"
-    ]
+    "unit_files": []
   },
   "VoidSpawn_Entities": {
     "id": "VoidSpawn_Entities",
@@ -179,17 +109,7 @@
     "source_file": "config",
     "source_format": "config",
     "personality_id": null,
-    "unit_files": [
-      "units/voidspawn_entities_capital_ships.json",
-      "units/voidspawn_entities_ground_reinforcements.json",
-      "units/voidspawn_entities_heroes.json",
-      "units/voidspawn_entities_roster.json",
-      "units/voidspawn_entities_roster_variants.json",
-      "units/voidspawn_entities_space_units.json",
-      "units/voidspawn_entities_specialists.json",
-      "units/voidspawn_entities_specialists_variants.json",
-      "units/voidspawn_entities_strategic_ground.json"
-    ]
+    "unit_files": []
   },
   "ScrapLord_Marauders": {
     "id": "ScrapLord_Marauders",
@@ -203,17 +123,7 @@
     "source_file": "config",
     "source_format": "config",
     "personality_id": null,
-    "unit_files": [
-      "units/scraplord_marauders_capital_ships.json",
-      "units/scraplord_marauders_ground_reinforcements.json",
-      "units/scraplord_marauders_heroes.json",
-      "units/scraplord_marauders_roster.json",
-      "units/scraplord_marauders_roster_variants.json",
-      "units/scraplord_marauders_space_units.json",
-      "units/scraplord_marauders_specialists.json",
-      "units/scraplord_marauders_specialists_variants.json",
-      "units/scraplord_marauders_strategic_ground.json"
-    ]
+    "unit_files": []
   },
   "Primeval_Sentinels": {
     "id": "Primeval_Sentinels",
@@ -227,16 +137,6 @@
     "source_file": "config",
     "source_format": "config",
     "personality_id": null,
-    "unit_files": [
-      "units/primeval_sentinels_capital_ships.json",
-      "units/primeval_sentinels_ground_reinforcements.json",
-      "units/primeval_sentinels_heroes.json",
-      "units/primeval_sentinels_roster.json",
-      "units/primeval_sentinels_roster_variants.json",
-      "units/primeval_sentinels_space_units.json",
-      "units/primeval_sentinels_specialists.json",
-      "units/primeval_sentinels_specialists_variants.json",
-      "units/primeval_sentinels_strategic_ground.json"
-    ]
+    "unit_files": []
   }
 }

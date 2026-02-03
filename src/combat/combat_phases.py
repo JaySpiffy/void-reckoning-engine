@@ -578,7 +578,8 @@ class AbilityPhase(CombatPhase):
                       "grid": grid,
                       "enemies": enemies,
                       "battle_state": manager, # For stat tracking
-                      "detailed_log_file": detailed_log_file # Pass log file
+                      "detailed_log_file": detailed_log_file, # Pass log file
+                      "manager": manager # Ensure manager is passed in context as well for consistency
                  }
                  
                  result = ab_manager.execute_ability(u, target, ab_id, exec_context)
@@ -594,13 +595,20 @@ class AbilityPhase(CombatPhase):
                            tracker.log_event("ability_use", u, target, ability=ab_id, result=result)
                  else:
                        # Debug Failure
+                       reason = result.get("reason", "Unknown")
+                       
                        if detailed_log_file:
-                            with open(detailed_log_file, "a", encoding='utf-8') as log:
-                                log.write(f"ABILITY FAIL: {u.name} used {ab_id} -> {result.get('reason', 'Unknown')}\n")
+                            # Only log non-cooldown failures to reduce spam
+                            if reason != "Ability on cooldown":
+                                with open(detailed_log_file, "a", encoding='utf-8') as log:
+                                    log.write(f"ABILITY FAIL: {u.name} used {ab_id} -> {reason}\n")
                           
                        # Optional: Log to tracker as debug?
                        if tracker:
-                           tracker.log_event("ability_fail", u, target, ability=ab_id, result=result)
+                           # [FIX] Also suppress tracker spam for cooldowns
+                           if reason != "Ability on cooldown":
+                               tracker.log_event("ability_fail", u, target, ability=ab_id, reason=reason)
+
 
 class MeleePhase(CombatPhase):
     name: str = "melee"

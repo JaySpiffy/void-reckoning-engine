@@ -41,10 +41,8 @@ class BlueprintRegistry:
             if os.path.exists(universe_dir):
                 self._load_from_dir(universe_dir, universe_name, verbose=verbose)
                 
-            # 3. Load Faction-Specific Markdown Units (Auto-Discovery)
-            factions_dir = os.path.join(universe_path, "factions")
-            if os.path.exists(factions_dir):
-                self._load_markdown_blueprints(factions_dir, universe_name, verbose=verbose)
+            # Step 3 (Legacy Markdown Discovery) removed to tidy up the project.
+            # Roster is now handled via procedural_roster.json and hand_crafted_roster.json.
 
             # 4. Load Units Directory (JSON/Markdown)
             units_dir = os.path.join(universe_path, "units")

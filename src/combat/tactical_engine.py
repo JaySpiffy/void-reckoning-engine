@@ -96,6 +96,13 @@ def execute_battle_round(battle_state, detailed_log_file=None):
     
     manager.round_num += 1
     round_num = manager.round_num
+    
+    # [FIX] Update simulation time to allow cooldowns to function
+    # Assuming 1 Round = ~5-10 seconds of "simulated" time for Ability Cooldowns
+    time_per_round = 5.0 
+    if hasattr(manager, "total_sim_time"):
+        manager.total_sim_time += time_per_round
+        
     tracker.start_round(round_num)
     
     # 1. Collect Active Units & Snapshot
