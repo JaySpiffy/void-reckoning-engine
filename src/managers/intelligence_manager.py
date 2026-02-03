@@ -51,7 +51,7 @@ class IntelligenceManager:
         self.get_theater_power.cache_clear()
 
     @functools.lru_cache(maxsize=1024)
-    @profile_method
+    @profile_method('targeting_time')
     def get_theater_power(self, location_name: str, turn: int, viewer_faction: str = None) -> Dict[str, int]:
         """
         Calculates total power for each faction at a given location.
@@ -104,7 +104,7 @@ class IntelligenceManager:
         return treaty == "War"
 
     @functools.lru_cache(maxsize=1024)
-    @profile_method
+    @profile_method('threat_calc_time')
     def calculate_threat_level(self, location_name: str, faction: str, turn: int = 0) -> float:
         """Calculates threat score. respects visibility if called for self-assessment."""
         location = next((p for p in self.engine.all_planets if p.name == location_name), None)
@@ -156,7 +156,7 @@ class IntelligenceManager:
             record.get('last_owner', 'Neutral')
         )
 
-    @profile_method
+    @profile_method('visibility_time')
     def update_faction_visibility(self, f_name: str, force_refresh: bool = False) -> None:
         """Calculates current visibility and updates intelligence memory."""
         faction = self.engine.factions.get(f_name)

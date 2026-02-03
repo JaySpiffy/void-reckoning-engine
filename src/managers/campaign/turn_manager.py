@@ -18,6 +18,9 @@ class TurnManager:
         
     def process_turn(self, fast_resolve: bool = False) -> None:
         """Execute a complete turn."""
+        import time
+        start_turn_time = time.time()
+        
         engine = self.orchestrator.engine # Access legacy engine state for now
         
         # 1. Global Cleanup
@@ -61,6 +64,10 @@ class TurnManager:
         
         # 8. End Turn
         engine.turn_counter += 1
+        
+        total_time = time.time() - start_turn_time
+        if hasattr(engine, 'performance_metrics'):
+            engine.performance_metrics.setdefault('total_turn_time', []).append(total_time * 1000.0) # Store in ms
         
     def _reset_flags(self, engine):
         for f in engine.fleets:

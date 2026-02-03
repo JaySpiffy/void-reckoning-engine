@@ -45,7 +45,7 @@ def _generate_topology_worker(system_data):
     system.connections = [] 
     for p in system.planets:
         p.system = None
-        p.node_reference = None # Will restore by name later
+        p.node_reference = None # Will restore by ID/Name later
         
     for n in system.nodes:
         # Strip system but keep other metadata
@@ -500,12 +500,15 @@ class GalaxyGenerator:
                     s.connections = [new_sys_map[c_name] for c_name in connection_map[s.name] if c_name in new_sys_map]
                 
                 # 2. Restore Planet-System and Node-System references
-                node_map = {n.name: n for n in s.nodes}
+                # [FIX] Use node.id instead of node.name for matching, as names may be modified (e.g. [HUB])
+                node_map = {n.id: n for n in s.nodes}
                 for p in s.planets:
                     p.system = s
-                    # Restore planet-to-node link (Galaxy matching logic uses names)
-                    if p.name in node_map:
-                        node = node_map[p.name]
+                    # Restore planet-to-node link
+                    # Planet ID is used as node ID during generation
+                    p_id = p.id if hasattr(p, 'id') else p.name
+                    if p_id in node_map:
+                        node = node_map[p_id]
                         p.node_reference = node
                         node.metadata["object"] = p
                 
@@ -513,7 +516,8 @@ class GalaxyGenerator:
                     n.metadata["system"] = s
                     # If this is a planet node but not linked yet
                     if n.type == "Planet" and "object" not in n.metadata:
-                        match = next((p for p in s.planets if p.name == n.name), None)
+                        # Match by ID or Name (fallback)
+                        match = next((p for p in s.planets if (hasattr(p, 'id') and p.id == n.id) or p.name == n.id or p.name == n.name), None)
                         if match:
                              n.metadata["object"] = match
                              match.node_reference = n

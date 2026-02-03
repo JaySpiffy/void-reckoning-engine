@@ -295,7 +295,7 @@ class CampaignInitializer:
         self.engine.profiling_stats = {}
         self.engine.performance_metrics = {
             'visibility_time': [], 'targeting_time': [], 'threat_calc_time': [],
-            'ai_strategy_time': [], 'economy_phase_total': []
+            'ai_strategy_time': [], 'economy_phase_total': [], 'total_turn_time': []
         }
 
     def _setup_strategies_and_mechanics(self):

@@ -178,18 +178,23 @@ def _cleanup_round(manager, active_units_at_start, detailed_log_file=None):
     """
     armies_dict = manager.armies_dict
     
-    # Award Survival XP to all units still alive
-    from src.core.universe_data import UniverseDataManager
-    registry = UniverseDataManager.get_instance().get_ability_database()
+    # Award survival XP (approx 1 XP per second of active combat)
     from src.combat.ability_manager import AbilityManager
-    ab_manager = getattr(manager, 'ability_manager', AbilityManager(registry))
+    ab_manager = getattr(manager, 'ability_manager', None)
+    if not ab_manager:
+        # Fallback to UniverseDataManager if manager doesn't have it yet
+        from src.core.universe_data import UniverseDataManager
+        registry = UniverseDataManager.get_instance().get_ability_database()
+        ab_manager = AbilityManager(registry)
+    
     context = {"ability_manager": ab_manager, "battle_state": manager}
+    
+    # Collect all living units from all armies
+    living_units = [u for units in armies_dict.values() for u in units if u.is_alive()]
 
-    for f_name, units in armies_dict.items():
-        for u in units:
-            if u.is_alive():
-                from src.core.balance import UNIT_XP_AWARD_SURVIVAL_ROUND
-                u.gain_xp(UNIT_XP_AWARD_SURVIVAL_ROUND, context) # Survival XP per round
+    from src.core.balance import UNIT_XP_AWARD_SURVIVAL_ROUND
+    for u in living_units:
+        u.gain_xp(UNIT_XP_AWARD_SURVIVAL_ROUND, context) # Survival XP per round
 
     for u, f in active_units_at_start:
         if not u.is_alive():

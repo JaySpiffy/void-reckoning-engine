@@ -1004,7 +1004,13 @@ class BattleManager:
                     xp_gain += (rounds_survived * 5)
                     
                     if hasattr(u, 'gain_xp'):
-                        u.gain_xp(xp_gain, context={"turn": self.context.turn_counter})
+                        # [FIX] Ensure ability_manager is passed for level-up discovery
+                        xp_context = {
+                            "turn": self.context.turn_counter,
+                            "ability_manager": getattr(battle.state, 'ability_manager', None),
+                            "battle_state": battle.state
+                        }
+                        u.gain_xp(xp_gain, context=xp_context)
                     
                     if hasattr(u, 'log_service_event'):
                          outcome = "VICTORY" if winner == f_name else "DEFEAT"

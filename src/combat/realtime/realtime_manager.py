@@ -38,6 +38,20 @@ class RealTimeManager:
                  for e in form.entities:
                      unit_formation_map[e] = form
 
+        # 2. Context Preparation (Moved up to support XP awards)
+        ab_context = {
+            "active_units": [(u, f_name) for f_name, units in armies_dict.items() for u in units if u.is_alive()],
+            "enemies_by_faction": {f: [] for f in armies_dict}, 
+            "faction_doctrines": battle_state.faction_doctrines,
+            "grid": grid,
+            "mechanics_engine": battle_state.mechanics_engine,
+            "battle_state": battle_state,
+            "manager": battle_state,
+            "tracker": battle_state.tracker,
+            "detailed_log_file": None,
+            "ability_manager": getattr(battle_state, 'ability_manager', None)
+        }
+        
         # 1. Update Positions via Steering
         for f_name, units in armies_dict.items():
             for u in units:
@@ -120,22 +134,9 @@ class RealTimeManager:
                 
                 # Award survival XP (approx 1 XP per second of active combat)
                 from src.core.balance import UNIT_XP_AWARD_SURVIVAL_SEC
-                u.gain_xp(UNIT_XP_AWARD_SURVIVAL_SEC * dt)
+                u.gain_xp(UNIT_XP_AWARD_SURVIVAL_SEC * dt, ab_context)
 
-        # 2. Abilities
-        ab_context = {
-            "active_units": [(u, f_name) for f_name, units in armies_dict.items() for u in units if u.is_alive()],
-            "enemies_by_faction": {f: [e for e in battle_state.active_factions if e != f] for f in armies_dict}, # Simplified
-            "faction_doctrines": battle_state.faction_doctrines,
-            "grid": grid,
-            "mechanics_engine": battle_state.mechanics_engine,
-            "battle_state": battle_state,
-            "manager": battle_state,
-            "tracker": battle_state.tracker,
-            "detailed_log_file": None,
-            "ability_manager": getattr(battle_state, 'ability_manager', None)
-        }
-        # Re-build enemies_by_faction
+        # 2. Abilities (Re-build enemies_by_faction)
         enemies_map = {}
         for f, units in armies_dict.items():
              enemies_map[f] = []

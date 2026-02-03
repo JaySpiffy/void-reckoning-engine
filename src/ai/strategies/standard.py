@@ -17,7 +17,7 @@ class StandardStrategy(FactionAIStrategy):
     Uses FactionPersonality data to tune behavior.
     """
     
-    @profile_method
+    @profile_method('ai_strategy_time')
     def choose_target(self, fleet: Any, engine: Any) -> Optional[Any]:
         """Decides the next target for a fleet (Extracted from CampaignManager)."""
         
@@ -55,12 +55,20 @@ class StandardStrategy(FactionAIStrategy):
                 known_planet_names = set(f_mgr.known_planets)
                 known_systems = set()
                 
-                # Resolve systems from known planets
-                # Resolve systems from known planets
-                for p in engine.all_planets:
-                    if p.name in known_planet_names and hasattr(p, 'node_reference'):
+                # Resolve systems from known planets (Optimized: Direct lookup)
+                for p_name in known_planet_names:
+                    p = engine.get_planet(p_name)
+                    if p and hasattr(p, 'node_reference'):
                         sys = p.node_reference.metadata.get("system")
                         if sys: known_systems.add(sys)
+                
+                # Pre-map fleets by location for O(1) lookup in nested loops
+                fleet_loc_map = {}
+                for f in engine.fleets:
+                    if not f.is_destroyed:
+                        loc_id = getattr(f.location, 'id', str(f.location))
+                        if loc_id not in fleet_loc_map: fleet_loc_map[loc_id] = []
+                        fleet_loc_map[loc_id].append(f)
                 
                 # print(f"DEBUG: {fleet.faction} Constructor scanning {len(known_systems)} systems for targets.")
                 for sys in known_systems:
@@ -68,13 +76,14 @@ class StandardStrategy(FactionAIStrategy):
                          if node.type in ["AsteroidField", "Nebula", "FluxPoint"]:
                              # Check if occupied by ANY structure
                              is_occupied = False
-                             # Optimization: Use fleet location map if available, else loop
-                             for f in engine.fleets:
-                                 if f.location == node and not f.is_destroyed:
-                                      # Check for any static structure
-                                      if any(getattr(u, 'unit_class', '') in ['Starbase', 'MiningStation', 'ResearchOutpost', 'ListeningPost'] for u in f.units):
-                                          is_occupied = True
-                                          break
+                             # Optimization: Use fleet location map
+                             is_occupied = False
+                             node_id = getattr(node, 'id', str(node))
+                             for f in fleet_loc_map.get(node_id, []):
+                                  # Check for any static structure
+                                  if any(getattr(u, 'unit_class', '') in ['Starbase', 'MiningStation', 'ResearchOutpost', 'ListeningPost'] for u in f.units):
+                                      is_occupied = True
+                                      break
                              
                              if not is_occupied:
                                   valid_targets.append(node)

@@ -694,7 +694,7 @@ class StrategicAI:
         Manages the rearguard action while the rest of the task force withdraws.
         """
         return self.tf_manager.execute_fighting_retreat(task_force)
-    @profile_method
+    @profile_method('ai_strategy_time')
     def process_faction_strategy(self, faction: str):
         """
         Main entry point for per-faction strategy logic.
