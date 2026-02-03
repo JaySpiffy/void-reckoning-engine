@@ -733,11 +733,17 @@ class TechManager:
             
             visited.add(tech_id)
             
-            parent = dependencies.get(tech_id)
-            if not parent or parent == "ROOT": # Assuming ROOT or None
+            parents = dependencies.get(tech_id)
+            if not parents or parents == "ROOT":
                 d = 1
             else:
-                d = 1 + get_depth(parent, visited)
+                if isinstance(parents, list):
+                    if not parents:
+                        d = 1
+                    else:
+                        d = 1 + max(get_depth(p, visited.copy()) for p in parents)
+                else:
+                    d = 1 + get_depth(parents, visited)
                 
             depths[tech_id] = d
             return d
