@@ -7,7 +7,7 @@
     "sandbox_mode": true,
     "procedural_faction_limit": 0,
     "campaign": {
-        "turns": 50,
+        "turns": 500,
         "num_systems": 20,
         "min_planets": 10,
         "max_planets": 10,
