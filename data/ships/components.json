@@ -104,6 +104,34 @@
             "cost": 40,
             "power": -20,
             "tech_level": 1
+        },
+        {
+            "id": "tractor_beam_1",
+            "name": "Magnetic Tractor Beam",
+            "slot_type": "T",
+            "stats": {
+                "damage": 0,
+                "utility": "slow",
+                "range": 100
+            },
+            "cost": 500,
+            "power": -150,
+            "tech_level": 4,
+            "unlock_tech": "Tech_Unlock_Tractor_Beam"
+        },
+        {
+            "id": "interdiction_field_1",
+            "name": "Warp Snare Interdictor",
+            "slot_type": "I",
+            "stats": {
+                "damage": 0,
+                "utility": "suppress_retreat",
+                "range": 300
+            },
+            "cost": 1200,
+            "power": -400,
+            "tech_level": 5,
+            "unlock_tech": "Tech_Unlock_Interdiction"
         }
     ]
 }

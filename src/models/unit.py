@@ -28,6 +28,10 @@ class Unit:
         self.blueprint_id = kwargs.get("blueprint_id") or f"blueprint_{name.lower().replace(' ', '_')}"
         self.cost = kwargs.get("cost", 0)
         self.rank = kwargs.get("rank", "Regular")
+        self.level = kwargs.get("level", 1)
+        self.experience = kwargs.get("experience", 0.0)
+        self.xp_gain_rate = kwargs.get("xp_gain_rate", 1.0)
+        self._abilities = {}
         
         # Composition: Components are injected
         self.health_comp: Optional[HealthComponent] = None
@@ -130,7 +134,10 @@ class Unit:
             "extra_data": {
                 "unit_class": self.unit_class,
                 "domain": self.domain,
-                "blueprint_id": self.blueprint_id
+                "blueprint_id": self.blueprint_id,
+                "level": self.level,
+                "experience": self.experience,
+                "xp_gain_rate": self.xp_gain_rate
             }
         }
         
@@ -263,10 +270,13 @@ class Unit:
         if self.trait_comp: self.trait_comp.traits = v
 
     @property
-    def abilities(self): return self.trait_comp.abilities if self.trait_comp else {}
+    def abilities(self):
+        if self.trait_comp: return self.trait_comp.abilities
+        return getattr(self, '_abilities', {})
     @abilities.setter
     def abilities(self, v):
         if self.trait_comp: self.trait_comp.abilities = v
+        self._abilities = v
         
     @property
     def authentic_weapons(self):
@@ -355,6 +365,58 @@ class Unit:
             # For now, just reset to base + trait mods logic if needed, 
             # but apply_traits already modified stats_comp.
             pass
+
+    def gain_xp(self, amount: float, context: Optional[Dict[str, Any]] = None, **kwargs):
+        """Adds experience to the unit and triggers level up if threshold is reached."""
+        from src.core.balance import UNIT_MAX_LEVEL
+        self.experience += amount * self.xp_gain_rate
+        while self.level < UNIT_MAX_LEVEL:
+            threshold = self.get_xp_threshold(self.level)
+            if self.experience >= threshold:
+                self.experience -= threshold
+                self.level_up(context)
+            else:
+                break
+
+    def get_xp_threshold(self, level: int) -> float:
+        """Calculates XP needed to reach the NEXT level."""
+        from src.core.balance import UNIT_XP_PER_LEVEL_BASE, UNIT_XP_GROWTH_EXPONENT
+        # Exponential growth: 100, 120, 144, 172...
+        return UNIT_XP_PER_LEVEL_BASE * (UNIT_XP_GROWTH_EXPONENT ** (level - 1))
+
+    def level_up(self, context: Optional[Dict[str, Any]] = None):
+        """Increments level and discovers a new ability."""
+        self.level += 1
+        
+        # Trigger ability discovery if context provides an AbilityManager
+        if context and "ability_manager" in context:
+            am = context["ability_manager"]
+            new_ability_id = am.get_random_applicable_ability(self)
+            if new_ability_id:
+                
+                # If this is an upgrade, remove the old version
+                if "_v" in new_ability_id:
+                    base = new_ability_id.rsplit("_v", 1)[0]
+                    to_remove = [k for k in self.abilities.keys() if k.startswith(base) and k != new_ability_id]
+                    for k in to_remove:
+                        del self.abilities[k]
+
+                # Add to unit abilities
+                self.abilities[new_ability_id] = am.registry[new_ability_id]
+                print(f"DEBUG: Unit {self.name} learned {new_ability_id}")
+                
+                # Log event if possible
+                if "battle_state" in context and context["battle_state"].tracker:
+                    context["battle_state"].tracker.log_event(
+                        "ability_discovered", 
+                        self, 
+                        None, 
+                        description=f"Unit leveled up to {self.level} and learned {new_ability_id}!"
+                    )
+            else:
+                print(f"DEBUG: Unit {self.name} failed to find ability. Registry size in context: {len(am.registry)}")
+        else:
+            print("DEBUG: Level up called without ability_manager in context")
 
     # Add other proxies as needed (ma, md, etc.) to prevent crashes
     def __getattr__(self, name):

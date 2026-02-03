@@ -2,6 +2,7 @@ import math
 import random
 import os
 from typing import Dict, Any, List, Optional
+from src.core.balance import UNIT_XP_AWARD_KILL, UNIT_XP_AWARD_DAMAGE_RATIO
 from src.core.interfaces import ICombatPhase
 from src.utils.profiler import profile_method
 from src.combat.combat_utils import calculate_mitigation_v4, apply_doctrine_modifiers
@@ -318,11 +319,17 @@ class ShootingPhase(CombatPhase):
                            
                           # Only damage if we found a valid hardpoint
                           destroyed_comp = None
+                          is_kill = False
                           if target_comp:
-                               s_dmg, h_dmg, _, destroyed_comp = tgt.take_damage(dmg, target_component=target_comp, ignore_mitigation=True)
+                               s_dmg, h_dmg, is_kill, destroyed_comp = tgt.take_damage(dmg, target_component=target_comp, ignore_mitigation=True)
                           else:
                                # Normal damage (Hull only)
-                               s_dmg, h_dmg, _, destroyed_comp = tgt.take_damage(dmg)
+                               s_dmg, h_dmg, is_kill, destroyed_comp = tgt.take_damage(dmg)
+
+                          if is_kill:
+                               att.gain_xp(UNIT_XP_AWARD_KILL, context=context)
+                          if dmg > 0:
+                               att.gain_xp(dmg * UNIT_XP_AWARD_DAMAGE_RATIO, context=context)
 
                           if destroyed_comp and manager and hasattr(manager, 'log_event'):
                                comp_name = getattr(destroyed_comp, 'name', 'Vital System')
@@ -455,6 +462,12 @@ class ShootingPhase(CombatPhase):
                                                doc_mods, def_mods, round_num, tracker,
                                                battle_stats=manager.battle_stats if manager else None)
                     
+                    if result:
+                        if result.get("damage", 0) > 0:
+                            attacker.gain_xp(result["damage"] * UNIT_XP_AWARD_DAMAGE_RATIO, context=context)
+                        if result.get("is_kill"):
+                            attacker.gain_xp(UNIT_XP_AWARD_KILL, context=context)
+                    
                     if result and detailed_log_file:
                         with open(detailed_log_file, "a", encoding='utf-8') as f:
                             f.write(f"Round {round_num}: {attacker.name} fires {comp.name} at {current_defender.name} (Dist {dist:.1f}) -> {int(result['damage'])} dmg\n")
@@ -482,17 +495,9 @@ class AbilityPhase(CombatPhase):
             return
         
         if not hasattr(manager, "ability_manager"):
-             print("DEBUG: Initializing AbilityManager from registry")
-             try:
-                 registry_path = os.path.join("universes", "void_reckoning", "factions", "ability_registry.json")
-                 if os.path.exists(registry_path):
-                     with open(registry_path, 'r') as f:
-                         registry = json.load(f)
-                 else:
-                     registry = {}
-             except:
-                 registry = {}
-                 
+             # print("DEBUG: Initializing AbilityManager from UniverseDataManager")
+             from src.core.universe_data import UniverseDataManager
+             registry = UniverseDataManager.get_instance().get_ability_database()
              manager.ability_manager = AbilityManager(registry)
 
         ab_manager = manager.ability_manager
@@ -524,8 +529,7 @@ class AbilityPhase(CombatPhase):
                  mech_engine.apply_mechanic_modifiers(f_name, [u])
 
             abilities = getattr(u, "abilities", [])
-            if not abilities and hasattr(u, "atomic_abilities"):
-                 abilities = list(u.atomic_abilities.keys())
+
                  
             if not abilities:
                  # print(f"DEBUG: {u.name} has no abilities")

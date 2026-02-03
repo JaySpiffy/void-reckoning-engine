@@ -1,0 +1,452 @@
+{
+    "lasgun": {
+        "name": "Lasgun",
+        "scale": "light",
+        "stats": {
+            "power": 1.5,
+            "range": 24,
+            "ap": 0
+        },
+        "tags": [
+            "energy",
+            "laser",
+            "standard_issue",
+            "rifle"
+        ]
+    },
+    "laspistol": {
+        "name": "Laspistol",
+        "scale": "micro",
+        "stats": {
+            "power": 1.2,
+            "range": 12,
+            "ap": 0
+        },
+        "tags": [
+            "energy",
+            "laser",
+            "sidearm",
+            "pistol"
+        ]
+    },
+    "bolter": {
+        "name": "Bolter",
+        "scale": "light",
+        "stats": {
+            "power": 2.5,
+            "range": 18,
+            "ap": -1
+        },
+        "tags": [
+            "bullet",
+            "explosive",
+            "standard_issue",
+            "rifle"
+        ]
+    },
+    "bolt_pistol": {
+        "name": "Bolt Pistol",
+        "scale": "micro",
+        "stats": {
+            "power": 2.2,
+            "range": 12,
+            "ap": -1
+        },
+        "tags": [
+            "bullet",
+            "explosive",
+            "sidearm",
+            "pistol"
+        ]
+    },
+    "pulse_rifle": {
+        "name": "Pulse Rifle",
+        "scale": "light",
+        "stats": {
+            "power": 2.2,
+            "range": 30,
+            "ap": -1
+        },
+        "tags": [
+            "energy",
+            "plasma"
+        ]
+    },
+    "blaster_rifle": {
+        "name": "Blaster Rifle",
+        "scale": "light",
+        "stats": {
+            "power": 2.0,
+            "range": 22,
+            "ap": 0
+        },
+        "tags": [
+            "energy",
+            "blaster"
+        ]
+    },
+    "chainsword": {
+        "name": "Chainsword",
+        "scale": "light",
+        "stats": {
+            "power": 3.0,
+            "range": 1,
+            "ap": -1
+        },
+        "tags": [
+            "melee",
+            "kinetic"
+        ]
+    },
+    "power_sword": {
+        "name": "Power Sword",
+        "scale": "light",
+        "stats": {
+            "power": 4.5,
+            "range": 1,
+            "ap": -3
+        },
+        "tags": [
+            "melee",
+            "energy"
+        ]
+    },
+    "frag_grenade": {
+        "name": "Frag Grenade",
+        "scale": "micro",
+        "stats": {
+            "power": 4.0,
+            "range": 6,
+            "ap": 0
+        },
+        "tags": [
+            "explosive",
+            "blast",
+            "consumable"
+        ]
+    },
+    "krak_grenade": {
+        "name": "Krak Grenade",
+        "scale": "micro",
+        "stats": {
+            "power": 8.0,
+            "range": 4,
+            "ap": -3
+        },
+        "tags": [
+            "explosive",
+            "anti_armor",
+            "consumable"
+        ]
+    },
+    "field_medkit": {
+        "name": "Field Medkit",
+        "scale": "micro",
+        "stats": {
+            "utility": 1,
+            "healing": 20
+        },
+        "tags": [
+            "utility",
+            "medical"
+        ]
+    },
+    "flamethrower": {
+        "name": "Flamethrower",
+        "scale": "light",
+        "stats": {
+            "power": 6.0,
+            "range": 8,
+            "ap": 0
+        },
+        "tags": [
+            "thermal",
+            "flame",
+            "area_denial"
+        ]
+    },
+    "plasma_gun": {
+        "name": "Plasma Gun",
+        "scale": "medium",
+        "stats": {
+            "power": 8.0,
+            "range": 24,
+            "ap": -3
+        },
+        "tags": [
+            "energy",
+            "plasma",
+            "hazardous"
+        ]
+    },
+    "meltagun": {
+        "name": "Meltagun",
+        "scale": "medium",
+        "stats": {
+            "power": 12.0,
+            "range": 8,
+            "ap": -4
+        },
+        "tags": [
+            "thermal",
+            "melta",
+            "anti_armor"
+        ]
+    },
+    "heavy_bolter": {
+        "name": "Heavy Bolter",
+        "scale": "medium",
+        "stats": {
+            "power": 5.0,
+            "range": 36,
+            "ap": -1,
+            "attacks": 3
+        },
+        "tags": [
+            "bullet",
+            "heavy_weapon"
+        ]
+    },
+    "missile_launcher": {
+        "name": "Missile Launcher",
+        "scale": "medium",
+        "stats": {
+            "power": 10.0,
+            "range": 48,
+            "ap": -2
+        },
+        "tags": [
+            "explosive",
+            "missile",
+            "versatile"
+        ]
+    },
+    "krak_missile_pod": {
+        "name": "Krak Missile Pod",
+        "scale": "medium",
+        "stats": {
+            "power": 15.0,
+            "range": 36,
+            "ap": -3,
+            "attacks": 2
+        },
+        "tags": [
+            "missile",
+            "anti_armor",
+            "accuracy"
+        ]
+    },
+    "whirlwind_launcher": {
+        "name": "Whirlwind Rocket Launcher",
+        "scale": "heavy",
+        "stats": {
+            "power": 20.0,
+            "range": 60,
+            "ap": -1,
+            "attacks": 6
+        },
+        "tags": [
+            "missile",
+            "artillery",
+            "indirect",
+            "blast"
+        ]
+    },
+    "hunter_killer_missile": {
+        "name": "Hunter-Killer Missile",
+        "scale": "medium",
+        "stats": {
+            "power": 35.0,
+            "range": 48,
+            "ap": -4
+        },
+        "tags": [
+            "missile",
+            "one_shot",
+            "anti_armor"
+        ]
+    },
+    "earthshaker_cannon": {
+        "name": "Earthshaker Cannon",
+        "scale": "heavy",
+        "stats": {
+            "power": 50.0,
+            "range": 120,
+            "ap": -2,
+            "blast": true
+        },
+        "tags": [
+            "kinetic",
+            "artillery",
+            "indirect",
+            "siege"
+        ]
+    },
+    "medusa_siege_mortar": {
+        "name": "Medusa Siege Mortar",
+        "scale": "heavy",
+        "stats": {
+            "power": 80.0,
+            "range": 36,
+            "ap": -4,
+            "blast": true
+        },
+        "tags": [
+            "kinetic",
+            "artillery",
+            "indirect",
+            "siege"
+        ]
+    },
+    "manticore_missile_battery": {
+        "name": "Manticore Missile Battery",
+        "scale": "titan",
+        "stats": {
+            "power": 120.0,
+            "range": 200,
+            "ap": -3,
+            "attacks": 4
+        },
+        "tags": [
+            "missile",
+            "artillery",
+            "indirect",
+            "area_denial"
+        ]
+    },
+    "autocannon_mounted": {
+        "name": "Mounted Autocannon",
+        "scale": "medium",
+        "stats": {
+            "power": 15.0,
+            "range": 40,
+            "ap": -1,
+            "attacks": 2
+        },
+        "tags": [
+            "kinetic",
+            "vehicle_weapon"
+        ]
+    },
+    "lascannon_mounted": {
+        "name": "Mounted Lascannon",
+        "scale": "heavy",
+        "stats": {
+            "power": 30.0,
+            "range": 48,
+            "ap": -3
+        },
+        "tags": [
+            "energy",
+            "laser",
+            "anti_armor"
+        ]
+    },
+    "battle_cannon": {
+        "name": "Battle Cannon",
+        "scale": "heavy",
+        "stats": {
+            "power": 45.0,
+            "range": 72,
+            "ap": -2,
+            "blast": true
+        },
+        "tags": [
+            "kinetic",
+            "explosive",
+            "blast"
+        ]
+    },
+    "demolisher_cannon": {
+        "name": "Demolisher Cannon",
+        "scale": "heavy",
+        "stats": {
+            "power": 60.0,
+            "range": 24,
+            "ap": -3,
+            "blast": true
+        },
+        "tags": [
+            "kinetic",
+            "explosive",
+            "siege"
+        ]
+    },
+    "titan_power_fist": {
+        "name": "Titan Power Fist",
+        "scale": "titan",
+        "stats": {
+            "power": 250.0,
+            "range": 1,
+            "ap": -5
+        },
+        "tags": [
+            "melee",
+            "titan_scale"
+        ]
+    },
+    "volcano_cannon": {
+        "name": "Volcano Cannon",
+        "scale": "titan",
+        "stats": {
+            "power": 500.0,
+            "range": 120,
+            "ap": -5
+        },
+        "tags": [
+            "energy",
+            "laser",
+            "titan_scale"
+        ]
+    },
+    "macro_cannon_battery": {
+        "name": "Macro Cannon Battery",
+        "scale": "titan",
+        "stats": {
+            "power": 300.0,
+            "range": 90,
+            "ap": -3,
+            "attacks": 4
+        },
+        "tags": [
+            "kinetic",
+            "explosive",
+            "titan_scale"
+        ]
+    },
+    "void_shield_belt": {
+        "name": "Belt Void Shield",
+        "scale": "micro",
+        "stats": {
+            "shield_bonus": 20,
+            "regen": 2
+        },
+        "tags": [
+            "defense",
+            "energy"
+        ]
+    },
+    "refractor_field": {
+        "name": "Refractor Field",
+        "scale": "micro",
+        "stats": {
+            "invuln_save": 5
+        },
+        "tags": [
+            "defense",
+            "tech"
+        ]
+    },
+    "swarm_mandibles": {
+        "name": "Organic Mandibles",
+        "scale": "micro",
+        "stats": {
+            "power": 1.0,
+            "range": 1
+        },
+        "tags": [
+            "melee",
+            "organic"
+        ]
+    }
+}

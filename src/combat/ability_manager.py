@@ -52,7 +52,7 @@ class AbilityManager:
         elif payload_type == "debuff":
             self._handle_debuff(source, target, ability_def, result)
         elif payload_type == "heal":
-            self._handle_heal(source, target, ability_def, result)
+            self._handle_heal(source, target, ability_def, result, context)
         elif payload_type == "stun":
             self._handle_stun(source, target, ability_def, result)
         elif payload_type == "aoe_damage":
@@ -107,31 +107,65 @@ class AbilityManager:
 
         return result
 
+    def get_random_applicable_ability(self, unit) -> Optional[str]:
+        """
+        Returns a random ability ID that is either a new Level 1 ability
+        or an upgrade to an existing ability.
+        """
+        domain = getattr(unit, 'domain', 'ground')
+        current_abilities = getattr(unit, 'abilities', {})
+        
+        # 1. Identify Upgradeable Abilities
+        upgrade_candidates = []
+        for ab_id in current_abilities:
+            # Check if this is a tiered ability (ends in _vX)
+            if "_v" in ab_id:
+                try:
+                    base, ver = ab_id.rsplit("_v", 1)
+                    next_ver = int(ver) + 1
+                    next_id = f"{base}_v{next_ver}"
+                    if next_id in self.registry:
+                        upgrade_candidates.append(next_id)
+                except ValueError:
+                    continue
+
+        # 2. Identify Discoverable (Level 1) Abilities
+        discovery_candidates = []
+        for ab_id, ab_def in self.registry.items():
+            # Only discover Level 1 versions
+            if not ab_id.endswith("_v1"):
+                continue
+                
+            # Strip _v1 to see if we already have any version of this base ability
+            base = ab_id.rsplit("_v", 1)[0]
+            already_owned = any(owned.startswith(base) for owned in current_abilities)
+            if already_owned:
+                continue
+                
+            ab_category = ab_def.get("category", "ground")
+            if ab_category == domain:
+                discovery_candidates.append(ab_id)
+            elif domain == "space" and ab_category == "ship":
+                discovery_candidates.append(ab_id)
+            elif domain == "ground" and ab_category == "regiment":
+                discovery_candidates.append(ab_id)
+                
+        # 3. Combine pools (Weighted: Use probability from balance)
+        from src.core.balance import UNIT_LEVEL_UP_UPGRADE_PROBABILITY
+        if upgrade_candidates and (not discovery_candidates or self._rng.random() < UNIT_LEVEL_UP_UPGRADE_PROBABILITY):
+            return self._rng.choice(upgrade_candidates)
+        elif discovery_candidates:
+            return self._rng.choice(discovery_candidates)
+        elif upgrade_candidates: # Fallback if no new discoveries left
+            return self._rng.choice(upgrade_candidates)
+            
+        return None
+
     def _handle_damage(self, source, target, ability_def, result, context=None):
         """Standard direct damage payload."""
         # Base damage
         damage = ability_def.get("damage", 10) # Fallback to 10
         
-        # [SCALING FIX] Apply dynamic scaling (Conviction/Will)
-        if "scaling" in ability_def:
-             sc = ability_def["scaling"]
-             stat = sc.get("source_stat")
-             factor = sc.get("factor", 0.1)
-             
-             bonus = 0
-             if stat == "conviction":
-                  # Check faction resources
-                  faction = context.get("faction") if context else None
-                  if faction and hasattr(faction, "custom_resources"):
-                       inc = faction.custom_resources.get("conviction", 0)
-                       bonus = inc * factor
-             elif stat == "will":
-                  # Unit stats
-                  dna = getattr(source, "elemental_dna", {})
-                  will = dna.get("atom_will", 0)
-                  bonus = will * factor
-                  
-             damage += bonus
         
         # Apply Logic:
         # Check source modifiers
@@ -142,11 +176,24 @@ class AbilityManager:
         final_damage = max(1, int(damage))
         
         if hasattr(target, "take_damage"):
-            killed = target.take_damage(final_damage)
+            damage_result = target.take_damage(final_damage)
+            # Support both (s_dmg, h_dmg, is_destroyed, comp) tuple and simple boolean
+            if isinstance(damage_result, tuple):
+                killed = damage_result[2]
+            else:
+                killed = bool(damage_result)
+                
             result["damage"] = final_damage
             result["killed"] = killed
             result["applied"] = True
             result["description"] = f"Dealt {final_damage} damage"
+            
+            # Award XP to source
+            from src.core.balance import UNIT_XP_AWARD_DAMAGE_RATIO, UNIT_XP_AWARD_KILL
+            if hasattr(source, "gain_xp"):
+                source.gain_xp(final_damage * UNIT_XP_AWARD_DAMAGE_RATIO, context)
+                if killed:
+                    source.gain_xp(UNIT_XP_AWARD_KILL, context)
             
             # Phase 250: Update Battle Stats for stalemate detection
             manager = context.get("battle_state")
@@ -165,35 +212,6 @@ class AbilityManager:
              # Default fallback if registry incomplete
              effects = {"damage_mult": 1.1, "duration": 1}
 
-        # [SCALING FIX] Buff Scaling
-        if "scaling" in ability_def:
-             sc = ability_def["scaling"]
-             stat = sc.get("source_stat")
-             factor = sc.get("factor", 0.1)
-             
-             bonus_mult = 0.0 # Additive multiplier bonus? Or flat bonus?
-             # Spec implies "Hardens armor" -> likely Flat Armor or Mult.
-             # Reg says "armor_bonus": 5.
-             
-             bonus = 0
-             if stat == "will":
-                  dna = getattr(source, "elemental_dna", {})
-                  will = dna.get("atom_will", 0)
-                  bonus = will * factor
-             elif stat == "conviction":
-                  faction = context.get("faction") if context else None
-                  if faction:
-                       inc = faction.custom_resources.get("conviction", 0)
-                       bonus = inc * factor
-
-             # Apply bonus to effects
-             # We assume scaling affects the PRIMARY effect
-             # simple heuristic: Pick first numeric key or specific key?
-             # For Prayer, key is "armor_bonus".
-             
-             for k in effects:
-                  if isinstance(effects[k], (int, float)) and "duration" not in k:
-                       effects[k] += bonus
                        
         if hasattr(target, "apply_temporary_modifiers"):
              target.apply_temporary_modifiers(effects)
@@ -215,7 +233,7 @@ class AbilityManager:
         else:
              result["applied"] = False
 
-    def _handle_heal(self, source, target, ability_def, result):
+    def _handle_heal(self, source, target, ability_def, result, context=None):
         """Restores HP."""
         heal_amount = ability_def.get("heal", 20)
         if hasattr(target, "heal"):
@@ -231,6 +249,11 @@ class AbilityManager:
              result["healed"] = restored
              result["applied"] = True
              result["description"] = f"Healed {restored} HP"
+
+        # Award XP to source
+        from src.core.balance import UNIT_XP_AWARD_HEAL_RATIO
+        if restored > 0 and hasattr(source, "gain_xp"):
+            source.gain_xp(restored * UNIT_XP_AWARD_HEAL_RATIO, context)
 
     def _handle_stun(self, source, target, ability_def, result):
         """Skips target's turn or reduces action points."""
@@ -329,31 +352,40 @@ class AbilityManager:
         # If no faction provided (mock test?), skip cost or fail?
         # For now, if no faction, assume free/pass for testing unless strict mode
         if not faction: 
-            return True
+            # Could check unit costs even if no faction?
+            pass
             
-        # Check resources
-        # Faction mechanics often store custom resources in 'custom_resources' or 'resources' (?)
-        # Based on previous work, modifiers like 'conviction_stacks' might be in `temp_modifiers` or `mechanics_data`?
-        # Mech_Crusade stores distinct "conviction_stacks" in triggers? 
-        # Actually usually mechanics use `faction.custom_resources['conviction']` or similar.
-        # Let's assume `custom_resources` dict exists.
+        # Distinguish between Unit Resources (Energy, Fuel) and Faction Resources (CP, Conviction)
+        unit_resources = ["energy", "fuel", "ammo"]
         
-        # NOTE: Faction model has 'resources' (standard) and we added 'custom_resources' previously?
-        # Or we rely on 'temp_modifiers' for some things.
-        # Let's check Faction model... but assuming 'custom_resources' is safe for asymmetric stuff.
-        
-        if not hasattr(faction, "custom_resources"):
-             faction.custom_resources = {}
-             
         for res, amount in cost.items():
-             current = faction.custom_resources.get(res, 0)
-             if current < amount:
-                  return False
-                  
-        # Deduct
-        for res, amount in cost.items():
-             faction.custom_resources[res] -= amount
-             
+            if res in unit_resources:
+                # Check Unit
+                u_res = getattr(source, "resources", {})
+                current = u_res.get(res, 100) # Default to 100 for now if missing
+                if current < amount:
+                    return False
+                # Deduct
+                if not hasattr(source, "resources"): source.resources = {}
+                source.resources[res] = current - amount
+            else:
+                # Check Faction
+                if not faction or isinstance(faction, str):
+                    # Cannot deduct from string or None
+                    # If strict, fail. If loose (test), pass?
+                    # Let's fail if cost exists but no faction object
+                    print(f"DEBUG: Cannot pay {res} cost without valid faction object (got {type(faction)})")
+                    return False
+                    
+                if not hasattr(faction, "custom_resources"):
+                     faction.custom_resources = {}
+                     
+                current = faction.custom_resources.get(res, 0)
+                if current < amount:
+                     return False
+                
+                faction.custom_resources[res] -= amount
+                
         return True
 
     def _handle_drain(self, source, target, ability_def, result):

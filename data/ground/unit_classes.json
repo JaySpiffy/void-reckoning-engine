@@ -18,7 +18,8 @@
             },
             "attributes": [
                 "infantry"
-            ]
+            ],
+            "tech_tier": 1
         },
         {
             "id": "assault_marines",
@@ -39,7 +40,9 @@
             "attributes": [
                 "infantry",
                 "fearless"
-            ]
+            ],
+            "tech_tier": 2,
+            "unlock_tech": "Tech_Unlock_Elite_Infantry"
         },
         {
             "id": "battle_tank",
@@ -60,7 +63,9 @@
             "attributes": [
                 "large",
                 "armored"
-            ]
+            ],
+            "tech_tier": 3,
+            "unlock_tech": "Tech_Unlock_Armor_Chassis"
         },
         {
             "id": "war_titan",
@@ -81,7 +86,9 @@
             "attributes": [
                 "massive",
                 "terror"
-            ]
+            ],
+            "tech_tier": 4,
+            "unlock_tech": "Tech_Unlock_Titan_Engine"
         }
     ]
 }

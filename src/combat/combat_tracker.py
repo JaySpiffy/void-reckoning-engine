@@ -66,21 +66,11 @@ class CombatTracker:
             "suppression": getattr(unit, 'is_suppressed', False),
             "components": [c.to_dict() for c in unit.components],
             "active_modifiers": getattr(unit, 'active_mods', {}),
-            "elemental_dna": getattr(unit, 'elemental_dna', None),
-            "atomic_abilities": getattr(unit, 'atomic_abilities', {}),
             "cooldowns": getattr(unit, 'ability_cooldowns', {})
         }
         self.snapshots.append(snapshot)
 
-    def log_atomic_trace(self, trace_data: Dict[str, Any]):
-        """Logs detailed atomic synthesis calculations."""
-        event = {
-            "round": self.current_round,
-            "type": "atomic_synthesis_trace",
-            "timestamp": datetime.now().isoformat()
-        }
-        event.update(trace_data)
-        self.events.append(event)
+
 
     def log_event(self, event_type: str, attacker, target, weapon=None, **kwargs):
         # Verbosity Filtering

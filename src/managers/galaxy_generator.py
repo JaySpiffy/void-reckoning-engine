@@ -279,8 +279,7 @@ class GalaxyGenerator:
                                      pass 
 
                                      
-                                 if "elemental_dna" in u_data:
-                                     u.elemental_dna = u_data["elemental_dna"]
+
                                      
                                  if "blueprint_id" in u_data:
                                      u.blueprint_id = u_data["blueprint_id"]
@@ -835,10 +834,23 @@ class GalaxyGenerator:
                 if not armies: armies = engine.unit_blueprints.get(faction, [])
                 
                 if armies:
-
+                    # [FIX] Filter for Starter Armies (Tier 1) to respect Tech Progression
+                    starter_armies = []
+                    for a_bp in armies:
+                        eff_tier = getattr(a_bp, 'tier', 1)
+                        # Infer tier from cost if default (consistent with RecruitmentService)
+                        if eff_tier == 1 and hasattr(a_bp, 'cost'):
+                            if a_bp.cost > 800: eff_tier = 2
+                        
+                        if eff_tier <= 1:
+                            starter_armies.append(a_bp)
+                    
+                    if not starter_armies:
+                        starter_armies = armies # Fallback
+                        
                     ground_units = []
                     for _ in range(10):
-                        bp = _galaxy_rng.choice(armies)
+                        bp = _galaxy_rng.choice(starter_armies)
                         new_unit = copy.deepcopy(bp)
                         # Ensure DNA is intact/finalized if deepcopy missed anything or for safety
                         UnitFactory._finalize_unit(new_unit)

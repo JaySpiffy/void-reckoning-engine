@@ -59,8 +59,8 @@ class PlasmaOverchargeMechanic(BaseMechanic):
         caster = context.get("caster")
         ability = context.get("ability")
         
-        dna = ability.get("elemental_dna", {})
-        if dna.get("atom_energy", 0) >= 20:
+        if True: # [LEGACY] Check removed. Rely on use_overcharge flag.
+
              # Logic to choose overcharge? 
              # For now, passive check or context flag "use_overcharge"
              if context.get("use_overcharge", False):

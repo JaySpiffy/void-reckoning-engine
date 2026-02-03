@@ -1004,7 +1004,7 @@ class BattleManager:
                     xp_gain += (rounds_survived * 5)
                     
                     if hasattr(u, 'gain_xp'):
-                        u.gain_xp(xp_gain, turn=self.context.turn_counter)
+                        u.gain_xp(xp_gain, context={"turn": self.context.turn_counter})
                     
                     if hasattr(u, 'log_service_event'):
                          outcome = "VICTORY" if winner == f_name else "DEFEAT"

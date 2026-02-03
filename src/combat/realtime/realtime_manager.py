@@ -117,6 +117,10 @@ class RealTimeManager:
                     
                 if hasattr(grid, 'update_unit_position'):
                     grid.update_unit_position(u, u.grid_x, u.grid_y)
+                
+                # Award survival XP (approx 1 XP per second of active combat)
+                from src.core.balance import UNIT_XP_AWARD_SURVIVAL_SEC
+                u.gain_xp(UNIT_XP_AWARD_SURVIVAL_SEC * dt)
 
         # 2. Abilities
         ab_context = {
@@ -211,8 +215,14 @@ class RealTimeManager:
                             hit_prob = getattr(u, 'bs', 50) / 100.0
                             if random.random() > hit_prob: continue
                             
-                            dmg_s, dmg_h, _, _ = target_unit.take_damage(final_dmg, target_component=target_comp)
+                            dmg_s, dmg_h, is_destroyed, _ = target_unit.take_damage(final_dmg, target_component=target_comp)
                             damage_dealt_total += (dmg_s + dmg_h)
+                            
+                            # Award XP
+                            from src.core.balance import UNIT_XP_AWARD_DAMAGE_RATIO, UNIT_XP_AWARD_KILL
+                            u.gain_xp((dmg_s + dmg_h) * UNIT_XP_AWARD_DAMAGE_RATIO, ab_context)
+                            if is_destroyed:
+                                u.gain_xp(UNIT_XP_AWARD_KILL, ab_context)
                             
                         if damage_dealt_total > 0:
                             u._shooting_cooldown = 1.0

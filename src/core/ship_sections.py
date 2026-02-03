@@ -10,6 +10,8 @@ from typing import Dict, List, Any
 # H: Hangar (Strike Craft)
 # D: Defense (Armor/Shields)
 # E: Engine
+# T: Tractor Beam
+# I: Interdiction Field
 
 SECTIONS = {
     "Corvette": {
@@ -51,7 +53,8 @@ SECTIONS = {
         },
         "Stern": {
             "Engine": ["D", "D", "E", "E"],
-            "Weapon": ["M", "M", "M", "M", "E"]
+            "Weapon": ["M", "M", "M", "M", "E"],
+            "Interdictor": ["I", "D", "D", "E", "E"]
         }
     },
     "Battleship": {
@@ -67,7 +70,8 @@ SECTIONS = {
         },
         "Stern": {
             "Artillery": ["L", "L", "L", "L", "E", "E"],
-            "Engine": ["D", "D", "D", "D", "E", "E"]
+            "Engine": ["D", "D", "D", "D", "E", "E"],
+            "Interdictor": ["I", "I", "D", "D", "D", "D", "E", "E"]
         }
     },
     "Titan": {
@@ -81,7 +85,8 @@ SECTIONS = {
             "Hangar Deck": ["H", "H", "H", "H", "H", "H", "H", "H", "D", "D", "D", "D", "D", "D"]
         },
         "Stern": {
-            "Fortress": ["D", "D", "D", "D", "D", "D", "D", "D", "E", "E", "E", "E"]
+            "Fortress": ["D", "D", "D", "D", "D", "D", "D", "D", "E", "E", "E", "E"],
+            "Tractor": ["T", "T", "D", "D", "D", "D", "D", "D", "E", "E", "E", "E"]
         }
     },
     "Massive": { # For World Devastators, Motherships, 64-slot Target

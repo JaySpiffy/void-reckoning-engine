@@ -10,6 +10,7 @@ class MoraleComponent:
         self.suppression = 0
         self.type = "Morale"
         self.is_destroyed = False
+        self.is_broken = False
         
     def take_damage(self, amount: float):
         """Impacts morale based on damage taken."""

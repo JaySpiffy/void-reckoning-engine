@@ -91,6 +91,7 @@ def generate_land_roster(universe_path: str, verbose: bool = False):
     base_dir = os.path.join(UNIVERSE_ROOT, "base")
     chassis_path = os.path.join(base_dir, "units", "base_land_chassis.json")
     modules_path = os.path.join(base_dir, "modules", "base_land_modules.json")
+    equipment_path = os.path.join(base_dir, "weapons", "base_land_equipment.json")
     
     if not os.path.exists(chassis_path) or not os.path.exists(modules_path):
         if verbose: print(f"Missing base blueprints: {chassis_path} or {modules_path}")
@@ -99,8 +100,13 @@ def generate_land_roster(universe_path: str, verbose: bool = False):
     with open(chassis_path, 'r', encoding='utf-8') as f: chassis = json.load(f)
     with open(modules_path, 'r', encoding='utf-8') as f: modules = json.load(f)
     
+    equipment = {}
+    if os.path.exists(equipment_path):
+        with open(equipment_path, 'r', encoding='utf-8') as f: equipment = json.load(f)
+    
     # 2. Init Factory
-    factory = LandDesignFactory(chassis, modules)
+    factory = LandDesignFactory(chassis, modules, equipment)
+
     
     # 3. Load Context (Factions + Arsenal)
     f_reg_path = os.path.join(universe_path, "factions", "faction_registry.json")

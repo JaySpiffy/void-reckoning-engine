@@ -1,0 +1,116 @@
+{
+    "take_cover": {
+        "id": "take_cover",
+        "name": "Take Cover",
+        "category": "ground",
+        "description": "Utilize terrain or posture to reduce incoming damage.",
+        "payload_type": "buff",
+        "target_type": "self",
+        "cooldown": 10,
+        "effects": {
+            "damage_reduction": 0.5,
+            "speed_mult": 0.5,
+            "duration": 10
+        }
+    },
+    "fix_bayonets": {
+        "id": "fix_bayonets",
+        "name": "Fix Bayonets",
+        "category": "ground",
+        "description": "Prepare for close quarters combat.",
+        "payload_type": "buff",
+        "target_type": "self",
+        "cooldown": 30,
+        "effects": {
+            "melee_damage_mult": 1.5,
+            "accuracy_mult": 0.8,
+            "duration": 15
+        }
+    },
+    "suppressive_fire": {
+        "id": "suppressive_fire",
+        "name": "Suppressive Fire",
+        "category": "ground",
+        "description": "Fire rapidly to pin down enemies, sacrificing accuracy.",
+        "payload_type": "debuff",
+        "target_type": "enemy",
+        "range": 800,
+        "cooldown": 20,
+        "effects": {
+            "morale_damage": 20,
+            "speed_mult": 0.4,
+            "duration": 8
+        },
+        "self_effects": {
+            "accuracy_mult": 0.6
+        }
+    },
+    "rally": {
+        "id": "rally",
+        "name": "Rally",
+        "category": "ground",
+        "description": "Inspire troops to recover morale.",
+        "payload_type": "rally",
+        "target_type": "aoe_friendly",
+        "radius": 500,
+        "cooldown": 60,
+        "morale_restore": 50
+    },
+    "charge": {
+        "id": "charge",
+        "name": "Charge",
+        "category": "ground",
+        "description": "Sudden burst of speed into melee range.",
+        "payload_type": "charge",
+        "target_type": "enemy",
+        "range": 400,
+        "cooldown": 45,
+        "effects": {
+            "speed_mult": 1.5,
+            "impact_damage": 50,
+            "duration": 5
+        }
+    },
+    "shield_wall": {
+        "id": "shield_wall",
+        "name": "Shield Wall",
+        "category": "ground",
+        "description": "Lock shields together for maximum frontal defense.",
+        "payload_type": "buff",
+        "target_type": "self",
+        "cooldown": 30,
+        "effects": {
+            "block_chance": 0.8,
+            "speed_mult": 0.2,
+            "flank_vulnerability": 2.0,
+            "duration": 20
+        }
+    },
+    "stim_pack": {
+        "id": "stim_pack",
+        "name": "Stim Pack",
+        "category": "ground",
+        "description": "Chemical cocktail to boost performance and heal.",
+        "payload_type": "heal_buff",
+        "target_type": "self",
+        "cooldown": 40,
+        "heal_amount": 30,
+        "effects": {
+            "speed_mult": 1.2,
+            "fire_rate_mult": 1.2,
+            "duration": 10
+        }
+    },
+    "snipe": {
+        "id": "snipe",
+        "name": "Snipe",
+        "category": "ground",
+        "description": "Carefully aimed shot for massive damage.",
+        "payload_type": "damage",
+        "target_type": "enemy",
+        "range": 1200,
+        "cooldown": 25,
+        "damage": 150,
+        "crit_chance": 0.5
+    }
+}

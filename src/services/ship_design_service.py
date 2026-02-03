@@ -207,6 +207,12 @@ class ShipDesignService:
                     if d: components.append(d)
                 elif slot_type == "E":
                     components.append({"name": "Standard Engine", "type": "Engine", "stats": {"cost": 20}})
+                elif slot_type == "T":
+                    t = self._pick_weapon(faction, role, size="T")
+                    if t: components.append(t)
+                elif slot_type == "I":
+                    i = self._pick_weapon(faction, role, size="I")
+                    if i: components.append(i)
                 
         return components
 
@@ -229,7 +235,9 @@ class ShipDesignService:
              {"Name": "Heavy Turbolaser", "Range": 45, "S": 9, "AP": 3, "D": 5, "cost": 80, "Size": "L"},
              {"Name": "Spinal Lance", "Range": 80, "S": 12, "AP": 5, "D": 15, "cost": 250, "Size": "X"},
              {"Name": "Point Defense", "Range": 10, "S": 2, "AP": 0, "D": 1, "cost": 5, "Size": "P", "Tags": ["PD"]},
-             {"Name": "Torpedo Launcher", "Range": 60, "S": 8, "AP": 4, "D": 10, "cost": 100, "Size": "G", "Tags": ["Guided"]}
+             {"Name": "Torpedo Launcher", "Range": 60, "S": 8, "AP": 4, "D": 10, "cost": 100, "Size": "G", "Tags": ["Guided"]},
+             {"Name": "Tractor Beam", "Range": 50, "S": 0, "AP": 0, "D": 0, "cost": 50, "Size": "T", "Tags": ["Utility"]},
+             {"Name": "Interdiction Field", "Range": 200, "S": 0, "AP": 0, "D": 0, "cost": 200, "Size": "I", "Tags": ["Utility"]}
         ]
         candidates.extend(defaults)
         
@@ -241,9 +249,18 @@ class ShipDesignService:
             w_size = w.get("Size", "M")
             
             # Size matching is critical
-            if w_size == size: score += 100
-            elif size == "M" and w_size in ["S", "L"]: score += 10 # Some cross-compatibility
-            else: score -= 50 # Penalize mismatch
+            if w_size == size:
+                score += 1000
+            elif size in ["T", "I"]:
+                score -= 10000 # Strict exclusion for utility slots
+            elif size == "M" and w_size in ["S", "L"]: 
+                score += 10 # Some cross-compatibility
+            else: 
+                score -= 50 # Penalize mismatch
+            
+            # Special Utility Matching
+            if size in ["T", "I"] and "Utility" in w.get("Tags", []):
+                score += 500
             
             rng = w.get("Range", 24)
             dps = (w.get("S", 4) * w.get("D", 1))

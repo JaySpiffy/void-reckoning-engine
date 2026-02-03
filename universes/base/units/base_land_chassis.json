@@ -1,103 +1,148 @@
 {
-    "infantry_standard": {
-        "name": "Standard Infantry Squad",
+    "micro_swarm": {
+        "name": "Micro / Swarm",
+        "description": "Simple AI, group movement. Tiny sphere collision.",
         "category": "Infantry",
-        "base_cost": 100,
-        "base_hp": 10,
-        "base_org": 20,
-        "weight": 1,
-        "slots": {
-            "squad_size": 10,
-            "specialist_slots": 2,
-            "support_slots": 1
+        "logic_role": "mob",
+        "collision_shape": "tiny_sphere",
+        "base_cost": 50,
+        "base_hp": 5,
+        "base_speed": 12,
+        "hardpoints": {
+            "integrated_fixed": "micro"
         }
     },
-    "infantry_heavy": {
-        "name": "Heavy Infantry / Exo-Suits",
+    "standard_infantry": {
+        "name": "Standard Infantry",
+        "description": "Uses cover, standard speed. Human capsule collision.",
         "category": "Infantry",
-        "base_cost": 250,
+        "logic_role": "character",
+        "collision_shape": "human_capsule",
+        "base_cost": 400,
         "base_hp": 25,
-        "base_org": 30,
-        "weight": 2,
-        "slots": {
-            "squad_size": 5,
-            "specialist_slots": 5,
-            "support_slots": 0
+        "base_speed": 10,
+        "squad_size": 20,
+        "hardpoints": {
+            "hand_main": "light",
+            "belt_utility": "micro"
         }
     },
-    "vehicle_light_tank": {
-        "name": "Light Tank",
-        "category": "Vehicle",
+    "assault_infantry": {
+        "name": "Assault Infantry",
+        "description": "Melee specialized, higher speed. Aggressive melee AI.",
+        "category": "Infantry",
+        "logic_role": "melee_character",
+        "collision_shape": "human_capsule",
         "base_cost": 500,
+        "base_hp": 30,
+        "base_speed": 12,
+        "squad_size": 20,
+        "hardpoints": {
+            "hand_melee": "light",
+            "hand_sidearm": "micro"
+        }
+    },
+    "heavy_infantry": {
+        "name": "Heavy Infantry",
+        "description": "No cover needed, high health. Large capsule collision.",
+        "category": "Infantry",
+        "logic_role": "elite_character",
+        "collision_shape": "large_capsule",
+        "base_cost": 1000,
         "base_hp": 100,
-        "base_armor": 10,
+        "base_speed": 8,
+        "base_armor": 15,
+        "squad_size": 10,
         "hardpoints": {
-            "turret_main": "light",
-            "hull_mount": "light"
+            "arm_heavy": "medium",
+            "shoulder_accessory": "light",
+            "backpack_utility": "utility"
         }
     },
-    "vehicle_main_battle_tank": {
-        "name": "Main Battle Tank",
+    "fast_attack_bike": {
+        "name": "Fast Attack (Bike)",
+        "description": "Physics drift, high speed. Rectangular box collision.",
         "category": "Vehicle",
-        "base_cost": 1200,
-        "base_hp": 250,
-        "base_armor": 30,
-        "hardpoints": {
-            "turret_main": "medium",
-            "coaxial": "micro",
-            "sponson_left": "light",
-            "sponson_right": "light"
-        }
-    },
-    "vehicle_super_heavy": {
-        "name": "Super-Heavy Fortress",
-        "category": "Vehicle",
-        "base_cost": 4000,
-        "base_hp": 800,
-        "base_armor": 60,
-        "hardpoints": {
-            "turret_main": "heavy",
-            "turret_secondary": "medium",
-            "sponson_1": "light",
-            "sponson_2": "light",
-            "sponson_3": "light",
-            "sponson_4": "light"
-        }
-    },
-    "walker_scout": {
-        "name": "Scout Walker",
-        "category": "Walker",
-        "base_cost": 300,
-        "base_hp": 60,
+        "logic_role": "light_vehicle",
+        "collision_shape": "rectangular_box",
+        "base_cost": 400,
+        "base_hp": 120,
+        "base_speed": 45,
         "base_armor": 5,
         "hardpoints": {
-            "chin_mount": "light",
-            "utility": "sensor"
+            "front_fixed": "light",
+            "rider_hand": "light"
         }
     },
-    "walker_combat": {
-        "name": "Combat Walker",
+    "light_walker": {
+        "name": "Light Walker",
+        "description": "Bipedal IK, mobile. Tall box collision.",
         "category": "Walker",
-        "base_cost": 900,
-        "base_hp": 180,
-        "base_armor": 20,
+        "logic_role": "scout_mech",
+        "collision_shape": "tall_box",
+        "base_cost": 800,
+        "base_hp": 350,
+        "base_speed": 30,
+        "base_armor": 15,
         "hardpoints": {
-            "arm_left": "medium",
-            "arm_right": "medium",
-            "shoulder": "light"
+            "arm_main": "medium",
+            "hull_utility": "utility",
+            "head_sensor": "utility"
         }
     },
-    "walker_titan": {
-        "name": "Titan",
-        "category": "Walker",
-        "base_cost": 15000,
-        "base_hp": 5000,
-        "base_armor": 100,
+    "main_battle_tank": {
+        "name": "Main Battle Tank",
+        "description": "Turret rotation, track physics. Large rigid box collision.",
+        "category": "Vehicle",
+        "logic_role": "tank",
+        "collision_shape": "rigid_box",
+        "base_cost": 1500,
+        "base_hp": 800,
+        "base_speed": 22,
+        "base_armor": 45,
         "hardpoints": {
-            "arm_left": "heavy",
-            "arm_right": "heavy",
-            "carapace_left": "medium",
-            "carapace_right": "medium"
+            "turret_main": "heavy",
+            "hull_sponson_left": "medium",
+            "hull_sponson_right": "medium",
+            "roof_defense": "defense"
+        }
+    },
+    "heavy_transport": {
+        "name": "Heavy Transport",
+        "description": "Very slow, heavily plated. Massive box collision.",
+        "category": "Vehicle",
+        "logic_role": "mobile_fortress",
+        "collision_shape": "massive_box",
+        "base_cost": 2500,
+        "base_hp": 2000,
+        "base_speed": 15,
+        "base_armor": 80,
+        "hardpoints": {
+            "hull_cannon": "heavy",
+            "sponson_left": "medium",
+            "sponson_right": "medium",
+            "defense_array_1": "defense",
+            "defense_array_2": "defense"
+        }
+    },
+    "super_heavy_walker": {
+        "name": "Super-Heavy Walker",
+        "description": "Advanced IK, separate torso twist. Multi-part collision.",
+        "category": "Walker",
+        "logic_role": "boss_mech",
+        "collision_shape": "multi_part",
+        "base_cost": 12000,
+        "base_hp": 10000,
+        "base_speed": 12,
+        "base_armor": 120,
+        "hardpoints": {
+            "arm_left_primary": "titan",
+            "arm_right_primary": "titan",
+            "carapace_artillery": "heavy",
+            "torso_defense_1": "light",
+            "torso_defense_2": "light",
+            "torso_defense_3": "light",
+            "core_shield_gen": "defense"
         }
     }
 }

@@ -1,7 +1,7 @@
 import math
 import random
 from typing import List, Optional, Any, Dict
-from src.core.reality_anchor import RealityAnchor
+
 from src.core.universe_physics import PhysicsProfile
 from src.combat.spatial_partition import QuadTree
 
@@ -17,7 +17,7 @@ class TacticalGrid:
         # Sparse storage: (x, y) -> Unit/Ship object
         self.occupied_tiles = {} 
         self.terrain_map = {} # (x, y) -> "Heavy", "Light", or None
-        self.anchors: List[RealityAnchor] = [] # Registry of active Reality Anchors
+
         
         # New: Spatial partition for efficient proximity queries
         self.spatial_index = QuadTree(width, height)
@@ -329,24 +329,7 @@ class TacticalGrid:
         else:
             return getattr(defender, 'armor_side', int(defender.armor * 0.75))
 
-    def register_anchor(self, anchor: RealityAnchor):
-        """Adds a Reality Anchor to the grid."""
-        self.anchors.append(anchor)
 
-    def get_physics_at_coordinates(self, x: int, y: int, global_profile: PhysicsProfile) -> PhysicsProfile:
-        """
-        Calculates the effective Physics Profile at a specific grid location.
-        Merges the Global Profile with any local Reality Anchors.
-        """
-        active_profile = global_profile
-        
-        # Check all anchors
-        for anchor in self.anchors:
-            if anchor.is_in_range(x, y):
-                # Apply anchor's effect (Compound Multiplication)
-                active_profile = anchor.apply_anchor_effect(active_profile)
-                
-        return active_profile
 
     # --- New Spatial Query Methods ---
     def query_units_in_range(self, center_x: float, center_y: float, radius: float, faction_filter: Optional[str] = None) -> List:

@@ -54,28 +54,24 @@ class AetherOverloadMechanic(BaseMechanic):
         caster = context.get("caster")
         ability = context.get("ability")
         
-        dna = ability.get("elemental_dna", {})
-        if dna.get("atom_aether", 0) >= 20:
-            caster_dna = getattr(caster, "elemental_dna", None)
-            if caster_dna:
-                stability = caster_dna.get("atom_stability", 0)
-            else:
-                stability = 0
+        # [LEGACY] Atomic attributes removed. Check new Ability Tags/Properties?
+        # For now, default to stable/no-overload unless specified in ability effects?
+        stability = 50
+
+        aether = 0 # Default to 0 aether
+        
+        # Fail chance
+        fail_chance = (aether / 100.0) * (1.0 - (stability / 100.0))
+        
+        if random.random() < fail_chance:
+            # Backfire
+            damage = ability.get("payload", {}).get("damage", 0) * 0.5
+            caster.current_hp -= damage
+            context["overload_triggered"] = True
             
-            aether = dna.get("atom_aether", 0)
-            
-            # Fail chance
-            fail_chance = (aether / 100.0) * (1.0 - (stability / 100.0))
-            
-            if random.random() < fail_chance:
-                # Backfire
-                damage = ability.get("payload", {}).get("damage", 0) * 0.5
-                caster.current_hp -= damage
-                context["overload_triggered"] = True
-                
-                # Apply debuff (abstractly represented in context or log)
-                # In a real engine we'd add a StatusEffect object
-                context["status_effects"] = context.get("status_effects", []) + ["Overloaded"]
+            # Apply debuff (abstractly represented in context or log)
+            # In a real engine we'd add a StatusEffect object
+            context["status_effects"] = context.get("status_effects", []) + ["Overloaded"]
 
 class InstabilityMechanic(BaseMechanic):
     """
@@ -114,8 +110,11 @@ class InstabilityMechanic(BaseMechanic):
     def process_unit_instability(self, unit):
         # Default volatility if missing
         vol = 0
-        if getattr(unit, 'elemental_dna', None):
-            vol = unit.elemental_dna.get("atom_volatility", 0)
+        vol = 0
+        # If we want instability, check tags
+        if hasattr(unit, "tags") and "PhaseShift" in unit.tags:
+             vol = 50
+
         
         if vol > 0 and random.random() < (vol / 100.0):
             unit.is_phased = True

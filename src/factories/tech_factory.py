@@ -157,6 +157,47 @@ class ProceduralTechGenerator:
         except Exception as e:
             print(f"[TechFactory] Failed to load hull tech: {e}")
 
+        # 4. Ground Unit Integration (Class Unlocks)
+        try:
+            ground_path = os.path.join("data", "ground", "unit_classes.json")
+            if os.path.exists(ground_path):
+                with open(ground_path, 'r') as f:
+                    ground_db = json.load(f)
+                    
+                for u_class in ground_db.get("classes", []):
+                    unlock_key = u_class.get("unlock_tech")
+                    if not unlock_key: continue
+                    
+                    tier = u_class.get("tech_tier", 1)
+                    # Ground unit research costs
+                    cost = int(1500 * (tier ** 1.7))
+                    
+                    # Add to Tree
+                    techs[unlock_key] = cost
+                    effects[unlock_key] = [f"Unlocks Class: {u_class['name']}"]
+                    
+                    # Prerequisites - Link to RANDOM known tech of comparable cost/tier
+                    candidates = [t for t, c in techs.items() if c < cost and c > cost * 0.1]
+                    if candidates:
+                        prereqs.setdefault(unlock_key, []).append(self.rng.choice(candidates))
+
+        except Exception as e:
+            print(f"[TechFactory] Failed to load ground unit tech: {e}")
+
+        # 5. Utility Technology Integration (Tractor Beam / Interdiction)
+        utils = [
+            ("Tech_Unlock_Tractor_Beam", "Tractor Beam", 4, 4500),
+            ("Tech_Unlock_Interdiction", "Interdiction Field", 5, 8000)
+        ]
+        for tech_id, name, tier, cost in utils:
+            techs[tech_id] = cost
+            effects[tech_id] = [f"Enables {name} Utility Modules"]
+            
+            # Link to RANDOM mid-high tier tech
+            candidates = [t for t, c in techs.items() if c < cost and c > cost * 0.2]
+            if candidates:
+                prereqs.setdefault(tech_id, []).append(self.rng.choice(candidates))
+
         return {
             "techs": techs,
             "prerequisites": prereqs,

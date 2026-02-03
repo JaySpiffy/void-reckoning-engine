@@ -119,20 +119,31 @@ class UniverseDataManager:
             return self._registry_cache["ability"]
 
         data = {}
-        # 2. Load Base Atomic Registry (Core)
-        base_path = "universes/base/abilities/atomic_ability_registry.json"
-        if os.path.exists(base_path):
-             with open(base_path, 'r', encoding='utf-8') as f:
-                data.update(json.load(f))
         
+        # 2. Load Core Unified Registries (Space & Ground)
+        core_paths = [
+            "src/combat/abilities/space_abilities.json",
+            "src/combat/abilities/ground_abilities.json",
+            "src/combat/abilities/space_massive.json",
+            "src/combat/abilities/ground_massive.json"
+        ]
+        
+        for p in core_paths:
+            if os.path.exists(p):
+                 with open(p, 'r', encoding='utf-8') as f:
+                    try:
+                        data.update(json.load(f))
+                    except json.JSONDecodeError as e:
+                        print(f"[ERROR] Failed to load ability registry {p}: {e}")
+        
+        # 3. Load Universe Config Registry
         if self.universe_config:
             path = self.universe_config.registry_paths.get("ability")
             if path and path.exists():
                 with open(path, 'r', encoding='utf-8') as f:
                     data.update(json.load(f))
                     
-        # 4. Load Faction Specific Overrides (e.g. universes/void_reckoning/factions/ability_registry.json)
-        # This covers cases where abilities are defined alongside factions but not in the main ability registry
+        # 4. Load Faction Specific Overrides
         target_universe = self.active_universe or "void_reckoning"
         faction_reg_path = os.path.join("universes", target_universe, "factions", "ability_registry.json")
         if os.path.exists(faction_reg_path):

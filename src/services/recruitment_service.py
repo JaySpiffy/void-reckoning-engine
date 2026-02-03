@@ -909,6 +909,22 @@ class RecruitmentService:
              
         if not blueprints: return []
         
+        # Load Ground Class Registry for Tech Unlocks
+        ground_classes = {}
+        def norm_key(s): return str(s).lower().replace(" ", "").replace("_", "")
+        try:
+            import os, json
+            c_path = os.path.join("data", "ground", "unit_classes.json")
+            if os.path.exists(c_path):
+                with open(c_path, 'r') as f:
+                    c_data = json.load(f)
+                    for c in c_data.get("classes", []):
+                        # Map both name and ID with normalization
+                        ground_classes[norm_key(c["name"])] = c
+                        ground_classes[norm_key(c["id"])] = c
+        except:
+            pass
+
         land_bps = [bp for bp in blueprints if not getattr(bp, 'is_ship', lambda: False)() and "Ship" not in bp.abilities.get("Tags", [])]
 
         # STRICT FILTER: Exclude Naval Types (redundant check for "Land Frigates")
@@ -952,6 +968,27 @@ class RecruitmentService:
                  if tier_breakdown.get(2, 0) >= 1 or tier_breakdown.get(3, 0) >= 1: allowed = True
             elif eff_tier >= 3:
                  if tier_breakdown.get(3, 0) >= 1 or tier_breakdown.get(4, 0) >= 1: allowed = True
+            
+            # REFINEMENT: Explicit Tech Unlock Check
+            u_class_name = getattr(bp, "unit_class", "") or getattr(bp, "type", "infantry")
+            n_class = norm_key(u_class_name)
+            
+            # Map common types to registry keys for better coverage
+            type_map = {
+                "infantry": "line_infantry",
+                "tank": "battle_tank",
+                "titan": "war_titan",
+                "walker": "war_titan"
+            }
+            if n_class in type_map and n_class not in ground_classes:
+                n_class = type_map[n_class]
+
+            if n_class in ground_classes:
+                req_tech = ground_classes[n_class].get("unlock_tech")
+                if req_tech and req_tech not in faction_mgr.unlocked_techs:
+                    if self.engine.logger:
+                        self.engine.logger.debug(f"[TECH_LOCK] {bp.name} ({u_class_name}) requires {req_tech}")
+                    allowed = False
             
             if allowed:
                 # NEW Phase 18: Infrastructure Check

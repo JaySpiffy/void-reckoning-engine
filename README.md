@@ -64,9 +64,9 @@ The engine uses a high-frequency real-time resolution for battles, allowing for 
 
 - ⚔️ **Ten Unique Factions**: Templars of the Flux, Transcendent Order, Steel-Bound Syndicate, Bio-Tide Collective, Algorithmic Hierarchy, Nebula Drifters, Aurelian Hegemony, Void-Spawn Entities, Scrap-Lord Marauders, Primeval Sentinels
 - 🧠 **Adaptive AI**: Strategic planner, theater manager (Multi-front coordination), economic engine (RECOVERY mode), intelligence coordinator, personality manager
-- 🌀 **Portal System (Experimental)**: Interstellar travel through portal networks with reality anchors and queue-based fleet transfers. Currently in active development across parallel galaxies.
+- 🌀 **Portal System (Experimental)**: Interstellar travel through portal networks and queue-based fleet transfers. Currently in active development across parallel galaxies.
 - 🚁 **Task Force Management**: AI fleet coordination with SCOUT, RAID, DEF, ASSAULT types
-- 🏆 **Mission System**: Custom victory conditions (conquest, score-based, elimination)
+- 🏆 **Victory Conditions**: Flexible victory states including Conquest, Elimination, and Defender Survival.
 
 ### Combat Systems
 
@@ -74,11 +74,13 @@ The engine uses a high-frequency real-time resolution for battles, allowing for 
 - 🌌 **Empire at War Style Space Combat**: Tactical fleet engagements featuring targetable **Hardpoints** (Engines, Shields, Weapons) and ship crippling mechanics.
 - 🪖 **Total War Style Ground Combat**: Scale-based planetary warfare with **Morale & Suppression** systems, flanking penalties, and unit routing.
 - 🎯 **Tactical Support**: Off-map **Orbital Bombardment** provided by fleets in orbit to ground units.
-- 🛡️ **Cover & Terrain**: Dynamic cover system (Light/Heavy/Urban) affecting unit accuracy and survival.
-- 🔒 **Reality Anchors**: Physics override zones (Null zones, Warp Rifts, Gellar Fields) that distort the tactical battlefield.
+- 🛡️ **Cover & Terrain**: Dynamic cover system (Light/Heavy) affecting unit survival and mitigating damage.
+
 - 🎲 **Faction Mechanics**: Unique resource systems and 11+ ability types synchronized with real-time state.
 - 🏗️ **Modular Ship Design**: **Stellaris/Thrawn's Revenge Style** architecture with Bow/Core/Stern sections and specialized slot types (S/M/L/X/P/G/H).
-- 🧬 **Research & Tech Tree**: **Stellaris-Style** card draw system with Hull Tech Locks, infinite procedural tech scaling, and RP-based progression.
+- 🧬 **Research & Tech Tree**: **Stellaris-Style** card draw system with **Hull & Unit Tech Locks**, ensuring that advanced ship classes and ground units (e.g., Heavy Walkers, Titans) require dedicated research. Features infinite procedural tech scaling and RP-based progression.
+- 🧲 **Specialized Utility Modules**: Advanced ship roles including **Tractor Beams** (gravitational slowing) and **Interdiction Fields** (warp-suppression to prevent enemy retreat), supported by dedicated `T` and `I` slot architectures.
+- 🌟 **Unit Ability Progression**: Dynamic combat experience system where units gain XP and level up, unlocking or improving faction-specific abilities over time.
 - 🔫 **Unified Weapon Database**: Cross-Universe schema integrating Warhammer 40k, Star Wars, and Star Trek weapon archetypes.
 
 ### Performance & Analytics
@@ -261,11 +263,7 @@ flowchart TD
     
     subgraph Tactical Support
         T
-        T --> T1[Orbital Bombardment]
-        T1 --> T2[Reality Anchors]
-        T2 --> T3[Null Zones]
-        T2 --> T4[Warp Rifts]
-        T2 --> T5[Gellar Fields]
+
     end
 ```
 
@@ -1132,9 +1130,9 @@ Comprehensive documentation is available in the [`docs/`](docs/) directory.
 ### Planned Features
 
 - [ ] Custom Universe Template Generator
-- [ ] Multiplayer Support
+
 - [ ] Save/Load System
-- [ ] Mod Support
+
 - [ ] Additional Universes
 
 ## License

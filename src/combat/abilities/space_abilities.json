@@ -1,0 +1,123 @@
+{
+    "power_to_shields": {
+        "id": "power_to_shields",
+        "name": "Power to Shields",
+        "category": "space",
+        "description": "Boosts shield regeneration and reduction at the cost of weapon power.",
+        "payload_type": "buff",
+        "target_type": "self",
+        "cooldown": 30,
+        "cost": {
+            "energy": 20
+        },
+        "effects": {
+            "shield_regen_mult": 2.0,
+            "damage_reduction": 0.25,
+            "damage_mult": 0.5,
+            "duration": 15
+        }
+    },
+    "all_ahead_full": {
+        "id": "all_ahead_full",
+        "name": "All Ahead Full",
+        "category": "space",
+        "description": "Emergency engine boost for rapid redeployment.",
+        "payload_type": "buff",
+        "target_type": "self",
+        "cooldown": 45,
+        "cost": {
+            "fuel": 10
+        },
+        "effects": {
+            "speed_mult": 2.0,
+            "turn_rate_mult": 0.5,
+            "accuracy_mult": 0.5,
+            "duration": 10
+        }
+    },
+    "micro_warp_jump": {
+        "id": "micro_warp_jump",
+        "name": "Micro Warp Jump",
+        "category": "space",
+        "description": "Short-range teleportation to disengage or reposition.",
+        "payload_type": "teleport",
+        "target_type": "position",
+        "range": 5000,
+        "cooldown": 60,
+        "cost": {
+            "energy": 50
+        }
+    },
+    "concentrate_fire": {
+        "id": "concentrate_fire",
+        "name": "Concentrate Fire",
+        "category": "space",
+        "description": "Coordinate weapons for maximum impact.",
+        "payload_type": "buff",
+        "target_type": "self",
+        "cooldown": 40,
+        "effects": {
+            "damage_mult": 1.5,
+            "crit_chance_add": 0.2,
+            "duration": 10
+        }
+    },
+    "tractor_beam": {
+        "id": "tractor_beam",
+        "name": "Tractor Beam",
+        "category": "space",
+        "description": "Lock onto enemy engines to halt movement.",
+        "payload_type": "debuff",
+        "target_type": "enemy",
+        "range": 1500,
+        "cooldown": 20,
+        "effects": {
+            "speed_mult": 0.0,
+            "evasion_mult": 0.0,
+            "duration": 8
+        }
+    },
+    "stasis_bomb": {
+        "id": "stasis_bomb",
+        "name": "Stasis Bomb",
+        "category": "space",
+        "description": "Deploys a field that slows time for all units in area.",
+        "payload_type": "aoe_debuff",
+        "target_type": "position",
+        "range": 2000,
+        "radius": 1000,
+        "cooldown": 90,
+        "effects": {
+            "speed_mult": 0.1,
+            "fire_rate_mult": 0.1,
+            "duration": 10
+        }
+    },
+    "boarding_torpedoes": {
+        "id": "boarding_torpedoes",
+        "name": "Boarding Torpedoes",
+        "category": "space",
+        "description": "Launch assault teams to capture enemy vessels.",
+        "payload_type": "capture",
+        "target_type": "enemy",
+        "range": 2500,
+        "cooldown": 120,
+        "capture_threshold": 0.3,
+        "damage": 50
+    },
+    "silent_running": {
+        "id": "silent_running",
+        "name": "Silent Running",
+        "category": "space",
+        "description": "Minimize emissions to become untargetable at long range.",
+        "payload_type": "buff",
+        "target_type": "self",
+        "cooldown": 60,
+        "effects": {
+            "stealth": true,
+            "speed_mult": 0.5,
+            "shield_regen_mult": 0.0,
+            "duration": 20
+        }
+    }
+}
