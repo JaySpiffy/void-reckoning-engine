@@ -56,11 +56,22 @@ class ShipDesignService:
             seen_ids.add(h_id)
             
             # Check Unlock
+            h_name = data["name"]
             req_tech = data.get("unlock_tech")
+            
+            # 1. Check direct tech ID if specified in hulls.json (Legacy/Hardcoded)
+            if req_tech and req_tech in f_mgr.unlocked_techs:
+                available.append(h_name)
+                continue
+                
+            # 2. Check name-based unlock via TechManager (handles faction-specific registry mapping)
+            if hasattr(self.engine, 'tech_manager') and self.engine.tech_manager.is_unit_unlocked(faction_name, h_name, f_mgr.unlocked_techs):
+                available.append(h_name)
+                continue
+                
+            # 3. If no tech required, it's a starter hull (Tier 1)
             if not req_tech:
-                available.append(data["name"]) # Always available (Tier 1)
-            elif req_tech in f_mgr.unlocked_techs:
-                available.append(data["name"])
+                available.append(h_name)
                 
         # Sort by size to be nice?
         # Ensure at least one thing is returned

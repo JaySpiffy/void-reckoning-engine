@@ -657,7 +657,40 @@ class TechManager:
             subtree_val = tech_values.get(h_id, 0.0)
             tech_values[h_id] = max(1.0, subtree_val, 5.0) # Boost hybrid prestige
             
-        return tech_values
+    def is_unit_unlocked(self, faction: str, unit_name: str, unlocked_techs: List[str]) -> bool:
+        """
+        Checks if a unit (ship/building) is unlocked by any researched tech for the faction.
+        Handles common pluralization mismatches (e.g., 'Cruiser' vs 'Cruisers').
+        """
+        f_lower = faction.lower()
+        tree = self.faction_tech_trees.get(f_lower)
+        if not tree:
+            return False
+            
+        units_map = tree.get("units", {})
+        
+        # Build search candidates for pluralization flexibility
+        candidates = [unit_name, unit_name.lower(), unit_name.title()]
+        if unit_name.endswith("y"):
+            candidates.append(unit_name[:-1] + "ies")
+        elif not unit_name.endswith("s"):
+            candidates.append(unit_name + "s")
+        else:
+            candidates.append(unit_name[:-1]) # Try singular
+            
+        for cand in set(candidates):
+            # 1. Direct match
+            req_tech = units_map.get(cand)
+            if req_tech and req_tech in unlocked_techs:
+                return True
+                
+            # 2. Fuzzy match: Check if any key in units_map contains the candidate
+            # (e.g., 'AI Battleships' contains 'Battleship' or 'Battleships')
+            for mapped_name, t_id in units_map.items():
+                if cand.lower() in mapped_name.lower() and t_id in unlocked_techs:
+                    return True
+                
+        return False
 
     def calculate_tech_tree_depth(self, faction: str, unlocked_techs: List[str]) -> Dict[str, Any]:
         """
@@ -682,7 +715,7 @@ class TechManager:
             }
         
         # Build dependency graph (child -> parent)
-        dependencies = tree.get("units", {})
+        dependencies = tree.get("prerequisites", {})
         
         # Calculate depth for each unlocked tech
         depths = {}
