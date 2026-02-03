@@ -128,7 +128,8 @@ flowchart TD
     
     E --> F{Turn Processing Loop}
     F --> G[AI Strategic Planning]
-    G --> H[Economic Management]
+    G --> G5[Research & Tech Progression]
+    G5 --> H[Economic Management]
     H --> I[Diplomacy Processing]
     I --> J[Military Operations]
     
@@ -136,7 +137,8 @@ flowchart TD
     K -->|Yes| L[Resolve Battles]
     K -->|No| M[Continue Turn]
     
-    L --> M
+    L --> L6[Unit XP & Ability Leveling]
+    L6 --> M
     
     M --> N[Check Victory Conditions]
     N --> O{Victory Achieved?}
@@ -198,8 +200,10 @@ flowchart TD
     E --> G[Combat Phase 1: Engagement]
     F --> H[Combat Phase 1: Contact]
     
-    G --> I[Target Hardpoints]
-    H --> J[Morale & Suppression Check]
+    G --> I1[Activate Unit Abilities]
+    I1 --> I[Target Hardpoints]
+    H --> J1[Activate Unit Abilities]
+    J1 --> J[Morale & Suppression Check]
     
     I --> K[Execute Weapon Fire]
     J --> L[Execute Unit Attacks]
@@ -211,11 +215,14 @@ flowchart TD
     N --> O[Process Casualties]
     
     O --> P{Retreat Check}
-    P -->|Yes| Q[Execute Retreat]
-    P -->|No| R[Continue Combat]
+    P --> P1{Interdiction Field?}
+    P1 -->|Yes| R[Continue Combat]
+    P1 -->|No| Q[Execute Retreat]
+    P -->|No| R
     
     Q --> S{All Units Retreated?}
-    S -->|Yes| T[Battle Ends]
+    S -->|Yes| T1[Calculate XP Gain]
+    T1 --> T[Battle Ends]
     S -->|No| R
     
     R --> U{Combat Phase Complete?}
@@ -225,8 +232,8 @@ flowchart TD
     V -->|Phase 2| X[Combat Phase 2: Intensified]
     V -->|Phase 3| Y[Combat Phase 3: Resolution]
     
-    X --> I
-    Y --> I
+    X --> I1
+    Y --> I1
     
     W --> Z{Victory Condition Met?}
     Z -->|Yes| AA[Determine Winner]
@@ -236,9 +243,10 @@ flowchart TD
     AB -->|No| R
     
     AA --> AC[Apply Battle Results]
-    AC --> AD[Update Unit States]
+    AC --> AD1[Award XP & Level Up]
+    AD1 --> AD[Update Unit States]
     AD --> AE[Generate Battle Report]
-    AE --> T
+    AE --> T1
     
     subgraph Space Combat Features
         C
@@ -247,6 +255,8 @@ flowchart TD
         C1 --> C3[Shields]
         C1 --> C4[Weapons]
         C1 --> C5[Ship Crippling]
+        C --> C6[Tractor Beams]
+        C --> C7[Interdiction Fields]
     end
     
     subgraph Ground Combat Features
@@ -259,11 +269,11 @@ flowchart TD
         D5 --> D6[Light Cover]
         D5 --> D7[Heavy Cover]
         D5 --> D8[Urban Cover]
+        D --> D9[Ability Leveling]
     end
     
     subgraph Tactical Support
-        T
-
+        T[Orbital Bombardment]
     end
 ```
 
@@ -286,7 +296,12 @@ flowchart TD
     E --> J[Pay Building Maintenance]
     E --> K[Pay Fleet Maintenance]
     
-    F --> L[Process Construction Items]
+    F --> F6{Tech Gated?}
+    F6 -->|Yes| F7{Technology Researched?}
+    F7 -->|Yes| L[Process Construction Items]
+    F7 -->|No| P[Queue Item]
+    F6 -->|No| L
+    
     L --> M[Check Resources]
     M --> N{Sufficient Resources?}
     N -->|Yes| O[Build Item]
@@ -409,27 +424,11 @@ flowchart TD
     P --> Q
     Q --> F
     
-    F --> R{Coalition Building?}
-    R -->|Yes| S[Initiate Coalition]
-    R -->|No| T[Check War/Peace Status]
+    F --> I1[Calculate War Exhaustion]
+    I1 --> T[Check War/Peace Status]
     
-    S --> U[Identify Potential Members]
-    U --> V[Evaluate Compatibility]
-    V --> W{Compatible?}
-    W -->|Yes| X[Invite Faction]
-    W -->|No| Y[Skip Faction]
-    
-    X --> Z{Invitation Accepted?}
-    Z -->|Yes| AA[Add to Coalition]
-    Z -->|No| AB[Relationship Impact]
-    
-    AA --> AC{Coalition Complete?}
-    AC -->|Yes| AD[Formalize Coalition]
-    AC -->|No| U
-    
-    AB --> Y
-    Y --> U
-    AD --> T
+    I --> M1[Peaceful Treaty Dissolution]
+    M1 --> N
     
     T --> AE{War Declaration?}
     AE -->|Yes| AF[Initiate War]
