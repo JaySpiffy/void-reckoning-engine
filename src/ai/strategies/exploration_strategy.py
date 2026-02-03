@@ -79,7 +79,10 @@ class ExplorationStrategy:
             tf.state = "TRANSIT" # Skip mustering for single scouts
 
             # Force immediate movement
-            scout.move_to(target, engine=self.ai.engine)
+            if scout.current_node:
+                scout.move_to(target, engine=self.ai.engine)
+            elif self.ai.engine.logger:
+                self.ai.engine.logger.warning(f"[{faction}] Explorer {scout.id} has NO current_node for move_to(target={target_name})")
             
             self.ai.task_forces[faction].append(tf)
             assigned_scouts.append(scout)

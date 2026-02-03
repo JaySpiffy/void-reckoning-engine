@@ -36,26 +36,28 @@ import multiprocessing
 def _generate_topology_worker(system_data):
     """
     Worker function for parallel topology generation.
-    Args:
-        system_data: Tuple (system_obj, force_flag)
-    Returns:
-        system_obj: The system object with generated nodes (though usually objects aren't mutated across processes easily without return).
-                    Actually, passing objects across processes pickles them. 
-                    We need to return the modified object.
     """
     system, force = system_data
-    # Initialize RNG state for this process/system if needed, 
-    # but generate_topology uses deterministic math or system-local state?
-    # It uses math.sqrt(i) etc. It does NOT use global RNG for the spiral itself, only for 'flavor' types (asteroids/nebula).
-    # flavor types use `i % 10`. So it is deterministic.
-    # We can just call the method.
     system.generate_topology(force=force)
     
-    # [FIX] Break circular references to avoid RecursionError during pickling
+    # [FIX] Aggressive breaking of circular references to avoid RecursionError
+    # Pickle has a recursion limit that is easily hit by 300 nodes each with back-refs
     system.connections = [] 
     for p in system.planets:
         p.system = None
+        p.node_reference = None # Will restore by name later
         
+    for n in system.nodes:
+        # Strip system but keep other metadata
+        if "system" in n.metadata:
+            del n.metadata["system"]
+        # Strip object references (planets) - we'll restore by matching n.name to p.name
+        if "object" in n.metadata:
+            del n.metadata["object"]
+        
+        # Also clean up edges to be safe (though edges usually don't cycle back to system)
+        # but nodes in edges have their own metadata... pickle handles it but depth is the killer.
+            
     return system
 
 class GalaxyGenerator:
@@ -490,26 +492,39 @@ class GalaxyGenerator:
             # We must update self.systems
             self.systems = processed_systems
             
-            # [FIX] Restore Connections from Map
-            # The returned systems have valid nodes but empty connections (stripped in worker)
+            # [FIX] Restore Connections and Back-References
             new_sys_map = {s.name: s for s in self.systems}
             for s in self.systems:
-                # Restore the object references using the new system objects
+                # 1. Restore System Connections
                 if s.name in connection_map:
                     s.connections = [new_sys_map[c_name] for c_name in connection_map[s.name] if c_name in new_sys_map]
-            
-            
-            # And we must update self.all_planets to point to the new planets inside the new systems
-            # Otherwise other managers accessing self.all_planets will modify old stale objects
-            
-            self.all_planets = []
-            for s in self.systems:
-                # Re-bind system back-reference just in case (though it should be preserved)
+                
+                # 2. Restore Planet-System and Node-System references
+                node_map = {n.name: n for n in s.nodes}
                 for p in s.planets:
                     p.system = s
+                    # Restore planet-to-node link (Galaxy matching logic uses names)
+                    if p.name in node_map:
+                        node = node_map[p.name]
+                        p.node_reference = node
+                        node.metadata["object"] = p
+                
+                for n in s.nodes:
+                    n.metadata["system"] = s
+                    # If this is a planet node but not linked yet
+                    if n.type == "Planet" and "object" not in n.metadata:
+                        match = next((p for p in s.planets if p.name == n.name), None)
+                        if match:
+                             n.metadata["object"] = match
+                             match.node_reference = n
+                    
+            # And we must update self.all_planets
+            self.all_planets = []
+            for s in self.systems:
+                for p in s.planets:
                     self.all_planets.append(p)
                     
-            logger.info("Parallel Topology Generation Complete.")
+            logger.info("Parallel Topology Generation Complete (References Restored).")
             
         except Exception as e:
             logger.warning(f"Parallel Generation Failed ({e}), falling back to sequential.")

@@ -2,6 +2,8 @@ import random
 import math
 from typing import List, Dict, Optional, Any, TYPE_CHECKING
 from src.core.simulation_topology import GraphNode
+from src.core.hex_lib import Hex, HexGrid
+from src.models.hex_node import HexNode
 from src.models.unit import Unit
 from src.factories.unit_factory import UnitFactory
 from src.core.universe_data import UniverseDataManager
@@ -544,86 +546,106 @@ class Planet:
     def provinces(self):
         """Lazy loads the province graph only when needed."""
         if not hasattr(self, '_provinces') or self._provinces is None:
-            self._generate_provinces_lazy()
+            self._generate_hex_map_lazy()
         return self._provinces
 
     @provinces.setter
     def provinces(self, value):
         self._provinces = value
 
-    def _generate_provinces_lazy(self):
-        """Generates the internal Province Graph using a Spiral Topology."""
+    def _generate_hex_map_lazy(self):
+        """Generates the internal Hex Grid (Gladius Style)."""
         self._provinces = []
+        self.hex_map = {} # (q, r) -> HexNode
         
         # 1. Config
-        # Golden Ratio Spiral
+        # Scale map size with building slots (proxy for planet size)
+        # 5 slots ~ 20 hexes (Radius 2-3)
+        # 20 slots ~ 100 hexes (Radius 5-6)
         target_count = 20 + (self.building_slots * 10)
-        radius_scale = 20.0 / math.sqrt(target_count) 
         
-        nodes_by_index = {}
+        # Calculate radius needed to fit target_count
+        # Hex count = 3n(n+1) + 1
+        # n ~ sqrt(count/3)
+        radius = int(math.sqrt(target_count / 3.0)) + 1
         
-        for i in range(target_count):
-            # Spiral Math
-            angle = i * 2.39996 # Golden Angle in radians approx (pi * (3 - sqrt(5)))
-            r = radius_scale * math.sqrt(i)
+        center_hex = Hex(0, 0)
+        generated_hexes = list(HexGrid.get_spiral(center_hex, radius))
+        
+        # Limit to target count to avoid over-generation, but ensure full rings are cleaner?
+        # Let's just use the full spiral for completeness of rings
+        
+        for i, h in enumerate(generated_hexes):
+            # Hex Node
+            node_id = f"{self.name}_H{h.q}_{h.r}"
+            node = HexNode(node_id, h.q, h.r, self.name)
             
-            x = r * math.cos(angle)
-            y = r * math.sin(angle)
+            # Determine Terrain/Type
+            dist = h.length()
             
-            # Determine Type
-            # Center (0) is Capital
-            # Outer edges are Landing Zones
-            type = "Wasteland"
-            name = f"Sector {i}"
+            if dist == 0:
+                node.type = "Capital"
+                node.terrain_type = "City"
+                node.name = f"{self.name} Prime"
+                node.building_slots = 6
+                node.max_tier = 5
+            elif dist <= 1:
+                node.type = "ProvinceCapital"
+                node.terrain_type = "City"
+                node.name = f"District {i}"
+                node.max_tier = 3
+                node.building_slots = 4
+            elif dist >= radius:
+                node.type = "LandingZone"
+                node.terrain_type = "Wasteland"
+                node.name = f"Drop Site {h.q},{h.r}"
+                node.building_slots = 1
+            else:
+                # Mid-range: Mix of Plains, Ruins, Forests, Mountains, Water
+                rng = random.random()
+                if rng < 0.15: # 15% Ruins
+                    node.terrain_type = "Ruins"
+                    node.type = "Wasteland" # Mechanically
+                    node.feature = "Ancient Ruins"
+                elif rng < 0.35: # 20% Forest
+                    node.terrain_type = "Forest"
+                    node.type = "Province"
+                elif rng < 0.45: # 10% Mountain
+                    node.terrain_type = "Mountain"
+                    node.type = "Wasteland"
+                    node.feature = "Crystalline Peaks"
+                elif rng < 0.55: # 10% Water
+                    node.terrain_type = "Water"
+                    node.type = "Wasteland"
+                    node.feature = "Acid Ocean"
+                else: # 45% Plains
+                    node.terrain_type = "Plains"
+                    node.type = "Province"
+                node.name = f"Sector {h.q},{h.r}"
             
-            if i == 0:
-                type = "Capital"
-                name = f"{self.name} Prime"
-            elif i >= target_count - 3: 
-                # Last few are landing zones
-                type = "LandingZone"
-                name = f"Drop Site {i} - {'Alpha' if i%3==0 else 'Beta' if i%3==1 else 'Gamma'}"
-            elif i % 10 == 0:
-                 type = "ProvinceCapital"
-                 name = f"District {i} Hub"
-                 
-            node = GraphNode(f"{self.name}_N{i}", type, name)
-            node.position = (x, y)
-            node.max_tier = 1
-            node.building_slots = 0
             node.metadata["object"] = self
             node.metadata["system"] = self.system
             
-            # Slot Config
-            if type == "Capital": 
-                node.building_slots = 6
-                node.max_tier = 5
-            elif type == "ProvinceCapital":
-                node.building_slots = 3
-                node.max_tier = 3
-            elif type == "LandingZone":
-                node.building_slots = 1
-                node.max_tier = 1
+            # Storage
+            self.hex_map[(h.q, h.r)] = node
+            self._provinces.append(node)
+            
+        # [Implicit Edges]
+        # In a hex grid, edges are implicit. We don't necessarily need to store GraphEdge objects 
+        # unless the legacy pathfinder demands it. 
+        # For compatibility, we SHOULD generate edges between neighbors so standard graph algo works.
+        
+        for h, node in self.hex_map.items():
+            h_obj = Hex(h[0], h[1])
+            for neighbor_hex in h_obj.get_neighbors():
+                neighbor_key = (neighbor_hex.q, neighbor_hex.r)
+                if neighbor_key in self.hex_map:
+                    neighbor_node = self.hex_map[neighbor_key]
+                    node.add_edge(neighbor_node, distance=1)
+
                 
             self._provinces.append(node)
-            nodes_by_index[i] = node
-            
-        # 2. Connectivity (Spiral Neighbors)
-        # Connect to spatially closest neighbors to ensure graph connectivity
-        for n1 in self._provinces:
-             # Brute force 4 closest
-             others = sorted(self._provinces, key=lambda n2: math.hypot(n1.position[0]-n2.position[0], n1.position[1]-n2.position[1]) if n1!=n2 else 999999)
-             
-             for n2 in others[:4]:
-                 dist = math.hypot(n1.position[0]-n2.position[0], n1.position[1]-n2.position[1])
-                 if dist < (radius_scale * 2.5): # Threshold to prevent cross-map jumps
-                     already = False
-                     for e in n1.edges:
-                         if e.target == n2: already = True
-                     
-                     if not already:
-                         n1.add_edge(n2, distance=1)
-                         n2.add_edge(n1, distance=1)
+
 
         # 3. Link Capital to Orbit
         capital_node = next((n for n in self._provinces if n.type == "Capital"), None)

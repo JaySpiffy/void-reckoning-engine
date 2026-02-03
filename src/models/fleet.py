@@ -798,8 +798,24 @@ class Fleet:
         if not target_node and hasattr(target_planet, "edges"): # Duck type
              target_node = target_planet
 
+        # [FIX] Auto-recovery of current_node if it became None
+        if self.current_node is None and self.location is not None:
+            if hasattr(self.location, "node_reference"):
+                self.current_node = self.location.node_reference
+            elif isinstance(self.location, GraphNode):
+                self.current_node = self.location
+            elif hasattr(self.location, "type") and self.location.type in ["FluxPoint", "DeepSpace", "Planet"]:
+                self.current_node = self.location
+
         if not target_node:
-             if engine and engine.logger: engine.logger.error(f"Error: Target {target_planet.name if hasattr(target_planet, 'name') else target_planet} has no Graph Node!")
+             if engine and engine.logger: 
+                  target_name = target_planet.name if hasattr(target_planet, 'name') else str(target_planet)
+                  engine.logger.error(f"Error: Target {target_name} has no Graph Node reference!")
+             return
+        
+        if not self.current_node:
+             if engine and engine.logger:
+                  engine.logger.error(f"Error: Fleet {self.id} has no current_node and cannot recover it from location {self.location}")
              return
              
         # Pathfinding
@@ -826,7 +842,12 @@ class Fleet:
         if not path:
              # Reduce Logging Spam: Only print if this specific failure hasn't been logged this turn
              if engine and engine.pathfinder.log_path_failure(self.current_node, target_node):
-                  if engine and engine.logger: engine.logger.error(f"Fleet {self.id} cannot find path to {target_planet.name} (Disconnected Graph from {self.current_node.id} to {target_node.id})")
+                  if engine and engine.logger: 
+                       # [FIX] Robust logging with getattr to avoid AttributeError if nodes are None
+                       start_id = getattr(self.current_node, 'id', 'None')
+                       end_id = getattr(target_node, 'id', 'None')
+                       target_name = getattr(target_planet, 'name', 'Unknown Target')
+                       engine.logger.error(f"Fleet {self.id} cannot find path to {target_name} (Disconnected Graph from {start_id} to {end_id})")
              return
              
         # Path includes start node, so remove it for "next steps"

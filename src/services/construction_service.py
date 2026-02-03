@@ -451,11 +451,39 @@ class ConstructionService:
         # We need the node we are targeting to check its max_tier
         target_node = None
         if hasattr(p, 'provinces') and p.provinces:
-            # For simplicity, we'll pick the first node with free slots
+            # Enforce 4-Hex Spacing Rule
+            existing_cities = [n for n in p.provinces if len(n.buildings) > 0]
+            
             for node in p.provinces:
-                if len(node.buildings) + sum(1 for q in p.construction_queue if q.get("node_id") == node.id) < node.building_slots:
-                    target_node = node
-                    break
+                # Basic Slot Check
+                if len(node.buildings) + sum(1 for q in p.construction_queue if q.get("node_id") == node.id) >= node.building_slots:
+                     continue
+
+                # Rule Check: Valid City Location?
+                if len(node.buildings) > 0:
+                     # Existing city expansion is always allowed regardless of terrain
+                     target_node = node
+                     break
+                
+                # New settlement restrictions
+                if getattr(node, 'terrain_type', None) in ["Mountain", "Water"]:
+                     continue
+                
+                is_valid_loc = True
+                for city in existing_cities:
+                     if hasattr(city, 'hex_coords') and hasattr(node, 'hex_coords'):
+                          dist = getattr(city.hex_coords, 'distance', lambda x: 999)(node.hex_coords)
+                          if dist < 4:
+                               is_valid_loc = False
+                               break
+                
+                if is_valid_loc:
+                     target_node = node
+                     break
+            
+            # If it's a hex planet and we couldn't find a valid target node, abort construction
+            if not target_node:
+                return 0, 0
         
         node_max_tier = target_node.max_tier if target_node else 1
 

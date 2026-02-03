@@ -56,7 +56,7 @@ class PathfindingService:
         cache_manager.register_cache(self.clear_cache, "pathfinding")
 
     @profile_method
-    def find_cached_path(self, start_node: Any, end_node: Any, turn: int = 0, context: str = None) -> Tuple[Optional[List[Any]], float, Dict[str, Any]]:
+    def find_cached_path(self, start_node: Any, end_node: Any, turn: int = 0, context: str = None, is_ground: bool = False) -> Tuple[Optional[List[Any]], float, Dict[str, Any]]:
         """
         Cached wrapper for find_path. 
         Context (e.g., universe name) is included in cache key (Comment 3).
@@ -68,18 +68,19 @@ class PathfindingService:
         t_ver = SimulationState.get_topology_version()
         b_ver = SimulationState.get_blockade_version()
         
-        cache_key = (start_node, end_node, context, t_ver, b_ver)
+        # Ground check for cache key
+        cache_key = (start_node, end_node, context, t_ver, b_ver, is_ground)
         if cache_key in self._path_cache:
             self._stats["hits"] += 1
             return self._path_cache[cache_key]
             
         self._stats["misses"] += 1
-        result = self.find_path(start_node, end_node)
+        result = self.find_path(start_node, end_node, is_ground=is_ground)
         self._path_cache[cache_key] = result
         return result
 
     @profile_method
-    def find_path(self, start_node: Any, end_node: Any, max_cost: float = float('inf')) -> Tuple[Optional[List[Any]], float, Dict[str, Any]]:
+    def find_path(self, start_node: Any, end_node: Any, max_cost: float = float('inf'), is_ground: bool = False) -> Tuple[Optional[List[Any]], float, Dict[str, Any]]:
         """
         Returns (list of nodes, total_cost, metadata) or (None, infinity, {}) if no path.
         Uses optimized A* algorithm with Euclidean heuristic and informed fallback.
@@ -139,7 +140,18 @@ class PathfindingService:
                      continue
 
                 neighbor = edge.target
-                tentative_g_score = g_score[current_node] + edge.distance
+                
+                # Terrain-based cost modifiers (Ground Movement only)
+                edge_cost = edge.distance
+                if is_ground and hasattr(neighbor, 'terrain_type'):
+                     terrain = neighbor.terrain_type
+                     if terrain == "Mountain":
+                          edge_cost *= 2.0
+                     elif terrain == "Water":
+                          # Impassable for ground units
+                          continue
+                
+                tentative_g_score = g_score[current_node] + edge_cost
 
                 if tentative_g_score < g_score.get(neighbor, float('inf')):
                     g_score[neighbor] = tentative_g_score

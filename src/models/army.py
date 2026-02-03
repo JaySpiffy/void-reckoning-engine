@@ -37,9 +37,100 @@ class ArmyGroup:
         self._capability_matrix_dirty = True
         self._cached_capability_matrix = {}
         
+    def reset_turn(self):
+        """Replenishes movement points at start of turn."""
+        self.current_mp = self.movement_points
+
     def reset_turn_flags(self):
         """Resets turn-based behavior flags at start of turn."""
         self.has_retreated_this_turn = False
+        self.reset_turn()
+
+    def move_to(self, target_node, engine=None):
+        """
+        Orders the army to move to a specific node on the hex map.
+        Sets the destination and changes state to MOVING.
+        """
+        if self.location == target_node:
+            return True # Already there
+
+        self.destination = target_node
+        self.state = "MOVING"
+        
+        # Immediate movement attempt if we have MP remaining
+        if self.current_mp > 0 and engine:
+             self.update_movement(engine)
+        return True
+
+    def update_movement(self, engine):
+        """
+        Processes movement along a path to the destination.
+        Deducts MP based on terrain and handles arrival.
+        """
+        if self.state != "MOVING" or not self.destination:
+            return
+
+        if self.location == self.destination:
+            self.state = "IDLE"
+            self.destination = None
+            return
+
+        # 1. Get Path (A* terrain-aware pathfinding)
+        # Using engine.pathfinder directly
+        if not hasattr(engine, 'pathfinder'):
+             return
+
+        path_nodes, cost, meta = engine.pathfinder.find_path(self.location, self.destination, is_ground=True)
+        
+        if not path_nodes or len(path_nodes) < 2:
+             # Cannot find path or blocked
+             if engine.logger:
+                  engine.logger.campaign(f"  > [BLOCKED] Army {self.id} cannot find path to {self.destination.id}")
+             self.state = "IDLE"
+             self.destination = None
+             return
+
+        # 2. Step through nodes while MP allows
+        while self.current_mp > 0 and self.destination and self.location != self.destination:
+             # Re-evaluate path step by step to handle dynamic blockades or terrain changes
+             current_path, _, _ = engine.pathfinder.find_path(self.location, self.destination, is_ground=True)
+             if not current_path or len(current_path) < 2:
+                  break
+                  
+             next_node = current_path[1]
+             
+             # Calculate Terrain Cost
+             terrain_cost = 1.0
+             if hasattr(next_node, 'terrain_type'):
+                  terrain = next_node.terrain_type
+                  if terrain == "Mountain":
+                       terrain_cost = 2.0
+                  elif terrain == "Water":
+                       # Should not happen with ground pathfinding, but safety first
+                       break
+             
+             if self.current_mp >= terrain_cost:
+                  self.current_mp -= terrain_cost
+                  old_loc = self.location
+                  self.location = next_node
+                  
+                  if hasattr(old_loc, 'armies') and self in old_loc.armies:
+                       old_loc.armies.remove(self)
+                  if hasattr(next_node, 'armies') and self not in next_node.armies:
+                       next_node.armies.append(self)
+                  
+                  if engine.logger:
+                       engine.logger.campaign(f"  > [MOVE] Army {self.id} moved to {next_node.id} (Cost: {terrain_cost}, MP Left: {self.current_mp})")
+             else:
+                  # Not enough MP
+                  break
+        
+        # Check if arrived after loop
+        if self.location == self.destination:
+            self.state = "IDLE"
+            self.destination = None
+            if engine.logger:
+                engine.logger.campaign(f"Army {self.id} arrived at {self.location.id}")
         
     def to_dict(self) -> Dict[str, Any]:
         """Serializes army state for Save V2."""

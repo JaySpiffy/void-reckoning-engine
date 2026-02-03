@@ -288,6 +288,41 @@ class StandardStrategy(FactionAIStrategy):
         my_planets = engine.planets_by_faction.get(faction, [])
         threatened = [p for p in my_planets if any(ag.faction != faction for ag in p.armies if not ag.is_destroyed)]
         
+        # 1. Proactive Army Movement (Hex Map)
+        for p in my_planets:
+            for ag in list(p.armies):
+                if ag.faction != faction or ag.is_destroyed: continue
+                
+                # A. Search & Destroy (Engage Enemies on Planet)
+                enemies = [other_ag for other_ag in p.armies if other_ag.faction != faction and not other_ag.is_destroyed]
+                if enemies and ag.state == "IDLE":
+                     # Move toward nearest enemy
+                     target_enemy = min(enemies, key=lambda e: engine.intel_manager.calculate_distance(ag.location.id, e.location.id) if hasattr(ag.location, 'id') else 0)
+                     if ag.location != target_enemy.location:
+                          if engine.logger:
+                               engine.logger.campaign(f"  > [STRATEGY] Army {ag.id} moving to engage enemy {target_enemy.id} at {target_enemy.location.id}")
+                          ag.move_to(target_enemy.location, engine=engine)
+                          continue # Skip other orders if moving to fight
+
+                # B. Movement to Embarkation (Support reinforcing fleets)
+                if ag.state == "IDLE":
+                     # Find if there is a fleet at this planet that needs cargo
+                     boarding_fleet = None
+                     for f in faction_fleets:
+                          if f.location == p and f.used_capacity < f.transport_capacity:
+                               boarding_fleet = f
+                               break
+                     
+                     if boarding_fleet:
+                          # Move to Spaceport or LandingZone for embarkation
+                          embark_nodes = [n for n in p.provinces if n.type in ["Spaceport", "LandingZone", "Capital"]]
+                          if embark_nodes and ag.location not in embark_nodes:
+                               target_embark = min(embark_nodes, key=lambda n: engine.intel_manager.calculate_distance(ag.location.id, n.id))
+                               if engine.logger:
+                                    engine.logger.campaign(f"  > [LOGISTICS] Army {ag.id} moving to {target_embark.id} to board {boarding_fleet.id}")
+                               ag.move_to(target_embark, engine=engine)
+
+        # 2. Existing Logistics logic (Pickup/Dropoff)
         for fleet in faction_fleets:
             if fleet.is_destroyed: continue
             
@@ -300,7 +335,9 @@ class StandardStrategy(FactionAIStrategy):
                 if planet and planet.owner == faction and planet not in threatened:
                      if hasattr(loc, 'armies'):
                          for ag in list(loc.armies):
-                             if ag.faction == faction and ag.state == "IDLE" and not ag.is_destroyed:
+                             # Only board if we are at an embarkation node
+                             is_at_embark = hasattr(ag.location, 'type') and ag.location.type in ["Spaceport", "LandingZone", "Capital"]
+                             if ag.faction == faction and ag.state == "IDLE" and not ag.is_destroyed and is_at_embark:
                                  if fleet.can_transport(ag):
                                      engine.battle_manager.embark_army(fleet, ag)
                                  else:
@@ -325,7 +362,8 @@ class StandardStrategy(FactionAIStrategy):
                         break
                 
                 if best_target:
-                    print(f"  > [LOGISTICS] Fleet {fleet.id} diverting to {best_target.name} to pickup troops.")
+                    if engine.logger:
+                        engine.logger.campaign(f"  > [LOGISTICS] Fleet {fleet.id} diverting to {best_target.name} to pickup troops.")
                     fleet.move_to(best_target, turn=engine.turn_counter, engine=engine)
             
             # Logistics Diversion (Dropoff)
@@ -333,5 +371,6 @@ class StandardStrategy(FactionAIStrategy):
                 if threatened:
                     # Move to nearest threatened planet to drop off
                     best_drop = min(threatened, key=lambda p: engine.intel_manager.calculate_distance(getattr(fleet.location, 'name', 'Unknown'), p.name))
-                    print(f"  > [LOGISTICS] Fleet {fleet.id} diverting to {best_drop.name} to drop off reinforcements.")
+                    if engine.logger:
+                        engine.logger.campaign(f"  > [LOGISTICS] Fleet {fleet.id} diverting to {best_drop.name} to drop off reinforcements.")
                     fleet.move_to(best_drop, turn=engine.turn_counter, engine=engine)

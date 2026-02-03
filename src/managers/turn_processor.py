@@ -199,6 +199,12 @@ class TurnProcessor:
         # MECHANICS HOOK: Turn Start
         self._execute_mechanics_hook(f_name, "on_turn_start", context)
         
+        # [TOTAL_WAR_STYLE] Army Turn Start Reset
+        for p in self.engine.all_planets:
+            for ag in p.armies:
+                if ag.faction == f_name and not ag.is_destroyed:
+                    ag.reset_turn_flags()
+
         # 0. Update Visibility (Fog of War)
         # Using intel_manager directly to avoid circular dependency or wrapper overhead
         self.engine.intel_manager.update_faction_visibility(f_name)
@@ -283,6 +289,12 @@ class TurnProcessor:
             
         # 3. Transport & Invasions (Check all fleets for this faction every turn)
         self.engine.battle_manager.process_invasions(faction_filter=f_name)
+
+        # 4. Army Movement Processing
+        for p in self.engine.all_planets:
+            for ag in p.armies:
+                if ag.faction == f_name and not ag.is_destroyed and ag.state == "MOVING":
+                    ag.update_movement(engine=self.engine)
         
         # Phase 18: Starbase Construction Progress
         self.engine.construction_service.process_starbase_queues(f_name)

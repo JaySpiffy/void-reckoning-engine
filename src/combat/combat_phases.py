@@ -817,37 +817,117 @@ class OrbitalSupportPhase(CombatPhase):
         if not orbit_fleets: return
         
         # 3. Apply Bombardment
+        # Calculate Total Fleet Power per Faction
+        fleet_power = {}
+        for f in orbit_fleets:
+            fleet_power[f.faction] = fleet_power.get(f.faction, 0) + f.power
+
         armies_dict = manager.armies_dict
-        factions_with_orbit = {f.faction for f in orbit_fleets}
         
-        for f_name, units in armies_dict.items():
-            # If this faction has a fleet in orbit, they get support!
-            if f_name in factions_with_orbit:
-                # Target enemies
-                enemies = []
-                for ef, e_units in armies_dict.items():
-                    if ef != f_name:
-                        enemies.extend([u for u in e_units if u.is_alive()])
+        # For each bombarding faction
+        for bombarding_faction, power in fleet_power.items():
+            # Identify Enemies
+            enemies = []
+            for f_name, units in armies_dict.items():
+                if f_name != bombarding_faction: # Simplified: Everyone else is a target
+                     enemies.extend([u for u in units if u.is_alive()])
+            
+            if not enemies: 
+                # Strategic Bombardment (No defending units, just buildings/pop?)
+                # For now, we only bombard if there are units (Tactical Support)
+                # Future: Add logic to bombard empty cities to destroy buildings
+                continue
+
+            # Group Enemies by HexNode
+            nodes_with_enemies = {}
+            for u in enemies:
+                # Assuming unit.location is the HexNode (Province)
+                # If not, try to resolve from manager.location if it acts as the map
+                node = getattr(u, 'location', location)
+                if node not in nodes_with_enemies: nodes_with_enemies[node] = []
+                nodes_with_enemies[node].append(u)
+            
+            if not nodes_with_enemies: continue
+
+            # Select Target Node
+            # Priority: City > Industrial > Default
+            target_node = None
+            
+            # 1. Try to find a City/Capital
+            city_nodes = [n for n in nodes_with_enemies.keys() if getattr(n, 'terrain_type', '') in ["City", "Capital"]]
+            if city_nodes:
+                 target_node = random.choice(city_nodes)
+            else:
+                 # 2. Random populated node
+                 target_node = random.choice(list(nodes_with_enemies.keys()))
+
+            # Calculate Damage
+            # Scaling: 10% of Fleet Power per round (tunable)
+            raw_damage = power * 0.10
+            
+            # Mitigation (Area of Effect Phase 2)
+            mitigation = 0.0
+            
+            # 1. Local Defense
+            if hasattr(target_node, 'get_bombardment_defense'):
+                mitigation += target_node.get_bombardment_defense()
+            
+            # 2. Neighbor Defense (Shield Projection)
+            if hasattr(target_node, 'edges'):
+                 for edge in target_node.edges:
+                      neighbor = edge.target
+                      if hasattr(neighbor, 'get_bombardment_defense'):
+                           # Neighbor shields provide 50% effectiveness
+                           mitigation += neighbor.get_bombardment_defense() * 0.5
+            
+            # Cap at 95%
+            mitigation = min(mitigation, 0.95)
+            
+            final_damage = raw_damage * (1.0 - mitigation)
+            
+            # Split damage among units in the hex
+            target_units = nodes_with_enemies[target_node]
+            if not target_units: continue
+            
+            damage_circles = min(len(target_units), 3) # Hit up to 3 units
+            damage_per_unit = final_damage / damage_circles
+            
+            hits = random.sample(target_units, damage_circles)
+            
+            log_entries = []
+            for u in hits:
+                s_dmg, h_dmg, is_kill, _ = u.take_damage(damage_per_unit)
                 
-                if not enemies: continue
+                # Morale Shock (Suppression)
+                # Bombardment is terrifying
+                if hasattr(u, 'suppress'):
+                    u.suppress(25.0) # Base suppression
                 
-                # Pick a random enemy cluster or target
-                target = random.choice(enemies)
-                
-                # Apply high explosive damage (Morale shock + HP damage)
-                dmg = 100 # Heavy bombardment
-                sh, hl, _, comp = target.take_damage(dmg)
-                
-                # Suppression/Morale Impact
-                from src.managers.combat.suppression_manager import SuppressionManager
-                SuppressionManager().apply_suppression(target, 50.0)
-                target.morale_current = max(0, target.morale_current - 20)
-                
-                msg = f"  [ORBITAL] {parent_planet.name} orbit fleet provides support! Hit {target.name} for {int(hl)} dmg."
-                if context.get("detailed_log_file"):
-                    with open(context["detailed_log_file"], "a") as f:
-                        f.write(msg + "\n")
-                print(msg)
+                log_entries.append(f"{u.name} (-{int(h_dmg)} HP)")
+            
+            # Building Destruction Chance
+            # 1% chance per 100 damage dealt, mitigated by shield
+            # e.g. 500 dmg -> 5% chance. 90% shield -> 50 dmg -> 0.5% chance.
+            if hasattr(target_node, 'buildings') and target_node.buildings:
+                destruction_chance = (final_damage / 1000.0)
+                if random.random() < destruction_chance:
+                    # Destroy a building!
+                    victim_id = random.choice(target_node.buildings)
+                    target_node.buildings.remove(victim_id)
+                    log_entries.append(f"DESTROYED {victim_id}")
+                    if context.get("manager"):
+                        context["manager"].log_event("BUILDING_DESTROYED", bombarding_faction, str(target_node), f"Orbital bombardment destroyed {victim_id}")
+
+            # Logging
+            node_name = getattr(target_node, 'name', 'Sector')
+            mit_str = f" (Shields: {int(mitigation*100)}%)" if mitigation > 0 else ""
+            msg = f"  [ORBITAL] {bombarding_faction} bombs {node_name}{mit_str}: {', '.join(log_entries)}"
+            
+            if context.get("detailed_log_file"):
+                with open(context["detailed_log_file"], "a", encoding='utf-8') as f:
+                    f.write(msg + "\n")
+            # print(msg) # meaningful log
+
 
 # --- Compatibility Wrappers ---
 

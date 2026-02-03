@@ -33,13 +33,22 @@ class TacticalGrid:
         self.generate_terrain()
 
     def add_map_object(self, obj: Any):
-        from src.combat.real_time.map_manager import EnvironmentalArea, StaticObstacle, TacticalObjective
+        from src.combat.real_time.map_manager import EnvironmentalArea, StaticObstacle, TacticalObjective, ShieldDome
         if isinstance(obj, EnvironmentalArea):
             self.areas.append(obj)
         elif isinstance(obj, StaticObstacle):
             self.obstacles.append(obj)
         elif isinstance(obj, TacticalObjective):
             self.objectives.append(obj)
+        elif isinstance(obj, ShieldDome):
+            self.obstacles.append(obj) # Treat as obstacle or just visual? 
+            # For now, it's visual, but let's add to a new list 'visuals' if we had one.
+            # Or just append to areas if it has no collision.
+            # Let's create a 'visuals' list or just ignore if it's purely frontend.
+            # Actually, we need to store it so it gets serialized.
+            # Let's add 'visuals' attribute to grid.
+            if not hasattr(self, 'visuals'): self.visuals = []
+            self.visuals.append(obj)
 
     def get_modifiers_at(self, x: float, y: float) -> Dict[str, float]:
         """Aggregates modifiers from all areas at (x, y)."""
