@@ -152,16 +152,38 @@ class OffensiveStrategy:
                     # Apply aggression modifier
                     aggression = personality.aggression
                     # [PHASE 12] DOOMSTACK LOGIC: significantly higher threshold (2000 vs 200)
-                    needed_power = max(2000, estimated_strength * (1.5 / max(0.1, aggression)))
+                    # Lower floor for Neutral planets to allow early colonization
+                    power_floor = 200 if target.owner == "Neutral" else 2000
+                    needed_power = max(power_floor, estimated_strength * (1.5 / max(0.1, aggression)))
                     
                     chosen_fleets = []
                     current_power = 0
                     
-                    # Sort available fleets? Strongest first?
-                    # available_fleets.sort(key=lambda x: x.power, reverse=True)
+                    if current_power < needed_power and available_fleets:
+                        # Check total potential power if we used ALL available fleets
+                        potential_power = current_power + sum(f.power for f in available_fleets)
+                        if potential_power < needed_power:
+                            if self.ai.engine.logger:
+                                self.ai.engine.logger.debug(f"[{faction}] Skipping {target.name}: Need {needed_power} power, but only have {potential_power} available.")
+                            return
                     
-                    for i in range(min(len(available_fleets), required)):
-                        f = available_fleets[i]
+                    # Phase 22: Selective Fleet Assignment (Logistics Aware)
+                    if new_tf.mission_role == "INVASION":
+                        # Ensure we have at least one transport if possible
+                        # Sort by capacity to get the best one
+                        transport_fleets = sorted([f for f in available_fleets if f.transport_capacity > 0], 
+                                                key=lambda x: x.transport_capacity, reverse=True)
+                        if transport_fleets:
+                            f = transport_fleets[0]
+                            new_tf.add_fleet(f)
+                            chosen_fleets.append(f)
+                            current_power += f.power
+                            available_fleets.remove(f)
+                    
+                    # Fill remaining slots with strongest available
+                    available_fleets.sort(key=lambda x: x.power, reverse=True)
+                    while len(chosen_fleets) < required and available_fleets:
+                        f = available_fleets.pop(0)
                         new_tf.add_fleet(f)
                         chosen_fleets.append(f)
                         current_power += f.power

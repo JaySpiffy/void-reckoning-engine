@@ -758,10 +758,25 @@ class StrategicAI:
             # Skip invalid targets
             if planet.owner == faction: continue
             
-            # Check for Siege Status or Space Superiority
-            # Using partial check: if we are here and blockading, let's invade.
-            is_sieged = getattr(planet, 'is_sieged', False)
-            if not is_sieged:
+            # Phase 22: Proactive Invasion Trigger
+            # We don't always need a formal "siege" flag to invade if we have troops ready.
+            # If the planet is Neutral, it's just colonization.
+            # If the planet is Enemy, we should check if we can land. (War Check)
+            is_at_war = False
+            if planet.owner != "Neutral" and hasattr(self.engine, 'diplomacy') and self.engine.diplomacy:
+                 dm = self.engine.diplomacy
+                 state = dm.treaty_coordinator.get_treaty(faction, planet.owner)
+                 is_at_war = state == "War"
+            
+            can_invade = False
+            if planet.owner == "Neutral":
+                can_invade = True
+            elif is_at_war:
+                can_invade = True
+            elif getattr(planet, 'is_sieged', False):
+                can_invade = True
+            
+            if not can_invade:
                 continue
 
             # [FIX] Proactive War Check for Invasion

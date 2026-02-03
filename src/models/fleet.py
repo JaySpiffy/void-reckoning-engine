@@ -1206,10 +1206,11 @@ class TaskForce:
         self.id = tf_id
         self.faction = faction
         self.fleets = [] # List of Fleet Objects
-        self.state = "MUSTERING" # MUSTERING, TRANSIT, ATTACKING, IDLE
+        self.state = "MUSTERING" # MUSTERING, RALLYING, COLLECTING, TRANSIT, ATTACKING, IDLE
         self.rally_point = None # Planet Object
         self.target = None # Planet Object
         self.status_msg = ""
+        self.mission_role = "BALANCED" # BALANCED, INVASION, CONSTRUCTION, SCOUT
         
         # Phase 80: Composition & Strategy
         self.composition_type = "BALANCED" # BALANCED, ASSAULT, RAIDER, SCOUT
@@ -1348,8 +1349,77 @@ class TaskForce:
                          self.fleets = [flagship] # Update TF roster
                          
                 print(f"  > [RALLY] Task Force {self.id} ({self.faction}) RALLIED at {self.rally_point.name}. Preparing for ASSAULT.")
-                self.state = "TRANSIT"
                 
+                # Phase 22: Transition to Loading/Collecting if this is an invasion force
+                if self.mission_role == "INVASION":
+                     self.state = "COLLECTING"
+                else:
+                     self.state = "TRANSIT"
+                
+        # 1.5 COLLECTING PHASE (Pick up troops)
+        elif self.state == "COLLECTING":
+            if not engine: return
+            
+            # 1. Check if we are already loaded
+            total_cap = sum(f.transport_capacity for f in self.fleets)
+            total_cargo = sum(f.used_capacity for f in self.fleets)
+            
+            # Heuristic: We want at least 80% capacity utilized if we have troops elsewhere
+            is_loaded = total_cargo >= (total_cap * 0.8) or total_cargo >= 10 # 10 is a decent baseline for an invasion
+            
+            if is_loaded:
+                self.state = "TRANSIT"
+                if engine.logger:
+                    engine.logger.campaign(f"  > [STRATEGY] Task Force {self.id} reached sufficient troop load ({total_cargo}/{total_cap}). Moving to TRANSIT.")
+                return
+
+            # 2. Find nearest friendly planet with ground troops
+            owned_planets = engine.planets_by_faction.get(self.faction, [])
+            best_pickup = None
+            min_dist = 9999
+            
+            for p in owned_planets:
+                # Check for idle armies
+                has_idle_armies = any(a.state == "IDLE" and not a.is_destroyed for a in p.armies if a.faction == self.faction)
+                if not has_idle_armies: continue
+                
+                # Check distance from current location (using flagship location)
+                current_loc = self.fleets[0].location
+                dist = ((p.system.x - current_loc.system.x)**2 + (p.system.y - current_loc.system.y)**2)**0.5
+                if dist < min_dist:
+                    min_dist = dist
+                    best_pickup = p
+            
+            if not best_pickup:
+                # No more troops available anywhere? Just go with what we have.
+                self.state = "TRANSIT"
+                if engine.logger:
+                    engine.logger.campaign(f"  > [STRATEGY] Task Force {self.id} found no more available troops for pickup. Proceeding to target.")
+                return
+            
+            # 3. Move to pickup point
+            all_at_pickup = True
+            for f in self.fleets:
+                if f.location != best_pickup:
+                    all_at_pickup = False
+                    if f.destination is None:
+                        f.move_to(best_pickup, engine=engine)
+            
+            if all_at_pickup:
+                # Attempt to embark all reachable idle armies
+                for f in self.fleets:
+                    for a in list(best_pickup.armies):
+                        if a.faction == self.faction and a.state == "IDLE" and not a.is_destroyed:
+                            # Use engine's battle manager to embark
+                            if hasattr(engine.battle_manager.invasion_manager, 'embark_army'):
+                                if engine.battle_manager.invasion_manager.embark_army(f, a):
+                                    if f.used_capacity >= f.transport_capacity:
+                                        break # This fleet is full
+                
+                # Re-evaluate next turn (maybe go to another planet or proceed)
+                if engine.logger:
+                    engine.logger.campaign(f"  > [LOGISTICS] Task Force {self.id} processed pickup at {best_pickup.name}. Current load: {sum(f.used_capacity for f in self.fleets)}")
+
         # 2. TRANSIT PHASE (Move to Target)
         elif self.state == "TRANSIT":
             if not self.target: return

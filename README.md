@@ -63,7 +63,7 @@ The engine uses a high-frequency real-time resolution for battles, allowing for 
 ### Strategic Systems
 
 - ⚔️ **Ten Unique Factions**: Templars of the Flux, Transcendent Order, Steel-Bound Syndicate, Bio-Tide Collective, Algorithmic Hierarchy, Nebula Drifters, Aurelian Hegemony, Void-Spawn Entities, Scrap-Lord Marauders, Primeval Sentinels
-- 🧠 **Adaptive AI**: Strategic planner, theater manager (Multi-front coordination), economic engine (RECOVERY mode), intelligence coordinator, personality manager
+- 🧠 **Adaptive AI**: Strategic planner featuring **Proactive Economic Reserving** (early-game scaling), theater manager (Multi-front coordination), industrial allocator (RECOVERY mode), intelligence coordinator, and individual faction personalities.
 - 🌀 **Portal System (Experimental)**: Interstellar travel through portal networks and queue-based fleet transfers. Currently in active development across parallel galaxies.
 - 🚁 **Task Force Management**: AI fleet coordination with SCOUT, RAID, DEF, ASSAULT types
 - 🏆 **Victory Conditions**: Flexible victory states including Conquest, Elimination, and Defender Survival.
@@ -80,7 +80,7 @@ The engine uses a high-frequency real-time resolution for battles, allowing for 
 - 🏗️ **Modular Ship Design**: **Stellaris/Thrawn's Revenge Style** architecture with Bow/Core/Stern sections and specialized slot types (S/M/L/X/P/G/H).
 - 🧬 **Research & Tech Tree**: **Stellaris-Style** card draw system with **Hull & Unit Tech Locks**, ensuring that advanced ship classes and ground units (e.g., Heavy Walkers, Titans) require dedicated research. Features infinite procedural tech scaling and RP-based progression.
 - 🧲 **Specialized Utility Modules**: Advanced ship roles including **Tractor Beams** (gravitational slowing) and **Interdiction Fields** (warp-suppression to prevent enemy retreat), supported by dedicated `T` and `I` slot architectures.
-- 🌟 **Unit Ability Progression**: Dynamic combat experience system where units gain XP and level up, unlocking or improving faction-specific abilities over time.
+- 🌟 **Unit Ability Progression**: **Context-Aware Leveling** system where units gain XP and level up, utilizing an integrated `AbilityManager` to discover and use faction-specific abilities dynamically mid-combat.
 - 🔫 **Unified Weapon Database**: Cross-Universe schema integrating Warhammer 40k, Star Wars, and Star Trek weapon archetypes.
 
 ### Performance & Analytics

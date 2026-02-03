@@ -110,8 +110,11 @@ class InvasionManager:
                 
                 # Seed Manager RNG for this specific landing (determinism check)
                 self._seed_manager_rng(planet)
-                target = self._manager_rng.choice(lzs)
-                self.disembark_army(fleet, target)
+                
+                # Land ALL armies in one turn (Fast Deployment)
+                while fleet.cargo_armies:
+                    target = self._manager_rng.choice(lzs)
+                    self.disembark_army(fleet, target)
                 
         # 2. Check for legacy loose units (Migration Phase)
         ground_units = [u for u in fleet.units if not u.is_ship()]
