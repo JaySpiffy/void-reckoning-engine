@@ -51,15 +51,29 @@ def test_starbase_buffs():
     
     print("\n--- Tier 5 Starbase Buff Verification ---")
     sb5 = Starbase("T5 Fortress", f_name, system, tier=5)
-    print(f"HP: {sb5.max_hp} (Expected: 15000)")
-    print(f"Shield: {sb5.shield_max} (Expected: 10000)")
-    print(f"Armor: {sb5.armor} (Expected: 75)")
+    print(f"HP: {sb5.max_hp} (Expected: 50000)")
+    print(f"Shield: {sb5.shield_max} (Expected: 25000)")
+    print(f"Armor: {sb5.armor} (Expected: 80)")
     
+    assert sb5.max_hp == 50000
+    assert sb5.shield_max == 25000
+    assert sb5.armor == 80
+    assert "Fortress" in sb5.abilities["Tags"]
+    
+    print("--- Testing Fortress Damage Reduction ---")
+    # Take damage check (Unit.py logic)
+    # 100 raw damage should be reduced by 50% = 50.
+    # We ignore armor for this test to be sure.
+    s_dmg, h_dmg, is_kill, _ = sb5.take_damage(100, ignore_mitigation=True)
+    print(f"100 Raw Damage -> {s_dmg} Shield Damage (Expected: 50)")
+    assert s_dmg == 50
+
     print("Components:")
     for c in sb5.components:
         c_name = getattr(c, 'name', type(c).__name__)
         c_type = getattr(c, 'type', 'Native')
-        print(f"  - {c_name} ({c_type})")
+        hp = getattr(c, 'max_hp', 0)
+        print(f"  - {c_name} ({c_type}) HP: {hp}")
 
 if __name__ == "__main__":
     test_starbase_buffs()

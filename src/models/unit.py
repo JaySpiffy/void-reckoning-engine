@@ -31,7 +31,7 @@ class Unit:
         self.level = kwargs.get("level", 1)
         self.experience = kwargs.get("experience", 0.0)
         self.xp_gain_rate = kwargs.get("xp_gain_rate", 1.0)
-        self._abilities = {}
+        self._abilities = kwargs.get("abilities", {})
         
         # Composition: Components are injected
         self.health_comp: Optional[HealthComponent] = None
@@ -104,6 +104,10 @@ class Unit:
             armor_value = self.armor_comp.get_armor_for_facing(impact_angle)
             mitigation = max(0, armor_value / 5.0)
             mitigated_amount = max(0, amount - mitigation)
+            
+        # [PHASE 32] Fortress Tag Damage Reduction (50% reduction for super-heavy static targets)
+        if "Fortress" in self.abilities.get("Tags", []):
+            mitigated_amount *= 0.5
             
         # 2. Targeted Component Damage (EaW Style)
         destroyed_component = None

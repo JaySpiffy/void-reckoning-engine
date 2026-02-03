@@ -293,10 +293,26 @@ class DashboardService:
         """Serialize galaxy topology for the frontend."""
         # Fallback to data provider if not in memory
         if not self.galaxy_systems and self.data_provider:
-             snapshot = self.data_provider.get_galaxy_snapshot(self.universe, self.run_id)
-             if snapshot and "systems" in snapshot:
-                 # Populate local memory from DB snapshot
-                 self.attach_galaxy(snapshot["systems"])
+             # NEW: First try to load from static galaxy_map.json artifact
+             # Determine the run path. If not in memory, we might need a better way to find it.
+             run_path = self._resolve_run_path(self.run_id)
+             if run_path:
+                 map_json_path = os.path.join(run_path, "galaxy_map.json")
+                 if os.path.exists(map_json_path):
+                     try:
+                         with open(map_json_path, 'r', encoding='utf-8') as f:
+                             map_data = json.load(f)
+                             if "systems" in map_data:
+                                 self.attach_galaxy(map_data["systems"])
+                     except Exception as e:
+                         logger.warning(f"Failed to load galaxy_map.json from {map_json_path}: {e}")
+
+             # Fallback to data provider (DB) if still empty
+             if not self.galaxy_systems:
+                 snapshot = self.data_provider.get_galaxy_snapshot(self.universe, self.run_id)
+                 if snapshot and "systems" in snapshot:
+                     # Populate local memory from DB snapshot
+                     self.attach_galaxy(snapshot["systems"])
 
         if not self.galaxy_systems:
             return {"systems": [], "lanes": []}
@@ -570,15 +586,20 @@ class DashboardService:
     def _resolve_run_path(self, run_id: str) -> Optional[str]:
         """Helper to find the directory for a given run_id."""
         import glob
-        # Search in reports/universe/batch_*/run_id
-        # This is expensive? Maybe use DataProvider or Indexer?
-        # Simple glob for now.
-        base = f"reports/{self.universe}"
-        # Matches reports/void_reckoning/batch_*/run_ID
+        from src.core.config import REPORTS_DIR
+        
+        # 1. Check flat structure (reports/runs/run_ID)
+        flat_path = os.path.join(REPORTS_DIR, "runs", run_id)
+        if os.path.exists(flat_path):
+             return flat_path
+
+        # 2. Search in reports/universe/batch_*/run_id
+        base = os.path.join(REPORTS_DIR, self.universe)
         pattern = os.path.join(base, "batch_*", run_id)
         matches = glob.glob(pattern)
         if matches:
              return matches[0]
+             
         return None
 
     def _discovery_loop(self):

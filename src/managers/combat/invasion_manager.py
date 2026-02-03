@@ -225,43 +225,100 @@ class InvasionManager:
                     faction=ag.faction
                 )
 
-    def handle_conquest(self, location: Any, conqueror: str, method: str = "conquest") -> None:
+    def handle_conquest(self, location: Any, conqueror: str, method: str = "conquest", decision: str = "occupy") -> None:
         """
-        Generic handler for planet ownership transfer.
+        Generic handler for planet or province ownership transfer.
         Triggers: Ownership flip, Tech Lock (Scorched Earth), Siege Clear, Logging.
+        
+         decision: "occupy" (Standard) or "raze" (Loot and destroy)
         """
         old_owner = getattr(location, 'owner', 'Neutral')
         loc_name = getattr(location, 'name', str(location))
         
-        # 1. Update Ownership
-        if hasattr(self.context, 'update_planet_ownership'):
-            self.context.update_planet_ownership(location, conqueror)
-        elif hasattr(location, 'owner'):
-            location.owner = conqueror # Fallback
+        is_province = hasattr(location, 'parent_planet_id') # HexNode
+        
+        # 1. Update Immediate Ownership
+        if hasattr(location, 'owner'):
+            location.owner = conqueror
+
+        # 2. Handle Decision (Raze vs Occupy)
+        loot_gain = 0
+        if decision == "raze" and is_province:
+            # Calculate Loot: Base 500 + 50% of building costs
+            loot_gain = 500
+            if hasattr(location, 'buildings'):
+                from src.core.constants import get_building_database
+                db = get_building_database()
+                for b_id in location.buildings:
+                    b_data = db.get(b_id, {})
+                    cost = b_data.get("cost", 100) # Default
+                    loot_gain += int(cost * 0.5)
+                location.buildings = []
             
-        # 2. Clear Siege Status
+            # Transform to Ruins
+            location.terrain_type = "Ruins"
+            location.type = "Wasteland"
+            if self.context.logger:
+                self.context.logger.campaign(f"[RAZE] {conqueror} has RAZED {loc_name}, gaining {loot_gain} Req!")
+                
+            # Add loot to faction
+            f_mgr = self.context.get_faction(conqueror)
+            if f_mgr:
+                f_mgr.requisition += loot_gain
+        else:
+            # Standard Occupy: Enforce Tech Lock (Scorched Earth)
+            self.enforce_tech_lock(location, conqueror)
+
+        # 3. Planet-Wide Ownership Flip logic
+        planet = None
+        if is_province:
+            # Find Parent Planet
+            if hasattr(self.context, 'get_planet'):
+                planet = self.context.get_planet(location.parent_planet_id)
+            
+            if planet:
+                # Check for other cities
+                cities = [p for p in planet.provinces if p.type in ["Capital", "ProvinceCapital"] or p.terrain_type == "City"]
+                owned_cities = [p for p in cities if p.owner == conqueror]
+                
+                if len(owned_cities) == len(cities) and len(cities) > 0:
+                    # Capture the whole planet!
+                    if hasattr(self.context, 'update_planet_ownership'):
+                        self.context.update_planet_ownership(planet, conqueror)
+                    else:
+                        planet.owner = conqueror
+                    if self.context.logger:
+                        self.context.logger.campaign(f"[PLANET CONQUEST] {conqueror} has achieved total control of {planet.name}!")
+                else:
+                    if self.context.logger:
+                        self.context.logger.campaign(f"[BATTLE] {conqueror} controls {len(owned_cities)}/{len(cities)} cities on {planet.name}. Planet owner remains {planet.owner}.")
+        else:
+            # Location is already a planet (legacy or direct)
+            if hasattr(self.context, 'update_planet_ownership'):
+                self.context.update_planet_ownership(location, conqueror)
+            else:
+                location.owner = conqueror
+        
+        # 4. Clear Siege Status
         if hasattr(location, 'is_sieged'):
             location.is_sieged = False
             
-        # 3. Enforce Tech Lock (Scorched Earth)
-        self.enforce_tech_lock(location, conqueror)
-        
-        # 4. Logging & Telemetry
+        # 5. Logging & Telemetry
         if self.context.logger:
-            self.context.logger.campaign(f"[CONQUEST] {conqueror} has captured {loc_name} from {old_owner} via {method}!")
+            self.context.logger.campaign(f"[CONQUEST] {conqueror} has captured {loc_name} from {old_owner} via {method}! ({decision})")
             
         if self.context.telemetry:
             self.context.telemetry.log_event(
                 EventCategory.CAMPAIGN,
                 "planet_annexed",
-                {"planet": loc_name, "by": conqueror, "from": old_owner, "method": method},
+                {"planet": loc_name, "by": conqueror, "from": old_owner, "method": method, "decision": decision, "loot": loot_gain},
                 turn=self.context.turn_counter,
                 faction=conqueror
             )
             
-        # 5. Diplomacy Trigger (Grudge)
+        # 6. Diplomacy Trigger (Grudge)
         if getattr(self.context, 'diplomacy', None) and old_owner != "Neutral":
-             self.context.diplomacy.add_grudge(old_owner, conqueror, 35, f"Lost {loc_name} to {method}")
+             self.context.diplomacy.add_grudge(old_owner, conqueror, 35, f"Lost {loc_name} to {method} ({decision})")
 
     def handle_unopposed_conquest(self, location, occupier):
         """Phase 21: Handles peaceful annexation of neutral worlds."""

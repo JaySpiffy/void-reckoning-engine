@@ -58,22 +58,31 @@ class RelationService:
     def get_relation(self, f1: str, f2: str) -> int:
         """Computes the net relation score, accounting for active grudges."""
         # [FOW] Diplomatic Fog of War
-        # If we haven't met them, we don't know we hate them yet.
         if self.engine:
             faction_obj = self.engine.get_faction(f1)
             if faction_obj and hasattr(faction_obj, "known_factions"):
                 if f2 not in faction_obj.known_factions:
+                    print(f"DEBUG REL: FOW blocking {f1}->{f2}")
                     return 0 # Perceived as Neutral until First Contact
 
         if f1 not in self.relations or f2 not in self.relations[f1]: 
             return 0
         
         base = self.relations[f1][f2]
-        grudge = 0
-        if f2 in self.grudges.get(f1, {}):
-             grudge = self.grudges[f1][f2].get('value', 0)
-             
-        return int(base - grudge)
+        print(f"DEBUG REL: {f1}->{f2} Base: {base}")
+        return base
+
+    def drift_relation(self, f1: str, f2: str, amount: int):
+        """Helper for process_turn to apply drift."""
+        print(f"DEBUG: Drift {f1}->{f2} by {amount}. Current Matrix Keys: {list(self.relations.keys())}")
+        if f1 in self.relations and f2 in self.relations[f1]:
+            current = self.relations[f1][f2]
+            print(f"  Current: {current}")
+            if amount > 0: # Drift towards positive or just adjustment
+                 self.relations[f1][f2] = min(100, current + amount)
+            elif amount < 0:
+                 self.relations[f1][f2] = max(-100, current + amount)
+            print(f"  New: {self.relations[f1][f2]}")
 
     def modify_relation(self, f1: str, f2: str, amount: int, symmetric: bool = True):
         """Modifies the base relation between factions."""
@@ -129,12 +138,17 @@ class RelationService:
 
     def drift_relation(self, f1: str, f2: str, amount: int):
         """Helper for process_turn to apply drift."""
+        print(f"DEBUG: Drift {f1}->{f2} by {amount}. Current Matrix Keys: {list(self.relations.keys())}")
         if f1 in self.relations and f2 in self.relations[f1]:
             current = self.relations[f1][f2]
+            print(f"  Current: {current}")
             if amount > 0: # Drift towards positive or just adjustment
                  self.relations[f1][f2] = min(100, current + amount)
             elif amount < 0:
                  self.relations[f1][f2] = max(-100, current + amount)
+            print(f"  New: {self.relations[f1][f2]}")
+        # else:
+            # print(f"  Keys missing! {f1} in {self.relations}? {f1 in self.relations}")
 
     def decay_grudges(self):
         """Time heals wounds (gradually)."""
@@ -169,3 +183,85 @@ class RelationService:
                 },
                 turn=getattr(self.engine, 'turn_counter', 0)
             )
+
+    def calculate_border_friction(self, shared_border_count: int, tension_modifier: float = 1.0) -> int:
+        """Calculates negative drift based on shared borders."""
+        # 1 border = -1 drift/turn (annoying)
+        # 3 borders = -2 drift/turn (tension)
+        # 5+ borders = -3 drift/turn (pressure)
+        base_friction = 0
+        if shared_border_count > 0:
+            base_friction = -1
+        if shared_border_count >= 3:
+            base_friction = -2
+        if shared_border_count >= 5:
+            base_friction = -3
+            
+        return int(base_friction * tension_modifier)
+
+    def apply_trade_drift(self, diplomacy_manager):
+        """
+        [INTEGRATION] Applies positive drift for active Trade Agreements.
+        Called by DiplomacyManager.process_turn.
+        """
+        for f1 in self.factions:
+            treaties = diplomacy_manager.treaty_coordinator.treaties.get(f1, {})
+            for f2, treaty_type in treaties.items():
+                if treaty_type == "Trade Agreement":
+                    self.drift_relation(f1, f2, 2) # +2 per turn (beats decay)
+
+    def apply_ideological_drift(self):
+        """
+        [PHASE 3] Applies relation drift based on alignment compatibility.
+        - Order vs Chaos: -2 (Friction)
+        - Profit vs Profit: +1 (Business)
+        - Destruction vs Anyone: -5 (Existential Threat)
+        """
+        # Heuristic Alignment Map (Should be in a proper Registry later)
+        def get_align(f):
+            if "Chaos" in f or "Templars" in f: return "CHAOS"
+            if "Imperium" in f or "Astartes" in f or "Aurelian" in f or "Transcendent" in f: return "ORDER"
+            if "League" in f or "Tau" in f or "SteelBound" in f or "Algorithmic" in f: return "PROFIT" # Approximation
+            if "Hive" in f or "Tyranid" in f or "BioTide" in f or "VoidSpawn" in f: return "DESTRUCTION"
+            if "Ork" in f or "ScrapLord" in f: return "DESTRUCTION"
+            if "Eldar" in f or "Primeval" in f: return "ORDER" 
+            if "Necron" in f: return "DESTRUCTION" # Usually
+            return "NEUTRAL"
+
+        for f1 in self.factions:
+            a1 = get_align(f1)
+            for f2 in self.factions:
+                if f1 == f2: continue
+                a2 = get_align(f2)
+                
+                drift = 0
+                
+                # 1. Existential Threats
+                if a1 == "DESTRUCTION" or a2 == "DESTRUCTION":
+                    drift = -5 
+                
+                # 2. Order vs Chaos
+                elif (a1 == "ORDER" and a2 == "CHAOS") or (a1 == "CHAOS" and a2 == "ORDER"):
+                    drift = -2
+                    
+                # 3. Compatible Alignments
+                elif a1 == a2 and a1 != "NEUTRAL":
+                    if a1 == "PROFIT": drift = 1 # Business partners check in
+                    if a1 == "ORDER": drift = 0 # Order doesn't necessarily mean friends, just not enemies
+                    if a1 == "CHAOS": drift = -1 # Chaos fights itself too
+                    
+                if drift != 0:
+                    self.drift_relation(f1, f2, drift)
+
+    def apply_global_event_drift(self, event_name: str, magnitude: int):
+        """
+        [PHASE 3] Applies a global drift to ALL relationships.
+        Useful for 'Galactic Peace Summits' or 'Warp Storms' (forcing isolation/paranoia).
+        """
+        for f1 in self.factions:
+            for f2 in self.factions:
+                if f1 == f2: continue
+                self.drift_relation(f1, f2, magnitude)
+                
+        if self.engine and self.engine.logger:
+             self.engine.logger.diplomacy(f"[GLOBAL EVENT] {event_name} caused relation drift of {magnitude} everywhere.")

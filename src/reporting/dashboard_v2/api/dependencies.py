@@ -9,6 +9,7 @@ from src.reporting.indexer import ReportIndexer
 from src.reporting.telemetry import TelemetryCollector
 from src.reporting.dashboard_v2.services.dashboard_service import DashboardService
 from src.reporting.dashboard_v2.api.config import settings
+from src.core.config import REPORTS_DIR
 
 _service_instance: DashboardService = None
 _global_universe: str = None
@@ -53,11 +54,16 @@ async def get_dashboard_service() -> DashboardService:
                 matches = glob.glob(base_search)
                 if matches:
                     run_path = matches[0]
+                else:
+                    # Fallback to reports/runs
+                    flat_path = f"reports/runs/{target_run_id}"
+                    if os.path.exists(flat_path):
+                        run_path = flat_path
             
             # Fallback path if none found (prevents crash, but data will be missing)
             if not run_path:
                 print(f"Warning: Could not resolve path for run {target_run_id}")
-                run_path = f"reports/{target_universe}/unknown_batch/{target_run_id}"
+                run_path = os.path.join(REPORTS_DIR, "runs", target_run_id)
                 
             # Construct DB Path
             db_path = os.path.join(run_path, "campaign_data.db")

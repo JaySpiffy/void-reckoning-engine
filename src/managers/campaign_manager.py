@@ -429,6 +429,10 @@ class CampaignEngine:
                 "galaxy_generated", 
                 {"systems": simple_systems, "num_systems": len(self.systems)}
             )
+            
+            # [REPORT] Export static map for dashboard visualization
+            if self.report_organizer and hasattr(self.report_organizer, 'export_galaxy_map'):
+                self.report_organizer.export_galaxy_map(simple_systems)
 
     def rebuild_planet_indices(self):
         """Rebuilds the planets_by_faction index. Delegated to Repo."""

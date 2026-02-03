@@ -26,7 +26,7 @@ class Starbase(Unit):
             hp=hp,
             armor=armor,
             damage=damage,
-            abilities=abilities or {"Turrets": 5 + (tier * 2), "Tags": ["Starbase", "Static", "Massive"]},
+            abilities=abilities or {"Turrets": 5 + (tier * 2), "Tags": ["Starbase", "Static", "Massive", "Fortress"]},
             faction=faction,
             cost=design_data.get("cost", 1000 * tier) if design_data else 1000 * tier,
             shield=shield,
@@ -66,17 +66,22 @@ class Starbase(Unit):
         # Tier 5: Fortress
         mult = self.tier
         
-        self.base_hp = 3000 * mult
+        self.base_hp = 10000 * mult
         if reset_hp:
             self.current_hp = self.base_hp
             
-        self.shield_max = 2000 * mult
+        self.shield_max = 5000 * mult
         if reset_hp:
             self.shield_current = self.shield_max
         self.base_damage = 75 * mult
-        self.armor = 25 + (mult * 10)
+        self.armor = 30 + (mult * 10)
         
         self.hangar_capacity = (mult - 1) * 2 # T1=0, T2=2, T3=4...
+        
+        # Phase 33: Titan-based Slot Scaling (20W / 10D baseline + 25% growth/tier)
+        import math
+        self.weapon_slots = int(20 * (1.25 ** (self.tier - 1)))
+        self.defense_slots = int(10 * (1.25 ** (self.tier - 1)))
         
         # Modules slots = Tier + 2?
         self.module_slots = self.tier + 2
@@ -87,13 +92,17 @@ class Starbase(Unit):
         # Enable Shipyard at Tier 1+ (Phase 26: Deep Space Shipyards)
         # User requested Deep Space Stations be able to build ships immediately.
         if self.tier == 1:
-             self.naval_slots = 2 # Basic functional shipyard
+             self.naval_slots = 5 # Improved T1 shipyard
         elif self.tier == 2:
-             self.naval_slots = 4
+             self.naval_slots = 10
         elif self.tier >= 3:
-             self.naval_slots = (self.tier - 2) * 5 + 5 # T3=10, T4=15, T5=20
+             self.naval_slots = self.tier * 10 # T3=30, T4=40, T5=50
         else:
              self.naval_slots = 0
+             
+        # Update Turrets ability to match weapon slots
+        if "Turrets" in self.abilities:
+            self.abilities["Turrets"] = self.weapon_slots
             
         # Update Upkeep (scales with firepower and shipyard)
         self.upkeep = int(self.cost * 0.25) + (self.naval_slots * 10)
@@ -209,6 +218,12 @@ class Starbase(Unit):
                 
         else:
             # 3. Fallback: Generic High-Power Batteries
+            # Scale weapon count by weapon_slots
+            macro_count = max(1, self.weapon_slots // 4)
+            pd_count = max(1, self.weapon_slots // 4)
+            h_count = max(1, self.weapon_slots // 10) if self.tier >= 3 else 0
+            l_count = max(1, self.weapon_slots // 10) if self.tier >= 4 else 0
+            
             macro_stats = {
                 "Str": 6 + self.tier, 
                 "AP": -1 - (self.tier // 2), 
@@ -216,23 +231,27 @@ class Starbase(Unit):
                 "Attacks": 6 * self.tier, 
                 "Range": 60 
             }
-            self.components.append(Component(f"Macro-Cannon Grid T{self.tier}", 100, "Weapon", weapon_stats=macro_stats))
+            for i in range(macro_count):
+                self.components.append(Component(f"Macro-Cannon Grid {i+1} T{self.tier}", 500 * self.tier, "Weapon", weapon_stats=macro_stats))
             
-            if self.tier >= 2:
+            if pd_count > 0:
                 pd_stats = {"Str": 4, "AP": 0, "D": 1, "Attacks": 10, "Range": 20}
-                self.components.append(Component(f"Point Defense Grid T{self.tier}", 50, "Weapon", weapon_stats=pd_stats))
+                for i in range(pd_count):
+                    self.components.append(Component(f"Point Defense Grid {i+1} T{self.tier}", 250 * self.tier, "Weapon", weapon_stats=pd_stats))
 
-            if self.tier >= 3:
+            if h_count > 0:
                 h_stats = {"Str": 5, "AP": -2, "D": 3, "Attacks": 2 * self.tier, "Range": 150}
-                self.components.append(Component(f"Heavy Hangar Bay T{self.tier}", 100, "Hangar", weapon_stats=h_stats))
+                for i in range(h_count):
+                    self.components.append(Component(f"Heavy Hangar Bay {i+1} T{self.tier}", 500 * self.tier, "Hangar", weapon_stats=h_stats))
             
-            if self.tier >= 4:
+            if l_count > 0:
                  is_t5 = (self.tier == 5)
                  l_name = "Exterminatus Array" if is_t5 else "Orbital Lance"
                  l_str = 15 if is_t5 else 10
                  l_ap = -6 if is_t5 else -4
                  l_stats = {"Str": l_str, "AP": l_ap, "D": d6_avg() * (2 if is_t5 else 1), "Attacks": self.tier - 2, "Range": 120}
-                 self.components.append(Component(l_name, 50, "Weapon", weapon_stats=l_stats))
+                 for i in range(l_count):
+                    self.components.append(Component(f"{l_name} {i+1}", 250 * self.tier, "Weapon", weapon_stats=l_stats))
 
     def is_ship(self):
         return True # Treated as a ship for combat resolution steps (shields, etc) but static

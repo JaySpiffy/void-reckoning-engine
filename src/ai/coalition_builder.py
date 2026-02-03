@@ -2,6 +2,7 @@
 from typing import Dict, List, Optional, Any
 from src.core.interfaces import IEngine
 from src.reporting.telemetry import EventCategory
+import random
 
 class Coalition:
     """
@@ -16,6 +17,10 @@ class Coalition:
         self.formed_turn = formed_turn
         self.is_active = True
         
+        # New Features
+        self.resource_pool = 0
+        self.coordinated_target = None # Planet Name
+
     def add_member(self, faction: str):
         if faction not in self.members:
             self.members.append(faction)
@@ -40,6 +45,42 @@ class CoalitionBuilder:
         # 2. Check for Coalition Opportunities (Leader Logic)
         self._evaluate_opportunities(faction)
         
+        # 3. Manage Active Coalitions (Pooling & Coordination)
+        for c in self.coalitions.values():
+            if c.is_active and faction == c.leader:
+                 self.pool_resources(c.id)
+
+    def pool_resources(self, coalition_id: str):
+        """
+        Deducts requisition from members to fund the leader or shared objectives.
+        """
+        coalition = self.coalitions.get(coalition_id)
+        if not coalition or not coalition.is_active: return
+        
+        total_collected = 0
+        for member in coalition.members:
+             # Basic logic: 5% of treasury contributed per turn
+             f_obj = self.engine.get_faction(member)
+             if f_obj and f_obj.requisition > 1000:
+                  contribution = int(f_obj.requisition * 0.05)
+                  f_obj.requisition -= contribution
+                  total_collected += contribution
+                  
+        coalition.resource_pool += total_collected
+        
+        # Immediate payout to leader for war effort (Simulated Efficiency Loss 10%?)
+        if total_collected > 0:
+             leader_obj = self.engine.get_faction(coalition.leader)
+             if leader_obj:
+                  leader_obj.requisition += total_collected
+                  if self.engine.logger and random.random() < 0.1:
+                       self.engine.logger.diplomacy(f"[COALITION] {coalition_id} pooled {total_collected} requisition for Leader {coalition.leader}.")
+
+    def set_coordinated_target(self, coalition_id: str, target: str):
+        coalition = self.coalitions.get(coalition_id)
+        if coalition:
+            coalition.coordinated_target = target
+            
     def _manage_memberships(self, faction: str):
         # Logic to leave coalition if goal is met or too costly
         pass

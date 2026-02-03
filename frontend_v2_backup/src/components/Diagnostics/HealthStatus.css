@@ -1,0 +1,103 @@
+.health-status-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0 15px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.overall-health {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.pulse {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    animation: pulse-ring 2s infinite;
+}
+
+@keyframes pulse-ring {
+    0% {
+        box-shadow: 0 0 0 0px currentColor;
+    }
+
+    70% {
+        box-shadow: 0 0 0 6px rgba(0, 0, 0, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0px rgba(0, 0, 0, 0);
+    }
+}
+
+.component-health-list {
+    display: flex;
+    gap: 12px;
+    border-left: 1px solid var(--border-color);
+    padding-left: 15px;
+}
+
+.component-health-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: help;
+}
+
+.status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+}
+
+.component-name {
+    font-size: 0.75rem;
+    opacity: 0.8;
+}
+
+/* Status Colors */
+.status-healthy {
+    color: #2ecc71;
+}
+
+.status-degraded {
+    color: #f39c12;
+}
+
+.status-unhealthy {
+    color: #e67e22;
+}
+
+.status-error {
+    color: #e74c3c;
+}
+
+.status-dot.status-healthy {
+    background: #2ecc71;
+}
+
+.status-dot.status-degraded {
+    background: #f39c12;
+}
+
+.status-dot.status-unhealthy {
+    background: #e67e22;
+}
+
+.status-dot.status-error {
+    background: #e74c3c;
+}
+
+.health-loading {
+    font-style: italic;
+    opacity: 0.6;
+    font-size: 0.7rem;
+}

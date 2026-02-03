@@ -7,8 +7,8 @@
     "sandbox_mode": true,
     "procedural_faction_limit": 0,
     "campaign": {
-        "turns": 500,
-        "num_systems": 20,
+        "turns": 100,
+        "num_systems": 10,
         "min_planets": 10,
         "max_planets": 10,
         "combat_rounds": 2000,
@@ -25,8 +25,8 @@
         "starting_requisition": 50000000
     },
     "units": {
-        "max_fleet_size": 400,
-        "max_land_army_size": 100
+        "max_fleet_size": 200,
+        "max_land_army_size": 50
     },
     "mechanics": {
         "enable_diplomacy": true,

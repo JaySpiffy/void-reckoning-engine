@@ -28,7 +28,30 @@ def discover_latest_run(universe: str) -> Tuple[Optional[str], Optional[str], Op
     ]
     
     if not batch_dirs:
-        logger.warning(f"No batch directories found in {universe_dir}")
+        # NEW: Check for flat structure in reports/runs
+        runs_dir = os.path.join(REPORTS_DIR, "runs")
+        if os.path.exists(runs_dir):
+            all_runs = glob.glob(os.path.join(runs_dir, "run_*"))
+            if all_runs:
+                # Filter for runs belonging to this universe (check run.json if possible)
+                valid_runs = []
+                import json
+                for r in all_runs:
+                    manifest_path = os.path.join(r, "run.json")
+                    if os.path.exists(manifest_path):
+                        try:
+                            with open(manifest_path, 'r') as f:
+                                data = json.load(f)
+                                if data.get("universe") == universe:
+                                    valid_runs.append(r)
+                        except: pass
+                
+                if valid_runs:
+                    valid_runs.sort(reverse=True)
+                    latest_run_dir = valid_runs[0]
+                    return "runs", os.path.basename(latest_run_dir), latest_run_dir
+
+        logger.warning(f"No valid runs found for universe: {universe}")
         return None, None, None
         
     # Sort by timestamp (batch_YYYYMMDD_HHMMSS)
@@ -75,8 +98,24 @@ def discover_all_runs(universe: Optional[str] = None) -> list:
         universe_dir = os.path.join(REPORTS_DIR, u)
         if not os.path.exists(universe_dir): continue
         
-        # Pattern: reports/universe/ANY_BATCH/run_*
+        # Pattern 1: reports/universe/ANY_BATCH/run_*
         run_paths = glob.glob(os.path.join(universe_dir, "*", "run_*"))
+        
+        # Pattern 2: reports/runs/run_* (Check universe inside)
+        runs_dir = os.path.join(REPORTS_DIR, "runs")
+        if os.path.exists(runs_dir):
+            flat_runs = glob.glob(os.path.join(runs_dir, "run_*"))
+            for fr in flat_runs:
+                # Check universe metadata
+                manifest_path = os.path.join(fr, "run.json")
+                if os.path.exists(manifest_path):
+                    try:
+                        with open(manifest_path, 'r') as f:
+                            data = json.load(f)
+                            if data.get("universe") == u:
+                                if fr not in run_paths:
+                                    run_paths.append(fr)
+                    except: pass
         
         for rp in run_paths:
             run_id = os.path.basename(rp)
@@ -87,8 +126,11 @@ def discover_all_runs(universe: Optional[str] = None) -> list:
             if "unknown_batch" in batch_id or "unknown" in batch_id:
                 continue
             
-            # Try to get metadata from manifest.json
-            manifest_path = os.path.join(rp, "manifest.json")
+            # Try to get metadata from run.json (modern) or manifest.json (legacy)
+            manifest_path = os.path.join(rp, "run.json")
+            if not os.path.exists(manifest_path):
+                manifest_path = os.path.join(rp, "manifest.json")
+                
             started_at = None
             turns_taken = 0
             winner = None
@@ -99,19 +141,30 @@ def discover_all_runs(universe: Optional[str] = None) -> list:
                         meta = json.load(f)
                         started_at = meta.get("started_at") or meta.get("timestamp")
                         # Check multiple manifest locations for turn count
-                        turns_taken = meta.get("turns_taken") or meta.get("metadata", {}).get("turns") or 0
+                        turns_taken = (
+                            meta.get("turns_taken") or 
+                            meta.get("metadata", {}).get("turns") or 
+                            meta.get("current_turn") or
+                            0
+                        )
                         winner = meta.get("winner")
                 except:
                     pass
             
-            # Fallback/Validation: Count turn_* directories for actual progress if manifest is stale or incomplete
+            # Fallback/Validation: Count turn_* directories for actual progress
             if turns_taken == 0:
                 try:
+                    # Check root level (legacy)
                     t_dirs = glob.glob(os.path.join(rp, "turn_*"))
-                    if t_dirs:
-                        turns_taken = len(t_dirs)
-                except:
-                    pass
+                    # Check turns/ subdirectory (modern)
+                    t_dirs_nested = glob.glob(os.path.join(rp, "turns", "turn_*"))
+                    
+                    turns_taken = max(len(t_dirs), len(t_dirs_nested))
+                    logger.info(f"Discovery Debug: Run {run_id} - Metadata Turns: 0, Calculated from Dirs: {turns_taken} (Root: {len(t_dirs)}, Nested: {len(t_dirs_nested)}) path: {rp}")
+                except Exception as e:
+                    logger.error(f"Discovery Error for {run_id}: {e}")
+            else:
+                 logger.debug(f"Discovery: Run {run_id} - Metadata Turns: {turns_taken}")
             
             # Fallback for started_at using directory timestamp if possible
             if not started_at:

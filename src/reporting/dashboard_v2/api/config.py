@@ -22,7 +22,7 @@ class Settings(BaseSettings):    # API Setup
     
     LOG_LEVEL: str = "INFO"
     # CORS
-    CORS_ORIGINS: List[str] = ["http://localhost:5173"]
+    CORS_ORIGINS: List[str] = ["*"]
     
     WEBSOCKET_PING_TIMEOUT: int = 60
     WEBSOCKET_PING_INTERVAL: int = 25

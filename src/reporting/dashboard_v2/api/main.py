@@ -43,8 +43,6 @@ app = FastAPI(
 )
 
 # 1. Register Middleware (Order matters: Logging should wrap CORS)
-app.add_middleware(RequestLoggingMiddleware)
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.CORS_ORIGINS,
@@ -52,6 +50,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+app.add_middleware(RequestLoggingMiddleware)
 
 # 2. Register Routers
 app.include_router(status_router)
@@ -127,18 +127,20 @@ if frontend_root:
     @app.get("/{full_path:path}")
     async def serve_spa(full_path: str):
         # Allow API routes to bubble up (handled by include_router above)
-        # But wait, include_router is checked first by FastAPI order? 
-        # Actually, FastAPI matches specific routes first. If this is a wildcard catch-all,
-        # it should be defined LAST.
-        # However, since we defined API routers EARLIER, they take precedence.
         
         # Check if file exists in root (e.g. favicon.ico, manifest.json)
         file_path = os.path.join(frontend_root, full_path)
         if os.path.exists(file_path) and os.path.isfile(file_path):
              return FileResponse(file_path)
         
+        # SPA REFINEMENT: If the path looks like a static asset but wasn't found, 
+        # return 404 instead of index.html. This prevents source map errors.
+        if "." in full_path.split("/")[-1]:
+             from fastapi import HTTPException
+             logger.warning(f"Static asset not found: {full_path}")
+             raise HTTPException(status_code=404, detail="File not found")
+        
         # Otherwise serve index.html for client-side routing
-        # Disable caching for index.html to ensure new deployments are seen immediately
         return FileResponse(
             os.path.join(frontend_root, "index.html"),
             headers={"Cache-Control": "no-cache, no-store, must-revalidate"}

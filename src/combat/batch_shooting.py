@@ -128,6 +128,9 @@ def resolve_shooting_batch(
         invuln_arr.append(tgt.abilities.get("Invuln", 7))
         cover_arr.append(1.0 if "Cover" in tgt.abilities else 0.0)
         
+        # Phase 32: Fortress Reduction (Static targets)
+        dmg_mult_arr.append(0.5 if "Fortress" in tgt.abilities.get("Tags", []) else 1.0)
+        
     # To GPU
     gpu_bs = gpu_utils.to_gpu(bs_arr)
     gpu_str = gpu_utils.to_gpu(str_arr)
@@ -136,6 +139,7 @@ def resolve_shooting_batch(
     gpu_invuln = gpu_utils.to_gpu(invuln_arr)
     gpu_cover = gpu_utils.to_gpu(cover_arr)
     gpu_attacks = gpu_utils.to_gpu(attacks_arr)
+    gpu_dmg_mult = gpu_utils.to_gpu(dmg_mult_arr)
     
     # 3. Vectorized Simulation
 
@@ -203,7 +207,7 @@ def resolve_shooting_batch(
     
     # Mask with Hits and Multiply by Number of Hits
     # hit_counts already accounts for number of successful attacks.
-    applied_damage = hit_counts * final_damage
+    applied_damage = hit_counts * final_damage * gpu_dmg_mult
     
     # Apply Critical Bonus (50% extra for each critical hit)
     # Note: hit_counts includes crit_counts. Each crit is already in hit_counts once.

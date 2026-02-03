@@ -59,7 +59,29 @@ class ReportOrganizer:
             "status": "running"
         })
 
-        # Initialize Master Timeline
+    def export_galaxy_map(self, systems: List[Dict[str, Any]]):
+        """
+        Exports a static galaxy map summary for dashboard visualization.
+        """
+        map_path = os.path.join(self.run_path, "galaxy_map.json")
+        map_data = {
+            "systems": systems,
+            "universe": self.universe_name,
+            "run_id": self.run_id
+        }
+        
+        try:
+            with open(map_path, "w", encoding="utf-8") as f:
+                json.dump(map_data, f, indent=2)
+            if self.logger:
+                self.logger.info(f"[REPORT] Exported static galaxy map to {map_path}")
+        except Exception as e:
+            if self.logger:
+                self.logger.error(f"Error exporting galaxy map: {e}")
+            else:
+                print(f"Error exporting galaxy map: {e}")
+
+    # Initialize Master Timeline
         with open(self.timeline_path, "w", encoding="utf-8") as f:
             f.write(f"# Master Simulation History: {self.run_id}\n")
             f.write(f"Started: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")

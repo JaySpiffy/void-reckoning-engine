@@ -196,3 +196,22 @@ class TreatyCoordinator:
                 },
                 turn=self.engine.turn_counter
             )
+
+    def check_treaty_violation(self, actor: str, target: str, action_type: str) -> int:
+        """
+        Checks if an action violates the current treaty.
+        Returns the penalty magnitude (0 if no violation).
+        """
+        treaty = self.get_treaty(actor, target)
+        
+        if treaty == "War": return 0
+        
+        penalty = 0
+        if action_type == "ATTACK":
+            if treaty == "Non_Aggression_Pact": penalty = 50
+            elif treaty == "Defensive_Pact": penalty = 80
+            elif treaty == "Alliance": penalty = 100
+            elif treaty == "Peace": penalty = 20 # Breaking standard peace
+            elif treaty == "Trade": penalty = 30
+            
+        return penalty

@@ -550,6 +550,10 @@ class ReportIndexer:
 
             # 1. Parse telemetry files
             telemetry_files = glob.glob(os.path.join(run_path, "telemetry_*.json"))
+            events_json = os.path.join(run_path, "events.json")
+            if os.path.exists(events_json):
+                telemetry_files.append(events_json)
+                
             for tel_file in telemetry_files:
                 events = self._parse_telemetry_file(tel_file)
                 if events:
@@ -606,7 +610,7 @@ class ReportIndexer:
                 
                 updated_state = True
                 
-                # Factions
+                # Factions (Legacy: Nested)
                 factions_root = os.path.join(turn_dir, "factions")
                 if os.path.exists(factions_root):
                     for f_name in os.listdir(factions_root):
@@ -616,7 +620,7 @@ class ReportIndexer:
                             if faction_data:
                                 self._insert_faction_stats(batch_id, run_id, turn_num, faction_data, universe)
                 
-                # Battles
+                # Battles (Legacy: Nested)
                 battles_root = os.path.join(turn_dir, "battles")
                 if os.path.exists(battles_root):
                     combat_logs = glob.glob(os.path.join(battles_root, "Combat_T*.json"))
@@ -627,6 +631,48 @@ class ReportIndexer:
                             
             except (IndexError, ValueError):
                 continue
+
+        # MODERM: Scan root factions/ and battles/ directories
+        import re
+        
+        # 1. Root Factions
+        root_factions_dir = os.path.join(run_path, "factions")
+        if os.path.exists(root_factions_dir):
+            for f_file in os.listdir(root_factions_dir):
+                if f_file.endswith(".json") and "_turn_" in f_file:
+                    match = re.search(r"_turn_(\d+)\.json", f_file)
+                    if match:
+                        turn_num = int(match.group(1))
+                        max_turn = max(max_turn, turn_num)
+                        
+                        f_path = os.path.join(root_factions_dir, f_file)
+                        faction_data = self._parse_faction_summary(f_path)
+                        if faction_data:
+                            # Use IGNORE to avoid double indexing if legacy also found it
+                            try:
+                                self._insert_faction_stats(batch_id, run_id, turn_num, faction_data, universe)
+                                updated_state = True
+                            except sqlite3.IntegrityError:
+                                pass # Already indexed
+
+        # 2. Root Battles
+        root_battles_dir = os.path.join(run_path, "battles")
+        if os.path.exists(root_battles_dir):
+            combat_logs = glob.glob(os.path.join(root_battles_dir, "Combat_T*.json"))
+            for combat_log in combat_logs:
+                # Combat_T001_p_Aurelia.json
+                match = re.search(r"Combat_T(\d+)", os.path.basename(combat_log))
+                if match:
+                    turn_num = int(match.group(1))
+                    max_turn = max(max_turn, turn_num)
+                    
+                    battle_data = self._parse_combat_log(combat_log)
+                    if battle_data:
+                        try:
+                            self._insert_battle(batch_id, run_id, turn_num, battle_data, universe)
+                            updated_state = True
+                        except sqlite3.IntegrityError:
+                            pass # Already indexed
         
         # 3. Finalize run entry (Updates status/turns)
         # Load metadata only if updated or needed
@@ -740,24 +786,54 @@ class ReportIndexer:
                                 structured_event = json_data
                             
                             # Case B: GameLogger Format (event_type valid in context)
-                            elif "context" in json_data and isinstance(json_data["context"], dict) and "event_type" in json_data["context"]:
-                                is_structured = True
+                            elif "context" in json_data and isinstance(json_data["context"], dict):
                                 ctx = json_data["context"]
-                                # Flatten for consistent handling
-                                structured_event = json_data.copy()
-                                structured_event["event_type"] = ctx["event_type"]
-                                # Use context data if available, else empty dict
-                                structured_event["data"] = ctx.get("data", {})
-                                # Prefer context values for specific fields as they are more granular
-                                if "faction" in ctx: structured_event["faction"] = ctx["faction"]
-                                if "category" in ctx: 
-                                    structured_event["category"] = ctx["category"]
-                                elif "event_category" in ctx:
-                                    structured_event["category"] = ctx["event_category"]
-                                if "location" in ctx: structured_event["location"] = ctx["location"]
-                                # Timestamp and turn usually match top-level but ensure availability
-                                if "turn" in ctx and structured_event.get("turn") is None:
-                                    structured_event["turn"] = ctx["turn"]
+                                
+                                # Deep search for event_type in ctx or ctx['extra']
+                                event_type = ctx.get("event_type")
+                                extra = ctx.get("extra", {})
+                                if not event_type and isinstance(extra, dict):
+                                    event_type = extra.get("event_type")
+                                
+                                if event_type:
+                                    is_structured = True
+                                    # Flatten for consistent handling
+                                    structured_event = json_data.copy()
+                                    structured_event["event_type"] = event_type
+                                    # Use context data if available, else empty dict
+                                    structured_event["data"] = ctx.get("data", extra.get("data", {}))
+                                    # Prefer context values for specific fields as they are more granular
+                                    if "faction" in ctx: structured_event["faction"] = ctx["faction"]
+                                    elif "faction" in extra: structured_event["faction"] = extra["faction"]
+                                    
+                                    if "category" in ctx: 
+                                        structured_event["category"] = ctx["category"]
+                                    elif "event_category" in ctx:
+                                        structured_event["category"] = ctx["event_category"]
+                                    elif "category" in extra:
+                                        structured_event["category"] = extra["category"]
+                                        
+                                    if "location" in ctx: structured_event["location"] = ctx["location"]
+                                    elif "location" in extra: structured_event["location"] = extra["location"]
+                                    
+                                    # Timestamp and turn usually match top-level but ensure availability
+                                    if "turn" in ctx and structured_event.get("turn") is None:
+                                        structured_event["turn"] = ctx["turn"]
+                                    elif "turn" in extra and structured_event.get("turn") is None:
+                                        structured_event["turn"] = extra["turn"]
+                            
+                            # Case C: JSON embedded in message (Common in legacy logs)
+                            if not is_structured and "message" in json_data and isinstance(json_data["message"], str):
+                                msg = json_data["message"]
+                                if msg.startswith("{") and msg.endswith("}"):
+                                    try:
+                                        nested_json = json.loads(msg)
+                                        if isinstance(nested_json, dict) and "event_type" in nested_json:
+                                            is_structured = True
+                                            structured_event = nested_json
+                                            if "timestamp" not in structured_event:
+                                                structured_event["timestamp"] = json_data.get("timestamp")
+                                    except: pass
 
                     except json.JSONDecodeError:
                         pass
@@ -776,7 +852,7 @@ class ReportIndexer:
                             "turn": structured_event.get("turn"), # Might be null
                             "timestamp": structured_event.get("timestamp"),
                             "category": structured_event.get("category", "log"),
-                            "event_type": structured_event.get("event_type"),
+                            "event_type": structured_event.get("event_type", "text_log"),
                             "faction": structured_event.get("faction"),
                             "location": structured_event.get("location"),
                             "entity_type": structured_event.get("entity_type"),
@@ -1062,6 +1138,42 @@ class ReportIndexer:
             summary.get("total_kills"),
             json.dumps(data)
         ))
+
+        # KEY FIX: Also populate battle_performance for each participating faction
+        battle_id = data.get("id", f"BATTLE_{turn}_{run_id[-4:]}")
+        factions_involved = summary.get("factions", {})
+        
+        for f_name, f_stats in factions_involved.items():
+            try:
+                # Calculate combat performance metrics
+                # Structure: {"damage": X, "losses": Y, "force": {...}}
+                damage = f_stats.get("damage", 0.0)
+                losses = f_stats.get("losses", 0.0)
+                composition = f_stats.get("force", {})
+                
+                # Simple attrition rate
+                total_force = sum(composition.values()) if composition else 1
+                attrition = losses / total_force if total_force > 0 else 0.0
+                
+                # CE ratio (simple damage/losses ratio or similar)
+                # Normalizing damage vs losses
+                cer = damage / max(1, losses) 
+                
+                self._insert_battle_performance(
+                    batch_id=batch_id,
+                    run_id=run_id,
+                    turn=turn,
+                    battle_id=battle_id,
+                    faction=f_name,
+                    damage_dealt=damage,
+                    resources_lost=losses,
+                    force_composition=composition,
+                    attrition_rate=attrition,
+                    universe=universe
+                )
+            except Exception as e:
+                print(f"ERROR: Failed to insert performance for {f_name}: {e}", flush=True)
+
 
     def _insert_resource_transaction(self, batch_id: str, run_id: str, turn: int, 
                                       faction: str, category: str, amount: int, 

@@ -128,6 +128,10 @@ class ShipDesignService:
         f_mgr = self.engine.get_faction(faction)
         prefix = faction.split("_")[0]
         
+        # Scaling Slots (Sync with Starbase.py)
+        w_slots = int(20 * (1.25 ** (tier - 1)))
+        d_slots = int(10 * (1.25 ** (tier - 1)))
+        
         design = {
             "name": f"{prefix}-{tier} Fortress",
             "tier": tier,
@@ -135,40 +139,61 @@ class ShipDesignService:
             "stats": {"cost": 0, "damage": 0, "shield": 0}
         }
         
-        # 1. Select Main Battery (Primary Offensive)
+        # Distribution: 40% Main, 40% PD, 20% Special (Hangar/Lance)
+        main_count = max(1, int(w_slots * 0.4))
+        pd_count = max(1, int(w_slots * 0.4))
+        special_count = w_slots - main_count - pd_count
+        
+        # 1. Select Main Battery
         main_w = self._pick_weapon(faction, "Brawler", size="L") 
         if main_w:
-            main_w["name"] = f"Heavy {main_w['name']}"
-            main_w["stats"]["attacks"] = max(4, main_w["weapon_stats"].get("Attacks", 1) * 2 * tier)
-            design["components"].append(main_w)
+            for i in range(main_count):
+                comp = main_w.copy()
+                comp["name"] = f"Heavy {comp['name']} {i+1}"
+                comp["stats"]["attacks"] = max(4, comp["weapon_stats"].get("Attacks", 1) * 2 * tier)
+                design["components"].append(comp)
             
-        # 2. Select Point Defense (Secondary/Anti-Fighter)
+        # 2. Select Point Defense
         pd_w = self._pick_weapon(faction, "General", size="P") 
         if pd_w:
-            pd_w["name"] = f"Integrated PD {pd_w['name']}"
-            pd_w["stats"]["attacks"] = 10 + (tier * 2)
-            design["components"].append(pd_w)
+            for i in range(pd_count):
+                comp = pd_w.copy()
+                comp["name"] = f"Integrated PD {comp['name']} {i+1}"
+                comp["stats"]["attacks"] = 10 + (tier * 2)
+                design["components"].append(comp)
             
-        # 3. Add Hangar (Tier 3+)
-        if tier >= 3:
+        # 3. Add Special Systems (Hangar prioritized then Lance)
+        h_count = special_count // 2 if tier >= 3 else 0
+        l_count = special_count - h_count if tier >= 4 else 0
+        
+        for i in range(h_count):
             design["components"].append({
-                "name": f"Heavy Hangar Bay T{tier}",
+                "name": f"Heavy Hangar Bay {i+1} T{tier}",
                 "type": "Hangar",
-                "stats": {"range": 150, "damage": 15, "cost": 200}
+                "stats": {"range": 150, "damage": 15, "cost": 200, "hp": 100}
             })
             
-        # 4. Add Executioner/Lance (Tier 4+)
-        if tier >= 4:
+        if l_count > 0:
             lance = self._pick_weapon(faction, "Sniper", size="L")
             if lance:
-                lance["name"] = "Orbital Exterminatus" if tier == 5 else f"Heavy {lance['name']}"
-                lance["stats"]["range"] = 120
-                design["components"].append(lance)
+                for i in range(l_count):
+                    comp = lance.copy()
+                    comp["name"] = "Orbital Exterminatus" if tier == 5 else f"Heavy {comp['name']} {i+1}"
+                    comp["stats"]["range"] = 120
+                    design["components"].append(comp)
+                    
+        # 4. Defense Modules
+        for i in range(d_slots):
+             design["components"].append({
+                 "name": f"Reinforced Composite T{tier}",
+                 "type": "Defense",
+                 "stats": {"hp": 500 * tier, "cost": 100 * tier}
+             })
                 
         # Aggregate Cost
         stats = self._aggregate_stats(design["components"])
         design["stats"] = stats
-        design["cost"] = 2000 * tier + stats["cost"]
+        design["cost"] = 5000 * tier + stats["cost"]
         
         return design
 

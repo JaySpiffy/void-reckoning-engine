@@ -1,0 +1,65 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 2px 8px;
+    border-radius: 4px;
+    gap: 1rem;
+}
+
+.typeGroup {
+    display: flex;
+    gap: 4px;
+}
+
+.filterBtn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #8892b0;
+    font-size: 0.65rem;
+    padding: 2px 6px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+}
+
+.filterBtn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.filterBtn.active {
+    background: rgba(51, 181, 229, 0.2);
+    border-color: #33b5e5;
+    color: #e0e6ed;
+}
+
+.actions {
+    display: flex;
+    gap: 6px;
+}
+
+.actionBtn,
+.clearBtn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #647181;
+    font-size: 0.6rem;
+    padding: 2px 6px;
+    border-radius: 2px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.actionBtn.active {
+    color: #00c851;
+    border-color: rgba(0, 200, 81, 0.3);
+}
+
+.clearBtn:hover {
+    background: rgba(255, 68, 68, 0.1);
+    border-color: rgba(255, 68, 68, 0.3);
+    color: #ff4444;
+}

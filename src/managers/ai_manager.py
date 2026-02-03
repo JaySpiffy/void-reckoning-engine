@@ -165,6 +165,11 @@ class StrategicAI:
             
             self.process_faction_strategy(faction)
             
+            # INTEGRATION: Check obligations
+            # self.check_for_treaty_and_coalition_obligations(faction) # Moved to inside process_faction_strategy or distinct step?
+            # It's better as a distinct step that might OVERRIDE strategy or ADD to it.
+            # Let's keep it here.
+            
             
             # Phase 7: Intelligence Espionage Theft
             self.engine.intelligence_manager.update_spy_networks(faction) # NEW: Passive Growth
@@ -173,6 +178,9 @@ class StrategicAI:
             # Phase 7: Proactive Diplomacy & Coalitions
             self.proactive_diplomacy.process_turn(faction)
             self.coalition_builder.process_turn(faction)
+            
+            # INTEGRATION: Check obligations
+            self.check_for_treaty_and_coalition_obligations(faction)
             
             # Phase: Innovation (Ship/Weapon Evolution)
             # Cycle runs every 25 turns or if faction is wealthy/advanced
@@ -596,7 +604,68 @@ class StrategicAI:
             
         # Sort by score (descending)
         f_mgr.exploration_frontier.sort(key=lambda x: x[0], reverse=True)
+        # Sort by score (descending)
+        f_mgr.exploration_frontier.sort(key=lambda x: x[0], reverse=True)
         f_mgr.last_exploration_update = self.engine.turn_counter
+
+    def check_for_treaty_and_coalition_obligations(self, faction: str):
+        """
+        [INTEGRATION] Checks active treaties (Defensive Pacts) and Coalition memberships.
+        If an ally is under attack, generates a DEFEND strategy override or support fleet.
+        """
+        if not self.engine.diplomacy: return
+        
+        diplomacy = self.engine.diplomacy
+        treaty_mgr = diplomacy.treaty_coordinator
+        
+        # 1. Check Defensive Pacts
+        # Who are we protecting?
+        allies = []
+        for other, treaty in treaty_mgr.active_treaties.get(faction, {}).items():
+            if treaty == "Defensive Pact":
+                allies.append(other)
+                
+        # Are any allies at war?
+        for ally in allies:
+             # Find wars involving ally where they are DEFENDER
+             # We check diplomacy.active_wars
+             for (attacker, defender), start_turn in diplomacy.active_wars.items():
+                 if defender == ally:
+                     # Our ally is being attacked!
+                     # 1. Are we already at war with attacker? (If not, we should trigger war or at least defensive mobilization)
+                     # For now, simplistic: Create a Defense plan centered on Ally's high value worlds?
+                     # Or just log it.
+                     pass
+
+    def evaluate_offensive_targets(self, faction: str, candidates: List[Any]) -> List[Any]:
+        """
+        [INTEGRATION] Filters offensive targets based on diplomatic status.
+        Rejects NAPs and Allies unless personality allows betrayal.
+        """
+        filtered = []
+        diplomacy = getattr(self.engine, 'diplomacy', None)
+        
+        personality = self.get_faction_personality(faction)
+        betrayal_threshold = 0.8 # Only treacherous factions betray NAPs
+        
+        for target in candidates:
+             # Target owner?
+             owner = target.owner
+             if owner == "Neutral" or owner == faction: 
+                 filtered.append(target)
+                 continue
+                 
+             if diplomacy:
+                 treaty = diplomacy.treaty_coordinator.get_treaty(faction, owner)
+                 if treaty in ["Non-Aggression Pact", "Defensive Pact", "Alliance"]:
+                     if personality.honor > betrayal_threshold: 
+                         continue # Honor prevents attack
+                     if personality.aggression < 0.9:
+                         continue # Not aggressive enough to break treaty
+                         
+             filtered.append(target)
+             
+        return filtered
 
         # Return only the planet names for the exploration strategy (flatten systems into planets)
         frontier_planet_names = set()

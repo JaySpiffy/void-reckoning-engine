@@ -35,6 +35,9 @@ class DiplomacyManager:
         
         # Initial Hydration
         self.invalidate_war_cache()
+        
+        # [PHASE 25] War Goal System
+        self.active_war_goals = {} # {(attacker, defender): "Goal"}
     # --- Backward Compatibility Properties ---
     @property
     def relations(self):
@@ -173,6 +176,10 @@ class DiplomacyManager:
         current_turn = getattr(self.engine, 'turn_counter', 0)
 
         # 1. Relation Drift & Grudge Decay
+        self._apply_border_tension()
+        self.relation_service.apply_trade_drift(self) # INTEGRATION: Apply trade drift
+        self.relation_service.decay_grudges()
+        
         for f1 in self.factions:
             # Passive Exhaustion Gain for Active Wars
             if f1 in self.war_exhaustion:
@@ -426,8 +433,9 @@ class DiplomacyManager:
                 elif state == "Peace" or state == "Trade" or state == "Alliance":
                     self._check_for_vassalage(f1, f2, rel, current_turn)
 
-    def _declare_war(self, f1, f2, rel, current_turn, reason="Aggressive War Declaration"):
+    def _declare_war(self, f1, f2, rel, current_turn, reason="Aggressive War Declaration", war_goal="CONQUEST"):
         self._set_treaty(f1, f2, "War")
+        self.active_war_goals[(f1, f2)] = war_goal
         self.treaty_coordinator.update_cooldown(f1, f2, current_turn) # Default 5 turns
         self.relation_service.add_grudge(f2, f1, 20, reason)
         
@@ -455,63 +463,109 @@ class DiplomacyManager:
             self.engine.report_organizer.log_to_master_timeline(self.engine.turn_counter, "WAR", f"{f1} DECLARED WAR on {f2} (Reason: {reason})")
 
     def _try_make_peace(self, f1, f2, rel, current_turn):
-        f1_p = self.engine.strategic_ai.get_faction_personality(f1)
-        f2_p = self.engine.strategic_ai.get_faction_personality(f2)
+        """Attempts to negotiate peace between warring factions."""
+        # [PHASE 3] Replaced simple check with generic negotiation logic
         
-        f1_envoys = f1_p.quirks.get("can_receive_envoys", True) if hasattr(f1_p, "quirks") else getattr(f1_p, "can_receive_envoys", True)
-        f2_envoys = f2_p.quirks.get("can_receive_envoys", True) if hasattr(f2_p, "quirks") else getattr(f2_p, "can_receive_envoys", True)
-        
-        if not f1_envoys or not f2_envoys: return
-        if "Bio-Morphs" in f1 or "Bio-Morphs" in f2: return
-        if "Chaos" in f1 and "Hegemony" in f2: return 
-        
-        # [PHASE 7] GRUDGE-LOCKED PEACE
-        # If victim (f2) holds a significant grudge against proposer (f1), they refuse.
-        grudge_data = self.relation_service.grudges.get(f2, {}).get(f1, {})
-        if grudge_data.get('value', 0) > 40:
-            if self.engine and self.engine.logger:
-                self.engine.logger.diplomacy(f"[GRUDGE] {f2} refuses peace with {f1} due to unwashed sins: '{grudge_data['reason']}' (Grudge: {grudge_data['value']})")
-            return
-
-        rel_target = self.get_relation(f2, f1)
-        
-        # [NEW] WAR EXHAUSTION (Stalemate Logic)
-        # If war has lasted > 50 turns, standards drop.
+        # 1. Check if f1 wants to Sue for Peace
+        # War Exhaustion > 50 OR Losing Badly
         war_duration = self.treaty_coordinator.get_treaty_duration(f1, f2, current_turn)
-        peace_threshold = -50
+        exhaustion = self.war_exhaustion.get(f1, 0)
         
-        if war_duration > 50:
-            peace_threshold = -150 # Desperate for peace
-            if self.engine and self.engine.logger:
-                 self.engine.logger.diplomacy(f"[EXHAUSTION] {f2} is considering PEACE with {f1} due to War Exhaustion ({war_duration} turns). Threshold relaxed.")
+        if exhaustion < 50 and war_duration < 20 and rel < -50:
+             return # Too early, too angry
+             
+        # Generate Terms
+        terms = "WHITE_PEACE"
+        if exhaustion > 80:
+            terms = "CEDE_CONQUESTS" # Desperate
+        elif rel > -40:
+             terms = "WHITE_PEACE" # Mutual respect
+             
+        # 2. Propose Peace
+        self.sue_for_peace(f1, f2, terms)
 
-        if rel_target > peace_threshold:
-            self._set_treaty(f1, f2, "Peace")
-            # Mandatory 10-turn Ceasefire (Truce)
-            self.treaty_coordinator.update_cooldown(f1, f2, current_turn, duration=10)
+    def sue_for_peace(self, proposer: str, target: str, terms: str):
+        """
+        [PHASE 3] Formal peace proposal with terms.
+        Terms: 
+        - WHITE_PEACE: Status Quo, relationships reset (-10), no reparations.
+        - CEDE_CONQUESTS: Recognizes current borders, removes generic 'Lost Planet' grudges.
+        - HUMILIATION: (Future) Pays resources.
+        """
+        # Evaluate
+        accepted, reason = self._evaluate_peace_offer(proposer, target, terms)
+        
+        if accepted:
+            current_turn = getattr(self.engine, 'turn_counter', 0)
             
-            # [PROFILE] Peace Offer (Successful)
-            if hasattr(self.engine, 'strategic_ai') and hasattr(self.engine.strategic_ai, 'opponent_profiler'):
-                 self.engine.strategic_ai.opponent_profiler.register_event(f1, "PEACE_OFFER", current_turn)
+            # Apply Terms
+            if terms == "CEDE_CONQUESTS":
+                # Remove "Lost Planet" grudges from Target against Proposer
+                # (Target keeps the planets, Proposer stops hating them for it)
+                if self.engine and self.engine.logger:
+                    self.engine.logger.diplomacy(f"[PEACE TERMS] {proposer} cedes claims on conquests by {target}.")
+                
+                # We can't easily iterate specific grudges yet without a refactor, 
+                # so we'll just apply a massive "Forgiveness" bonus to counteract them.
+                self.relation_service.drift_relation(proposer, target, 50) 
+
+            # Sign Treaty
+            self._set_treaty(proposer, target, "Peace")
+            self.treaty_coordinator.update_cooldown(proposer, target, current_turn, duration=15)
             
+            # Reset Relations (White Peace Baseline)
+            # If relations were -100, they bump up to -10 (Cold Peace)
+            current_rel = self.relation_service.get_relation(proposer, target)
+            if current_rel < -10:
+                self.relation_service.relations[proposer][target] = -10
+                self.relation_service.relations[target][proposer] = -10
+            
+            # Log
             if self.engine:
-                self.engine.faction_reporter.log_event(f1, "diplomacy", f"Signed PEACE treaty with {f2}", {"partner": f2})
-                self.engine.faction_reporter.log_event(f2, "diplomacy", f"Signed PEACE treaty with {f1}", {"partner": f1})
-                for f in [f1, f2]:
-                    f_obj = self.engine.get_faction(f)
-                    if f_obj: f_obj.stats["turn_diplomacy_actions"] += 1
-            
+                self.engine.faction_reporter.log_event(proposer, "diplomacy", f"Sued for PEACE ({terms}) with {target}", {"result": "Accepted"})
+                self.engine.faction_reporter.log_event(target, "diplomacy", f"Accepted PEACE ({terms}) from {proposer}", {"result": "Accepted"})
+                
             if self.engine and self.engine.logger:
-                self.engine.logger.diplomacy(f"[PEACE] DIPLOMACY: {f1} and {f2} sign PEACE TREATY. (Rel: {rel}/{rel_target}) -> 10 Turn Ceasefire Enforced.")
-            if self.engine and self.engine.report_organizer:
-                self.engine.report_organizer.log_to_master_timeline(self.engine.turn_counter, "PEACE", f"{f1} and {f2} signed a PEACE TREATY (10-Turn Truce)")
+                self.engine.logger.diplomacy(f"[PEACE AGREEMENT] {proposer} and {target} agree to {terms}! ({reason})")
+
         else:
-            if self.engine and hasattr(self.engine, 'telemetry'):
-                self.engine.telemetry.log_event(
-                    EventCategory.DIPLOMACY, "peace_rejected",
-                    {"proposer": f1, "target": f2, "proposer_rel": rel, "target_rel": rel_target},
-                    turn=current_turn
-                )
+            # Rejection
+             if self.engine and self.engine.logger:
+                self.engine.logger.diplomacy(f"[PEACE REJECTED] {target} rejected {proposer}'s offer of {terms}. Reason: {reason}")
+
+    def _evaluate_peace_offer(self, proposer: str, target: str, terms: str) -> (bool, str):
+        """Determines if the target accepts the peace offer."""
+        # 1. Check Grudges
+        # If target hates proposer too much (> 60 grudge), they might refuse even white peace.
+        grudge = 0
+        if target in self.relation_service.grudges:
+            if proposer in self.relation_service.grudges[target]:
+                grudge = self.relation_service.grudges[target][proposer].get('value', 0)
+        
+        # 2. Check War Success (Are we winning?)
+        # For now, use relative power or just random 'confidence'
+        exhaustion_target = self.war_exhaustion.get(target, 0)
+        
+        # Acceptance Logic
+        score = 0
+        
+        # Base willingness (War Exhaustion)
+        score += exhaustion_target * 1.5
+        
+        # Terms Modifier
+        if terms == "CEDE_CONQUESTS":
+            score += 40 # We get to keep what we took!
+        elif terms == "WHITE_PEACE":
+             score -= 10 # We want more!
+             
+        # Grudge Penalty
+        score -= grudge
+        
+        # Threshold
+        if score > 50:
+            return True, f"Score {score} > 50 (Exhaustion: {exhaustion_target}, Grudge: {grudge})"
+        
+        return False, f"Score {score} < 50 (Grudge {grudge} too high)"
 
     # --- [PHASE 7] NEW METHODS ---
 
@@ -618,3 +672,53 @@ class DiplomacyManager:
                                          bid = random.choice(candidates)
                                          if self.action_handler.share_blueprint(f1, f2, bid):
                                               setattr(self, cd_key, current_turn + 10)
+
+    def _apply_border_tension(self):
+        """
+        Calculates and applies diplomatic friction due to shared borders.
+        """
+        if not self.engine: return 
+        
+        # Build neighbor map {f1: {f2: count}}
+        neighbor_map = {f: {} for f in self.factions}
+        
+        for f1 in self.factions:
+            owned = self.engine.planets_by_faction.get(f1, [])
+            for p in owned:
+                if hasattr(p, 'system') and p.system.connections:
+                    for neighbor_sys in p.system.connections:
+                        for np in neighbor_sys.planets:
+                            if np.owner != f1 and np.owner != "Neutral":
+                                f2 = np.owner
+                                if f2 not in neighbor_map[f1]: neighbor_map[f1][f2] = 0
+                                neighbor_map[f1][f2] += 1
+                                
+        # Apply Friction
+        for f1 in self.factions:
+             for f2, count in neighbor_map[f1].items():
+                 if f1 == f2: continue
+                 
+                 friction = self.relation_service.calculate_border_friction(count)
+                 if friction != 0:
+                      self.relation_service.drift_relation(f1, f2, friction)
+                      
+                      # Log occasionally
+                      if self.engine.turn_counter % 20 == 0 and random.random() < 0.1:
+                           if self.engine.logger:
+                                self.engine.logger.diplomacy(f"[BORDER] {f1} feels tension with {f2} due to {count} shared borders.")
+
+    def _apply_global_alignment_drift(self):
+        """
+        [PHASE 3] Applies ideological friction across the galaxy.
+        """
+        # 1. Alignment Drift
+        self.relation_service.apply_ideological_drift()
+        
+        # 2. Random Global Events (Flavor)
+        if random.random() < 0.02: # 2% chance per turn
+             event = random.choice([
+                 ("Warp Storms", 5), # Isolation brings people together? Or mutual aid? Let's say +5 (Solidarity)
+                 ("Resource Crisis", -3), # Competition
+                 ("Xenos Incursion", 5) # Threat unites
+             ])
+             self.relation_service.apply_global_event_drift(event[0], event[1])

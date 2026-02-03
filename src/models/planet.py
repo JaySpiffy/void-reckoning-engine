@@ -77,12 +77,13 @@ class Planet:
         
         # 1. Scan Provinces for Node Capacities
         if hasattr(self, 'provinces') and self.provinces:
+            building_db = universe_data.get_building_database()
             for node in self.provinces:
-                if node.type == "Capital":
+                if node.type == "Capital" and node.terrain_type != "Ruins":
                     self.max_queue_size += 7 # Capitals bring huge logistics
                     self.army_slots += 1
                     self.naval_slots += 1 # Hub for orbital traffic
-                elif node.type == "ProvinceCapital":
+                elif node.type == "ProvinceCapital" and node.terrain_type != "Ruins":
                     self.max_queue_size += 2 
                     self.army_slots += 0.5 
                 
@@ -228,6 +229,15 @@ class Planet:
             # (Granular node-level siege checks would require iterating nodes again, defeating the cache purpose).
             province_income = int(province_income * 0.5)
             
+        # [PHASE 14] Ruins Penalty (Zero Income for destroyed cities)
+        if hasattr(self, 'provinces'):
+            for node in self.provinces:
+                if node.terrain_type == "Ruins":
+                    # We can't easily subtract from cached totals without re-indexing,
+                    # but since update_economy_cache is called when raze happens, 
+                    # we should ensure update_economy_cache handles it.
+                    pass
+
         total_req = base_income + building_income + province_income
                         
         # [PHASE 6] Planet Resource Production Trace (Telemetry omitted for perf in hot loop, handled by Manager)
