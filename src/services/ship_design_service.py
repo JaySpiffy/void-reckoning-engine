@@ -19,7 +19,28 @@ class ShipDesignService:
         self.logger = GameLogger()
         self._design_cache = {} # {(faction, hull_class, role): Design}
         self.hull_registry = {} 
+        self.component_registry = []
         self._load_hull_registry()
+        self._load_component_registry()
+
+    def _load_component_registry(self):
+        """Loads all procedural and standard components."""
+        paths = [
+            os.path.join("data", "ships", "components.json"),
+            os.path.join("data", "ships", "procedural_components.json")
+        ]
+        
+        for path in paths:
+            if os.path.exists(path):
+                try:
+                    with open(path, 'r') as f:
+                        data = json.load(f)
+                        comps = data.get("components", [])
+                        self.component_registry.extend(comps)
+                except Exception as e:
+                    self.logger.error(f"[ShipDesignService] Failed to load components from {path}: {e}")
+        
+        self.logger.info(f"[ShipDesignService] Loaded {len(self.component_registry)} components.")
 
     def _load_hull_registry(self):
         try:
@@ -227,27 +248,22 @@ class ShipDesignService:
             slots = section_data["slots"]
             
             for slot_type in slots:
-                if slot_type in ["S", "M", "L", "X"]:
+                if slot_type in ["S", "M", "L", "X", "P", "G"]:
                     w = self._pick_weapon(faction, role, size=slot_type)
                     if w: components.append(w)
-                elif slot_type == "P":
-                    pd = self._pick_weapon(faction, "General", size="P")
-                    if pd: components.append(pd)
-                elif slot_type == "G":
-                    g = self._pick_weapon(faction, "General", size="G")
-                    if g: components.append(g)
                 elif slot_type == "H":
                     components.append({"name": "Hangar Bay", "type": "Hangar", "stats": {"cost": 100, "damage": 10}})
-                elif slot_type == "D":
+                elif slot_type == "D" or slot_type == "A":
                     d = self._pick_defense(faction, role)
                     if d: components.append(d)
-                elif slot_type == "E":
-                    components.append({"name": "Standard Engine", "type": "Engine", "stats": {"cost": 20}})
+                elif slot_type == "E" or slot_type == "THRUSTER":
+                    e = self._pick_engine(faction, role)
+                    if e: components.append(e)
                 elif slot_type == "T":
-                    t = self._pick_weapon(faction, role, size="T")
+                    t = self._pick_utility(faction, role, size="T")
                     if t: components.append(t)
                 elif slot_type == "I":
-                    i = self._pick_weapon(faction, role, size="I")
+                    i = self._pick_utility(faction, role, size="I")
                     if i: components.append(i)
                 
         return components
@@ -257,6 +273,8 @@ class ShipDesignService:
         Selects the best available weapon for the role and slot size.
         """
         f_mgr = self.engine.factions[faction]
+        tech_level = len(f_mgr.unlocked_techs) // 5 # Heuristic for tech level
+        
         candidates = []
         
         # 1. Gather Candidates from Faction Registry
@@ -271,11 +289,26 @@ class ShipDesignService:
              {"Name": "Heavy Turbolaser", "Range": 45, "S": 9, "AP": 3, "D": 5, "cost": 80, "Size": "L"},
              {"Name": "Spinal Lance", "Range": 80, "S": 12, "AP": 5, "D": 15, "cost": 250, "Size": "X"},
              {"Name": "Point Defense", "Range": 10, "S": 2, "AP": 0, "D": 1, "cost": 5, "Size": "P", "Tags": ["PD"]},
-             {"Name": "Torpedo Launcher", "Range": 60, "S": 8, "AP": 4, "D": 10, "cost": 100, "Size": "G", "Tags": ["Guided"]},
-             {"Name": "Tractor Beam", "Range": 50, "S": 0, "AP": 0, "D": 0, "cost": 50, "Size": "T", "Tags": ["Utility"]},
-             {"Name": "Interdiction Field", "Range": 200, "S": 0, "AP": 0, "D": 0, "cost": 200, "Size": "I", "Tags": ["Utility"]}
+             {"Name": "Torpedo Launcher", "Range": 60, "S": 8, "AP": 4, "D": 10, "cost": 100, "Size": "G", "Tags": ["Guided"]}
         ]
         candidates.extend(defaults)
+        
+        # 3. Add Procedural Components
+        for comp in self.component_registry:
+            if comp.get("slot_type") == size and comp.get("tech_level", 1) <= tech_level + 1:
+                # Map procedural stats to expected format
+                stats = comp.get("stats", {})
+                w = {
+                    "id": comp.get("id"),
+                    "Name": comp["name"],
+                    "Range": stats.get("range", 20),
+                    "S": stats.get("accuracy", 0.8) * 10, # Accuracy to Strength proxy
+                    "D": stats.get("damage", 10) / 10, # Damage to Dice proxy
+                    "cost": comp.get("cost", 50),
+                    "Size": size,
+                    "Theme": comp.get("theme")
+                }
+                candidates.append(w)
         
         best_weapon = None
         best_score = -1
@@ -284,26 +317,21 @@ class ShipDesignService:
             score = 0
             w_size = w.get("Size", "M")
             
-            # Size matching is critical
-            if w_size == size:
-                score += 1000
-            elif size in ["T", "I"]:
-                score -= 10000 # Strict exclusion for utility slots
-            elif size == "M" and w_size in ["S", "L"]: 
-                score += 10 # Some cross-compatibility
-            else: 
-                score -= 50 # Penalize mismatch
-            
-            # Special Utility Matching
-            if size in ["T", "I"] and "Utility" in w.get("Tags", []):
-                score += 500
+            # Size matching
+            if w_size == size: score += 1000
+            else: score -= 50
             
             rng = w.get("Range", 24)
             dps = (w.get("S", 4) * w.get("D", 1))
             
+            # Theme preference (Faction personality)
+            if hasattr(f_mgr, 'personality_id'):
+                if w.get("Theme") and w["Theme"] in (f_mgr.personality_id or ""):
+                    score += 100
+            
             # Role mapping
-            if role == "Sniper" and rng >= 45: score += 20
-            elif role == "Brawler" and rng <= 30: score += 20
+            if role == "Sniper" and rng >= 45: score += 50
+            elif role == "Brawler" and rng <= 30: score += 50
             
             score += dps
             
@@ -312,7 +340,6 @@ class ShipDesignService:
                 best_weapon = w
                 
         if best_weapon:
-            # Scale damage for internal balancing (component stats are higher than unit stats usually)
             mult = 2 if size in ["S", "P"] else 4
             if size == "L": mult = 6
             if size == "X": mult = 15
@@ -323,7 +350,7 @@ class ShipDesignService:
                 "size": size,
                 "stats": {
                     "range": best_weapon.get("Range", 24),
-                    "damage": best_weapon.get("D", 1) * mult,
+                    "damage": round(best_weapon.get("D", 1) * mult * (best_weapon.get("S", 4)/4 or 1), 1),
                     "cost": best_weapon.get("cost", 50)
                 },
                 "weapon_stats": best_weapon
@@ -332,17 +359,76 @@ class ShipDesignService:
         return None
 
     def _pick_defense(self, faction: str, role: str) -> Dict[str, Any]:
-        # Placeholder: Check for shield tech
+        """Selects the best available defense component."""
         f_mgr = self.engine.factions[faction]
-        if "Void Shields" in f_mgr.unlocked_techs or "Tech_None 3" in f_mgr.unlocked_techs: # Legacy Check
-            return {"name": "Void Shield Generator", "type": "Defense", "stats": {"shield": 200, "cost": 100}}
+        tech_level = len(f_mgr.unlocked_techs) // 5
+        
+        best_defense = {"name": "Reinforced Plating", "type": "Defense", "stats": {"hp": 50, "cost": 20}}
+        best_score = 50
+        
+        for comp in self.component_registry:
+            if comp.get("slot_type") == "A" and comp.get("tech_level", 1) <= tech_level + 1:
+                stats = comp.get("stats", {})
+                hp = stats.get("hp", 0)
+                shield = stats.get("shield", 0)
+                score = hp + shield
+                
+                if score > best_score:
+                    best_score = score
+                    best_defense = {
+                        "name": comp["name"],
+                        "type": "Defense",
+                        "stats": {
+                            "hp": hp,
+                            "armor": stats.get("armor", 0),
+                            "shield": shield,
+                            "cost": comp.get("cost", 30)
+                        }
+                    }
+        
+        return best_defense
 
-        # Correct ID Check (header-based)
-        expected_id = f"Tech_{faction.replace(' ', '_')}_Planetary Shielding"
-        if expected_id in f_mgr.unlocked_techs:
-             return {"name": "Void Shield Generator", "type": "Shield", "stats": {"shield": 200, "cost": 100}}
-             
-        return {"name": "Reinforced Plating", "type": "Defense", "stats": {"hp": 50, "cost": 20}}
+    def _pick_engine(self, faction: str, role: str) -> Dict[str, Any]:
+        """Selects the best available engine."""
+        f_mgr = self.engine.factions[faction]
+        tech_level = len(f_mgr.unlocked_techs) // 5
+        
+        best_engine = {"name": "Standard Engine", "type": "Engine", "stats": {"cost": 20}}
+        best_speed = 0
+        
+        for comp in self.component_registry:
+            if comp.get("slot_type") == "THRUSTER" and comp.get("tech_level", 1) <= tech_level + 1:
+                stats = comp.get("stats", {})
+                speed = stats.get("speed", 0)
+                if speed > best_speed:
+                    best_speed = speed
+                    best_engine = {
+                        "name": comp["name"],
+                        "type": "Engine",
+                        "stats": {
+                            "speed": speed,
+                            "evasion": stats.get("evasion", 0),
+                            "cost": comp.get("cost", 50)
+                        }
+                    }
+        return best_engine
+
+    def _pick_utility(self, faction: str, role: str, size: str) -> Dict[str, Any]:
+        """Selects the best available utility module."""
+        f_mgr = self.engine.factions[faction]
+        tech_level = len(f_mgr.unlocked_techs) // 5
+        
+        for comp in self.component_registry:
+            if comp.get("slot_type") == size and comp.get("tech_level", 1) <= tech_level + 1:
+                return {
+                    "name": comp["name"],
+                    "type": "Utility",
+                    "stats": comp.get("stats", {}),
+                    "cost": comp.get("cost", 100)
+                }
+        
+        # Fallback
+        return {"name": f"Basic Utility ({size})", "type": "Utility", "stats": {}, "cost": 50}
 
     def _generate_name(self, faction: str, hull: str, role: str) -> str:
         # e.g. "Hegemony Mk4 Brawler"

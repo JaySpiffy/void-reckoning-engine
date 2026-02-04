@@ -238,8 +238,7 @@ class InvasionManager:
         is_province = hasattr(location, 'parent_planet_id') # HexNode
         
         # 1. Update Immediate Ownership
-        if hasattr(location, 'owner'):
-            location.owner = conqueror
+        # (This is handled by self.context.update_planet_ownership below to maintain repository indices)
 
         # 2. Handle Decision (Raze vs Occupy)
         loot_gain = 0

@@ -1,5 +1,6 @@
 import random
 import json
+import os
 from typing import Dict, List, Any, Optional
 
 class ProceduralTechGenerator:
@@ -83,44 +84,52 @@ class ProceduralTechGenerator:
                         if self.rng.random() < 0.5:
                             prev_tech = t_id
                             
-        # 2. Universal Weaponry Integration (Grand Sci-Fi Unification)
-        # Load Registry
-        try:
-            import os
-            reg_path = os.path.join("src", "data", "universal_weaponry.json")
+        # 2. Universal & Procedural Weaponry Integration (Grand Sci-Fi Unification)
+        component_paths = [
+            os.path.join("src", "data", "universal_weaponry.json"),
+            os.path.join("data", "ships", "procedural_components.json")
+        ]
+        
+        for reg_path in component_paths:
             if os.path.exists(reg_path):
-                with open(reg_path, 'r') as f:
-                    weapon_db = json.load(f)
+                try:
+                    with open(reg_path, 'r') as f:
+                        comp_db = json.load(f)
+                        
+                    # Handle both structured (universal) and list-based (procedural) formats
+                    items = []
+                    if isinstance(comp_db, dict) and "components" in comp_db:
+                        items = comp_db["components"]
+                    elif isinstance(comp_db, dict):
+                        # Flatten universal weaponry categories
+                        for cat_list in comp_db.values():
+                            if isinstance(cat_list, dict):
+                                items.extend(cat_list.values())
+                            elif isinstance(cat_list, list):
+                                items.extend(cat_list)
                     
-                for category, w_list in weapon_db.items():
-                    for w_id, w_data in w_list.items():
+                    for item in items:
                         # Determine Cost & Tier
-                        tier = w_data.get("tech_tier", 1)
+                        tier = item.get("tech_tier") or item.get("tech_level") or 1
                         cost = int(800 * (tier ** 1.8))
                         
-                        tech_name = f"Unlock {w_data['name']}"
-                        tech_key = f"Tech_Unlock_{w_id}"
+                        name = item.get("name") or item.get("id", "Unknown")
+                        tech_key = f"Tech_Unlock_{item.get('id', name).replace(' ', '_')}"
                         
                         # Add to Tree
                         techs[tech_key] = cost
+                        effects[tech_key] = [f"Unlocks: {name}"]
                         
-                        # Add Effects (Unlocks)
-                        effects[tech_key] = [f"Unlocks: {w_data['name']}"]
-                        
-                        # Link Prerequisite (To a root or generic)
-                        # Ideally, link to a Generic of the same type (e.g. Laser unlock needs Laser I)
-                        # For now, link to Root if Tier 1, or Random Generic if Tier > 1
                         if tier == 1:
                             if roots:
                                 prereqs.setdefault(tech_key, []).append(self.rng.choice(roots))
                         else:
-                            # Find a generic tech of roughly lower tier
-                            candidates = [t for t, c in techs.items() if c < cost and c > cost*0.1]
+                            candidates = [t for t, c in techs.items() if c < cost and c > cost*0.1 and t != tech_key]
                             if candidates:
                                 prereqs.setdefault(tech_key, []).append(self.rng.choice(candidates))
                                 
-        except Exception as e:
-            print(f"[TechFactory] Failed to load universal weaponry: {e}")
+                except Exception as e:
+                    print(f"[TechFactory] Failed to load components from {reg_path}: {e}")
 
         # 3. Ship Hull Integration (Class Unlocks)
         try:

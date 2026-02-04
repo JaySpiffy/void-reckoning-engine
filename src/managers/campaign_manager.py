@@ -971,24 +971,41 @@ class CampaignEngine:
         """
         if not self.report_organizer: return
         
-        # 1. Determine Winner
+        # 1. Collect Comprehensive Stats (Align with Dashboard)
+        worker_stats = {}
+        try:
+            from src.engine.runner.simulation_worker import SimulationWorker
+            worker_stats = SimulationWorker._collect_stats(self)
+        except (ImportError, AttributeError):
+            # Fallback to simple planets/req if worker logic fails
+            for f in self.factions:
+                if f == "Neutral": continue
+                f_obj = self.factions[f]
+                p_count = len(self.planets_by_faction.get(f, []))
+                worker_stats[f] = {
+                    "Score": (p_count * 1000) + (f_obj.requisition // 100),
+                    "P": p_count,
+                    "R": f_obj.requisition,
+                    "T": len(f_obj.unlocked_techs)
+                }
+        
+        # 2. Determine Winner
         winner = "None"
         max_score = -1
-        
-        # Simple scoring: Planets + Economy
         scores = {}
-        for f in self.factions:
-            if f == "Neutral": continue
-            f_obj = self.factions[f]
-            planets = len(self.planets_by_faction.get(f, []))
-            score = (planets * 1000) + (f_obj.requisition // 100)
+        
+        for f, s in worker_stats.items():
+            # Filter for faction-specific data blocks only
+            if f == "Neutral" or not isinstance(s, dict): 
+                continue
+                
+            score = s.get("Score", 0)
             scores[f] = score
-            
             if score > max_score:
                 max_score = score
                 winner = f
                 
-        # 2. Compile Stats
+        # 3. Compile Summary JSON
         stats = {
             "winner": winner,
             "total_turns": self.turn_counter,
@@ -996,13 +1013,20 @@ class CampaignEngine:
             "factions": {}
         }
         
-        for f in self.factions:
-            if f == "Neutral": continue
-            f_obj = self.factions[f]
+        for f, s in worker_stats.items():
+            # Filter for faction-specific data blocks only 
+            if f == "Neutral" or not isinstance(s, dict):
+                continue
+                
             stats["factions"][f] = {
-                "planets": len(self.planets_by_faction.get(f, [])),
-                "requisition": f_obj.requisition,
-                "tech_level": len(f_obj.unlocked_techs)
+                "planets": s.get("P", 0),
+                "systems": s.get("S", 0),
+                "buildings": s.get("B", 0),
+                "fleets": s.get("F", 0),
+                "armies": s.get("A", 0),
+                "starbases": s.get("SB", 0),
+                "requisition": s.get("R", 0),
+                "tech_level": s.get("T", 0)
             }
             
         # 3. Write Summary

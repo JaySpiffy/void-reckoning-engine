@@ -17,6 +17,7 @@ class GPUTracker:
         self.unit_to_index: Dict[int, int] = {} # map(id(unit) -> index)
         self.index_to_unit: Dict[int, Unit] = {} # map(index -> unit)
         self.positions = None # N x 2 array (x, y)
+        self.priority_weights = None # N array of floats (1.0 = normal, 5.0 = penalize)
         self.ids = None # N array of IDs (for verification)
         self.factions = None # N array of encoded faction IDs
         self.faction_map = {} # str -> int
@@ -40,6 +41,7 @@ class GPUTracker:
         pos_list = []
         id_list = []
         faction_list = []
+        weight_list = []
         
         for idx, u in enumerate(units):
             # We track units by their object ID for fast lookup
@@ -50,6 +52,17 @@ class GPUTracker:
             # Store position
             pos_list.append([float(u.grid_x), float(u.grid_y)])
             id_list.append(u_id)
+            
+            # Weighting (Heuristic to deprioritize focus firing on stationary targets)
+            # Penalize Starbases and "Static" units so fleets prioritize mobile targets
+            tags = getattr(u, 'tags', [])
+            if not tags and hasattr(u, 'abilities'):
+                tags = u.abilities.get("Tags", [])
+            
+            weight = 1.0
+            if any(t in tags for t in ["Starbase", "Static", "Structure"]):
+                weight = 5.0 # Virtual distance penalty
+            weight_list.append(weight)
             
             # Faction
             f = u.faction
@@ -64,6 +77,7 @@ class GPUTracker:
         self.positions = gpu_utils.to_gpu(pos_list)
         self.ids = gpu_utils.to_gpu(id_list)
         self.factions = gpu_utils.to_gpu(faction_list)
+        self.priority_weights = gpu_utils.to_gpu(weight_list)
         self.is_dirty = False
         
         # logger.info(f"GPUTracker initialized with {self.active_count} units")
@@ -264,6 +278,12 @@ class GPUTracker:
         # Apply mask
         max_val = self.xp.amax(dist_sq) + 1.0 
         masked_dist_sq = self.xp.where(same_faction_mask, max_val * 2.0, dist_sq)
+        
+        # 2.5 Apply Priority Weighting (Penalty for stationary targets)
+        # We multiply distance squared by weights squared (equivalent to weighting distance)
+        # weights = (N,) -> (1, N) for broadcasting to all attackers
+        weights_sq = self.priority_weights[None, :] ** 2
+        masked_dist_sq *= weights_sq
         
         min_dists_sq = self.xp.min(masked_dist_sq, axis=1)
         valid_targets = min_dists_sq < max_val * 1.5

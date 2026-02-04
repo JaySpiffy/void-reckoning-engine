@@ -1223,6 +1223,31 @@ class BattleManager:
             if not f.units:
                 f.is_destroyed = True
                 f.is_engaged = False # Release
+                
+                # [FIX] Ensure transported troops are destroyed with the fleet
+                if hasattr(f, 'cargo_armies') and f.cargo_armies:
+                    for ag in f.cargo_armies:
+                        if not ag.is_destroyed:
+                            ag.is_destroyed = True
+                            num_troops = len(ag.units)
+                            ag.units.clear() # Wipe units
+                            
+                            if self.context.telemetry:
+                                self.context.telemetry.log_event(
+                                    EventCategory.COMBAT, "troops_lost_in_space",
+                                    {
+                                        "fleet_id": f.id,
+                                        "army_id": ag.id,
+                                        "faction": ag.faction,
+                                        "location": getattr(planet, 'name', 'Void'),
+                                        "troops_count": num_troops
+                                    },
+                                    turn=self.context.turn_counter,
+                                    faction=ag.faction
+                                )
+                            if self.context.logger:
+                                self.context.logger.combat(f"  > [CASUALTY] {ag.id} ({num_troops} troops) lost in space with Fleet {f.id}")
+
                 f.cargo_armies.clear() # Clear cargo on destruction
                 f.invalidate_caches()
                 if self.context.logger:

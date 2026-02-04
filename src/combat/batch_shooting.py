@@ -1,6 +1,4 @@
-
 from typing import List, Dict, Tuple, Any
-from src.core import gpu_utils
 from src.core import gpu_utils
 from src.core.gpu_utils import log_backend_usage
 from src.combat.combat_utils import check_keywords_attack
@@ -96,6 +94,7 @@ def resolve_shooting_batch(
     armor_arr = []
     invuln_arr = []
     cover_arr = []
+    md_arr = []
     
     for att, tgt, wpn, dist in valid_pairs:
         # Attacker Stats
@@ -120,7 +119,6 @@ def resolve_shooting_batch(
         combined_s = (stats.get("S", stats.get("Str", 4))) * 10 * stats.get("D", 1) * dmg_mult
         str_arr.append(combined_s)
         ap_arr.append(stats.get("AP", 0) + ap_bonus)
-        dmg_mult_arr.append(1.0) 
         attacks_arr.append(stats.get("Attacks", stats.get("A", 1)))
         
         # Target Stats
@@ -129,7 +127,11 @@ def resolve_shooting_batch(
         cover_arr.append(1.0 if "Cover" in tgt.abilities else 0.0)
         
         # Phase 32: Fortress Reduction (Static targets)
-        dmg_mult_arr.append(0.5 if "Fortress" in tgt.abilities.get("Tags", []) else 1.0)
+        is_fortress = "Fortress" in tgt.abilities.get("Tags", [])
+        dmg_mult_arr.append(0.5 if is_fortress else 1.0)
+        
+        # [NEW] Evasion Stats (Melee Defense)
+        md_arr.append(getattr(tgt, 'md', 50))
         
     # To GPU
     gpu_bs = gpu_utils.to_gpu(bs_arr)
@@ -140,14 +142,18 @@ def resolve_shooting_batch(
     gpu_cover = gpu_utils.to_gpu(cover_arr)
     gpu_attacks = gpu_utils.to_gpu(attacks_arr)
     gpu_dmg_mult = gpu_utils.to_gpu(dmg_mult_arr)
+    gpu_md = gpu_utils.to_gpu(md_arr)
     
     # 3. Vectorized Simulation
 
     
     # A. Hit Rolls
-    # We now support multiple Attacks per weapon using Binomial Distribution.
-    # Returns number of successful hits per weapon.
-    probs = gpu_bs / 100.0
+    # Integrate Evasion (MD) into Hit Probabilities
+    # Prob = BS% * (1.0 - MD%)
+    bs_probs = gpu_bs / 100.0
+    md_penalty = gpu_md / 100.0
+    probs = bs_probs * (1.0 - md_penalty)
+    probs = xp.maximum(0.05, xp.minimum(0.95, probs)) # Safety clamp
     
     if hasattr(xp, 'random'):
         hit_counts = xp.random.binomial(gpu_attacks, probs)
