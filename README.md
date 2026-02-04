@@ -1210,16 +1210,23 @@ Output: C:\Users\whitt\OneDrive\Desktop\New folder (4)\reports\multi_universe_20
 
 | Abbreviation | Full Name | Description |
 |--------------|-----------|-------------|
-| `ECON` | Economic Score | Overall economic strength |
-| `Sys` | Star Systems | Number of controlled systems |
-| `P` | Planets | Number of colonized planets |
-| `B` | Buildings | Total buildings constructed |
-| `SB` | Starbases | Starbases under control |
-| `F` | Fleets | Active fleets |
-| `A` | Armies | Active armies |
-| `Req` | Requisition | Available requisition points |
-| `Tech` | Tech Level | Current technology level |
-| `W/L` | Win-Loss | Battle win-loss ratio |
+| `#` | Rank | Current standing based on score |
+| `TAG` | Faction Tag | Unique identifier (e.g., 1BIO, 3PRM) |
+| `SCORE` | Performance | Overall score based on all metrics |
+| `SYS` | Systems | Total star systems controlled |
+| `OWN(A)` | Owned | Owned planets (Avg. cities per planet) |
+| `CON(A)` | Consolidated | Consolidated planets (Avg. cities per planet) |
+| `CTY` | Cities | Total cities across all control zones |
+| `B(AVG)` | Buildings | Total buildings (Avg. buildings per city) |
+| `SB` | Starbases | Total starbases active |
+| `F(AVG)` | Fleets | Active fleets (Avg. ships per fleet) |
+| `A(AVG)` | Armies | Active armies (Avg. units per army) |
+| `REQ` | Requisition | Available resource points (M=Millions) |
+| `T` | Tech Level | Current technology development tier |
+| `W/L/D` | Records | Wins / Losses / Draws record |
+| `L(S)` | Lost Ships | Total ships destroyed in combat |
+| `L(G)` | Lost Ground | Total ground units destroyed in combat |
+| `POST` | Posture | Strategic AI behavior (EXP, BAL, DEF) |
 
 #### Real-Time Monitoring
 
