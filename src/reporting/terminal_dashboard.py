@@ -180,9 +180,16 @@ class TerminalDashboard:
                 pair = entry['members']
                 n1, n2 = pair[0], pair[1]
                 
-                # Use Standard Abbreviations
-                n1_s = FACTION_ABBREVIATIONS.get(n1, n1[:3].upper())
-                n2_s = FACTION_ABBREVIATIONS.get(n2, n2[:3].upper())
+                # Use Standard Abbreviations with Instance support
+                def get_tag_with_instance(name):
+                    parts = name.rsplit(' ', 1)
+                    base = parts[0]
+                    instance = parts[1] if len(parts) > 1 and parts[1].isdigit() else ""
+                    abbr = FACTION_ABBREVIATIONS.get(base, base[:3].upper())
+                    return f"{instance}{abbr}"[:4]
+
+                n1_s = get_tag_with_instance(n1)
+                n2_s = get_tag_with_instance(n2)
                 
                 t_type = entry['type']
                 if t_type == 'War':
@@ -245,7 +252,7 @@ class TerminalDashboard:
         display_factions = [(k,v) for k,v in sorted_factions if not k.startswith('GLOBAL_')]
         
         # Headers
-        buffer.append(f"     {DIM}{'#':<3} {'TAG':<4} {'SCORE':>7}  {'SYS':>3} {'PLN':>3} {'BLD':>3} {'SB':>3} {'F(AVG)':>7} {'A(AVG)':>7} {'REQ':>8} {'TECH':>4} {'W/L/D':>8} {'L(S)':>4} {'L(G)':>4} {'POST':>4}{RESET}")
+        buffer.append(f"     {DIM}{'#':<3} {'TAG':<4} {'SCORE':>7}  {'SYS':>3} {'OWN(A)':>7} {'CON(A)':>7} {'CTY':>3} {'B(AVG)':>9} {'SB':>3} {'F(AVG)':>7} {'A(AVG)':>7} {'REQ':>8} {'T':>3} {'W/L/D':>8} {'L(S)':>4} {'L(G)':>4} {'POST':>4}{RESET}")
 
         for i, (faction, s) in enumerate(display_factions, 1):
              if not isinstance(s, dict): continue
@@ -285,7 +292,23 @@ class TerminalDashboard:
              flt_display = f"{s.get('F',0):>2}({int(avg_s)})"
              arm_display = f"{s.get('A',0):>2}({int(avg_g)})"
              
-             entry = f"     {i:<3} {BOLD}{code:<4}{RESET} {score_color}{score:>7}{RESET}  {s.get('S',0):>3} {s.get('P',0):>3} {s.get('B',0):>3} {s.get('SB',0):>3} {flt_display:>7} {arm_display:>7} {req:>8} {s.get('T',0):>4} {wl_ratio:>8} {RED}{l_ship:>4} {l_ground:>4}{RESET} {posture:>4}"
+             cty_count = s.get('CTY', 0)
+             b_total = s.get('B', 0)
+             b_avg = b_total / cty_count if cty_count > 0 else 0
+             bld_display = f"{b_total:>3}({b_avg:.1f})"
+             
+             own_count = s.get('OWN', 0)
+             con_count = s.get('CON', 0)
+             own_cty = s.get('OWN_CTY', 0)
+             con_cty = s.get('CON_CTY', 0)
+             
+             own_avg = own_cty / own_count if own_count > 0 else 0
+             con_avg = con_cty / con_count if con_count > 0 else 0
+             
+             own_display = f"{own_count:>2}({own_avg:.1f})"
+             con_display = f"{con_count:>2}({con_avg:.1f})"
+             
+             entry = f"     {i:<3} {BOLD}{code:<4}{RESET} {score_color}{score:>7}{RESET}  {s.get('S',0):>3} {own_display:>7} {con_display:>7} {cty_count:>3} {bld_display:>9} {s.get('SB',0):>3} {flt_display:>7} {arm_display:>7} {req:>8} {s.get('T',0):>3} {wl_ratio:>8} {RED}{l_ship:>4} {l_ground:>4}{RESET} {posture:>4}"
              buffer.append(entry)
 
     def _make_bar(self, value, total, length=20):

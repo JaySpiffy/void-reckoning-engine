@@ -687,7 +687,9 @@
     "tier": 2,
     "cost": 2500,
     "prerequisites": [],
-    "unlocks_buildings": [],
+    "unlocks_buildings": [
+      "Destroyer"
+    ],
     "unlocks_ships": [],
     "faction": "Nebula_Drifters",
     "area": "engineering",

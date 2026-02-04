@@ -216,6 +216,8 @@ class RealTimeReplayGenerator:
                  lines.append(f"[{ts:6.1f}s] [PANIC] Nearby routing allies have broken the morale of {attacker}!")
             elif etype == "HARDPOINT_DESTROYED":
                  lines.append(f"[{ts:6.1f}s] [CRITICAL] {attacker} scores a direct hit on {target}'s {desc}! The hardpoint is OBLITERATED!")
+            elif etype == "CAPTURE":
+                 lines.append(f"[{ts:6.1f}s] [CAPTURE] {attacker} has SEIZED control of {target}! Prize crew established.")
             elif etype == "BOARDING" and "Captured" in desc:
                  lines.append(f"[{ts:6.1f}s] [INVASION] {attacker} boarding parties have seized control of {target}! The ship is lost!")
             else:

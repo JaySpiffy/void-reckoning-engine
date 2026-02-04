@@ -26,7 +26,7 @@
             "name": "Destroyer",
             "size": 2,
             "tech_tier": 2,
-            "unlock_tech": "Tech_Unlock_Destroyer_Hull",
+            "unlock_tech": "Hull_Destroyer",
             "base_stats": {
                 "hp": 800,
                 "evasion": 0.35,
@@ -49,7 +49,7 @@
             "name": "Cruiser",
             "size": 4,
             "tech_tier": 3,
-            "unlock_tech": "Tech_Unlock_Cruiser_Hull",
+            "unlock_tech": "Hull_Cruiser",
             "base_stats": {
                 "hp": 1800,
                 "evasion": 0.15,
@@ -73,7 +73,7 @@
             "name": "Battleship",
             "size": 8,
             "tech_tier": 4,
-            "unlock_tech": "Tech_Unlock_Battleship_Hull",
+            "unlock_tech": "Hull_Battleship",
             "base_stats": {
                 "hp": 4000,
                 "evasion": 0.05,
@@ -97,7 +97,7 @@
             "name": "Titan",
             "size": 16,
             "tech_tier": 5,
-            "unlock_tech": "Tech_Unlock_Titan_Hull",
+            "unlock_tech": "Hull_Titan",
             "base_stats": {
                 "hp": 15000,
                 "evasion": 0.01,

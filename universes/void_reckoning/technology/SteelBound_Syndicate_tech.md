@@ -58,7 +58,7 @@
 - **Cost:** 2500
 - **Name:** Fortress Engineering
 - **Description:** Techniques for building impenetrable orbital fortresses.
-- **Effects:** Unlocks T3 Forts.
+- **Effects:** Unlocks T3 Forts, Unlocks Destroyer, Unlocks Cruiser.
 
 ### Trade Networks
 
@@ -74,7 +74,7 @@
 - **Cost:** 5000
 - **Name:** Void Bastions
 - **Description:** Flying fortresses dominating the void.
-- **Effects:** Unlocks Battleships.
+- **Effects:** Unlocks Battleships, Unlocks Battleship.
 
 ### Titan Integration
 

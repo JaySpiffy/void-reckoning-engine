@@ -40,6 +40,34 @@ class TechManager:
         self.load_tech_trees()
         self.load_hybrid_tech_trees()
         
+    def _get_faction_tree_key(self, faction_ref: Any) -> str:
+        """
+        Normalizes a faction reference (object or string) into a tech tree key.
+        Strips instance suffixes like ' 1' or '_2' and converts spaces to underscores.
+        """
+        if not faction_ref:
+            return "default"
+            
+        raw_name = ""
+        if isinstance(faction_ref, str):
+            raw_name = faction_ref
+        elif hasattr(faction_ref, 'personality_id') and faction_ref.personality_id:
+            # personality_id is the most reliable key for tech trees
+            raw_name = faction_ref.personality_id
+        elif hasattr(faction_ref, 'name'):
+            raw_name = faction_ref.name
+        else:
+            raw_name = str(faction_ref)
+
+        # 1. Strip trailing instance numbers (e.g., "Aurelian Hegemony 1" -> "Aurelian Hegemony")
+        # Matches space or underscore followed by one or more digits at the end of the string
+        normalized = re.sub(r'[\s_]+\d+$', '', raw_name)
+        
+        # 2. Standardize formatting
+        normalized = normalized.replace(" ", "_").lower()
+        
+        return normalized
+
     def apply_procedural_evolution(self, universe_id: str):
         """
         Mutates the loaded tech trees based on the universe ID (deterministic).
@@ -58,20 +86,19 @@ class TechManager:
             
         print(f"[TechManager] Evolution Complete.")
 
-    def draw_research_cards(self, faction: Any, num_cards: int = 3) -> List[str]:
+    def draw_research_cards(self, faction: Any, num_cards: int = 3) -> List[dict]:
         """
         Draws X random available techs from the faction's tree.
         Respects prerequisites.
         Adds weighting to prioritize 'Unlock' techs (Weapons/Hulls).
         """
+        # print(f"DEBUG: TechManager draw_research_cards entry. type(faction)={type(faction)}")
         # Support both ID string and Faction Object
+        faction_id = self._get_faction_tree_key(faction)
+        
+        # We need the actual faction object to check unlocked_techs
         if isinstance(faction, str):
-            faction_id = faction
-            # We need the actual faction object to check unlocked_techs
-            # For now return empty if we can't access unlocked_techs
             return [] 
-        else:
-            faction_id = faction.name.replace(" ", "_").lower()
             
         tree = self.faction_tech_trees.get(faction_id)
         if not tree:
@@ -79,7 +106,7 @@ class TechManager:
             tree = self.faction_tech_trees.get("default")
             if not tree: return []
 
-        available = []
+        available = [] # List of (tech_id, cost) tuples
         researched = set(faction.unlocked_techs)
         
         # Check prerequisites
@@ -89,54 +116,63 @@ class TechManager:
             # Check prerequisites
             reqs = tree.get("prerequisites", {}).get(tech_id, [])
             if not reqs:
-                available.append(tech_id)
+                available.append((tech_id, cost))
             else:
                 # ALL prereqs must be met
                 if all(r in researched for r in reqs):
-                    available.append(tech_id)
+                    available.append((tech_id, cost))
         
+        # print(f"DEBUG: TechManager checking {faction_id}, found available count: {len(available)}")
         if not available: return []
         
         # [WEIGHTING LOGIC]
-        # User requested: "make sure (unlock) tecs come up not just random ones"
         weights = []
-        for t in available:
+        for t_tuple in available:
+            t_id = t_tuple[0]
             w = 1.0
-            if "Unlock" in t: 
-                w = 10.0 # High priority for Unlocks
-            if "Tech_Unlock_Titan" in t:
+            # Standard Unlocks (Weapons, Buildings, etc.)
+            if "Unlock" in t_id: 
+                w = 10.0 
+            
+            # [PRIORITY] Hull Classes (Game Changing)
+            hull_keywords = ["Destroyer", "Cruiser", "Battleship", "Titan"]
+            if any(k in t_id for k in hull_keywords):
+                w = 20.0 # Double the standard unlock priority
+                
+            if "Tech_Unlock_Titan" in t_id or "Hull_Titan" in t_id:
                 w = 50.0 # Legendary Priority
+                
             weights.append(w)
             
+        # Draw Logic
+        drawn_tuples = []
+        pool = list(zip(available, weights))
+        
         # If pool < num_cards, return all.
         if len(available) <= num_cards:
-            drawn = available
+            drawn_tuples = available
         else:
-            # Weighted pull without replacement is tricky in pure random module.
-            # Simpler: Shuffle with weights? Or iterative weighted choice.
-            drawn = []
-            pool = list(zip(available, weights))
-            
             for _ in range(num_cards):
                 if not pool: break
-                # Extract for choices
                 choices = [p[0] for p in pool]
                 wts = [p[1] for p in pool]
                 
                 import random
                 picked = random.choices(choices, weights=wts, k=1)[0]
-                drawn.append(picked)
-                
-                # Remove from pool
+                drawn_tuples.append(picked)
                 pool = [p for p in pool if p[0] != picked]
 
-        # Update State
+        # Convert to Output Format (Dicts)
+        drawn_dicts = [{"id": t[0], "cost": t[1]} for t in drawn_tuples]
+
+        # Update State (Store IDs for validation)
+        drawn_ids = [d["id"] for d in drawn_dicts]
         if faction_id not in self.research_state:
             self.research_state[faction_id] = {"current_project": None, "progress": 0.0, "drawn_cards": []}
             
-        self.research_state[faction_id]["drawn_cards"] = drawn
-        self.logger.info(f"[Research] {faction_id} drew cards: {drawn}")
-        return drawn
+        self.research_state[faction_id]["drawn_cards"] = drawn_ids
+        self.logger.info(f"[Research] {faction_id} drew cards: {drawn_ids}")
+        return drawn_dicts
 
     def select_research_project(self, faction: Any, tech_id: str):
         """
@@ -479,7 +515,7 @@ class TechManager:
         except Exception as e:
             print(f"[ERROR] Failed to load tech_tree.json: {e}")
 
-    def can_research(self, faction_name: str, tech_id: str, unlocked_techs: List[str] = None, faction_obj = None) -> bool:
+    def is_prerequisite_met(self, faction_name: str, tech_id: str, unlocked_techs: Optional[List[str]] = None, faction_obj: Any = None) -> bool:
         """
         Checks if a faction satisfies the prerequisites for a tech.
         Args:
@@ -488,8 +524,8 @@ class TechManager:
             unlocked_techs: List of unlocked tech IDs (optional, can use faction_obj)
             faction_obj: Faction instance (optional, for convenience)
         """
-        f_lower = faction_name.lower()
-        tree = self.faction_tech_trees.get(f_lower)
+        f_key = self._get_faction_tree_key(faction_name)
+        tree = self.faction_tech_trees.get(f_key)
         if not tree: return False # Unknown faction?
         
         # If tech not in tree, maybe it's synthetic/generic? 
@@ -552,9 +588,9 @@ class TechManager:
 
     def get_required_tech_for_unit(self, faction: str, unit_name: str) -> Optional[str]:
         """Returns the tech ID required for a unit, if any."""
-        f_lower = faction.lower()
-        if f_lower in self.faction_tech_trees:
-            return self.faction_tech_trees[f_lower]["units"].get(unit_name)
+        f_key = self._get_faction_tree_key(faction)
+        if f_key in self.faction_tech_trees:
+            return self.faction_tech_trees[f_key]["units"].get(unit_name)
         return None
 
     def get_hybrid_tech_requirements(self, tech_id: str) -> dict:
@@ -608,7 +644,8 @@ class TechManager:
             # Basic value for hybrid techs
             tech_values[h_id] = 5.0 # High base value for hybrid prestige
             
-        tree = self.faction_tech_trees.get(faction)
+        f_key = self._get_faction_tree_key(faction)
+        tree = self.faction_tech_trees.get(f_key)
         if not tree: return tech_values # Return only hybrid values if no tree
         
         # 1. Build Adjacency List (Parent -> Children)
@@ -657,13 +694,15 @@ class TechManager:
             subtree_val = tech_values.get(h_id, 0.0)
             tech_values[h_id] = max(1.0, subtree_val, 5.0) # Boost hybrid prestige
             
+        return tech_values
+        
     def is_unit_unlocked(self, faction: str, unit_name: str, unlocked_techs: List[str]) -> bool:
         """
         Checks if a unit (ship/building) is unlocked by any researched tech for the faction.
         Handles common pluralization mismatches (e.g., 'Cruiser' vs 'Cruisers').
         """
-        f_lower = faction.lower()
-        tree = self.faction_tech_trees.get(f_lower)
+        f_key = self._get_faction_tree_key(faction)
+        tree = self.faction_tech_trees.get(f_key)
         if not tree:
             return False
             
@@ -703,8 +742,8 @@ class TechManager:
         Returns:
             Dict with depth metrics: total_depth, avg_depth, tier_breakdown
         """
-        f_lower = faction.lower()
-        tree = self.faction_tech_trees.get(f_lower)
+        f_key = self._get_faction_tree_key(faction)
+        tree = self.faction_tech_trees.get(f_key)
         
         if not tree:
             return {
@@ -782,8 +821,8 @@ class TechManager:
         Dynamically generates the next tier of a technology.
         Example: "Lasers III" -> "Lasers IV"
         """
-        f_lower = faction_name.lower()
-        tree = self.faction_tech_trees.get(f_lower)
+        f_key = self._get_faction_tree_key(faction_name)
+        tree = self.faction_tech_trees.get(f_key)
         if not tree: return None
         
         # 1. Parse current tier
@@ -822,24 +861,7 @@ class TechManager:
             self.logger.debug(f"[TechManager] Generated Infinite Tech: {new_id} (Cost: {new_cost}) for {faction_name}")
         return new_id
 
-    def draw_research_cards(self, faction, num_cards: int = 3) -> List[dict]:
-        """
-        Draws N random research options from available techs.
-        Used for the 'Card System' (Stellaris-style).
-        """
-        available = self.get_available_research(faction)
-        if not available:
-             return []
-             
-        # If fewer options than cards, return all
-        if len(available) <= num_cards:
-            return available
-            
-        # Random draw
-        # Future: Implement weighting logic here if needed (e.g. bias towards cheaper or cheaper+synergy)
-        # For now, uniform random is fair enough for the specific 'Draw' mechanic.
-        import random
-        return random.sample(available, num_cards)
+
 
     def get_available_research(self, faction) -> List[dict]:
         """
@@ -847,7 +869,8 @@ class TechManager:
         Includes base tree unlockables and next-tier procedural techs.
         """
         available = []
-        all_techs = self.faction_tech_trees.get(faction.name.lower(), {}).get("techs", {})
+        f_key = self._get_faction_tree_key(faction)
+        all_techs = self.faction_tech_trees.get(f_key, {}).get("techs", {})
         
         # 1. Base Techs
         for tech_id, cost in all_techs.items():
@@ -927,7 +950,8 @@ class TechManager:
         # If it's an economic tech, check income delta.
         # If it's a military tech, check power delta or win rate.
         
-        tech_tree = self.faction_tech_trees.get(faction_name.lower(), {})
+        f_key = self._get_faction_tree_key(faction_name)
+        tech_tree = self.faction_tech_trees.get(f_key, {})
         tech_cost = tech_tree.get("techs", {}).get(tech_id, 1000)
         
         impact = {
@@ -1003,7 +1027,8 @@ class TechManager:
         new_name = f"Integrated {name_a}-{name_b}"
         
         # Auto-add to tree
-        tree = self.faction_tech_trees.get(faction.name.lower())
+        f_key = self._get_faction_tree_key(faction)
+        tree = self.faction_tech_trees.get(f_key)
         if tree:
              cost = 5000 # High cost to stabilize
              tree["techs"][new_id] = cost

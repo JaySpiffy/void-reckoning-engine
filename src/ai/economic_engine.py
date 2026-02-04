@@ -110,19 +110,14 @@ class EconomicEngine:
 
         # 2. Get Available Research
         # Includes Base Tree + Infinite Procedural Tiers
-        # [MODIFIED] Use "Card" System (Stellaris-style)
-        candidates = self.engine.tech_manager.draw_research_cards(f, num_cards=3)
+        # [MODIFIED] Use "Card" System (Stellaris-style) - Expanded to 10 cards
+        candidates = self.engine.tech_manager.draw_research_cards(f, num_cards=10)
         if not candidates: return
 
-        
         # 3. Selection Strategy (Synergy-Based)
         import random
         from src.models.research_project import ResearchProject
 
-        # [Phase 1] Synergy Scoring & Diversification
-        # Goal: Prefer techs that align with existing tech themes (Specialization)
-        # but avoid neglecting defense/economy (Diversification)
-        
         candidates_scored = []
         unlocked_ids = set(f.unlocked_techs)
         
@@ -175,48 +170,25 @@ class EconomicEngine:
         # Weighted Sort
         candidates_scored.sort(key=lambda x: x[1], reverse=True)
         
-        # Pick from top 3
-        top_n = candidates_scored[:3]
-        if not top_n: return
+        # 4. Queue Top 3 Projects (Parallel Research Support)
+        # We fill the queue until it reaches depth 2-3
+        num_to_pick = min(len(candidates_scored), 3 - len(f.research_queue))
+        top_picks = candidates_scored[:num_to_pick]
         
-        # [PHASE 6] Research Trace
-        if logging_config.LOGGING_FEATURES.get('tech_research_path_analysis', False):
-            if hasattr(self.engine.logger, 'research'):
-                trace_candidates = [
-                    {"id": c[0]["id"], "score": c[1], "cost": c[0]["cost"]} 
-                    for c in top_n
-                ]
-                
-                trace_msg = {
-                    "event_type": "research_path_analysis",
-                    "faction": faction_name,
-                    "turn": self.engine.turn_counter,
-                    "top_candidates": trace_candidates,
-                    "selected": top_n[0][0]["id"],
-                    "reasoning": "Highest Synergy/Utility Score"
-                }
-                self.engine.logger.research(json.dumps(trace_msg))
-
-        # Weighted Choice within top 3? Or just best?
-        # Let's verify list isn't empty (checked above)
-        target = top_n[0][0] # Pick the highest score consistently for strategic focus
-        
-        # OLD RANDOM: target = random.choice(candidates)
-        
-        # 4. Queue Project
-        # Validate cost > 0
-        cost = max(1, target["cost"])
-        
-        project = ResearchProject(
-            tech_id=target["id"],
-            total_cost=cost
-        )
-        f.research_queue.append(project)
-        
-        # Log
-        if self.engine.logger:
-             self.engine.logger.campaign(f"[STRATEGY] {faction_name} queued research: {project.tech_id} (Cost: {project.total_cost} RP)")
-             
+        for i, (target, score) in enumerate(top_picks):
+            # Validate cost > 0
+            cost = max(1, target["cost"])
+            
+            project = ResearchProject(
+                tech_id=target["id"],
+                total_cost=cost
+            )
+            f.research_queue.append(project)
+            
+            # Log
+            if self.engine.logger:
+                 self.engine.logger.campaign(f"[STRATEGY] {faction_name} queued parallel research: {project.tech_id} (Cost: {project.total_cost} RP, Rank: {i+1})")
+                 
         # 5. Legacy Weapon Upgrade Integration?
         # The old system upgraded weapons directly via Requisition.
         # Ideally, we should generate these as Techs (e.g. "Weapons Research V").

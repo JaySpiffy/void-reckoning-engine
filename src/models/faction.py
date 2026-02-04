@@ -38,7 +38,8 @@ class Faction:
         self.research_points = 0.0 # Current stockpile
         self.research_income = 0.0 # Per-turn generation
         self.research_queue = []   # List[ResearchProject]
-        self.active_research = None # Optional[ResearchProject]
+        self.active_projects = []  # List[ResearchProject] - Support for parallel research (up to 3 slots)
+        self.active_research = None # Deprecated: Use active_projects[0] if needed for legacy compatibility
         
         self.unlocked_techs = ["Headquarters", "None"] # Default start techs
         self.tech_unlocked_turns = {"Headquarters": 0, "None": 0}
@@ -578,8 +579,6 @@ class Faction:
         """Hydrates a Faction from a dictionary (Save V2)."""
         faction = cls(
             name=data["name"],
-            personality_id=data.get("personality_id"),
-            universe_name=data.get("universe_name"),
             uid=data.get("uid"),
             initial_req=data.get("initial_requisition", 0)
         )
@@ -587,9 +586,38 @@ class Faction:
         faction.budgets = data.get("budgets", faction.budgets)
         faction.research_points = data.get("research_points", 0.0)
         faction.research_income = data.get("research_income", 0.0)
-        faction.research_queue = data.get("research_queue", [])
-        faction.unlocked_techs = data.get("unlocked_techs", faction.unlocked_techs)
-        faction.home_planet_name = data.get("home_planet_name")
+        
+        # Hydrate Research Projects
+        from src.models.research_project import ResearchProject
+        
+        # Load legacy active_research if present
+        legacy_active = data.get("active_research")
+        if legacy_active:
+             if isinstance(legacy_active, dict):
+                 faction.active_projects.append(ResearchProject.parse_obj(legacy_active))
+             else:
+                 faction.active_projects.append(legacy_active)
+        
+        # Load new active_projects
+        active_proj_data = data.get("active_projects", [])
+        for p_data in active_proj_data:
+            if isinstance(p_data, dict):
+                faction.active_projects.append(ResearchProject.parse_obj(p_data))
+            else:
+                faction.active_projects.append(p_data)
+        
+        # Deduplicate and Cap at 3
+        faction.active_projects = faction.active_projects[:3]
+        if faction.active_projects:
+            faction.active_research = faction.active_projects[0]
+
+        faction.research_queue = []
+        for q_data in data.get("research_queue", []):
+            if isinstance(q_data, dict):
+                faction.research_queue.append(ResearchProject.parse_obj(q_data))
+            else:
+                faction.research_queue.append(q_data)
+                faction.home_planet_name = data.get("home_planet_name")
         
         faction.stats = data.get("stats", faction.stats)
         faction.passive_modifiers = data.get("passive_modifiers", {})
@@ -645,7 +673,9 @@ class Faction:
             "budgets": self.budgets,
             "research_points": self.research_points,
             "research_income": self.research_income,
-            "research_queue": self.research_queue,
+            "research_queue": [p.dict() if hasattr(p, 'dict') else p for p in self.research_queue],
+            "active_projects": [p.dict() if hasattr(p, 'dict') else p for p in self.active_projects],
+            "active_research": self.active_research.dict() if hasattr(self.active_research, 'dict') else self.active_research,
             "unlocked_techs": self.unlocked_techs,
             "home_planet_name": self.home_planet_name,
             "personality_id": self.personality_id

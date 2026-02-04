@@ -653,9 +653,6 @@ class Planet:
                     neighbor_node = self.hex_map[neighbor_key]
                     node.add_edge(neighbor_node, distance=1)
 
-                
-            self._provinces.append(node)
-
 
         # 3. Link Capital to Orbit
         capital_node = next((n for n in self._provinces if n.type == "Capital"), None)

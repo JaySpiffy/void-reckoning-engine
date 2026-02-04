@@ -2,6 +2,7 @@ import random
 from typing import Dict, Any, Optional, List
 from src.utils.profiler import profile_method
 from src.combat.execution.weapon_executor import WeaponExecutor
+from src.core import balance as bal
 
 class AbilityManager:
     """
@@ -104,6 +105,8 @@ class AbilityManager:
              self._handle_teleport(source, target, ability_def, result, context)
         elif payload_type == "mind_control":
              self._handle_mind_control(source, target, ability_def, result, context)
+        elif payload_type == "boarding":
+             self._handle_boarding(source, target, ability_def, result, context)
         
         # --- Total War / EaW Specific Payloads (Phase 30) ---
         elif payload_type == "rally":
@@ -571,4 +574,123 @@ class AbilityManager:
              result["description"] = f"Charge! Speed and Damage boosted for {duration}s"
         else:
              result["applied"] = False
+
+    def _handle_boarding(self, source, target, ability_def, result, context):
+        """Handles specialized space boarding actions."""
+        if not hasattr(target, "crew_comp") or target.crew_comp is None:
+            result["success"] = False
+            result["reason"] = "Target has no crew component"
+            return
+
+        boarding_type = ability_def.get("boarding_type", "pods")
+        grid = context.get("grid")
+        distance = grid.get_distance(source, target) if grid else 0
+        
+        # 1. Distance & Shield Checks
+        if boarding_type == "lightning_strike":
+            if distance > bal.BOARDING_RANGE_LIGHTNING:
+                result["success"] = False
+                result["reason"] = "Out of range for Lightning Strike"
+                return
+            if target.health_comp and target.health_comp.current_shield > 0:
+                result["success"] = False
+                result["reason"] = "Enemy shields prevent teleportation"
+                return
+        elif boarding_type == "pods":
+            if distance > bal.BOARDING_RANGE_PODS:
+                result["success"] = False
+                result["reason"] = "Out of range for Boarding Pods"
+                return
+        # Assault boats have 'infinite' range (handled by hangar/flight time normally, simplified here)
+        
+        # 2. Interception Check (Point Defense)
+        intercepted = False
+        if boarding_type in ["pods", "boats"]:
+            chance = bal.BOARDING_PD_INTERCEPT_CHANCE_PODS if boarding_type == "pods" else bal.BOARDING_PD_INTERCEPT_CHANCE_BOATS
+            if self._rng.random() < chance:
+                intercepted = True
+                
+        if intercepted:
+            result["applied"] = True
+            result["description"] = f"Boarding attempt by {boarding_type} intercepted by point defense!"
+            return
+
+        # 3. Calculate Attack and Defense Values (Ships + Embarked Armies)
+        base_atk = ability_def.get("troop_damage", 10)
+        bonus_atk = 0
+        bonus_def = 0
+        
+        # Attack Scaling: Armies provide a portion of their power as offensive support
+        ARMY_SPACE_SUPPORT_FACTOR = 0.2 
+        
+        # Check for embarked armies in source's fleet (Offense)
+        fleet_src = getattr(source, 'fleet', None)
+        if fleet_src and hasattr(fleet_src, 'cargo_armies'):
+            for army in fleet_src.cargo_armies:
+                bonus_atk += int(army.power * ARMY_SPACE_SUPPORT_FACTOR)
+                
+        # Check for embarked armies in target's fleet (Defense)
+        fleet_target = getattr(target, 'fleet', None)
+        if fleet_target and hasattr(fleet_target, 'cargo_armies'):
+            for army in fleet_target.cargo_armies:
+                # Armies are even more effective at defending their own transport
+                bonus_def += int(army.power * (ARMY_SPACE_SUPPORT_FACTOR * 1.5))
+                
+        # 4. Apply Damage or Capture
+        if target.crew_comp.is_hulk:
+            # CAPTURE LOGIC
+            # Source must have at least 25% crew to spare
+            if source.crew_comp.current_crew > (source.crew_comp.max_crew * 0.25):
+                capture_crew = int(source.crew_comp.max_crew * 0.1) # Transfer 10% crew
+                source.crew_comp.current_crew -= capture_crew
+                
+                # Perform Capture
+                target.faction = source.faction
+                target.crew_comp.capture_ship(capture_crew)
+                
+                result["applied"] = True
+                result["crew_killed"] = 0
+                result["description"] = f"Hulk CAPTURED by {source.faction}! {capture_crew} crew transferred."
+                
+                # Log to structured tracker if available
+                battle_state = context.get("battle_state")
+                if battle_state and hasattr(battle_state, 'tracker') and battle_state.tracker:
+                    battle_state.tracker.log_event(
+                        "capture", 
+                        source, 
+                        target, 
+                        description=result["description"],
+                        capture_crew=capture_crew
+                    )
+                elif battle_state:
+                    # Fallback to legacy event log
+                    battle_state.log_event("capture", source.name, target.name, result["description"])
+                return
+            else:
+                result["applied"] = False
+                result["description"] = "Capture failed: Source crew too low to spare prize crew."
+                return
+
+        killed = target.crew_comp.take_crew_damage(
+            base_atk, 
+            bonus_atk, 
+            effective_defense=target.troop_defense, 
+            bonus_defense_value=bonus_def
+        )
+        
+        result["applied"] = True
+        result["crew_killed"] = killed
+        
+        if target.crew_comp.is_hulk:
+            desc = f"Boarding successful! {killed} crew killed. SHIP IS NOW A DRIFTING HULK!"
+            if context and "battle_state" in context:
+                 context["battle_state"].tracker.log_event("ship_hulked", target, source, description=f"{target.name} turned into a drifting hulk!")
+        else:
+            desc = f"Boarding successful! {killed} crew killed."
+            if bonus_atk > 0:
+                desc += " (Assisted by embarked regiments)"
+            if bonus_def > 0:
+                desc += " (Target defended by embarked regiments)"
+            
+        result["description"] = desc
 

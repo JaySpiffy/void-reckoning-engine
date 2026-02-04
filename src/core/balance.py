@@ -50,19 +50,19 @@ UNIT_BASE_TOUGHNESS = 4
 UNIT_BASE_BS = 35
 UNIT_BASE_RANGE = 24
 HULL_BASE_STATS = {
-    "Corvette": {"hp": 80, "armor": 5, "ma": 50, "md": 50, "shield": 20},
-    "Frigate": {"hp": 200, "armor": 8, "ma": 40, "md": 40, "shield": 100},
-    "Destroyer": {"hp": 350, "armor": 10, "ma": 35, "md": 25, "shield": 150},
-    "Escort": {"hp": 150, "armor": 10, "ma": 30, "md": 30, "shield": 50},
-    "Cruiser": {"hp": 500, "armor": 12, "ma": 40, "md": 20, "shield": 200},
-    "Carrier": {"hp": 800, "armor": 12, "ma": 20, "md": 10, "shield": 400},
-    "Battleship": {"hp": 1200, "armor": 14, "ma": 50, "md": 10, "shield": 500},
-    "Titan": {"hp": 5000, "armor": 25, "ma": 10, "md": 5, "shield": 2000},
-    "World Devastator": {"hp": 15000, "armor": 40, "ma": 8, "md": 4, "shield": 2000},
-    "Reality Breaker": {"hp": 13500, "armor": 36, "ma": 12, "md": 6, "shield": 2500},
-    "Thought Weaver": {"hp": 17250, "armor": 40, "ma": 5, "md": 3, "shield": 4000},
-    "Solar-Anchor": {"hp": 14000, "armor": 25, "ma": 5, "md": 5, "shield": 6000},
-    "Mothership": {"hp": 25000, "armor": 60, "ma": 4, "md": 2, "shield": 5000}
+    "Corvette": {"hp": 80, "armor": 5, "ma": 50, "md": 50, "shield": 20, "crew": 20, "troop_value": 5},
+    "Frigate": {"hp": 200, "armor": 8, "ma": 40, "md": 40, "shield": 100, "crew": 50, "troop_value": 10},
+    "Destroyer": {"hp": 350, "armor": 10, "ma": 35, "md": 25, "shield": 150, "crew": 80, "troop_value": 12},
+    "Escort": {"hp": 150, "armor": 10, "ma": 30, "md": 30, "shield": 50, "crew": 40, "troop_value": 10},
+    "Cruiser": {"hp": 500, "armor": 12, "ma": 40, "md": 20, "shield": 200, "crew": 150, "troop_value": 15},
+    "Carrier": {"hp": 800, "armor": 12, "ma": 20, "md": 10, "shield": 400, "crew": 200, "troop_value": 15},
+    "Battleship": {"hp": 1200, "armor": 14, "ma": 50, "md": 10, "shield": 500, "crew": 400, "troop_value": 20},
+    "Titan": {"hp": 5000, "armor": 25, "ma": 10, "md": 5, "shield": 2000, "crew": 1200, "troop_value": 30},
+    "World Devastator": {"hp": 15000, "armor": 40, "ma": 8, "md": 4, "shield": 2000, "crew": 5000, "troop_value": 40},
+    "Reality Breaker": {"hp": 13500, "armor": 36, "ma": 12, "md": 6, "shield": 2500, "crew": 4500, "troop_value": 40},
+    "Thought Weaver": {"hp": 17250, "armor": 40, "ma": 5, "md": 3, "shield": 4000, "crew": 6000, "troop_value": 50},
+    "Solar-Anchor": {"hp": 14000, "armor": 25, "ma": 5, "md": 5, "shield": 6000, "crew": 3000, "troop_value": 50},
+    "Mothership": {"hp": 25000, "armor": 60, "ma": 4, "md": 2, "shield": 5000, "crew": 10000, "troop_value": 60}
 }
 
 ARMOR_FACING_FRONT_MULT = 1.0
@@ -109,6 +109,12 @@ BOARDING_HULL_PER_DIE = 200
 BOARDING_DAMAGE_PER_SUCCESS = 50
 BOARDING_BONUS_SM = 2
 BOARDING_BONUS_TERMINATOR = 1
+
+BOARDING_RANGE_LIGHTNING = 50.0  # 5,000 units
+BOARDING_RANGE_PODS = 25.0       # 2,500 units
+BOARDING_PD_INTERCEPT_CHANCE_PODS = 0.2
+BOARDING_PD_INTERCEPT_CHANCE_BOATS = 0.4
+STANCE_CALL_TO_ARMS_TROOP_BONUS = 5.0
 
 # Combat Modifiers (Hit Chance/MA)
 MOD_MELEE_CHARGE_BASE = 10

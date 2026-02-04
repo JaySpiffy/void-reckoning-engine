@@ -7,6 +7,7 @@ from src.combat.components.morale_component import MoraleComponent
 from src.combat.components.trait_component import TraitComponent
 from src.combat.components.movement_component import MovementComponent
 from src.combat.components.stats_component import StatsComponent
+from src.combat.components.crew_component import CrewComponent
 
 class Unit:
     """
@@ -42,8 +43,10 @@ class Unit:
         self.trait_comp: Optional[TraitComponent] = None
         self.movement_comp: Optional[MovementComponent] = None
         self.stats_comp: Optional[StatsComponent] = None
+        self.crew_comp: Optional[CrewComponent] = None
         
         self.components = [] 
+        self.current_stance = "STANCE_BALANCED"
         
         # Register components
         if components:
@@ -69,6 +72,13 @@ class Unit:
              ))
         self.cooldowns = {} # Map[ability_id] -> ready_at_timestamp
         
+        # Crew Fallback for Ships
+        if not self.crew_comp and self.domain == "space":
+            from src.core.balance import HULL_BASE_STATS
+            hull_stats = HULL_BASE_STATS.get(self.unit_class, {"hp": 100})
+            max_crew = hull_stats.get("crew", 100)
+            self.add_component(CrewComponent(max_crew, troop_value=hull_stats.get("troop_value", 10)))
+
         # Core Stats
         self.max_hp_base = kwargs.get("max_hp", 100.0)
 
@@ -90,6 +100,8 @@ class Unit:
             self.movement_comp = component
         elif component_type == 'StatsComponent':
             self.stats_comp = component
+        elif component_type == 'CrewComponent':
+            self.crew_comp = component
             
         self.components.append(component)
 
@@ -161,7 +173,20 @@ class Unit:
         return data
 
     def is_alive(self):
+        if self.crew_comp and self.crew_comp.is_hulk:
+            return False
         return self.health_comp.is_alive() if self.health_comp else False
+
+    @property
+    def troop_defense(self) -> int:
+        """Returns the effective troop defense value including stance bonuses."""
+        if not self.crew_comp:
+            return 0
+        base = self.crew_comp.troop_value
+        if self.current_stance == "STANCE_CALL_TO_ARMS":
+            from src.core import balance as bal
+            base += bal.STANCE_CALL_TO_ARMS_TROOP_BONUS
+        return int(base)
 
     def _calculate_strength(self) -> int:
         """Internal strength calculation logic."""
@@ -279,8 +304,43 @@ class Unit:
 
     @property
     def abilities(self):
-        if self.trait_comp: return self.trait_comp.abilities
-        return getattr(self, '_abilities', {})
+        # 1. Start with trait-based abilities
+        abs = {}
+        if self.trait_comp:
+            abs = self.trait_comp.abilities.copy()
+        else:
+            abs = getattr(self, '_abilities', {}).copy()
+            
+        # 2. Dynamically add abilities from components (e.g., Boarding Tools)
+        for comp in self.weapon_comps:
+            if hasattr(comp, 'tags') and 'boarding' in comp.tags:
+                # Map tags/stats to ability definitions
+                if 'pods' in comp.tags:
+                    abs['Boarding Pods'] = {
+                        "type": "boarding",
+                        "payload_type": "boarding",
+                        "range": comp.weapon_stats.get("range", 25),
+                        "atk": comp.weapon_stats.get("troop_damage", 30),
+                        "pd_intercept": comp.weapon_stats.get("pd_intercept_chance", 0.4)
+                    }
+                elif 'teleportation' in comp.tags:
+                    abs['Lightning Strike'] = {
+                        "type": "boarding",
+                        "payload_type": "boarding",
+                        "range": comp.weapon_stats.get("range", 15),
+                        "atk": comp.weapon_stats.get("troop_damage", 20),
+                        "shield_gate": True
+                    }
+                elif 'boats' in comp.tags:
+                    abs['Assault Boats'] = {
+                        "type": "boarding",
+                        "payload_type": "boarding",
+                        "range": comp.weapon_stats.get("range", 60),
+                        "atk": comp.weapon_stats.get("troop_damage", 25),
+                        "pd_intercept": comp.weapon_stats.get("pd_intercept_chance", 0.6)
+                    }
+        
+        return abs
     @abilities.setter
     def abilities(self, v):
         if self.trait_comp: self.trait_comp.abilities = v
@@ -368,10 +428,24 @@ class Unit:
                         setattr(self.stats_comp, stat, current + value)
         
     def recalc_stats(self):
-        """Recalculates derived stats."""
+        """Recalculates derived stats from components and traits."""
+        if self.crew_comp:
+            crew_bonus = 0
+            troop_bonus = 0
+            for comp in self.weapon_comps:
+                if hasattr(comp, 'weapon_stats'):
+                    crew_bonus += comp.weapon_stats.get("added_crew", 0)
+                    troop_bonus += comp.weapon_stats.get("troop_defense_bonus", 0)
+            
+            self.crew_comp.max_crew_bonus = int(crew_bonus)
+            # Update troop value if needed (base + bonus)
+            # Assuming troop_value is also dynamic or we just adjust it here
+            from src.core.balance import HULL_BASE_STATS
+            base_troop = HULL_BASE_STATS.get(self.unit_class, {}).get("troop_value", 10)
+            self.crew_comp.troop_value = base_troop + int(troop_bonus)
+        
         if self.stats_comp:
-            # For now, just reset to base + trait mods logic if needed, 
-            # but apply_traits already modified stats_comp.
+            # apply_traits already handles base stat shifts
             pass
 
     def gain_xp(self, amount: float, context: Optional[Dict[str, Any]] = None, **kwargs):

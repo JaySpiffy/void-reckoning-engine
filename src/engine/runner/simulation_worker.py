@@ -261,22 +261,53 @@ class SimulationWorker:
              total_ships = defaultdict(int)
              total_ground = defaultdict(int)
              
+             cities = defaultdict(int)
+             owners_full = defaultdict(int)
+             owners_contested = defaultdict(int)
+             own_cities_total = defaultdict(int)
+             con_cities_total = defaultdict(int)
+             
              for p in engine.all_planets:
+                 factions_on_planet = set()
+                 cities_on_this_planet = defaultdict(int)
+
                  if p.owner != "Neutral":
-                     owners[p.owner].append(p)
+                     factions_on_planet.add(p.owner)
                      buildings[p.owner] += len(p.buildings)
-                     if hasattr(p, 'provinces'):
-                         for n in p.provinces:
-                             buildings[p.owner] += len(n.buildings)
+                 
+                 if hasattr(p, 'provinces'):
+                     for n in p.provinces:
+                         if n.owner != "Neutral":
+                             factions_on_planet.add(n.owner)
+                             buildings[n.owner] += len(n.buildings)
+                             if getattr(n, 'terrain_type', None) == "City":
+                                 cities[n.owner] += 1
+                                 cities_on_this_planet[n.owner] += 1
+                         
+                         for ag in n.armies:
+                             if not ag.is_destroyed:
+                                 factions_on_planet.add(ag.faction)
+                 
+                 if hasattr(p, 'armies'):
+                     for ag in p.armies:
+                         if not ag.is_destroyed:
+                             factions_on_planet.add(ag.faction)
                              
-                     # DEBUG: Verify Counts occasionally
-                     # if random.random() < 0.001:
-                     #    print(f"DEBUG_WORKER: {p.name} ({p.owner}) | B_Planet: {len(p.buildings)} | B_Prov: {sum(len(n.buildings) for n in p.provinces) if hasattr(p, 'provinces') else 0}")
-                     
+                 # Categorize Planet Ownership and accumulate stats
+                 if len(factions_on_planet) == 1:
+                     sole_owner = list(factions_on_planet)[0]
+                     owners_full[sole_owner] += 1
+                     own_cities_total[sole_owner] += cities_on_this_planet[sole_owner]
+                 elif len(factions_on_planet) > 1:
+                     for f in factions_on_planet:
+                         owners_contested[f] += 1
+                         con_cities_total[f] += cities_on_this_planet[f]
+
+                 if p.owner != "Neutral":
                      if hasattr(p, 'system') and p.system:
                          systems_owned[p.owner].add(p.system)
 
-                 # Armies
+                 # Army/Fleet counting...
                  p_armies = []
                  if hasattr(p, 'armies'): p_armies.extend(p.armies)
                  if hasattr(p, 'provinces'):
@@ -306,11 +337,13 @@ class SimulationWorker:
                  
              for f in engine.factions:
                  if f == "Neutral": continue
-                 p_count = len(owners.get(f, []))
                  f_count = fleets[f]
                  b_count = buildings[f]
                  a_count = armies[f]
                  sb_count = starbases[f]
+                 cty_count = cities[f]
+                 own_count = owners_full[f]
+                 con_count = owners_contested[f]
                  
                  req = 0
                  tech_count = 0
@@ -322,8 +355,9 @@ class SimulationWorker:
                  
                  f_obj = engine.factions[f]
                  stats[f] = {
-                     "P": p_count, "F": f_count, "B": b_count, "A": a_count, "SB": sb_count,
-                     "R": req, "S": s_count, "T": tech_count,
+                     "OWN": own_count, "CON": con_count, "F": f_count, "B": b_count, "A": a_count, "SB": sb_count,
+                     "R": req, "S": s_count, "T": tech_count, "CTY": cty_count,
+                     "OWN_CTY": own_cities_total[f], "CON_CTY": con_cities_total[f],
                      "AvgS": total_ships[f] / f_count if f_count > 0 else 0,
                      "AvgG": total_ground[f] / a_count if a_count > 0 else 0,
                      "AvgG": total_ground[f] / a_count if a_count > 0 else 0,
@@ -341,7 +375,7 @@ class SimulationWorker:
                  if init_req < 1e12: # Cap for infinite-resource factions
                      req_score = int((req - init_req) / 1000)
                  
-                 stats[f]["Score"] = (p_count * 100) + (s_count * 500) + (b_count * 50) + (f_count * 20) + (a_count * 10) + (sb_count * 300) + (tech_count * 1000) + req_score
+                 stats[f]["Score"] = ((own_count + con_count) * 100) + (s_count * 500) + (b_count * 50) + (f_count * 20) + (a_count * 10) + (sb_count * 300) + (tech_count * 1000) + req_score
                  
                  # Phase 5: Inject Theater Info for Dashboard
                  # Path: engine -> strategic_ai -> planner -> theater_manager

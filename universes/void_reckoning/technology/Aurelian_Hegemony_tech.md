@@ -87,7 +87,7 @@ graph TD
 - **Name:** Orbital Dockyards
 - **Prerequisites:** Industrial Forging, Resource Extraction
 - **Description:** Massive shipyards for the Aurelian Navy.
-- **Effects:** Unlocks Cruisers, Unlocks [Orbital Structures].
+- **Effects:** Unlocks Cruisers, Unlocks Destroyer, Unlocks [Orbital Structures].
 
 ### Trade Networks
 
@@ -105,7 +105,7 @@ graph TD
 - **Name:** Apocalypse Class
 - **Prerequisites:** Heavy Armor, Mega Construction
 - **Description:** Battleships capable of erasing continents.
-- **Effects:** Unlocks Battleships.
+- **Effects:** Unlocks Battleships, Unlocks Battleship.
 
 ### Titan Integration
 

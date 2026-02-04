@@ -246,31 +246,49 @@ class BudgetAllocator:
                      faction=f_name
                  )
             
-        # --- Research Progression ---
+        # --- Research Progression (Parallel Slot Support) ---
         if "research_income" in econ_data:
             rp_in = econ_data["research_income"]
             faction_mgr.research_income = rp_in
             faction_mgr.research_points += rp_in
 
-            # Auto-start if empty
-            if not faction_mgr.active_research and faction_mgr.research_queue:
-                faction_mgr.active_research = faction_mgr.research_queue.pop(0)
+            # 1. Ensure slots are filled (Up to 3)
+            while len(faction_mgr.active_projects) < 3 and faction_mgr.research_queue:
+                new_proj = faction_mgr.research_queue.pop(0)
+                faction_mgr.active_projects.append(new_proj)
                 if self.engine.logger:
-                    self.engine.logger.info(f"[Research] {f_name} started NEW project: {faction_mgr.active_research.tech_id}")
+                    self.engine.logger.info(f"[Research] {f_name} started parallel project: {new_proj.tech_id}")
 
-            # Process Queue
-            if faction_mgr.active_research:
-                proj = faction_mgr.active_research
-                overflow = proj.invest(int(faction_mgr.research_points))
-                faction_mgr.research_points = float(overflow) 
+            # Legacy compatibility for UI/other modules
+            if faction_mgr.active_projects:
+                faction_mgr.active_research = faction_mgr.active_projects[0]
+            else:
+                faction_mgr.active_research = None
 
-                if proj.is_complete:
-                    faction_mgr.unlock_tech(proj.tech_id, turn=self.engine.turn_counter, tech_manager=self.engine.tech_manager)
-                    if self.engine.logger:
-                        self.engine.logger.info(f"[Research] {f_name} COMPLETED {proj.tech_id}!")
+            # 2. Distribute Research Points
+            if faction_mgr.active_projects:
+                num_slots = len(faction_mgr.active_projects)
+                shared_rp = faction_mgr.research_points / num_slots
+                faction_mgr.research_points = 0.0 # Reset points as we distribute them
+                
+                completed_indices = []
+                for i, proj in enumerate(faction_mgr.active_projects):
+                    # Invest the shared portion
+                    overflow = proj.invest(int(shared_rp))
+                    faction_mgr.research_points += float(overflow) # Return any unused points (e.g. if completed)
 
-                    faction_mgr.active_research = None
+                    if proj.is_complete:
+                        faction_mgr.unlock_tech(proj.tech_id, turn=self.engine.turn_counter, tech_manager=self.engine.tech_manager)
+                        if self.engine.logger:
+                            self.engine.logger.info(f"[Research] {f_name} COMPLETED {proj.tech_id}!")
+                        completed_indices.append(i)
 
+                # Remove completed projects
+                for index in sorted(completed_indices, reverse=True):
+                    faction_mgr.active_projects.pop(index)
+                
+                # Update legacy pointer
+                faction_mgr.active_research = faction_mgr.active_projects[0] if faction_mgr.active_projects else None
             # Phase 14: Research Queue Analysis
             if self.engine.turn_counter % 5 == 0:
                 self._log_research_queue_analysis(f_name, faction_mgr)
