@@ -1091,12 +1091,13 @@ While the dashboard is running, you can use the following keyboard shortcuts:
 | Key | Action |
 |-----|--------|
 | `q` / `Ctrl+C` | Quit dashboard |
-| `p` | Pause/resume updates |
+| `p` | **Pause/Resume updates** (freezes currently displayed data) |
 | `r` | Force refresh |
-| `d` | Toggle detailed view |
-| `s` | Toggle galactic summary |
-| `f` | Filter factions by name |
-| `h` | Show help |
+| `d` | Toggle detailed faction stats table |
+| `s` | Toggle global galactic summary |
+| `y` | Toggle galactic diplomacy and alliance blocs |
+| `f` | Filter factions by name/tag |
+| `h` | Toggle help overlay |
 | `1-9` | Quick filter by faction index |
 
 **Output Modes:**
@@ -1214,8 +1215,8 @@ Output: C:\Users\whitt\OneDrive\Desktop\New folder (4)\reports\multi_universe_20
 | `TAG` | Faction Tag | Unique identifier (e.g., 1BIO, 3PRM) |
 | `SCORE` | Performance | Overall score based on all metrics |
 | `SYS` | Systems | Total star systems controlled |
-| `OWN(A)` | Owned | Owned planets (Avg. cities per planet) |
-| `CON(A)` | Consolidated | Consolidated planets (Avg. cities per planet) |
+| `OWN(A)` | Solely Owned | Planets with only one faction present (Avg. cities) |
+| `CON(A)` | Contested | Planets with multiple factions present (Avg. cities) |
 | `CTY` | Cities | Total cities across all control zones |
 | `B(AVG)` | Buildings | Total buildings (Avg. buildings per city) |
 | `SB` | Starbases | Total starbases active |

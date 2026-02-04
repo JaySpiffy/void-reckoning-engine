@@ -16,30 +16,89 @@ BLUE = "\033[94m"
 CYAN = "\033[96m"
 WHITE = "\033[97m"
 MAGENTA = "\033[95m"
+BLACK = "\033[30m"
+ON_YELLOW = "\033[43m"
+
 
 class TerminalDashboard:
     """
     Handles terminal-based visualization of multi-universe simulation progress.
-    Now with 100% more colors and Unicode!
+    Now with interactivity and keyboard shortcuts!
     """
+    def __init__(self):
+        self.is_paused = False
+        self.faction_filter = ""
+        self.show_detailed = True
+        self.show_galactic_summary = True
+        self.show_diplomacy = True
+        self.show_help = False
+        self.quit_requested = False
+        self.filter_buffer = ""
+        self.is_filtering = False
+        self.last_progress_data = {}
+        self.last_universe_configs = []
+
+
+    def handle_input(self, key: str | None):
+        """Processes keyboard input to update dashboard state."""
+        if not key:
+            return
+
+        if self.is_filtering:
+            if key == '\r' or key == '\n':
+                self.faction_filter = self.filter_buffer.upper()
+                self.filter_buffer = ""
+                self.is_filtering = False
+            elif key == '\x08' or key == '\x7f': # Backspace
+                self.filter_buffer = self.filter_buffer[:-1]
+            elif key == '\x1b': # Esc
+                self.filter_buffer = ""
+                self.is_filtering = False
+            else:
+                self.filter_buffer += key
+            return
+
+        if key == 'q':
+            self.quit_requested = True
+        elif key == 'p':
+            self.is_paused = not self.is_paused
+        elif key == 'd':
+            self.show_detailed = not self.show_detailed
+        elif key == 's':
+            self.show_galactic_summary = not self.show_galactic_summary
+        elif key == 'h':
+            self.show_help = not self.show_help
+        elif key == 'f':
+            self.is_filtering = True
+            self.filter_buffer = ""
+        elif key == 'y':
+            self.show_diplomacy = not self.show_diplomacy
+        elif key == 'r':
+            # Force refresh is conceptually simple - we just don't skip the next render
+            pass
+        elif key.isdigit():
+            # Quick filter by index (simplified: just sets a filter for testing)
+            self.faction_filter = f"INDEX_{key}"
+
 
     def render(self, output_dir: str, progress_data: Dict[str, Any], universe_configs: List[Dict[str, Any]]):
         """
         Renders the full dashboard to the terminal using double-buffering for performance.
         """
-        # ANSI Escape Codes for cursor control
-        # \033[H = Move cursor home (0,0)
-        # We assume the user has a terminal that supports ANSI (we forced it in run.py)
-        # Note: We do NOT clear the screen (2J) because it causes flicker. 
-        # We overwrite from Home position. We pad lines to clear old text.
-        
+        # Cache data if not paused
+        if not self.is_paused:
+            self.last_progress_data = progress_data
+            self.last_universe_configs = universe_configs
+
+        # Use cached data if paused
+        data_to_render = self.last_progress_data if self.is_paused else progress_data
+        configs_to_render = self.last_universe_configs if self.is_paused else universe_configs
+
         buffer = []
-        # Clear Screen (OS dependent for reliability)
         if os.name == 'nt':
             os.system('cls')
         else:
             buffer.append("\033[2J\033[H")
-        # Actually 'cls' is very slow on Windows. '2J' is better if ANSI is on.
         
         # Fancy Header
         buffer.append(f"{BOLD}{CYAN}╔{'═'*78}╗{RESET}")
@@ -61,9 +120,29 @@ class TerminalDashboard:
         buffer.append(hw_info)
         buffer.append(f"{CYAN}{'─' * 80}{RESET}")
         
-        for config in universe_configs:
+        # Shortcuts Line
+        status_line = f" {BOLD}Controls:{RESET} {DIM}(q)uit (p)ause (d)etailed (s)ummary (y)diplomacy (f)ilter (h)elp{RESET}"
+        if self.is_paused:
+            status_line += f" | {BOLD}{BLACK}{ON_YELLOW} PAUSED {RESET}"
+        if self.faction_filter:
+            status_line += f" | {BOLD}{YELLOW}Filter: {self.faction_filter}{RESET}"
+        buffer.append(status_line)
+        buffer.append(f"{CYAN}{'─' * 80}{RESET}")
+
+        if self.show_help:
+            self._render_help_overlay(buffer)
+            sys.stdout.write("\n".join(buffer) + "\n")
+            sys.stdout.flush()
+            return
+
+        if self.is_filtering:
+            buffer.append(f"\n   {BOLD}{YELLOW}ENTER FACTION TAG TO FILTER:{RESET} {WHITE}{self.filter_buffer}{RESET}_")
+            buffer.append(f"   {DIM}(Press Enter to confirm, Esc to cancel){RESET}")
+
+        
+        for config in configs_to_render:
             name = config["universe_name"]
-            data = progress_data.get(name, {})
+            data = data_to_render.get(name, {})
             completed = data.get("completed", 0)
             total = config["num_runs"]
             affinity = config.get("processor_affinity", "Auto")
@@ -129,6 +208,20 @@ class TerminalDashboard:
 
         sys.stdout.flush()
 
+    def _render_help_overlay(self, buffer: list):
+        buffer.append(f"\n   {BOLD}{WHITE}╔════ INTERACTIVE SHORTCUTS ════╗{RESET}")
+        buffer.append(f"   ║ {YELLOW}q{RESET} : Quit Dashboard / Stop Sim ║")
+        buffer.append(f"   ║ {YELLOW}p{RESET} : Pause/Resume Display      ║")
+        buffer.append(f"   ║ {YELLOW}d{RESET} : Toggle Detailed Faction   ║")
+        buffer.append(f"   ║ {YELLOW}s{RESET} : Toggle Global Summary     ║")
+        buffer.append(f"   ║ {YELLOW}y{RESET} : Toggle Galactic Diplomacy ║")
+        buffer.append(f"   ║ {YELLOW}f{RESET} : Filter by Faction Tag     ║")
+        buffer.append(f"   ║ {YELLOW}r{RESET} : Force Full Refresh        ║")
+        buffer.append(f"   ║ {YELLOW}h{RESET} : Toggle Help Overlay       ║")
+        buffer.append(f"   ║ {YELLOW}1-9{RESET} : Quick Filter Index      ║")
+        buffer.append(f"   {BOLD}{WHITE}╚═══════════════════════════════╝{RESET}")
+
+
     def _render_faction_summary(self, stats: dict, buffer: list, is_final: bool = False):
         """Helper for rendering faction summary in dashboard. Appends to buffer."""
         if not stats:
@@ -138,13 +231,14 @@ class TerminalDashboard:
         battles = stats.get('GLOBAL_BATTLES', 0)
         storms = stats.get('GLOBAL_STORMS', 0)
         
-        # Global Stats Line
-        s_battles = stats.get('GLOBAL_SPACE_BATTLES', 0)
-        g_battles = stats.get('GLOBAL_GROUND_BATTLES', 0)
-        
-        # Global Stats Line
-        storm_display = f"{YELLOW}⚡ {storms}{RESET}" if storms > 0 else f"{DIM}0{RESET}"
-        buffer.append(f"     {DIM}Global Stats:{RESET} Uncolonized: {WHITE}{uncol}{RESET} | Battles: {RED}⚔ {battles}{RESET} (🚀{s_battles} 🪖{g_battles}) | Flux Storms: {storm_display}")
+        if self.show_galactic_summary:
+            # Global Stats Line
+            s_battles = stats.get('GLOBAL_SPACE_BATTLES', 0)
+            g_battles = stats.get('GLOBAL_GROUND_BATTLES', 0)
+            
+            storm_display = f"{YELLOW}⚡ {storms}{RESET}" if storms > 0 else f"{DIM}0{RESET}"
+            buffer.append(f"     {DIM}Global Stats:{RESET} Uncolonized: {WHITE}{uncol}{RESET} | Battles: {RED}⚔ {battles}{RESET} (🚀{s_battles} 🪖{g_battles}) | Flux Storms: {storm_display}")
+
         
         # Phase 5: Theater Overview (Top Faction)
         # The dashboard receives pre-processed stats, so we need to extract theater info from there.
@@ -154,7 +248,7 @@ class TerminalDashboard:
         # Find strongest faction by score to show their theater breakdown
         # Display Diplomacy (Alliances & Trade)
         diplomacy = stats.get('GLOBAL_DIPLOMACY', [])
-        if diplomacy:
+        if diplomacy and self.show_diplomacy:
             buffer.append(f"     {MAGENTA}[GALACTIC DIPLOMACY]{RESET}")
             
             # 1. Identify Alliance Groups
@@ -237,24 +331,43 @@ class TerminalDashboard:
 
         header_text = "FINAL FACTION STATISTICS" if is_final else "TOP FACTION STATISTICS"
         header_color = MAGENTA if is_final else BLUE
-        buffer.append(f"     {header_color}{'-'*3} {header_text} {'-'*3}{RESET}")
         
-        self._print_faction_stats(stats, buffer)
-        if not is_final:
-            buffer.append("") # Spacer
+        if self.show_detailed:
+            buffer.append(f"     {header_color}{'-'*3} {header_text} {'-'*3}{RESET}")
+            self._print_faction_stats(stats, buffer)
+            if not is_final:
+                buffer.append("") # Spacer
+        elif not is_final:
+             buffer.append(f"     {DIM}({header_text} HIDDEN - press 'd' to show){RESET}")
 
     def _print_faction_stats(self, stats: dict, buffer: list):
         """Helper to render faction statistics table to buffer."""
         # Sort by Score desc
         sorted_factions = sorted(stats.items(), key=lambda x: x[1]['Score'] if isinstance(x[1], dict) and 'Score' in x[1] else 0, reverse=True)
         
-        # Filter out GLOBAL_* from display list
-        display_factions = [(k,v) for k,v in sorted_factions if not k.startswith('GLOBAL_')]
+        # Filter for display
+        to_display = []
+        for f, s in sorted_factions:
+            if not isinstance(s, dict) or f.startswith("GLOBAL_"):
+                continue
+            
+            # Apply Filter
+            if self.faction_filter:
+                parts = f.rsplit(' ', 1)
+                base = parts[0]
+                instance = parts[1] if len(parts) > 1 and parts[1].isdigit() else ""
+                abbr = FACTION_ABBREVIATIONS.get(base, base[:3].upper())
+                tag = f"{instance}{abbr}".upper()
+                if self.faction_filter not in tag and self.faction_filter not in f.upper():
+                    continue
+
+            to_display.append((f, s))
         
         # Headers
         buffer.append(f"     {DIM}{'#':<3} {'TAG':<4} {'SCORE':>7}  {'SYS':>3} {'OWN(A)':>7} {'CON(A)':>7} {'CTY':>3} {'B(AVG)':>9} {'SB':>3} {'F(AVG)':>7} {'A(AVG)':>7} {'REQ':>8} {'T':>3} {'W/L/D':>8} {'L(S)':>4} {'L(G)':>4} {'POST':>4}{RESET}")
 
-        for i, (faction, s) in enumerate(display_factions, 1):
+        for i, (faction, s) in enumerate(to_display, 1):
+
              if not isinstance(s, dict): continue
              
              parts = faction.rsplit(' ', 1)

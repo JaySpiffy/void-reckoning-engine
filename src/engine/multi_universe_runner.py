@@ -25,9 +25,10 @@ import time
 # --- REFACTORED IMPORTS ---
 from src.engine.runner.simulation_worker import run_single_campaign_wrapped, worker_init
 from src.engine.runner.results_aggregator import ResultsAggregator
-from src.engine.runner.progress_dashboard import ProgressDashboard
-from src.reporting.cross_universe_reporter import CrossUniverseReporter
-from src.reporting.indexer import ReportIndexer
+from src.reporting.terminal_dashboard import TerminalDashboard
+from src.utils.keyboard import get_key
+
+# from src.engine.runner.progress_dashboard import ProgressDashboard
 from src.reporting.indexer import ReportIndexer
 import sqlite3
 from src.managers.fleet_queue_manager import FleetQueueManager # [Item 1.5]
@@ -495,6 +496,17 @@ class MultiUniverseRunner:
                                   if "Done" in r["status"] or "Error" in r["status"])
                     universe_progress[name]["completed"] = completed
 
+                # Poll Keyboard Input
+                key = get_key()
+                if key:
+                    self.dashboard.handle_input(key)
+                
+                # Check for Quit Signal
+                if self.dashboard.quit_requested:
+                    print("\nQuit requested via keyboard. Stopping simulations...")
+                    pool.terminate()
+                    break
+
                 # Draw Dashboard (Throttled)
                 current_time = time.time()
                 # Initialize last_render_time if not present
@@ -505,7 +517,8 @@ class MultiUniverseRunner:
                     self.dashboard.render(self.output_dir, universe_progress, self.universe_configs)
                     self._last_render_time = current_time
                     
-                time.sleep(0.1) # Short sleep to prevent busy loop, but check queues faster
+                time.sleep(0.01) # Faster sleep to improve responsiveness of keyboard polling
+
                 
             # Final Render to ensure terminal shows the complete state
             self.dashboard.render(self.output_dir, universe_progress, self.universe_configs)
