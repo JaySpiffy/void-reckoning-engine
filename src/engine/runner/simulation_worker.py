@@ -7,6 +7,7 @@ import traceback
 import gc
 import queue  # Ensure queue is imported
 from collections import defaultdict
+import psutil
 
 from src.managers.campaign_manager import CampaignEngine
 from src.reporting.organizer import ReportOrganizer
@@ -158,7 +159,9 @@ class SimulationWorker:
 
                 # 1-turn Heartbeat for dashboard
                 if t % 1 == 0: 
-                     stats = SimulationWorker._collect_stats(engine)
+                     # Measure performance
+                     turn_duration = time.time() - turn_start_time if 'turn_start_time' in locals() else 0
+                     stats = SimulationWorker._collect_stats(engine, turn_duration=turn_duration)
                      if progress_queue:
                          progress_queue.put((run_id, t, "Running", stats))
 
@@ -184,6 +187,8 @@ class SimulationWorker:
                                      if not next_turn_ready: time.sleep(0.1)
                                  except queue.Empty:
                                      time.sleep(0.1)
+                
+                turn_start_time = time.time()
 
                 # MEMORY: Periodic GC
                 gc_interval = game_config.get("technical", {}).get("gc_interval", 100)
@@ -249,9 +254,16 @@ class SimulationWorker:
             sys.stdout = original_stdout
 
     @staticmethod
-    def _collect_stats(engine):
+    def _collect_stats(engine, turn_duration=0):
         stats = {}
         try:
+             stats['turn'] = getattr(engine, 'turn', 0)
+             # Phase 2: Enhanced Metrics
+             global_casualties_ship = 0
+             global_casualties_ground = 0
+             global_requisition = 0
+             contested_planets = 0
+             
              owners = defaultdict(list)
              fleets = defaultdict(int)
              armies = defaultdict(int)
@@ -299,9 +311,10 @@ class SimulationWorker:
                      owners_full[sole_owner] += 1
                      own_cities_total[sole_owner] += cities_on_this_planet[sole_owner]
                  elif len(factions_on_planet) > 1:
+                     contested_planets += 1
                      for f in factions_on_planet:
-                         owners_contested[f] += 1
-                         con_cities_total[f] += cities_on_this_planet[f]
+                          owners_contested[f] += 1
+                          con_cities_total[f] += cities_on_this_planet[f]
 
                  if p.owner != "Neutral":
                      if hasattr(p, 'system') and p.system:
@@ -364,6 +377,8 @@ class SimulationWorker:
                      "L": f_obj.stats.get("turn_units_lost", 0),
                      "L_Ship": f_obj.stats.get("turn_ships_lost", 0),
                      "L_Ground": f_obj.stats.get("turn_ground_lost", 0),
+                     "Total_L_Ship": f_obj.stats.get("ships_lost", 0),
+                     "Total_L_Ground": f_obj.stats.get("ground_lost", 0),
                      "BW": f_obj.stats.get("battles_won", 0),
                      "BF": f_obj.stats.get("battles_fought", 0),
                      "BD": f_obj.stats.get("battles_drawn", 0),
@@ -438,7 +453,115 @@ class SimulationWorker:
                                  "members": pair,
                                  "type": state
                              })
+             # Inject per-faction counts for the table
+             for entry in diplomacy_active:
+                 if entry['type'] == 'War':
+                     for member in entry['members']:
+                         if member in stats and isinstance(stats[member], dict):
+                             stats[member]['WRS'] = stats[member].get('WRS', 0) + 1
+                             
              stats['GLOBAL_DIPLOMACY'] = diplomacy_active
+
+             # Phase 2: Global Aggregates
+             global_total_casualties_ship = 0
+             global_total_casualties_ground = 0
+             for f, s in stats.items():
+                 if isinstance(s, dict) and not f.startswith("GLOBAL_"):
+                     global_casualties_ship += s.get('L_Ship', 0)
+                     global_casualties_ground += s.get('L_Ground', 0)
+                     global_total_casualties_ship += s.get('Total_L_Ship', 0)
+                     global_total_casualties_ground += s.get('Total_L_Ground', 0)
+                     global_requisition += s.get('R', 0)
+
+             stats['GLOBAL_CASUALTIES_SHIP'] = global_casualties_ship
+             stats['GLOBAL_CASUALTIES_GROUND'] = global_casualties_ground
+             stats['GLOBAL_TOTAL_CASUALTIES_SHIP'] = global_total_casualties_ship
+             stats['GLOBAL_TOTAL_CASUALTIES_GROUND'] = global_total_casualties_ground
+             stats['GLOBAL_REQUISITION'] = global_requisition
+             stats['GLOBAL_CONTESTED_PLANETS'] = contested_planets
+             
+             # Tech Breakthroughs & Avg Tier
+             tech_tiers = []
+             for f, s in stats.items():
+                 if isinstance(s, dict) and not f.startswith("GLOBAL_"):
+                     tech_tiers.append(s.get('T', 0))
+             
+             stats['GLOBAL_TECH_AVG'] = sum(tech_tiers) / len(tech_tiers) if tech_tiers else 0
+             # Simplified: breakthroughs = sum of research events this turn?
+             # Or just use the change in total tech count if we had previous.
+             # For now, let's just use 0 as placeholder or check engine events.
+             stats['GLOBAL_TECH_BREAKTHROUGHS'] = sum(1 for f in engine.factions.values() if getattr(f, 'researched_this_turn', False))
+             
+             stats['GLOBAL_PERF_TURN_TIME'] = turn_duration
+             stats['GLOBAL_PERF_TPS'] = 1.0 / turn_duration if turn_duration > 0 else 0
+             
+             # Phase 6: Economic Flow & Velocity
+             total_income = 0
+             efficiency_scores = []
+             for f_name, f in engine.factions.items():
+                 if f_name == "Neutral": continue
+                 econ = engine.economy_manager.faction_econ_cache.get(f_name)
+                 if econ:
+                     total_income += econ.get("income", 0)
+                     # Attempt to get efficiency score from analyze_flow_bottlenecks
+                     analysis = engine.economy_manager.resource_handler.analyze_flow_bottlenecks(f_name, econ)
+                     efficiency_scores.append(analysis.get("efficiency_score", 100.0))
+             
+             stats['GLOBAL_ECON_FLOW'] = total_income
+             stats['GLOBAL_ECON_VELOCITY'] = sum(efficiency_scores) / len(efficiency_scores) if efficiency_scores else 100.0
+             
+             # Flux Storms
+             weather = getattr(engine, 'storm_manager', None)
+             if weather:
+                 stats['GLOBAL_STORMS_ACTIVE'] = len(weather.active_storms)
+                 stats['GLOBAL_STORMS_BLOCKING'] = sum(1 for eid in weather.active_storms if any(e.blocked for e in weather.edges if id(e) == eid))
+                 # A storm is 'forming' if its turns remaining equals its initial duration
+                 stats['GLOBAL_STORMS_FORMING'] = sum(1 for edge in weather.edges if id(edge) in weather.active_storms and weather.active_storms[id(edge)] == getattr(edge, '_storm_dur_cached', -1))
+             else:
+                 stats['GLOBAL_STORMS_ACTIVE'] = 0
+                 stats['GLOBAL_STORMS_BLOCKING'] = 0
+                 stats['GLOBAL_STORMS_FORMING'] = 0
+
+             # Map Data
+             map_data = []
+             for sys in engine.systems:
+                 map_data.append({
+                     "name": sys.name,
+                     "x": sys.x,
+                     "y": sys.y,
+                     "owner": getattr(sys, 'owner', 'Neutral')
+                 })
+             stats['GLOBAL_MAP_DATA'] = map_data
+             
+             # Memory Tracking
+             process = psutil.Process(os.getpid())
+             stats['GLOBAL_PERF_MEMORY'] = process.memory_info().rss / (1024 * 1024) # MB
+            
+             # Alerts
+             try:
+                 from src.reporting.alert_manager import AlertManager
+                 am = AlertManager()
+                 recent_alerts = [a.to_dict() for a in am.history.alerts[-20:]]
+                 stats['GLOBAL_ALERTS'] = recent_alerts
+                 stats['GLOBAL_ALERT_COUNTS'] = {
+                     "CRITICAL": sum(1 for a in recent_alerts if a['severity'] == "critical"),
+                     "WARNING": sum(1 for a in recent_alerts if a['severity'] == "warning"),
+                     "INFO": sum(1 for a in recent_alerts if a['severity'] == "info")
+                 }
+             except:
+                 stats['GLOBAL_ALERTS'] = []
+                 stats['GLOBAL_ALERT_COUNTS'] = {"CRITICAL": 0, "WARNING": 0, "INFO": 0}
+
+             # Victory Progress
+             total_systems = len(engine.systems) if hasattr(engine, 'systems') else 1
+             victory_progress = {}
+             for f, s in stats.items():
+                 if isinstance(s, dict) and not f.startswith("GLOBAL_"):
+                     controlled_systems = s.get('S', 0)
+                     # Condition: 75% control
+                     progress = (controlled_systems / (total_systems * 0.75)) * 100
+                     victory_progress[f] = min(progress, 100.0)
+             stats['GLOBAL_VICTORY'] = victory_progress
 
         except Exception as e: 
             print(f"STATS ERROR: {e}")

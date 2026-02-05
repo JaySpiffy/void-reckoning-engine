@@ -2,6 +2,7 @@ import random
 import time
 import copy
 from typing import Dict, Any, List
+import numpy as np
 from src.models.unit import Unit, Ship, Regiment
 from src.core.simulation_topology import GraphNode
 from src.models.army import ArmyGroup
@@ -204,19 +205,20 @@ class Fleet:
             return True
         return False
 
-    # Optimization 4.2: Cached Upkeep
+    # Optimization 4.2: Vectorized Upkeep (R4)
     def update_upkeep_cache(self):
-        """Recalculates cached upkeep."""
-        total = 0
-        for u in self.units:
-            total += getattr(u, 'upkeep', 0)
+        """Recalculates cached upkeep using NumPy for speed."""
+        # Extract upkeeps into a list (still O(N) but the summation is vectorized)
+        unit_upkeeps = [getattr(u, 'upkeep', 0) for u in self.units]
         
         # Cargo (Armies)
         for ag in self.cargo_armies:
-            for u in ag.units:
-                total += getattr(u, 'upkeep', 0)
-                
-        self._cached_upkeep = total
+            unit_upkeeps.extend([getattr(u, 'upkeep', 0) for u in ag.units])
+        
+        if unit_upkeeps:
+            self._cached_upkeep = int(np.sum(unit_upkeeps))
+        else:
+            self._cached_upkeep = 0
 
     @property
     def upkeep(self):
@@ -238,7 +240,7 @@ class Fleet:
             return False
 
         # Optimization: Use sets for O(1) duplicate checks
-        my_unit_ids = {u.id for u in self.units}
+        my_unit_ids = {id(u) for u in self.units}
         transferred_count = 0
         
         # Transfer Units
@@ -246,7 +248,7 @@ class Fleet:
         # though we are clearing the other fleet anyway.
         for unit in list(other_fleet.units):
             # Duplicate Guard
-            if unit.id in my_unit_ids:
+            if id(unit) in my_unit_ids:
                 # If it's the exact same object, easy.
                 continue
                 
@@ -261,7 +263,7 @@ class Fleet:
             # Update internal references if needed (handled by set_fleet usually)
             
             self.units.append(unit)
-            my_unit_ids.add(unit.id)
+            my_unit_ids.add(id(unit))
             transferred_count += 1
             
         # Transfer Cargo/Armies
@@ -493,54 +495,13 @@ class Fleet:
 
     @classmethod
     def merge_multiple_fleets(cls, target_fleet, other_fleets):
-        """Merges a list of fleets into the target_fleet."""
+        """Merges a list of fleets into the target_fleet. (Refactored R4)"""
         for f in other_fleets:
             if f.id == target_fleet.id: continue
             if f.faction != target_fleet.faction: continue
             
-            target_fleet.units.extend(f.units)
-            for u in f.units:
-                 if hasattr(u, 'set_fleet'): u.set_fleet(target_fleet)
-            target_fleet.requisition += f.requisition
-            target_fleet.cargo_armies.extend(f.cargo_armies)
-            for ag in f.cargo_armies:
-                ag.transport_fleet = target_fleet
+            target_fleet.merge_with(f)
             
-            # Destroy source
-            f.units = []
-            f.requisition = 0
-            f.cargo_armies = []
-            f.is_destroyed = True
-            f.invalidate_caches()
-            
-        target_fleet.invalidate_caches()
-        return True
-
-    def merge_with(self, other_fleet):
-        """Absorbs units, requisition, and cargo from another fleet."""
-        if other_fleet.faction != self.faction:
-            return False
-            
-        # 1. Combine Units
-        self.units.extend(other_fleet.units)
-        for u in other_fleet.units:
-             if hasattr(u, 'set_fleet'): u.set_fleet(self)
-        
-        # 2. Combine Fleet Funds
-        self.requisition += other_fleet.requisition
-        
-        # 3. Combine Cargo (and re-bind transport fleet references)
-        self.cargo_armies.extend(other_fleet.cargo_armies)
-        for ag in other_fleet.cargo_armies:
-            ag.transport_fleet = self
-            
-        # 4. Cleanup other fleet
-        other_fleet.units = []
-        other_fleet.requisition = 0
-        other_fleet.cargo_armies = []
-        other_fleet.is_destroyed = True
-        
-        self.invalidate_caches()
         return True
 
     def split_off(self, unit_count=None, ratio=0.5):

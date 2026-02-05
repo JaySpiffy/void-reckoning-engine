@@ -115,13 +115,18 @@ def execute_battle_round(battle_state, detailed_log_file=None):
                 
     # [GPU Update Hook]
     if hasattr(manager, 'gpu_tracker') and manager.gpu_tracker:
-        manager.gpu_tracker.update_positions(active_units_list)
+        manager.gpu_tracker.batch_snapshot(active_units_list)
 
     # 2. Build Context
     context = build_phase_context(manager, round_num, detailed_log_file)
     context["manager"] = manager
-    # [GPU Acceleration] Inject GPU Tracker into phase context
-    context["gpu_tracker"] = getattr(manager, 'gpu_tracker', None)
+    context["active_units_list"] = active_units_list # Pass list of objects
+    
+    # [GPU Acceleration] Inject GPU Tracker and Vectorized States
+    if hasattr(manager, 'gpu_tracker') and manager.gpu_tracker:
+        context["gpu_tracker"] = manager.gpu_tracker
+        context["vector_positions"] = manager.gpu_tracker.positions
+        context["vector_hps"] = manager.gpu_tracker.hps
     
     # 3. Dynamic Phase Execution
     if manager.universe_rules:

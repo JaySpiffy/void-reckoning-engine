@@ -37,6 +37,9 @@ class GraphNode:
             self.metadata["portal_dest_universe"] = portal_dest_universe
             self.metadata["portal_dest_coords"] = portal_dest_coords
             self.metadata["portal_id"] = portal_id
+            
+        # Optimization R3: Pre-Index Building Stats
+        self._building_cache = {"income": 0, "maintenance": 0, "research": 0}
 
     @property
     def owner(self) -> str:
@@ -101,6 +104,58 @@ class GraphNode:
         """Compatibility property for Planet-like province list."""
         # A province node is its only province.
         return [self]
+
+    def refresh_building_cache(self):
+        """Aggregates bonuses from buildings on this node into the cache. (Optimized R3)"""
+        from src.core.universe_data import UniverseDataManager
+        building_db = UniverseDataManager.get_instance().get_building_database()
+        
+        income = 0
+        maintenance = 0
+        research = 0
+        garrison = 0
+        naval = 0
+        queue = 0
+        army = 0
+        
+        for b_id in self.buildings:
+            if b_id in building_db:
+                data = building_db[b_id]
+                income += data.get("income_req", 0)
+                maintenance += data.get("maintenance", 0)
+                
+                # Tech
+                if "research_output" in data:
+                    research += data["research_output"]
+                elif "Research" in data.get("category", "") or "Lab" in b_id:
+                     research += 10
+                     
+                # Military / Logistics
+                garrison += data.get("garrison_bonus", 0)
+                b_naval = data.get("naval_slots", 0)
+                if b_naval > 0:
+                    naval += b_naval
+                    queue += 5
+                
+                if any(k in b_id for k in ["Barracks", "Academy", "Training"]):
+                    army += 2
+                    queue += 3
+                elif any(k in b_id for k in ["Shipyard", "Dock", "Foundry"]):
+                    if b_naval == 0:
+                        naval += 2
+                        queue += 5
+                elif any(k in b_id for k in ["Communications", "Logistics", "Hub"]):
+                    queue += 2
+        
+        self._building_cache = {
+            "income": income,
+            "maintenance": maintenance,
+            "research": research,
+            "garrison": garrison,
+            "naval": naval,
+            "queue": queue,
+            "army": army
+        }
 
     def process_queue(self, engine: Any) -> None:
         """Compatibility method for Planet-like queue processing."""

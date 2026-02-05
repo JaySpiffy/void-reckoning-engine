@@ -99,6 +99,10 @@ def run_campaign_simulation(turns=50, planets=40, game_config=None, universe_nam
         db_path = os.path.join(organizer.run_path, "campaign_data.db")
         print(f"[SIM] Initializing Run-Scoped DB: {db_path}")
         engine.indexer = ReportIndexer(db_path=db_path)
+        if telemetry_collector:
+            telemetry_collector.set_indexer(engine.indexer)
+            telemetry_collector.set_batch_id(batch_id)
+            telemetry_collector.set_run_id(run_id)
     else:
         engine.indexer = None
     # engine.generate_galaxy(num_systems, min_p, max_p)

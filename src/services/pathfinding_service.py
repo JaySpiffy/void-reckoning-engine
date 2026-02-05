@@ -21,6 +21,7 @@ class PathfindingService:
         
         # Telemetry Stats
         self._stats = {"hits": 0, "misses": 0, "requests": 0}
+        self._distance_service = None # R10: DistanceMatrixService
 
     @property
     def cache_stats(self):
@@ -54,6 +55,10 @@ class PathfindingService:
     def register_with_cache_manager(self, cache_manager):
         """Registers the path cache with the provided CacheManager."""
         cache_manager.register_cache(self.clear_cache, "pathfinding")
+
+    def set_distance_service(self, service: Any):
+        """R10: Inject the distance matrix service."""
+        self._distance_service = service
 
     @profile_method
     def find_cached_path(self, start_node: Any, end_node: Any, turn: int = 0, context: str = None, is_ground: bool = False) -> Tuple[Optional[List[Any]], float, Dict[str, Any]]:
@@ -89,13 +94,30 @@ class PathfindingService:
             return [start_node], 0, {}
 
         def _heuristic(a, b):
+            # R9/R10: Hierarchical Distance Matrix Heuristic (Perfect Strategic Guide)
+            if self._distance_service:
+                a_sys = getattr(a, 'system', None)
+                if not a_sys and "system" in getattr(a, 'metadata', {}):
+                    a_sys = a.metadata["system"]
+                
+                b_sys = getattr(b, 'system', None)
+                if not b_sys and "system" in getattr(b, 'metadata', {}):
+                    b_sys = b.metadata["system"]
+                
+                if a_sys and b_sys and a_sys != b_sys:
+                    # Lookup strategic distance (O(1))
+                    strat_dist = self._distance_service.get_distance(a_sys.name, b_sys.name)
+                    if strat_dist != float('inf'):
+                        # Scale factor: Strategic distances are in system-hops usually, 
+                        # we scale by roughly 20-30 to match local node costs (Euclidean 100 range)
+                        # Actually BFS based distance in StarSystem uses 10 for gates.
+                        return strat_dist
+            
             # 1. Coordinate-based Euclidean (Admissible)
             if hasattr(a, 'position') and hasattr(b, 'position') and a.position and b.position:
                 return ((a.position[0] - b.position[0])**2 + (a.position[1] - b.position[1])**2)**0.5
             
             # 2. Informed Fallback (Hop-based/Scaled Distance)
-            # If we don't have coords, we use a conservative estimate to guide simulation.
-            # Using 1.0 as a floor for distance between unique nodes.
             return 1.0 if a != b else 0
 
         # Priority Queue: (f_score, node)

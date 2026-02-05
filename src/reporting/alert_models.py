@@ -47,8 +47,12 @@ class AlertHistory:
     
     def add_alert(self, alert: Alert):
         self.alerts.append(alert)
+        # Cap history to prevent memory leaks
+        if len(self.alerts) > 500:
+            self.alerts = self.alerts[-500:]
         
     def get_active(self) -> List[Alert]:
+        # Only iterate over the capped history
         return [a for a in self.alerts if not a.acknowledged and not a.resolved]
 
 @dataclass

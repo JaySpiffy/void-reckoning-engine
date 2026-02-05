@@ -20,6 +20,8 @@ class GPUTracker:
         self.priority_weights = None # N array of floats (1.0 = normal, 5.0 = penalize)
         self.ids = None # N array of IDs (for verification)
         self.factions = None # N array of encoded faction IDs
+        self.hps = None # R7: N array of current HPs
+        self.max_hps = None # R7: N array of max HPs
         self.faction_map = {} # str -> int
         self.active_count = 0
         self.xp = gpu_utils.get_xp()
@@ -42,6 +44,8 @@ class GPUTracker:
         id_list = []
         faction_list = []
         weight_list = []
+        hp_list = []
+        max_hp_list = []
         
         for idx, u in enumerate(units):
             # We track units by their object ID for fast lookup
@@ -49,9 +53,11 @@ class GPUTracker:
             self.unit_to_index[u_id] = idx
             self.index_to_unit[idx] = u
             
-            # Store position
+            # Store position and HP
             pos_list.append([float(u.grid_x), float(u.grid_y)])
             id_list.append(u_id)
+            hp_list.append(float(getattr(u, 'hp', 0)))
+            max_hp_list.append(float(getattr(u, 'max_hp', 1)))
             
             # Weighting (Heuristic to deprioritize focus firing on stationary targets)
             # Penalize Starbases and "Static" units so fleets prioritize mobile targets
@@ -78,6 +84,8 @@ class GPUTracker:
         self.ids = gpu_utils.to_gpu(id_list)
         self.factions = gpu_utils.to_gpu(faction_list)
         self.priority_weights = gpu_utils.to_gpu(weight_list)
+        self.hps = gpu_utils.to_gpu(hp_list)
+        self.max_hps = gpu_utils.to_gpu(max_hp_list)
         self.is_dirty = False
         
         # logger.info(f"GPUTracker initialized with {self.active_count} units")
@@ -85,41 +93,49 @@ class GPUTracker:
 
     def update_positions(self, units: List[Unit]):
         """
-        Updates positions for a batch of units.
-        Ideally called once per movement phase.
+        Updates positions for a batch of units. (R8: Optimized Batching)
         """
         if self.positions is None:
             return
             
-        # For small updates, we can do element-wise if needed, but usually we just rebuild 
-        # or update a slice. If strict indexing is maintained:
-        # We can construct a specialized update mask, but that's complex.
-        
-        # Simple Approach: partial update via host->device transfer
-        # This is strictly faster than N separate writes
-        
-        # Create a temporary list of (idx, x, y)
-        updates = []
         indices = []
         new_pos = []
         
         for u in units:
             u_id = id(u)
             if u_id in self.unit_to_index:
-                idx = self.unit_to_index[u_id]
-                # Check if actually moved to save bandwidth?
-                # Assuming caller only sends moved units
-                indices.append(idx)
+                indices.append(self.unit_to_index[u_id])
                 new_pos.append([u.grid_x, u.grid_y])
         
         if indices:
-            # Scatter update
-            # positions[indices] = new_pos
-            # CuPy supports advanced indexing
-            idx_arr = gpu_utils.to_gpu(indices)
-            val_arr = gpu_utils.to_gpu(new_pos)
+            idx_arr = self.xp.array(indices, dtype='int32')
+            val_arr = self.xp.array(new_pos, dtype='float32')
             
             self.positions[idx_arr] = val_arr
+            self.is_dirty = True
+
+    def batch_snapshot(self, units: List[Unit]):
+        """
+        R7: Vectorized State Collection. 
+        Updates positions, HPs, and other dynamic states in a single round.
+        """
+        if self.positions is None: return
+        
+        indices = []
+        new_pos = []
+        new_hp = []
+        
+        for u in units:
+            u_id = id(u)
+            if u_id in self.unit_to_index:
+                indices.append(self.unit_to_index[u_id])
+                new_pos.append([u.grid_x, u.grid_y])
+                new_hp.append(float(getattr(u, 'hp', 0)))
+        
+        if indices:
+            idx_arr = self.xp.array(indices, dtype='int32')
+            self.positions[idx_arr] = self.xp.array(new_pos, dtype='float32')
+            self.hps[idx_arr] = self.xp.array(new_hp, dtype='float32')
             self.is_dirty = True
 
     def compute_distance_matrix(self) -> Any:

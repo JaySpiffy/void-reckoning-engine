@@ -165,6 +165,9 @@ class TurnProcessor:
         if len(self.engine.stats_history) >= 100:
              if self.engine.report_organizer:
                  self.flush_analytics(self.engine.report_organizer.run_path, self.engine.report_organizer.run_id)
+             else:
+                 # Even without organizer, clear to prevent memory leak
+                 self.engine.stats_history = []
         
         # Phase 9: Narrative Turning Points
         self.engine.detect_narrative_turning_points()

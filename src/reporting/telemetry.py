@@ -12,6 +12,54 @@ from typing import List, Dict, Optional, Any, Callable
 # Capture open to prevent GC issues during __del__
 _open = open
 
+class EventBatcher(threading.Thread):
+    """Background worker that handles persistent event storage and indexing."""
+    def __init__(self, collector):
+        super().__init__(daemon=True, name="TelemetryBatcher")
+        self.collector = collector
+        self.queue = queue.Queue()
+        self.stop_event = threading.Event()
+        self.batch_size = collector.batch_size
+        self.indexer = None
+        self.batch_id = "unknown"
+        self.run_id = "unknown"
+
+    def run(self):
+        while not self.stop_event.is_set() or not self.queue.empty():
+            batch = []
+            try:
+                # Block for a bit to avoid busy wait
+                timeout = 0.5 if not self.stop_event.is_set() else 0.05
+                try:
+                    event = self.queue.get(timeout=timeout)
+                    batch.append(event)
+                except queue.Empty:
+                    pass
+                
+                # Fill batch from queue
+                while len(batch) < self.batch_size:
+                    try:
+                        batch.append(self.queue.get_nowait())
+                    except queue.Empty:
+                        break
+                
+                if batch:
+                    self.collector._write_to_disk(batch)
+                    if self.indexer:
+                        self.indexer.index_realtime_events(
+                            self.batch_id, 
+                            self.run_id, 
+                            batch, 
+                            self.collector.universe_name
+                        )
+            except Exception as e:
+                # Fail-safe to prevent thread death
+                pass
+
+    def stop(self):
+        self.stop_event.set()
+        self.join(timeout=2.0)
+
 class EventCategory(Enum):
     ECONOMY = "economy"
     COMBAT = "combat"
@@ -752,6 +800,18 @@ class TelemetryCollector:
         self.remote_queue = None
         self.batch_id = "unknown"
 
+        # [R1] Background Batcher
+        self.event_queue = queue.Queue()
+        self.batcher = EventBatcher(self)
+        self.batcher.queue = self.event_queue  # Link queues
+        self.batcher.batch_id = self.batch_id # initial
+        self.batcher.start()
+
+    def set_indexer(self, indexer):
+        """Attaches an indexer for background DB writes."""
+        if hasattr(self, 'batcher'):
+            self.batcher.indexer = indexer
+
     def _initialize_memory_baseline(self):
         """Initialize memory usage baseline for comparison."""
         try:
@@ -942,6 +1002,12 @@ class TelemetryCollector:
 
     def set_batch_id(self, batch_id: str):
         self.batch_id = batch_id
+        if hasattr(self, 'batcher'):
+            self.batcher.batch_id = batch_id
+
+    def set_run_id(self, run_id: str):
+        if hasattr(self, 'batcher'):
+            self.batcher.run_id = run_id
 
     def enable_remote_streaming(self, url: str):
         """Enables forwarding events to a remote dashboard via HTTP."""
@@ -1117,11 +1183,9 @@ class TelemetryCollector:
         elif category == EventCategory.SYSTEM and event_type == "planet_update":
              self.latest_planet_status = data.get("planets", [])
         
-        # 2. Add to file buffer
-        self.buffer.append(event)
-        if len(self.buffer) >= self.batch_size:
-            self.flush()
-            
+        # 2. Add to background queue
+        self.event_queue.put(event)
+        
         # 3. Stream Broadcast
         if self.streaming_enabled:
             self.stream_buffer.put(event)
@@ -1188,15 +1252,21 @@ class TelemetryCollector:
             return
             
         try:
-            # Use module-level captured open to avoid shutdown GC issues
-            with _open(self.log_file, "a") as f:
-                for event in self.buffer:
-                    f.write(json.dumps(event) + "\n")
+            self._write_to_disk(self.buffer)
             self.buffer = []
         except Exception as e:
+            pass
+
+    def _write_to_disk(self, batch: List[Dict]):
+        """Internal helper for writing to the NDJSON file."""
+        if not batch: return
+        try:
+            with _open(self.log_file, "a") as f:
+                for event in batch:
+                    f.write(json.dumps(event) + "\n")
+        except Exception as e:
             try:
-                # Safe print attempt
-                print(f"Failed to flush telemetry: {e}")
+                print(f"Failed to write telemetry: {e}")
             except:
                 pass
 
@@ -1296,5 +1366,11 @@ class TelemetryCollector:
         except Exception as e:
             print(f"[TELEMETRY] Failed to generate index: {e}")
 
+    def shutdown(self):
+        """Cleanly shuts down the background batcher."""
+        if hasattr(self, 'batcher'):
+            self.batcher.stop()
+
     def __del__(self):
+        self.shutdown()
         self.flush()

@@ -52,8 +52,45 @@ class Planet:
         self.starbase = None # Local orbital starbase unit
         self._provinces = None # [Optim] Lazy Load
         
+        # Optimization R3: Pre-Index Building Stats
+        self._building_cache = {"income": 0, "maintenance": 0, "research": 0}
+        
         # Apply Modifiers
         self.recalc_stats()
+
+    def refresh_building_cache(self):
+        """Aggregates bonuses from buildings on this planet into the cache. (Optimized R3)"""
+        universe_data = UniverseDataManager.get_instance()
+        building_db = universe_data.get_building_database()
+        
+        income = 0
+        maintenance = 0
+        research = 0
+        garrison = 0
+        naval = 0
+        
+        for b_id in self.buildings:
+            if b_id in building_db:
+                data = building_db[b_id]
+                income += data.get("income_req", 0)
+                maintenance += data.get("maintenance", 0)
+                
+                if "research_output" in data:
+                    research += data["research_output"]
+                elif "Research" in data.get("category", "") or "Lab" in b_id:
+                     research += 10
+                     
+                # Legacy/Abstract Building sync (if any)
+                garrison += data.get("garrison_bonus", 0)
+                naval = max(naval, data.get("naval_slots", 0))
+        
+        self._building_cache = {
+            "income": income,
+            "maintenance": maintenance,
+            "research": research,
+            "garrison": garrison,
+            "naval": naval
+        }
         
     def available_production_slots(self) -> int:
         """Returns the number of free slots in the unit queue (Phase 16)."""
@@ -77,8 +114,13 @@ class Planet:
         
         # 1. Scan Provinces for Node Capacities
         if hasattr(self, 'provinces') and self.provinces:
-            building_db = universe_data.get_building_database()
             for node in self.provinces:
+                # Optimized R3: Refresh node cache if missing
+                if not hasattr(node, '_building_cache'):
+                    node.refresh_building_cache()
+                
+                node_cache = node._building_cache
+                
                 if node.type == "Capital" and node.terrain_type != "Ruins":
                     self.max_queue_size += 7 # Capitals bring huge logistics
                     self.army_slots += 1
@@ -87,40 +129,22 @@ class Planet:
                     self.max_queue_size += 2 
                     self.army_slots += 0.5 
                 
-                # 2. Scan Node Buildings for specific bonuses
-                for b_id in node.buildings:
-                    if b_id in building_db:
-                        data = building_db[b_id]
-                        eff = data.get("effects", {}).get("description", "")
-                        
-                        # Garrison bonus still applies
-                        self.garrison_capacity += data.get("garrison_bonus", 0)
-                        
-                        # Naval Slots (Additive now)
-                        b_naval = data.get("naval_slots", 0)
-                        if b_naval > 0:
-                            self.naval_slots += b_naval
-                            self.max_queue_size += 5
-                            
-                        # Army Slots & Keywords
-                        if "Barracks" in b_id or "Academy" in b_id or "Training" in b_id:
-                            self.army_slots += 2
-                            self.max_queue_size += 3
-                        elif "Shipyard" in b_id or "Dock" in b_id or "Foundry" in b_id:
-                            if b_naval == 0: # If not already handled by naval_slots data
-                                self.naval_slots += 2
-                                self.max_queue_size += 5
-                        elif "Communications" in b_id or "Logistics" in b_id or "Hub" in b_id:
-                            self.max_queue_size += 2
+                # 2. Use Cached Node Building Stats (Optimized R3)
+                self.garrison_capacity += node_cache.get("garrison", 0)
+                self.naval_slots += node_cache.get("naval", 0)
+                self.max_queue_size += node_cache.get("queue", 0)
+                self.army_slots += node_cache.get("army", 0)
         
         # Ensure whole numbers for slots
         self.army_slots = int(self.army_slots)
         
-        # Legacy/Abstract Building sync (if any)
-        for b_id in self.buildings:
-            if b_id in building_db:
-                self.garrison_capacity += building_db[b_id].get("garrison_bonus", 0)
-                self.naval_slots = max(self.naval_slots, building_db[b_id].get("naval_slots", 0))
+        # 3. Use Cached Planet Building Stats (Optimized R3)
+        if not hasattr(self, '_building_cache'):
+            self.refresh_building_cache()
+            
+        planet_cache = self._building_cache
+        self.garrison_capacity += planet_cache.get("garrison", 0)
+        self.naval_slots = max(self.naval_slots, planet_cache.get("naval", 0))
         
         # Phase 18: Starbase Synergy
         if self.starbase and self.starbase.faction == self.owner:
@@ -160,44 +184,29 @@ class Planet:
         
     # Optimization 4.2: Event-Driven Economy Caching
     def update_economy_cache(self):
-        """Recalculates cached economic values (base + buildings)."""
-        universe_data = UniverseDataManager.get_instance()
-        building_db = universe_data.get_building_database()
-        
+        """Recalculates cached economic values (base + buildings). (Optimized R3)"""
         # 1. Base Income
         base_income = self.income_req
-        building_income = 0
-        infrastructure_upkeep = 0
-        research_income = 0
         
-        # 2. Planet Buildings
-        for b_id in self.buildings:
-            if b_id in building_db:
-                data = building_db[b_id]
-                building_income += data.get("income_req", 0)
-                infrastructure_upkeep += data.get("maintenance", 0)
-                
-                # Tech
-                if "research_output" in data:
-                    research_income += data["research_output"]
-                elif "Research" in data.get("category", "") or "Lab" in b_id:
-                     research_income += 10 # Fallback/Proxy
+        # 2. Planet Buildings (Use Cache)
+        if not hasattr(self, '_building_cache'):
+            self.refresh_building_cache()
+            
+        building_income = self._building_cache["income"]
+        infrastructure_upkeep = self._building_cache["maintenance"]
+        research_income = self._building_cache["research"]
         
-        # 3. Province Node Buildings
+        # 3. Province Node Buildings (Use Caches)
         province_income = 0
         if hasattr(self, '_provinces') and self._provinces:
             for node in self._provinces:
-                # Node req & maintenance
-                for b_id in node.buildings:
-                    if b_id in building_db:
-                        data = building_db[b_id]
-                        province_income += data.get("income_req", 0)
-                        infrastructure_upkeep += data.get("maintenance", 0)
-                        
-                        if "research_output" in data:
-                            research_income += data["research_output"]
-                        elif "Research" in data.get("category", "") or "Lab" in b_id:
-                             research_income += 10
+                if not hasattr(node, '_building_cache'):
+                    node.refresh_building_cache()
+                
+                node_cache = node._building_cache
+                province_income += node_cache["income"]
+                infrastructure_upkeep += node_cache["maintenance"]
+                research_income += node_cache["research"]
 
         self._cached_econ_output = {
              "base": base_income,
@@ -346,7 +355,18 @@ class Planet:
             target_container.append(b_id)
             print(f"  > [BUILD] CONSTRUCTION COMPLETE: {b_id} on {location_name}")
             
-            # Optimization 4.2: Update Cache
+            # Optimization R3: Update Stat Cache first
+            if node_id:
+                # Refresh specific node cache
+                for node in self.provinces:
+                    if node.id == node_id:
+                        node.refresh_building_cache()
+                        break
+            else:
+                # Refresh planet cache
+                self.refresh_building_cache()
+                
+            # Optimization 4.2: Update Economy Cache
             self.update_economy_cache()
             
             if engine.telemetry:

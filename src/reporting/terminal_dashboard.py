@@ -1,6 +1,6 @@
-
 import os
 import sys
+import time
 from typing import Dict, Any, List
 from src.core.constants import FACTION_ABBREVIATIONS
 from src.core import gpu_utils
@@ -28,15 +28,28 @@ class TerminalDashboard:
     def __init__(self):
         self.is_paused = False
         self.faction_filter = ""
-        self.show_detailed = True
+        self.faction_detail_mode = "SUMMARY" # HIDDEN, SUMMARY, EVERYTHING
         self.show_galactic_summary = True
-        self.show_diplomacy = True
+        self.show_diplomacy = "SUMMARY" # OFF, SUMMARY, EVERYTHING, NO_WAR
         self.show_help = False
+        self.show_theaters = False
+        self.show_victory = False
+        self.show_alerts = False
+        self.show_map = False
+        self.show_map = False
+        self.global_stats_mode = "FULL" # FULL, COMPACT
+        
         self.quit_requested = False
         self.filter_buffer = ""
         self.is_filtering = False
         self.last_progress_data = {}
         self.last_universe_configs = []
+        self.trend_data = {} # Faction trends
+        self.global_trend_data = {} # Global trends
+        self.last_export_status = ""
+        self.last_export_status = ""
+        self.last_export_time = 0
+        self.session_start_time = time.time()
 
 
     def handle_input(self, key: str | None):
@@ -63,21 +76,37 @@ class TerminalDashboard:
         elif key == 'p':
             self.is_paused = not self.is_paused
         elif key == 'd':
-            self.show_detailed = not self.show_detailed
-        elif key == 's':
-            self.show_galactic_summary = not self.show_galactic_summary
-        elif key == 'h':
+            # Cycle diplomacy view
+            modes = ["OFF", "SUMMARY", "EVERYTHING", "NO_WAR"]
+            curr_idx = modes.index(self.show_diplomacy) if self.show_diplomacy in modes else 0
+            self.show_diplomacy = modes[(curr_idx + 1) % len(modes)]
+        elif key == 'y':
+            # Cycle faction details
+            modes = ["HIDDEN", "SUMMARY", "EVERYTHING"]
+            curr_idx = modes.index(self.faction_detail_mode)
+            self.faction_detail_mode = modes[(curr_idx + 1) % len(modes)]
+        elif key == '?':
             self.show_help = not self.show_help
         elif key == 'f':
             self.is_filtering = True
             self.filter_buffer = ""
-        elif key == 'y':
-            self.show_diplomacy = not self.show_diplomacy
+        elif key == 't':
+            self.show_theaters = not self.show_theaters
+        elif key == 'v':
+            self.show_victory = not self.show_victory
+        elif key == 'a':
+            self.show_alerts = not self.show_alerts
+        elif key == 'h' or key == '?':
+            self.show_help = not self.show_help
+        elif key == 'm':
+            self.show_map = not self.show_map
+        elif key == 'e' or key == 'c':
+            self._export_session_data() # Export / Capture
+        elif key == 's':
+            self.global_stats_mode = "COMPACT" if self.global_stats_mode == "FULL" else "FULL"
         elif key == 'r':
-            # Force refresh is conceptually simple - we just don't skip the next render
             pass
         elif key.isdigit():
-            # Quick filter by index (simplified: just sets a filter for testing)
             self.faction_filter = f"INDEX_{key}"
 
 
@@ -99,38 +128,85 @@ class TerminalDashboard:
             os.system('cls')
         else:
             buffer.append("\033[2J\033[H")
+
+        # Core Header: Title & Metadata
+        buffer.append(f"{CYAN}{'━' * 80}{RESET}")
+        title = "MULTI-UNIVERSE SIMULATION DASHBOARD"
+        buffer.append(f" {BOLD}{WHITE}{title.center(78)}{RESET}")
         
-        # Fancy Header
-        buffer.append(f"{BOLD}{CYAN}╔{'═'*78}╗{RESET}")
-        buffer.append(f"{BOLD}{CYAN}║ {WHITE}MULTI-UNIVERSE SIMULATION DASHBOARD{' '*43}{CYAN}║{RESET}")
-        buffer.append(f"{BOLD}{CYAN}╚{'═'*78}╝{RESET}")
+        gpu_info = gpu_utils.get_selected_gpu()
+        gpu_str = f"{gpu_info.model.value} (Device {gpu_info.device_id})" if gpu_info else "N/A"
+        buffer.append(f" {DIM}Output: {output_dir} | {GREEN}GPU: {gpu_str}{RESET}")
+        buffer.append(f"{CYAN}{'━' * 80}{RESET}")
         
-        # Hardware Info Line
-        hw_info = f"{DIM}Output: {output_dir}{RESET}"
-        selected_gpu = gpu_utils.get_selected_gpu()
-        if selected_gpu:
-            hw_info += f" | {BOLD}{GREEN}GPU: {selected_gpu.model.value} (Device {selected_gpu.device_id}){RESET}"
-        else:
-            hw_gpus = gpu_utils.get_hardware_gpu_info()
-            if hw_gpus:
-                hw_info += f" | {BOLD}{YELLOW}GPU: {hw_gpus[0]['name']} (Hardware Only){RESET}"
-            else:
-                hw_info += f" | {DIM}GPU: CPU OnlyFallback{RESET}"
+        # Data derivation
+        current_turn = 0
+        total_turns = 100
+        if configs_to_render and "game_config" in configs_to_render[0]:
+            total_turns = configs_to_render[0]["game_config"].get("campaign", {}).get("turns", 100)
         
-        buffer.append(hw_info)
-        buffer.append(f"{CYAN}{'─' * 80}{RESET}")
-        
-        # Shortcuts Line
-        status_line = f" {BOLD}Controls:{RESET} {DIM}(q)uit (p)ause (d)etailed (s)ummary (y)diplomacy (f)ilter (h)elp{RESET}"
+        current_stats = {}
+        if data_to_render and configs_to_render:
+            first_universe_name = configs_to_render[0]["universe_name"]
+            runs = data_to_render.get(first_universe_name, {}).get("runs", {})
+            
+            # Robust lookup: Try "001", then integer 1, then any run
+            run_data = runs.get("001") or runs.get(1)
+            if not run_data and runs:
+                first_id = next(iter(runs))
+                run_data = runs[first_id]
+                
+            if run_data:
+                current_stats = run_data.get("stats", {})
+                current_turn = run_data.get('turn', 0)
+
+        # Controls Footer (Now Header for visibility in mockup)
+        ctrl_line = f" {BOLD}Controls:{RESET} {DIM}(q)uit (p)ause (d)iplomacy (y)details (s)ummary (f)ilter (h)elp (a)lerts (v)ictory (m)ap{RESET}"
         if self.is_paused:
-            status_line += f" | {BOLD}{BLACK}{ON_YELLOW} PAUSED {RESET}"
+            ctrl_line += f" | {BOLD}{BLACK}{ON_YELLOW} PAUSED {RESET}"
         if self.faction_filter:
-            status_line += f" | {BOLD}{YELLOW}Filter: {self.faction_filter}{RESET}"
-        buffer.append(status_line)
+            ctrl_line += f" | {BOLD}{YELLOW}Filter: {self.faction_filter}{RESET}"
+        buffer.append(ctrl_line)
+
+        # Performance & ETA Line
+        elapsed_total = int(time.time() - self.session_start_time)
+        el_m, el_s = divmod(elapsed_total, 60)
+        
+        perf_time = current_stats.get('GLOBAL_PERF_TURN_TIME', 0)
+        perf_tps = current_stats.get('GLOBAL_PERF_TPS', 0)
+        mem = current_stats.get('GLOBAL_PERF_MEMORY', 0)
+        mem_trend = self._get_trend_icon('GLOBAL_PERF_MEMORY')
+        
+        turns_left = max(0, total_turns - current_turn)
+        eta_seconds = int(turns_left * perf_time)
+        eta_m, eta_s = divmod(eta_seconds, 60)
+
+        perf_time_str = f"{perf_time:.2f}s/turn" if perf_time > 0 else "CALCULATING..."
+        perf_tps_str = f"{perf_tps:.2f} tps" if perf_tps > 0 else "CALCULATING..."
+        mem_str = f"{int(mem)}MB" if mem > 0 else "0MB"
+        eta_str = f"{eta_m}m {eta_s}s" if eta_seconds > 0 else "---"
+
+        info_line = f" {BOLD}Elapsed:{RESET} {el_m}m {el_s}s | {DIM}⏱ {perf_time_str}{RESET} | {BOLD}🚀 {perf_tps_str}{RESET} | {MAGENTA}🧠 {mem_str} {mem_trend}{RESET} | {YELLOW}ETA: {eta_str}{RESET}"
+        buffer.append(info_line)
         buffer.append(f"{CYAN}{'─' * 80}{RESET}")
 
         if self.show_help:
             self._render_help_overlay(buffer)
+            sys.stdout.write("\n".join(buffer) + "\n")
+            sys.stdout.flush()
+            return
+
+        if self.show_alerts:
+            self._render_alerts_overlay(current_stats, buffer)
+            
+        if self.show_victory:
+            self._render_victory_overlay(current_stats, buffer)
+            sys.stdout.write("\n".join(buffer) + "\n")
+            sys.stdout.flush()
+            return
+
+        if self.show_map:
+            self._render_map_overlay(current_stats, buffer)
             sys.stdout.write("\n".join(buffer) + "\n")
             sys.stdout.flush()
             return
@@ -168,7 +244,8 @@ class TerminalDashboard:
                 status = rdata['status']
                 status_color = RED if "Error" in status else (YELLOW if "Waiting" in status else GREEN)
                 
-                buffer.append(f"  Run {rid:03d}: {bar} {DIM}Turn{RESET} {turn_num:>3} | {status_color}{status}{RESET}")
+                rid_display = f"{int(rid):03d}" if str(rid).isdigit() else str(rid)[:3]
+                buffer.append(f"  Run {rid_display}: {bar} {DIM}Turn{RESET} {turn_num:>3} | {status_color}{status}{RESET}")
 
                 self._render_faction_summary(rdata.get("stats", {}), buffer, is_final=False)
 
@@ -178,7 +255,8 @@ class TerminalDashboard:
             # Show latest done (if no active)
             if done and not active:
                 last_rid, last_rdata = done[-1]
-                buffer.append(f"  Run {last_rid:03d}: {BOLD}{GREEN}[DONE]{RESET} {last_rdata['status']}")
+                last_rid_display = f"{int(last_rid):03d}" if str(last_rid).isdigit() else str(last_rid)[:3]
+                buffer.append(f"  Run {last_rid_display}: {BOLD}{GREEN}[DONE]{RESET} {last_rdata['status']}")
                 self._render_faction_summary(last_rdata.get("stats", {}), buffer, is_final=True)
                 
         # Flush Buffer Once
@@ -212,32 +290,64 @@ class TerminalDashboard:
         buffer.append(f"\n   {BOLD}{WHITE}╔════ INTERACTIVE SHORTCUTS ════╗{RESET}")
         buffer.append(f"   ║ {YELLOW}q{RESET} : Quit Dashboard / Stop Sim ║")
         buffer.append(f"   ║ {YELLOW}p{RESET} : Pause/Resume Display      ║")
-        buffer.append(f"   ║ {YELLOW}d{RESET} : Toggle Detailed Faction   ║")
-        buffer.append(f"   ║ {YELLOW}s{RESET} : Toggle Global Summary     ║")
-        buffer.append(f"   ║ {YELLOW}y{RESET} : Toggle Galactic Diplomacy ║")
+        buffer.append(f"   ║ {YELLOW}d{RESET} : Cycle Diplomacy Views    ║")
+        buffer.append(f"   ║ {YELLOW}y{RESET} : Cycle Faction Details    ║")
+        buffer.append(f"   ║ {YELLOW}s{RESET} : Cycle Galactic Summary   ║")
         buffer.append(f"   ║ {YELLOW}f{RESET} : Filter by Faction Tag     ║")
-        buffer.append(f"   ║ {YELLOW}r{RESET} : Force Full Refresh        ║")
+        buffer.append(f"   ║ {YELLOW}t{RESET} : Toggle Military Theaters  ║")
+        buffer.append(f"   ║ {YELLOW}v{RESET} : Toggle Victory Progress   ║")
+        buffer.append(f"   ║ {YELLOW}a{RESET} : Toggle Alert History      ║")
+        buffer.append(f"   ║ {YELLOW}m{RESET} : Toggle Galaxy map         ║")
+        buffer.append(f"   ║ {YELLOW}e{RESET} : Export / Save Screenshot  ║")
         buffer.append(f"   ║ {YELLOW}h{RESET} : Toggle Help Overlay       ║")
         buffer.append(f"   ║ {YELLOW}1-9{RESET} : Quick Filter Index      ║")
         buffer.append(f"   {BOLD}{WHITE}╚═══════════════════════════════╝{RESET}")
 
+
+    def _update_trends(self, stats: dict):
+        """Calculates global trends by comparing current stats with previous turn."""
+        if not stats: return
+        
+        for k, v in stats.items():
+            if k.startswith("GLOBAL_") and isinstance(v, (int, float)):
+                if k in self.global_trend_data:
+                    prev = self.global_trend_data[k]["value"]
+                    if v > prev: self.global_trend_data[k]["trend"] = "UP"
+                    elif v < prev: self.global_trend_data[k]["trend"] = "DOWN"
+                    else: self.global_trend_data[k]["trend"] = "STABLE"
+                    self.global_trend_data[k]["prev"] = prev
+                else:
+                    self.global_trend_data[k] = {"trend": "STABLE", "prev": v}
+                self.global_trend_data[k]["value"] = v
+
+    def _get_trend_icon(self, key: str) -> str:
+        """Returns ↑, ↓, or → based on trend."""
+        trend = self.global_trend_data.get(key, {}).get("trend", "STABLE")
+        if trend == "UP": return f"{GREEN}↑{RESET}"
+        if trend == "DOWN": return f"{RED}↓{RESET}"
+        return f"{DIM}→{RESET}"
 
     def _render_faction_summary(self, stats: dict, buffer: list, is_final: bool = False):
         """Helper for rendering faction summary in dashboard. Appends to buffer."""
         if not stats:
             return
             
-        uncol = stats.get('GLOBAL_NEUTRAL', 0)
-        battles = stats.get('GLOBAL_BATTLES', 0)
-        storms = stats.get('GLOBAL_STORMS', 0)
+        self._update_trends(stats)
         
         if self.show_galactic_summary:
-            # Global Stats Line
-            s_battles = stats.get('GLOBAL_SPACE_BATTLES', 0)
-            g_battles = stats.get('GLOBAL_GROUND_BATTLES', 0)
-            
-            storm_display = f"{YELLOW}⚡ {storms}{RESET}" if storms > 0 else f"{DIM}0{RESET}"
-            buffer.append(f"     {DIM}Global Stats:{RESET} Uncolonized: {WHITE}{uncol}{RESET} | Battles: {RED}⚔ {battles}{RESET} (🚀{s_battles} 🪖{g_battles}) | Flux Storms: {storm_display}")
+            if self.global_stats_mode == "FULL":
+                self._render_boxed_summary(stats, buffer)
+            else:
+                # Compact Line (Quick Stats)
+                p = stats.get('GLOBAL_PLANETS', 0)
+                n = stats.get('GLOBAL_NEUTRAL', 0)
+                b = stats.get('GLOBAL_BATTLES', 0)
+                c = stats.get('GLOBAL_CASUALTIES_SHIP', 0) + stats.get('GLOBAL_CASUALTIES_GROUND', 0)
+                r = format_large_num(stats.get('GLOBAL_REQUISITION', 0))
+                t = stats.get('GLOBAL_PERF_TURN_TIME', 0)
+                buffer.append(f"     {BOLD}[Q] Quick:{RESET} P:{p} N:{n} B:{b} C:{c} R:{r} T:{t:.2f}s")
+
+
 
         
         # Phase 5: Theater Overview (Top Faction)
@@ -248,8 +358,14 @@ class TerminalDashboard:
         # Find strongest faction by score to show their theater breakdown
         # Display Diplomacy (Alliances & Trade)
         diplomacy = stats.get('GLOBAL_DIPLOMACY', [])
-        if diplomacy and self.show_diplomacy:
-            buffer.append(f"     {MAGENTA}[GALACTIC DIPLOMACY]{RESET}")
+        if diplomacy and self.show_diplomacy != "OFF":
+            wars = sum(1 for d in diplomacy if d['type'] == 'War')
+            allies = sum(1 for d in diplomacy if d['type'] == 'Alliance')
+            trades = sum(1 for d in diplomacy if d['type'] == 'Trade')
+            
+            buffer.append(f"     {MAGENTA}[GALACTIC DIPLOMACY] ({self.show_diplomacy}){RESET}")
+            if self.show_diplomacy == "SUMMARY":
+                buffer.append(f"     {RED}⚔ {wars}{RESET} wars | {CYAN}🤝 {allies}{RESET} alliances | {GREEN}📦 {trades}{RESET} trades")
             
             # 1. Identify Alliance Groups
             alliance_groups = self._identify_alliance_groups(diplomacy)
@@ -260,87 +376,93 @@ class TerminalDashboard:
                 for member in group:
                     faction_to_group[member] = idx
 
-            # Priorities: War > Alliance > Vassal > Trade
-            def get_dip_prio(d):
-                t = d['type']
-                if t == 'War': return 0
-                if t == 'Alliance': return 1
-                if t == 'Vassal': return 2
-                return 3
-            diplomacy.sort(key=get_dip_prio)
-            
-            formatted_entries = []
-            for entry in diplomacy:
-                pair = entry['members']
-                n1, n2 = pair[0], pair[1]
+            # Only show icons if not in SUMMARY mode
+            if self.show_diplomacy in ["EVERYTHING", "NO_WAR"]:
+                # Priorities: War > Alliance > Vassal > Trade
+                def get_dip_prio(d):
+                    t = d['type']
+                    if t == 'War': return 0
+                    if t == 'Alliance': return 1
+                    if t == 'Vassal': return 2
+                    return 3
                 
-                # Use Standard Abbreviations with Instance support
-                def get_tag_with_instance(name):
-                    parts = name.rsplit(' ', 1)
-                    base = parts[0]
-                    instance = parts[1] if len(parts) > 1 and parts[1].isdigit() else ""
-                    abbr = FACTION_ABBREVIATIONS.get(base, base[:3].upper())
-                    return f"{instance}{abbr}"[:4]
+                # Filter if NO_WAR
+                dip_to_show = diplomacy
+                if self.show_diplomacy == "NO_WAR":
+                    dip_to_show = [d for d in diplomacy if d['type'] != 'War']
+                
+                dip_to_show.sort(key=get_dip_prio)
+                
+                formatted_entries = []
+                for entry in dip_to_show:
+                    pair = entry['members']
+                    n1, n2 = pair[0], pair[1]
+                    
+                    def get_tag_with_instance(name):
+                        parts = name.rsplit(' ', 1)
+                        base = parts[0]
+                        instance = parts[1] if len(parts) > 1 and parts[1].isdigit() else ""
+                        abbr = FACTION_ABBREVIATIONS.get(base, base[:3].upper())
+                        return f"{instance}{abbr}"[:4]
 
-                n1_s = get_tag_with_instance(n1)
-                n2_s = get_tag_with_instance(n2)
-                
-                t_type = entry['type']
-                if t_type == 'War':
-                    type_color = RED
-                    icon = "⚔"
-                elif t_type == 'Alliance':
-                    # Use Group Color if available
-                    g_idx = faction_to_group.get(n1)
-                    # specific check: both must be in same group (they should be if logic holds)
-                    if g_idx is not None and g_idx == faction_to_group.get(n2):
-                         type_color = self._get_group_color(g_idx)
+                    n1_s = get_tag_with_instance(n1)
+                    n2_s = get_tag_with_instance(n2)
+                    
+                    t_type = entry['type']
+                    if t_type == 'War':
+                        type_color = RED
+                        icon = "⚔"
+                    elif t_type == 'Alliance':
+                        g_idx = faction_to_group.get(n1)
+                        if g_idx is not None and g_idx == faction_to_group.get(n2):
+                             type_color = self._get_group_color(g_idx)
+                        else:
+                             type_color = GREEN
+                        icon = "🤝"
+                    elif t_type == 'Vassal':
+                        type_color = CYAN
+                        icon = "👑"
                     else:
-                         type_color = GREEN
-                    icon = "🤝"
-                elif t_type == 'Vassal':
-                    type_color = Cyan
-                    icon = "👑"
-                else:
-                    type_color = BLUE
-                    icon = "💰"
-                
-                # Compact Format: [ICON] ABC-XYZ
-                formatted_entries.append(f"{type_color}{icon} {n1_s}-{n2_s}{RESET}")
+                        type_color = BLUE
+                        icon = "💰"
+                    
+                    formatted_entries.append(f"{type_color}{icon} {n1_s}-{n2_s}{RESET}")
 
-            # Render in columns (4 per line to maximize density)
-            cols = 4
-            for i in range(0, len(formatted_entries), cols):
-                row = formatted_entries[i:i+cols]
-                buffer.append("     " + "   ".join(row))
-                
+                # Render in columns (4 per line)
+                cols = 4
+                for i in range(0, len(formatted_entries), cols):
+                    row = formatted_entries[i:i+cols]
+                    buffer.append("     " + "   ".join(row))
+            
             # Render Explicit Alliance Blocs if any exist
             if alliance_groups:
                  buffer.append(f"     {DIM}--- ALLIANCE BLOCS ---{RESET}")
                  for idx, group in enumerate(alliance_groups):
-                      if len(group) < 2: continue # Should not happen for valid alliances
+                      if len(group) < 2: continue
                       
                       color = self._get_group_color(idx)
-                      # Format names
                       names = [f"{n[:3].upper()}" for n in group]
                       names_str = ", ".join(names)
                       buffer.append(f"     {color}Bloc {idx+1}: [{names_str}]{RESET}")
 
+        elif self.show_diplomacy != "OFF":
+             buffer.append(f"     {DIM}[DIPLOMACY] {self.show_diplomacy} - Waiting for data...{RESET}")
         else:
              buffer.append(f"     {DIM}[DIPLOMACY] No active treaties.{RESET}")
 
         header_text = "FINAL FACTION STATISTICS" if is_final else "TOP FACTION STATISTICS"
         header_color = MAGENTA if is_final else BLUE
         
-        if self.show_detailed:
-            buffer.append(f"     {header_color}{'-'*3} {header_text} {'-'*3}{RESET}")
-            self._print_faction_stats(stats, buffer)
+        if self.faction_detail_mode != "HIDDEN":
+            limit = 10 if self.faction_detail_mode == "SUMMARY" else None
+            buffer.append(f"     {header_color}{'-'*3} {header_text} ({self.faction_detail_mode}) {'-'*3}{RESET}")
+            self._print_faction_stats(stats, buffer, limit=limit)
             if not is_final:
                 buffer.append("") # Spacer
         elif not is_final:
-             buffer.append(f"     {DIM}({header_text} HIDDEN - press 'd' to show){RESET}")
+            buffer.append(f"     {DIM}(FACTION DETAILS HIDDEN - press 'y' to cycle modes){RESET}")
 
-    def _print_faction_stats(self, stats: dict, buffer: list):
+    def _print_faction_stats(self, stats: dict, buffer: list, limit: int | None = None):
         """Helper to render faction statistics table to buffer."""
         # Sort by Score desc
         sorted_factions = sorted(stats.items(), key=lambda x: x[1]['Score'] if isinstance(x[1], dict) and 'Score' in x[1] else 0, reverse=True)
@@ -363,8 +485,11 @@ class TerminalDashboard:
 
             to_display.append((f, s))
         
+        if limit:
+            to_display = to_display[:limit]
+            
         # Headers
-        buffer.append(f"     {DIM}{'#':<3} {'TAG':<4} {'SCORE':>7}  {'SYS':>3} {'OWN(A)':>7} {'CON(A)':>7} {'CTY':>3} {'B(AVG)':>9} {'SB':>3} {'F(AVG)':>7} {'A(AVG)':>7} {'REQ':>8} {'T':>3} {'W/L/D':>8} {'L(S)':>4} {'L(G)':>4} {'POST':>4}{RESET}")
+        buffer.append(f"     {DIM}{'#':<3} {'TAG':<4} {'SCORE':>7}  {'SYS':>3} {'OWN(A)':>7} {'CON(A)':>7} {'CTY':>3} {'B(AVG)':>9} {'SB':>3} {'F(AVG)':>7} {'A(AVG)':>7} {'REQ':>8} {'T':>3} {'WRS':>3} {'W/L/D':>8} {'L(S)':>4} {'L(G)':>4} {'POST':>4}{RESET}")
 
         for i, (faction, s) in enumerate(to_display, 1):
 
@@ -421,8 +546,285 @@ class TerminalDashboard:
              own_display = f"{own_count:>2}({own_avg:.1f})"
              con_display = f"{con_count:>2}({con_avg:.1f})"
              
-             entry = f"     {i:<3} {BOLD}{code:<4}{RESET} {score_color}{score:>7}{RESET}  {s.get('S',0):>3} {own_display:>7} {con_display:>7} {cty_count:>3} {bld_display:>9} {s.get('SB',0):>3} {flt_display:>7} {arm_display:>7} {req:>8} {s.get('T',0):>3} {wl_ratio:>8} {RED}{l_ship:>4} {l_ground:>4}{RESET} {posture:>4}"
+             wrs = s.get('WRS', 0)
+             wrs_color = RED if wrs > 0 else DIM
+             
+             entry = f"     {i:<3} {BOLD}{code:<4}{RESET} {score_color}{score:>7}{RESET}  {s.get('S',0):>3} {own_display:>7} {con_display:>7} {cty_count:>3} {bld_display:>9} {s.get('SB',0):>3} {flt_display:>7} {arm_display:>7} {req:>8} {s.get('T',0):>3} {wrs_color}{wrs:>3}{RESET} {wl_ratio:>8} {RED}{l_ship:>4} {l_ground:>4}{RESET} {posture:>4}"
              buffer.append(entry)
+
+    def _render_boxed_summary(self, stats: dict, buffer: list):
+        """Renders a detailed boxed galactic summary."""
+        turn = stats.get('turn', 0)
+        uncol = stats.get('GLOBAL_NEUTRAL', 0)
+        planets = stats.get('GLOBAL_PLANETS', 1)
+        contested = stats.get('GLOBAL_CONTESTED_PLANETS', 0)
+        col_pct = (1 - (uncol / planets)) * 100 if planets > 0 else 0
+        
+        battles = stats.get('GLOBAL_BATTLES', 0)
+        s_battles = stats.get('GLOBAL_SPACE_BATTLES', 0)
+        g_battles = stats.get('GLOBAL_GROUND_BATTLES', 0)
+        
+        casualties_s = stats.get('GLOBAL_CASUALTIES_SHIP', 0)
+        casualties_g = stats.get('GLOBAL_CASUALTIES_GROUND', 0)
+        casualties_total = casualties_s + casualties_g
+        
+        total_casualties_s = stats.get('GLOBAL_TOTAL_CASUALTIES_SHIP', 0)
+        total_casualties_g = stats.get('GLOBAL_TOTAL_CASUALTIES_GROUND', 0)
+        total_casualties_all = total_casualties_s + total_casualties_g
+        
+        req = stats.get('GLOBAL_REQUISITION', 0)
+        # Assuming flow is change in requisition? For now we'll just show total
+        tech_avg = stats.get('GLOBAL_TECH_AVG', 0)
+        breakthroughs = stats.get('GLOBAL_TECH_BREAKTHROUGHS', 0)
+        
+        perf_time = stats.get('GLOBAL_PERF_TURN_TIME', 0)
+        perf_tps = stats.get('GLOBAL_PERF_TPS', 0)
+        alerts = stats.get('GLOBAL_ALERT_COUNTS', {"CRITICAL": 0, "WARNING": 0, "INFO": 0})
+        
+        width = 76
+        title_raw = " GLOBAL GALACTIC SUMMARY "
+        side_border = (width - len(title_raw)) // 2
+        
+        buffer.append(f"     ╔{'═' * side_border}{BOLD} GLOBAL GALACTIC SUMMARY {RESET}{'═' * (width - side_border - len(title_raw))}╗")
+        
+        # Line 1: Planets
+        # Planets: 300 total | 0 ntl (0%) | 16 cont (5%) | 284 held (95%)
+        ntl_pct = (uncol / planets) * 100 if planets > 0 else 0
+        cont_pct = (contested / planets) * 100 if planets > 0 else 0
+        held_count = max(0, planets - uncol - contested)
+        held_pct = (held_count / planets) * 100 if planets > 0 else 0
+        
+        line1 = f"  {BOLD}Planets:{RESET} {WHITE}{planets}{RESET} total | {CYAN}{uncol}{RESET} ntl ({int(ntl_pct)}%) | {YELLOW}{contested}{RESET} cont ({int(cont_pct)}%) | {GREEN}{held_count}{RESET} held ({int(held_pct)}%)"
+        buffer.append(f"     ║ {line1}{' ' * (width - self._visual_width(line1) - 1)}║")
+        
+        # Line 2: Battles
+        line2 = f"  {BOLD}Battles:{RESET} {RED}⚔ {battles}{RESET} active | {BLUE}🚀 {s_battles}{RESET} space | {GREEN}🪖 {g_battles}{RESET} ground"
+        buffer.append(f"     ║ {line2}{' ' * (width - self._visual_width(line2) - 1)}║")
+        
+        # Line 3: Losses (Turn vs Total)
+        line3 = f"  {BOLD}Turn Losses:{RESET} {RED}💀 {format_large_num(casualties_total)}{RESET} | {BLUE}🚀 {casualties_s}{RESET} ships | {GREEN}🪖 {casualties_g}{RESET} ground"
+        buffer.append(f"     ║ {line3}{' ' * (width - self._visual_width(line3) - 1)}║")
+        
+        line3b = f"  {BOLD}Total Deaths:{RESET} {RED}💀 {format_large_num(total_casualties_all)}{RESET} | {BLUE}🚀 {total_casualties_s}{RESET} ships | {GREEN}🪖 {total_casualties_g}{RESET} ground"
+        buffer.append(f"     ║ {line3b}{' ' * (width - self._visual_width(line3b) - 1)}║")
+
+        # Line 3c: Diplomacy
+        dip_data = stats.get('GLOBAL_DIPLOMACY', [])
+        wars = sum(1 for d in dip_data if d['type'] == 'War')
+        allies = sum(1 for d in dip_data if d['type'] == 'Alliance')
+        trades = sum(1 for d in dip_data if d['type'] == 'Trade')
+        line3c = f"  {BOLD}Diplomacy:{RESET} {RED}� {wars}{RESET} wars | {CYAN}🤝 {allies}{RESET} allies | {GREEN}📦 {trades}{RESET} trade"
+        buffer.append(f"     ║ {line3c}{' ' * (width - self._visual_width(line3c) - 1)}║")
+        
+        # Line 4: Economy / Tech / Flux
+        velocity = stats.get('GLOBAL_ECON_VELOCITY', 100.0)
+        econ_status = f"{GREEN}Flowing{RESET}" if velocity > 50 else (f"{YELLOW}Stable{RESET}" if velocity > 0 else f"{RED}Stagnant{RESET}")
+        tech_pts = int(tech_avg)
+        storms = stats.get('GLOBAL_STORMS_BLOCKING', 0)
+        line4 = f"  {BOLD}Economy:{RESET} 💰 {econ_status} | {BOLD}Tech:{RESET} 🔬 {CYAN}{tech_pts}{RESET} pts | {BOLD}Flux:{RESET} ⚡ {YELLOW}{storms}{RESET} blocking"
+        buffer.append(f"     ║ {line4}{' ' * (width - self._visual_width(line4) - 1)}║")
+        
+        # Line 5: Latest Critical Alert
+        latest_crit = "SYSTEMS NOMINAL"
+        raw_alerts = stats.get('GLOBAL_ALERTS', [])
+        for a in reversed(raw_alerts):
+            if a.get('severity') == 'critical':
+                latest_crit = a.get('message', 'UNKNOWN CRITICAL ERROR')
+                break
+        
+        line5 = f"  {RED}![CRIT]{RESET} {DIM}{latest_crit[:width-12]}{RESET}"
+        buffer.append(f"     ║ {line5}{' ' * (width - self._visual_width(line5) - 1)}║")
+        
+        buffer.append(f"     ╚{'═' * width}╝")
+
+    def _render_theater_overlay(self, stats: dict, buffer: list):
+        """Displays localized military theater information."""
+        buffer.append(f"\n     {BOLD}{CYAN}╔════════ MILITARY THEATER OVERVIEW ════════╗{RESET}")
+        
+        # Derive theaters from faction data
+        theaters_found = False
+        for f, s in stats.items():
+            if isinstance(s, dict) and "Theaters" in s:
+                theaters = s["Theaters"]
+                if theaters:
+                    theaters_found = True
+                    buffer.append(f"     ║ {BOLD}{f:<40}{RESET} ║")
+                    for t in theaters:
+                        name = t.get("name", "Unknown")
+                        goal = t.get("goal", "IDLE")
+                        goal_color = YELLOW if "EXPAND" in goal else (RED if "OFFENSIVE" in goal else GREEN)
+                        buffer.append(f"     ║   > {name:<20} | {goal_color}{goal:<13}{RESET} ║")
+        
+        if not theaters_found:
+             buffer.append(f"     ║ {DIM}No active theater data available.{RESET}          ║")
+             
+        buffer.append(f"     {BOLD}{CYAN}╚═══════════════════════════════════════════╝{RESET}")
+
+    def _render_victory_overlay(self, stats: dict, buffer: list):
+        """Displays progress towards victory conditions with premium styling."""
+        turn = stats.get('turn', 0)
+        victory = stats.get('GLOBAL_VICTORY', {})
+        
+        width = 74
+        title = f" GALACTIC VICTORY PROGRESS - Turn {turn} "
+        side_border = (width - len(title)) // 2
+        
+        buffer.append(f"\n     {YELLOW}╔{'═' * side_border}{BOLD}{title}{RESET}{YELLOW}{'═' * (width - side_border - len(title))}╗{RESET}")
+        
+        if not victory:
+            buffer.append(f"     ║ {DIM}Calculating progress...{RESET}{' ' * (width - 24)}║")
+        else:
+            # Sort by progress desc
+            sorted_vic = sorted(victory.items(), key=lambda x: x[1], reverse=True)
+            
+            for f_name, pct in sorted_vic:
+                # Clean Tag Logic: Use Abbreviation [Instance]
+                parts = f_name.rsplit(' ', 1)
+                base = parts[0]
+                instance = parts[1] if len(parts) > 1 and parts[1].isdigit() else ""
+                abbr = FACTION_ABBREVIATIONS.get(base, base[:18]).strip()
+                tag = f"{abbr} [{instance}]" if instance else abbr
+                
+                # Bar color: Green if high, Yellow if mid, Dim if low
+                if pct > 60: bar_color = GREEN
+                elif pct > 30: bar_color = YELLOW
+                else: bar_color = DIM
+                
+                # Dynamic Bar Length
+                bar_len = 35
+                bar = self._make_bar(pct, 100, length=bar_len)
+                
+                # Construct Line with proper spacing
+                tag_display = f"{WHITE}{tag:<25}{RESET}"
+                pct_display = f"{BOLD}{pct:>5.1f}%{RESET}"
+                
+                content = f" {tag_display} ║ {bar_color}{bar}{RESET} ║ {pct_display} "
+                raw_len = len(self._strip_ansi(content))
+                padding = width - raw_len
+                
+                buffer.append(f"     ║{content}{' ' * padding}║")
+                
+        buffer.append(f"     {YELLOW}╚{'═' * width}╝{RESET}")
+        buffer.append(f"     {DIM} Target: Control 75% of Galaxy Systems{RESET}")
+        buffer.append(f"     {DIM} (Press 'v' to close, 'q' to quit){RESET}")
+
+    def _render_alerts_overlay(self, stats: dict, buffer: list):
+        """Displays recent critical and warning alerts."""
+        alerts = stats.get('GLOBAL_ALERTS', [])
+        buffer.append(f"\n     {BOLD}{RED}╔════════════ CRITICAL ALERT HISTORY ════════════╗{RESET}")
+        
+        if not alerts:
+             buffer.append(f"     ║ {DIM}No alerts detected in current log window.{RESET}       ║")
+        else:
+            # Show last 10 alerts
+            for a in alerts[-10:]:
+                sev = a.get('severity', 'info').upper()
+                sev_color = RED if sev == "CRITICAL" else (YELLOW if sev == "WARNING" else WHITE)
+                msg = a.get('message', 'No message')
+                # Truncate message
+                msg = (msg[:45] + '..') if len(msg) > 45 else msg
+                buffer.append(f"     ║ {sev_color}{sev:<8}{RESET} | {msg:<45} ║")
+                
+        buffer.append(f"     {BOLD}{RED}╚════════════════════════════════════════════════╝{RESET}")
+
+    def _render_map_overlay(self, stats: dict, buffer: list):
+        """Displays a premium Tactical HUD Galaxy Map."""
+        map_data = stats.get('GLOBAL_MAP_DATA', [])
+        width = 72
+        title = " GALAXY TACTICAL SCANNER "
+        side_border = (width - len(title)) // 2
+        
+        buffer.append(f"\n     {BLUE}╔═══════════════════════[ {BOLD}{WHITE}SDR-9 SCANNER{RESET}{BLUE} ]═══════════════════════╗{RESET}")
+        buffer.append(f"     {BLUE}║{RESET}  {DIM}Y-AXIS{RESET}{' ' * (width-10)}{BLUE}║{RESET}")
+        
+        if not map_data:
+             buffer.append(f"     {BLUE}║{RESET}      {RED}ERR: NO SIGNAL IN SECTOR{RESET}{' ' * (width-30)}{BLUE}║{RESET}")
+        else:
+            # grid settings - more compact for better density
+            grid_w, grid_h = 56, 14
+            grid = [[f"{DIM}·{RESET}" for _ in range(grid_w)] for _ in range(grid_h)]
+            
+            # Normalize coordinates
+            xs = [s['x'] for s in map_data]
+            ys = [s['y'] for s in map_data]
+            min_x, max_x = min(xs), max(xs)
+            min_y, max_y = min(ys), max(ys)
+            
+            range_x = max(1, max_x - min_x)
+            range_y = max(1, max_y - min_y)
+            
+            for s in map_data:
+                nx = int(((s['x'] - min_x) / range_x) * (grid_w - 1))
+                ny = int(((s['y'] - min_y) / range_y) * (grid_h - 1))
+                
+                owner = s.get('owner', 'Neutral')
+                if owner == 'Neutral':
+                    grid[ny][nx] = f"{WHITE}●{RESET}"
+                else:
+                    # Get color index for owner
+                    raw_faction = owner.rsplit(' ', 1)[0]
+                    f_idx = list(FACTION_ABBREVIATIONS.keys()).index(raw_faction) if raw_faction in FACTION_ABBREVIATIONS else (hash(raw_faction) % 6)
+                    color = self._get_group_color(f_idx % 6)
+                    char = owner[0].upper()
+                    grid[ny][nx] = f"{color}{BOLD}{char}{RESET}"
+                
+            # Render grid with frame
+            for i, row in enumerate(grid):
+                y_lbl = f"{DIM}{14-i:2}{RESET}" if i % 4 == 0 else "  "
+                content = "".join(row)
+                buffer.append(f"     {BLUE}║{RESET} {y_lbl} │ {content} │    {BLUE}║{RESET}")
+                
+            # X-Axis
+            x_ax = "─" * grid_w
+            buffer.append(f"     {BLUE}║{RESET}    └──{x_ax}──    {BLUE}║{RESET}")
+            buffer.append(f"     {BLUE}║{RESET}        {DIM}00   10   20   30   40   54  X-AXIS{RESET}      {BLUE}║{RESET}")
+
+        buffer.append(f"     {BLUE}╚═[ {BOLD}{CYAN}LIVE FEED OK{RESET}{BLUE} ]══════════════════════════════[ {BOLD}{WHITE}m:CLOSE{RESET}{BLUE} ]═╝{RESET}")
+        
+        # Legend section
+        legend = f"{WHITE}●{RESET} Neutral | {BOLD}{GREEN}H{RESET}eld | {BOLD}{YELLOW}C{RESET}apital | {DIM}·{RESET} Deep Space"
+        buffer.append(f"     {DIM}SENSORS:{RESET} {legend}")
+
+
+
+    def _export_session_data(self):
+        """Exports current statistics to a JSON/CSV file."""
+        import json
+        import os
+        from datetime import datetime
+        
+        if not self.last_progress_data: return
+        
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        export_dir = "reports/dashboard_exports"
+        if not os.path.exists(export_dir): os.makedirs(export_dir)
+        
+        filepath = os.path.join(export_dir, f"stats_export_{timestamp}.json")
+        try:
+            with open(filepath, 'w') as f:
+                json.dump(self.last_progress_data, f, indent=4)
+            self.last_export_status = f"Exported to {os.path.basename(filepath)}"
+            self.last_export_time = time.time()
+        except Exception as e:
+            self.last_export_status = f"Export failed: {e}"
+
+    def _strip_ansi(self, text: str) -> str:
+        """Removes ANSI escape sequences for length calculation."""
+        import re
+        ansi_escape = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
+        return ansi_escape.sub('', text)
+
+    def _visual_width(self, text: str) -> int:
+        """Calculates visual column width, accounting for double-width characters."""
+        stripped = self._strip_ansi(text)
+        width = 0
+        for char in stripped:
+            # Simple heuristic for double-width emojis/icons
+            if ord(char) > 0xFFFF or char in "💀🚀🪖💰🔬⚡⚔●HCP":
+                width += 2
+            else:
+                width += 1
+        return width
 
     def _make_bar(self, value, total, length=20):
         if total == 0: total = 1

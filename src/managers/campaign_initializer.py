@@ -31,6 +31,7 @@ from src.managers.portal_manager import PortalManager
 from src.services.construction_service import ConstructionService
 from src.reporting.faction_reporter import FactionReporter
 from src.reporting.telemetry import TelemetryCollector, EventCategory
+from src.services.distance_matrix import DistanceMatrixService
 
 # AI & Mechanics
 from src.ai.strategies.standard import StandardStrategy, init_ai_rng
@@ -282,6 +283,11 @@ class CampaignInitializer:
     def _setup_services(self):
         from src.services.ship_design_service import ShipDesignService
         self.engine.pathfinder = PathfindingService()
+        
+        # R10: Strategic Distance Matrix
+        self.engine.distance_matrix = DistanceMatrixService(self.engine)
+        self.engine.pathfinder.set_distance_service(self.engine.distance_matrix)
+        
         self.engine.portal_manager = PortalManager(self.engine)
         self.engine.construction_service = ConstructionService(self.engine)
         self.engine.design_service = ShipDesignService(self.engine.ai_manager)

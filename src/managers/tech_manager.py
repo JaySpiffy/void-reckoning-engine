@@ -73,7 +73,7 @@ class TechManager:
         Mutates the loaded tech trees based on the universe ID (deterministic).
         Implements 'Self-Evolving Tech Trees'.
         """
-        print(f"[TechManager] Applying Procedural Evolution for Universe: {universe_id}")
+        self.logger.debug(f"[TechManager] Applying Procedural Evolution for Universe: {universe_id}")
         generator = ProceduralTechGenerator(universe_id)
         
         for faction, tree in self.faction_tech_trees.items():
@@ -84,7 +84,7 @@ class TechManager:
             tree["techs"] = result["techs"]
             tree["units"] = result["units"]
             
-        print(f"[TechManager] Evolution Complete.")
+        self.logger.debug(f"[TechManager] Evolution Complete.")
 
     def draw_research_cards(self, faction: Any, num_cards: int = 3) -> List[dict]:
         """
@@ -171,7 +171,7 @@ class TechManager:
             self.research_state[faction_id] = {"current_project": None, "progress": 0.0, "drawn_cards": []}
             
         self.research_state[faction_id]["drawn_cards"] = drawn_ids
-        self.logger.info(f"[Research] {faction_id} drew cards: {drawn_ids}")
+        self.logger.debug(f"[Research] {faction_id} drew cards: {drawn_ids}")
         return drawn_dicts
 
     def select_research_project(self, faction: Any, tech_id: str):
@@ -194,7 +194,7 @@ class TechManager:
         # Update Faction Object State as well (if we want to mirror it)
         faction.active_research = tech_id
         
-        self.logger.info(f"[Research] {faction_id} started researching: {tech_id}")
+        self.logger.debug(f"[Research] {faction_id} started researching: {tech_id}")
 
     def _get_researched_techs(self, faction_id: str) -> List[str]:
         # Deprecated / Unused now that we use faction object
@@ -240,7 +240,7 @@ class TechManager:
         if "cost" in new_weapon: new_weapon["cost"] = int(new_weapon.get("cost", 100) * 1.15)
         
         arsenal[new_id] = new_weapon
-        print(f"[Research] {faction_name} upgraded {current_name} to {new_name}!")
+        self.logger.debug(f"[Research] {faction_name} upgraded {current_name} to {new_name}!")
         return new_weapon
         
     def load_tech_trees(self):
@@ -444,7 +444,7 @@ class TechManager:
         
         for f_name, tree in self.faction_tech_trees.items():
             if f_name == "global": continue
-            print(f"[TechManager] Procedurally expanding tree for {f_name}...")
+            self.logger.debug(f"[TechManager] Procedurally expanding tree for {f_name}...")
             result = generator.generate_procedural_tree(f_name, tree)
             
             # Update Tree
@@ -510,7 +510,7 @@ class TechManager:
                         # Assumption: Edge applies to one faction (or all if they share IDs?)
                         # Tech IDs are usually unique per faction.
             
-            print(f"[TechManager] Loaded {count} prerequisite links from tech_tree.json")
+            self.logger.debug(f"[TechManager] Loaded {count} prerequisite links from tech_tree.json")
 
         except Exception as e:
             print(f"[ERROR] Failed to load tech_tree.json: {e}")
@@ -620,7 +620,7 @@ class TechManager:
         if self.is_hybrid_tech_available(faction_obj, tech_id):
             if tech_id not in faction_obj.unlocked_techs:
                 faction_obj.unlock_tech(tech_id, turn=turn)
-                print(f"[HYBRID] {faction_obj.name} unlocked {tech_id}")
+                self.logger.debug(f"[HYBRID] {faction_obj.name} unlocked {tech_id}")
 
     def validate_hybrid_tech(self, tech_data: dict) -> bool:
         """Validates hybrid tech data consistency."""

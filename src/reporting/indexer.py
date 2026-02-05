@@ -45,6 +45,9 @@ class QueryProfiler:
             "plan": plan,
             "timestamp": datetime.now().isoformat()
         })
+        # Cap stats to prevent memory leaks
+        if len(self.stats) > 200:
+            self.stats = self.stats[-200:]
         # Log to file
         try:
             log_dir = "reports/db"
@@ -65,10 +68,19 @@ class CacheBackend:
     def clear(self): raise NotImplementedError
 
 class MemoryCacheBackend(CacheBackend):
-    def __init__(self):
+    def __init__(self, max_size=500):
         self.cache = {}
+        self.max_size = max_size
     def get(self, key): return self.cache.get(key)
-    def set(self, key, value): self.cache[key] = value
+    def set(self, key, value):
+        # Basic eviction if full
+        if len(self.cache) >= self.max_size:
+            # Clear everything or pop first? Pop first is better but dict order varies.
+            # Simple approach: clear half if full to avoid frequent re-evictions
+            keys = list(self.cache.keys())
+            for k in keys[:len(keys)//2]:
+                self.cache.pop(k, None)
+        self.cache[key] = value
     def delete(self, key): self.cache.pop(key, None)
     def clear(self): self.cache.clear()
 

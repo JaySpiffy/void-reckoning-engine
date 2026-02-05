@@ -316,38 +316,55 @@ class StrategicAI:
         """Delegated to AdaptiveLearningEngine."""
         self.learning_engine.export_learning_report(faction, output_dir)
 
-    def build_turn_cache(self):
-        """Pre-calculates expensive lookups for the turn. (Updated Step 3)"""
+    def build_turn_cache(self, force: bool = False):
+        """Pre-calculates expensive lookups for the turn. (Optimized R5)"""
+        current_turn = self.engine.turn_counter
+        # Avoid redundant rebuilds in same turn
+        if not force and getattr(self, '_last_cache_turn', -1) == current_turn:
+            return
+
         self.turn_cache = {
             "fleets_by_loc": {},
             "threats_by_faction": {},
-            "visibility_by_faction": {},  # NEW
-            "threat_levels": {},  # NEW
-            "defense_zones": {},  # NEW
-            "exploration_frontiers": {}  # NEW
+            "visibility_by_faction": {},
+            "threat_levels": {},
+            "defense_zones": {}, # Populated lazily
+            "exploration_frontiers": {}, # Populated lazily
+            "mandates": {},
+            "theater_power_cache": {} # R6: Power Index
         }
         
         # Cache Fleets by Location
         for f in self.engine.fleets:
-            if f.is_destroyed: continue
-            if hasattr(f, 'location'):
-                loc_id = id(f.location) # Use object ID for location key
+            if getattr(f, 'is_destroyed', False): continue
+            loc = getattr(f, 'location', None)
+            if loc:
+                loc_id = id(loc)
                 if loc_id not in self.turn_cache["fleets_by_loc"]:
                     self.turn_cache["fleets_by_loc"][loc_id] = []
                 self.turn_cache["fleets_by_loc"][loc_id].append(f)
                 
-            # Cache Incoming Threats (Optimization for predict_enemy_threats)
-            if f.destination and hasattr(f.destination, 'owner'):
-                target_owner = f.destination.owner
+            # Cache Incoming Threats
+            dest = getattr(f, 'destination', None)
+            if dest and hasattr(dest, 'owner'):
+                target_owner = dest.owner
                 if target_owner not in self.turn_cache["threats_by_faction"]:
                      self.turn_cache["threats_by_faction"][target_owner] = []
                 self.turn_cache["threats_by_faction"][target_owner].append(f)
         
-        # Pre-calculate defense zones and exploration frontiers for all factions
-        for faction in self.engine.factions.keys():
-            if faction != "Neutral":
-                self.turn_cache["defense_zones"][faction] = self.classify_defense_zones(faction)
-                self.turn_cache["exploration_frontiers"][faction] = self.calculate_exploration_frontier(faction)
+        self._last_cache_turn = current_turn
+
+    def invalidate_turn_cache(self):
+        """Explicitly invalidates current turn cache."""
+        self._last_cache_turn = -1
+        self.turn_cache.clear()
+
+    def invalidate_faction_cache(self, faction: str):
+        """Invalidates faction-specific lazy entries."""
+        if faction in self.turn_cache.get("defense_zones", {}):
+            del self.turn_cache["defense_zones"][faction]
+        if faction in self.turn_cache.get("exploration_frontiers", {}):
+            del self.turn_cache["exploration_frontiers"][faction]
 
     def clear_turn_cache(self):
         """Clear turn cache and LRU caches."""
@@ -422,50 +439,40 @@ class StrategicAI:
         return self.personality_manager.get_faction_personality(faction)
 
     def get_cached_defense_zone(self, faction: str, planet_name: str):
-        if faction not in self.turn_cache.get("defense_zones", {}):
-            return "CORE" # Default
+        if faction not in self.turn_cache["defense_zones"]:
+            self.turn_cache["defense_zones"][faction] = self.classify_defense_zones(faction)
         return self.turn_cache["defense_zones"][faction].get(planet_name, "CORE")
-        
-    def get_cached_visibility(self, faction: str):
-        # We don't have this populated in build_turn_cache yet (requires campaign manager integration or logic copy)
-        # For now, return direct access? Or populate in build_turn_cache?
-        # Populating requires scanning visible_planets which is stored on Faction.
-        # It's an accessor.
-        f_mgr = self.engine.factions.get(faction)
-        return f_mgr.visible_planets if f_mgr else set()
                 
     def get_cached_theater_power(self, location, requesting_faction):
-        """Optimized version of get_theater_power using cache. Respects Fog of War."""
+        """Optimized version of get_theater_power using cache. Respects Fog of War. (R6)"""
         # 0. Visibility Check (Fog of War)
         f_mgr = self.engine.factions.get(requesting_faction)
         if f_mgr and hasattr(location, 'name') and location.name not in getattr(f_mgr, 'visible_planets', set()):
-             # AI cannot see this location; fallback to intelligence memory if possible, 
-             # but for this specific method (live power) we return 0/empty.
              return {}
 
-        # If cache miss (e.g. called outside process_turn loop?), fall back to IM
-        if not hasattr(self, 'turn_cache') or "fleets_by_loc" not in self.turn_cache:
-            return self.engine.intel_manager.get_theater_power(location.name, self.engine.turn_counter, viewer_faction=requesting_faction)
-            
-        powers = {}
         loc_id = id(location)
         
-        # 1. Fleets from Cache
-        fleets_here = self.turn_cache["fleets_by_loc"].get(loc_id, [])
-        for f in fleets_here:
-            powers[f.faction] = powers.get(f.faction, 0) + f.power
+        # 1. R6: Use Theater Power Cache (Index)
+        if loc_id not in self.turn_cache["theater_power_cache"]:
+            powers = {}
+            # Fleets from Location Cache
+            fleets_here = self.turn_cache["fleets_by_loc"].get(loc_id, [])
+            for f in fleets_here:
+                powers[f.faction] = powers.get(f.faction, 0) + f.power
+                
+            # Armies
+            if hasattr(location, 'armies'):
+                for ag in location.armies:
+                    if not ag.is_destroyed:
+                        powers[ag.faction] = powers.get(ag.faction, 0) + ag.power
+                        
+            # Base Defense
+            if hasattr(location, 'defense_level') and location.owner != "Neutral":
+                 powers[location.owner] = powers.get(location.owner, 0) + (location.defense_level * 500)
             
-        # 2. Armies (Usually fast enough, but could check location.armies directly)
-        if hasattr(location, 'armies'):
-            for ag in location.armies:
-                if not ag.is_destroyed:
-                    powers[ag.faction] = powers.get(ag.faction, 0) + ag.power
-                    
-        # 3. Base Defense
-        if hasattr(location, 'defense_level') and location.owner != "Neutral":
-             powers[location.owner] = powers.get(location.owner, 0) + (location.defense_level * 500)
+            self.turn_cache["theater_power_cache"][loc_id] = powers
              
-        return powers
+        return self.turn_cache["theater_power_cache"][loc_id]
 
     def get_task_force_for_fleet(self, fleet):
         """Finds the TaskForce containing the given fleet."""
@@ -527,6 +534,11 @@ class StrategicAI:
                         zones[np.name] = "CAPITAL_ZONE"
                         
         return zones
+
+    def get_cached_exploration_frontier(self, faction: str):
+        if faction not in self.turn_cache["exploration_frontiers"]:
+            self.turn_cache["exploration_frontiers"][faction] = self.calculate_exploration_frontier(faction)
+        return self.turn_cache["exploration_frontiers"][faction]
 
     @profile_method
     def calculate_exploration_frontier(self, faction: str):
@@ -681,7 +693,7 @@ class StrategicAI:
         """
         Selects the next best target for a scout fleet from the frontier.
         """
-        self.calculate_exploration_frontier(faction)
+        self.get_cached_exploration_frontier(faction)
         
         if not f_mgr.exploration_frontier:
             return None

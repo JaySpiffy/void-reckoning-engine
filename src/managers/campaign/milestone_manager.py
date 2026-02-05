@@ -27,6 +27,9 @@ class MilestoneManager:
                 "data": data or {}
             }
             self._campaign_milestones.append(event_data)
+            # Cap history to prevent memory leaks
+            if len(self._campaign_milestones) > 100:
+                self._campaign_milestones = self._campaign_milestones[-100:]
             
             if self.telemetry:
                 self.telemetry.log_event(
