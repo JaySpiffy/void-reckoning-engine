@@ -735,10 +735,9 @@ The manager layer coordinates between core systems and provides high-level opera
 
 ### Prerequisites
 
-- **Python 3.7+** (tested up to 3.11)
+- **Python 3.8+** (tested up to 3.11)
 - **CUDA Toolkit 11.x, 12.x, or 13.x** (for GPU acceleration)
 - **NVIDIA GPU** with Compute Capability 7.0+ (for GPU acceleration)
-- **Node.js 18+** (for frontend development)
 
 ### Step 1: Install Core Dependencies
 
@@ -773,14 +772,6 @@ pip install -e .
 ```
 
 This enables the `sim-engine` console command as an alternative to `python run.py`.
-
-### Step 5: Install Frontend Dependencies
-
-```bash
-cd frontend
-npm install
-cd ..
-```
 
 ## Quickstart
 
@@ -819,11 +810,8 @@ python run.py campaign --universe void_reckoning --gpu --gpu-strategy auto
 ### 3. Launch Dashboard
 
 ```bash
-# Terminal 1: Start backend
-python run.py dashboard --universe void_reckoning --port 8000
-
-# Terminal 2: Start frontend
-cd frontend && npm run dev
+# Launch Terminal Dashboard
+python run.py dashboard --universe void_reckoning
 ```
 
 ### 4. Run Tactical Combat
@@ -1004,7 +992,7 @@ The Terminal Dashboard requires no additional installation beyond the core engin
 
 **Prerequisites:**
 
-- **Python 3.7+** (tested up to 3.11)
+- **Python 3.8+** (tested up to 3.11)
 - **Terminal Requirements**: Any ANSI-compatible terminal (Windows Terminal, iTerm2, GNOME Terminal, etc.)
 - **Screen Size**: Minimum 80 columns × 24 lines recommended for optimal display
 
@@ -1625,7 +1613,7 @@ This will output:
 If you encounter issues not covered here:
 
 1. Check the [Dashboard Guide](docs/dashboard_guide.md) for detailed documentation
-2. Review [Troubleshooting](docs/TROUBLESHOOTING.md) for common issues
+2. Review [Troubleshooting](docs/dashboard_troubleshooting.md) for common issues
 3. Check [GitHub Issues](https://github.com/your-repo/issues) for known problems
 4. Create a new issue with:
    - Terminal type and version
@@ -1685,10 +1673,7 @@ Dashboard V2 provides a modern web-based interface with real-time WebSocket stre
 # Terminal 1: Start Dashboard V2 backend
 python -m src.reporting.dashboard_v2.api.main --port 8000
 
-# Terminal 2: Start React frontend
-cd frontend && npm run dev
-
-# Access dashboard at http://localhost:5173
+# Access dashboard at http://localhost:8000
 ```
 
 #### Docker Deployment
@@ -1896,10 +1881,7 @@ multi-universe-simulator/
 │   ├── Dockerfile.dashboard
 │   └── docker-compose.yml
 ├── docs/                        # Documentation (30+ files)
-├── frontend/                    # React + TypeScript frontend
-│   ├── package.json
-│   ├── vite.config.ts
-│   └── src/
+├── public_docs/                  # Public documentation
 ├── logs/                        # Log files
 ├── reports/                     # Simulation reports
 ├── scripts/                     # Utility scripts
@@ -2006,7 +1988,7 @@ docker-compose down
 
 | Service | Description | Ports |
 |---------|-------------|-------|
-| `dashboard` | FastAPI backend with React frontend | 8000 |
+| `dashboard` | FastAPI backend for Dashboard V2 | 8000 |
 
 ### Volumes
 
@@ -2016,11 +1998,10 @@ The following volumes are mounted for persistence and development:
 - `./config:/app/config` - Configuration files
 - `./reports:/app/reports` - Simulation reports
 - `./src:/app/src` - Source code (development)
-- `./frontend/dist:/app/frontend/dist` - Built frontend assets
 
 ## Contributing
 
-Please see [CONTRIBUTING.md](docs/CONTRIBUTING.md) for guidelines.
+Please see [CONTRIBUTING.md](public_docs/CONTRIBUTING.md) for guidelines.
 
 ### Development Guidelines
 
@@ -2047,7 +2028,7 @@ Comprehensive documentation is available in the [`docs/`](docs/) directory.
 
 - [Analysis Systems](docs/ANALYSIS_SYSTEMS.md)
 - [Data Pipeline](docs/DATA_PIPELINE.md)
-- [Project Structure](docs/PROJECT_STRUCTURE.md)
+- [Project Structure](public_docs/PROJECT_STRUCTURE.md)
 - [Script Status](docs/SCRIPT_STATUS.md)
 - [Dashboard Architecture](docs/DASHBOARD_ARCHITECTURE.md)
 - [WebSocket API](docs/WEBSOCKET_API.md)
@@ -2057,20 +2038,20 @@ Comprehensive documentation is available in the [`docs/`](docs/) directory.
 
 ### Guides & Tutorials
 
-- [Full CLI Guide](docs/CLI_GUIDE.md)
+- [Full CLI Guide](public_docs/CLI_GUIDE.md)
 - [Migration Guide](docs/MIGRATION_GUIDE.md)
 - [Tools Index](docs/TOOLS_INDEX.md)
 - [Game Import Guide](docs/GAME_IMPORT_GUIDE.md)
-- [Multi-Universe Guide](docs/MULTI_UNIVERSE_GUIDE.md)
+- [Multi-Universe Guide](public_docs/MULTI_UNIVERSE_GUIDE.md)
 - [Dashboard Guide](docs/dashboard_guide.md)
-- [Docker Deployment](docs/Docker_DEPLOYMENT.md)
+- [Docker Deployment](docs/DASHBOARD_DEPLOYMENT.md)
 
 ### Reference
 
-- [Faction Quirks](docs/FACTION_QUIRKS.md)
-- [Cross-Universe Combat](docs/CROSS_UNIVERSE_COMBAT.md)
+- [Faction Quirks](public_docs/FACTION_QUIRKS.md)
+- [Cross-Universe Combat](public_docs/CROSS_UNIVERSE_COMBAT.md)
 - [Performance](docs/PERFORMANCE.md)
-- [Testing](docs/TESTING.md)
+- [Testing](public_docs/TESTING.md)
 - [Gap Analysis](docs/GAP_ANALYSIS_WHITE_PAPER.md)
 - [Error Codes](docs/ERROR_CODES.md)
 - [Alert System](docs/alert_system.md)
@@ -2079,11 +2060,11 @@ Comprehensive documentation is available in the [`docs/`](docs/) directory.
 
 - [Multi-Universe Strategy Engine](docs/MULTI_UNIVERSE_STRATEGY_ENGINE_WHITE_PAPER.md)
 - [Mechanical Emulator](docs/MECHANICAL_EMULATOR_WHITE_PAPER.md)
-- [Universe Creation Guide](docs/UNIVERSE_CREATION_GUIDE.md)
+- [Universe Creation Guide](public_docs/UNIVERSE_CREATION_GUIDE.md)
 
 ## Project Status
 
-**Current Version**: `0.1.0` (Alpha)
+**Current Version**: `1.0.0` (Alpha)
 
 ### Completed Features
 
@@ -2095,7 +2076,7 @@ Comprehensive documentation is available in the [`docs/`](docs/) directory.
 - [x] Faction Quirks System
 - [x] GPU Acceleration with CuPy
 - [x] Analytics Engine with Predictive Analytics
-- [x] Dashboard v2 (FastAPI + React)
+- [ ] Dashboard v2 (FastAPI + React) - Work In Progress
 - [x] AI Strategic Planner and Economic Engine
 - [x] Cross-Universe Combat System
 - [x] Alert and Telemetry Systems
@@ -2122,10 +2103,11 @@ Comprehensive documentation is available in the [`docs/`](docs/) directory.
 ### Planned Features
 
 - [ ] Custom Universe Template Generator
-
 - [ ] Save/Load System
-
 - [ ] Additional Universes
+- [ ] Advanced AI behaviors
+- [ ] Performance optimizations
+- [ ] UI improvements
 
 ## License
 

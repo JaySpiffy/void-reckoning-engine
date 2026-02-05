@@ -562,6 +562,9 @@ class SimulationWorker:
                      progress = (controlled_systems / (total_systems * 0.75)) * 100
                      victory_progress[f] = min(progress, 100.0)
              stats['GLOBAL_VICTORY'] = victory_progress
+            
+             # Injection point for UI overlays
+             stats['turn'] = engine.turn_counter
 
         except Exception as e: 
             print(f"STATS ERROR: {e}")
