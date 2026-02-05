@@ -180,9 +180,6 @@ class DiplomacyManager:
         self.relation_service.apply_trade_drift(self) # INTEGRATION: Apply trade drift
         self.relation_service.decay_grudges()
         
-        # [PHASE 7] Strategic Convergence (Enemy of my Enemy)
-        self._apply_mutual_enemy_drift()
-        
         for f1 in self.factions:
             # Passive Exhaustion Gain for Active Wars
             if f1 in self.war_exhaustion:
@@ -216,13 +213,8 @@ class DiplomacyManager:
                     # Minor annoyances (-5 to -24) should decay naturally or stagnate, not spiral to war.
                     if rel < -25: self.relation_service.drift_relation(f1, f2, -1)
                     
-                    # [PHASE 7] Regression to Mean vs Alignment/Strategic Interest
-                    # 1. Ideological Allies (Alignment Drift > 0)
-                    # 2. Strategic Allies (Shared Mutual Enemies)
-                    has_mutual_enemy = len(self.get_enemies(f1).intersection(self.get_enemies(f2))) > 0
-                    
-                    # Only regress positive relations if NOT natural or strategic allies
-                    if rel > 0 and alignment_drift <= 0 and not has_mutual_enemy: 
+                    # Only regress positive relations if NOT natural allies
+                    if rel > 0 and alignment_drift <= 0: 
                          self.relation_service.drift_relation(f1, f2, -1)
             
                 # Logic for forming new treaties (Alliance/Trade)
@@ -721,6 +713,7 @@ class DiplomacyManager:
         """
         # 1. Alignment Drift
         self.relation_service.apply_ideological_drift()
+        
         # 2. Random Global Events (Flavor)
         if random.random() < 0.02: # 2% chance per turn
              event = random.choice([
@@ -729,37 +722,3 @@ class DiplomacyManager:
                  ("Xenos Incursion", 5) # Threat unites
              ])
              self.relation_service.apply_global_event_drift(event[0], event[1])
-
-    def _apply_mutual_enemy_drift(self):
-        """
-        [PHASE 7] Applies relation bonuses to factions that share common enemies.
-        'The enemy of my enemy is my friend'.
-        Cap: +40 (Cautious Trust).
-        """
-        for f1 in self.factions:
-            enemies1 = self.get_enemies(f1) # Uses O(1) matrix
-            if not enemies1: continue
-            
-            for f2 in self.factions:
-                if f1 >= f2: continue # Unique pairs, skip self
-                
-                # If they are already at war, the drift doesn't make them friends 
-                # (unless they also share a bigger threat? No, stay simple)
-                if f2 in enemies1: continue
-                
-                enemies2 = self.get_enemies(f2)
-                if not enemies2: continue
-                
-                # Find mutual enemies (Intersection)
-                mutual = enemies1.intersection(enemies2)
-                if mutual:
-                    current_rel = self.get_relation(f1, f2)
-                    if current_rel < 40:
-                        # Bonus: +1.0 per turn per mutual enemy
-                        # modify_relation is symmetric
-                        self.modify_relation(f1, f2, len(mutual))
-                        
-                        # Occasional logging for verification
-                        if self.engine and self.engine.turn_counter % 10 == 0:
-                            if self.engine.logger and random.random() < 0.1:
-                                self.engine.logger.diplomacy(f"[STRATEGY] {f1} and {f2} relations improving due to {len(mutual)} mutual enemies: {list(mutual)}")

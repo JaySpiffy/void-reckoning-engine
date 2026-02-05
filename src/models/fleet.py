@@ -966,10 +966,6 @@ class Fleet:
                 # Arrived at Next Node
                 self.current_node = next_node
                 self.arrived_this_turn = True # Phase 16.5: Mark as Attacker if battle occurs
-                
-                # [Optimization] Invalidate spatial indices upon arrival
-                if engine and hasattr(engine, 'battle_manager'):
-                     engine.battle_manager.mark_indices_dirty()
                 self.route.pop(0) # Remove visited
                 
                 # Update High-Level Location

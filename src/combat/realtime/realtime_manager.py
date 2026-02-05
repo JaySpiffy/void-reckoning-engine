@@ -2,6 +2,20 @@ import math
 import random
 from typing import Any, List, Optional
 
+# [PERF R18] Module-level imports (avoid per-tick import overhead)
+from src.combat.real_time.steering_manager import SteeringManager
+from src.combat.real_time.morale_manager import MoraleManager
+from src.managers.combat.suppression_manager import SuppressionManager
+from src.combat.tactical.target_selector import TargetSelector
+from src.combat.combat_phases import AbilityPhase, OrbitalSupportPhase
+from src.models.unit import Component
+from src.core.balance import UNIT_XP_AWARD_SURVIVAL_SEC, UNIT_XP_AWARD_DAMAGE_RATIO, UNIT_XP_AWARD_KILL
+
+# [PERF R19] Cached singleton instances
+_suppression_manager = SuppressionManager()
+_ability_phase = AbilityPhase()
+_orbital_support_phase = OrbitalSupportPhase()
+
 class RealTimeManager:
     """
     Manages real-time combat updates (Phase 4).
@@ -21,13 +35,8 @@ class RealTimeManager:
              battle_state._take_snapshot()
              battle_state.last_snapshot_time = battle_state.total_sim_time
 
-        from src.combat.real_time.steering_manager import SteeringManager
-        from src.combat.real_time.morale_manager import MoraleManager
-        from src.managers.combat.suppression_manager import SuppressionManager
-        from src.combat.tactical.target_selector import TargetSelector
-        from src.combat.combat_phases import AbilityPhase, OrbitalSupportPhase
-        from src.models.unit import Component
-
+        grid = battle_state.grid
+        armies_dict = battle_state.armies_dict
         grid = battle_state.grid
         armies_dict = battle_state.armies_dict
         
@@ -38,10 +47,30 @@ class RealTimeManager:
                  for e in form.entities:
                      unit_formation_map[e] = form
 
+        # [PERF R20] Pre-calculate enemy data once per tick (O(N) instead of O(N^2))
+        active_factions = battle_state.active_factions
+        enemies_by_faction = {f: [] for f in armies_dict}
+        for f in active_factions:
+            for ef in active_factions:
+                if ef != f:
+                    enemies_by_faction[f].extend([e for e in armies_dict.get(ef, []) if e.is_alive()])
+        
+        # [PERF R20] Calculate faction centroids (motion targets) once per tick
+        faction_centroids = {}
+        for f in active_factions:
+            enemies = enemies_by_faction[f]
+            if enemies:
+                active_enemies = [e for e in enemies if getattr(e, 'morale_state', 'Steady') != "Routing"]
+                motion_targets = active_enemies if active_enemies else enemies
+                if motion_targets:
+                    tx = sum(e.grid_x for e in motion_targets) / len(motion_targets)
+                    ty = sum(e.grid_y for e in motion_targets) / len(motion_targets)
+                    faction_centroids[f] = (tx, ty)
+
         # 2. Context Preparation (Moved up to support XP awards)
         ab_context = {
             "active_units": [(u, f_name) for f_name, units in armies_dict.items() for u in units if u.is_alive()],
-            "enemies_by_faction": {f: [] for f in armies_dict}, 
+            "enemies_by_faction": enemies_by_faction, 
             "faction_doctrines": battle_state.faction_doctrines,
             "grid": grid,
             "mechanics_engine": battle_state.mechanics_engine,
@@ -54,6 +83,13 @@ class RealTimeManager:
         
         # 1. Update Positions via Steering
         for f_name, units in armies_dict.items():
+            if not units: continue
+            
+            # [PERF R19] Suppression Decay (once per faction per tick)
+            _suppression_manager.process_decay(units)
+            
+            centroid = faction_centroids.get(f_name)
+
             for u in units:
                 if not u.is_alive(): continue
                 
@@ -62,9 +98,6 @@ class RealTimeManager:
                 if grid and hasattr(grid, 'spatial_index') and grid.spatial_index:
                     near = grid.query_units_in_range(u.grid_x, u.grid_y, radius=10) # 10 is arbitrary neighbor radius
                     neighbors = [n for n in near if n is not u]
-                
-                # Suppression Decay
-                SuppressionManager().process_decay(units)
                 
                 prev_morale = getattr(u, 'morale_state', 'Steady')
                 MoraleManager.update_unit_morale(u, dt, units, grid)
@@ -80,7 +113,7 @@ class RealTimeManager:
                     doctrine = battle_state.faction_doctrines.get(f_name, "CHARGE")
                 
                 # Victory Point / Objective Logic
-                enemy_factions = [ef for ef in battle_state.active_factions if ef != f_name]
+                enemy_factions = [ef for ef in active_factions if ef != f_name]
                 my_vps = battle_state.victory_points.get(f_name, 0.0)
                 other_vps = [battle_state.victory_points.get(ef, 0.0) for ef in enemy_factions]
                 is_losing = any(my_vps < (ovp - 5) for ovp in other_vps)
@@ -93,16 +126,8 @@ class RealTimeManager:
                 
                 if capture_target:
                     target_pos = (capture_target.x, capture_target.y)
-                elif enemy_factions:
-                    enemies = []
-                    for ef in enemy_factions:
-                        enemies.extend([e for e in armies_dict.get(ef, []) if e.is_alive()])
-                    active_enemies = [e for e in enemies if getattr(e, 'morale_state', 'Steady') != "Routing"]
-                    motion_targets = active_enemies if active_enemies else enemies
-                    if motion_targets:
-                         tx = sum(e.grid_x for e in motion_targets) / len(motion_targets)
-                         ty = sum(e.grid_y for e in motion_targets) / len(motion_targets)
-                         target_pos = (tx, ty)
+                else:
+                    target_pos = centroid
 
                 obstacles = getattr(grid, 'obstacles', [])
                 dx, dy = SteeringManager.calculate_combined_steering(u, neighbors, target_pos, obstacles, doctrine=doctrine)
@@ -111,7 +136,9 @@ class RealTimeManager:
                 speed_mult = 1.0
                 env_mods = grid.get_modifiers_at(u.grid_x, u.grid_y)
                 speed_mult *= env_mods.get("speed_mult", 1.0)
-                supp_mods = SuppressionManager().get_suppression_modifiers(u)
+                
+                # [PERF R19] Cached Suppression mods
+                supp_mods = _suppression_manager.get_suppression_modifiers(u)
                 speed_mult *= supp_mods.get("speed_mult", 1.0)
                 
                 # Formation Speed Modifiers
@@ -133,20 +160,17 @@ class RealTimeManager:
                     grid.update_unit_position(u, u.grid_x, u.grid_y)
                 
                 # Award survival XP (approx 1 XP per second of active combat)
-                from src.core.balance import UNIT_XP_AWARD_SURVIVAL_SEC
                 u.gain_xp(UNIT_XP_AWARD_SURVIVAL_SEC * dt, ab_context)
 
-        # 2. Abilities (Re-build enemies_by_faction)
-        enemies_map = {}
-        for f, units in armies_dict.items():
-             enemies_map[f] = []
-             for ef in battle_state.active_factions:
-                  if ef != f: enemies_map[f].extend(armies_dict[ef])
-        ab_context["enemies_by_faction"] = enemies_map
-        AbilityPhase().execute(ab_context)
+        # 2. Abilities
+        ab_context["enemies_by_faction"] = enemies_by_faction
+        _ability_phase.execute(ab_context)
 
         # 3. Shooting
         for f_name, units in armies_dict.items():
+            enemies = enemies_by_faction.get(f_name, [])
+            if not enemies: continue
+
             for u in units:
                 if not u.is_alive(): continue
                 if getattr(u, 'morale_state', 'Steady') == "Routing": continue
@@ -155,17 +179,11 @@ class RealTimeManager:
                 if u._shooting_cooldown > 0:
                     u._shooting_cooldown -= dt
                     continue
-                    
-                enemy_factions = [ef for ef in battle_state.active_factions if ef != f_name]
-                if not enemy_factions: continue
-                
-                all_enemies = []
-                for ef in enemy_factions: all_enemies.extend([e for e in armies_dict.get(ef, []) if e.is_alive()])
                 
                 doctrine = getattr(u, 'tactical_directive', "STANDARD")
                 if doctrine == "STANDARD": doctrine = battle_state.faction_doctrines.get(f_name, "CHARGE")
                 
-                target_unit, target_comp = TargetSelector.select_target_by_doctrine(u, all_enemies, doctrine, grid)
+                target_unit, target_comp = TargetSelector.select_target_by_doctrine(u, enemies, doctrine, grid)
                 
                 if target_unit:
                     dist = grid.get_distance(u, target_unit)
@@ -219,8 +237,7 @@ class RealTimeManager:
                             dmg_s, dmg_h, is_destroyed, _ = target_unit.take_damage(final_dmg, target_component=target_comp)
                             damage_dealt_total += (dmg_s + dmg_h)
                             
-                            # Award XP
-                            from src.core.balance import UNIT_XP_AWARD_DAMAGE_RATIO, UNIT_XP_AWARD_KILL
+                            # [PERF R18] Award XP using module-level constants
                             u.gain_xp((dmg_s + dmg_h) * UNIT_XP_AWARD_DAMAGE_RATIO, ab_context)
                             if is_destroyed:
                                 u.gain_xp(UNIT_XP_AWARD_KILL, ab_context)
@@ -230,7 +247,9 @@ class RealTimeManager:
                             if f_name in battle_state.battle_stats:
                                 battle_state.battle_stats[f_name]["total_damage_dealt"] += damage_dealt_total
                             battle_state.log_event("shooting", u.name, target_unit.name, f"Salvo hit for {int(damage_dealt_total)} DMG")
-                            SuppressionManager().apply_suppression(target_unit, damage_dealt_total * 0.5)
+                            
+                            # [PERF R19] Cached Suppression
+                            _suppression_manager.apply_suppression(target_unit, damage_dealt_total * 0.5)
 
         # 4. Ability Cooldowns
         for f_name, units in armies_dict.items():
@@ -265,4 +284,4 @@ class RealTimeManager:
             battle_state._orbital_cooldown -= dt
         else:
             battle_state._orbital_cooldown = 10.0
-            OrbitalSupportPhase().execute({"manager": battle_state, "detailed_log_file": None})
+            _orbital_support_phase.execute({"manager": battle_state, "detailed_log_file": None})

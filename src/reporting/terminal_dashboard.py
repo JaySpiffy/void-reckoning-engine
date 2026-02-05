@@ -582,11 +582,10 @@ class TerminalDashboard:
         alerts = stats.get('GLOBAL_ALERT_COUNTS', {"CRITICAL": 0, "WARNING": 0, "INFO": 0})
         
         width = 76
-        turn = stats.get('turn', 0)
-        title_raw = f" GLOBAL GALACTIC SUMMARY - Turn {turn} "
+        title_raw = " GLOBAL GALACTIC SUMMARY "
         side_border = (width - len(title_raw)) // 2
         
-        buffer.append(f"     ╔{'═' * side_border}{BOLD}{title_raw}{RESET}{'═' * (width - side_border - len(title_raw))}╗")
+        buffer.append(f"     ╔{'═' * side_border}{BOLD} GLOBAL GALACTIC SUMMARY {RESET}{'═' * (width - side_border - len(title_raw))}╗")
         
         # Line 1: Planets
         # Planets: 300 total | 0 ntl (0%) | 16 cont (5%) | 284 held (95%)
@@ -712,8 +711,7 @@ class TerminalDashboard:
     def _render_alerts_overlay(self, stats: dict, buffer: list):
         """Displays recent critical and warning alerts."""
         alerts = stats.get('GLOBAL_ALERTS', [])
-        turn = stats.get('turn', 0)
-        buffer.append(f"\n     {BOLD}{RED}╔════════════ ALERT HISTORY - Turn {turn:<3} ════════════╗{RESET}")
+        buffer.append(f"\n     {BOLD}{RED}╔════════════ CRITICAL ALERT HISTORY ════════════╗{RESET}")
         
         if not alerts:
              buffer.append(f"     ║ {DIM}No alerts detected in current log window.{RESET}       ║")
@@ -732,11 +730,11 @@ class TerminalDashboard:
     def _render_map_overlay(self, stats: dict, buffer: list):
         """Displays a premium Tactical HUD Galaxy Map."""
         map_data = stats.get('GLOBAL_MAP_DATA', [])
-        turn = stats.get('turn', 0)
         width = 72
-        title = f" GALAXY SCANNER - TURN {turn} "
+        title = " GALAXY TACTICAL SCANNER "
+        side_border = (width - len(title)) // 2
         
-        buffer.append(f"\n     {BLUE}╔═══════════════════════[ {BOLD}{WHITE}{title}{RESET}{BLUE} ]═══════════════════════╗{RESET}")
+        buffer.append(f"\n     {BLUE}╔═══════════════════════[ {BOLD}{WHITE}SDR-9 SCANNER{RESET}{BLUE} ]═══════════════════════╗{RESET}")
         buffer.append(f"     {BLUE}║{RESET}  {DIM}Y-AXIS{RESET}{' ' * (width-10)}{BLUE}║{RESET}")
         
         if not map_data:

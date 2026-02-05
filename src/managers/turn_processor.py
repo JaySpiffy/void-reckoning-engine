@@ -203,12 +203,8 @@ class TurnProcessor:
         self._execute_mechanics_hook(f_name, "on_turn_start", context)
         
         # [TOTAL_WAR_STYLE] Army Turn Start Reset
-        # Use BattleManager's index to only touch relevant armies
-        # Note: If BattleManager hasn't indexed yet, we force a build
-        self.engine.battle_manager._update_presence_indices()
-        
-        for loc, armies in self.engine.battle_manager._armies_by_location.items():
-            for ag in armies:
+        for p in self.engine.all_planets:
+            for ag in p.armies:
                 if ag.faction == f_name and not ag.is_destroyed:
                     ag.reset_turn_flags()
 
@@ -220,7 +216,7 @@ class TurnProcessor:
         # Queue processing happens at START of turn so player sees new units/buildings immediately.
         
         # 0.1 Planet Production
-        faction_planets = self.engine.planets_by_faction.get(f_name, [])
+        faction_planets = [p for p in self.engine.all_planets if p.owner == f_name]
         for p in faction_planets:
             p.process_queue(self.engine)
             
@@ -247,9 +243,8 @@ class TurnProcessor:
                 if active: regen_total += amount
         
         # Phase 106: Regenerate ground armies on planets (Agnostic)
-        # Use BattleManager's index instead of scanning all planets
-        for loc, armies in self.engine.battle_manager._armies_by_location.items():
-            for ag in armies:
+        for p in self.engine.all_planets:
+            for ag in p.armies:
                 if ag.faction == f_name and not ag.is_destroyed:
                     for u in ag.units:
                         active, amount = u.regenerate_infantry()

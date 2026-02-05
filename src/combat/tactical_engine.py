@@ -343,7 +343,7 @@ def process_battle_salvage(state, factions_dict=None):
     """
     SalvageProcessor.process_battle_salvage(state, factions_dict)
 
-def resolve_real_time_combat(armies_dict, silent=False, max_time=60.0, dt=0.2, 
+def resolve_real_time_combat(armies_dict, silent=False, max_time=60.0, dt=0.5, 
                              json_log_file=None, universe_rules=None, 
                              factions_dict=None, mechanics_engine=None, combat_domain=None):
     """

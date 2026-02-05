@@ -49,7 +49,6 @@ class BattleManager:
         self._army_index = {} # Phase 1 Optimization: O(1) Army Lookup
         self._presence_index = {} # Phase 2 Optimization: O(1) Faction-at-Location index
         self._location_factions = {} # Map location -> set of faction names
-        self._presence_indices_dirty = True
         
         # Seeded RNG for non-battle operations (Invasions)
         self._manager_rng = random.Random()
@@ -138,14 +137,8 @@ class BattleManager:
         """Legacy wrapper, likely not used in sequential."""
         pass
 
-    def mark_indices_dirty(self):
-        """Invalidates spatial indices."""
-        self._presence_indices_dirty = True
-
-    def _update_presence_indices(self, force: bool = False):
+    def _update_presence_indices(self):
         """Rebuilds location-based indices for fast lookup."""
-        if not force and not self._presence_indices_dirty:
-            return
         self._fleets_by_location = {}
         for f in self.context.get_all_fleets():
             if not f.is_destroyed:
@@ -187,8 +180,6 @@ class BattleManager:
             for ag in armies:
                 self._location_factions[loc].add(ag.faction)
                 self._presence_index[(ag.faction, loc)] = True
-        
-        self._presence_indices_dirty = False
 
     def get_factions_at(self, location: Any) -> Set[str]:
         """O(1) lookup for all factions at a location."""
@@ -1151,9 +1142,6 @@ class BattleManager:
         if self.context.telemetry:
             self._log_battle_decisiveness(battle, winner, faction_costs, total_casualties_cost, planet)
             self._log_doctrine_performance(battle)
-            
-        # [Optimization] Invalidate spatial indices after units are destroyed/changed
-        self.mark_indices_dirty()
 
     def _log_battle_decisiveness(self, battle, winner, faction_costs, total_lost_value, planet):
         """Calculates and logs battle decisiveness (Metric #3)."""
@@ -1301,19 +1289,36 @@ class BattleManager:
         # Optimization: Update indices ONCE per phase instead of per node
         self._update_presence_indices()
         
-        # Optimization: Instead of scanning ALL planets, scan only locations with armies
-        target_locations = list(self._armies_by_location.keys())
-        
-        for loc in target_locations:
-            # Filter Logic: Skip location if faction not present
+        for p in self.context.all_planets:
+            # Filter Logic: Skip planet if faction not present
             if faction_filter:
-                if not self.is_faction_at(faction_filter, loc):
-                    continue
-
-            self.resolve_battles_at(loc, update_indices=False, force_domain="ground")
-            if loc in self.active_battles:
-                battles_started += 1
+                has_presence = False
+                for ag in p.armies:
+                     if ag.faction == faction_filter:
+                         has_presence = True
+                         break
                 
+                # Check provinces too if main list empty
+                if not has_presence and hasattr(p, 'provinces'):
+                    for prov in p.provinces:
+                         for ag in prov.armies:
+                             if ag.faction == faction_filter:
+                                 has_presence = True
+                                 break
+                         if has_presence: break
+                
+                if not has_presence: continue
+
+            if hasattr(p, 'provinces') and p.provinces:
+                for node in p.provinces:
+                    self.resolve_battles_at(node, update_indices=False, force_domain="ground")
+                    if node in self.active_battles:
+                        battles_started += 1
+            else:
+                # Abstract planet fallback (legacy)
+                self.resolve_battles_at(p, update_indices=False, force_domain="ground")
+                if p in self.active_battles:
+                    battles_started += 1
         return battles_started
 
     @profile_method
