@@ -202,6 +202,75 @@ class ArmyGroup:
         self.has_retreated_this_turn = True
         return True
 
+    def found_city(self, engine):
+        """
+        [FEATURE R23] Transforms the current hex into a Province Capital (City).
+        Consumes units as settlers.
+        """
+        if not self.location or not hasattr(self.location, 'can_found_city'):
+            return False, "Invalid location"
+            
+        if not self.location.can_found_city():
+            return False, f"Terrain {getattr(self.location, 'terrain_type', 'Unknown')} is unsuitable for a city."
+
+        if not self.units:
+            return False, "No units to settle."
+
+        # 1. Determine Settlement Cost (Abstracted population)
+        # Check for Settler trait (halves cost)
+        has_settlers = any("Settler" in getattr(u, 'traits', []) for u in self.units)
+        
+        # Base: Consumes up to 10 units or 50% of the army
+        # Settler: Consumes up to 5 units or 25% of the army
+        base_rate = 0.25 if has_settlers else 0.5
+        base_min = 5 if has_settlers else 10
+        
+        target_consumption = max(base_min, int(len(self.units) * base_rate))
+        actual_consumed = 0
+        
+        # Priority: Pioneers/Settlers move to the front of consumption list if we add them later
+        # For now, just pop from the end
+        while actual_consumed < target_consumption and self.units:
+            self.units.pop()
+            actual_consumed += 1
+            
+        # 2. Transform the Hex
+        self.location.terrain_type = "City"
+        self.location.type = "ProvinceCapital"
+        self.location.building_slots = 5
+        self.location.max_tier = 4
+        self.location.name = f"Colony {self.location.q},{self.location.r}"
+        
+        # 3. Update Planet/Economy
+        planet = self.location.metadata.get("object")
+        if planet and hasattr(planet, 'recalc_stats'):
+            planet.recalc_stats()
+            planet.update_economy_cache()
+            
+        # 4. Cleanup Army
+        if not self.units:
+            self.is_destroyed = True
+            if hasattr(self.location, 'armies') and self in self.location.armies:
+                self.location.armies.remove(self)
+        
+        # 5. Telemetry
+        if engine and getattr(engine, 'telemetry', None):
+            from src.reporting.telemetry import EventCategory
+            engine.telemetry.log_event(
+                EventCategory.CONSTRUCTION,
+                "city_founded",
+                {
+                    "planet": planet.name if planet else "Unknown",
+                    "hex": f"{self.location.q},{self.location.r}",
+                    "consumed_units": actual_consumed,
+                    "army_id": self.id
+                },
+                turn=getattr(engine, 'turn_counter', 0),
+                faction=self.faction
+            )
+            
+        return True, f"City founded on {self.location.id}. Consumed {actual_consumed} units."
+
     @property
     def power(self):
         return sum(u.strength for u in self.units)

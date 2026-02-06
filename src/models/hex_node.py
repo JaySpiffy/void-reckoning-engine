@@ -22,7 +22,19 @@ class HexNode(GraphNode):
         
         # Gameplay State
         self.resource_yield = {}
+        self.building_slots = 0 # Default, overridden by Planet generation or Founding
         
+    def can_found_city(self) -> bool:
+        """
+        Determines if this hex is suitable for a new urban center.
+        Criteria: Must be a Province (Plains/Forest/Hills) and NOT already a city/ruin/wasteland.
+        """
+        if self.terrain_type in ["City", "Ruins", "Water", "Mountain"]:
+            return False
+        if self.type != "Province":
+            return False # Only "open" wilderness can be settled
+        return True
+
     @property
     def position(self) -> Tuple[float, float]:
         """Override standard position with hex pixel calculation."""

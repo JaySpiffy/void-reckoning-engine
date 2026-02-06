@@ -617,19 +617,20 @@ class Planet:
                 node.type = "Capital"
                 node.terrain_type = "City"
                 node.name = f"{self.name} Prime"
-                node.building_slots = 6
+                node.building_slots = 7
                 node.max_tier = 5
             elif dist <= 1:
                 node.type = "ProvinceCapital"
                 node.terrain_type = "City"
                 node.name = f"District {i}"
-                node.max_tier = 3
-                node.building_slots = 4
+                node.max_tier = 4
+                node.building_slots = 5
             elif dist >= radius:
                 node.type = "LandingZone"
                 node.terrain_type = "Wasteland"
                 node.name = f"Drop Site {h.q},{h.r}"
-                node.building_slots = 1
+                node.building_slots = 3
+                node.max_tier = 2
             else:
                 # Mid-range: Mix of Plains, Ruins, Forests, Mountains, Water
                 rng = random.random()
