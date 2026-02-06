@@ -8,12 +8,26 @@ class TargetSelector:
     
     @staticmethod
     @profile_method
-    def select_target_by_doctrine(attacker, enemies: List, doctrine: str, grid) -> Tuple[Optional[object], Optional[object]]:
+    def select_target_by_doctrine(attacker, enemies: List, doctrine: str, grid, sim_time: float = 0.0) -> Tuple[Optional[object], Optional[object]]:
         """
         Selects the best target and specific hardpoint based on combat doctrine.
         Returns: (target_unit, target_component)
         """
         if not enemies: return None, None
+        
+        # [PERF] Target Caching
+        # Only re-evaluate target every 5-10 ticks (approx 0.5s - 1.0s)
+        # unless current target is dead or out of range.
+        current_time = sim_time
+        if not hasattr(attacker, '_target_cache'):
+            attacker._target_cache = None
+            attacker._target_ttl = 0
+            
+        if attacker._target_cache and attacker._target_ttl > current_time:
+            # Verify cached target is still valid
+            t = attacker._target_cache
+            if t.is_alive() and grid.get_distance(attacker, t) <= 1200: # Slightly larger than max range
+                return t, getattr(attacker, '_target_comp_cache', None)
         
         # [PHASE 17.8] Deprioritize Routing Units
         active_enemies = [e for e in enemies if getattr(e, 'morale_state', 'Steady') != "Routing"]
@@ -122,5 +136,10 @@ class TargetSelector:
                  if "Anti-Ship" not in attacker_class:
                       # If we haven't found a component (like a hardpoint) to hit, we're essentially splash damaging shields
                       pass 
+
+        # [PERF] Cache result
+        attacker._target_cache = target_unit
+        attacker._target_comp_cache = target_component
+        attacker._target_ttl = sim_time + 1.0 # Cache for 1 second
 
         return target_unit, target_component

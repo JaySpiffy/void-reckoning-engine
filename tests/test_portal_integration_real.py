@@ -3,7 +3,7 @@ import time
 import multiprocessing
 import queue
 from unittest.mock import MagicMock, patch
-from src.engine.multi_universe_runner import MultiUniverseRunner
+from src.engine.runner import MultiUniverseRunner
 
 class TestPortalIntegrationReal:
     @pytest.fixture(autouse=True)

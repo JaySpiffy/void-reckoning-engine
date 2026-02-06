@@ -14,7 +14,7 @@ from src.engine.runner.simulation_worker import SimulationWorker, worker_init
 from src.engine.runner.progress_dashboard import ProgressDashboard
 from src.engine.runner.results_aggregator import ResultsAggregator
 
-from src.reporting.indexer import ReportIndexer
+from src.reporting.indexing import ReportIndexer
 
 def load_config_from_file(path=None):
     if not path:

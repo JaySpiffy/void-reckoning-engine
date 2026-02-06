@@ -1,4 +1,5 @@
 import random
+import os
 from typing import Dict, List, Optional, Any, TYPE_CHECKING
 from src.core.universe_data import UniverseDataManager
 
@@ -18,7 +19,22 @@ class RelationService:
         self.relations: Dict[str, Dict[str, int]] = {} # {FactionA: {FactionB: Value}}
         self.grudges: Dict[str, Dict[str, Dict[str, Any]]] = {} # {FactionA: {FactionB: {value, reason, decay}}}
         
+        # Performance: Trace logging to file instead of console
+        self.trace_file = None
+        if engine and hasattr(engine, 'reports_dir'):
+            log_dir = os.path.join(engine.reports_dir, "logs")
+            os.makedirs(log_dir, exist_ok=True)
+            self.trace_file = os.path.join(log_dir, "diplomacy_trace.txt")
+            
         self.initialize_relations()
+
+    def _log_trace(self, message: str):
+        if self.trace_file:
+            try:
+                with open(self.trace_file, "a", encoding='utf-8') as f:
+                    f.write(message + "\n")
+            except Exception:
+                pass
 
     def initialize_relations(self):
         """Initializes the relation matrix with historical biases and random drift."""
@@ -62,27 +78,27 @@ class RelationService:
             faction_obj = self.engine.get_faction(f1)
             if faction_obj and hasattr(faction_obj, "known_factions"):
                 if f2 not in faction_obj.known_factions:
-                    print(f"DEBUG REL: FOW blocking {f1}->{f2}")
+                    self._log_trace(f"DEBUG REL: FOW blocking {f1}->{f2}")
                     return 0 # Perceived as Neutral until First Contact
 
         if f1 not in self.relations or f2 not in self.relations[f1]: 
             return 0
         
         base = self.relations[f1][f2]
-        print(f"DEBUG REL: {f1}->{f2} Base: {base}")
+        self._log_trace(f"DEBUG REL: {f1}->{f2} Base: {base}")
         return base
 
     def drift_relation(self, f1: str, f2: str, amount: int):
         """Helper for process_turn to apply drift."""
-        print(f"DEBUG: Drift {f1}->{f2} by {amount}. Current Matrix Keys: {list(self.relations.keys())}")
+        self._log_trace(f"DEBUG: Drift {f1}->{f2} by {amount}. Current Matrix Keys: {list(self.relations.keys())}")
         if f1 in self.relations and f2 in self.relations[f1]:
             current = self.relations[f1][f2]
-            print(f"  Current: {current}")
+            self._log_trace(f"  Current: {current}")
             if amount > 0: # Drift towards positive or just adjustment
                  self.relations[f1][f2] = min(100, current + amount)
             elif amount < 0:
                  self.relations[f1][f2] = max(-100, current + amount)
-            print(f"  New: {self.relations[f1][f2]}")
+            self._log_trace(f"  New: {self.relations[f1][f2]}")
 
     def modify_relation(self, f1: str, f2: str, amount: int, symmetric: bool = True):
         """Modifies the base relation between factions."""
@@ -136,19 +152,6 @@ class RelationService:
         # For now, we'll implement a method that takes treaty context.
         pass
 
-    def drift_relation(self, f1: str, f2: str, amount: int):
-        """Helper for process_turn to apply drift."""
-        print(f"DEBUG: Drift {f1}->{f2} by {amount}. Current Matrix Keys: {list(self.relations.keys())}")
-        if f1 in self.relations and f2 in self.relations[f1]:
-            current = self.relations[f1][f2]
-            print(f"  Current: {current}")
-            if amount > 0: # Drift towards positive or just adjustment
-                 self.relations[f1][f2] = min(100, current + amount)
-            elif amount < 0:
-                 self.relations[f1][f2] = max(-100, current + amount)
-            print(f"  New: {self.relations[f1][f2]}")
-        # else:
-            # print(f"  Keys missing! {f1} in {self.relations}? {f1 in self.relations}")
 
     def decay_grudges(self):
         """Time heals wounds (gradually)."""

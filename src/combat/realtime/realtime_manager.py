@@ -30,8 +30,14 @@ class RealTimeManager:
         """
         battle_state.total_sim_time += dt
         
-        # [PHASE 18] Periodic Snapshots
-        if battle_state.total_sim_time - battle_state.last_snapshot_time >= 2.0:
+        # [PHASE 18] Periodic Snapshots (Throttled if enabled)
+        snap_interval = 2.0
+        if getattr(battle_state, 'mechanics_engine', None) and hasattr(battle_state.mechanics_engine, 'config'):
+            if getattr(battle_state.mechanics_engine.config, 'throttle_snapshots', False):
+                # Throttle by 2.5x in campaign runs
+                snap_interval = 5.0
+        
+        if battle_state.total_sim_time - battle_state.last_snapshot_time >= snap_interval:
              battle_state._take_snapshot()
              battle_state.last_snapshot_time = battle_state.total_sim_time
 
@@ -183,7 +189,7 @@ class RealTimeManager:
                 doctrine = getattr(u, 'tactical_directive', "STANDARD")
                 if doctrine == "STANDARD": doctrine = battle_state.faction_doctrines.get(f_name, "CHARGE")
                 
-                target_unit, target_comp = TargetSelector.select_target_by_doctrine(u, enemies, doctrine, grid)
+                target_unit, target_comp = TargetSelector.select_target_by_doctrine(u, enemies, doctrine, grid, sim_time=battle_state.total_sim_time)
                 
                 if target_unit:
                     dist = grid.get_distance(u, target_unit)

@@ -94,7 +94,7 @@ def run_campaign_simulation(turns=50, planets=40, game_config=None, universe_nam
     
     # FIX: Initialize Run-Scoped ReportIndexer for Live DB Flushing
     # This places campaign_data.db INSIDE the run folder
-    from src.reporting.indexer import ReportIndexer
+    from src.reporting.indexing import ReportIndexer
     if hasattr(organizer, 'run_path'):
         db_path = os.path.join(organizer.run_path, "campaign_data.db")
         print(f"[SIM] Initializing Run-Scoped DB: {db_path}")

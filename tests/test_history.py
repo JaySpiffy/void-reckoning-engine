@@ -5,7 +5,7 @@ import json
 # Add src to path
 sys.path.append(os.getcwd())
 
-from src.reporting.indexer import ReportIndexer
+from src.reporting.indexing import ReportIndexer
 from src.core.config import REPORTS_DIR
 
 def check_history():

@@ -32,6 +32,7 @@ class GameConfig(BaseModel):
     performance_logging_level: str = "summary"
     performance_log_interval: int = 10
     performance_profile_methods: bool = True
+    throttle_snapshots: bool = False # [PERF] Option to throttle frame snapshots in large sims
     
     raw_config: Dict[str, Any] = Field(default_factory=dict)
     
@@ -88,6 +89,7 @@ class GameConfig(BaseModel):
             if "logging_level" in p: params["performance_logging_level"] = p["logging_level"]
             if "log_interval" in p: params["performance_log_interval"] = p["log_interval"]
             if "profile_methods" in p: params["performance_profile_methods"] = p["profile_methods"]
+            if "throttle_snapshots" in p: params["throttle_snapshots"] = p["throttle_snapshots"]
             
         # PPS Sandbox Mode Configuration
         if "sandbox_mode" in data:

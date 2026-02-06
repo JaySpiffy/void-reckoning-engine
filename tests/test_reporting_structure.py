@@ -65,7 +65,7 @@ def test_reporting_structure():
             
         # KNOWN ISSUE: Test expects specific faction names but engine loads different ones
         # This is a production code issue - test uses hardcoded faction names
-        # Factions Pre-creation - use actual faction names from eternal_crusade universe
+        # Factions Pre-creation - use actual faction names from void_reckoning universe
         for f_name in ["Zealot_Legions", "Ancient_Guardians"]: # Sample check using actual factions
             f_path = os.path.join(turn_path, "factions", f_name)
             assert os.path.exists(f_path), f"Faction {f_name} folder was not pre-created in Turn {t}"

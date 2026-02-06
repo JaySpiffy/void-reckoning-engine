@@ -84,6 +84,10 @@ class StrategicAI:
         self.strategic_memory = StrategicMemory()
         self.composition_optimizer = CompositionOptimizer(self)
         
+        # New Feature: Posture System V3
+        from src.ai.posture_system import PostureManager
+        self.posture_manager = PostureManager(self)
+        
         # Telemetry: Alliance Stats
         self.alliance_stats = {} # {alliance_id: {shared_intel: 0, coordinated_attacks: 0}}
         
@@ -764,10 +768,11 @@ class StrategicAI:
         return self.tf_manager.initiate_staged_withdrawal(task_force, current_location, personality)
              
     def evaluate_strategic_posture(self, faction_name: str, personality: FactionPersonality, plan: StrategicPlan):
-        """Check if we need to switch strategies (Expansion vs Consolidation)."""
-        return self.target_scoring.evaluate_strategic_posture(faction_name, personality, plan)
+        """Check if we need to switch strategies using the new PostureManager."""
+        return self.posture_manager.update_faction_posture(faction_name)
 
     def switch_strategy(self, faction_name: str, new_posture: str, personality: FactionPersonality):
+        """Legacy wrapper for backward compatibility, now deferred to posture_manager's internal logic if possible."""
         return self.target_scoring.switch_strategy(faction_name, new_posture, personality)
 
     def execute_fighting_retreat(self, task_force: TaskForce):

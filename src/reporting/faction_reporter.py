@@ -50,7 +50,7 @@ class FactionReporter:
                 batch_dir = getattr(self.engine.report_organizer, 'batch_dir', None)
                 if batch_dir:
                     db_path = os.path.join(batch_dir, "index.db")
-                    from src.reporting.indexer import ReportIndexer
+                    from src.reporting.indexing import ReportIndexer
                     from src.reporting.analytics_engine import AnalyticsEngine
                     
                     # We create a local indexer instance

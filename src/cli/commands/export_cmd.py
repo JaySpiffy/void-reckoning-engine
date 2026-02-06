@@ -30,7 +30,7 @@ class ExportCommand(BaseCommand):
         exp_analytics.add_argument("--webhook", help="Webhook URL for completion notification")
 
     def execute(self, args: argparse.Namespace) -> None:
-        from src.reporting.indexer import ReportIndexer
+        from src.reporting.indexing import ReportIndexer
         from src.reporting.analytics_engine import AnalyticsEngine
         from src.reporting.faction_reporter import FactionReporter
         import glob

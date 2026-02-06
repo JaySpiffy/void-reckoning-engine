@@ -10,8 +10,11 @@ from collections import defaultdict
 import psutil
 
 from src.managers.campaign_manager import CampaignEngine
+from src.models.unit import Unit
+from src.managers.fleet_queue_manager import FleetQueueManager
 from src.reporting.organizer import ReportOrganizer
-from src.reporting.indexer import ReportIndexer
+from src.reporting.indexing import ReportIndexer
+from src.reporting.telemetry import TelemetryCollector, EventCategory, VerbosityLevel
 
 # Global progress queue reference for worker processes
 progress_queue = None
@@ -48,6 +51,11 @@ class SimulationWorker:
         run_name = f"run_{run_id:03d}"
         universe_name = game_config.get("universe", "void_reckoning")
         
+        # Force silence logger console for worker to avoid flooding orchestrator
+        from src.utils.game_logging import GameLogger
+        logger_inst = GameLogger(use_file_logging=False)
+        logger_inst.console_verbose = False
+
         organizer = ReportOrganizer(os.path.dirname(batch_dir), batch_id, run_name, universe_name=universe_name)
         organizer.initialize_run(metadata=game_config)
 
@@ -89,38 +97,42 @@ class SimulationWorker:
             
             # Register Portals
             if progress_queue:
+                sys.stderr.write(f"DEBUG: [WORKER {run_id}] Preparing portals...\n"); sys.stderr.flush()
                 portals_serialized = [p.to_dict() for p in engine.galaxy_generator.portals] if hasattr(engine.galaxy_generator, 'portals') else []
                 if not portals_serialized and hasattr(engine, 'generator') and hasattr(engine.generator, 'portals'):
                     portals_serialized = [p.to_dict() for p in engine.generator.portals]
+                sys.stderr.write(f"DEBUG: [WORKER {run_id}] Sending GALAXY_READY...\n"); sys.stderr.flush()
                 progress_queue.put((run_id, 0, "GALAXY_READY", portals_serialized))
+                sys.stderr.write(f"DEBUG: [WORKER {run_id}] Sent GALAXY_READY.\n"); sys.stderr.flush()
 
                 if game_config.get("multi_universe_settings", {}).get("sync_turns"):
-                    import src.engine.multi_universe_runner as mur
-                    in_q = getattr(mur, '_incoming_fleet_q', None)
+                    sys.stderr.write(f"DEBUG: [WORKER {run_id}] Waiting for START_SIMULATION...\n"); sys.stderr.flush()
+                    fqm = FleetQueueManager.get_instance()
+                    in_q = fqm.incoming_q
                     if in_q:
                         while True:
                             try:
                                 cmd = in_q.get(timeout=0.5)
                                 if isinstance(cmd, dict) and cmd.get("action") == "START_SIMULATION":
                                     break
-                            except queue.Empty: # Use queue.Empty
+                            except queue.Empty:
                                 pass
                             time.sleep(0.5)
             
-            # Use local import for multi-universe to avoid circular imports?
-            # Or assume run_single_campaign_wrapped is running in a worker process where this is safe.
-            import src.engine.multi_universe_runner as mur
-            in_q = getattr(mur, '_incoming_fleet_q', None)
-            out_q = getattr(mur, '_outgoing_fleet_q', None)
+            fqm = FleetQueueManager.get_instance()
+            in_q = fqm.incoming_q
+            out_q = fqm.outgoing_q
             
             if progress_queue:
                  engine.set_fleet_queues(in_q, out_q, progress_queue)
             else:
                  engine.set_fleet_queues(in_q, out_q, None)
 
-            engine.spawn_start_fleets()
-            
-            winner = "Draw"
+            # SPAWN INITIAL FORCES
+            engine.spawn_start_fleets(num_fleets_per_faction=1)
+
+            # Execute Turns
+            winner = "Unknown"
             turns_taken = turns_per_run
             stats = {}
             
@@ -167,7 +179,7 @@ class SimulationWorker:
 
                      # SYNC BARRIER
                      if game_config.get("multi_universe_settings", {}).get("sync_turns"):
-                         sync_q = getattr(mur, '_incoming_fleet_q', None)
+                         sync_q = FleetQueueManager.get_instance().incoming_q
                          if sync_q:
                              if progress_queue:
                                   progress_queue.put((run_id, t, "Waiting", {}))

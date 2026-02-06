@@ -22,7 +22,7 @@ class MultiUniverseCommand(BaseCommand):
 
     def execute(self, args: argparse.Namespace) -> None:
         from src.core.game_config import MultiUniverseConfig
-        from src.engine.multi_universe_runner import MultiUniverseRunner
+        from src.engine.runner import MultiUniverseRunner
         
         try:
             # Load and parse config

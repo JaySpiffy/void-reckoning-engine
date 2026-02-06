@@ -94,8 +94,8 @@ def test_resolve_battles_at_creates_new_battle(battle_manager, mock_context, moc
     f1.location = location
     f2.location = location
     
-    # Mock interactions - patch BEFORE calling resolve_battles_at
-    with patch("src.managers.battle_manager.initialize_battle_state") as mock_init_state:
+    # Mock interactions - patch the factory module instead of the facade
+    with patch("src.combat.management.resolution_factory.initialize_battle_state") as mock_init_state:
         mock_state = MagicMock()
         mock_state.armies_dict = {"Imperium": f1.units, "Orks": f2.units}
         mock_state.round_num = 1

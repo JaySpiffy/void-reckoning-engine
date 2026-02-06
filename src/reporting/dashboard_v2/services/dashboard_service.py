@@ -3,9 +3,9 @@ import threading
 import logging
 import time
 from src.reporting.telemetry import TelemetryCollector
-from src.reporting.indexer import ReportIndexer
+from src.reporting.indexing import ReportIndexer
 from src.reporting.telemetry import TelemetryCollector
-from src.reporting.indexer import ReportIndexer
+from src.reporting.indexing import ReportIndexer
 from src.reporting.dashboard_data_provider import DashboardDataProvider
 from src.reporting.dashboard_v2.api.utils.log_tailer import LogTailer
 import json

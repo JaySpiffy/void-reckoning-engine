@@ -2,43 +2,48 @@ import os
 import shutil
 import sqlite3
 import pytest
-from src.engine.multi_universe_runner import MultiUniverseRunner
-from src.reporting.indexer import ReportIndexer
-from src.reporting.cross_universe_reporter import CrossUniverseReporter
+from src.engine.runner import MultiUniverseRunner
+from unittest.mock import patch
+# from src.reporting.indexing import ReportIndexer
+# from src.reporting.cross_universe_reporter import CrossUniverseReporter
 
 @pytest.mark.integration
 @pytest.mark.slow
 def test_multi_universe_reporting_pipeline(tmp_path):
-    """Verify the full reporting pipeline from simulation to indexing and cross-universe reporting."""
+    from src.reporting.indexing import ReportIndexer
+    from src.reporting.cross_universe_reporter import CrossUniverseReporter
+    
     base_dir = tmp_path / "reports"
     base_dir.mkdir()
     
     # 1. Setup Test Config
     configs = [
         {
-            "universe_name": "eternal_crusade",
+            "universe_name": "void_reckoning",
             "processor_affinity": [],
             "num_runs": 1, # Reduced
             "game_config": {
                 "campaign": {"turns": 1, "num_systems": 3}, # Reduced
-                "simulation": {"num_runs": 1, "debug_mode": True},
+                "simulation": {"num_runs": 1, "debug_mode": False},
                 "reporting": {"formats": ["json"]},
-                "universe": "eternal_crusade"
+                "universe": "void_reckoning"
             }
         }
     ]
     
     # 2. Run Simulation
-    runner = MultiUniverseRunner(configs)
-    runner.run_parallel(output_dir=str(base_dir))
-    runner.aggregate_results()
+    with patch('src.engine.runner.orchestrator.TerminalDashboard'), \
+         patch('universes.base.universe_loader.UniverseLoader.discover_universes', return_value=['void_reckoning']):
+        runner = MultiUniverseRunner(configs)
+        runner.run_parallel(output_dir=str(base_dir))
+        runner.aggregate_results()
     
     # 3. Verify Directories
-    ec_root = base_dir / "eternal_crusade"
-    assert ec_root.exists(), "Eternal Crusade dir missing"
+    ec_root = base_dir / "void_reckoning"
+    assert ec_root.exists(), "Void Reckoning dir missing"
     
     # Handle potentially nested structure (legacy fix?)
-    nested_root = ec_root / "eternal_crusade"
+    nested_root = ec_root / "void_reckoning"
     if nested_root.exists():
         ec_root = nested_root
     
@@ -72,12 +77,18 @@ def test_multi_universe_reporting_pipeline(tmp_path):
         cols = [r[1] for r in c.fetchall()]
         assert "universe" in cols, "Runs table missing 'universe' column"
         
+        # Check if events were captured
+        c.execute("SELECT count(*) FROM events")
+        event_count = c.fetchone()[0]
+        print(f"DEBUG: Found {event_count} events in merged DB")
+        assert event_count > 0, "No events captured in merged database"
+        
         # Check Data
         c.execute("SELECT DISTINCT universe FROM runs")
         unis = c.fetchall()
         # Accept 'unknown' if initialization happened before universe name was set
         valid_unis = [u[0] for u in unis]
-        assert 'eternal_crusade' in valid_unis or 'unknown' in valid_unis, f"No expected universe data in DB: {valid_unis}"
+        assert 'void_reckoning' in valid_unis or 'unknown' in valid_unis, f"No expected universe data in DB: {valid_unis}"
         
         conn.close()
     else:
@@ -95,7 +106,9 @@ def test_multi_universe_reporting_pipeline(tmp_path):
         
         # Verify it generates without error
         try:
-            reporter.generate_comparison_report(str(out_path))
+            reporter.generate_detailed_comparison(str(base_dir))
+            # The method generates 'comparison_report.html' in the output dir
+            out_path = base_dir / "comparison_report.html"
             assert out_path.exists(), "Cross-Universe Report not generated"
         except Exception as e:
             pytest.fail(f"Cross-Universe Report generation raised exception: {e}")

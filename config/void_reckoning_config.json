@@ -8,7 +8,7 @@
     "procedural_faction_limit": 0,
     "campaign": {
         "turns": 10000,
-        "num_systems": 30,
+        "num_systems": 40,
         "min_planets": 10,
         "max_planets": 10,
         "combat_rounds": 2000,

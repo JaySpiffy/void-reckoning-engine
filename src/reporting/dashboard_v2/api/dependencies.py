@@ -5,7 +5,7 @@ import os
 # Add project root to path to import services
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../..")))
 
-from src.reporting.indexer import ReportIndexer
+from src.reporting.indexing import ReportIndexer
 from src.reporting.telemetry import TelemetryCollector
 from src.reporting.dashboard_v2.services.dashboard_service import DashboardService
 from src.reporting.dashboard_v2.api.config import settings

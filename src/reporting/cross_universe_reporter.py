@@ -3,7 +3,7 @@ import json
 import sqlite3
 from typing import List, Dict, Any, Optional
 from datetime import datetime
-from src.reporting.indexer import ReportIndexer
+from src.reporting.indexing import ReportIndexer
 
 class CrossUniverseReporter:
     """

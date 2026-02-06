@@ -84,7 +84,7 @@ except ImportError:
 
 from src.reporting.faction_reporter import FactionReporter
 from src.reporting.analytics_engine import AnalyticsEngine
-from src.reporting.indexer import ReportIndexer
+from src.reporting.indexing import ReportIndexer
 
 @pytest.fixture
 def analytics_setup(tmp_path):

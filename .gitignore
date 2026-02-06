@@ -10,6 +10,8 @@ test_output.txt
 test_logs_debug/
 test_reports/
 logs/
+*.db
+index.db
 
 # Internal Documentation
 docs/

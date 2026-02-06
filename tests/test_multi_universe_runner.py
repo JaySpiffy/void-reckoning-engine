@@ -1,7 +1,7 @@
 import pytest
 from unittest.mock import MagicMock, patch
 from queue import Queue
-from src.engine.multi_universe_runner import MultiUniverseRunner
+from src.engine.runner import MultiUniverseRunner
 
 class TestMultiUniverseRunnerCore:
     @pytest.fixture(autouse=True)
@@ -11,7 +11,7 @@ class TestMultiUniverseRunnerCore:
             {"universe_name": "u2", "num_runs": 1, "game_config": {}}
         ]
 
-    @patch('src.engine.multi_universe_runner.MultiUniverseRunner._validate_universes')
+    @patch('src.engine.runner.MultiUniverseRunner._validate_universes')
     @patch('multiprocessing.Manager')
     @patch('src.core.universe_data.UniverseDataManager') 
     def test_handle_portal_handoff_success(self, mock_udm_cls, mock_manager, mock_validate):
@@ -72,7 +72,7 @@ class TestMultiUniverseRunnerCore:
         assert in_q_call["action"] == "INJECT_FLEET"
         assert in_q_call["package"]["is_translated"]
 
-    @patch('src.engine.multi_universe_runner.MultiUniverseRunner._validate_universes')
+    @patch('src.engine.runner.MultiUniverseRunner._validate_universes')
     @patch('multiprocessing.Manager')
     def test_handle_portal_handoff_dest_dead(self, mock_manager, mock_validate):
         """Test handoff fails if destination universe is dead/finished."""
@@ -89,12 +89,12 @@ class TestMultiUniverseRunnerCore:
 
 
 class TestPortalIntegration:
-    def test_load_portal_configs_eternal_crusade(self):
-        """Verify that portal configs for eternal_crusade load correctly with pairs."""
+    def test_load_portal_configs_void_reckoning(self):
+        """Verify that portal configs for void_reckoning load correctly with pairs."""
         from src.core.config import get_universe_config
         # We rely on actual files being present since we edited them.
         try:
-            ec_conf = get_universe_config("eternal_crusade")
+            ec_conf = get_universe_config("void_reckoning")
             
             # Check EC
             ec_portals = ec_conf.get_portal_definitions()
@@ -189,12 +189,12 @@ class TestPortalIntegration:
         assert in_pkg["units"][0]["universal_stats"]["structure"] == 200
 
     @patch('src.core.universe_data.UniverseDataManager')
-    def test_eternal_crusade_portal_simulation_end_to_end(self, mock_udm_cls):
-        """End-to-end integration test for eternal_crusade portal handoff."""
+    def test_void_reckoning_portal_simulation_end_to_end(self, mock_udm_cls):
+        """End-to-end integration test for void_reckoning portal handoff."""
         # 1. Setup Runner with Real(ish) Configs
         configs = [
-            {"universe_name": "eternal_crusade", "num_runs": 1, "game_config": {"enable_portals": True}},
-            {"universe_name": "eternal_crusade", "num_runs": 1, "game_config": {"enable_portals": True}}
+            {"universe_name": "void_reckoning", "num_runs": 1, "game_config": {"enable_portals": True}},
+            {"universe_name": "void_reckoning", "num_runs": 1, "game_config": {"enable_portals": True}}
         ]
         runner = MultiUniverseRunner(configs)
         
@@ -205,14 +205,14 @@ class TestPortalIntegration:
         ec1_prog = MagicMock()
         
         runner.universe_queues = {
-            "eternal_crusade": {"outgoing": ec1_out, "incoming": ec2_in}
+            "void_reckoning": {"outgoing": ec1_out, "incoming": ec2_in}
         }
         runner.progress_queues = {
-            "eternal_crusade": ec1_prog
+            "void_reckoning": ec1_prog
         }
         
-        async_results = {"eternal_crusade": MagicMock()}
-        async_results["eternal_crusade"].ready.return_value = False
+        async_results = {"void_reckoning": MagicMock()}
+        async_results["void_reckoning"].ready.return_value = False
         
         # 3. Setup Translation Mock
         mock_udm = mock_udm_cls.get_instance.return_value
@@ -241,7 +241,7 @@ class TestPortalIntegration:
         ec1_prog.empty.side_effect = [False, True]
         
         # 6. Execute Handoff
-        result = runner.handle_portal_handoff(package, "eternal_crusade", "eternal_crusade", async_results)
+        result = runner.handle_portal_handoff(package, "void_reckoning", "void_reckoning", async_results)
         
         assert result
         
@@ -251,7 +251,7 @@ class TestPortalIntegration:
         ec1_out.put.assert_called_with({"action": "REMOVE_FLEET", "fleet_id": "ec_fleet_1"})
         
         # B. Translation triggered
-        mock_udm.load_universe_data.assert_called_with("eternal_crusade")
+        mock_udm.load_universe_data.assert_called_with("void_reckoning")
         
         # C. Injection sent to EC2
         ec2_in_calls = ec2_in.put.call_args_list

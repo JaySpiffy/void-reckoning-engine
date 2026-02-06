@@ -3,7 +3,7 @@ import sys
 # Add src to path
 sys.path.append(os.getcwd())
 
-from src.reporting.indexer import ReportIndexer
+from src.reporting.indexing import ReportIndexer
 from src.reporting.dashboard_data_provider import DashboardDataProvider
 
 # Config

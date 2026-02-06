@@ -1,0 +1,873 @@
+{
+  "version": "1.0",
+  "archetypes": {
+    "BALANCED": {
+      "name": "Balanced",
+      "weights": {
+        "income": 1.0,
+        "strategic": 1.0,
+        "distance": 1.0,
+        "threat": 1.0,
+        "capital": 1.0,
+        "weakness": 1.0,
+        "expansion_bias": 1.0
+      },
+      "personality_mods": {}
+    },
+    "BLITZ": {
+      "name": "Blitz",
+      "weights": {
+        "income": 0.5,
+        "strategic": 1.5,
+        "distance": 0.2,
+        "threat": 0.5,
+        "capital": 4.0,
+        "weakness": 2.0,
+        "expansion_bias": 2.5
+      },
+      "personality_mods": {
+        "aggression": 1.5
+      }
+    },
+    "TURTLE": {
+      "name": "Turtle",
+      "weights": {
+        "income": 1.2,
+        "strategic": 2.5,
+        "distance": 4.0,
+        "threat": 2.0,
+        "capital": 0.2,
+        "weakness": 0.2,
+        "expansion_bias": 0.1
+      },
+      "personality_mods": {
+        "aggression": 0.6
+      }
+    },
+    "BOOM": {
+      "name": "Boom",
+      "weights": {
+        "income": 3.0,
+        "strategic": 0.5,
+        "distance": 1.5,
+        "threat": 1.5,
+        "capital": 0.1,
+        "weakness": 1.0,
+        "expansion_bias": 1.5
+      },
+      "personality_mods": {
+        "expansion_bias": 1.5
+      }
+    },
+    "PIONEER": {
+      "name": "Pioneer",
+      "weights": {
+        "income": 0.5,
+        "strategic": 1.0,
+        "distance": 1.0,
+        "threat": 1.0,
+        "capital": 0.1,
+        "weakness": 1.0,
+        "expansion_bias": 3.0,
+        "suitability": 3.0
+      },
+      "personality_mods": {
+        "expansion_bias": 2.0
+      }
+    },
+    "RAID": {
+      "name": "Raid",
+      "weights": {
+        "income": 0.2,
+        "strategic": 0.5,
+        "distance": 0.5,
+        "threat": 0.1,
+        "capital": 0.5,
+        "weakness": 4.0,
+        "expansion_bias": 0.5
+      },
+      "personality_mods": {
+        "aggression": 1.2
+      }
+    },
+    "DIPLO": {
+      "name": "Diplomatic",
+      "weights": {
+        "income": 1.0,
+        "strategic": 1.0,
+        "distance": 1.0,
+        "threat": 0.5,
+        "capital": 0.1,
+        "weakness": 0.1,
+        "expansion_bias": 0.2
+      },
+      "personality_mods": {
+        "cohesiveness": 1.5
+      }
+    },
+    "TOTAL": {
+      "name": "Total War",
+      "weights": {
+        "income": 0.1,
+        "strategic": 3.0,
+        "distance": 0.1,
+        "threat": 0.0,
+        "capital": 5.0,
+        "weakness": 2.0,
+        "expansion_bias": 3.0
+      },
+      "personality_mods": {
+        "aggression": 2.0
+      }
+    },
+    "ATTRIT": {
+      "name": "Attrition",
+      "weights": {
+        "income": 1.0,
+        "strategic": 2.0,
+        "distance": 1.0,
+        "threat": 0.8,
+        "capital": 1.0,
+        "weakness": 1.0,
+        "expansion_bias": 0.8
+      },
+      "personality_mods": {
+        "patience": 1.5
+      }
+    },
+    "ADAPT": {
+      "name": "Adaptive",
+      "weights": {
+        "income": 1.0,
+        "strategic": 1.5,
+        "distance": 1.5,
+        "threat": 1.0,
+        "capital": 1.0,
+        "weakness": 1.5,
+        "expansion_bias": 1.0
+      },
+      "personality_mods": {
+        "adaptation_speed": 2.0
+      }
+    },
+    "ELITE": {
+      "name": "Elite",
+      "weights": {
+        "income": 1.5,
+        "strategic": 1.0,
+        "distance": 1.0,
+        "threat": 0.5,
+        "capital": 1.5,
+        "weakness": 0.5,
+        "expansion_bias": 0.5
+      },
+      "personality_mods": {
+        "quality_bias": 1.5
+      }
+    },
+    "SWARM": {
+      "name": "Swarm",
+      "weights": {
+        "income": 0.5,
+        "strategic": 1.0,
+        "distance": 0.5,
+        "threat": 2.0,
+        "capital": 1.0,
+        "weakness": 3.0,
+        "expansion_bias": 3.0
+      },
+      "personality_mods": {
+        "quantity_bias": 2.0
+      }
+    }
+  },
+  "postures": {
+    "BALANCED": {
+      "archetype": "BALANCED",
+      "general": true,
+      "description": "Standard balanced operation."
+    },
+    "BLITZ": {
+      "archetype": "BLITZ",
+      "general": true,
+      "description": "Rapid offensive.",
+      "triggers": {
+        "military_ratio": 1.3
+      }
+    },
+    "TURTLE": {
+      "archetype": "TURTLE",
+      "general": true,
+      "description": "Defensive posture.",
+      "triggers": {
+        "econ_state": "STRESSED"
+      }
+    },
+    "BOOM": {
+      "archetype": "BOOM",
+      "general": true,
+      "description": "Economic expansion.",
+      "triggers": {
+        "is_at_war": false
+      }
+    },
+    "PIONEER": {
+      "archetype": "PIONEER",
+      "general": true,
+      "description": "City founding focus.",
+      "triggers": {
+        "is_at_war": false
+      }
+    },
+    "GEN_001": {
+      "archetype": "BLITZ",
+      "general": true,
+      "description": "General Posture Variations 1 based on BLITZ archetype."
+    },
+    "GEN_002": {
+      "archetype": "TURTLE",
+      "general": true,
+      "description": "General Posture Variations 2 based on TURTLE archetype."
+    },
+    "GEN_003": {
+      "archetype": "BOOM",
+      "general": true,
+      "description": "General Posture Variations 3 based on BOOM archetype."
+    },
+    "GEN_004": {
+      "archetype": "PIONEER",
+      "general": true,
+      "description": "General Posture Variations 4 based on PIONEER archetype."
+    },
+    "GEN_005": {
+      "archetype": "RAID",
+      "general": true,
+      "description": "General Posture Variations 5 based on RAID archetype."
+    },
+    "GEN_006": {
+      "archetype": "DIPLO",
+      "general": true,
+      "description": "General Posture Variations 6 based on DIPLO archetype."
+    },
+    "GEN_007": {
+      "archetype": "TOTAL",
+      "general": true,
+      "description": "General Posture Variations 7 based on TOTAL archetype."
+    },
+    "GEN_008": {
+      "archetype": "ATTRIT",
+      "general": true,
+      "description": "General Posture Variations 8 based on ATTRIT archetype."
+    },
+    "GEN_009": {
+      "archetype": "ADAPT",
+      "general": true,
+      "description": "General Posture Variations 9 based on ADAPT archetype."
+    },
+    "GEN_010": {
+      "archetype": "ELITE",
+      "general": true,
+      "description": "General Posture Variations 10 based on ELITE archetype."
+    },
+    "GEN_011": {
+      "archetype": "SWARM",
+      "general": true,
+      "description": "General Posture Variations 11 based on SWARM archetype."
+    },
+    "GEN_012": {
+      "archetype": "BALANCED",
+      "general": true,
+      "description": "General Posture Variations 12 based on BALANCED archetype."
+    },
+    "GEN_013": {
+      "archetype": "BLITZ",
+      "general": true,
+      "description": "General Posture Variations 13 based on BLITZ archetype."
+    },
+    "GEN_014": {
+      "archetype": "TURTLE",
+      "general": true,
+      "description": "General Posture Variations 14 based on TURTLE archetype."
+    },
+    "GEN_015": {
+      "archetype": "BOOM",
+      "general": true,
+      "description": "General Posture Variations 15 based on BOOM archetype."
+    },
+    "GEN_016": {
+      "archetype": "PIONEER",
+      "general": true,
+      "description": "General Posture Variations 16 based on PIONEER archetype."
+    },
+    "GEN_017": {
+      "archetype": "RAID",
+      "general": true,
+      "description": "General Posture Variations 17 based on RAID archetype."
+    },
+    "GEN_018": {
+      "archetype": "DIPLO",
+      "general": true,
+      "description": "General Posture Variations 18 based on DIPLO archetype."
+    },
+    "GEN_019": {
+      "archetype": "TOTAL",
+      "general": true,
+      "description": "General Posture Variations 19 based on TOTAL archetype."
+    },
+    "GEN_020": {
+      "archetype": "ATTRIT",
+      "general": true,
+      "description": "General Posture Variations 20 based on ATTRIT archetype."
+    },
+    "GEN_021": {
+      "archetype": "ADAPT",
+      "general": true,
+      "description": "General Posture Variations 21 based on ADAPT archetype."
+    },
+    "GEN_022": {
+      "archetype": "ELITE",
+      "general": true,
+      "description": "General Posture Variations 22 based on ELITE archetype."
+    },
+    "GEN_023": {
+      "archetype": "SWARM",
+      "general": true,
+      "description": "General Posture Variations 23 based on SWARM archetype."
+    },
+    "GEN_024": {
+      "archetype": "BALANCED",
+      "general": true,
+      "description": "General Posture Variations 24 based on BALANCED archetype."
+    },
+    "GEN_025": {
+      "archetype": "BLITZ",
+      "general": true,
+      "description": "General Posture Variations 25 based on BLITZ archetype."
+    },
+    "GEN_026": {
+      "archetype": "TURTLE",
+      "general": true,
+      "description": "General Posture Variations 26 based on TURTLE archetype."
+    },
+    "GEN_027": {
+      "archetype": "BOOM",
+      "general": true,
+      "description": "General Posture Variations 27 based on BOOM archetype."
+    },
+    "GEN_028": {
+      "archetype": "PIONEER",
+      "general": true,
+      "description": "General Posture Variations 28 based on PIONEER archetype."
+    },
+    "GEN_029": {
+      "archetype": "RAID",
+      "general": true,
+      "description": "General Posture Variations 29 based on RAID archetype."
+    },
+    "GEN_030": {
+      "archetype": "DIPLO",
+      "general": true,
+      "description": "General Posture Variations 30 based on DIPLO archetype."
+    },
+    "GEN_031": {
+      "archetype": "TOTAL",
+      "general": true,
+      "description": "General Posture Variations 31 based on TOTAL archetype."
+    },
+    "GEN_032": {
+      "archetype": "ATTRIT",
+      "general": true,
+      "description": "General Posture Variations 32 based on ATTRIT archetype."
+    },
+    "GEN_033": {
+      "archetype": "ADAPT",
+      "general": true,
+      "description": "General Posture Variations 33 based on ADAPT archetype."
+    },
+    "GEN_034": {
+      "archetype": "ELITE",
+      "general": true,
+      "description": "General Posture Variations 34 based on ELITE archetype."
+    },
+    "GEN_035": {
+      "archetype": "SWARM",
+      "general": true,
+      "description": "General Posture Variations 35 based on SWARM archetype."
+    },
+    "GEN_036": {
+      "archetype": "BALANCED",
+      "general": true,
+      "description": "General Posture Variations 36 based on BALANCED archetype."
+    },
+    "GEN_037": {
+      "archetype": "BLITZ",
+      "general": true,
+      "description": "General Posture Variations 37 based on BLITZ archetype."
+    },
+    "GEN_038": {
+      "archetype": "TURTLE",
+      "general": true,
+      "description": "General Posture Variations 38 based on TURTLE archetype."
+    },
+    "GEN_039": {
+      "archetype": "BOOM",
+      "general": true,
+      "description": "General Posture Variations 39 based on BOOM archetype."
+    },
+    "GEN_040": {
+      "archetype": "PIONEER",
+      "general": true,
+      "description": "General Posture Variations 40 based on PIONEER archetype."
+    },
+    "GEN_041": {
+      "archetype": "RAID",
+      "general": true,
+      "description": "General Posture Variations 41 based on RAID archetype."
+    },
+    "GEN_042": {
+      "archetype": "DIPLO",
+      "general": true,
+      "description": "General Posture Variations 42 based on DIPLO archetype."
+    },
+    "GEN_043": {
+      "archetype": "TOTAL",
+      "general": true,
+      "description": "General Posture Variations 43 based on TOTAL archetype."
+    },
+    "GEN_044": {
+      "archetype": "ATTRIT",
+      "general": true,
+      "description": "General Posture Variations 44 based on ATTRIT archetype."
+    },
+    "GEN_045": {
+      "archetype": "ADAPT",
+      "general": true,
+      "description": "General Posture Variations 45 based on ADAPT archetype."
+    },
+    "GEN_046": {
+      "archetype": "ELITE",
+      "general": true,
+      "description": "General Posture Variations 46 based on ELITE archetype."
+    },
+    "GEN_047": {
+      "archetype": "SWARM",
+      "general": true,
+      "description": "General Posture Variations 47 based on SWARM archetype."
+    },
+    "GEN_048": {
+      "archetype": "BALANCED",
+      "general": true,
+      "description": "General Posture Variations 48 based on BALANCED archetype."
+    },
+    "GEN_049": {
+      "archetype": "BLITZ",
+      "general": true,
+      "description": "General Posture Variations 49 based on BLITZ archetype."
+    },
+    "GEN_050": {
+      "archetype": "TURTLE",
+      "general": true,
+      "description": "General Posture Variations 50 based on TURTLE archetype."
+    },
+    "FAC_TEM_001": {
+      "archetype": "DIPLO",
+      "general": false,
+      "faction_affinity": [
+        "Templars_of_the_Flux"
+      ],
+      "description": "Specialized Templars_of_the_Flux posture 1 focusing on DIPLO mechanics."
+    },
+    "FAC_ALG_002": {
+      "archetype": "TOTAL",
+      "general": false,
+      "faction_affinity": [
+        "Algorithmic_Hierarchy"
+      ],
+      "description": "Specialized Algorithmic_Hierarchy posture 2 focusing on TOTAL mechanics."
+    },
+    "FAC_SCA_003": {
+      "archetype": "ATTRIT",
+      "general": false,
+      "faction_affinity": [
+        "Scavenger_Clans"
+      ],
+      "description": "Specialized Scavenger_Clans posture 3 focusing on ATTRIT mechanics."
+    },
+    "FAC_ANC_004": {
+      "archetype": "ADAPT",
+      "general": false,
+      "faction_affinity": [
+        "Ancient_Guardians"
+      ],
+      "description": "Specialized Ancient_Guardians posture 4 focusing on ADAPT mechanics."
+    },
+    "FAC_BIO_005": {
+      "archetype": "ELITE",
+      "general": false,
+      "faction_affinity": [
+        "Bio-Tide_Collective"
+      ],
+      "description": "Specialized Bio-Tide_Collective posture 5 focusing on ELITE mechanics."
+    },
+    "FAC_TEM_006": {
+      "archetype": "SWARM",
+      "general": false,
+      "faction_affinity": [
+        "Templars_of_the_Flux"
+      ],
+      "description": "Specialized Templars_of_the_Flux posture 6 focusing on SWARM mechanics."
+    },
+    "FAC_ALG_007": {
+      "archetype": "BALANCED",
+      "general": false,
+      "faction_affinity": [
+        "Algorithmic_Hierarchy"
+      ],
+      "description": "Specialized Algorithmic_Hierarchy posture 7 focusing on BALANCED mechanics."
+    },
+    "FAC_SCA_008": {
+      "archetype": "BLITZ",
+      "general": false,
+      "faction_affinity": [
+        "Scavenger_Clans"
+      ],
+      "description": "Specialized Scavenger_Clans posture 8 focusing on BLITZ mechanics."
+    },
+    "FAC_ANC_009": {
+      "archetype": "TURTLE",
+      "general": false,
+      "faction_affinity": [
+        "Ancient_Guardians"
+      ],
+      "description": "Specialized Ancient_Guardians posture 9 focusing on TURTLE mechanics."
+    },
+    "FAC_BIO_010": {
+      "archetype": "BOOM",
+      "general": false,
+      "faction_affinity": [
+        "Bio-Tide_Collective"
+      ],
+      "description": "Specialized Bio-Tide_Collective posture 10 focusing on BOOM mechanics."
+    },
+    "FAC_TEM_011": {
+      "archetype": "PIONEER",
+      "general": false,
+      "faction_affinity": [
+        "Templars_of_the_Flux"
+      ],
+      "description": "Specialized Templars_of_the_Flux posture 11 focusing on PIONEER mechanics."
+    },
+    "FAC_ALG_012": {
+      "archetype": "RAID",
+      "general": false,
+      "faction_affinity": [
+        "Algorithmic_Hierarchy"
+      ],
+      "description": "Specialized Algorithmic_Hierarchy posture 12 focusing on RAID mechanics."
+    },
+    "FAC_SCA_013": {
+      "archetype": "DIPLO",
+      "general": false,
+      "faction_affinity": [
+        "Scavenger_Clans"
+      ],
+      "description": "Specialized Scavenger_Clans posture 13 focusing on DIPLO mechanics."
+    },
+    "FAC_ANC_014": {
+      "archetype": "TOTAL",
+      "general": false,
+      "faction_affinity": [
+        "Ancient_Guardians"
+      ],
+      "description": "Specialized Ancient_Guardians posture 14 focusing on TOTAL mechanics."
+    },
+    "FAC_BIO_015": {
+      "archetype": "ATTRIT",
+      "general": false,
+      "faction_affinity": [
+        "Bio-Tide_Collective"
+      ],
+      "description": "Specialized Bio-Tide_Collective posture 15 focusing on ATTRIT mechanics."
+    },
+    "FAC_TEM_016": {
+      "archetype": "ADAPT",
+      "general": false,
+      "faction_affinity": [
+        "Templars_of_the_Flux"
+      ],
+      "description": "Specialized Templars_of_the_Flux posture 16 focusing on ADAPT mechanics."
+    },
+    "FAC_ALG_017": {
+      "archetype": "ELITE",
+      "general": false,
+      "faction_affinity": [
+        "Algorithmic_Hierarchy"
+      ],
+      "description": "Specialized Algorithmic_Hierarchy posture 17 focusing on ELITE mechanics."
+    },
+    "FAC_SCA_018": {
+      "archetype": "SWARM",
+      "general": false,
+      "faction_affinity": [
+        "Scavenger_Clans"
+      ],
+      "description": "Specialized Scavenger_Clans posture 18 focusing on SWARM mechanics."
+    },
+    "FAC_ANC_019": {
+      "archetype": "BALANCED",
+      "general": false,
+      "faction_affinity": [
+        "Ancient_Guardians"
+      ],
+      "description": "Specialized Ancient_Guardians posture 19 focusing on BALANCED mechanics."
+    },
+    "FAC_BIO_020": {
+      "archetype": "BLITZ",
+      "general": false,
+      "faction_affinity": [
+        "Bio-Tide_Collective"
+      ],
+      "description": "Specialized Bio-Tide_Collective posture 20 focusing on BLITZ mechanics."
+    },
+    "FAC_TEM_021": {
+      "archetype": "TURTLE",
+      "general": false,
+      "faction_affinity": [
+        "Templars_of_the_Flux"
+      ],
+      "description": "Specialized Templars_of_the_Flux posture 21 focusing on TURTLE mechanics."
+    },
+    "FAC_ALG_022": {
+      "archetype": "BOOM",
+      "general": false,
+      "faction_affinity": [
+        "Algorithmic_Hierarchy"
+      ],
+      "description": "Specialized Algorithmic_Hierarchy posture 22 focusing on BOOM mechanics."
+    },
+    "FAC_SCA_023": {
+      "archetype": "PIONEER",
+      "general": false,
+      "faction_affinity": [
+        "Scavenger_Clans"
+      ],
+      "description": "Specialized Scavenger_Clans posture 23 focusing on PIONEER mechanics."
+    },
+    "FAC_ANC_024": {
+      "archetype": "RAID",
+      "general": false,
+      "faction_affinity": [
+        "Ancient_Guardians"
+      ],
+      "description": "Specialized Ancient_Guardians posture 24 focusing on RAID mechanics."
+    },
+    "FAC_BIO_025": {
+      "archetype": "DIPLO",
+      "general": false,
+      "faction_affinity": [
+        "Bio-Tide_Collective"
+      ],
+      "description": "Specialized Bio-Tide_Collective posture 25 focusing on DIPLO mechanics."
+    },
+    "FAC_TEM_026": {
+      "archetype": "TOTAL",
+      "general": false,
+      "faction_affinity": [
+        "Templars_of_the_Flux"
+      ],
+      "description": "Specialized Templars_of_the_Flux posture 26 focusing on TOTAL mechanics."
+    },
+    "FAC_ALG_027": {
+      "archetype": "ATTRIT",
+      "general": false,
+      "faction_affinity": [
+        "Algorithmic_Hierarchy"
+      ],
+      "description": "Specialized Algorithmic_Hierarchy posture 27 focusing on ATTRIT mechanics."
+    },
+    "FAC_SCA_028": {
+      "archetype": "ADAPT",
+      "general": false,
+      "faction_affinity": [
+        "Scavenger_Clans"
+      ],
+      "description": "Specialized Scavenger_Clans posture 28 focusing on ADAPT mechanics."
+    },
+    "FAC_ANC_029": {
+      "archetype": "ELITE",
+      "general": false,
+      "faction_affinity": [
+        "Ancient_Guardians"
+      ],
+      "description": "Specialized Ancient_Guardians posture 29 focusing on ELITE mechanics."
+    },
+    "FAC_BIO_030": {
+      "archetype": "SWARM",
+      "general": false,
+      "faction_affinity": [
+        "Bio-Tide_Collective"
+      ],
+      "description": "Specialized Bio-Tide_Collective posture 30 focusing on SWARM mechanics."
+    },
+    "FAC_TEM_031": {
+      "archetype": "BALANCED",
+      "general": false,
+      "faction_affinity": [
+        "Templars_of_the_Flux"
+      ],
+      "description": "Specialized Templars_of_the_Flux posture 31 focusing on BALANCED mechanics."
+    },
+    "FAC_ALG_032": {
+      "archetype": "BLITZ",
+      "general": false,
+      "faction_affinity": [
+        "Algorithmic_Hierarchy"
+      ],
+      "description": "Specialized Algorithmic_Hierarchy posture 32 focusing on BLITZ mechanics."
+    },
+    "FAC_SCA_033": {
+      "archetype": "TURTLE",
+      "general": false,
+      "faction_affinity": [
+        "Scavenger_Clans"
+      ],
+      "description": "Specialized Scavenger_Clans posture 33 focusing on TURTLE mechanics."
+    },
+    "FAC_ANC_034": {
+      "archetype": "BOOM",
+      "general": false,
+      "faction_affinity": [
+        "Ancient_Guardians"
+      ],
+      "description": "Specialized Ancient_Guardians posture 34 focusing on BOOM mechanics."
+    },
+    "FAC_BIO_035": {
+      "archetype": "PIONEER",
+      "general": false,
+      "faction_affinity": [
+        "Bio-Tide_Collective"
+      ],
+      "description": "Specialized Bio-Tide_Collective posture 35 focusing on PIONEER mechanics."
+    },
+    "FAC_TEM_036": {
+      "archetype": "RAID",
+      "general": false,
+      "faction_affinity": [
+        "Templars_of_the_Flux"
+      ],
+      "description": "Specialized Templars_of_the_Flux posture 36 focusing on RAID mechanics."
+    },
+    "FAC_ALG_037": {
+      "archetype": "DIPLO",
+      "general": false,
+      "faction_affinity": [
+        "Algorithmic_Hierarchy"
+      ],
+      "description": "Specialized Algorithmic_Hierarchy posture 37 focusing on DIPLO mechanics."
+    },
+    "FAC_SCA_038": {
+      "archetype": "TOTAL",
+      "general": false,
+      "faction_affinity": [
+        "Scavenger_Clans"
+      ],
+      "description": "Specialized Scavenger_Clans posture 38 focusing on TOTAL mechanics."
+    },
+    "FAC_ANC_039": {
+      "archetype": "ATTRIT",
+      "general": false,
+      "faction_affinity": [
+        "Ancient_Guardians"
+      ],
+      "description": "Specialized Ancient_Guardians posture 39 focusing on ATTRIT mechanics."
+    },
+    "FAC_BIO_040": {
+      "archetype": "ADAPT",
+      "general": false,
+      "faction_affinity": [
+        "Bio-Tide_Collective"
+      ],
+      "description": "Specialized Bio-Tide_Collective posture 40 focusing on ADAPT mechanics."
+    },
+    "FAC_TEM_041": {
+      "archetype": "ELITE",
+      "general": false,
+      "faction_affinity": [
+        "Templars_of_the_Flux"
+      ],
+      "description": "Specialized Templars_of_the_Flux posture 41 focusing on ELITE mechanics."
+    },
+    "FAC_ALG_042": {
+      "archetype": "SWARM",
+      "general": false,
+      "faction_affinity": [
+        "Algorithmic_Hierarchy"
+      ],
+      "description": "Specialized Algorithmic_Hierarchy posture 42 focusing on SWARM mechanics."
+    },
+    "FAC_SCA_043": {
+      "archetype": "BALANCED",
+      "general": false,
+      "faction_affinity": [
+        "Scavenger_Clans"
+      ],
+      "description": "Specialized Scavenger_Clans posture 43 focusing on BALANCED mechanics."
+    },
+    "FAC_ANC_044": {
+      "archetype": "BLITZ",
+      "general": false,
+      "faction_affinity": [
+        "Ancient_Guardians"
+      ],
+      "description": "Specialized Ancient_Guardians posture 44 focusing on BLITZ mechanics."
+    },
+    "FAC_BIO_045": {
+      "archetype": "TURTLE",
+      "general": false,
+      "faction_affinity": [
+        "Bio-Tide_Collective"
+      ],
+      "description": "Specialized Bio-Tide_Collective posture 45 focusing on TURTLE mechanics."
+    },
+    "FAC_TEM_046": {
+      "archetype": "BOOM",
+      "general": false,
+      "faction_affinity": [
+        "Templars_of_the_Flux"
+      ],
+      "description": "Specialized Templars_of_the_Flux posture 46 focusing on BOOM mechanics."
+    },
+    "FAC_ALG_047": {
+      "archetype": "PIONEER",
+      "general": false,
+      "faction_affinity": [
+        "Algorithmic_Hierarchy"
+      ],
+      "description": "Specialized Algorithmic_Hierarchy posture 47 focusing on PIONEER mechanics."
+    },
+    "FAC_SCA_048": {
+      "archetype": "RAID",
+      "general": false,
+      "faction_affinity": [
+        "Scavenger_Clans"
+      ],
+      "description": "Specialized Scavenger_Clans posture 48 focusing on RAID mechanics."
+    },
+    "FAC_ANC_049": {
+      "archetype": "DIPLO",
+      "general": false,
+      "faction_affinity": [
+        "Ancient_Guardians"
+      ],
+      "description": "Specialized Ancient_Guardians posture 49 focusing on DIPLO mechanics."
+    },
+    "FAC_BIO_050": {
+      "archetype": "TOTAL",
+      "general": false,
+      "faction_affinity": [
+        "Bio-Tide_Collective"
+      ],
+      "description": "Specialized Bio-Tide_Collective posture 50 focusing on TOTAL mechanics."
+    }
+  }
+}

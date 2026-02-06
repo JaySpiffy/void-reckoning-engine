@@ -25,7 +25,7 @@ def get_indexer():
 
 @report_api_bp.route('/reports/list', methods=['GET'])
 def list_reports():
-    from src.reporting.indexer import ReportIndexer
+    from src.reporting.indexing import ReportIndexer
     universe = request.args.get('universe')
     limit = int(request.args.get('limit', 100))
     
@@ -121,7 +121,7 @@ def check_status(job_id):
 
 @report_api_bp.route('/reports/analytics', methods=['GET'])
 def get_analytics():
-    from src.reporting.indexer import ReportIndexer
+    from src.reporting.indexing import ReportIndexer
     universe = request.args.get('universe')
     
     if not universe:
@@ -145,7 +145,7 @@ def get_analytics():
 
 @report_api_bp.route('/reports/runs/gold_standard', methods=['GET', 'POST', 'DELETE'])
 def handle_gold_standard():
-    from src.reporting.indexer import ReportIndexer
+    from src.reporting.indexing import ReportIndexer
     
     universe = request.args.get('universe')
     if not universe and request.method == 'POST':
@@ -183,7 +183,7 @@ def handle_gold_standard():
 
 @report_api_bp.route('/reports/compare/runs', methods=['GET'])
 def compare_runs_endpoint():
-    from src.reporting.indexer import ReportIndexer
+    from src.reporting.indexing import ReportIndexer
     universe = request.args.get('universe')
     current_run_id = request.args.get('current_run_id')
     current_batch_id = request.args.get('current_batch_id')
@@ -204,7 +204,7 @@ def compare_runs_endpoint():
 
 @report_api_bp.route('/reports/compare/runs/gold_standard', methods=['GET'])
 def compare_gold_standard():
-    from src.reporting.indexer import ReportIndexer
+    from src.reporting.indexing import ReportIndexer
     universe = request.args.get('universe')
     run_id = request.args.get('run_id')
     batch_id = request.args.get('batch_id')

@@ -41,9 +41,14 @@ class TargetScoringService:
         f_mgr = self.engine.get_faction(faction)
         if not f_mgr: return 0.0
         
-        # Default weights if none provided
+        # Pull weights from Posture System V3 if none provided
         if weights is None:
-            weights = { "income": 1.0, "strategic": 1.0, "distance": 1.0, "threat": 1.0, "capital": 1.0, "weakness": 1.0, "expansion_bias": 1.0 }
+            posture_id = getattr(f_mgr, 'strategic_posture', "BALANCED")
+            posture_data = self.ai_manager.posture_manager.registry.get_posture(posture_id)
+            if posture_data and "weights" in posture_data:
+                weights = posture_data["weights"]
+            else:
+                weights = self.ai_manager.dynamic_weights.get_weights("BALANCED") # Fallback
             
         # [MANDATES] Apply Opponent-Specific Adjustments
         # Copy weights to avoid mutating the shared context weights

@@ -227,11 +227,26 @@ class TacticalGrid:
         self.spatial_index.insert(unit)
     def update_unit_position(self, unit, new_x, new_y):
         """High-frequency position update for real-time simulation (Spatial Index only)."""
-        unit.grid_x = new_x
-        unit.grid_y = new_y
-        if self.spatial_index:
-            self.spatial_index.remove(unit)
-            self.spatial_index.insert(unit)
+        # [PERF] Only update spatial index if moved more than 0.5 units
+        last_x = getattr(unit, '_last_idx_x', -999)
+        last_y = getattr(unit, '_last_idx_y', -999)
+        
+        dist_sq = (new_x - last_x)**2 + (new_y - last_y)**2
+        
+        if dist_sq > 0.25: # 0.5 units squared
+            if self.spatial_index:
+                self.spatial_index.remove(unit)
+                unit.grid_x = new_x
+                unit.grid_y = new_y
+                self.spatial_index.insert(unit)
+            else:
+                unit.grid_x = new_x
+                unit.grid_y = new_y
+            unit._last_idx_x = new_x
+            unit._last_idx_y = new_y
+        else:
+            unit.grid_x = new_x
+            unit.grid_y = new_y
         return True
 
     def remove_unit(self, unit):
