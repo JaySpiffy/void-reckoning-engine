@@ -177,6 +177,42 @@ def execute_battle_round(battle_state, detailed_log_file=None):
     
     return manager.check_victory_conditions()
 
+def execute_real_time_battle(battle_state, duration=30.0, dt=0.05, detailed_log_file=None):
+    """
+    Executes a battle in real-time mode (Phase 4 / EaW Style).
+    Runs the RealTimeManager update loop for the specified duration.
+    """
+    if not hasattr(battle_state, 'real_time_update'):
+        from src.combat.combat_state import CombatState
+        # If it's a legacy dict, we can't easily convert here without context
+        if not isinstance(battle_state, CombatState) and not hasattr(battle_state, 'update'):
+            raise ValueError("execute_real_time_battle requires a CombatState object.")
+
+    if not hasattr(battle_state, 'event_log'):
+        battle_state.event_log = []
+
+    sim_time = 0.0
+    while sim_time < duration:
+        battle_state.real_time_update(dt)
+        sim_time += dt
+        
+        # Check victory conditions and Flush Logs every simulated second
+        if int(sim_time) > int(sim_time - dt):
+            # Flush Logs
+            if detailed_log_file and battle_state.event_log:
+                 try:
+                     with open(detailed_log_file, "a", encoding='utf-8') as f:
+                          for event in battle_state.event_log:
+                               f.write(f"[{event['timestamp']:.2f}] {event['type'].upper()}: {event['attacker']} -> {event['target']} | {event['description']}\n")
+                     battle_state.event_log = [] 
+                 except: pass
+
+            winner, survivors, is_finished = battle_state.check_victory_conditions()
+            if is_finished:
+                return winner, survivors, is_finished
+                
+    return battle_state.check_victory_conditions()
+
 def _cleanup_round(manager, active_units_at_start, detailed_log_file=None):
     """
     Handles unit destruction tracking, reanimation hooks, and salvage registration.

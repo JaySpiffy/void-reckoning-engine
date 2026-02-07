@@ -145,6 +145,10 @@ class Unit:
                 
         return s_dmg, h_dmg, is_destroyed, destroyed_component
 
+    def is_ship(self) -> bool:
+        """Returns True if the unit is a ship/voidcraft."""
+        return self.domain == "space"
+
     def to_dict(self) -> Dict[str, Any]:
         """Serializes unit state (Save V2 compatible)."""
         data = {

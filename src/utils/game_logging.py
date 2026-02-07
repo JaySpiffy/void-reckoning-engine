@@ -120,13 +120,12 @@ class GameLogger:
              cls._instance._initialized = False
         cls._instance = None
 
-    def __init__(self, log_dir: str = "logs", console_verbose: bool = True, use_file_logging: bool = True):
+    def __init__(self, log_dir: str = "logs", console_verbose: bool = True):
         if hasattr(self, '_initialized') and self._initialized:
             return
             
         self.log_dir = log_dir
         self.console_verbose = console_verbose
-        self.use_file_logging = use_file_logging
         self.context = LogContext
         
         if not os.path.exists(log_dir):
@@ -136,57 +135,54 @@ class GameLogger:
         self.logger.setLevel(logging.DEBUG)
         self.logger.propagate = False
         
-        # 1. Handlers
-        if self.use_file_logging:
-            # Text Log Handler (Rotating)
-            text_path = os.path.join(log_dir, "campaign.log")
-            rh = logging.handlers.RotatingFileHandler(
-                text_path, maxBytes=10*1024*1024, backupCount=5, encoding='utf-8'
-            )
-            rh.setLevel(logging.DEBUG)
-            rh.setFormatter(logging.Formatter('%(asctime)s [%(levelname)s] [%(category)s] %(message)s', datefmt='%H:%M:%S'))
-            rh.addFilter(CategoryFilter())
-            self.logger.addHandler(rh)
-            
-            # JSON Log Handler (Rotating)
-            json_path = os.path.join(log_dir, "campaign.json")
-            jh = logging.handlers.RotatingFileHandler(
-                json_path, maxBytes=10*1024*1024, backupCount=5, encoding='utf-8'
-            )
-            jh.setLevel(logging.DEBUG)
-            jh.setFormatter(JSONFormatter(datefmt='%Y-%m-%dT%H:%M:%S'))
-            self.logger.addHandler(jh)
-        else:
-            rh = None
-            jh = None
+        # 1. Text Log Handler (Rotating)
+        text_path = os.path.join(log_dir, "campaign.log")
+        rh = logging.handlers.RotatingFileHandler(
+            text_path, maxBytes=10*1024*1024, backupCount=5, encoding='utf-8'
+        )
+        rh.setLevel(logging.DEBUG)
+        rh.setFormatter(logging.Formatter('%(asctime)s [%(levelname)s] [%(category)s] %(message)s', datefmt='%H:%M:%S'))
+        
+        # FIX: Add filter to ensure category exists for Root logger events
+        rh.addFilter(CategoryFilter())
+        
+        self.logger.addHandler(rh)
+        
+        # 2. JSON Log Handler (Rotating)
+        json_path = os.path.join(log_dir, "campaign.json")
+        jh = logging.handlers.RotatingFileHandler(
+            json_path, maxBytes=10*1024*1024, backupCount=5, encoding='utf-8'
+        )
+        jh.setLevel(logging.DEBUG)
+        jh.setFormatter(JSONFormatter(datefmt='%Y-%m-%dT%H:%M:%S'))
+        self.logger.addHandler(jh)
 
-        # 2. Alert Handler
+        # 3. Alert Handler
         ah = AlertLogHandler()
         ah.setLevel(logging.ERROR)
         self.logger.addHandler(ah)
         
-        # 3. Error Patterns
+        # 4. Error Patterns
         self.error_patterns = {}
         
         self._initialized = True
-        if self.use_file_logging:
-            self.log(LogCategory.SYSTEM, f"Logger initialized. Writing to {text_path}")
-        else:
-            self.log(LogCategory.SYSTEM, "Logger initialized (Console only mode)")
+        self.log(LogCategory.SYSTEM, f"Logger initialized. Writing to {text_path}")
         
-        # 4. Configure Root Logger
+        # 4. Configure Root Logger to catch modules using logging.getLogger(__name__)
         root_logger = logging.getLogger()
         root_logger.setLevel(logging.DEBUG)
-        
+        # Avoid adding handlers multiple times if GameLogger is re-initialized (singleton protection helps, but safe to check)
         if not root_logger.handlers:
-             if rh: root_logger.addHandler(rh)
-             if jh: root_logger.addHandler(jh)
+             root_logger.addHandler(rh)
+             root_logger.addHandler(jh)
              root_logger.addHandler(ah)
              
+             # Also add a console handler for Root if verbose, 
+             # because GameLogger.log prints manually but standard logging won't.
              if self.console_verbose:
                  ch = logging.StreamHandler()
                  ch.setLevel(logging.INFO)
-                 ch.setFormatter(logging.Formatter('%(message)s'))
+                 ch.setFormatter(logging.Formatter('%(message)s')) # Simple format for console
                  root_logger.addHandler(ch)
 
     def set_context(self, **kwargs):

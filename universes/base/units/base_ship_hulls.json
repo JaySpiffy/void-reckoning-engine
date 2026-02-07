@@ -146,5 +146,62 @@
             "module_defense": 4,
             "module_utility": 6
         }
+    },
+    "missile_destroyer": {
+        "name": "Missile Destroyer",
+        "description": "Destroyer variant optimized for long-range missile saturation.",
+        "base_hp": 2400,
+        "base_cost": 4500,
+        "base_upkeep": 400,
+        "base_speed": 32,
+        "hardpoints": {
+            "weapon_heavy": 4,
+            "weapon_medium": 2,
+            "module_defense": 2,
+            "module_utility": 2
+        }
+    },
+    "command_cruiser": {
+        "name": "Command Cruiser",
+        "description": "Cruiser variant with advanced sensors and fleet support modules.",
+        "base_hp": 5000,
+        "base_cost": 9500,
+        "base_upkeep": 750,
+        "base_speed": 24,
+        "hardpoints": {
+            "weapon_heavy": 2,
+            "weapon_medium": 6,
+            "module_defense": 6,
+            "module_utility": 6
+        }
+    },
+    "exterminator_battleship": {
+        "name": "Exterminator Battleship",
+        "description": "Siege battleship designed to eliminate heavy stations and titans.",
+        "base_hp": 14000,
+        "base_cost": 25000,
+        "base_upkeep": 2000,
+        "base_speed": 18,
+        "hardpoints": {
+            "weapon_titan": 1,
+            "weapon_heavy": 10,
+            "module_defense": 6,
+            "module_utility": 4
+        }
+    },
+    "mothership": {
+        "name": "Mothership",
+        "description": "The peak of naval engineering. A mobile sector capital.",
+        "base_hp": 150000,
+        "base_cost": 500000,
+        "base_upkeep": 25000,
+        "base_speed": 5,
+        "hardpoints": {
+            "weapon_titan": 4,
+            "weapon_heavy": 40,
+            "hangar": 12,
+            "module_defense": 30,
+            "module_utility": 20
+        }
     }
 }

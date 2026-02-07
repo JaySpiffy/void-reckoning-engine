@@ -12,7 +12,8 @@
             "laser",
             "standard_issue",
             "rifle"
-        ]
+        ],
+        "tier": 1
     },
     "laspistol": {
         "name": "Laspistol",
@@ -27,7 +28,8 @@
             "laser",
             "sidearm",
             "pistol"
-        ]
+        ],
+        "tier": 1
     },
     "bolter": {
         "name": "Bolter",
@@ -38,11 +40,12 @@
             "ap": -1
         },
         "tags": [
-            "bullet",
+            "kinetic",
             "explosive",
             "standard_issue",
             "rifle"
-        ]
+        ],
+        "tier": 1
     },
     "bolt_pistol": {
         "name": "Bolt Pistol",
@@ -53,11 +56,12 @@
             "ap": -1
         },
         "tags": [
-            "bullet",
+            "kinetic",
             "explosive",
             "sidearm",
             "pistol"
-        ]
+        ],
+        "tier": 1
     },
     "pulse_rifle": {
         "name": "Pulse Rifle",
@@ -69,8 +73,10 @@
         },
         "tags": [
             "energy",
-            "plasma"
-        ]
+            "plasma",
+            "rifle"
+        ],
+        "tier": 2
     },
     "blaster_rifle": {
         "name": "Blaster Rifle",
@@ -82,8 +88,10 @@
         },
         "tags": [
             "energy",
-            "blaster"
-        ]
+            "blaster",
+            "rifle"
+        ],
+        "tier": 1
     },
     "chainsword": {
         "name": "Chainsword",
@@ -96,7 +104,8 @@
         "tags": [
             "melee",
             "kinetic"
-        ]
+        ],
+        "tier": 1
     },
     "power_sword": {
         "name": "Power Sword",
@@ -109,7 +118,8 @@
         "tags": [
             "melee",
             "energy"
-        ]
+        ],
+        "tier": 2
     },
     "frag_grenade": {
         "name": "Frag Grenade",
@@ -123,7 +133,8 @@
             "explosive",
             "blast",
             "consumable"
-        ]
+        ],
+        "tier": 1
     },
     "krak_grenade": {
         "name": "Krak Grenade",
@@ -137,7 +148,8 @@
             "explosive",
             "anti_armor",
             "consumable"
-        ]
+        ],
+        "tier": 1
     },
     "field_medkit": {
         "name": "Field Medkit",
@@ -149,7 +161,8 @@
         "tags": [
             "utility",
             "medical"
-        ]
+        ],
+        "tier": 1
     },
     "flamethrower": {
         "name": "Flamethrower",
@@ -163,7 +176,8 @@
             "thermal",
             "flame",
             "area_denial"
-        ]
+        ],
+        "tier": 1
     },
     "plasma_gun": {
         "name": "Plasma Gun",
@@ -177,7 +191,8 @@
             "energy",
             "plasma",
             "hazardous"
-        ]
+        ],
+        "tier": 2
     },
     "meltagun": {
         "name": "Meltagun",
@@ -191,7 +206,8 @@
             "thermal",
             "melta",
             "anti_armor"
-        ]
+        ],
+        "tier": 2
     },
     "heavy_bolter": {
         "name": "Heavy Bolter",
@@ -203,9 +219,10 @@
             "attacks": 3
         },
         "tags": [
-            "bullet",
+            "kinetic",
             "heavy_weapon"
-        ]
+        ],
+        "tier": 2
     },
     "missile_launcher": {
         "name": "Missile Launcher",
@@ -219,7 +236,8 @@
             "explosive",
             "missile",
             "versatile"
-        ]
+        ],
+        "tier": 2
     },
     "krak_missile_pod": {
         "name": "Krak Missile Pod",
@@ -234,7 +252,8 @@
             "missile",
             "anti_armor",
             "accuracy"
-        ]
+        ],
+        "tier": 2
     },
     "whirlwind_launcher": {
         "name": "Whirlwind Rocket Launcher",
@@ -250,7 +269,8 @@
             "artillery",
             "indirect",
             "blast"
-        ]
+        ],
+        "tier": 3
     },
     "hunter_killer_missile": {
         "name": "Hunter-Killer Missile",
@@ -264,7 +284,8 @@
             "missile",
             "one_shot",
             "anti_armor"
-        ]
+        ],
+        "tier": 3
     },
     "earthshaker_cannon": {
         "name": "Earthshaker Cannon",
@@ -280,7 +301,8 @@
             "artillery",
             "indirect",
             "siege"
-        ]
+        ],
+        "tier": 3
     },
     "medusa_siege_mortar": {
         "name": "Medusa Siege Mortar",
@@ -296,7 +318,8 @@
             "artillery",
             "indirect",
             "siege"
-        ]
+        ],
+        "tier": 4
     },
     "manticore_missile_battery": {
         "name": "Manticore Missile Battery",
@@ -312,7 +335,8 @@
             "artillery",
             "indirect",
             "area_denial"
-        ]
+        ],
+        "tier": 4
     },
     "autocannon_mounted": {
         "name": "Mounted Autocannon",
@@ -326,7 +350,8 @@
         "tags": [
             "kinetic",
             "vehicle_weapon"
-        ]
+        ],
+        "tier": 2
     },
     "lascannon_mounted": {
         "name": "Mounted Lascannon",
@@ -340,7 +365,8 @@
             "energy",
             "laser",
             "anti_armor"
-        ]
+        ],
+        "tier": 3
     },
     "battle_cannon": {
         "name": "Battle Cannon",
@@ -355,7 +381,8 @@
             "kinetic",
             "explosive",
             "blast"
-        ]
+        ],
+        "tier": 3
     },
     "demolisher_cannon": {
         "name": "Demolisher Cannon",
@@ -370,7 +397,8 @@
             "kinetic",
             "explosive",
             "siege"
-        ]
+        ],
+        "tier": 4
     },
     "titan_power_fist": {
         "name": "Titan Power Fist",
@@ -383,7 +411,8 @@
         "tags": [
             "melee",
             "titan_scale"
-        ]
+        ],
+        "tier": 4
     },
     "volcano_cannon": {
         "name": "Volcano Cannon",
@@ -397,7 +426,8 @@
             "energy",
             "laser",
             "titan_scale"
-        ]
+        ],
+        "tier": 5
     },
     "macro_cannon_battery": {
         "name": "Macro Cannon Battery",
@@ -412,7 +442,8 @@
             "kinetic",
             "explosive",
             "titan_scale"
-        ]
+        ],
+        "tier": 4
     },
     "void_shield_belt": {
         "name": "Belt Void Shield",
@@ -424,7 +455,8 @@
         "tags": [
             "defense",
             "energy"
-        ]
+        ],
+        "tier": 3
     },
     "refractor_field": {
         "name": "Refractor Field",
@@ -435,7 +467,8 @@
         "tags": [
             "defense",
             "tech"
-        ]
+        ],
+        "tier": 3
     },
     "swarm_mandibles": {
         "name": "Organic Mandibles",
@@ -447,6 +480,2679 @@
         "tags": [
             "melee",
             "organic"
-        ]
+        ],
+        "tier": 1
+    },
+    "stalker_bolter": {
+        "name": "Stalker-Pattern Bolter",
+        "scale": "light",
+        "stats": {
+            "power": 3.0,
+            "range": 30,
+            "ap": -2
+        },
+        "tags": [
+            "kinetic",
+            "precision",
+            "bolter",
+            "rifle"
+        ],
+        "tier": 2
+    },
+    "storm_bolter": {
+        "name": "Storm Bolter",
+        "scale": "light",
+        "stats": {
+            "power": 2.5,
+            "range": 18,
+            "ap": -1,
+            "attacks": 2
+        },
+        "tags": [
+            "kinetic",
+            "rapid_fire",
+            "bolter",
+            "standard_issue"
+        ],
+        "tier": 2
+    },
+    "vulcan_mega_bolter": {
+        "name": "Vulcan Mega-Bolter",
+        "scale": "titan",
+        "stats": {
+            "power": 4.5,
+            "range": 60,
+            "ap": -2,
+            "attacks": 20
+        },
+        "tags": [
+            "kinetic",
+            "saturation",
+            "bolter",
+            "titan_scale"
+        ],
+        "tier": 4
+    },
+    "hotshot_lasgun": {
+        "name": "Hot-shot Lasgun",
+        "scale": "light",
+        "stats": {
+            "power": 1.8,
+            "range": 18,
+            "ap": -2
+        },
+        "tags": [
+            "energy",
+            "laser",
+            "elite_infantry",
+            "rifle"
+        ],
+        "tier": 2
+    },
+    "long_las": {
+        "name": "Long-las",
+        "scale": "light",
+        "stats": {
+            "power": 2.2,
+            "range": 48,
+            "ap": -1
+        },
+        "tags": [
+            "energy",
+            "laser",
+            "sniper",
+            "rifle"
+        ],
+        "tier": 2
+    },
+    "multimelta": {
+        "name": "Multi-Melta",
+        "scale": "heavy",
+        "stats": {
+            "power": 15.0,
+            "range": 12,
+            "ap": -4,
+            "attacks": 2
+        },
+        "tags": [
+            "thermal",
+            "melta",
+            "anti_armor",
+            "vehicle_weapon"
+        ],
+        "tier": 3
+    },
+    "heavy_plasma_cannon": {
+        "name": "Heavy Plasma Cannon",
+        "scale": "heavy",
+        "stats": {
+            "power": 18.0,
+            "range": 36,
+            "ap": -4,
+            "blast": true
+        },
+        "tags": [
+            "energy",
+            "plasma",
+            "heavy_weapon",
+            "blast"
+        ],
+        "tier": 3
+    },
+    "heavy_flamer": {
+        "name": "Heavy Flamer",
+        "scale": "medium",
+        "stats": {
+            "power": 8.0,
+            "range": 10,
+            "ap": -1,
+            "blast": true
+        },
+        "tags": [
+            "thermal",
+            "flame",
+            "area_denial",
+            "blast"
+        ],
+        "tier": 2
+    },
+    "thunder_hammer": {
+        "name": "Thunder Hammer",
+        "scale": "light",
+        "stats": {
+            "power": 10.0,
+            "range": 1,
+            "ap": -3
+        },
+        "tags": [
+            "melee",
+            "kinetic",
+            "crushing",
+            "heavy_melee"
+        ],
+        "tier": 3
+    },
+    "lightning_claw": {
+        "name": "Lightning Claw",
+        "scale": "light",
+        "stats": {
+            "power": 4.5,
+            "range": 1,
+            "ap": -2,
+            "attacks": 2
+        },
+        "tags": [
+            "melee",
+            "energy",
+            "shredding"
+        ],
+        "tier": 3
+    },
+    "arc_rifle": {
+        "name": "Arc Rifle",
+        "scale": "light",
+        "stats": {
+            "power": 3.0,
+            "range": 24,
+            "ap": -1
+        },
+        "tags": [
+            "energy",
+            "arc",
+            "anti_vehicle",
+            "rifle"
+        ],
+        "tier": 2
+    },
+    "radium_carbine": {
+        "name": "Radium Carbine",
+        "scale": "light",
+        "stats": {
+            "power": 2.0,
+            "range": 18,
+            "ap": 0,
+            "poison": 1.5
+        },
+        "tags": [
+            "kinetic",
+            "radiation",
+            "poison",
+            "carbine"
+        ],
+        "tier": 2
+    },
+    "transuranic_arquebus": {
+        "name": "Transuranic Arquebus",
+        "scale": "medium",
+        "stats": {
+            "power": 8.0,
+            "range": 72,
+            "ap": -3
+        },
+        "tags": [
+            "kinetic",
+            "sniper",
+            "anti_material",
+            "heavy_weapon"
+        ],
+        "tier": 3
+    },
+    "quake_cannon": {
+        "name": "Titan Quake Cannon",
+        "scale": "titan",
+        "stats": {
+            "power": 400.0,
+            "range": 180,
+            "ap": -4,
+            "blast": true
+        },
+        "tags": [
+            "kinetic",
+            "explosive",
+            "artillery",
+            "titan_scale"
+        ],
+        "tier": 5
+    },
+    "gatling_blaster": {
+        "name": "Reaver Gatling Blaster",
+        "scale": "titan",
+        "stats": {
+            "power": 45.0,
+            "range": 72,
+            "ap": -2,
+            "attacks": 12
+        },
+        "tags": [
+            "kinetic",
+            "rapid_fire",
+            "saturation",
+            "titan_scale"
+        ],
+        "tier": 4
+    },
+    "phaser_type_ii": {
+        "name": "Phaser Type II Handheld",
+        "scale": "micro",
+        "stats": {
+            "power": 1.5,
+            "range": 15,
+            "ap": 0
+        },
+        "tags": [
+            "energy",
+            "phaser",
+            "sidearm",
+            "stun"
+        ],
+        "tier": 1
+    },
+    "phaser_type_iii_rifle": {
+        "name": "Phaser Type III Rifle",
+        "scale": "light",
+        "stats": {
+            "power": 2.5,
+            "range": 30,
+            "ap": -1
+        },
+        "tags": [
+            "energy",
+            "phaser",
+            "versatile",
+            "rifle"
+        ],
+        "tier": 2
+    },
+    "compression_phaser_rifle": {
+        "name": "Compression Phaser Rifle",
+        "scale": "light",
+        "stats": {
+            "power": 3.5,
+            "range": 25,
+            "ap": -2
+        },
+        "tags": [
+            "energy",
+            "phaser",
+            "high_intensity",
+            "rifle"
+        ],
+        "tier": 3
+    },
+    "klingon_disruptor_pistol": {
+        "name": "Klingon Disruptor Pistol",
+        "scale": "micro",
+        "stats": {
+            "power": 2.0,
+            "range": 12,
+            "ap": -1
+        },
+        "tags": [
+            "energy",
+            "disruptor",
+            "brutal",
+            "sidearm"
+        ],
+        "tier": 2
+    },
+    "klingon_disruptor_rifle": {
+        "name": "Klingon Disruptor Rifle",
+        "scale": "light",
+        "stats": {
+            "power": 3.2,
+            "range": 25,
+            "ap": -2
+        },
+        "tags": [
+            "energy",
+            "disruptor",
+            "brutal",
+            "rifle"
+        ],
+        "tier": 2
+    },
+    "romulan_disruptor_rifle": {
+        "name": "Romulan Disruptor Rifle",
+        "scale": "light",
+        "stats": {
+            "power": 2.8,
+            "range": 35,
+            "ap": -2
+        },
+        "tags": [
+            "energy",
+            "disruptor",
+            "precision",
+            "rifle"
+        ],
+        "tier": 2
+    },
+    "dominion_polaron_beam_rifle": {
+        "name": "Dominion Polaron Beam Rifle",
+        "scale": "light",
+        "stats": {
+            "power": 2.5,
+            "range": 30,
+            "ap": -3
+        },
+        "tags": [
+            "energy",
+            "polaron",
+            "shield_piercing",
+            "rifle"
+        ],
+        "tier": 3
+    },
+    "batleth": {
+        "name": "Bat'leth",
+        "scale": "light",
+        "stats": {
+            "power": 4.0,
+            "range": 1,
+            "ap": -1
+        },
+        "tags": [
+            "melee",
+            "kinetic",
+            "martial_art"
+        ],
+        "tier": 1
+    },
+    "mekleth": {
+        "name": "Mek'leth",
+        "scale": "micro",
+        "stats": {
+            "power": 3.0,
+            "range": 1,
+            "ap": -1
+        },
+        "tags": [
+            "melee",
+            "kinetic",
+            "sidearm"
+        ],
+        "tier": 1
+    },
+    "e11_blaster_rifle": {
+        "name": "E-11 Blaster Rifle",
+        "scale": "light",
+        "stats": {
+            "power": 2.0,
+            "range": 24,
+            "ap": 0
+        },
+        "tags": [
+            "energy",
+            "blaster",
+            "standard_issue",
+            "rifle"
+        ],
+        "tier": 1
+    },
+    "a280_blaster_rifle": {
+        "name": "A280 Blaster Rifle",
+        "scale": "light",
+        "stats": {
+            "power": 2.2,
+            "range": 35,
+            "ap": -1
+        },
+        "tags": [
+            "energy",
+            "blaster",
+            "precision",
+            "rifle"
+        ],
+        "tier": 2
+    },
+    "dl44_heavy_blaster_pistol": {
+        "name": "DL-44 Heavy Blaster Pistol",
+        "scale": "micro",
+        "stats": {
+            "power": 2.8,
+            "range": 15,
+            "ap": -1
+        },
+        "tags": [
+            "energy",
+            "blaster",
+            "high_power",
+            "sidearm"
+        ],
+        "tier": 2
+    },
+    "bowcaster": {
+        "name": "Wookiee Bowcaster",
+        "scale": "light",
+        "stats": {
+            "power": 4.0,
+            "range": 20,
+            "ap": -2,
+            "blast": true
+        },
+        "tags": [
+            "energy",
+            "bowcaster",
+            "explosive",
+            "kinetic_energy"
+        ],
+        "tier": 3
+    },
+    "ion_rifle": {
+        "name": "Ion Rifle",
+        "scale": "light",
+        "stats": {
+            "power": 1.5,
+            "range": 25,
+            "ap": -1,
+            "ion_damage": 5.0
+        },
+        "tags": [
+            "energy",
+            "ion",
+            "anti_shield",
+            "anti_droid"
+        ],
+        "tier": 2
+    },
+    "lightsaber_sword": {
+        "name": "Lightsaber",
+        "scale": "light",
+        "stats": {
+            "power": 15.0,
+            "range": 1,
+            "ap": -6
+        },
+        "tags": [
+            "melee",
+            "energy",
+            "plasma",
+            "legendary"
+        ],
+        "tier": 5
+    },
+    "thermal_detonator": {
+        "name": "Thermal Detonator",
+        "scale": "micro",
+        "stats": {
+            "power": 30.0,
+            "range": 6,
+            "ap": -4,
+            "blast": true
+        },
+        "tags": [
+            "explosive",
+            "thermal",
+            "high_damage",
+            "consumable"
+        ],
+        "tier": 3
+    },
+    "concussion_missile_launcher": {
+        "name": "Concussion Missile Launcher",
+        "scale": "medium",
+        "stats": {
+            "power": 12.0,
+            "range": 40,
+            "ap": -2,
+            "blast": true
+        },
+        "tags": [
+            "explosive",
+            "missile",
+            "anti_infantry"
+        ],
+        "tier": 2
+    },
+    "proton_torpedo_launcher": {
+        "name": "Proton Torpedo Launcher",
+        "scale": "heavy",
+        "stats": {
+            "power": 40.0,
+            "range": 60,
+            "ap": -4
+        },
+        "tags": [
+            "explosive",
+            "torpedo",
+            "anti_armor"
+        ],
+        "tier": 3
+    },
+    "portable_turbolaser": {
+        "name": "Portable Turbolaser",
+        "scale": "heavy",
+        "stats": {
+            "power": 75.0,
+            "range": 100,
+            "ap": -4
+        },
+        "tags": [
+            "energy",
+            "blaster",
+            "siege",
+            "heavy_weapon"
+        ],
+        "tier": 4
+    },
+    "bio_acid_spitter": {
+        "name": "Bio-Acid Spitter",
+        "scale": "light",
+        "stats": {
+            "power": 2.5,
+            "range": 15,
+            "ap": -2,
+            "acid": 1.0
+        },
+        "tags": [
+            "organic",
+            "acid",
+            "short_range"
+        ],
+        "tier": 2
+    },
+    "venom_cannon": {
+        "name": "Venom Cannon",
+        "scale": "heavy",
+        "stats": {
+            "power": 15.0,
+            "range": 48,
+            "ap": -3
+        },
+        "tags": [
+            "organic",
+            "projectile",
+            "anti_armor"
+        ],
+        "tier": 3
+    },
+    "barbed_strangler": {
+        "name": "Barbed Strangler",
+        "scale": "medium",
+        "stats": {
+            "power": 5.0,
+            "range": 30,
+            "ap": -1,
+            "blast": true
+        },
+        "tags": [
+            "organic",
+            "crowd_control",
+            "blast"
+        ],
+        "tier": 2
+    },
+    "scything_talons": {
+        "name": "Scything Talons",
+        "scale": "light",
+        "stats": {
+            "power": 3.5,
+            "range": 1,
+            "ap": -1,
+            "attacks": 2
+        },
+        "tags": [
+            "melee",
+            "organic",
+            "bladed"
+        ],
+        "tier": 1
+    },
+    "neural_shredder": {
+        "name": "Neural Shredder",
+        "scale": "light",
+        "stats": {
+            "power": 0.5,
+            "range": 12,
+            "ap": -5,
+            "psionic": 10.0
+        },
+        "tags": [
+            "exotic",
+            "psionic",
+            "anti_personnel"
+        ],
+        "tier": 4
+    },
+    "tesla_carbine": {
+        "name": "Tesla Carbine",
+        "scale": "light",
+        "stats": {
+            "power": 3.0,
+            "range": 18,
+            "ap": 0,
+            "arcing": 2.0
+        },
+        "tags": [
+            "energy",
+            "tesla",
+            "arcing",
+            "carbine"
+        ],
+        "tier": 3
+    },
+    "sonic_blaster": {
+        "name": "Sonic Blaster",
+        "scale": "light",
+        "stats": {
+            "power": 4.0,
+            "range": 24,
+            "ap": -2,
+            "ignore_cover": true
+        },
+        "tags": [
+            "exotic",
+            "sonic",
+            "ignore_armor",
+            "chaos"
+        ],
+        "tier": 3
+    },
+    "graviton_gun": {
+        "name": "Graviton Gun",
+        "scale": "medium",
+        "stats": {
+            "power": 2.0,
+            "range": 18,
+            "ap": -3,
+            "grav_factor": 1.5
+        },
+        "tags": [
+            "exotic",
+            "grav",
+            "anti_heavy",
+            "control"
+        ],
+        "tier": 3
+    },
+    "stasis_bomb": {
+        "name": "Stasis Grenade",
+        "scale": "micro",
+        "stats": {
+            "power": 0,
+            "range": 6,
+            "stasis_duration": 2
+        },
+        "tags": [
+            "exotic",
+            "chrono",
+            "utility",
+            "consumable"
+        ],
+        "tier": 4
+    },
+    "particle_beam_rifle": {
+        "name": "Particle Beam Rifle",
+        "scale": "light",
+        "stats": {
+            "power": 5.0,
+            "range": 60,
+            "ap": -3
+        },
+        "tags": [
+            "energy",
+            "beam",
+            "sniper"
+        ],
+        "tier": 3
+    },
+    "needler_pistol": {
+        "name": "Needler Pistol",
+        "scale": "micro",
+        "stats": {
+            "power": 1.0,
+            "range": 12,
+            "homing": 2.0,
+            "explosion_on_hit": 5.0
+        },
+        "tags": [
+            "exotic",
+            "homing",
+            "crystalline",
+            "sidearm"
+        ],
+        "tier": 2
+    },
+    "energy_sword_halo": {
+        "name": "Energy Sword",
+        "scale": "light",
+        "stats": {
+            "power": 8.0,
+            "range": 1,
+            "ap": -4
+        },
+        "tags": [
+            "melee",
+            "energy",
+            "plasma"
+        ],
+        "tier": 4
+    },
+    "gravity_hammer": {
+        "name": "Gravity Hammer",
+        "scale": "medium",
+        "stats": {
+            "power": 12.0,
+            "range": 2,
+            "ap": -3,
+            "heavy_impact": true
+        },
+        "tags": [
+            "melee",
+            "exotic",
+            "grav",
+            "heavy_weapon"
+        ],
+        "tier": 4
+    },
+    "fuel_rod_cannon": {
+        "name": "Fuel Rod Cannon",
+        "scale": "heavy",
+        "stats": {
+            "power": 25.0,
+            "range": 40,
+            "ap": -2,
+            "blast": true
+        },
+        "tags": [
+            "energy",
+            "explosive",
+            "plasma",
+            "heavy_weapon"
+        ],
+        "tier": 3
+    },
+    "ma5b_assault_rifle": {
+        "name": "MA5B Assault Rifle",
+        "scale": "light",
+        "stats": {
+            "power": 1.8,
+            "range": 24,
+            "ap": 0
+        },
+        "tags": [
+            "kinetic",
+            "standard_issue",
+            "rifle"
+        ],
+        "tier": 1
+    },
+    "br55_battle_rifle": {
+        "name": "BR55 Battle Rifle",
+        "scale": "light",
+        "stats": {
+            "power": 2.2,
+            "range": 36,
+            "ap": -1,
+            "burst": 3
+        },
+        "tags": [
+            "kinetic",
+            "precision",
+            "rifle"
+        ],
+        "tier": 2
+    },
+    "m6d_magnum": {
+        "name": "M6D Magnum",
+        "scale": "micro",
+        "stats": {
+            "power": 2.5,
+            "range": 25,
+            "ap": -1
+        },
+        "tags": [
+            "kinetic",
+            "heavy_pistol",
+            "sidearm"
+        ],
+        "tier": 2
+    },
+    "avenger_assault_rifle": {
+        "name": "M-8 Avenger",
+        "scale": "light",
+        "stats": {
+            "power": 1.9,
+            "range": 28,
+            "ap": 0
+        },
+        "tags": [
+            "kinetic",
+            "versatile",
+            "rifle"
+        ],
+        "tier": 1
+    },
+    "carnifex_heavy_pistol": {
+        "name": "M-6 Carnifex",
+        "scale": "micro",
+        "stats": {
+            "power": 3.0,
+            "range": 20,
+            "ap": -1
+        },
+        "tags": [
+            "kinetic",
+            "heavy_pistol",
+            "sidearm"
+        ],
+        "tier": 2
+    },
+    "black_widow_sniper": {
+        "name": "M-98 Black Widow",
+        "scale": "medium",
+        "stats": {
+            "power": 10.0,
+            "range": 80,
+            "ap": -3
+        },
+        "tags": [
+            "kinetic",
+            "sniper",
+            "anti_material"
+        ],
+        "tier": 4
+    },
+    "geth_pulse_rifle": {
+        "name": "Geth Pulse Rifle",
+        "scale": "light",
+        "stats": {
+            "power": 1.8,
+            "range": 35,
+            "ap": -1
+        },
+        "tags": [
+            "energy",
+            "pulse",
+            "high_accuracy"
+        ],
+        "tier": 2
+    },
+    "m920_cain": {
+        "name": "M-920 Cain",
+        "scale": "heavy",
+        "stats": {
+            "power": 300.0,
+            "range": 100,
+            "ap": -5,
+            "blast": true
+        },
+        "tags": [
+            "explosive",
+            "nuclear",
+            "anti_titan"
+        ],
+        "tier": 5
+    },
+    "krayt_fang_blaster": {
+        "name": "Krayt Fang Blaster Rifle",
+        "scale": "light",
+        "stats": {
+            "power": 3.5,
+            "range": 30,
+            "ap": -1
+        },
+        "tags": [
+            "energy",
+            "blaster",
+            "heavy_rifle"
+        ],
+        "tier": 3
+    },
+    "ee3_carbine_rifle": {
+        "name": "EE-3 Carbine Rifle",
+        "scale": "light",
+        "stats": {
+            "power": 2.8,
+            "range": 25,
+            "ap": -1,
+            "burst": 3
+        },
+        "tags": [
+            "energy",
+            "blaster",
+            "carbine",
+            "bounty_hunter"
+        ],
+        "tier": 3
+    },
+    "disruptor_pistol_wars": {
+        "name": "Amban Phase-Pulse Blaster",
+        "scale": "medium",
+        "stats": {
+            "power": 20.0,
+            "range": 80,
+            "ap": -5
+        },
+        "tags": [
+            "energy",
+            "disruptor",
+            "sniper",
+            "vaporizer"
+        ],
+        "tier": 4
+    },
+    "sonic_detonator": {
+        "name": "Geonosian Sonic Detonator",
+        "scale": "micro",
+        "stats": {
+            "power": 12.0,
+            "range": 8,
+            "ap": -2,
+            "blast": true
+        },
+        "tags": [
+            "explosive",
+            "sonic",
+            "area_denial"
+        ],
+        "tier": 2
+    },
+    "arc_caster_wars": {
+        "name": "Arc Caster",
+        "scale": "light",
+        "stats": {
+            "power": 4.0,
+            "range": 15,
+            "arcing": 3.0
+        },
+        "tags": [
+            "energy",
+            "arc",
+            "anti_infantry"
+        ],
+        "tier": 3
+    },
+    "cycler_rifle": {
+        "name": "Tusken Cycler Rifle",
+        "scale": "light",
+        "stats": {
+            "power": 3.0,
+            "range": 40,
+            "ap": -1
+        },
+        "tags": [
+            "kinetic",
+            "projectile",
+            "primitive"
+        ],
+        "tier": 1
+    },
+    "westar_35_pistol": {
+        "name": "WESTAR-35 Blaster Pistol",
+        "scale": "micro",
+        "stats": {
+            "power": 2.2,
+            "range": 18,
+            "ap": 0
+        },
+        "tags": [
+            "energy",
+            "blaster",
+            "mandalorian"
+        ],
+        "tier": 2
+    },
+    "shredd_beam_rifle": {
+        "name": "Beam Rifle (Covenant-MKII)",
+        "scale": "light",
+        "stats": {
+            "power": 6.0,
+            "range": 70,
+            "ap": -4
+        },
+        "tags": [
+            "energy",
+            "beam",
+            "sniper"
+        ],
+        "tier": 4
+    },
+    "concussion_rifle_covenant": {
+        "name": "Concussion Rifle",
+        "scale": "medium",
+        "stats": {
+            "power": 5.0,
+            "range": 20,
+            "ap": -1,
+            "blast": true,
+            "knockback": 2.0
+        },
+        "tags": [
+            "energy",
+            "explosive",
+            "crowd_control"
+        ],
+        "tier": 3
+    },
+    "plasma_launcher_covenant": {
+        "name": "Plasma Launcher",
+        "scale": "heavy",
+        "stats": {
+            "power": 15.0,
+            "range": 45,
+            "ap": -3,
+            "homing": 5.0
+        },
+        "tags": [
+            "energy",
+            "plasma",
+            "missile",
+            "homing"
+        ],
+        "tier": 4
+    },
+    "focus_rifle_covenant": {
+        "name": "Focus Rifle",
+        "scale": "light",
+        "stats": {
+            "power": 1.0,
+            "range": 50,
+            "ap": 0,
+            "continuous_damage": 5.0
+        },
+        "tags": [
+            "energy",
+            "beam",
+            "continuous"
+        ],
+        "tier": 3
+    },
+    "incineration_cannon": {
+        "name": "Incineration Cannon",
+        "scale": "heavy",
+        "stats": {
+            "power": 50.0,
+            "range": 30,
+            "ap": -4,
+            "blast": true,
+            "submunitions": 4
+        },
+        "tags": [
+            "exotic",
+            "forerunner",
+            "anti_armor"
+        ],
+        "tier": 5
+    },
+    "binary_rifle": {
+        "name": "Binary Rifle",
+        "scale": "medium",
+        "stats": {
+            "power": 25.0,
+            "range": 100,
+            "ap": -5
+        },
+        "tags": [
+            "exotic",
+            "forerunner",
+            "sniper",
+            "vaporizer"
+        ],
+        "tier": 5
+    },
+    "suppressor_forerunner": {
+        "name": "Suppressor",
+        "scale": "light",
+        "stats": {
+            "power": 1.5,
+            "range": 20,
+            "attacks": 5
+        },
+        "tags": [
+            "exotic",
+            "forerunner",
+            "rapid_fire"
+        ],
+        "tier": 2
+    },
+    "boltshot_forerunner": {
+        "name": "Boltshot",
+        "scale": "micro",
+        "stats": {
+            "power": 1.2,
+            "range": 15,
+            "ap": 0
+        },
+        "tags": [
+            "exotic",
+            "forerunner",
+            "sidearm"
+        ],
+        "tier": 1
+    },
+    "scattershot_forerunner": {
+        "name": "Scattershot",
+        "scale": "light",
+        "stats": {
+            "power": 8.0,
+            "range": 10,
+            "ap": -1,
+            "projectiles": 6
+        },
+        "tags": [
+            "exotic",
+            "forerunner",
+            "shotgun"
+        ],
+        "tier": 3
+    },
+    "adjudicator_rifle": {
+        "name": "Adjudicator Battle Rifle",
+        "scale": "light",
+        "stats": {
+            "power": 2.5,
+            "range": 40,
+            "ap": -1
+        },
+        "tags": [
+            "kinetic",
+            "precision",
+            "helldiver"
+        ],
+        "tier": 2
+    },
+    "breaker_shotgun": {
+        "name": "Breaker Automatic Shotgun",
+        "scale": "light",
+        "stats": {
+            "power": 6.0,
+            "range": 15,
+            "attacks": 3
+        },
+        "tags": [
+            "kinetic",
+            "shotgun",
+            "rapid_fire",
+            "helldiver"
+        ],
+        "tier": 2
+    },
+    "railgun_portable": {
+        "name": "Portable Railgun",
+        "scale": "medium",
+        "stats": {
+            "power": 20.0,
+            "range": 60,
+            "ap": -5
+        },
+        "tags": [
+            "kinetic",
+            "anti_armor",
+            "helldiver"
+        ],
+        "tier": 4
+    },
+    "autocannon_sentry": {
+        "name": "Sentry Autocannon",
+        "scale": "medium",
+        "stats": {
+            "power": 12.0,
+            "range": 50,
+            "ap": -2,
+            "attacks": 2
+        },
+        "tags": [
+            "kinetic",
+            "heavy_weapon",
+            "helldiver"
+        ],
+        "tier": 3
+    },
+    "recoiless_rifle_portable": {
+        "name": "Recoiless Rifle",
+        "scale": "medium",
+        "stats": {
+            "power": 25.0,
+            "range": 45,
+            "ap": -4
+        },
+        "tags": [
+            "explosive",
+            "anti_armor",
+            "helldiver"
+        ],
+        "tier": 3
+    },
+    "spear_launcher": {
+        "name": "SPEAR Launcher",
+        "scale": "heavy",
+        "stats": {
+            "power": 60.0,
+            "range": 120,
+            "ap": -5,
+            "homing": 10.0
+        },
+        "tags": [
+            "explosive",
+            "missile",
+            "anti_titan",
+            "helldiver"
+        ],
+        "tier": 5
+    },
+    "quasar_cannon": {
+        "name": "Quasar Cannon",
+        "scale": "medium",
+        "stats": {
+            "power": 40.0,
+            "range": 80,
+            "ap": -5,
+            "charge_up": 3.0
+        },
+        "tags": [
+            "energy",
+            "anti_armor",
+            "infinite_ammo",
+            "helldiver"
+        ],
+        "tier": 4
+    },
+    "sickle_energy_rifle": {
+        "name": "Sickle Laser Carbine",
+        "scale": "light",
+        "stats": {
+            "power": 1.5,
+            "range": 30,
+            "attacks": 8
+        },
+        "tags": [
+            "energy",
+            "laser",
+            "rapid_fire",
+            "helldiver"
+        ],
+        "tier": 2
+    },
+    "scorcher_plasma_rifle": {
+        "name": "Scorcher Plasma Rifle",
+        "scale": "light",
+        "stats": {
+            "power": 4.0,
+            "range": 25,
+            "ap": -2,
+            "blast": true
+        },
+        "tags": [
+            "energy",
+            "plasma",
+            "explosive",
+            "helldiver"
+        ],
+        "tier": 3
+    },
+    "blitzer_arc_shotgun": {
+        "name": "Blitzer Arc Shotgun",
+        "scale": "light",
+        "stats": {
+            "power": 5.0,
+            "range": 12,
+            "arcing": 5.0
+        },
+        "tags": [
+            "energy",
+            "arc",
+            "stagger",
+            "helldiver"
+        ],
+        "tier": 3
+    },
+    "stalwart_lmg": {
+        "name": "Stalwart Light Machine Gun",
+        "scale": "light",
+        "stats": {
+            "power": 1.2,
+            "range": 35,
+            "attacks": 10
+        },
+        "tags": [
+            "kinetic",
+            "suppression",
+            "rapid_fire",
+            "helldiver"
+        ],
+        "tier": 2
+    },
+    "laspistol_dagger": {
+        "name": "Dagger Laspistol",
+        "scale": "micro",
+        "stats": {
+            "power": 1.0,
+            "range": 15,
+            "infinite_ammo": true
+        },
+        "tags": [
+            "energy",
+            "laser",
+            "sidearm",
+            "helldiver"
+        ],
+        "tier": 1
+    },
+    "senator_revolver": {
+        "name": "Senator Heavy Revolver",
+        "scale": "micro",
+        "stats": {
+            "power": 3.5,
+            "range": 20,
+            "ap": -2
+        },
+        "tags": [
+            "kinetic",
+            "heavy_pistol",
+            "sidearm",
+            "helldiver"
+        ],
+        "tier": 2
+    },
+    "tachyonic_disintegrator_rifle": {
+        "name": "Tachyonic Disintegrator Rifle",
+        "scale": "light",
+        "stats": {
+            "power": 10.0,
+            "range": 30,
+            "ap": -6
+        },
+        "tags": [
+            "exotic",
+            "tachyon",
+            "vaporizer"
+        ],
+        "tier": 5
+    },
+    "zero_point_cannon": {
+        "name": "Zero-Point Energy Cannon",
+        "scale": "titan",
+        "stats": {
+            "power": 1000.0,
+            "range": 250,
+            "ap": -10
+        },
+        "tags": [
+            "exotic",
+            "zero_point",
+            "anti_fortress"
+        ],
+        "tier": 5
+    },
+    "gravity_anomaly_launcher": {
+        "name": "Singularity Projector",
+        "scale": "heavy",
+        "stats": {
+            "power": 50.0,
+            "range": 50,
+            "ap": -4,
+            "gravity_well": true
+        },
+        "tags": [
+            "exotic",
+            "grav",
+            "area_control"
+        ],
+        "tier": 5
+    },
+    "temporal_rifter": {
+        "name": "Temporal Rifter",
+        "scale": "medium",
+        "stats": {
+            "power": 5.0,
+            "range": 20,
+            "ap": -2,
+            "stasis_hit": 1.0
+        },
+        "tags": [
+            "exotic",
+            "chrono",
+            "stasis"
+        ],
+        "tier": 4
+    },
+    "vortex_missile_launcher": {
+        "name": "Vortex Missile Launcher",
+        "scale": "titan",
+        "stats": {
+            "power": 500.0,
+            "range": 300,
+            "ap": -8,
+            "vortex_radius": 20
+        },
+        "tags": [
+            "explosive",
+            "warp",
+            "titan_scale"
+        ],
+        "tier": 5
+    },
+    "bio_shard_launcher": {
+        "name": "Shard Launcher",
+        "scale": "light",
+        "stats": {
+            "power": 3.0,
+            "range": 25,
+            "attacks": 4,
+            "poison": 1.0
+        },
+        "tags": [
+            "organic",
+            "projectile",
+            "poison"
+        ],
+        "tier": 2
+    },
+    "acid_rain_cannon": {
+        "name": "Acid Rain Artillery",
+        "scale": "heavy",
+        "stats": {
+            "power": 10.0,
+            "range": 150,
+            "ap": -2,
+            "acid_corrosion": 5.0
+        },
+        "tags": [
+            "organic",
+            "artillery",
+            "acid",
+            "area_denial"
+        ],
+        "tier": 4
+    },
+    "spore_mine_launcher": {
+        "name": "Spore Mine Launcher",
+        "scale": "medium",
+        "stats": {
+            "power": 15.0,
+            "range": 40,
+            "ap": 0,
+            "blast": true
+        },
+        "tags": [
+            "organic",
+            "explosive",
+            "mine"
+        ],
+        "tier": 3
+    },
+    "psychic_shriek": {
+        "name": "Psychic Shriek Projector",
+        "scale": "micro",
+        "stats": {
+            "power": 0.1,
+            "range": 10,
+            "morale_damage": 20.0
+        },
+        "tags": [
+            "exotic",
+            "psionic",
+            "morale"
+        ],
+        "tier": 3
+    },
+    "force_staff": {
+        "name": "Eldritch Force Staff",
+        "scale": "light",
+        "stats": {
+            "power": 5.0,
+            "range": 20,
+            "ap": -3,
+            "knockback": 5.0
+        },
+        "tags": [
+            "melee",
+            "exotic",
+            "psionic"
+        ],
+        "tier": 4
+    },
+    "monomolecular_blade": {
+        "name": "Monomolecular Blade",
+        "scale": "light",
+        "stats": {
+            "power": 6.0,
+            "range": 1,
+            "ap": -4
+        },
+        "tags": [
+            "melee",
+            "kinetic",
+            "hyper_sharp"
+        ],
+        "tier": 3
+    },
+    "neural_whip": {
+        "name": "Neural Whip",
+        "scale": "light",
+        "stats": {
+            "power": 2.0,
+            "range": 4,
+            "ap": -1,
+            "stun_chance": 0.5
+        },
+        "tags": [
+            "melee",
+            "exotic",
+            "psionic"
+        ],
+        "tier": 3
+    },
+    "fusion_blaster_tau": {
+        "name": "Fusion Blaster",
+        "scale": "light",
+        "stats": {
+            "power": 8.0,
+            "range": 12,
+            "ap": -4
+        },
+        "tags": [
+            "thermal",
+            "melta",
+            "anti_tank"
+        ],
+        "tier": 3
+    },
+    "burst_cannon_tau": {
+        "name": "Burst Cannon",
+        "scale": "medium",
+        "stats": {
+            "power": 2.0,
+            "range": 18,
+            "attacks": 4
+        },
+        "tags": [
+            "energy",
+            "pulse",
+            "rapid_fire"
+        ],
+        "tier": 2
+    },
+    "rail_rifle_tau": {
+        "name": "Rail Rifle",
+        "scale": "light",
+        "stats": {
+            "power": 6.0,
+            "range": 45,
+            "ap": -3
+        },
+        "tags": [
+            "kinetic",
+            "railgun",
+            "sniper"
+        ],
+        "tier": 4
+    },
+    "heavy_rail_rifle_tau": {
+        "name": "Heavy Rail Rifle",
+        "scale": "medium",
+        "stats": {
+            "power": 12.0,
+            "range": 60,
+            "ap": -4
+        },
+        "tags": [
+            "kinetic",
+            "railgun",
+            "anti_vehicle"
+        ],
+        "tier": 4
+    },
+    "cyclic_ion_blaster": {
+        "name": "Cyclic Ion Blaster",
+        "scale": "medium",
+        "stats": {
+            "power": 3.0,
+            "range": 18,
+            "attacks": 3,
+            "overcharge_bonus": 2.0
+        },
+        "tags": [
+            "energy",
+            "ion",
+            "hazardous"
+        ],
+        "tier": 4
+    },
+    "smart_missile_system": {
+        "name": "Smart Missile System",
+        "scale": "medium",
+        "stats": {
+            "power": 4.0,
+            "range": 30,
+            "attacks": 4,
+            "no_line_of_sight": true
+        },
+        "tags": [
+            "explosive",
+            "missile",
+            "indirect"
+        ],
+        "tier": 3
+    },
+    "airbursting_frag_projector": {
+        "name": "Airbursting Frag Projector",
+        "scale": "medium",
+        "stats": {
+            "power": 3.0,
+            "range": 24,
+            "blast": true,
+            "ignore_cover": true
+        },
+        "tags": [
+            "explosive",
+            "fragmentation",
+            "indirect"
+        ],
+        "tier": 3
+    },
+    "dark_lance_infantry": {
+        "name": "Dark Lance",
+        "scale": "medium",
+        "stats": {
+            "power": 15.0,
+            "range": 36,
+            "ap": -4
+        },
+        "tags": [
+            "exotic",
+            "dark_matter",
+            "anti_armor"
+        ],
+        "tier": 4
+    },
+    "splinter_cannon_heavy": {
+        "name": "Splinter Cannon",
+        "scale": "medium",
+        "stats": {
+            "power": 3.5,
+            "range": 36,
+            "attacks": 6,
+            "poison": 2.0
+        },
+        "tags": [
+            "organic",
+            "poison",
+            "suppression"
+        ],
+        "tier": 3
+    },
+    "disintegrator_cannon_heavy": {
+        "name": "Disintegrator Cannon",
+        "scale": "medium",
+        "stats": {
+            "power": 5.0,
+            "range": 36,
+            "ap": -2,
+            "attacks": 3
+        },
+        "tags": [
+            "exotic",
+            "vaporizer",
+            "anti_infantry"
+        ],
+        "tier": 3
+    },
+    "haywire_blaster": {
+        "name": "Haywire Blaster",
+        "scale": "light",
+        "stats": {
+            "power": 2.0,
+            "range": 24,
+            "haywire": 10.0
+        },
+        "tags": [
+            "energy",
+            "emp",
+            "anti_vehicle"
+        ],
+        "tier": 3
+    },
+    "heat_lance": {
+        "name": "Heat Lance",
+        "scale": "medium",
+        "stats": {
+            "power": 10.0,
+            "range": 18,
+            "ap": -4,
+            "melta_bonus": true
+        },
+        "tags": [
+            "thermal",
+            "melta",
+            "lance"
+        ],
+        "tier": 3
+    },
+    "agony_whip": {
+        "name": "Agony Whip",
+        "scale": "light",
+        "stats": {
+            "power": 1.0,
+            "range": 3,
+            "poison": 5.0
+        },
+        "tags": [
+            "melee",
+            "organic",
+            "pain"
+        ],
+        "tier": 2
+    },
+    "destructor_cannon": {
+        "name": "Destructor Cannon",
+        "scale": "heavy",
+        "stats": {
+            "power": 40.0,
+            "range": 48,
+            "ap": -3,
+            "blast": true
+        },
+        "tags": [
+            "energy",
+            "chaos",
+            "heavy_weapon"
+        ],
+        "tier": 4
+    },
+    "reaper_autocannon": {
+        "name": "Reaper Autocannon",
+        "scale": "medium",
+        "stats": {
+            "power": 6.0,
+            "range": 36,
+            "ap": -1,
+            "attacks": 4
+        },
+        "tags": [
+            "kinetic",
+            "rapid_fire",
+            "chaos"
+        ],
+        "tier": 3
+    },
+    "ectoplasma_cannon": {
+        "name": "Ectoplasma Cannon",
+        "scale": "medium",
+        "stats": {
+            "power": 8.0,
+            "range": 24,
+            "ap": -3,
+            "hazardous": true
+        },
+        "tags": [
+            "energy",
+            "plasma",
+            "exotic",
+            "chaos"
+        ],
+        "tier": 4
+    },
+    "hades_autocannon": {
+        "name": "Hades Autocannon",
+        "scale": "heavy",
+        "stats": {
+            "power": 12.0,
+            "range": 48,
+            "ap": -2,
+            "attacks": 6
+        },
+        "tags": [
+            "kinetic",
+            "rapid_fire",
+            "heavy_weapon",
+            "chaos"
+        ],
+        "tier": 4
+    },
+    "soulrender_scythe": {
+        "name": "Soulrender Scythe",
+        "scale": "light",
+        "stats": {
+            "power": 7.0,
+            "range": 1,
+            "ap": -3,
+            "soul_drain": true
+        },
+        "tags": [
+            "melee",
+            "exotic",
+            "chaos"
+        ],
+        "tier": 4
+    },
+    "warp_flamer": {
+        "name": "Warp Flamer",
+        "scale": "light",
+        "stats": {
+            "power": 5.0,
+            "range": 10,
+            "ap": -2,
+            "blast": true
+        },
+        "tags": [
+            "thermal",
+            "flame",
+            "warp",
+            "chaos"
+        ],
+        "tier": 3
+    },
+    "balefire_missile": {
+        "name": "Balefire Missile",
+        "scale": "heavy",
+        "stats": {
+            "power": 25.0,
+            "range": 72,
+            "ap": -2,
+            "burn": 5.0
+        },
+        "tags": [
+            "explosive",
+            "missile",
+            "chaos"
+        ],
+        "tier": 4
+    },
+    "grav_pistol_inf": {
+        "name": "Grav-Pistol",
+        "scale": "micro",
+        "stats": {
+            "power": 4.0,
+            "range": 12,
+            "ap": -3
+        },
+        "tags": [
+            "exotic",
+            "grav",
+            "sidearm"
+        ],
+        "tier": 3
+    },
+    "plasma_pistol_inf": {
+        "name": "Plasma Pistol",
+        "scale": "micro",
+        "stats": {
+            "power": 6.0,
+            "range": 15,
+            "ap": -3
+        },
+        "tags": [
+            "energy",
+            "plasma",
+            "sidearm"
+        ],
+        "tier": 3
+    },
+    "melta_pistol_inf": {
+        "name": "Infernus Pistol",
+        "scale": "micro",
+        "stats": {
+            "power": 12.0,
+            "range": 6,
+            "ap": -4
+        },
+        "tags": [
+            "thermal",
+            "melta",
+            "sidearm"
+        ],
+        "tier": 4
+    },
+    "bolt_pistol_inf": {
+        "name": "Bolt Pistol",
+        "scale": "micro",
+        "stats": {
+            "power": 3.0,
+            "range": 12,
+            "ap": 0
+        },
+        "tags": [
+            "kinetic",
+            "explosive",
+            "sidearm"
+        ],
+        "tier": 2
+    },
+    "hand_flamer_inf": {
+        "name": "Hand Flamer",
+        "scale": "micro",
+        "stats": {
+            "power": 2.0,
+            "range": 8,
+            "ap": 0
+        },
+        "tags": [
+            "thermal",
+            "flame",
+            "sidearm"
+        ],
+        "tier": 2
+    },
+    "needle_pistol_inf": {
+        "name": "Needle Pistol",
+        "scale": "micro",
+        "stats": {
+            "power": 1.0,
+            "range": 12,
+            "poison": 10.0
+        },
+        "tags": [
+            "organic",
+            "poison",
+            "sidearm"
+        ],
+        "tier": 3
+    },
+    "web_gun_inf": {
+        "name": "Web Gun",
+        "scale": "light",
+        "stats": {
+            "power": 0.0,
+            "range": 10,
+            "restrain": true
+        },
+        "tags": [
+            "exotic",
+            "utility",
+            "crowd_control"
+        ],
+        "tier": 2
+    },
+    "power_maul_inf": {
+        "name": "Power Maul",
+        "scale": "light",
+        "stats": {
+            "power": 6.0,
+            "range": 1,
+            "ap": -2,
+            "stun": true
+        },
+        "tags": [
+            "melee",
+            "energy",
+            "shock"
+        ],
+        "tier": 3
+    },
+    "power_axe_inf": {
+        "name": "Power Axe",
+        "scale": "light",
+        "stats": {
+            "power": 8.0,
+            "range": 1,
+            "ap": -3
+        },
+        "tags": [
+            "melee",
+            "energy"
+        ],
+        "tier": 3
+    },
+    "eviscerator_inf": {
+        "name": "Eviscerator Chainsword",
+        "scale": "medium",
+        "stats": {
+            "power": 12.0,
+            "range": 1.5,
+            "ap": -4
+        },
+        "tags": [
+            "melee",
+            "chain",
+            "heavy"
+        ],
+        "tier": 4
+    },
+    "lightning_claw_inf": {
+        "name": "Lightning Claw",
+        "scale": "light",
+        "stats": {
+            "power": 5.0,
+            "range": 1,
+            "ap": -2,
+            "shred": true
+        },
+        "tags": [
+            "melee",
+            "energy"
+        ],
+        "tier": 3
+    },
+    "thunder_hammer_inf": {
+        "name": "Thunder Hammer",
+        "scale": "light",
+        "stats": {
+            "power": 10.0,
+            "range": 1,
+            "ap": -3,
+            "concussive": true
+        },
+        "tags": [
+            "melee",
+            "energy",
+            "heavy"
+        ],
+        "tier": 4
+    },
+    "storm_shield_inf": {
+        "name": "Storm Shield",
+        "scale": "light",
+        "stats": {
+            "invuln_save": 4
+        },
+        "tags": [
+            "defense",
+            "energy"
+        ],
+        "tier": 4
+    },
+    "combat_shield_inf": {
+        "name": "Combat Shield",
+        "scale": "light",
+        "stats": {
+            "invuln_save": 5
+        },
+        "tags": [
+            "defense",
+            "energy"
+        ],
+        "tier": 3
+    },
+    "krak_grenade_inf": {
+        "name": "Krak Grenade",
+        "scale": "micro",
+        "stats": {
+            "power": 15.0,
+            "range": 6,
+            "ap": -3
+        },
+        "tags": [
+            "explosive",
+            "anti_tank",
+            "consumable"
+        ],
+        "tier": 2
+    },
+    "frag_grenade_inf": {
+        "name": "Frag Grenade",
+        "scale": "micro",
+        "stats": {
+            "power": 4.0,
+            "range": 8,
+            "ap": 0,
+            "blast": true
+        },
+        "tags": [
+            "explosive",
+            "anti_infantry",
+            "consumable"
+        ],
+        "tier": 1
+    },
+    "melta_bomb_inf": {
+        "name": "Melta Bomb",
+        "scale": "micro",
+        "stats": {
+            "power": 40.0,
+            "range": 2,
+            "ap": -4
+        },
+        "tags": [
+            "thermal",
+            "melta",
+            "anti_tank",
+            "consumable"
+        ],
+        "tier": 4
+    },
+    "haywire_grenade_inf": {
+        "name": "Haywire Grenade",
+        "scale": "micro",
+        "stats": {
+            "power": 2.0,
+            "range": 6,
+            "haywire": true
+        },
+        "tags": [
+            "energy",
+            "emp",
+            "consumable"
+        ],
+        "tier": 3
+    },
+    "plasma_grenade_inf": {
+        "name": "Plasma Grenade",
+        "scale": "micro",
+        "stats": {
+            "power": 10.0,
+            "range": 6,
+            "ap": -3
+        },
+        "tags": [
+            "energy",
+            "plasma",
+            "consumable"
+        ],
+        "tier": 3
+    },
+    "photon_grenade_inf": {
+        "name": "Photon Grenade",
+        "scale": "micro",
+        "stats": {
+            "power": 0.0,
+            "range": 10,
+            "blind": true
+        },
+        "tags": [
+            "energy",
+            "laser",
+            "utility"
+        ],
+        "tier": 2
+    },
+    "autocannon_inf": {
+        "name": "Infantry Autocannon",
+        "scale": "medium",
+        "stats": {
+            "power": 15.0,
+            "range": 48,
+            "ap": -1,
+            "attacks": 2
+        },
+        "tags": [
+            "kinetic",
+            "heavy_weapon"
+        ],
+        "tier": 2
+    },
+    "lascannon_inf": {
+        "name": "Infantry Lascannon",
+        "scale": "medium",
+        "stats": {
+            "power": 25.0,
+            "range": 60,
+            "ap": -3
+        },
+        "tags": [
+            "energy",
+            "laser",
+            "heavy_weapon"
+        ],
+        "tier": 3
+    },
+    "missile_launcher_inf": {
+        "name": "Infantry Missile Launcher",
+        "scale": "medium",
+        "stats": {
+            "power": 20.0,
+            "range": 48,
+            "ap": -2,
+            "versatile": true
+        },
+        "tags": [
+            "explosive",
+            "missile",
+            "heavy_weapon"
+        ],
+        "tier": 2
+    },
+    "heavy_bolter_inf": {
+        "name": "Infantry Heavy Bolter",
+        "scale": "medium",
+        "stats": {
+            "power": 10.0,
+            "range": 36,
+            "ap": -1,
+            "attacks": 3
+        },
+        "tags": [
+            "kinetic",
+            "bolter",
+            "heavy_weapon"
+        ],
+        "tier": 3
+    },
+    "mortar_inf": {
+        "name": "Infantry Mortar",
+        "scale": "medium",
+        "stats": {
+            "power": 6.0,
+            "range": 48,
+            "ap": 0,
+            "indirect": true,
+            "blast": true
+        },
+        "tags": [
+            "kinetic",
+            "explosive",
+            "indirect"
+        ],
+        "tier": 2
+    },
+    "heavy_stubber_inf": {
+        "name": "Heavy Stubber",
+        "scale": "medium",
+        "stats": {
+            "power": 3.0,
+            "range": 36,
+            "ap": 0,
+            "attacks": 3
+        },
+        "tags": [
+            "kinetic",
+            "rapid_fire"
+        ],
+        "tier": 1
+    },
+    "sniper_rifle_inf": {
+        "name": "Sniper Rifle",
+        "scale": "light",
+        "stats": {
+            "power": 4.0,
+            "range": 36,
+            "ap": 0,
+            "precision": true
+        },
+        "tags": [
+            "kinetic",
+            "precision"
+        ],
+        "tier": 2
+    },
+    "shotgun_inf": {
+        "name": "Combat Shotgun",
+        "scale": "light",
+        "stats": {
+            "power": 4.0,
+            "range": 12,
+            "ap": 0,
+            "attacks": 2
+        },
+        "tags": [
+            "kinetic",
+            "shotgun"
+        ],
+        "tier": 1
+    },
+    "flamer_inf": {
+        "name": "Flamer",
+        "scale": "light",
+        "stats": {
+            "power": 6.0,
+            "range": 8,
+            "ap": 0,
+            "ignores_cover": true
+        },
+        "tags": [
+            "thermal",
+            "flame"
+        ],
+        "tier": 2
+    },
+    "meltagun_inf": {
+        "name": "Meltagun",
+        "scale": "light",
+        "stats": {
+            "power": 20.0,
+            "range": 12,
+            "ap": -4
+        },
+        "tags": [
+            "thermal",
+            "melta"
+        ],
+        "tier": 3
+    },
+    "plasmagun_inf": {
+        "name": "Plasmagun",
+        "scale": "light",
+        "stats": {
+            "power": 12.0,
+            "range": 24,
+            "ap": -3
+        },
+        "tags": [
+            "energy",
+            "plasma"
+        ],
+        "tier": 3
+    },
+    "bolter_inf": {
+        "name": "Bolter",
+        "scale": "light",
+        "stats": {
+            "power": 5.0,
+            "range": 24,
+            "ap": 0
+        },
+        "tags": [
+            "kinetic",
+            "bolter"
+        ],
+        "tier": 2
+    },
+    "lasgun_inf_v2": {
+        "name": "Lasgun (Standard)",
+        "scale": "light",
+        "stats": {
+            "power": 3.0,
+            "range": 24,
+            "ap": 0
+        },
+        "tags": [
+            "energy",
+            "laser"
+        ],
+        "tier": 1
+    },
+    "autopistol_inf": {
+        "name": "Autopistol",
+        "scale": "micro",
+        "stats": {
+            "power": 2.0,
+            "range": 12,
+            "ap": 0
+        },
+        "tags": [
+            "kinetic",
+            "pistol"
+        ],
+        "tier": 1
+    },
+    "laspistol_inf_v2": {
+        "name": "Laspistol (Standard)",
+        "scale": "micro",
+        "stats": {
+            "power": 1.5,
+            "range": 12,
+            "ap": 0
+        },
+        "tags": [
+            "energy",
+            "laser",
+            "sidearm"
+        ],
+        "tier": 1
+    },
+    "combat_knife_inf": {
+        "name": "Combat Knife",
+        "scale": "micro",
+        "stats": {
+            "power": 2.0,
+            "range": 1
+        },
+        "tags": [
+            "melee",
+            "kinetic"
+        ],
+        "tier": 1
+    },
+    "chain_axe_inf": {
+        "name": "Chain Axe",
+        "scale": "light",
+        "stats": {
+            "power": 6.0,
+            "range": 1,
+            "ap": -1
+        },
+        "tags": [
+            "melee",
+            "chain"
+        ],
+        "tier": 2
+    },
+    "power_fist_inf": {
+        "name": "Power Fist",
+        "scale": "light",
+        "stats": {
+            "power": 12.0,
+            "range": 1,
+            "ap": -3,
+            "slow": true
+        },
+        "tags": [
+            "melee",
+            "energy"
+        ],
+        "tier": 4
+    },
+    "lightning_claw_pair_inf": {
+        "name": "Lightning Claws (Pair)",
+        "scale": "light",
+        "stats": {
+            "power": 5.0,
+            "range": 1,
+            "ap": -2,
+            "attacks": 2
+        },
+        "tags": [
+            "melee",
+            "energy"
+        ],
+        "tier": 4
+    },
+    "chain_fist_inf": {
+        "name": "Chainfist",
+        "scale": "light",
+        "stats": {
+            "power": 12.0,
+            "range": 1,
+            "ap": -4,
+            "slow": true
+        },
+        "tags": [
+            "melee",
+            "energy",
+            "chain"
+        ],
+        "tier": 5
+    },
+    "storm_bolter_inf": {
+        "name": "Storm Bolter",
+        "scale": "light",
+        "stats": {
+            "power": 5.0,
+            "range": 24,
+            "ap": 0,
+            "attacks": 2
+        },
+        "tags": [
+            "kinetic",
+            "bolter"
+        ],
+        "tier": 3
+    },
+    "assault_cannon_inf": {
+        "name": "Assault Cannon",
+        "scale": "medium",
+        "stats": {
+            "power": 12.0,
+            "range": 24,
+            "ap": -1,
+            "attacks": 6
+        },
+        "tags": [
+            "kinetic",
+            "rapid_fire"
+        ],
+        "tier": 4
+    },
+    "cyclone_missile_launcher_inf": {
+        "name": "Cyclone Missile Launcher",
+        "scale": "medium",
+        "stats": {
+            "power": 15.0,
+            "range": 48,
+            "ap": -2,
+            "attacks": 2
+        },
+        "tags": [
+            "explosive",
+            "missile"
+        ],
+        "tier": 4
+    },
+    "flame_storm_cannon_inf": {
+        "name": "Flame Storm Cannon",
+        "scale": "heavy",
+        "stats": {
+            "power": 12.0,
+            "range": 12,
+            "ap": -2,
+            "blast": true
+        },
+        "tags": [
+            "thermal",
+            "flame"
+        ],
+        "tier": 3
+    },
+    "hurricane_bolter_inf": {
+        "name": "Hurricane Bolter",
+        "scale": "medium",
+        "stats": {
+            "power": 5.0,
+            "range": 24,
+            "ap": 0,
+            "attacks": 6
+        },
+        "tags": [
+            "kinetic",
+            "bolter"
+        ],
+        "tier": 4
+    },
+    "quake_cannon_small_inf": {
+        "name": "Quake Cannon (Medium)",
+        "scale": "heavy",
+        "stats": {
+            "power": 60.0,
+            "range": 120,
+            "ap": -4,
+            "blast": true
+        },
+        "tags": [
+            "kinetic",
+            "explosive",
+            "artillery"
+        ],
+        "tier": 5
+    },
+    "volcano_cannon_small_inf": {
+        "name": "Volcano Cannon (Heavy)",
+        "scale": "heavy",
+        "stats": {
+            "power": 120.0,
+            "range": 150,
+            "ap": -5
+        },
+        "tags": [
+            "energy",
+            "laser",
+            "anti_titan"
+        ],
+        "tier": 5
+    },
+    "baneblade_cannon_inf": {
+        "name": "Baneblade Cannon",
+        "scale": "heavy",
+        "stats": {
+            "power": 80.0,
+            "range": 100,
+            "ap": -3,
+            "blast": true
+        },
+        "tags": [
+            "kinetic",
+            "explosive",
+            "siege"
+        ],
+        "tier": 5
+    },
+    "hellstrike_missile_inf": {
+        "name": "Hellstrike Missile",
+        "scale": "medium",
+        "stats": {
+            "power": 40.0,
+            "range": 80,
+            "ap": -3
+        },
+        "tags": [
+            "explosive",
+            "missile",
+            "anti_tank"
+        ],
+        "tier": 3
+    },
+    "rocket_pod_inf": {
+        "name": "Rocket Pod",
+        "scale": "medium",
+        "stats": {
+            "power": 10.0,
+            "range": 48,
+            "ap": -1,
+            "attacks": 6
+        },
+        "tags": [
+            "explosive",
+            "missile"
+        ],
+        "tier": 3
+    },
+    "punisher_gatling_cannon_inf": {
+        "name": "Punisher Gatling Cannon",
+        "scale": "heavy",
+        "stats": {
+            "power": 6.0,
+            "range": 24,
+            "ap": 0,
+            "attacks": 20
+        },
+        "tags": [
+            "kinetic",
+            "rapid_fire"
+        ],
+        "tier": 4
+    },
+    "executioner_plasma_cannon_inf": {
+        "name": "Executioner Plasma Cannon",
+        "scale": "heavy",
+        "stats": {
+            "power": 25.0,
+            "range": 36,
+            "ap": -3,
+            "attacks": 3
+        },
+        "tags": [
+            "energy",
+            "plasma"
+        ],
+        "tier": 5
+    },
+    "eradicator_nova_cannon_inf": {
+        "name": "Eradicator Nova Cannon",
+        "scale": "heavy",
+        "stats": {
+            "power": 15.0,
+            "range": 36,
+            "ap": -2,
+            "ignores_cover": true
+        },
+        "tags": [
+            "explosive",
+            "siege"
+        ],
+        "tier": 4
+    },
+    "vanquisher_battle_cannon_inf": {
+        "name": "Vanquisher Battle Cannon",
+        "scale": "heavy",
+        "stats": {
+            "power": 60.0,
+            "range": 120,
+            "ap": -4
+        },
+        "tags": [
+            "kinetic",
+            "anti_tank"
+        ],
+        "tier": 4
     }
 }

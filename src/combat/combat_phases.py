@@ -883,7 +883,8 @@ class OrbitalSupportPhase(CombatPhase):
             # Cap at 95%
             mitigation = min(mitigation, 0.95)
             
-            final_damage = raw_damage * (1.0 - mitigation)
+            from src.core.balance import GROUND_LETHALITY_SCALAR
+            final_damage = raw_damage * (1.0 - mitigation) * GROUND_LETHALITY_SCALAR
             
             # Split damage among units in the hex
             target_units = nodes_with_enemies[target_node]

@@ -52,8 +52,9 @@ class UnitBuilder:
         self.extra_data[key] = value
         return self
         
-    def with_movement(self, movement_points: int, agility: int = 10, detection: float = 24.0) -> 'UnitBuilder':
-        self.movement = MovementComponent(movement_points, agility, detection)
+    def with_movement(self, movement_points: int, agility: int = 10, detection: float = 24.0,
+                      turn_rate: float = 0.0, acceleration: float = 0.0) -> 'UnitBuilder':
+        self.movement = MovementComponent(movement_points, agility, detection, turn_rate, acceleration)
         return self
         
     def with_stats_comp(self, ma=50, md=50, damage=10, armor=0, hp=100) -> 'UnitBuilder':
@@ -73,7 +74,12 @@ class UnitBuilder:
             from src.models.starbase import Starbase
             unit = Starbase(name=self.name, faction=self.faction, system=None)
         else:
-            unit = Unit(name=self.name, faction=self.faction)
+            unit = Unit(
+                name=self.name, 
+                faction=self.faction, 
+                unit_class=self.extra_data.get("unit_class"),
+                domain=self.extra_data.get("domain")
+            )
             
         unit.health_comp = self.health
         unit.armor_comp = self.armor

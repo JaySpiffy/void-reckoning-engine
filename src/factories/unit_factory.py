@@ -26,25 +26,81 @@ class UnitFactory:
         cost = getattr(blueprint, 'cost', 100)
         shield = getattr(blueprint, 'shield_max', 0)
         movement = getattr(blueprint, 'movement_points', 6)
+        # Physics (EaW Style Defaults)
+        turn_rate = getattr(blueprint, 'turn_rate', 0.0)
+        acceleration = getattr(blueprint, 'acceleration', 0.0)
         
         blueprint_id = getattr(blueprint, 'blueprint_id', None)
         unit_type = getattr(blueprint, 'type', "infantry").lower()
-        
+        is_ship = any(t in unit_type for t in ["ship", "cruiser", "corvette", "destroyer", "frigate", "fighter", "bomber", "carrier", "titan"])
+
+        if is_ship and turn_rate == 0.0:
+            # Apply defaults if not specified
+            if "fighter" in unit_type or "bomber" in unit_type:
+                turn_rate = 90.0; acceleration = 5.0
+            elif "corvette" in unit_type:
+                turn_rate = 45.0; acceleration = 2.0
+            elif "cruiser" in unit_type:
+                turn_rate = 15.0; acceleration = 0.5
+            elif "titan" in unit_type or "battleship" in unit_type:
+                turn_rate = 5.0; acceleration = 0.1
+            else:
+                turn_rate = 30.0; acceleration = 1.0
+
         builder = UnitBuilder(name, faction_name)
         builder.with_health(hp, max_shield=shield)
         builder.with_armor(armor)
         builder.with_morale(bal.UNIT_DEFAULT_LEADERSHIP)
         builder.with_traits(traits, abilities)
-        builder.with_movement(movement)
+        builder.with_movement(movement, turn_rate=turn_rate, acceleration=acceleration)
         builder.with_stats_comp(ma=ma, md=md, damage=damage, armor=armor, hp=hp)
         
         # Add Weapons
         from src.data.weapon_data import get_weapon_stats
-        for w_id in auth_weapons:
-            w_stats = get_weapon_stats(w_id)
-            builder.with_weapon(w_id, w_stats)
+        
+        # [ARC LOGIC] Helper to distribute firing arcs
+        def _get_arc(u_type, slot, idx) -> str:
+            u_type = u_type.lower()
+            if "ship" not in u_type and "cruiser" not in u_type and "battleship" not in u_type and "titan" not in u_type:
+                 return "Front" # Ground units or small craft usually fixed or turreted (handled as Front/360)
+                 
+            if "fighter" in u_type or "bomber" in u_type or "corvette" in u_type or "frigate" in u_type:
+                 return "Front" # Dogfighters / Spinals
             
-        builder.with_extra_data("unit_type", "Ship" if "ship" in unit_type or "cruiser" in unit_type else "Regiment")
+            # Capital Ships (Cruiser+)
+            if "spinal" in slot: return "Front"
+            if "small" in slot or "point_defense" in slot: return "Turret" # PD is usually 360
+            
+            # Heavy/Medium Batteries: Distribute Broadside
+            # 0,1 -> Front (Chase guns)
+            # Evens -> Left, Odds -> Right (after first 2)
+            if "heavy" in slot or "medium" in slot:
+                 if idx < 2: return "Front"
+                 return "Left" if idx % 2 == 0 else "Right"
+                 
+            return "Front"
+
+        comps = getattr(blueprint, 'components', [])
+        # If components is just a list of IDs (legacy), we can't determine slots easily.
+        # But create_from_blueprint usually deals with proper blueprint objects which might not match the JSON dict structure exactly if loaded as obj.
+        # Let's assume 'components' is list of dicts from JSON if raw, or check authentic_weapons if legacy.
+        
+        if comps and isinstance(comps[0], dict):
+             for i, c_entry in enumerate(comps):
+                 comp_id = c_entry.get("component")
+                 slot = c_entry.get("slot", "unknown")
+                 if comp_id:
+                     w_stats = get_weapon_stats(comp_id)
+                     arc = _get_arc(unit_type, slot, i)
+                     builder.with_weapon(comp_id, w_stats, arc=arc)
+        else:
+             # Legacy/Fallback
+             for i, w_id in enumerate(auth_weapons):
+                 w_stats = get_weapon_stats(w_id)
+                 builder.with_weapon(w_id, w_stats)
+            
+        builder.with_extra_data("unit_type", "Ship" if is_ship else "Regiment")
+        builder.with_extra_data("domain", "space" if is_ship else "ground")
         builder.with_extra_data("blueprint_id", blueprint_id)
         builder.with_extra_data("cost", cost)
         
@@ -68,7 +124,28 @@ class UnitFactory:
         builder.with_health(stats.get("hp", 100), max_shield=stats.get("shield", 0))
         builder.with_armor(stats.get("armor", 0))
         builder.with_morale(bal.UNIT_DEFAULT_LEADERSHIP)
-        builder.with_movement(stats.get("movement", 6))
+        
+        # Physics Defaults
+        u_type_str = b_data.get("type", "").lower()
+        is_ship = any(t in u_type_str for t in ["ship", "cruiser", "corvette", "destroyer", "frigate", "fighter", "bomber", "carrier", "titan"])
+        
+        turn_rate = stats.get("turn_rate", 0.0)
+        acceleration = stats.get("acceleration", 0.0)
+        
+        if is_ship and turn_rate == 0.0:
+            if "fighter" in u_type_str or "bomber" in u_type_str:
+                turn_rate = 90.0; acceleration = 5.0
+            elif "corvette" in u_type_str:
+                 turn_rate = 45.0; acceleration = 2.0
+            elif "cruiser" in u_type_str:
+                 turn_rate = 15.0; acceleration = 0.5
+            elif "titan" in u_type_str or "battleship" in u_type_str:
+                 turn_rate = 5.0; acceleration = 0.1
+            else:
+                 turn_rate = 30.0; acceleration = 1.0
+
+        builder.with_movement(stats.get("movement", 6), turn_rate=turn_rate, acceleration=acceleration)
+
         builder.with_stats_comp(
             ma=stats.get("ma", 50), md=stats.get("md", 50), 
             damage=stats.get("damage", 10), armor=stats.get("armor", 0), hp=stats.get("hp", 100)
@@ -81,14 +158,32 @@ class UnitFactory:
         
         # Process Components/Weapons
         from src.data.weapon_data import get_weapon_stats
-        for c_entry in b_data.get("components", []):
+        
+        # [ARC LOGIC] Duplicate helper for now (method local)
+        def _get_arc_local(u_type, slot, idx) -> str:
+            u_type = u_type.lower()
+            if "ship" not in u_type and "cruiser" not in u_type and "battleship" not in u_type and "titan" not in u_type:
+                 return "Front"
+            if "fighter" in u_type or "bomber" in u_type or "corvette" in u_type or "frigate" in u_type:
+                 return "Front"
+            if "spinal" in slot: return "Front"
+            if "small" in slot or "point_defense" in slot: return "Turret"
+            if "heavy" in slot or "medium" in slot:
+                 if idx < 2: return "Front"
+                 return "Left" if idx % 2 == 0 else "Right"
+            return "Front"
+
+        for i, c_entry in enumerate(b_data.get("components", [])):
             if isinstance(c_entry, dict):
                 comp_id = c_entry.get("component")
+                slot = c_entry.get("slot", "unknown")
                 if comp_id:
                     w_stats = get_weapon_stats(comp_id)
-                    builder.with_weapon(comp_id, w_stats)
+                    arc = _get_arc_local(u_type_str, slot, i)
+                    builder.with_weapon(comp_id, w_stats, arc=arc)
 
-        builder.with_extra_data("unit_type", "Ship" if "ship" in b_data.get("type", "").lower() else "Regiment")
+        builder.with_extra_data("unit_type", "Ship" if is_ship else "Regiment")
+        builder.with_extra_data("domain", "space" if is_ship else "ground")
         builder.with_extra_data("blueprint_id", blueprint_id)
         builder.with_extra_data("cost", b_data.get("cost", 100))
         

@@ -26,7 +26,10 @@ class TargetSelector:
         if attacker._target_cache and attacker._target_ttl > current_time:
             # Verify cached target is still valid
             t = attacker._target_cache
-            if t.is_alive() and grid.get_distance(attacker, t) <= 1200: # Slightly larger than max range
+            # [RANGE ENFORCEMENT] Reduce cache range to be more realistic. 
+            # If target is too far, we should re-evaluate.
+            max_cache_dist = 600 if getattr(attacker, 'is_ship', lambda: False)() else 150
+            if t.is_alive() and grid.get_distance(attacker, t) <= max_cache_dist:
                 return t, getattr(attacker, '_target_comp_cache', None)
         
         # [PHASE 17.8] Deprioritize Routing Units

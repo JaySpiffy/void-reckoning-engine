@@ -89,13 +89,18 @@ def test_resolve_battles_at_creates_new_battle(battle_manager, mock_context, moc
     location = MagicMock()
     location.name = "TestSystem"
     location.owner = "Neutral"  # No owner means conflict
+    location.is_star_system = True # Needed for domain detection
+    location.type = "System"
+    # Ensure it's not detected as ground
+    del location.parent_planet
+    del location.is_province
     
     # Setup Fleets at location
     f1.location = location
     f2.location = location
     
-    # Mock interactions - patch the factory module instead of the facade
-    with patch("src.combat.management.resolution_factory.initialize_battle_state") as mock_init_state:
+    # Mock interactions - patch BEFORE calling resolve_battles_at
+    with patch("src.managers.battle_manager.initialize_battle_state") as mock_init_state:
         mock_state = MagicMock()
         mock_state.armies_dict = {"Imperium": f1.units, "Orks": f2.units}
         mock_state.round_num = 1
@@ -117,6 +122,9 @@ def test_resolve_battles_at_creates_new_battle(battle_manager, mock_context, moc
         # Set up fleets to always return same fleets
         mock_context.get_all_fleets.return_value = [f1, f2]
         
+        # Disable diplomacy to ensure combat persists in mock test
+        battle_manager.context.diplomacy = None
+        
         # Run
         battle_manager.resolve_battles_at(location)
         
@@ -134,6 +142,10 @@ def test_resolve_battles_at_joins_existing_battle(battle_manager, mock_context, 
     location = MagicMock()
     location.name = "TestSystem"
     location.owner = "Neutral"
+    location.is_star_system = True
+    location.type = "System"
+    del location.parent_planet
+    del location.is_province
     
     # Pre-seed battle - use real ActiveBattle with mocked state
     from src.managers.combat.active_battle import ActiveBattle
@@ -166,6 +178,10 @@ def test_resolve_battles_at_joins_existing_battle(battle_manager, mock_context, 
     
     # Set up fleets to always return same fleets
     mock_context.get_all_fleets.return_value = [f1, f2]
+    
+    # Disable diplomacy
+    battle_manager.context.diplomacy = None
+    
     
     # Run
     battle_manager.resolve_battles_at(location)

@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field, validator, root_validator
+from pydantic import BaseModel, Field, validator, root_validator, ConfigDict
 from typing import Dict, Any, Optional, List, Union, Tuple
 import multiprocessing
 from collections import defaultdict
@@ -43,8 +43,7 @@ class GameConfig(BaseModel):
     sandbox_mode: bool = False
     procedural_faction_limit: int = Field(5, ge=0)
 
-    class Config:
-        arbitrary_types_allowed = True
+    model_config = ConfigDict(arbitrary_types_allowed=True)
 
     @classmethod
     def from_dict(cls, data: Optional[Dict[str, Any]]) -> Union['GameConfig', 'MultiUniverseConfig']:

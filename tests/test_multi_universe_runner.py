@@ -1,7 +1,7 @@
 import pytest
 from unittest.mock import MagicMock, patch
 from queue import Queue
-from src.engine.runner import MultiUniverseRunner
+from src.engine.multi_universe_runner import MultiUniverseRunner
 
 class TestMultiUniverseRunnerCore:
     @pytest.fixture(autouse=True)
@@ -11,7 +11,7 @@ class TestMultiUniverseRunnerCore:
             {"universe_name": "u2", "num_runs": 1, "game_config": {}}
         ]
 
-    @patch('src.engine.runner.MultiUniverseRunner._validate_universes')
+    @patch('src.engine.multi_universe_runner.MultiUniverseRunner._validate_universes')
     @patch('multiprocessing.Manager')
     @patch('src.core.universe_data.UniverseDataManager') 
     def test_handle_portal_handoff_success(self, mock_udm_cls, mock_manager, mock_validate):
@@ -72,7 +72,7 @@ class TestMultiUniverseRunnerCore:
         assert in_q_call["action"] == "INJECT_FLEET"
         assert in_q_call["package"]["is_translated"]
 
-    @patch('src.engine.runner.MultiUniverseRunner._validate_universes')
+    @patch('src.engine.multi_universe_runner.MultiUniverseRunner._validate_universes')
     @patch('multiprocessing.Manager')
     def test_handle_portal_handoff_dest_dead(self, mock_manager, mock_validate):
         """Test handoff fails if destination universe is dead/finished."""

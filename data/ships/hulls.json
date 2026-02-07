@@ -115,6 +115,101 @@
                 "COMPUTER": 1,
                 "A": 20
             }
+        },
+        {
+            "id": "missile_destroyer",
+            "name": "Missile Destroyer",
+            "size": 2,
+            "tech_tier": 3,
+            "unlock_tech": "Hull_Missile_Destroyer",
+            "base_stats": {
+                "hp": 1200,
+                "evasion": 0.30,
+                "armor": 5,
+                "speed": 145
+            },
+            "slots": {
+                "M": 4,
+                "S": 2,
+                "REACTOR": 1,
+                "THRUSTER": 1,
+                "FTL": 1,
+                "SENSOR": 1,
+                "COMPUTER": 1,
+                "A": 4
+            }
+        },
+        {
+            "id": "command_cruiser",
+            "name": "Command Cruiser",
+            "size": 4,
+            "tech_tier": 4,
+            "unlock_tech": "Hull_Command_Cruiser",
+            "base_stats": {
+                "hp": 2500,
+                "evasion": 0.12,
+                "armor": 15,
+                "speed": 115
+            },
+            "slots": {
+                "L": 2,
+                "M": 4,
+                "REACTOR": 2,
+                "THRUSTER": 1,
+                "FTL": 1,
+                "SENSOR": 2,
+                "COMPUTER": 2,
+                "A": 8
+            }
+        },
+        {
+            "id": "exterminator_battleship",
+            "name": "Exterminator Battleship",
+            "size": 8,
+            "tech_tier": 5,
+            "unlock_tech": "Hull_Exterminator",
+            "base_stats": {
+                "hp": 6000,
+                "evasion": 0.03,
+                "armor": 40,
+                "speed": 90
+            },
+            "slots": {
+                "X": 2,
+                "L": 6,
+                "M": 4,
+                "REACTOR": 2,
+                "THRUSTER": 1,
+                "FTL": 1,
+                "SENSOR": 1,
+                "COMPUTER": 1,
+                "A": 12
+            }
+        },
+        {
+            "id": "mothership",
+            "name": "Mothership",
+            "size": 32,
+            "tech_tier": 5,
+            "unlock_tech": "Hull_Mothership",
+            "base_stats": {
+                "hp": 80000,
+                "evasion": 0.00,
+                "armor": 100,
+                "speed": 40
+            },
+            "slots": {
+                "X": 10,
+                "L": 20,
+                "M": 20,
+                "S": 20,
+                "REACTOR": 10,
+                "THRUSTER": 4,
+                "FTL": 2,
+                "SENSOR": 2,
+                "COMPUTER": 2,
+                "A": 50
+            }
         }
     ]
 }

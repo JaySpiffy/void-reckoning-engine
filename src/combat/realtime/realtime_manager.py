@@ -7,8 +7,11 @@ from src.combat.real_time.steering_manager import SteeringManager
 from src.combat.real_time.morale_manager import MoraleManager
 from src.managers.combat.suppression_manager import SuppressionManager
 from src.combat.tactical.target_selector import TargetSelector
+from src.combat.tactical.movement_calculator import MovementCalculator
 from src.combat.combat_phases import AbilityPhase, OrbitalSupportPhase
+from src.combat.ground_combat import resolve_melee_phase
 from src.models.unit import Component
+from src.combat.realtime.projectile_manager import ProjectileManager
 from src.core.balance import UNIT_XP_AWARD_SURVIVAL_SEC, UNIT_XP_AWARD_DAMAGE_RATIO, UNIT_XP_AWARD_KILL
 
 # [PERF R19] Cached singleton instances
@@ -22,12 +25,15 @@ class RealTimeManager:
     Extracted from CombatState.
     """
     def __init__(self):
-        pass
+        self.projectile_manager = None
         
     def update(self, battle_state, dt: float):
         """
         Orchestrates real-time updates for all units.
         """
+        if self.projectile_manager is None:
+            self.projectile_manager = ProjectileManager(battle_state.grid)
+
         battle_state.total_sim_time += dt
         
         # [PHASE 18] Periodic Snapshots (Throttled if enabled)
@@ -41,8 +47,6 @@ class RealTimeManager:
              battle_state._take_snapshot()
              battle_state.last_snapshot_time = battle_state.total_sim_time
 
-        grid = battle_state.grid
-        armies_dict = battle_state.armies_dict
         grid = battle_state.grid
         armies_dict = battle_state.armies_dict
         
@@ -172,7 +176,10 @@ class RealTimeManager:
         ab_context["enemies_by_faction"] = enemies_by_faction
         _ability_phase.execute(ab_context)
 
-        # 3. Shooting
+        # 3. Projectiles Physics Update
+        self.projectile_manager.update(dt, battle_state)
+
+        # 4. Shooting
         for f_name, units in armies_dict.items():
             enemies = enemies_by_faction.get(f_name, [])
             if not enemies: continue
@@ -181,81 +188,123 @@ class RealTimeManager:
                 if not u.is_alive(): continue
                 if getattr(u, 'morale_state', 'Steady') == "Routing": continue
                 
-                if not hasattr(u, '_shooting_cooldown'): u._shooting_cooldown = 0
-                if u._shooting_cooldown > 0:
-                    u._shooting_cooldown -= dt
-                    continue
-                
                 doctrine = getattr(u, 'tactical_directive', "STANDARD")
                 if doctrine == "STANDARD": doctrine = battle_state.faction_doctrines.get(f_name, "CHARGE")
                 
                 target_unit, target_comp = TargetSelector.select_target_by_doctrine(u, enemies, doctrine, grid, sim_time=battle_state.total_sim_time)
                 
+                dx, dy = 0, 0
                 if target_unit:
+                    dx, dy = MovementCalculator.calculate_movement_vector(u, target_unit, doctrine, grid, dt)
+
                     dist = grid.get_distance(u, target_unit)
-                    if dist <= 1000:
-                        weapons = [c for c in u.components if c.type == "Weapon" and not c.is_destroyed]
+                    
+                    # [PHASE 5] Melee Integration (Total War Style contact combat)
+                    if dist <= 5.0 and not u.is_ship() and not target_unit.is_ship():
+                         melee_context = {
+                             "manager": battle_state,
+                             "tracker": battle_state.tracker
+                         }
+                         resolve_melee_phase([u], [target_unit], int(battle_state.total_sim_time), **melee_context)
+                         continue
+
+                    # [RANGE ENFORCEMENT] Use unit-specific detection range with domain fallbacks
+                    # Ground battles are much smaller than space engagements.
+                    max_detect_range = getattr(u, 'detection_range', 800 if u.is_ship() else 200)
+                    
+                    if dist <= max_detect_range:
+                        # Improved Weapon Selection
+                        weapons = [c for c in u.weapon_comps if not getattr(c, 'is_destroyed', False)]
+                        if not weapons:
+                            weapons = [c for c in u.components if getattr(c, 'type', None) == "Weapon" and not getattr(c, 'is_destroyed', False)]
+                        
                         if not weapons and getattr(u, 'damage', 0) > 0:
-                             dummy_stats = {"Range": getattr(u, 'weapon_range_default', 24), "S": getattr(u, 'damage', 1), "AP": 0, "D": 1}
+                             dummy_stats = {"Range": getattr(u, 'weapon_range_default', 24), "S": getattr(u, 'damage', 1), "AP": 0, "D": 1, "attacks": 1.0}
                              weapons = [Component("Base Attack", 1, "Weapon", weapon_stats=dummy_stats)]
                         
-                        damage_dealt_total = 0.0
                         for wpn in weapons:
-                            # Shooting Logic (Simplified Port)
+                            if getattr(wpn, "type", "") != "Weapon": continue
                             stats = wpn.weapon_stats
-                            if dist > stats.get("Range", 24): continue
+                            if isinstance(stats, dict):
+                                rng = stats.get("Range", 24)
+                            else:
+                                rng = 24 # Fallback if stats is Mock
                             
+                            if dist > rng: continue
+                            
+                            
+                            # [ARC ENFORCEMENT] Check if target is within weapon firing arc
+                            arc = getattr(wpn, 'arc', "Front")
+                            if arc != "Turret":
+                                # Calculate relative angle
+                                # 0 degrees is "Forward" relative to the ship (math.atan2 based)
+                                target_angle = math.degrees(math.atan2(target_unit.grid_y - u.grid_y, target_unit.grid_x - u.grid_x))
+                                facing = getattr(u, 'facing', 0.0)
+                                rel_angle = (target_angle - facing + 180) % 360 - 180
+                                
+                                # Check arc coverage (90 degree cones)
+                                if arc == "Front":
+                                    if not (-45 <= rel_angle <= 45): continue
+                                elif arc == "Left": # Port
+                                    if not (45 < rel_angle <= 135): continue
+                                elif arc == "Right": # Starboard
+                                    if not (-135 <= rel_angle < -45): continue
+                                elif arc == "Rear":
+                                    if not (abs(rel_angle) > 135): continue
+                            
+                            # Per-weapon cooldown handling
+                            if not hasattr(wpn, 'cooldown'): wpn.cooldown = 0.0
+                            if wpn.cooldown > 0:
+                                wpn.cooldown -= dt
+                                continue
+                            
+                            # Calculate reload time from 'attacks' (e.g. 2 attacks/round = 2.5s reload if 1 round=5s)
+                            # Or more simply: reload = 1.0 / attacks
+                            attacks = stats.get("attacks", 1.0)
+                            wpn.cooldown = 1.0 / max(0.1, attacks)
+
+                            # Determine Weapon Attributes for Projectile
+                            cat = stats.get("category", "KINETIC").upper()
+                            speed = 120.0 # Default Kinetic
+                            proj_type = "KINETIC"
+                            
+                            if "ENERGY" in cat or "LASER" in cat:
+                                speed = 800.0
+                                proj_type = "LASER"
+                            elif "MISSILE" in cat or "TORPEDO" in cat:
+                                speed = 60.0
+                                proj_type = "MISSILE"
+                            
+                            # Base Damage calculation (applied on impact by ProjectileManager)
                             raw_dmg = stats.get("S", 4) * 10 * stats.get("D", 1)
                             
-                            # Mitigation
-                            t_armor = getattr(target_unit, 'armor', 0)
-                            ap = stats.get("AP", 0)
-                            sv = 7.0 - (t_armor/10.0) + (ap/10.0)
-                            
-                            # Cover (Directional)
-                            cover = grid.get_cover_at(target_unit.grid_x, target_unit.grid_y)
-                            if cover != "None":
-                                # Only apply cover if attack is from Front (approx 90 deg arc)
-                                bearing = grid.get_relative_bearing(target_unit, u)
-                                is_flanked = not (bearing <= 45 or bearing >= 315)
-                                
-                                if not is_flanked:
-                                    sv -= (0.5 if cover == "Heavy" else 0.25)
-                            
-                            sv = max(2.0, min(7.0, sv))
-                            pass_chance = max(0.0, min(1.0, (7.0 - sv)/6.0))
-                            inv = (7.0 - target_unit.abilities.get("Invuln", 7))/6.0
-                            mit = min(0.95, max(pass_chance, inv))
-                            
-                            final_dmg = raw_dmg * (1.0 - mit)
-                            
-                            # Formation Defense (Post-Mitigation reduction)
-                            if target_unit in unit_formation_map:
-                                f_mods = unit_formation_map[target_unit].get_modifiers()
-                                def_mult = f_mods.get("defense_mult", 1.0)
-                                if def_mult > 0:
-                                    final_dmg /= def_mult
-                            
-                            # Accuracy
+                            # Accuracy Roll at point of fire
                             hit_prob = getattr(u, 'bs', 50) / 100.0
-                            if random.random() > hit_prob: continue
+                            if random.random() > hit_prob:
+                                # Spawn with deviation for missed shot
+                                deviation = random.uniform(-0.1, 0.1)
+                            else:
+                                deviation = 0.0
+
+                            # [RANGE ENFORCEMENT] Calculate lifetime based on weapon range
+                            # lifetime = distance / speed. We add a 20% buffer.
+                            wpn_range = stats.get("Range", 24)
+                            if dist > wpn_range: continue
                             
-                            dmg_s, dmg_h, is_destroyed, _ = target_unit.take_damage(final_dmg, target_component=target_comp)
-                            damage_dealt_total += (dmg_s + dmg_h)
+                            lifetime = (wpn_range / speed) * 1.2
+
+                            self.projectile_manager.spawn_projectile(
+                                u, target_unit,
+                                damage=raw_dmg,
+                                ap=stats.get("AP", 0),
+                                speed=speed,
+                                projectile_type=proj_type,
+                                target_comp=target_comp,
+                                deviation=deviation,
+                                lifetime=lifetime
+                            )
                             
-                            # [PERF R18] Award XP using module-level constants
-                            u.gain_xp((dmg_s + dmg_h) * UNIT_XP_AWARD_DAMAGE_RATIO, ab_context)
-                            if is_destroyed:
-                                u.gain_xp(UNIT_XP_AWARD_KILL, ab_context)
-                            
-                        if damage_dealt_total > 0:
-                            u._shooting_cooldown = 1.0
-                            if f_name in battle_state.battle_stats:
-                                battle_state.battle_stats[f_name]["total_damage_dealt"] += damage_dealt_total
-                            battle_state.log_event("shooting", u.name, target_unit.name, f"Salvo hit for {int(damage_dealt_total)} DMG")
-                            
-                            # [PERF R19] Cached Suppression
-                            _suppression_manager.apply_suppression(target_unit, damage_dealt_total * 0.5)
+                            battle_state.log_event("shooting_fire", u.name, target_unit.name, f"Fired {wpn.name} ({proj_type})")
 
         # 4. Ability Cooldowns
         for f_name, units in armies_dict.items():

@@ -86,6 +86,8 @@ class ProceduralTechGenerator:
                             
         # 2. Universal & Procedural Weaponry Integration (Grand Sci-Fi Unification)
         component_paths = [
+            os.path.join("universes", "void_reckoning", "factions", "weapon_registry.json"),
+            os.path.join("universes", "base", "weapons", "base_land_equipment.json"),
             os.path.join("src", "data", "universal_weaponry.json"),
             os.path.join("data", "ships", "procedural_components.json")
         ]
@@ -96,21 +98,22 @@ class ProceduralTechGenerator:
                     with open(reg_path, 'r') as f:
                         comp_db = json.load(f)
                         
-                    # Handle both structured (universal) and list-based (procedural) formats
+                    # Handle different registry formats
                     items = []
                     if isinstance(comp_db, dict) and "components" in comp_db:
                         items = comp_db["components"]
                     elif isinstance(comp_db, dict):
-                        # Flatten universal weaponry categories
-                        for cat_list in comp_db.values():
-                            if isinstance(cat_list, dict):
-                                items.extend(cat_list.values())
-                            elif isinstance(cat_list, list):
-                                items.extend(cat_list)
+                        # Registry format: { "id": { data } }
+                        for k, v in comp_db.items():
+                            if isinstance(v, dict):
+                                item = v.copy()
+                                if "id" not in item: item["id"] = k
+                                items.append(item)
                     
                     for item in items:
                         # Determine Cost & Tier
-                        tier = item.get("tech_tier") or item.get("tech_level") or 1
+                        tier = item.get("tier") or item.get("tech_tier") or item.get("tech_level") or 1
+                        # Research costs scale with tier
                         cost = int(800 * (tier ** 1.8))
                         
                         name = item.get("name") or item.get("id", "Unknown")
@@ -120,11 +123,13 @@ class ProceduralTechGenerator:
                         techs[tech_key] = cost
                         effects[tech_key] = [f"Unlocks: {name}"]
                         
+                        # Prerequisite Logic
                         if tier == 1:
                             if roots:
                                 prereqs.setdefault(tech_key, []).append(self.rng.choice(roots))
                         else:
-                            candidates = [t for t, c in techs.items() if c < cost and c > cost*0.1 and t != tech_key]
+                            # Link to a relevant tech of lower tier
+                            candidates = [t for t, c in techs.items() if c < cost and c > cost * 0.1 and t != tech_key]
                             if candidates:
                                 prereqs.setdefault(tech_key, []).append(self.rng.choice(candidates))
                                 

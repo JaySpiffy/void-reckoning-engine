@@ -4,7 +4,7 @@
             "id": "line_infantry",
             "name": "Line Infantry",
             "stats": {
-                "hp": 6000,
+                "hp": 500,
                 "entity_count": 100,
                 "armor": 30,
                 "morale": 60,
@@ -25,7 +25,7 @@
             "id": "assault_marines",
             "name": "Assault Marines",
             "stats": {
-                "hp": 9000,
+                "hp": 1000,
                 "entity_count": 50,
                 "armor": 80,
                 "morale": 85,
@@ -48,7 +48,7 @@
             "id": "battle_tank",
             "name": "Battle Tank",
             "stats": {
-                "hp": 4000,
+                "hp": 2500,
                 "entity_count": 4,
                 "armor": 120,
                 "morale": 90,
@@ -89,6 +89,99 @@
             ],
             "tech_tier": 4,
             "unlock_tech": "Tech_Unlock_Titan_Engine"
+        },
+        {
+            "id": "advanced_battlesuit",
+            "name": "Advanced Battlesuit",
+            "stats": {
+                "hp": 300,
+                "entity_count": 3,
+                "armor": 40,
+                "morale": 90,
+                "melee_attack": 30,
+                "melee_defense": 30,
+                "ranged_attack": 100,
+                "charge_bonus": 15,
+                "weapon_strength": 60,
+                "armor_piercing": 25,
+                "speed": 55
+            },
+            "attributes": [
+                "infantry",
+                "advanced"
+            ],
+            "tech_tier": 3,
+            "unlock_tech": "Tech_Unlock_Advanced_Battlesuits"
+        },
+        {
+            "id": "heavy_weapon_platform",
+            "name": "Heavy Weapon Platform",
+            "stats": {
+                "hp": 400,
+                "entity_count": 5,
+                "armor": 20,
+                "morale": 70,
+                "melee_attack": 10,
+                "melee_defense": 10,
+                "ranged_attack": 400,
+                "charge_bonus": 0,
+                "weapon_strength": 200,
+                "armor_piercing": 80,
+                "speed": 15
+            },
+            "attributes": [
+                "armored",
+                "heavy_support"
+            ],
+            "tech_tier": 3,
+            "unlock_tech": "Tech_Unlock_Support_Platforms"
+        },
+        {
+            "id": "assault_brawler_walker",
+            "name": "Assault Brawler Walker",
+            "stats": {
+                "hp": 800,
+                "entity_count": 1,
+                "armor": 80,
+                "morale": 95,
+                "melee_attack": 60,
+                "melee_defense": 50,
+                "ranged_attack": 50,
+                "charge_bonus": 40,
+                "weapon_strength": 300,
+                "armor_piercing": 150,
+                "speed": 40
+            },
+            "attributes": [
+                "large",
+                "walker"
+            ],
+            "tech_tier": 4,
+            "unlock_tech": "Tech_Unlock_Walker_Combat"
+        },
+        {
+            "id": "apocalypse_titan",
+            "name": "Apocalypse Class Titan",
+            "stats": {
+                "hp": 45000,
+                "entity_count": 1,
+                "armor": 250,
+                "morale": 100,
+                "melee_attack": 120,
+                "melee_defense": 80,
+                "ranged_attack": 2500,
+                "charge_bonus": 150,
+                "weapon_strength": 4000,
+                "armor_piercing": 2000,
+                "speed": 35
+            },
+            "attributes": [
+                "massive",
+                "terror",
+                "god_engine"
+            ],
+            "tech_tier": 5,
+            "unlock_tech": "Tech_Unlock_Apocalypse_Titan"
         }
     ]
 }

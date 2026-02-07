@@ -1,11 +1,13 @@
 from typing import List, Dict, Any, Optional
+import os
+import traceback
 from universes.base.combat_rules import CombatPhase
 
 def execute_phase_sequence(phases: List[Any], phase_order: List[str], context: Dict[str, Any]):
     """
-    Executes a sequence of combat phases in the specified order.
-    Supports both legacy dict-based phases and new ICombatPhase objects.
+    Standardizes the execution of multiple combat phases.
     """
+    manager = context.get("manager")
     phase_map = {}
     for p in phases:
         if isinstance(p, dict):
@@ -24,9 +26,9 @@ def execute_phase_sequence(phases: List[Any], phase_order: List[str], context: D
         detailed_log_file = context.get("detailed_log_file")
         round_num = context.get("round_num", 1)
         
-        if detailed_log_file:
-            with open(detailed_log_file, "a", encoding='utf-8') as f:
-                f.write(f"\n--- {phase_name.upper()} PHASE (Round {round_num}) ---\n")
+        # [REMOVED] Legacy phase headers disabled in Phase 4 Real-Time Overhaul
+        # Phase headers were causing log pollution in 1000+ unit stress tests.
+
         
         # Execute phase
         try:

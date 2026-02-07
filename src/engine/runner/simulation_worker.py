@@ -10,11 +10,8 @@ from collections import defaultdict
 import psutil
 
 from src.managers.campaign_manager import CampaignEngine
-from src.models.unit import Unit
-from src.managers.fleet_queue_manager import FleetQueueManager
 from src.reporting.organizer import ReportOrganizer
 from src.reporting.indexing import ReportIndexer
-from src.reporting.telemetry import TelemetryCollector, EventCategory, VerbosityLevel
 
 # Global progress queue reference for worker processes
 progress_queue = None
@@ -51,11 +48,6 @@ class SimulationWorker:
         run_name = f"run_{run_id:03d}"
         universe_name = game_config.get("universe", "void_reckoning")
         
-        # Force silence logger console for worker to avoid flooding orchestrator
-        from src.utils.game_logging import GameLogger
-        logger_inst = GameLogger(use_file_logging=False)
-        logger_inst.console_verbose = False
-
         organizer = ReportOrganizer(os.path.dirname(batch_dir), batch_id, run_name, universe_name=universe_name)
         organizer.initialize_run(metadata=game_config)
 
@@ -97,42 +89,38 @@ class SimulationWorker:
             
             # Register Portals
             if progress_queue:
-                sys.stderr.write(f"DEBUG: [WORKER {run_id}] Preparing portals...\n"); sys.stderr.flush()
                 portals_serialized = [p.to_dict() for p in engine.galaxy_generator.portals] if hasattr(engine.galaxy_generator, 'portals') else []
                 if not portals_serialized and hasattr(engine, 'generator') and hasattr(engine.generator, 'portals'):
                     portals_serialized = [p.to_dict() for p in engine.generator.portals]
-                sys.stderr.write(f"DEBUG: [WORKER {run_id}] Sending GALAXY_READY...\n"); sys.stderr.flush()
                 progress_queue.put((run_id, 0, "GALAXY_READY", portals_serialized))
-                sys.stderr.write(f"DEBUG: [WORKER {run_id}] Sent GALAXY_READY.\n"); sys.stderr.flush()
 
                 if game_config.get("multi_universe_settings", {}).get("sync_turns"):
-                    sys.stderr.write(f"DEBUG: [WORKER {run_id}] Waiting for START_SIMULATION...\n"); sys.stderr.flush()
-                    fqm = FleetQueueManager.get_instance()
-                    in_q = fqm.incoming_q
+                    import src.engine.multi_universe_runner as mur
+                    in_q = getattr(mur, '_incoming_fleet_q', None)
                     if in_q:
                         while True:
                             try:
                                 cmd = in_q.get(timeout=0.5)
                                 if isinstance(cmd, dict) and cmd.get("action") == "START_SIMULATION":
                                     break
-                            except queue.Empty:
+                            except queue.Empty: # Use queue.Empty
                                 pass
                             time.sleep(0.5)
             
-            fqm = FleetQueueManager.get_instance()
-            in_q = fqm.incoming_q
-            out_q = fqm.outgoing_q
+            # Use local import for multi-universe to avoid circular imports?
+            # Or assume run_single_campaign_wrapped is running in a worker process where this is safe.
+            import src.engine.multi_universe_runner as mur
+            in_q = getattr(mur, '_incoming_fleet_q', None)
+            out_q = getattr(mur, '_outgoing_fleet_q', None)
             
             if progress_queue:
                  engine.set_fleet_queues(in_q, out_q, progress_queue)
             else:
                  engine.set_fleet_queues(in_q, out_q, None)
 
-            # SPAWN INITIAL FORCES
-            engine.spawn_start_fleets(num_fleets_per_faction=1)
-
-            # Execute Turns
-            winner = "Unknown"
+            engine.spawn_start_fleets()
+            
+            winner = "Draw"
             turns_taken = turns_per_run
             stats = {}
             
@@ -179,7 +167,7 @@ class SimulationWorker:
 
                      # SYNC BARRIER
                      if game_config.get("multi_universe_settings", {}).get("sync_turns"):
-                         sync_q = FleetQueueManager.get_instance().incoming_q
+                         sync_q = getattr(mur, '_incoming_fleet_q', None)
                          if sync_q:
                              if progress_queue:
                                   progress_queue.put((run_id, t, "Waiting", {}))
@@ -269,7 +257,7 @@ class SimulationWorker:
     def _collect_stats(engine, turn_duration=0):
         stats = {}
         try:
-             stats['turn'] = getattr(engine, 'turn_counter', 0)
+             stats['turn'] = getattr(engine, 'turn', 0)
              # Phase 2: Enhanced Metrics
              global_casualties_ship = 0
              global_casualties_ground = 0
@@ -564,46 +552,15 @@ class SimulationWorker:
                  stats['GLOBAL_ALERTS'] = []
                  stats['GLOBAL_ALERT_COUNTS'] = {"CRITICAL": 0, "WARNING": 0, "INFO": 0}
 
-             # Victory Progress - Domination Only (75% control)
-             total_planets = len(engine.all_planets)
-             
-             # Calculate total cities across all factions for proportional control
-             total_cities_all = sum(
-                 s.get('OWN_CTY', 0) + s.get('CON_CTY', 0) 
-                 for f, s in stats.items() 
-                 if isinstance(s, dict) and not f.startswith("GLOBAL_")
-             )
-             
+             # Victory Progress
+             total_systems = len(engine.systems) if hasattr(engine, 'systems') else 1
              victory_progress = {}
-             
              for f, s in stats.items():
                  if isinstance(s, dict) and not f.startswith("GLOBAL_"):
-                     # Fully owned planets: full credit
-                     owned_planets = s.get('OWN', 0)
-                     
-                     # Contested planets: calculate proportional control based on cities
-                     contested = s.get('CON', 0)
-                     owned_cities = s.get('OWN_CTY', 0)
-                     contested_cities = s.get('CON_CTY', 0)
-                     total_cities = owned_cities + contested_cities
-                     
-                     # For contested planets, credit = (faction's cities / total cities on planet) * contested count
-                     # Approximation: use faction's proportion of ALL contested cities
-                     if contested > 0 and total_cities_all > 0:
-                         # Each faction's contested contribution is their contested cities / total contested cities
-                         faction_city_share = contested_cities / total_cities_all if total_cities_all > 0 else 0
-                         contested_contribution = contested * faction_city_share
-                     else:
-                         contested_contribution = 0
-                     
-                     effective_control = owned_planets + contested_contribution
-                     
-                     # Domination Victory: Control 75% of all planets
-                     domination_target = total_planets * 0.75
-                     domination_pct = (effective_control / domination_target) * 100 if domination_target > 0 else 0
-                     
-                     victory_progress[f] = min(domination_pct, 100.0)
-                          
+                     controlled_systems = s.get('S', 0)
+                     # Condition: 75% control
+                     progress = (controlled_systems / (total_systems * 0.75)) * 100
+                     victory_progress[f] = min(progress, 100.0)
              stats['GLOBAL_VICTORY'] = victory_progress
 
         except Exception as e: 

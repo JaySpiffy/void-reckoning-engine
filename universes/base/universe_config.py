@@ -194,19 +194,20 @@ class UniverseConfig:
 
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> 'UniverseConfig':
-        """Deserializes the configuration from a dictionary.
-        
-        Args:
-            data: The dictionary containing config data.
-            
-        Returns:
-            UniverseConfig: An instance of UniverseConfig.
-        """
+        """Deserializes the configuration from a dictionary."""
+        # [ROBUSTNESS] If 'metadata' key is missing, use the whole dict as metadata
+        # to catch top-level keys like 'modules', 'mechanics', etc.
+        metadata = data.get("metadata")
+        if metadata is None:
+            # Create a shallow copy to use as metadata, excluding known top-level non-metadata keys if needed
+            # But the current __init__ safely filters using .get()
+            metadata = data
+
         config = cls(
             universe_name=data["name"],
             universe_version=data["version"],
             universe_root=Path(data["root"]),
-            metadata=data.get("metadata")
+            metadata=metadata
         )
         config.factions = data.get("factions", [])
         config.unit_formats = data.get("unit_formats", {})

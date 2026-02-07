@@ -58,7 +58,10 @@ def resolve_melee_phase(active_army, enemy_army, round_num, detailed_log_file=No
                 ap_val = getattr(attacker, "ap", 0)
                 mit = calculate_mitigation_v4(defender, s_val, ap_val)
                 
-                final_dmg = max(1, s_val * (1.0 - mit) * dmg_mult * global_dmg)
+                # [Lethality] Apply Ground Scalar
+                lethality_scalar = bal.GROUND_LETHALITY_SCALAR if not attacker.is_ship() else 1.0
+                
+                final_dmg = max(1, s_val * (1.0 - mit) * dmg_mult * global_dmg * lethality_scalar)
                 
                 # Component Targeting
                 target_comp = None

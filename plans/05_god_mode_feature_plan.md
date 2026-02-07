@@ -1308,7 +1308,7 @@ const AlignmentControl: React.FC<AlignmentControlProps> = ({
 
 ---
 
-## 5. Implementation Plan
+## 6. Implementation Plan
 
 ### Phase 1: Foundation (Core Infrastructure)
 
@@ -1368,7 +1368,36 @@ const AlignmentControl: React.FC<AlignmentControlProps> = ({
 5. Create alliance/war/peace shortcuts
 6. Implement faction AI toggle
 
-### Phase 4: Universe & System Control
+### Phase 4: God Personality & Alignment System
+
+**Files to Create**:
+- `src/managers/god_mode/alignment_manager.py`
+- `src/managers/god_mode/mood_registry.py`
+- `src/managers/god_mode/benevolent_actions.py`
+- `src/managers/god_mode/malevolent_actions.py`
+- `src/managers/god_mode/intervention_manager.py`
+- `frontend/src/components/GodMode/AlignmentControl.tsx`
+
+**Files to Modify**:
+- `src/managers/campaign_manager.py` - Add alignment tracking
+- `src/reporting/dashboard_v2/api/routes/god_mode.py` - Add alignment/mood endpoints
+- `frontend/src/pages/GodMode.tsx` - Add alignment tab
+
+**Tasks**:
+1. Implement AlignmentManager with slider support
+2. Create GOD_MOODS registry with predefined moods
+3. Implement BenevolentActions class with 10 blessing types
+4. Implement MalevolentActions class with 11 curse types
+5. Implement DivineInterventionManager with prophecy system
+6. Create alignment slider UI component
+7. Implement mood selector with action preview
+8. Add blessing/curse application UI
+9. Implement divine intervention trigger UI
+10. Add prophecy display panel
+11. Create faction favor tracking system
+12. Implement automatic intervention checks
+
+### Phase 5: Universe & System Control
 
 **Files to Create**:
 - `frontend/src/components/GodMode/UniverseControl.tsx`
@@ -1384,7 +1413,7 @@ const AlignmentControl: React.FC<AlignmentControlProps> = ({
 5. Implement portal network editor
 6. Create new system/planet wizards
 
-### Phase 5: Time & Event Control
+### Phase 6: Time & Event Control
 
 **Files to Create**:
 - `frontend/src/components/GodMode/TimeControl.tsx`
@@ -1399,7 +1428,7 @@ const AlignmentControl: React.FC<AlignmentControlProps> = ({
 5. Create custom event builder
 6. Add event scheduling
 
-### Phase 6: Advanced Features
+### Phase 7: Advanced Features
 
 **Files to Create**:
 - `frontend/src/components/GodMode/HeroControl.tsx`
@@ -1416,7 +1445,7 @@ const AlignmentControl: React.FC<AlignmentControlProps> = ({
 5. Add debugging tools
 6. Create state dump/restore
 
-### Phase 7: Polish & Integration
+### Phase 8: Polish & Integration
 
 **Tasks**:
 1. Add comprehensive error handling
@@ -1432,7 +1461,276 @@ const AlignmentControl: React.FC<AlignmentControlProps> = ({
 
 ## 5. API Specification
 
-### 5.1 Fleet Spawning API
+### 5.1 Alignment & Mood API
+
+```python
+# Get current god alignment and mood
+GET /api/god-mode/alignment
+Response:
+{
+    "alignment": "benevolent",
+    "alignment_value": -50,
+    "mood": "benevolent_protector",
+    "intensity": 75,
+    "target_factions": ["Templars_of_the_Flux", "Aurelian_Hegemony"]
+}
+
+# Set god alignment
+POST /api/god-mode/alignment
+Request:
+{
+    "alignment": "benevolent",  # or numeric -100 to 100
+    "intensity": 75,
+    "target_factions": null  # null = all factions
+}
+Response:
+{
+    "status": "success",
+    "alignment": "benevolent",
+    "alignment_value": -50,
+    "previous_alignment": "neutral"
+}
+
+# Get current god mood
+GET /api/god-mode/mood
+Response:
+{
+    "mood": "benevolent_protector",
+    "alignment": "benevolent",
+    "available_actions": [
+        "bless_resources",
+        "bless_military",
+        "protect_from_disaster",
+        "heal_fleets",
+        "grant_hero_abilities",
+        "favorable_weather",
+        "boost_economy",
+        "resolve_conflicts",
+        "grant_immunity",
+        "spawn_allies"
+    ]
+}
+
+# Set god mood
+POST /api/god-mode/mood
+Request:
+{
+    "mood": "malevolent_destroyer"
+}
+Response:
+{
+    "status": "success",
+    "mood": "malevolent_destroyer",
+    "previous_mood": "benevolent_protector"
+}
+```
+
+### 5.2 Blessing API
+
+```python
+# Apply a blessing to a faction
+POST /api/god-mode/bless
+Request:
+{
+    "faction": "Templars_of_the_Flux",
+    "blessing_type": "bless_resources",
+    "parameters": {
+        "amount": 5000
+    }
+}
+Response:
+{
+    "status": "success",
+    "action": "bless_resources",
+    "faction": "Templars_of_the_Flux",
+    "amount": 5000,
+    "message": "Blessing applied: 5000 resources granted"
+}
+
+# Apply multiple blessings at once
+POST /api/god-mode/bless/batch
+Request:
+{
+    "faction": "Templars_of_the_Flux",
+    "blessings": [
+        {"type": "bless_resources", "params": {"amount": 5000}},
+        {"type": "bless_military", "params": {"multiplier": 1.5}},
+        {"type": "protect_from_disaster", "params": {"duration": 10}}
+    ]
+}
+Response:
+{
+    "status": "success",
+    "faction": "Templars_of_the_Flux",
+    "blessings_applied": 3,
+    "results": [...]
+}
+
+# Get active blessings for a faction
+GET /api/god-mode/bless/{faction_name}
+Response:
+{
+    "faction": "Templars_of_the_Flux",
+    "active_blessings": [
+        {
+            "type": "bless_resources",
+            "duration": 5,
+            "start_turn": 42,
+            "parameters": {"multiplier": 1.5}
+        },
+        {
+            "type": "protect_from_disaster",
+            "duration": 10,
+            "start_turn": 42,
+            "parameters": {}
+        }
+    ]
+}
+```
+
+### 5.3 Curse API
+
+```python
+# Apply a curse to a faction
+POST /api/god-mode/curse
+Request:
+{
+    "faction": "Void_Spawn_Entities",
+    "curse_type": "curse_resources",
+    "parameters": {
+        "drain_percent": 50
+    }
+}
+Response:
+{
+    "status": "success",
+    "action": "curse_resources",
+    "faction": "Void_Spawn_Entities",
+    "percent": 50,
+    "message": "Curse applied: 50% resources drained"
+}
+
+# Apply multiple curses at once
+POST /api/god-mode/curse/batch
+Request:
+{
+    "faction": "Void_Spawn_Entities",
+    "curses": [
+        {"type": "curse_resources", "params": {"drain_percent": 50}},
+        {"type": "curse_military", "params": {"multiplier": 0.5}},
+        {"type": "trigger_disaster", "params": {"system": "Hive_World", "type": "plague", "severity": "high"}}
+    ]
+}
+Response:
+{
+    "status": "success",
+    "faction": "Void_Spawn_Entities",
+    "curses_applied": 3,
+    "results": [...]
+}
+
+# Get active curses for a faction
+GET /api/god-mode/curse/{faction_name}
+Response:
+{
+    "faction": "Void_Spawn_Entities",
+    "active_curses": [
+        {
+            "type": "curse_resources",
+            "duration": 10,
+            "start_turn": 42,
+            "parameters": {"drain_percent": 30}
+        },
+        {
+            "type": "curse_military",
+            "duration": 5,
+            "start_turn": 42,
+            "parameters": {"multiplier": 0.7}
+        }
+    ]
+}
+```
+
+### 5.4 Divine Intervention API
+
+```python
+# Trigger a divine intervention
+POST /api/god-mode/intervention
+Request:
+{
+    "intervention_type": "miracle_healing",
+    "target_faction": "Templars_of_the_Flux"
+}
+Response:
+{
+    "status": "success",
+    "intervention": "miracle_healing",
+    "target": "Templars_of_the_Flux",
+    "result": {
+        "action": "heal_fleets",
+        "faction": "Templars_of_the_Flux",
+        "percent": 100
+    },
+    "message": "Divine intervention: All fleets fully healed"
+}
+
+# Trigger random intervention based on alignment
+POST /api/god-mode/intervention/random
+Request:
+{
+    "target_faction": "Templars_of_the_Flux"  # Optional
+}
+Response:
+{
+    "status": "success",
+    "intervention": "miracle_prosperity",
+    "target": "Templars_of_the_Flux",
+    "alignment": "benevolent",
+    "result": {...}
+}
+
+# Get intervention history
+GET /api/god-mode/intervention/history
+Response:
+{
+    "history": [
+        {
+            "timestamp": "2026-02-06T12:00:00Z",
+            "intervention": "miracle_healing",
+            "target": "Templars_of_the_Flux",
+            "turn": 42
+        },
+        {
+            "timestamp": "2026-02-06T11:30:00Z",
+            "intervention": "divine_punishment",
+            "target": "Void_Spawn_Entities",
+            "turn": 40
+        }
+    ]
+}
+
+# Get active prophecies
+GET /api/god-mode/intervention/prophecies
+Response:
+{
+    "prophecies": [
+        {
+            "type": "disaster",
+            "turn": 52,
+            "faction": "Bio_Tide_Collective",
+            "certainty": 80
+        },
+        {
+            "type": "discovery",
+            "turn": 58,
+            "faction": "Aurelian_Hegemony",
+            "certainty": 65
+        }
+    ]
+}
+```
+
+### 5.6 Fleet Spawning API
 
 ```python
 # Spawn a new fleet
@@ -1461,7 +1759,7 @@ Response:
 }
 ```
 
-### 5.2 Faction Control API
+### 5.7 Faction Control API
 
 ```python
 # Modify faction resources
@@ -1483,7 +1781,7 @@ Response:
 }
 ```
 
-### 5.3 Diplomacy Control API
+### 5.8 Diplomacy Control API
 
 ```python
 # Set relations between factions
@@ -1503,7 +1801,7 @@ Response:
 }
 ```
 
-### 5.4 Time Control API
+### 5.9 Time Control API
 
 ```python
 # Control simulation time
@@ -1521,7 +1819,7 @@ Response:
 }
 ```
 
-### 5.5 Event Trigger API
+### 5.10 Event Trigger API
 
 ```python
 # Trigger an event
@@ -1547,11 +1845,11 @@ Response:
 
 ---
 
-## 6. Database Schema Changes
+## 7. Database Schema Changes
 
 No database schema changes are required for God Mode functionality. All God Mode operations manipulate in-memory simulation state directly. However, God Mode actions should be logged for audit purposes.
 
-### 6.1 God Mode Audit Log (Optional)
+### 7.1 God Mode Audit Log (Optional)
 
 If audit logging is desired, add this table:
 
@@ -1569,20 +1867,24 @@ CREATE TABLE god_mode_actions (
 
 ---
 
-## 7. Integration Points
+## 8. Integration Points
 
-### 7.1 CampaignEngine Integration
+### 8.1 CampaignEngine Integration
 
 Add God Mode manager reference to CampaignEngine:
 
 ```python
 # In CampaignEngine.__init__
 from src.managers.god_mode.god_mode_manager import GodModeManager
+from src.managers.god_mode.alignment_manager import AlignmentManager
+from src.managers.god_mode.intervention_manager import DivineInterventionManager
 
 self.god_mode_manager = GodModeManager(self)
+self.alignment_manager = AlignmentManager(self)
+self.intervention_manager = DivineInterventionManager(self, self.alignment_manager)
 ```
 
-### 7.2 Dashboard Service Integration
+### 8.2 Dashboard Service Integration
 
 Add God Mode methods to DashboardService:
 
@@ -1595,9 +1897,25 @@ def spawn_god_mode_fleet(self, config: FleetSpawnConfig):
 def set_god_mode_override(self, override: str, value: bool):
     """Set a God Mode override."""
     return self.engine.god_mode_manager.set_override(override, value)
+
+def set_god_alignment(self, alignment: str, intensity: int, target_factions: Optional[List[str]]):
+    """Set god alignment."""
+    return self.engine.alignment_manager.set_alignment(GodAlignment[alignment])
+
+def apply_blessing(self, faction: str, blessing_type: str, parameters: Dict):
+    """Apply a blessing to a faction."""
+    return self.engine.alignment_manager.benevolent_actions.apply_blessing(faction, blessing_type, parameters)
+
+def apply_curse(self, faction: str, curse_type: str, parameters: Dict):
+    """Apply a curse to a faction."""
+    return self.engine.alignment_manager.malevolent_actions.apply_curse(faction, curse_type, parameters)
+
+def trigger_intervention(self, intervention_type: str, target_faction: Optional[str]):
+    """Trigger a divine intervention."""
+    return self.engine.intervention_manager.trigger_intervention(intervention_type, target_faction)
 ```
 
-### 7.3 WebSocket Integration
+### 8.3 WebSocket Integration
 
 Add God Mode events to WebSocket broadcast:
 
@@ -1612,13 +1930,33 @@ async def broadcast_god_mode_event(event_type: str, data: Dict):
         "timestamp": time.time()
     }
     await manager.broadcast(json.dumps(message))
+
+async def broadcast_alignment_change(alignment: str, mood: str):
+    """Broadcast alignment changes."""
+    message = {
+        "type": "god_mode",
+        "event": "alignment_changed",
+        "data": {"alignment": alignment, "mood": mood},
+        "timestamp": time.time()
+    }
+    await manager.broadcast(json.dumps(message))
+
+async def broadcast_intervention(intervention_type: str, result: Dict):
+    """Broadcast divine intervention events."""
+    message = {
+        "type": "god_mode",
+        "event": "divine_intervention",
+        "data": {"intervention": intervention_type, "result": result},
+        "timestamp": time.time()
+    }
+    await manager.broadcast(json.dumps(message))
 ```
 
 ---
 
-## 8. Security Considerations
+## 9. Security Considerations
 
-### 8.1 Access Control
+### 9.1 Access Control
 
 God Mode should be protected by:
 1. Authentication (if running in multi-user environment)
@@ -1627,14 +1965,14 @@ God Mode should be protected by:
    - **Operator**: Can spawn fleets, modify resources
    - **Administrator**: Full access including destructive operations
 
-### 8.2 Audit Logging
+### 9.2 Audit Logging
 
 Log all God Mode actions for:
 - Debugging purposes
 - Understanding simulation deviations
 - Reproducing interesting scenarios
 
-### 8.3 Confirmation Dialogs
+### 9.3 Confirmation Dialogs
 
 Require confirmation for:
 - Deleting fleets/systems/planets
@@ -1644,9 +1982,9 @@ Require confirmation for:
 
 ---
 
-## 9. Testing Strategy
+## 10. Testing Strategy
 
-### 9.1 Unit Tests
+### 10.1 Unit Tests
 
 **Files**: `tests/test_god_mode/`
 
@@ -1654,10 +1992,17 @@ Test coverage for:
 - FleetSpawner with various configurations
 - TroopManager strength mappings
 - SimulationController overrides
-- API endpoints
+- AlignmentManager alignment transitions
+- BenevolentActions blessing types
+- MalevolentActions curse types
+- DivineInterventionManager intervention system
+- GOD_MOODS registry
+- FactionFavor tracking
+- Prophecy generation
+- API endpoints (including alignment, blessing, cursing, intervention)
 - Service integration
 
-### 9.2 Integration Tests
+### 10.2 Integration Tests
 
 Test scenarios:
 - Spawn fleet and verify it appears in simulation
@@ -1665,8 +2010,14 @@ Test scenarios:
 - Set relations and verify diplomacy changes
 - Trigger events and verify effects
 - Apply scenario presets and verify state
+- Set alignment and verify mood changes
+- Apply blessing and verify positive effects
+- Apply curse and verify negative effects
+- Trigger divine intervention and verify rare events
+- Check prophecy generation and accuracy
+- Verify automatic intervention triggers based on alignment
 
-### 9.3 Manual Testing
+### 10.3 Manual Testing
 
 Test workflows:
 1. Spawn a balanced fleet for each faction
@@ -1674,12 +2025,19 @@ Test workflows:
 3. Manipulate an ongoing simulation
 4. Debug a simulation issue using God Mode tools
 5. Test all UI controls and confirmations
+6. Test alignment slider and mood selector
+7. Apply all blessing types to different factions
+8. Apply all curse types to different factions
+9. Trigger each divine intervention type
+10. Monitor prophecy predictions and verify accuracy
+11. Test automatic intervention frequency at different alignment levels
+12. Verify faction favor tracking and history
 
 ---
 
-## 10. Performance Considerations
+## 11. Performance Considerations
 
-### 10.1 Optimization Strategies
+### 11.1 Optimization Strategies
 
 1. **Caching**: Cache ship class definitions and weapon pools
 2. **Batch Operations**: Support batch fleet spawning
@@ -1687,7 +2045,7 @@ Test workflows:
 4. **Debouncing**: Debounce rapid API calls from UI
 5. **WebSocket Throttling**: Limit God Mode event broadcast frequency
 
-### 10.2 Resource Management
+### 11.2 Resource Management
 
 1. **Object Pooling**: Reuse unit objects when possible
 2. **Memory Limits**: Set limits on God Mode-created objects
@@ -1695,9 +2053,9 @@ Test workflows:
 
 ---
 
-## 11. User Experience Design
+## 12. User Experience Design
 
-### 11.1 UI Principles
+### 12.1 UI Principles
 
 1. **Immediate Feedback**: Show results of God Mode actions instantly
 2. **Clear Indicators**: Visually indicate God Mode is active
@@ -1705,7 +2063,7 @@ Test workflows:
 4. **Presets**: Save and load common configurations
 5. **Tooltips**: Explain each God Mode control
 
-### 11.2 Keyboard Shortcuts
+### 12.2 Keyboard Shortcuts
 
 | Shortcut | Action |
 |-----------|---------|
@@ -1718,7 +2076,7 @@ Test workflows:
 
 ---
 
-## 12. Future Enhancements
+## 13. Future Enhancements
 
 ### 12.1 Potential Additions
 
@@ -1738,7 +2096,7 @@ Test workflows:
 
 ---
 
-## 13. Summary
+## 14. Summary
 
 This plan provides a comprehensive framework for implementing God Mode functionality in the Multi-Universe Strategy Engine. The implementation is divided into 7 phases, each building on the previous one, allowing for incremental development and testing.
 
@@ -1778,6 +2136,11 @@ src/
 │       ├── simulation_controller.py
 │       ├── troop_manager.py
 │       ├── ship_class_manager.py
+│       ├── alignment_manager.py
+│       ├── mood_registry.py
+│       ├── benevolent_actions.py
+│       ├── malevolent_actions.py
+│       ├── intervention_manager.py
 │       ├── faction_controller.py
 │       ├── diplomacy_controller.py
 │       ├── universe_manipulator.py
@@ -1802,6 +2165,7 @@ frontend/
             ├── FleetControl.tsx
             ├── ShipConfig.tsx
             ├── WeaponSelector.tsx
+            ├── AlignmentControl.tsx
             ├── FactionControl.tsx
             ├── DiplomacyControl.tsx
             ├── UniverseControl.tsx
@@ -1818,6 +2182,10 @@ tests/
     ├── test_fleet_spawner.py
     ├── test_simulation_controller.py
     ├── test_troop_manager.py
+    ├── test_alignment_manager.py
+    ├── test_benevolent_actions.py
+    ├── test_malevolent_actions.py
+    ├── test_intervention_manager.py
     ├── test_api_routes.py
     └── test_scenarios.py
 ```
@@ -1866,6 +2234,54 @@ tests/
 5. Navigate to relevant control tab
 6. Apply fix (e.g., modify faction resources)
 7. Click "Validate State"
+8. Resume simulation
+9. Monitor for resolution
+
+### Workflow 4: Act as a Benevolent God
+
+1. Navigate to God Mode → Alignment Control tab
+2. Set alignment slider to Benevolent (-50 to -100)
+3. Select "Benevolent Protector" mood
+4. Set intensity to 75
+5. Click "Apply Alignment"
+6. Navigate to Blessing tab
+7. Select target faction from dropdown
+8. Choose blessing type (e.g., "Bless Resources")
+9. Set blessing parameters (e.g., amount: 5000)
+10. Click "Apply Blessing"
+11. Confirm operation
+12. Faction receives blessing immediately
+13. Repeat for other factions as desired
+14. Monitor effects in real-time
+
+### Workflow 5: Act as a Malevolent God
+
+1. Navigate to God Mode → Alignment Control tab
+2. Set alignment slider to Malevolent (50 to 100)
+3. Select "Malevolent Destroyer" mood
+4. Set intensity to 80
+5. Click "Apply Alignment"
+6. Navigate to Curse tab
+7. Select target faction from dropdown
+8. Choose curse type (e.g., "Curse Resources")
+9. Set curse parameters (e.g., drain_percent: 50)
+10. Click "Apply Curse"
+11. Confirm operation
+12. Faction receives curse immediately
+13. Repeat for other factions as desired
+14. Monitor effects in real-time
+
+### Workflow 6: Trigger Divine Intervention
+
+1. Navigate to God Mode → Divine Intervention tab
+2. Review available intervention types based on current alignment
+3. Select intervention type (e.g., "Miracle Healing" for benevolent)
+4. Select target faction (optional)
+5. Click "Trigger Intervention"
+6. Confirm operation
+7. Divine intervention occurs immediately
+8. Review intervention history for details
+9. Check prophecy panel for future events
 8. Resume simulation
 9. Monitor for resolution
 

@@ -56,9 +56,13 @@ class AetherOverloadMechanic(BaseMechanic):
         
         # [LEGACY] Atomic attributes removed. Check new Ability Tags/Properties?
         # For now, default to stable/no-overload unless specified in ability effects?
-        stability = 50
-
-        aether = 0 # Default to 0 aether
+        # Use atom_aether from ability dna if present (Phase 9 legacy)
+        aether = ability.get("elemental_dna", {}).get("atom_aether", 0)
+        if not aether:
+             aether = ability.get("aether_cost", 0) # Fallback
+             
+        dna = getattr(caster, "elemental_dna", {})
+        stability = dna.get("atom_stability", 50.0) if dna else 50.0
         
         # Fail chance
         fail_chance = (aether / 100.0) * (1.0 - (stability / 100.0))
@@ -108,12 +112,15 @@ class InstabilityMechanic(BaseMechanic):
 
     # Helper for per-unit update if engine supports it, or manual iteration
     def process_unit_instability(self, unit):
-        # Default volatility if missing
+        # Check elemental dna for volatility
         vol = 0
-        vol = 0
+        dna = getattr(unit, "elemental_dna", {})
+        if dna:
+             vol = dna.get("atom_volatility", 0)
+             
         # If we want instability, check tags
         if hasattr(unit, "tags") and "PhaseShift" in unit.tags:
-             vol = 50
+             vol = max(vol, 50)
 
         
         if vol > 0 and random.random() < (vol / 100.0):

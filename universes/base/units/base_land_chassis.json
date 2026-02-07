@@ -19,9 +19,9 @@
         "logic_role": "character",
         "collision_shape": "human_capsule",
         "base_cost": 400,
-        "base_hp": 25,
+        "base_hp": 5,
         "base_speed": 10,
-        "squad_size": 20,
+        "squad_size": 100,
         "hardpoints": {
             "hand_main": "light",
             "belt_utility": "micro"
@@ -34,9 +34,9 @@
         "logic_role": "melee_character",
         "collision_shape": "human_capsule",
         "base_cost": 500,
-        "base_hp": 30,
+        "base_hp": 10,
         "base_speed": 12,
-        "squad_size": 20,
+        "squad_size": 50,
         "hardpoints": {
             "hand_melee": "light",
             "hand_sidearm": "micro"
@@ -49,10 +49,10 @@
         "logic_role": "elite_character",
         "collision_shape": "large_capsule",
         "base_cost": 1000,
-        "base_hp": 100,
+        "base_hp": 25,
         "base_speed": 8,
         "base_armor": 15,
-        "squad_size": 10,
+        "squad_size": 40,
         "hardpoints": {
             "arm_heavy": "medium",
             "shoulder_accessory": "light",
@@ -132,7 +132,7 @@
         "logic_role": "boss_mech",
         "collision_shape": "multi_part",
         "base_cost": 12000,
-        "base_hp": 10000,
+        "base_hp": 15000,
         "base_speed": 12,
         "base_armor": 120,
         "hardpoints": {
@@ -143,6 +143,247 @@
             "torso_defense_2": "light",
             "torso_defense_3": "light",
             "core_shield_gen": "defense"
+        }
+    },
+    "recon_scout_drone": {
+        "name": "Recon Scout Drone",
+        "description": "Fast, unarmed surveillance unit. Tiny sphere collision.",
+        "category": "Vehicle",
+        "logic_role": "scout",
+        "collision_shape": "tiny_sphere",
+        "base_cost": 150,
+        "base_hp": 15,
+        "base_speed": 40,
+        "hardpoints": {
+            "sensor_array": "utility"
+        }
+    },
+    "skirmisher_cavalry": {
+        "name": "Skirmisher Cavalry",
+        "description": "Fast beast or hover riders. Harassment specialty.",
+        "category": "Infantry",
+        "logic_role": "cavalry",
+        "collision_shape": "human_capsule",
+        "base_cost": 600,
+        "base_hp": 40,
+        "base_speed": 18,
+        "squad_size": 15,
+        "hardpoints": {
+            "hand_melee": "light",
+            "hand_sidearm": "micro"
+        }
+    },
+    "anti_air_platform": {
+        "name": "Anti-Air Platform",
+        "description": "Stationary or slow mobile AA platform.",
+        "category": "Vehicle",
+        "logic_role": "aa_defense",
+        "collision_shape": "rigid_box",
+        "base_cost": 1200,
+        "base_hp": 600,
+        "base_speed": 8,
+        "base_armor": 25,
+        "hardpoints": {
+            "turret_main": "heavy",
+            "hull_utility": "utility"
+        }
+    },
+    "self_propelled_artillery": {
+        "name": "Self-Propelled Artillery",
+        "description": "Long-range bombardment platform.",
+        "category": "Vehicle",
+        "logic_role": "artillery",
+        "collision_shape": "rigid_box",
+        "base_cost": 2200,
+        "base_hp": 500,
+        "base_speed": 12,
+        "base_armor": 15,
+        "hardpoints": {
+            "main_gun": "heavy",
+            "defense_mount": "defense"
+        }
+    },
+    "mobile_command_center": {
+        "name": "Mobile Command Center",
+        "description": "Command and control hub. Field buffs.",
+        "category": "Vehicle",
+        "logic_role": "support",
+        "collision_shape": "massive_box",
+        "base_cost": 3000,
+        "base_hp": 1500,
+        "base_speed": 10,
+        "base_armor": 60,
+        "hardpoints": {
+            "comms_array": "utility",
+            "guard_sponson": "medium",
+            "shield_gen": "defense"
+        }
+    },
+    "siege_breacher_drill": {
+        "name": "Siege Breacher Drill",
+        "description": "Heavy melee drill for wall breaking.",
+        "category": "Vehicle",
+        "logic_role": "siege_breaker",
+        "collision_shape": "rigid_box",
+        "base_cost": 1800,
+        "base_hp": 1200,
+        "base_speed": 8,
+        "base_armor": 70,
+        "hardpoints": {
+            "front_drill": "heavy",
+            "side_cutter": "medium"
+        }
+    },
+    "jump_infantry_squad": {
+        "name": "Jump Infantry Squad",
+        "description": "High mobility shock troops.",
+        "category": "Infantry",
+        "logic_role": "assault",
+        "collision_shape": "human_capsule",
+        "base_cost": 750,
+        "base_hp": 15,
+        "base_speed": 14,
+        "squad_size": 40,
+        "hardpoints": {
+            "hand_melee": "light",
+            "hand_sidearm": "micro",
+            "back_pack": "mobility"
+        }
+    },
+    "sniper_specialist_team": {
+        "name": "Sniper Specialist Team",
+        "description": "Extreme range infantry squad.",
+        "category": "Infantry",
+        "logic_role": "sniper",
+        "collision_shape": "human_capsule",
+        "base_cost": 900,
+        "base_hp": 25,
+        "base_speed": 10,
+        "squad_size": 5,
+        "hardpoints": {
+            "long_rifle": "light",
+            "optics_slot": "utility"
+        }
+    },
+    "field_hospital_unit": {
+        "name": "Field Hospital Unit",
+        "description": "Front-line medical support platform.",
+        "category": "Vehicle",
+        "logic_role": "healer",
+        "collision_shape": "rectangular_box",
+        "base_cost": 1000,
+        "base_hp": 400,
+        "base_speed": 18,
+        "base_armor": 15,
+        "hardpoints": {
+            "med_array": "utility",
+            "defense_turret": "medium"
+        }
+    },
+    "psi_weaver_acolyte": {
+        "name": "Psi-Weaver Acolyte",
+        "description": "Aether-sensitive infantry unit.",
+        "category": "Infantry",
+        "logic_role": "mage",
+        "collision_shape": "human_capsule",
+        "base_cost": 1500,
+        "base_hp": 20,
+        "base_speed": 12,
+        "squad_size": 5,
+        "hardpoints": {
+            "psi_focus": "light",
+            "mystic_defense": "defense"
+        }
+    },
+    "hover_tank_chassis": {
+        "name": "Hover Tank Chassis",
+        "description": "Advanced hover chassis with high mobility and energy focus.",
+        "category": "Vehicle",
+        "logic_role": "tank",
+        "collision_shape": "rigid_box",
+        "base_cost": 2800,
+        "base_hp": 1000,
+        "base_speed": 35,
+        "base_armor": 30,
+        "hardpoints": {
+            "grav_cannon": "heavy",
+            "shield_overlay": "defense"
+        }
+    },
+    "advanced_battlesuit": {
+        "name": "Advanced Battlesuit",
+        "description": "Fusion of infantry agility and vehicle protection. High energy focus.",
+        "category": "Infantry",
+        "logic_role": "elite_character",
+        "collision_shape": "large_capsule",
+        "base_cost": 1200,
+        "base_hp": 60,
+        "base_speed": 15,
+        "base_armor": 25,
+        "squad_size": 5,
+        "tech_tier": 3,
+        "hardpoints": {
+            "arm_weapon_right": "medium",
+            "arm_weapon_left": "medium",
+            "shoulder_pod": "light",
+            "internal_generator": "defense"
+        }
+    },
+    "heavy_weapon_platform": {
+        "name": "Heavy Weapon Platform",
+        "description": "Stabilized tripod or tracked platform for massive firepower.",
+        "category": "Infantry",
+        "logic_role": "heavy_support",
+        "collision_shape": "rigid_box",
+        "base_cost": 800,
+        "base_hp": 40,
+        "base_speed": 5,
+        "base_armor": 10,
+        "squad_size": 10,
+        "tech_tier": 3,
+        "hardpoints": {
+            "main_gun": "heavy",
+            "crew_defense": "light"
+        }
+    },
+    "assault_brawler_walker": {
+        "name": "Assault Brawler Walker",
+        "description": "Melee-hardened walker for urban and trench clearing.",
+        "category": "Walker",
+        "logic_role": "shock_troop",
+        "collision_shape": "tall_box",
+        "base_cost": 2000,
+        "base_hp": 1200,
+        "base_speed": 28,
+        "base_armor": 60,
+        "tech_tier": 4,
+        "hardpoints": {
+            "arm_left_melee": "medium",
+            "arm_right_melee": "medium",
+            "hull_flamer": "light",
+            "reactive_plates": "defense"
+        }
+    },
+    "apocalypse_titan": {
+        "name": "Apocalypse Class Titan",
+        "description": "The ultimate instrument of planetary conquest. Multi-towered fortress.",
+        "category": "Walker",
+        "logic_role": "god_engine",
+        "collision_shape": "multi_part",
+        "base_cost": 50000,
+        "base_hp": 45000,
+        "base_speed": 8,
+        "base_armor": 200,
+        "tech_tier": 5,
+        "hardpoints": {
+            "left_arm_primary": "titan",
+            "right_arm_primary": "titan",
+            "carapace_deck_1": "heavy",
+            "carapace_deck_2": "heavy",
+            "shoulder_turret_l": "medium",
+            "shoulder_turret_r": "medium",
+            "point_defense_array": "light",
+            "grand_shield_gen": "defense"
         }
     }
 }

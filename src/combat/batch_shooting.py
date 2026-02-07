@@ -149,9 +149,13 @@ def resolve_shooting_batch(
     
     # A. Hit Rolls
     # Integrate Evasion (MD) into Hit Probabilities
-    # Prob = BS% * (1.0 - MD%)
-    bs_probs = gpu_bs / 100.0
-    md_penalty = gpu_md / 100.0
+    # [SOFT EVASION] Reduce impact of MD by 50% per user request for ranged focus
+    # [VOLUME OF FIRE] +1% per 10 weapons firing in the batch
+    vof_bonus = min(0.20, n / 1000.0) # +1% per 10 weapons = 0.001 per weapon. 100 weapons = 0.10. Cap +20%
+    
+    bs_probs = (gpu_bs / 100.0) + vof_bonus
+    md_penalty = (gpu_md / 100.0) * 0.5 # Soften evasion impact
+    
     probs = bs_probs * (1.0 - md_penalty)
     probs = xp.maximum(0.05, xp.minimum(0.95, probs)) # Safety clamp
     
@@ -231,12 +235,18 @@ def resolve_shooting_batch(
     cpu_hit_counts = gpu_utils.to_cpu(hit_counts)
     cpu_crit_counts = gpu_utils.to_cpu(crit_counts)
     cpu_bs = gpu_utils.to_cpu(gpu_bs)
+    # [Lethality] Apply GROUND_LETHALITY_SCALAR and resolve accuracy
+    from src.core.balance import GROUND_LETHALITY_SCALAR
     
+    # Pack Results
     for i in range(n):
         att, tgt, wpn, dist = valid_pairs[i]
         
+        # [LETHALITY] Ground-to-Ground only
+        lethality_mult = GROUND_LETHALITY_SCALAR if not att.is_ship() else 1.0
+        
         is_hit = bool(cpu_hits[i])
-        dmg = float(cpu_dmg[i])
+        dmg = float(cpu_dmg[i]) * lethality_mult
         hit_count = int(cpu_hit_counts[i])
         crit_count = int(cpu_crit_counts[i])
         threshold = int(cpu_bs[i])
