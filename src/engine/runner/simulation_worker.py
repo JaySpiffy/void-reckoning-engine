@@ -269,7 +269,7 @@ class SimulationWorker:
     def _collect_stats(engine, turn_duration=0):
         stats = {}
         try:
-             stats['turn'] = getattr(engine, 'turn', 0)
+             stats['turn'] = getattr(engine, 'turn_counter', 0)
              # Phase 2: Enhanced Metrics
              global_casualties_ship = 0
              global_casualties_ground = 0
@@ -564,15 +564,46 @@ class SimulationWorker:
                  stats['GLOBAL_ALERTS'] = []
                  stats['GLOBAL_ALERT_COUNTS'] = {"CRITICAL": 0, "WARNING": 0, "INFO": 0}
 
-             # Victory Progress
-             total_systems = len(engine.systems) if hasattr(engine, 'systems') else 1
+             # Victory Progress - Domination Only (75% control)
+             total_planets = len(engine.all_planets)
+             
+             # Calculate total cities across all factions for proportional control
+             total_cities_all = sum(
+                 s.get('OWN_CTY', 0) + s.get('CON_CTY', 0) 
+                 for f, s in stats.items() 
+                 if isinstance(s, dict) and not f.startswith("GLOBAL_")
+             )
+             
              victory_progress = {}
+             
              for f, s in stats.items():
                  if isinstance(s, dict) and not f.startswith("GLOBAL_"):
-                     controlled_systems = s.get('S', 0)
-                     # Condition: 75% control
-                     progress = (controlled_systems / (total_systems * 0.75)) * 100
-                     victory_progress[f] = min(progress, 100.0)
+                     # Fully owned planets: full credit
+                     owned_planets = s.get('OWN', 0)
+                     
+                     # Contested planets: calculate proportional control based on cities
+                     contested = s.get('CON', 0)
+                     owned_cities = s.get('OWN_CTY', 0)
+                     contested_cities = s.get('CON_CTY', 0)
+                     total_cities = owned_cities + contested_cities
+                     
+                     # For contested planets, credit = (faction's cities / total cities on planet) * contested count
+                     # Approximation: use faction's proportion of ALL contested cities
+                     if contested > 0 and total_cities_all > 0:
+                         # Each faction's contested contribution is their contested cities / total contested cities
+                         faction_city_share = contested_cities / total_cities_all if total_cities_all > 0 else 0
+                         contested_contribution = contested * faction_city_share
+                     else:
+                         contested_contribution = 0
+                     
+                     effective_control = owned_planets + contested_contribution
+                     
+                     # Domination Victory: Control 75% of all planets
+                     domination_target = total_planets * 0.75
+                     domination_pct = (effective_control / domination_target) * 100 if domination_target > 0 else 0
+                     
+                     victory_progress[f] = min(domination_pct, 100.0)
+                          
              stats['GLOBAL_VICTORY'] = victory_progress
 
         except Exception as e: 

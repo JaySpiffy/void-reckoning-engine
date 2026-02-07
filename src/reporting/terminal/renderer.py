@@ -106,15 +106,20 @@ class DashboardRenderer:
 
     @staticmethod
     def render_victory_overlay(stats: dict, buffer: list):
-        """Displays progress towards victory conditions."""
+        """Displays progress towards domination victory (75% planet control)."""
         turn = stats.get('turn', 0)
         victory = stats.get('GLOBAL_VICTORY', {})
         
         width = 74
-        title = f" GALACTIC VICTORY PROGRESS - Turn {turn} "
+        title = f" GALACTIC DOMINATION - Turn {turn} "
         side_border = (width - len(title)) // 2
         
         buffer.append(f"\n     {YELLOW}╔{'═' * side_border}{BOLD}{title}{RESET}{YELLOW}{'═' * (width - side_border - len(title))}╗{RESET}")
+        
+        # Victory explanation
+        legend = f" {DIM}Win Condition: Control 75% of all planets (cities count for contested){RESET}"
+        buffer.append(f"     ║{legend}{' ' * (width - len(strip_ansi(legend)))}║")
+        buffer.append(f"     ║{'─' * width}║")
         
         if not victory:
             buffer.append(f"     ║ {DIM}Calculating progress...{RESET}{' ' * (width - 24)}║")
@@ -133,10 +138,10 @@ class DashboardRenderer:
                 
                 bar_len = 35
                 bar = make_bar(pct, 100, length=bar_len)
-                tag_display = f"{WHITE}{tag:<25}{RESET}"
+                tag_display = f"{WHITE}{tag:<20}{RESET}"
                 pct_display = f"{BOLD}{pct:>5.1f}%{RESET}"
                 
-                content = f" {tag_display} ║ {bar_color}{bar}{RESET} ║ {pct_display} "
+                content = f" {tag_display} ║ {bar_color}{bar}{RESET} ║ {pct_display} 🪐"
                 raw_len = len(strip_ansi(content))
                 padding = width - raw_len
                 buffer.append(f"     ║{content}{' ' * padding}║")

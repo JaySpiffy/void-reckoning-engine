@@ -328,7 +328,56 @@ class StrategicPlanner:
             
         return max(0.0, min(100.0, score))
         
+    def check_target_failures(self, faction: str):
+        """
+        Checks active plan targets for failures (e.g., failed invasions, lost planets).
+        Records failures in faction learning_history for adaptive AI.
+        """
+        plan = self.active_plans.get(faction)
+        if not plan:
+            return
+            
+        f_mgr = self.ai.engine.factions.get(faction)
+        if not f_mgr:
+            return
+            
+        # Ensure learning_history has target_failures key
+        if 'target_failures' not in f_mgr.learning_history:
+            f_mgr.learning_history['target_failures'] = []
+            
+        # Check sub-plans for failures
+        for sub_plan in plan.sub_plans:
+            target_systems = sub_plan.get('target_systems', [])
+            target_faction = sub_plan.get('target_faction')
+            goal = sub_plan.get('goal')
+            
+            for sys_name in target_systems:
+                # Find the system/planet
+                planet = next((p for p in self.ai.engine.all_planets if p.name == sys_name), None)
+                if not planet:
+                    continue
+                    
+                # If we were attacking and target is still enemy-held after many turns, it's a failure
+                if goal in ['ATTACK', 'SIEGE', 'BLITZ']:
+                    elapsed = self.ai.engine.turn_counter - plan.created_turn
+                    if elapsed > plan.duration // 2 and planet.owner != faction:
+                        # Record this as a failed target
+                        failure = {
+                            'turn': self.ai.engine.turn_counter,
+                            'target': sys_name,
+                            'goal': goal,
+                            'reason': 'target_not_captured'
+                        }
+                        # Avoid duplicate entries
+                        if failure not in f_mgr.learning_history['target_failures']:
+                            f_mgr.learning_history['target_failures'].append(failure)
+                            if self.ai.engine.logger:
+                                self.ai.engine.logger.strategy(
+                                    f"[LEARNING] {faction} failed to capture {sys_name} (Goal: {goal})"
+                                )
+
     def should_adapt_strategy(self, faction: str, plan: StrategicPlan) -> bool:
         """Determines if strategy switch needed."""
         # Check contingencies
         return False # Placeholder
+
