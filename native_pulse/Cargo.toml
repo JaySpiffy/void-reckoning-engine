@@ -1,0 +1,6 @@
+[workspace]
+members = [
+    "void_reckoning_pathfinder",
+    "void_reckoning_bridge", "void_reckoning_combat",
+]
+resolver = "2"

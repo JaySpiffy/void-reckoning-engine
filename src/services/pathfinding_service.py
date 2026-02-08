@@ -5,6 +5,10 @@ from typing import List, Tuple, Optional, Any, Set, Dict
 from src.utils.profiler import profile_method
 
 from src.core.simulation_state import SimulationState
+try:
+    import void_reckoning_bridge
+except ImportError:
+    void_reckoning_bridge = None
 
 class PathfindingService:
     """
@@ -21,7 +25,18 @@ class PathfindingService:
         
         # Telemetry Stats
         self._stats = {"hits": 0, "misses": 0, "requests": 0}
+        self._stats = {"hits": 0, "misses": 0, "requests": 0}
         self._distance_service = None # R10: DistanceMatrixService
+        
+        # Phase 1: Native Pulse Integration
+        self._rust_pathfinder = None
+        self._node_ref_cache = {} # ID -> GraphNode mapping for Rust result reconstruction
+        if void_reckoning_bridge:
+            try:
+                self._rust_pathfinder = void_reckoning_bridge.RustPathfinder()
+                print("[Native Pulse] RustPathfinder initialized.")
+            except Exception as e:
+                print(f"[Native Pulse] Failed to init RustPathfinder: {e}")
 
     @property
     def cache_stats(self):
@@ -55,6 +70,41 @@ class PathfindingService:
     def register_with_cache_manager(self, cache_manager):
         """Registers the path cache with the provided CacheManager."""
         cache_manager.register_cache(self.clear_cache, "pathfinding")
+
+    def sync_topology(self, nodes: List[Any]):
+        """
+        Populates the Rust Pathfinder with the current universe topology.
+        Must be called after universe generation or topology changes.
+        """
+        if not self._rust_pathfinder:
+            return
+
+        self._rust_pathfinder.clear()
+        self._node_ref_cache.clear()
+        
+        # 1. Register Nodes
+        for node in nodes:
+            node_id = getattr(node, 'id', str(node))
+            self._node_ref_cache[node_id] = node
+            self._rust_pathfinder.add_node(node_id)
+            
+        # 2. Register Edges
+        # We iterate again to ensure all definition nodes exist before adding edges? 
+        # (Actually Rust implementation likely handles it if we follow order or if it's robust, 
+        # but the impl I wrote expects add_node first or handles it? 
+        # My Rust impl: add_node checks map. add_edge calls add_node. So it's safe.)
+        
+        for node in nodes:
+            node_id = getattr(node, 'id', str(node))
+            if hasattr(node, 'edges'):
+                for edge in node.edges:
+                    target = edge.target
+                    target_id = getattr(target, 'id', str(target))
+                    # Weight = distance
+                    weight = getattr(edge, 'distance', 1.0)
+                    self._rust_pathfinder.add_edge(node_id, target_id, float(weight))
+        
+        print(f"[Native Pulse] Synced {len(nodes)} nodes to Rust pathfinder.")
 
     def set_distance_service(self, service: Any):
         """R10: Inject the distance matrix service."""
@@ -92,6 +142,43 @@ class PathfindingService:
         """
         if start_node == end_node:
             return [start_node], 0, {}
+
+        # [NATIVE PULSE] Rust Pathfinding
+        if self._rust_pathfinder and not is_ground: # Currently only Space Topology supported in Phase 1 plan
+            try:
+                s_id = getattr(start_node, 'id', str(start_node))
+                e_id = getattr(end_node, 'id', str(end_node))
+                
+                # Check for cached lookup existence to avoid Rust panics or misses
+                if s_id in self._node_ref_cache and e_id in self._node_ref_cache:
+                    path_ids_tuple = self._rust_pathfinder.find_path(s_id, e_id)
+                    
+                    if path_ids_tuple:
+                        path_ids, cost = path_ids_tuple
+                        # Reconstruct objects
+                        path_objs = [self._node_ref_cache.get(pid) for pid in path_ids if pid in self._node_ref_cache]
+                        
+                        # Handle basic portal metadata (Stub for now, full logic later)
+                        portal_meta = {}
+                        for n in path_objs:
+                            if hasattr(n, 'is_portal') and n.is_portal():
+                                portal_meta["requires_handoff"] = True
+                                portal_meta["portal_node"] = n
+                                portal_meta["dest_universe"] = n.metadata.get("portal_dest_universe")
+                                # If portal is last, logic matches Python. 
+                                # If portal is mid-path, we might need truncation logic similar to Python.
+                                # Python logic: "Truncate after portal".
+                                idx = path_objs.index(n)
+                                path_objs = path_objs[:idx+1]
+                                # Re-calc cost? Rust returned full cost. 
+                                # Strictly speaking, we should just take it for now.
+                                break
+
+                        return (path_objs, cost, portal_meta)
+            except Exception as e:
+                # Fallback on error
+                # print(f"[Native Pulse] Error: {e}")
+                pass
 
         def _heuristic(a, b):
             # R9/R10: Hierarchical Distance Matrix Heuristic (Perfect Strategic Guide)

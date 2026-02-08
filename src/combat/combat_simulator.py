@@ -45,11 +45,46 @@ from src.combat.tactical_engine import (
     execute_battle_round,
     process_battle_salvage
 )
+from src.combat.rust_tactical_engine import RustTacticalEngine
 
 from src.core.config import get_universe_config, REPORTS_DIR
 from typing import Optional, Dict, List, Any, Set
 
 from src.combat.cross_universe_handler import CrossUniverseCombatHandler
+
+def resolve_fleet_engagement_rust(armies_dict: Dict[str, List[Any]], silent=False) -> (str, int, int, Any):
+    """
+    Resolves combat using the Rust Tactical Engine.
+    """
+    engine = RustTacticalEngine()
+    if not engine.rust_engine:
+        print("Rust Engine unavailable, falling back to Python...")
+        return resolve_fleet_engagement(armies_dict, silent=silent, use_rust=False)
+        
+    engine.initialize_battle(armies_dict)
+    
+    rounds = 0
+    max_rounds = 100
+    
+    while rounds < max_rounds:
+        cont = engine.resolve_round()
+        rounds += 1
+        if not cont: break
+        
+    # Final Sync
+    engine.sync_back_to_python(armies_dict)
+    
+    # Check Winner
+    alive_counts = {f: sum(1 for u in units if not getattr(u, 'is_destroyed', False)) for f, units in armies_dict.items()}
+    survivors = sum(alive_counts.values())
+    alive_factions = [f for f, count in alive_counts.items() if count > 0]
+    
+    winner = alive_factions[0] if len(alive_factions) == 1 else "Draw"
+    
+    if not silent:
+        print(f"[Rust] Battle Result: {winner} Wins in {rounds} rounds. Survivors: {survivors}")
+        
+    return winner, survivors, rounds, {}
 
 def detect_universe_mix(armies_dict: Dict[str, List[Unit]]) -> Dict[str, Any]:
     """Delegates to CrossUniverseCombatHandler."""
@@ -64,8 +99,11 @@ def load_universe_combat_rules(universe_name: str = "void_reckoning"):
     return CrossUniverseCombatHandler.load_universe_combat_rules(universe_name)
 
 def resolve_fleet_engagement_with_universe(armies_dict, universe_name=None, 
-                                          cross_universe=False, profile_memory=False, **kwargs):
+                                          cross_universe=False, profile_memory=False, use_rust=False, **kwargs):
     """Delegates to CrossUniverseCombatHandler."""
+    if use_rust:
+        return resolve_fleet_engagement_rust(armies_dict, silent=kwargs.get('silent', False))
+        
     return CrossUniverseCombatHandler.resolve_fleet_engagement_with_universe(
         armies_dict, universe_name, cross_universe, profile_memory, **kwargs
     )

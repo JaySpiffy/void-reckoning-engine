@@ -15,7 +15,8 @@
     "combat": {
         "real_time_headless": true,
         "max_duration_seconds": 60,
-        "time_step": 0.05
+        "time_step": 0.05,
+        "use_rust_combat": true
     },
     "economy": {
         "base_income_req": 2000000,

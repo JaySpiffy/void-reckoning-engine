@@ -1,0 +1,13 @@
+[package]
+name = "void_reckoning_bridge"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "void_reckoning_bridge"
+crate-type = ["cdylib"]
+
+[dependencies]
+pyo3 = { version = "0.23", features = ["extension-module"] }
+void_reckoning_pathfinder = { path = "../void_reckoning_pathfinder" }
+void_reckoning_combat = { path = "../void_reckoning_combat" }

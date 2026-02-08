@@ -1,0 +1,11 @@
+C:\Users\whitt\OneDrive\Desktop\New folder (4)\native_pulse\target\release\deps\getrandom-60215845d03e5c4f.d: C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\getrandom-0.2.17\src\lib.rs C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\getrandom-0.2.17\src\error.rs C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\getrandom-0.2.17\src\util.rs C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\getrandom-0.2.17\src\error_impls.rs C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\getrandom-0.2.17\src\windows.rs
+
+C:\Users\whitt\OneDrive\Desktop\New folder (4)\native_pulse\target\release\deps\libgetrandom-60215845d03e5c4f.rlib: C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\getrandom-0.2.17\src\lib.rs C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\getrandom-0.2.17\src\error.rs C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\getrandom-0.2.17\src\util.rs C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\getrandom-0.2.17\src\error_impls.rs C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\getrandom-0.2.17\src\windows.rs
+
+C:\Users\whitt\OneDrive\Desktop\New folder (4)\native_pulse\target\release\deps\libgetrandom-60215845d03e5c4f.rmeta: C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\getrandom-0.2.17\src\lib.rs C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\getrandom-0.2.17\src\error.rs C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\getrandom-0.2.17\src\util.rs C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\getrandom-0.2.17\src\error_impls.rs C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\getrandom-0.2.17\src\windows.rs
+
+C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\getrandom-0.2.17\src\lib.rs:
+C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\getrandom-0.2.17\src\error.rs:
+C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\getrandom-0.2.17\src\util.rs:
+C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\getrandom-0.2.17\src\error_impls.rs:
+C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\getrandom-0.2.17\src\windows.rs:

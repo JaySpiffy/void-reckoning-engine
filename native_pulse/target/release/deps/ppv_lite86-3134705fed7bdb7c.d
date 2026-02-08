@@ -1,0 +1,11 @@
+C:\Users\whitt\OneDrive\Desktop\New folder (4)\native_pulse\target\release\deps\ppv_lite86-3134705fed7bdb7c.d: C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ppv-lite86-0.2.21\src\lib.rs C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ppv-lite86-0.2.21\src\soft.rs C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ppv-lite86-0.2.21\src\types.rs C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ppv-lite86-0.2.21\src\x86_64\mod.rs C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ppv-lite86-0.2.21\src\x86_64\sse2.rs
+
+C:\Users\whitt\OneDrive\Desktop\New folder (4)\native_pulse\target\release\deps\libppv_lite86-3134705fed7bdb7c.rlib: C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ppv-lite86-0.2.21\src\lib.rs C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ppv-lite86-0.2.21\src\soft.rs C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ppv-lite86-0.2.21\src\types.rs C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ppv-lite86-0.2.21\src\x86_64\mod.rs C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ppv-lite86-0.2.21\src\x86_64\sse2.rs
+
+C:\Users\whitt\OneDrive\Desktop\New folder (4)\native_pulse\target\release\deps\libppv_lite86-3134705fed7bdb7c.rmeta: C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ppv-lite86-0.2.21\src\lib.rs C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ppv-lite86-0.2.21\src\soft.rs C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ppv-lite86-0.2.21\src\types.rs C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ppv-lite86-0.2.21\src\x86_64\mod.rs C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ppv-lite86-0.2.21\src\x86_64\sse2.rs
+
+C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ppv-lite86-0.2.21\src\lib.rs:
+C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ppv-lite86-0.2.21\src\soft.rs:
+C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ppv-lite86-0.2.21\src\types.rs:
+C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ppv-lite86-0.2.21\src\x86_64\mod.rs:
+C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ppv-lite86-0.2.21\src\x86_64\sse2.rs:

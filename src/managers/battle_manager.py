@@ -12,6 +12,7 @@ from src.managers.combat.retreat_handler import RetreatHandler
 from src.managers.combat.invasion_manager import InvasionManager
 from src.managers.combat.active_battle import ActiveBattle
 from src.combat.tactical_engine import resolve_real_time_combat, resolve_fleet_engagement, initialize_battle_state, execute_battle_round
+from src.combat.combat_simulator import resolve_fleet_engagement_rust
 
 if TYPE_CHECKING:
     from src.managers.campaign_manager import CampaignEngine
@@ -453,6 +454,27 @@ class BattleManager:
             # For Phase 18, we default to Real-Time for Space and Ground engagements 
             # that have high unit counts or if specified.
             
+            # [Rust Integration]
+            use_rust_combat = self.context.game_config.get("combat", {}).get("use_rust_combat", True)
+            
+            if use_rust_combat:
+                 try:
+                     winner, survivors, rounds, stats = resolve_fleet_engagement_rust(battle.state.armies_dict, silent=True)
+                     battle.state.round_num = rounds
+                     battle.state.battle_stats = stats
+                     battle.is_finished = True
+                     
+                     if self.context.logger:
+                         self.context.logger.combat(f"[RUST] Resolved battle at {getattr(b_id, 'name', 'node')}: {winner} Wins ({rounds} rounds)")
+                     
+                     self._finalize_battle(battle, b_id, winner, survivors, is_real_time=False)
+                     completed.append(b_id)
+                     continue
+
+                 except Exception as e:
+                     print(f"[RUST_ERROR] Failed to resolve battle: {e}")
+                     # Fallback to Python
+
             if use_real_time:
                 # [Domain Detection]
                 cdomain = "Ground"
@@ -906,19 +928,20 @@ class BattleManager:
                 if f_obj and hasattr(f_obj, 'earn_intel') and intel_earned > 0:
                     f_obj.earn_intel(intel_earned, source="combat")
 
-        self.context.telemetry.log_event(
-            EventCategory.COMBAT, "battle_end",
-            {
-                "location": planet.name if hasattr(planet, 'name') else str(planet), 
-                "winner": winner, 
-                "rounds": battle.state.round_num, 
-                "duration_seconds": round(time.time() - getattr(battle, 'start_time', time.time()), 2),
-                "battle_id": getattr(battle, 'battle_id', ''),
-                "casualties": {f: battle.pre_battle_counts.get(f, 0) - len([u for u in units if u.is_alive()]) 
-                               for f, units in battle.state.armies_dict.items()}
-            },
-            turn=self.context.turn_counter
-        )
+        if self.context.telemetry:
+            self.context.telemetry.log_event(
+                EventCategory.COMBAT, "battle_end",
+                {
+                    "location": planet.name if hasattr(planet, 'name') else str(planet), 
+                    "winner": winner, 
+                    "rounds": battle.state.round_num, 
+                    "duration_seconds": round(time.time() - getattr(battle, 'start_time', time.time()), 2),
+                    "battle_id": getattr(battle, 'battle_id', ''),
+                    "casualties": {f: battle.pre_battle_counts.get(f, 0) - len([u for u in units if u.is_alive()]) 
+                                   for f, units in battle.state.armies_dict.items()}
+                },
+                turn=self.context.turn_counter
+            )
         
         battle.state.tracker.finalize(winner, battle.state.round_num, battle.state.armies_dict, 
                                      pre_battle_counts=battle.pre_battle_counts,

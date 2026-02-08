@@ -108,6 +108,12 @@ def run_campaign_simulation(turns=50, planets=40, game_config=None, universe_nam
     # engine.generate_galaxy(num_systems, min_p, max_p)
     # Mapping "planets" arg to num_systems for now
     engine.generate_galaxy(num_systems=config.num_systems, min_planets=config.min_planets_per_system, max_planets=config.max_planets_per_system)
+    
+    # [NATIVE PULSE] Sync Topology to Rust
+    if hasattr(engine, 'pathfinder') and hasattr(engine.pathfinder, 'sync_topology'):
+        print("[NATIVE PULSE] Syncing galaxy topology to Rust Pathfinder...")
+        engine.pathfinder.sync_topology(engine.systems)
+        
     engine.spawn_start_fleets(num_fleets_per_faction=config.starting_fleets)
     
     # Validation
