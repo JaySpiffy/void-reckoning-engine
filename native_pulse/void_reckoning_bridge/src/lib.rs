@@ -109,10 +109,89 @@ impl RustCombatEngine {
     }
 }
 
+use void_reckoning_auditor::engine::ValidationEngine;
+use void_reckoning_auditor::registry::Registries;
+use void_reckoning_auditor::types::{EntityType, ValidationSeverity};
+use serde_json::Value;
+use std::sync::Arc;
+use std::str::FromStr;
+
+#[pyclass]
+struct RustAuditor {
+    registries: Option<Registries>,
+    engine: Option<ValidationEngine>,
+}
+
+#[pymethods]
+impl RustAuditor {
+    #[new]
+    fn new() -> Self {
+        RustAuditor {
+            registries: Some(Registries::new()),
+            engine: None,
+        }
+    }
+
+    fn load_registry(&mut self, registry_type: String, data_json: String) -> PyResult<()> {
+        if let Some(regs) = &mut self.registries {
+            let parsed_data: serde_json::Map<String, Value> = serde_json::from_str(&data_json)
+                .map_err(|e| PyErr::new::<pyo3::exceptions::PyValueError, _>(format!("Invalid JSON: {}", e)))?;
+            
+            match registry_type.as_str() {
+                "buildings" => regs.buildings.extend(parsed_data),
+                "technology" => regs.technology.extend(parsed_data),
+                "factions" => regs.factions.extend(parsed_data),
+                "weapons" => regs.weapons.extend(parsed_data),
+                "abilities" => regs.abilities.extend(parsed_data),
+                 _ => return Err(PyErr::new::<pyo3::exceptions::PyValueError, _>("Unknown registry type")),
+            }
+            Ok(())
+        } else {
+            Err(PyErr::new::<pyo3::exceptions::PyRuntimeError, _>("Registries already initialized"))
+        }
+    }
+
+    fn initialize(&mut self) -> PyResult<()> {
+        if let Some(regs) = self.registries.take() {
+            let engine = ValidationEngine::new(Arc::new(regs));
+            self.engine = Some(engine);
+            Ok(())
+        } else {
+            Err(PyErr::new::<pyo3::exceptions::PyRuntimeError, _>("Already initialized or registries missing"))
+        }
+    }
+
+    fn validate_entity(&self, id: String, entity_type_str: String, data_json: String, universe_id: String, turn: u64) -> PyResult<String> {
+        if let Some(engine) = &self.engine {
+            let entity_type = match entity_type_str.as_str() {
+                "unit" => EntityType::Unit,
+                "building" => EntityType::Building,
+                "technology" => EntityType::Technology,
+                "faction" => EntityType::Faction,
+                "portal" => EntityType::Portal,
+                "campaign" => EntityType::Campaign,
+                _ => return Err(PyErr::new::<pyo3::exceptions::PyValueError, _>("Unknown entity type")),
+            };
+            
+            let data: Value = serde_json::from_str(&data_json)
+                .map_err(|e| PyErr::new::<pyo3::exceptions::PyValueError, _>(format!("Invalid JSON data: {}", e)))?;
+
+            let results = engine.validate_entity(id, entity_type, data, universe_id, turn);
+            
+            // Serialize results back to JSON string for Python
+            serde_json::to_string(&results)
+                .map_err(|e| PyErr::new::<pyo3::exceptions::PyRuntimeError, _>(format!("Serialization error: {}", e)))
+        } else {
+            Err(PyErr::new::<pyo3::exceptions::PyRuntimeError, _>("Engine not initialized"))
+        }
+    }
+}
+
 /// A Python module implemented in Rust.
 #[pymodule]
 fn void_reckoning_bridge(_py: Python, m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_class::<RustPathfinder>()?;
     m.add_class::<RustCombatEngine>()?;
+    m.add_class::<RustAuditor>()?;
     Ok(())
 }

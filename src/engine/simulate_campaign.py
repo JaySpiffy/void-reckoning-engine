@@ -116,6 +116,29 @@ def run_campaign_simulation(turns=50, planets=40, game_config=None, universe_nam
         
     engine.spawn_start_fleets(num_fleets_per_faction=config.starting_fleets)
     
+    # [NATIVE PULSE] Initialize Rust Auditor
+    try:
+        from src.utils.rust_auditor import RustAuditorWrapper
+        print("[NATIVE PULSE] Initializing Global Auditor...")
+        auditor = RustAuditorWrapper()
+        
+        # Load Registries from GameConfig
+        # Assuming config.raw_config contains these keys or accessed via properties
+        # We use raw_config to get the dict structure
+        if auditor.load_registry("technology", config.raw_config.get("technology", {})):
+            print("  - Technology registry loaded")
+        if auditor.load_registry("buildings", config.raw_config.get("buildings", {})):
+            print("  - Buildings registry loaded")
+            
+        if auditor.initialize():
+            print("[NATIVE PULSE] Global Auditor Active")
+            engine.auditor = auditor # Attach to engine for potential use
+        else:
+             print("[NATIVE PULSE] Global Auditor Failed to Initialize")
+             
+    except Exception as e:
+        print(f"[NATIVE PULSE] Auditor Integration Failed: {e}")
+
     # Validation
     engine.validate_asset_cache()
     
