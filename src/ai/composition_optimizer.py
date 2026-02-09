@@ -12,6 +12,17 @@ class CompositionOptimizer:
     def __init__(self, ai_manager):
         self.ai = ai_manager
         self.engine = ai_manager.engine
+
+    def __getstate__(self):
+        state = self.__dict__.copy()
+        if 'engine' in state: del state['engine']
+        if 'ai' in state: del state['ai']
+        return state
+
+    def __setstate__(self, state):
+        self.__dict__.update(state)
+        self.engine = None
+        self.ai = None
         
     def analyze_enemy_composition(self, enemy_faction: str) -> Dict[str, float]:
         """

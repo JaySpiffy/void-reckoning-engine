@@ -25,6 +25,18 @@ class FactionManager:
         self.logger = logger
         self._repo = None
 
+    def __getstate__(self):
+        """Exclude logger from pickling."""
+        state = self.__dict__.copy()
+        if 'logger' in state: del state['logger']
+        return state
+
+    def __setstate__(self, state):
+        """Restore state."""
+        self.__dict__.update(state)
+        self.logger = None 
+
+
     @property
     def repository(self):
         if self._repo is None:

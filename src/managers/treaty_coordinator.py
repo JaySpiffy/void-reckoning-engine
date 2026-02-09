@@ -25,7 +25,19 @@ class TreatyCoordinator:
         # Phase 14: Alliance Effectiveness
         self.alliance_metrics: Dict[str, Dict[str, Any]] = {} # "f1_f2": {shared_intel: int, shared_tech: int, joint_victories: int}
         
+        self.alliance_metrics: Dict[str, Dict[str, Any]] = {} # "f1_f2": {shared_intel: int, shared_tech: int, joint_victories: int}
+        
         self.initialize_treaties()
+
+    def __getstate__(self):
+        state = self.__dict__.copy()
+        if 'engine' in state: del state['engine']
+        return state
+
+    def __setstate__(self, state):
+        self.__dict__.update(state)
+        self.engine = None # Restored by reinit_services
+
 
     def initialize_treaties(self):
         """Sets initial treaty states based on relations."""

@@ -93,7 +93,9 @@ class IndexerSchema:
                 entity_type TEXT,
                 entity_name TEXT,
                 data_json TEXT,
-                keywords TEXT
+                keywords TEXT,
+                trace_id TEXT,
+                parent_trace_id TEXT
             )
         """)
 
@@ -137,6 +139,8 @@ class IndexerSchema:
         cursor.execute("CREATE INDEX IF NOT EXISTS idx_factions_run ON factions(universe, run_id, turn)")
         cursor.execute("CREATE INDEX IF NOT EXISTS idx_res_run ON resource_transactions(universe, run_id, faction)")
         cursor.execute("CREATE INDEX IF NOT EXISTS idx_perf_run ON battle_performance(universe, run_id, faction)")
+        cursor.execute("CREATE INDEX IF NOT EXISTS idx_events_trace ON events(trace_id)")
+        cursor.execute("CREATE INDEX IF NOT EXISTS idx_events_parent_trace ON events(parent_trace_id)")
 
         # Full-Text Search for Event Keywords
         cursor.execute("CREATE VIRTUAL TABLE IF NOT EXISTS events_fts USING fts5(keywords, content=events, content_rowid=id)")
@@ -178,5 +182,11 @@ class IndexerSchema:
         add_column("factions", "economy_building_count", "INTEGER DEFAULT 0")
         add_column("factions", "research_building_count", "INTEGER DEFAULT 0")
         add_column("factions", "research_delta_requisition", "INTEGER DEFAULT 0")
+        
+        # 3. Events Migration (Traceability)
+        add_column("events", "trace_id", "TEXT")
+        add_column("events", "parent_trace_id", "TEXT")
+        cursor.execute("CREATE INDEX IF NOT EXISTS idx_events_trace ON events(trace_id)")
+        cursor.execute("CREATE INDEX IF NOT EXISTS idx_events_parent_trace ON events(parent_trace_id)")
         
         conn.commit()

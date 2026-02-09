@@ -75,6 +75,7 @@ class EventCategory(Enum):
     PORTAL = "portal"
     HERO = "hero"
     OPTIMIZATION = "optimization"
+    ENVIRONMENT = "environment"
 
 class VerbosityLevel(Enum):
     SUMMARY = 0

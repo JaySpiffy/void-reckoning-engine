@@ -19,6 +19,20 @@ class FleetManager:
         self._repo = None
         self._index = None # Lazy loaded FleetIndex
 
+    def __getstate__(self):
+        """Exclude engine and lazy index from pickling."""
+        state = self.__dict__.copy()
+        if 'engine' in state: del state['engine']
+        if '_index' in state: del state['_index'] # Rebuild on demand
+        return state
+
+    def __setstate__(self, state):
+        """Restore state and reset lazy components."""
+        self.__dict__.update(state)
+        self.engine = None # Re-injected by SnapshotManager
+        self._index = None # Will be rebuilt on access
+
+
     @property
     def index(self):
         if self._index is None:

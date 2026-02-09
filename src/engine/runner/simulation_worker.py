@@ -113,6 +113,10 @@ class SimulationWorker:
             in_q = getattr(mur, '_incoming_fleet_q', None)
             out_q = getattr(mur, '_outgoing_fleet_q', None)
             
+            # Setup God Mode Manager
+            from src.managers.god_mode.god_mode_manager import GodModeManager
+            god_manager = GodModeManager(engine)
+            
             if progress_queue:
                  engine.set_fleet_queues(in_q, out_q, progress_queue)
             else:
@@ -124,7 +128,61 @@ class SimulationWorker:
             turns_taken = turns_per_run
             stats = {}
             
-            for t in range(turns_per_run):
+            # Main Simulation Loop
+            is_paused = False
+            
+            t = 0
+            while t < turns_per_run:
+                # 1. Process Commands (God Mode / Pause)
+                if in_q:
+                    while not in_q.empty() or is_paused:
+                        try:
+                            # If paused, blocking get, otherwise non-blocking
+                            cmd = in_q.get(block=is_paused, timeout=0.5 if is_paused else 0.001)
+                            
+                            if isinstance(cmd, dict):
+                                action = cmd.get("action")
+                                
+                                if action == "PAUSE":
+                                    is_paused = True
+                                    if progress_queue: progress_queue.put((run_id, t, "PAUSED", stats))
+                                    print("Simulation Paused by User.")
+                                    
+                                elif action == "RESUME":
+                                    is_paused = False
+                                    print("Simulation Resumed.")
+                                    
+                                elif action == "STEP":
+                                    print("Stepping 1 Turn.")
+                                    break # Break wait loop, execute turn, will pause again next loop if is_paused not cleared? 
+                                    # Logic: If STEP, we break command loop, process turn, then at top of loop...
+                                    # Wait, if we are paused, we loop here forever. 
+                                    # STEP should NOT clear is_paused, but should allow 1 iteration of outer loop.
+                                    # Actually, cleaner: STEP just breaks this while loop for 1 iteration.
+                                    # But we need to ensure we come back to pause.
+                                    # Let's say: STEP executes turn, then 'is_paused' remains True.
+                                    break 
+
+                                elif action == "GOD_EXECUTE":
+                                    # Execute God Command
+                                    res = god_manager.execute_command(cmd)
+                                    print(f"God Mode: {res.get('message')}")
+                                    # If we spawned something, we might want to refresh stats immediately if possible?
+                                    # For now, just continue.
+                                
+                                elif action == "START_SIMULATION":
+                                    pass # Already handled or dup
+                                    
+                                elif action == "NEXT_TURN":
+                                    pass # Sync logic
+                        
+                        except queue.Empty:
+                            if not is_paused: break
+                            # If paused and empty, just continue waiting
+                            
+                # Checks before turn
+                if t >= turns_per_run: break
+
                 current_turn = t
                 engine.process_turn(fast_resolve=False)
                 sys.stdout.flush()
@@ -163,7 +221,8 @@ class SimulationWorker:
                      turn_duration = time.time() - turn_start_time if 'turn_start_time' in locals() else 0
                      stats = SimulationWorker._collect_stats(engine, turn_duration=turn_duration)
                      if progress_queue:
-                         progress_queue.put((run_id, t, "Running", stats))
+                         status_msg = "PAUSED" if is_paused else "Running"
+                         progress_queue.put((run_id, t, status_msg, stats))
 
                      # SYNC BARRIER
                      if game_config.get("multi_universe_settings", {}).get("sync_turns"):
@@ -201,6 +260,9 @@ class SimulationWorker:
                     winner = list(owners)[0]
                     turns_taken = t + 1
                     break
+                
+                # Increment Turn
+                t += 1
             
             # Finalize report folder
             if hasattr(engine, 'report_organizer') and engine.report_organizer:
@@ -257,7 +319,7 @@ class SimulationWorker:
     def _collect_stats(engine, turn_duration=0):
         stats = {}
         try:
-             stats['turn'] = getattr(engine, 'turn', 0)
+             stats['turn'] = getattr(engine, 'turn_counter', 0)
              # Phase 2: Enhanced Metrics
              global_casualties_ship = 0
              global_casualties_ground = 0
@@ -553,13 +615,19 @@ class SimulationWorker:
                  stats['GLOBAL_ALERT_COUNTS'] = {"CRITICAL": 0, "WARNING": 0, "INFO": 0}
 
              # Victory Progress
-             total_systems = len(engine.systems) if hasattr(engine, 'systems') else 1
+             # Victory Progress
+             from src.core.constants import VICTORY_PLANET_THRESHOLD
+             total_planets = stats.get('GLOBAL_PLANETS', 1)
              victory_progress = {}
              for f, s in stats.items():
                  if isinstance(s, dict) and not f.startswith("GLOBAL_"):
-                     controlled_systems = s.get('S', 0)
-                     # Condition: 75% control
-                     progress = (controlled_systems / (total_systems * 0.75)) * 100
+                     controlled_planets = s.get('OWN', 0)
+                     # Condition: Threshold control (e.g. 75%)
+                     threshold_count = total_planets * VICTORY_PLANET_THRESHOLD
+                     if threshold_count > 0:
+                         progress = (controlled_planets / threshold_count) * 100
+                     else:
+                         progress = 0
                      victory_progress[f] = min(progress, 100.0)
              stats['GLOBAL_VICTORY'] = victory_progress
 

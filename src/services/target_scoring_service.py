@@ -23,23 +23,31 @@ class TargetScoringService:
         self.ai_manager = ai_manager
         self.engine = ai_manager.engine
         
+    def __getstate__(self):
+        state = self.__dict__.copy()
+        if 'engine' in state: del state['engine']
+        if 'ai_manager' in state: del state['ai_manager']
+        return state
+
+    def __setstate__(self, state):
+        self.__dict__.update(state)
+        self.engine = None
+        self.ai_manager = None
+        
     @profile_method
     def calculate_expansion_target_score(self, planet_name: str, faction: str, 
                                         home_x: float, home_y: float, 
                                         personality_name: str, econ_state: str, turn: int,
                                         weights: Dict[str, float] = None,
-                                        mandates: Dict[str, Any] = None) -> float:
+                                        mandates: Dict[str, Any] = None,
+                                        include_rationale: bool = False) -> Any:
         """Cached expansion target scoring with dynamic weights."""
-        # Note: Added 'weights' dict for dynamic scoring. 
-        # Caching strategy: We can't easily cache with a dict argument in lru_cache. 
-        # For now, we will assume weights are passed from the caller who handles the context.
-        # If performance is an issue, we can cache based on a hashed ID of the weights.
         
         planet = self.engine.get_planet(planet_name)
-        if not planet: return 0.0
+        if not planet: return 0.0 if not include_rationale else (0.0, {"error": "Planet not found"})
         
         f_mgr = self.engine.get_faction(faction)
-        if not f_mgr: return 0.0
+        if not f_mgr: return 0.0 if not include_rationale else (0.0, {"error": "Faction not found"})
         
         # Pull weights from Posture System V3 if none provided
         if weights is None:
@@ -53,74 +61,90 @@ class TargetScoringService:
         # [MANDATES] Apply Opponent-Specific Adjustments
         # Copy weights to avoid mutating the shared context weights
         local_weights = weights.copy()
+        applied_mandates = {}
         if mandates and planet.owner in mandates:
              adjustments = mandates[planet.owner]
              for k, v in adjustments.items():
-                 # Map mandate keys to weight keys if they differ
-                 # e.g. 'threat_weight' -> 'threat'
                  w_key = k.replace('_weight', '')
                  if w_key in local_weights:
                      local_weights[w_key] *= v
+                     applied_mandates[w_key] = v
         
         weights = local_weights # Use modified weights for calculation
 
         # --- DYNAMIC SCORING SYSTEM ---
+        rationale = {"applied_weights": weights}
+        if applied_mandates:
+            rationale["mandate_adjustments"] = applied_mandates
         
         # 1. Economic Value
         base_value = (planet.income_req * weights['income']) + getattr(planet, 'income_prom', 0)
+        rationale["base_economic_value"] = base_value
         
         # [INTELLIGENCE] Adjust based on memory
         intel = f_mgr.intelligence_memory.get(planet.name)
+        intel_boost = 1.0
         if intel:
             last_seen = intel.get('last_seen_turn', 0)
             turns_ago = turn - last_seen
             
             # Prioritize Stale Intel (Curiosity)
             if turns_ago > 5:
-                base_value *= 1.2
+                intel_boost *= 1.2
+                rationale["stale_intel_boost"] = 1.2
                 
             # Weakness Exploitation
             if intel.get('income', 0) > 300:
-                 base_value *= weights['weakness']
+                 intel_boost *= weights['weakness']
+                 rationale["weakness_multiplier"] = weights['weakness']
+        
+        base_value *= intel_boost
 
         # [FEATURE] No-Retreat Exploitation (The "Blood in the Water" Check)
-        # Check if any enemy fleets at this location have already retreated this turn.
-        # If so, they are sitting ducks (cannot retreat again).
+        blood_boost = 1.0
         if hasattr(self.ai_manager, 'turn_cache') and "fleets_by_loc" in self.ai_manager.turn_cache:
             loc_id = id(planet)
             fleets_here = self.ai_manager.turn_cache["fleets_by_loc"].get(loc_id, [])
             for f in fleets_here:
                 if f.faction != faction and f.faction != "Neutral":
-                    # Check hostility (simplified, could check diplo)
                     if getattr(f, 'has_retreated_this_turn', False):
-                        # FOUND ONE!
-                        # Massive boost to encourage finishing them off.
-                        base_value *= 5.0 
+                        blood_boost = 5.0 
+                        rationale["blood_in_the_water"] = 5.0
                         if logging_config.LOGGING_FEATURES.get('strategy_debug', False) and hasattr(self.engine, 'logger'):
                              self.engine.logger.debug(f"[STRATEGY] {faction} smells blood at {planet_name}! Vulnerable fleet detected (Retreated). Priority BOOSTED.")
                         break
+        base_value *= blood_boost
 
         # [QUIRK] Resource Valorization / Biomass Hunger
+        biomass_mult = 1.0
         if hasattr(f_mgr, 'learned_personality') and getattr(f_mgr.learned_personality, 'biomass_hunger', 0) > 0:
              bh = f_mgr.learned_personality.biomass_hunger
-             base_value *= (1.0 + bh)
+             biomass_mult *= (1.0 + bh)
              
              # Prioritize Bio-Rich Worlds
              p_class = getattr(planet, 'planet_class', '').lower()
              if any(x in p_class for x in ['agri', 'gaia', 'tropical', 'ocean', 'jungle']):
-                 base_value *= (1.0 + bh)
+                 biomass_mult *= (1.0 + bh)
+             rationale["biomass_hunger_multiplier"] = biomass_mult
+        
+        base_value *= biomass_mult
         
         # Neutral Target Bonus (Colonization Priority)
+        neutral_bonus = 1.0
         if planet.owner == "Neutral":
-            base_value *= (1.5 + (0.5 * weights['expansion_bias']))
+            neutral_bonus *= (1.5 + (0.5 * weights['expansion_bias']))
             if econ_state in ["STRESSED", "CRISIS"]:
-                base_value *= 1.5
+                neutral_bonus *= 1.5
+            rationale["neutral_colonization_bonus"] = neutral_bonus
+
+        base_value *= neutral_bonus
 
         # 2. Capital Bonus
         is_capital = "Capital" in [n.type for n in planet.provinces]
         capital_mult = weights['capital'] if is_capital else 1.0
         if is_capital and planet.owner != faction and planet.owner != "Neutral":
-             capital_mult *= 2.0 # Extra incentive to take enemy capitals
+             capital_mult *= 2.0
+        rationale["capital_multiplier"] = capital_mult
         
         # 3. Strategic Importance
         connections = len(planet.system.connections) if hasattr(planet, 'system') and hasattr(planet.system, 'connections') else 3
@@ -129,17 +153,16 @@ class TargetScoringService:
             choke_mult = weights['strategic'] * 1.5
         
         strategic_value = choke_mult
+        rationale["strategic_multiplier"] = strategic_value
         
         # 4. Distance Penalty
         px = planet.system.x if hasattr(planet, 'system') else 0
         py = planet.system.y if hasattr(planet, 'system') else 0
         dist = ((home_x - px)**2 + (home_y - py)**2)**0.5
         dist = max(10, dist)
-        
-        # Weighted Distance Penalty: higher weight['distance'] means penalty drops off faster/steeper
-        # Standard: 100/dist. 
-        # Heavy Penalty: 100 / (dist * weight)
         dist_factor = 100.0 / (dist * weights['distance'])
+        rationale["distance_factor"] = dist_factor
+        rationale["distance_absolute"] = dist
         
         # 5. Threat Factor
         enemy_power = 0
@@ -151,10 +174,11 @@ class TargetScoringService:
         threat_mult = 1.0
         if enemy_power > 0:
             threat_ratio = enemy_power / 5000.0 
-            # High weights['threat'] means we AVOID threat (multiplier < 1.0)
-            # Low weights['threat'] means we IGNORE threat (multiplier stays near 1.0)
             avoidance = weights['threat']
             threat_mult = 1.0 / (1.0 + (threat_ratio * avoidance))
+        
+        rationale["threat_multiplier"] = threat_mult
+        rationale["estimated_enemy_power"] = enemy_power
         
         # FINAL SCORE
         score = base_value * capital_mult * strategic_value * dist_factor * threat_mult
@@ -168,7 +192,7 @@ class TargetScoringService:
                     "planet": planet_name,
                     "turn": turn,
                     "score_breakdown": {
-                        "base_value": base_value,
+                        "base_economic": base_value / max(0.001, (capital_mult * strategic_value * dist_factor * threat_mult)),
                         "capital_mult": capital_mult,
                         "strategic_value": strategic_value,
                         "dist_factor": dist_factor,
@@ -178,6 +202,8 @@ class TargetScoringService:
                 }
                 self.ai_manager.engine.logger.strategy(json.dumps(trace_msg))
 
+        if include_rationale:
+            return (score, rationale)
         return score
 
     def calculate_dynamic_retreat_threshold(self, fleet: 'Fleet', location: 'Planet', 

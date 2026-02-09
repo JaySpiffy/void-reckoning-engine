@@ -180,8 +180,8 @@ ECON_INFRASTRUCTURE_RATIO = 1.5
 ECON_RESERVE_MIN = 300
 ECON_RESERVE_TARGET = 400
 ECON_CONSTRUCTION_BUDGET_MIN = 500
-ECON_STOCKPILE_OVERRIDE_THRESHOLD = 100000
-ECON_NAVY_PENALTY_RATE = 0.25 # Increased from 0.10 to curb 500+ fleet spam
+ECON_STOCKPILE_OVERRIDE_THRESHOLD = 50000 # Reduced from 100k to 50k for earlier expansion triggers
+ECON_NAVY_PENALTY_RATE = 0.10 # Reduced from 0.25 to curb 500+ fleet spam
 ECON_MARGIN_CRISIS_THRESHOLD = 1.1
 
 # Insolvency
@@ -194,7 +194,7 @@ INSOLVENCY_DISBAND_MAJOR = 250
 # --- MAINTENANCE CAPS (User Plan) ---
 # Hard caps for budget categories to prevent death spiral.
 # Total Maintenance shoud not exceed 37.5% of Income.
-MAINT_CAP_NAVY = 0.25   # 25%
+MAINT_CAP_NAVY = 0.60   # Increased from 25% to 60% (Massive Navy)
 MAINT_CAP_ARMY = 0.25   # 25%
 MAINT_CAP_INFRA = 0.20  # 20%
 
@@ -205,7 +205,7 @@ PACIFICATION_COST = 500           # Base cost to occupy a hostile planet
 # --- RECRUITMENT ---
 RECRUIT_STOCKPILE_OVERRIDE_MULT = 5.0
 RECRUIT_BATCH_SIZE_MAX = 200
-RECRUIT_NAVY_CAP_BASE = 10
+RECRUIT_NAVY_CAP_BASE = 25 # Increased from 10 to 25
 RECRUIT_ARMY_BATCH_CAP = 100
 
 # --- CONSTRUCTION ---
@@ -213,7 +213,7 @@ CONST_EMERGENCY_BUDGET_THRESHOLD = 1000
 CONST_HIGH_PRIORITY_THRESHOLD = 3000
 
 # --- USER BALANCING ADJUSTMENTS ---
-FLEET_MAINTENANCE_SCALAR = 0.5  # Reduce fleet upkeep by 50% to solve economic death spirals
+FLEET_MAINTENANCE_SCALAR = 0.2  # Reduced from 0.5 to 0.2 (80% Discout on standard upkeep)
 
 # Economy Recovery Constants
 MIN_PLANET_INCOME = 50              # Base income per planet

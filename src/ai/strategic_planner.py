@@ -43,6 +43,15 @@ class StrategicPlanner:
         self.ai = ai_manager
         self.active_plans: Dict[str, StrategicPlan] = {} 
         self.theater_manager = TheaterManager(self.ai.engine) # [Phase 2]
+
+    def __getstate__(self):
+        state = self.__dict__.copy()
+        if 'ai' in state: del state['ai']
+        return state
+
+    def __setstate__(self, state):
+        self.__dict__.update(state)
+        self.ai = None
         
     def create_plan(self, faction: str, personality: FactionPersonality, current_state: dict) -> StrategicPlan:
         """Generates a new strategic plan based on faction situation."""
@@ -227,12 +236,39 @@ class StrategicPlanner:
             except Exception as e:
                 print(f"CRASH in telemetry.log_event: {e}")
                 
-        # [PHASE 6] Commit Trace
-        if trace_enabled:
-             trace["final_plan"] = {"war_goal": war_goal, "sub_plan_count": len(sub_plans)}
-             # Use the new helper if available, or fallback
-             if hasattr(self.ai.engine.logger, 'ai'):
-                 self.ai.engine.logger.ai(json.dumps(trace))
+        # [PHASE 3] Update Faction Context for Decision Trace
+        # This links all subsequent tactical actions (build/recruit/move) to this plan
+        f_mgr = self.ai.engine.factions.get(faction)
+        if f_mgr:
+            f_mgr.strategic_context = {
+                "plan_id": plan_id,
+                "root_goal": war_goal,
+                "doctrine": personality.strategic_doctrine,
+                "active_theater": new_plan.active_theater_id,
+                "turn": turn
+            }
+
+        # [PHASE 6] Commit Trace via DecisionLogger
+        if hasattr(self.ai, 'decision_logger') and self.ai.decision_logger:
+            trigger_reason = "Situation Analysis"
+            if trace_enabled and trace.get("steps"):
+                trigger_reason = f"Triggered by {trace['steps'][-1].get('trigger', 'unknown')}"
+                
+            self.ai.decision_logger.log_decision(
+                "STRATEGY",
+                faction,
+                {
+                    "plan_id": plan_id,
+                    "duration": duration,
+                    "econ_state": current_state.get('econ_health', {}).get('state', 'UNKNOWN'),
+                    "theaters_active": len(theaters) if theaters else 0
+                },
+                [
+                    {"action": war_goal, "score": 1.0, "rationale": trigger_reason}
+                ],
+                war_goal,
+                "Plan Created"
+            )
             
         return new_plan
 

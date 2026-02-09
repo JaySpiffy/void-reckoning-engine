@@ -11,8 +11,10 @@ from src.combat.real_time.map_manager import MapGenerator
 from src.managers.combat.retreat_handler import RetreatHandler
 from src.managers.combat.invasion_manager import InvasionManager
 from src.managers.combat.active_battle import ActiveBattle
+from src.managers.combat.active_battle import ActiveBattle
 from src.combat.tactical_engine import resolve_real_time_combat, resolve_fleet_engagement, initialize_battle_state, execute_battle_round
 from src.combat.combat_simulator import resolve_fleet_engagement_rust
+from src.reporting.decision_logger import DecisionLogger
 
 if TYPE_CHECKING:
     from src.managers.campaign_manager import CampaignEngine
@@ -100,6 +102,10 @@ class BattleManager:
             except OSError:
                 pass
 
+        # [PHASE 6] Decision Logger
+        telemetry = getattr(self.context, 'telemetry', None)
+        self.decision_logger = DecisionLogger(telemetry)
+
     def sanitize_state(self, all_fleets: List['Fleet'], all_planets: List['Planet']) -> None:
         """
         Phase 41: Critical Fix for AI Paralysis.
@@ -113,7 +119,7 @@ class BattleManager:
                 # Check if there is ACTUALLY a battle here
                 if fleet.location not in self.active_battles:
                     # GHOST BATTLE DETECTED
-                    print(f"  > [DEBUG] Force-releasing Fleet {fleet.id} (Ghost Engagement at {getattr(fleet.location, 'name', 'Void')})")
+                    # Reduced logging per Turn 2290 performance review
                     fleet.is_engaged = False
                 else:
                     # Battle exists, but are we in it?
@@ -121,7 +127,6 @@ class BattleManager:
                     if fleet.id not in battle.participating_fleets:
                          # We are at a battle site but not participating? 
                          # This usually logically implies we should join, but if we are flagged engaged but not in list, it's a bug.
-                         print(f"  > [DEBUG] Force-releasing Fleet {fleet.id} (Flagged but not in battle roster)")
                          fleet.is_engaged = False
         
         # 2. Sanitize Armies
@@ -288,7 +293,33 @@ class BattleManager:
                     my_p = sum(f.power for f in my_f)
                     en_p = sum(f.power for f in en_f)
                     if en_p > my_p * 1.5:
-                        if self._manager_rng.random() < f_mgr.evasion_rating:
+                        # [PHASE 6] Evasion Trace
+                        evade_roll = self._manager_rng.random()
+                        success = evade_roll < f_mgr.evasion_rating
+                        
+                        outcome = "Success" if success else "Failed"
+                        selected = "Evade" if success else "Stand Ground"
+                        
+                        if self.decision_logger:
+                             self.decision_logger.log_decision(
+                                 "COMBAT_EVASION",
+                                 faction,
+                                 {
+                                     "location": getattr(location, 'name', 'node'), 
+                                     "enemy_power": en_p, 
+                                     "my_power": my_p, 
+                                     "roll": evade_roll,
+                                     "threshold": f_mgr.evasion_rating
+                                 },
+                                 [
+                                     {"action": "Evade", "score": f_mgr.evasion_rating, "rationale": f"Outnumbered {en_p:.0f} vs {my_p:.0f}"},
+                                     {"action": "Stand Ground", "score": 1.0 - f_mgr.evasion_rating, "rationale": "Base Doctrine"}
+                                 ],
+                                 selected,
+                                 outcome
+                             )
+
+                        if success:
                             if self.context.logger:
                                 self.context.logger.combat(f"[EVASION] {faction} fleets at {getattr(location, 'name', 'node')} slipped away!")
                             
@@ -698,7 +729,8 @@ class BattleManager:
                             "intensity": getattr(tf, 'doctrine_intensity', 1.0),
                             "turn_counter": self.context.turn_counter,
                             "evasion_rating": getattr(self.context.get_faction(f.faction), 'evasion_rating', 0),
-                            "game_config": getattr(self.context, 'game_config', {})
+                            "game_config": getattr(self.context, 'game_config', {}),
+                            "strategic_context": getattr(self.context.get_faction(f.faction), 'strategic_context', {})
                         }
             
             mechanics_engine = getattr(self.context, 'mechanics_engine', None)
@@ -741,7 +773,8 @@ class BattleManager:
                 location_name=getattr(location, 'name', str(location)), 
                 mechanics_engine=mechanics_engine, 
                 telemetry_collector=getattr(self.context, 'telemetry', None),
-                defender_factions=defender_factions
+                defender_factions=defender_factions,
+                decision_logger=self.decision_logger
             )
 
             # [DEBUG] Inspect Unit HP
@@ -1271,7 +1304,8 @@ class BattleManager:
 
     def _sync_fleet_status(self, planet, winner="Draw"):
         """Checks fleets at planet, marks destroyed if empty."""
-        fleets = [f for f in self.context.fleets if f.location == planet]
+        dest_name = getattr(planet, 'name', str(planet))
+        fleets = [f for f in self.context.fleets if getattr(f.location, 'name', None) == dest_name]
         for f in fleets:
             # Remove dead units
             f.units = [u for u in f.units if u.is_alive()]

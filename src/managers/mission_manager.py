@@ -10,6 +10,19 @@ class MissionManager:
         self.active_missions: Dict[str, Dict] = {}
         self.completed_missions = set()
         self.active_victory_conditions: List[Dict] = []
+
+    # [PHASE 8] Serialization Support
+    def __getstate__(self):
+        """Custom serialization to handle logger."""
+        state = self.__dict__.copy()
+        if 'logger' in state: del state['logger']
+        return state
+
+    def __setstate__(self, state):
+        """Custom deserialization."""
+        self.__dict__.update(state)
+        # Logger must be re-injected or lazily loaded
+        self.logger = None 
         
     def register_victory_conditions(self, conditions: List[Dict]):
         """Registers custom victory conditions."""

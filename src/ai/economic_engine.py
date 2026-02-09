@@ -16,6 +16,17 @@ class EconomicEngine:
         self.engine = ai_manager.engine
         self._health_cache = {} # (faction, turn) -> health_dict
 
+    def __getstate__(self):
+        state = self.__dict__.copy()
+        if 'engine' in state: del state['engine']
+        if 'ai' in state: del state['ai']
+        return state
+
+    def __setstate__(self, state):
+        self.__dict__.update(state)
+        self.engine = None
+        self.ai = None
+
     def assess_economic_health(self, faction: str) -> Dict[str, Any]:
         """
         Evaluates faction's economic state: HEALTHY, STRESSED, CRISIS, BANKRUPT.

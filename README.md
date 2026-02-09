@@ -3,8 +3,9 @@
 [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Development Status](https://img.shields.io/badge/status-alpha-orange.svg)](#project-status)
+[![Rust Support](https://img.shields.io/badge/Rust-Combat%20Engine-orange.svg)](#rust-combat-engine)
 [![GPU Support](https://img.shields.io/badge/GPU-CuPy%20%7C%20CUDA-green.svg)](#gpu-acceleration)
-[![Dashboard](https://img.shields.io/badge/Dashboard-In--Progress-orange.svg)](#dashboard)
+[![Dashboard](https://img.shields.io/badge/Dashboard-v2%20In%20Dev-orange.svg)](#dashboard-v2)
 
 ![Terminal Dashboard Demo](docs/images/dashboard_demo.png)
 
@@ -38,7 +39,7 @@ A complex, text-based 4X strategy engine featuring trait-based faction evolution
 
 ## Overview
 
-The **Multi-Universe Strategy Engine** is a sophisticated grand strategy campaign simulator / 4X game engine built around the **Void Reckoning** universe—a science fiction setting featuring ten unique factions engaged in galactic warfare.
+The **Multi-Universe Strategy Engine** is a sophisticated grand strategy campaign simulator / 4X game engine built around the **Void Reckoning** universe—an original science fiction setting featuring ten unique factions engaged in galactic warfare.
 
 ### Core Philosophy
 
@@ -69,7 +70,7 @@ The engine uses a high-frequency real-time resolution for battles, allowing for 
 
 - ⚔️ **Ten Unique Factions**: Templars of the Flux, Transcendent Order, Steel-Bound Syndicate, Bio-Tide Collective, Algorithmic Hierarchy, Nebula Drifters, Aurelian Hegemony, Void-Spawn Entities, Scrap-Lord Marauders, Primeval Sentinels
 - 🧠 **Adaptive AI**: Strategic planner featuring **Proactive Economic Reserving** (early-game scaling), theater manager (Multi-front coordination), industrial allocator (RECOVERY mode), intelligence coordinator, and individual faction personalities.
-- 🌀 **Portal System (Experimental)**: Interstellar travel through portal networks and queue-based fleet transfers. Currently in active development across parallel galaxies.
+- 🌀 **Portal System**: Interstellar travel through portal networks and queue-based fleet transfers with reality anchors for cross-universe traversal.
 - 🚁 **Task Force Management**: AI fleet coordination with SCOUT, RAID, DEF, ASSAULT types
 - 🏆 **Victory Conditions**: Flexible victory states including Conquest, Elimination, and Defender Survival.
 
@@ -81,7 +82,7 @@ The engine uses a high-frequency real-time resolution for battles, allowing for 
 - 🎯 **Tactical Support**: Off-map **Orbital Bombardment** provided by fleets in orbit to ground units.
 - 🛡️ **Cover & Terrain**: Dynamic cover system (Light/Heavy) affecting unit survival and mitigating damage.
 
-- 🎲 **Faction Mechanics**: Unique resource systems and 11+ ability types synchronized with real-time state.
+- 🎲 **Faction Mechanics**: Unique resource systems and 11+ ability types synchronized with real-time state, managed by pluggable faction mechanics engine.
 - 🏗️ **Modular Ship Design**: **Stellaris/Thrawn's Revenge Style** architecture with Bow/Core/Stern sections and specialized slot types (S/M/L/X/P/G/H).
 - 🧬 **Research & Tech Tree**: **Stellaris-Style** card draw system with **Hull & Unit Tech Locks**, ensuring that advanced ship classes and ground units (e.g., Heavy Walkers, Titans) require dedicated research. Features infinite procedural tech scaling and RP-based progression.
 - 🧲 **Specialized Utility Modules**: Advanced ship roles including **Tractor Beams** (gravitational slowing) and **Interdiction Fields** (warp-suppression to prevent enemy retreat), supported by dedicated `T` and `I` slot architectures.
@@ -261,11 +262,15 @@ Ground combat occurs on planetary hex maps, featuring tactical positioning, cove
 
 ### Performance & Analytics
 
+- ⚡ **Rust Combat Engine**: High-performance tactical calculations via native Rust integration for massive-scale combat
 - 🚀 **GPU Acceleration**: Full CuPy support with automatic CUDA detection, multi-GPU support, and device selection strategies
 - ⚡ **Parallel Execution**: Simulate multiple campaign scenarios simultaneously on dedicated CPU cores
 - 📊 **Analytics Engine**: Economic health analysis, military efficiency tracking, industrial analysis, research analytics with predictive modeling
 - 🔔 **Alert System**: Real-time alerts with severity levels (CRITICAL, WARNING, INFO) triggered by anomaly detection
 - 📡 **Telemetry System**: Comprehensive event tracking with real-time metrics aggregation
+- 🔍 **Observability System**: Causal tracing, replay analysis, and snapshot management for debugging complex interactions
+- 📢 **Event Bus**: Central event dispatcher with subscriber pattern for loose coupling between systems
+- 🎯 **Command Pattern**: Action system with command bus for undo/redo capabilities and audit trails
 
 ### User Interface
 
@@ -866,11 +871,13 @@ Each faction has unique resources that drive their mechanics:
 
 The engine supports multiple universes:
 
-- **Void Reckoning** - Science fiction setting with ten unique factions
+- **Void Reckoning** (Active) - Original science fiction setting with ten unique factions
 - **Void Alpha** - Enhanced version of Void Reckoning with tech tree graphs and expanded infrastructure
 - **Void Beta** - Alternative timeline of Void Reckoning with same factions and tech tree graphs
 - **Cosmic Ascendancy** - A diverse galaxy containing Federation, Theocratic, and Cybernetic factions
 - **Procedural Sandbox** - Procedurally generated universe for testing
+
+**Note**: Only Void Reckoning is currently active. Multi-universe architecture is preserved for future expansion.
 
 ## CLI Commands
 
@@ -2076,7 +2083,45 @@ Comprehensive documentation is available in the [`docs/`](docs/) directory.
 - [x] Faction Quirks System
 - [x] GPU Acceleration with CuPy
 - [x] Analytics Engine with Predictive Analytics
-- [ ] Dashboard v2 (FastAPI + React) - Work In Progress
+- [x] AI Strategic Planner and Economic Engine
+- [x] Cross-Universe Combat System
+- [x] Alert and Telemetry Systems
+- [x] Docker Support
+- [x] Real-Time Battle Engine (EaW/Total War Style)
+- [x] Subsystem Hardpoint & Crippling System
+- [x] Unit Morale, Suppression, and Routing
+- [x] Orbital Bombardment Support Phase
+- [x] Dynamic Tactical Grid with Cover Mechanics
+- [x] Ability System with 11+ Real-Time Payload Types
+- [x] Task Force Management (SCOUT, RAID, DEF, ASSAULT)
+- [x] Mission Manager with Victory Conditions
+- [x] Physics Calibration System
+- [x] Portal Handoff & Reality Anchor System
+- [x] Theater Manager for Multi-Front Operations
+- [x] AI Strategic Planner & Personality Manager
+- [x] CPU Affinity & Parallel Runner Optimization
+- [x] Massive Ship Expansion: 11+ Hulls (Corvettes to Mobile Fortresses), Modular Sections, and Hardpoints
+- [x] Unified Weapon Database: Cross-Universe Schema (W40k, Star Wars, Star Trek)
+- [x] Research Overhaul: Stellaris-Style Tech Card System & Hull Tech Locks
+- [x] Starbase Overhaul: Higher HP, Critical Defensive Roles, and Faction Logic
+- [x] Faction Tag Consistency: Unified Naming Standards (TPL, PRM) in Dashboards
+- [x] **Rust Combat Engine**: Native Rust integration for high-performance tactical calculations
+- [x] **Observability System**: Causal tracing, replay analysis, and snapshot management
+- [x] **Event Bus Architecture**: Central event dispatcher with subscriber pattern
+- [x] **Command Pattern**: Action system with command bus for undo/redo and audit trails
+- [x] **Repository Pattern**: Data access layer for clean separation of concerns
+- [x] **Factory Pattern**: Flexible generation of units, weapons, tech, designs, and hull mutations
+- [x] **Faction Mechanics Engine**: Pluggable faction-specific mechanics system
+
+- [x] Multi-Core Parallel Simulation Runner
+- [x] Ten Void Reckoning Factions Implemented
+- [x] Real-Time Dashboard with WebSocket Streaming
+- [x] Portal System with Reality Anchors
+- [x] Diplomacy System
+- [x] Faction Quirks System
+- [x] GPU Acceleration with CuPy
+- [x] Analytics Engine with Predictive Analytics
+- [ ] Dashboard v2 (FastAPI + WebSocket) - In Development
 - [x] AI Strategic Planner and Economic Engine
 - [x] Cross-Universe Combat System
 - [x] Alert and Telemetry Systems
@@ -2095,6 +2140,13 @@ Comprehensive documentation is available in the [`docs/`](docs/) directory.
 - [x] AI Strategic Planner & Personality Manager
 - [x] CPU Affinity & Parallel Runner Optimization
 - [x] **Massive Ship Expansion**: 11+ Hulls (Corvettes to Mobile Fortresses), Modular Sections, and Hardpoints
+- [x] **Rust Combat Engine**: Native Rust integration for high-performance tactical calculations
+- [x] **Observability System**: Causal tracing, replay analysis, and snapshot management
+- [x] **Event Bus Architecture**: Central event dispatcher with subscriber pattern
+- [x] **Command Pattern**: Action system with command bus for undo/redo and audit trails
+- [x] **Repository Pattern**: Data access layer for clean separation of concerns
+- [x] **Factory Pattern**: Flexible generation of units, weapons, tech, designs, and hull mutations
+- [x] **Faction Mechanics Engine**: Pluggable faction-specific mechanics system
 - [x] **Unified Weapon Database**: Cross-Universe Schema (W40k, Star Wars, Star Trek)
 - [x] **Research Overhaul**: Stellaris-Style Tech Card System & Hull Tech Locks
 - [x] **Starbase Overhaul**: Higher HP, Critical Defensive Roles, and Faction Logic

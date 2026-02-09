@@ -3328,5 +3328,131 @@
     "category": [],
     "source_file": "building_synthesis",
     "source_format": "synthetic"
+  },
+  "Tech_Unlock_Elite_Infantry": {
+    "id": "Tech_Unlock_Elite_Infantry",
+    "name": "Elite Infantry Doctrine",
+    "tier": 2,
+    "cost": 1500,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Global",
+    "area": "military",
+    "category": [
+      "ground"
+    ],
+    "source_file": "manual_override",
+    "source_format": "manual"
+  },
+  "Tech_Unlock_Armor_Chassis": {
+    "id": "Tech_Unlock_Armor_Chassis",
+    "name": "Heavy Armor Chassis",
+    "tier": 3,
+    "cost": 3000,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Global",
+    "area": "engineering",
+    "category": [
+      "ground",
+      "armor"
+    ],
+    "source_file": "manual_override",
+    "source_format": "manual"
+  },
+  "Tech_Unlock_Titan_Engine": {
+    "id": "Tech_Unlock_Titan_Engine",
+    "name": "Titan Engine Construction",
+    "tier": 4,
+    "cost": 8000,
+    "prerequisites": [
+      "Tech_Unlock_Armor_Chassis"
+    ],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Global",
+    "area": "engineering",
+    "category": [
+      "ground",
+      "titan"
+    ],
+    "source_file": "manual_override",
+    "source_format": "manual"
+  },
+  "Tech_Unlock_Advanced_Battlesuits": {
+    "id": "Tech_Unlock_Advanced_Battlesuits",
+    "name": "Advanced Battlesuit Systems",
+    "tier": 3,
+    "cost": 2500,
+    "prerequisites": [
+      "Tech_Unlock_Elite_Infantry"
+    ],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Global",
+    "area": "military",
+    "category": [
+      "ground",
+      "infantry"
+    ],
+    "source_file": "manual_override",
+    "source_format": "manual"
+  },
+  "Tech_Unlock_Support_Platforms": {
+    "id": "Tech_Unlock_Support_Platforms",
+    "name": "Heavy Support Platforms",
+    "tier": 3,
+    "cost": 2500,
+    "prerequisites": [],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Global",
+    "area": "engineering",
+    "category": [
+      "ground",
+      "support"
+    ],
+    "source_file": "manual_override",
+    "source_format": "manual"
+  },
+  "Tech_Unlock_Walker_Combat": {
+    "id": "Tech_Unlock_Walker_Combat",
+    "name": "Combat Walker Protocol",
+    "tier": 4,
+    "cost": 5000,
+    "prerequisites": [
+      "Tech_Unlock_Armor_Chassis"
+    ],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Global",
+    "area": "engineering",
+    "category": [
+      "ground",
+      "walker"
+    ],
+    "source_file": "manual_override",
+    "source_format": "manual"
+  },
+  "Tech_Unlock_Apocalypse_Titan": {
+    "id": "Tech_Unlock_Apocalypse_Titan",
+    "name": "Apocalypse Class Engineering",
+    "tier": 5,
+    "cost": 20000,
+    "prerequisites": [
+      "Tech_Unlock_Titan_Engine"
+    ],
+    "unlocks_buildings": [],
+    "unlocks_ships": [],
+    "faction": "Global",
+    "area": "engineering",
+    "category": [
+      "ground",
+      "super_heavy"
+    ],
+    "source_file": "manual_override",
+    "source_format": "manual"
   }
 }

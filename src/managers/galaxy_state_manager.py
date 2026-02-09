@@ -28,6 +28,21 @@ class GalaxyStateManager:
         self._planet_repo = None
         self._system_repo = None
 
+    def __getstate__(self):
+        """Exclude logger and singleton universe_data from pickling."""
+        state = self.__dict__.copy()
+        if 'logger' in state: del state['logger']
+        if 'universe_data' in state: del state['universe_data']
+        return state
+
+    def __setstate__(self, state):
+        """Restore state and re-acquire singleton."""
+        self.__dict__.update(state)
+        self.logger = None # Re-injected by engine/logger system if needed, or lazy loaded
+        from src.core.universe_data import UniverseDataManager
+        self.universe_data = UniverseDataManager.get_instance()
+
+
     @property
     def planet_repository(self):
         if self._planet_repo is None:

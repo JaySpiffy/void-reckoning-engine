@@ -11,6 +11,8 @@ from src.core import gpu_utils
 from .constants import *
 from .renderer import DashboardRenderer
 from .input_handler import TUIInputHandler
+from src.reporting.services.causal_tracing import CausalTracingService
+from src.reporting.indexing import ReportIndexer
 
 class TerminalDashboard:
     """
@@ -28,7 +30,16 @@ class TerminalDashboard:
         self.show_victory = False
         self.show_alerts = False
         self.show_map = False
+        self.show_inspector = False
         self.global_stats_mode = "FULL"
+        
+        self.indexer = None
+        self.causal_service = None
+        self.inspector_selection_idx = 0
+        self.inspector_trace_chain = []
+        self.last_key = "None"
+        self.poll_count = 0
+        self.key_count = 0
         
         self.quit_requested = False
         self.filter_buffer = ""
@@ -40,13 +51,50 @@ class TerminalDashboard:
         self.last_export_status = ""
         self.last_export_time = 0
         self.session_start_time = time.time()
+        
+        # God Mode State
+        self.show_god_mode = False
+        self.god_mode_selection = 0
+        self.command_queues = {} # Stores reference to universe queues
+
+    def set_command_queues(self, queues):
+        self.command_queues = queues
+
+    def trigger_simulation_pause(self):
+        """Sends PAUSE/RESUME command to all universes."""
+        # Simple toggle logic based on internal state tracking?
+        # Since we don't know the exact worker state, we rely on the user knowing.
+        # But wait, we can track if we sent a pause.
+        self.sim_paused_state = getattr(self, 'sim_paused_state', False)
+        self.sim_paused_state = not self.sim_paused_state
+        
+        cmd = "PAUSE" if self.sim_paused_state else "RESUME"
+        self._broadcast_command({"action": cmd})
+
+    def _broadcast_command(self, cmd_dict):
+        """Helper to send command to all active universes."""
+        if not self.command_queues: return
+        for uname, qs in self.command_queues.items():
+            if 'incoming' in qs:
+                qs['incoming'].put(cmd_dict)
 
     def handle_input(self, key: str | None):
         """Delegates input handling to the modular handler."""
+        self.poll_count += 1
+        if key:
+            self.last_key = key
+            self.key_count += 1
         TUIInputHandler.handle_input(self, key)
 
     def render(self, output_dir: str, progress_data: Dict[str, Any], universe_configs: List[Dict[str, Any]]):
         """Orchestrates the rendering process."""
+        # Initialize indexer and causal service if not already done
+        if not self.indexer:
+            db_path = os.path.join(output_dir, "index.db")
+            if os.path.exists(db_path):
+                self.indexer = ReportIndexer(db_path)
+                self.causal_service = CausalTracingService(self.indexer)
+
         if not self.is_paused:
             self.last_progress_data = progress_data
             self.last_universe_configs = universe_configs
@@ -55,10 +103,9 @@ class TerminalDashboard:
         configs_to_render = self.last_universe_configs if self.is_paused else universe_configs
 
         buffer = []
-        if os.name == 'nt':
-            os.system('cls')
-        else:
-            buffer.append("\033[2J\033[H")
+        # Use os.system for reliable clearing on Windows
+        os.system('cls' if os.name == 'nt' else 'clear')
+        # buffer.append("\033[2J\033[H") # Unreliable on some Windows terminals
 
         # Header
         gpu_info = gpu_utils.get_selected_gpu()
@@ -83,31 +130,39 @@ class TerminalDashboard:
                 current_stats = run_data.get("stats", {})
                 current_turn = run_data.get('turn', 0)
 
-        # Controls Footer (Header-style in TUI)
-        ctrl_line = f" {BOLD}Controls:{RESET} {DIM}(q)uit (p)ause (d)iplomacy (y)details (s)ummary (f)ilter (h)elp (a)lerts (v)ictory (m)ap{RESET}"
-        if self.is_paused:
-            ctrl_line += f" | {BOLD}{BLACK}{ON_YELLOW} PAUSED {RESET}"
-        if self.faction_filter:
-            ctrl_line += f" | {BOLD}{YELLOW}Filter: {self.faction_filter}{RESET}"
-        buffer.append(ctrl_line)
-
-        # Performance & ETA
+        # --- Footer Section ---
+        buffer.append(f"{CYAN}{'━' * 80}{RESET}")
+        
+        # 1. Performance & Status Row
         elapsed_total = int(time.time() - self.session_start_time)
         el_m, el_s = divmod(elapsed_total, 60)
-        perf_time = current_stats.get('GLOBAL_PERF_TURN_TIME', 0)
         perf_tps = current_stats.get('GLOBAL_PERF_TPS', 0)
+        perf_time = current_stats.get('GLOBAL_PERF_TURN_TIME', 0)
         mem = current_stats.get('GLOBAL_PERF_MEMORY', 0)
         mem_trend = self._get_trend_icon('GLOBAL_PERF_MEMORY')
+        
         turns_left = max(0, total_turns - current_turn)
-        eta_seconds = int(turns_left * perf_time)
-        eta_m, eta_s = divmod(eta_seconds, 60)
-
-        perf_time_str = f"{perf_time:.2f}s/turn" if perf_time > 0 else "CALCULATING..."
-        perf_tps_str = f"{perf_tps:.2f} tps" if perf_tps > 0 else "CALCULATING..."
-        mem_str = f"{int(mem)}MB" if mem > 0 else "0MB"
-        eta_str = f"{eta_m}m {eta_s}s" if eta_seconds > 0 else "---"
-        buffer.append(f" {BOLD}Elapsed:{RESET} {el_m}m {el_s}s | {DIM}⏱ {perf_time_str}{RESET} | {BOLD}🚀 {perf_tps_str}{RESET} | {MAGENTA}🧠 {mem_str} {mem_trend}{RESET} | {YELLOW}ETA: {eta_str}{RESET}")
-        buffer.append(f"{CYAN}{'─' * 80}{RESET}")
+        eta_s_total = int(turns_left * perf_time)
+        eta_m, eta_s = divmod(eta_s_total, 60)
+        
+        perf_line = f" {BOLD}ELAPSED:{RESET} {el_m}m {el_s}s | {BOLD}PACE:{RESET} {perf_time:.2f}s/T | {BOLD}TPS:{RESET} {CYAN}{perf_tps:.2f}{RESET} | {BOLD}MEM:{RESET} {MAGENTA}{int(mem)}MB {mem_trend}{RESET} | {YELLOW}ETA: {eta_m}m {eta_s}s{RESET}"
+        
+        if self.is_paused:
+            perf_line += f" | {BOLD}{BLACK}{ON_YELLOW} PAUSED {RESET}"
+        if self.faction_filter:
+            perf_line += f" | {BOLD}{YELLOW}FILTER: {self.faction_filter}{RESET}"
+        
+        buffer.append(perf_line)
+        
+        # 2. Controls Row (Clean Box-style)
+        ctrl_l1 = f" {BOLD}NAV:{RESET} {DIM}(q)uit (p)ause (h)elp (m)ap (i)nspect (e)xport{RESET}"
+        ctrl_l2 = f" {BOLD}VIEW:{RESET} {DIM}(d)iplomacy (y)details (s)ummary (f)ilter (v)ictory (a)lerts{RESET}"
+        
+        debug_info = f" {DIM}Polls:{self.poll_count} Keys:{self.key_count} Last:{CYAN}{self.last_key}{RESET}"
+        
+        buffer.append(ctrl_l1)
+        buffer.append(ctrl_l2 + debug_info.rjust(80 - visual_width(ctrl_l2)))
+        buffer.append(f"{CYAN}{'━' * 80}{RESET}")
 
         # View Overlays
         if self.show_help:
@@ -129,12 +184,39 @@ class TerminalDashboard:
             sys.stdout.flush()
             return
 
+        if self.show_inspector:
+            self._update_inspector_state(current_stats, configs_to_render)
+            DashboardRenderer.render_inspector_overlay(
+                buffer, 
+                current_stats.get('GLOBAL_ALERTS', []), 
+                self.inspector_selection_idx, 
+                self.inspector_trace_chain
+            )
+            sys.stdout.write("\n".join(buffer) + "\n")
+            sys.stdout.flush()
+            return
+            
+        if self.show_god_mode:
+            DashboardRenderer.render_god_mode_overlay(buffer, self.god_mode_selection)
+            sys.stdout.write("\n".join(buffer) + "\n")
+            sys.stdout.flush()
+            return
+
         if self.is_filtering:
             buffer.append(f"\n   {BOLD}{YELLOW}ENTER FACTION TAG TO FILTER:{RESET} {WHITE}{self.filter_buffer}{RESET}_")
             buffer.append(f"   {DIM}(Press Enter to confirm, Esc to cancel){RESET}")
 
         # Main Content
+        import shutil
+        term_width, term_height = shutil.get_terminal_size((80, 24))
+        max_rows = max(10, term_height - 10) # Reserve space for header/footer
+        rows_used = 0
+        
         for config in configs_to_render:
+            if rows_used >= max_rows:
+                 buffer.append(f"  {DIM}... (Output truncated for terminal height) ...{RESET}")
+                 break
+                 
             name = config["universe_name"]
             data = data_to_render.get(name, {})
             completed = data.get("completed", 0)
@@ -159,6 +241,7 @@ class TerminalDashboard:
                 rid_display = f"{int(rid):03d}" if str(rid).isdigit() else str(rid)[:3]
                 buffer.append(f"  Run {rid_display}: {bar} {DIM}Turn{RESET} {turn_num:>3} | {status_color}{status}{RESET}")
                 self._render_faction_summary(rdata.get("stats", {}), buffer, is_final=False)
+                rows_used += 1 + (12 if self.faction_detail_mode == "SUMMARY" else 2) # approx rows added
 
             if len(active) > 5:
                 buffer.append(f"  {DIM}... {len(active)-5} more active ...{RESET}")
@@ -168,7 +251,11 @@ class TerminalDashboard:
                 buffer.append(f"  Run {last_rid_display}: {BOLD}{GREEN}[DONE]{RESET} {last_rdata['status']}")
                 self._render_faction_summary(last_rdata.get("stats", {}), buffer, is_final=True)
                 
-        sys.stdout.write("\n".join(buffer) + "\n")
+        # Consolidate output string
+        final_output = "\n".join(buffer) + "\n"
+        
+        # Write to stdout in one go to minimize flickering
+        sys.stdout.write(final_output)
         
         # Critical Error Tracebacks
         for config in universe_configs:
@@ -182,6 +269,44 @@ class TerminalDashboard:
                     print(f"{DIM}{err_trace}{RESET}")
 
         sys.stdout.flush()
+
+    def draw(self, progress_map, num_runs, active_workers, total_finished, turns_per_run, output_path="", map_config="", is_done=False, wins=None):
+        """Compatibility wrapper for ProgressDashboard.draw signature."""
+        if not self.last_universe_configs:
+            return
+            
+        # Reconstruct the expected multi-universe data structure
+        # progress_map values are tuples: (turn, status, stats) or similar depending on worker output
+        # Worker sends: (run_id, turn, status, stats) -> progress_map[rid] = (turn, status, stats)
+        
+        runs_dict = {}
+        for rid, data_tuple in progress_map.items():
+            if isinstance(data_tuple, (list, tuple)) and len(data_tuple) >= 3:
+                # unpack
+                turn = data_tuple[0]
+                status = data_tuple[1]
+                raw_payload = data_tuple[2] if len(data_tuple) > 2 else {}
+                
+                # Check if payload is actually stats dict (vs list from GALAXY_READY)
+                stats = raw_payload if isinstance(raw_payload, dict) else {}
+                
+                runs_dict[rid] = {
+                    "turn": turn,
+                    "status": status,
+                    "stats": stats
+                }
+            else:
+                 # Fallback/Error state
+                 runs_dict[rid] = {"turn": 0, "status": "Error (Invalid Data)", "stats": {}}
+
+        universe_name = self.last_universe_configs[0]["universe_name"]
+        wrapped_data = {
+            universe_name: {
+                "runs": runs_dict,
+                "completed": total_finished
+            }
+        }
+        self.render(output_path, wrapped_data, self.last_universe_configs)
 
     def _update_trends(self, stats: dict):
         if not stats: return
@@ -330,6 +455,27 @@ class TerminalDashboard:
             self.last_export_status = f"Exported to {os.path.basename(filepath)}"
             self.last_export_time = time.time()
         except Exception as e: self.last_export_status = f"Export failed: {e}"
+
+    def _update_inspector_state(self, stats: dict, configs: list):
+        if not self.causal_service or not stats:
+            return
+            
+        alerts = stats.get('GLOBAL_ALERTS', [])
+        if not alerts:
+            return
+            
+        # Ensure index is within range
+        self.inspector_selection_idx = max(0, min(self.inspector_selection_idx, len(alerts) - 1))
+        
+        # If selection changed or trace not yet fetched, fetch it
+        selected_alert = alerts[-(self.inspector_selection_idx + 1)] # Most recent first for selection
+        trace_id = selected_alert.get('context', {}).get('span_id')
+        
+        if trace_id and (not self.inspector_trace_chain or self.inspector_trace_chain[-1].get('context', {}).get('span_id') != trace_id):
+            universe = configs[0]["universe_name"]
+            # We need to find the run_id. Assuming single run demo or latest run.
+            run_id = "001" # Default for demo
+            self.inspector_trace_chain = self.causal_service.get_causal_chain(universe, run_id, trace_id)
 
     def _identify_alliance_groups(self, diplomacy_list: List[Dict]) -> List[List[str]]:
         adj = {}

@@ -321,11 +321,13 @@ class MultiUniverseRunner:
             u_name = config["universe_name"]
             self.progress_queues[u_name] = self.manager.Queue()
             
-            # Phase 23: Fleet Hand-off Queues
             self.universe_queues[u_name] = {
                 "incoming": self.manager.Queue(),
                 "outgoing": self.manager.Queue()
             }
+            
+        # Inject Queues into Dashboard
+        self.dashboard.set_command_queues(self.universe_queues)
 
         # 1.5 Pre-flight Registry Building (Avoid Race Conditions)
         print("Pre-flight: Building registries for all universes...")
@@ -488,11 +490,25 @@ class MultiUniverseRunner:
                 if not hasattr(self, '_last_render_time'):
                     self._last_render_time = 0
                 
-                if current_time - self._last_render_time > 1.5:  # Render every 1.5 seconds
+                if current_time - self._last_render_time > 0.5:  # Render every 0.5 seconds
+                    # Non-blocking input handling (within the monitor loop)
+                    from src.reporting.terminal.input_handler import TUIInputHandler
+                    for _ in range(5):
+                        key = TUIInputHandler.get_key()
+                        self.dashboard.handle_input(key)
+                        if self.dashboard.quit_requested:
+                            break
+                        time.sleep(0.01)
+
+                    if self.dashboard.quit_requested:
+                        print("\nQuit requested via TUI.")
+                        pool.terminate()
+                        break
+
                     self.dashboard.render(self.output_dir, universe_progress, self.universe_configs)
                     self._last_render_time = current_time
                     
-                time.sleep(0.1) 
+                time.sleep(0.05) 
                 
             # Final Render 
             self.dashboard.render(self.output_dir, universe_progress, self.universe_configs)

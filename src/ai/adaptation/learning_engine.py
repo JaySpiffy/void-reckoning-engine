@@ -11,6 +11,15 @@ class AdaptiveLearningEngine:
     def __init__(self, ai_manager: 'StrategicAI'):
         self.ai = ai_manager
 
+    def __getstate__(self):
+        state = self.__dict__.copy()
+        if 'ai' in state: del state['ai']
+        return state
+
+    def __setstate__(self, state):
+        self.__dict__.update(state)
+        self.ai = None
+
     def update_performance_metrics(self, faction: str):
         """Records current faction state for performance tracking."""
         f_mgr = self.ai.engine.factions[faction]

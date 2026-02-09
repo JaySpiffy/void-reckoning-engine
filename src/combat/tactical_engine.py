@@ -26,12 +26,12 @@ def init_tactical_rng(seed: Optional[int] = None):
     RNGManager.get_instance().set_seed("tactical", seed)
 
 @profile_method
-def select_target_by_doctrine(attacker, enemies, doctrine, grid):
+def select_target_by_doctrine(attacker, enemies, doctrine, grid, decision_logger=None, strategic_context=None):
     """
     Selects the best target based on combat doctrine and tactical roles (Phase 7).
     Delegates to TargetSelector.
     """
-    return TargetSelector.select_target_by_doctrine(attacker, enemies, doctrine, grid)
+    return TargetSelector.select_target_by_doctrine(attacker, enemies, doctrine, grid, decision_logger=decision_logger, strategic_context=strategic_context)
 
 def calculate_movement_vector(unit, target, doctrine, grid):
     """
@@ -41,14 +41,14 @@ def calculate_movement_vector(unit, target, doctrine, grid):
     return MovementCalculator.calculate_movement_vector(unit, target, doctrine, grid)
 
 @profile_method
-def initialize_battle_state(armies_dict, json_log_file=None, faction_doctrines=None, faction_metadata=None, location_name: Optional[str] = None, universe_rules=None, mechanics_engine=None, telemetry_collector=None, defender_factions: Optional[set] = None, combat_domain=None):
+def initialize_battle_state(armies_dict, json_log_file=None, faction_doctrines=None, faction_metadata=None, location_name: Optional[str] = None, universe_rules=None, mechanics_engine=None, telemetry_collector=None, defender_factions: Optional[set] = None, combat_domain=None, decision_logger=None):
     """
     Initializes the persistent state for a multi-faction fleet engagement.
     Delegates to CombatState (Item 3.2).
     """
     from src.combat.combat_state import CombatState
     
-    state = CombatState(armies_dict, faction_doctrines or {}, faction_metadata or {}, universe_rules=universe_rules, defender_factions=defender_factions)
+    state = CombatState(armies_dict, faction_doctrines or {}, faction_metadata or {}, universe_rules=universe_rules, defender_factions=defender_factions, decision_logger=decision_logger)
     
     # [GPU ACCELERATION INITIALIZATION]
     # Check for GPU availability and initialize tracker if possible

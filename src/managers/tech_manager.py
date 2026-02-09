@@ -40,6 +40,22 @@ class TechManager:
         self.load_tech_trees()
         self.load_hybrid_tech_trees()
         
+    # [PHASE 8] Serialization Support
+    def __getstate__(self):
+        """Custom serialization to handle config and logger."""
+        state = self.__dict__.copy()
+        if 'config' in state: 
+             # Store config as dict if it's an object, or just keep if serializable
+             pass 
+        if 'logger' in state: del state['logger']
+        return state
+
+    def __setstate__(self, state):
+        """Custom deserialization."""
+        self.__dict__.update(state)
+        # Restore logger
+        self.logger = logging.getLogger("TechManager")
+    
     def _get_faction_tree_key(self, faction_ref: Any) -> str:
         """
         Normalizes a faction reference (object or string) into a tech tree key.

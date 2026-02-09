@@ -17,6 +17,16 @@ class DiplomaticActionHandler:
         self.diplomacy_manager = diplomacy_manager
         self.engine: 'CampaignEngine' = diplomacy_manager.engine
 
+    def __getstate__(self):
+        state = self.__dict__.copy()
+        if 'engine' in state: del state['engine']
+        return state
+
+    def __setstate__(self, state):
+        self.__dict__.update(state)
+        self.engine = None # Restored by reinit_services
+
+
     def share_blueprint(self, faction_a: str, faction_b: str, blueprint_id: str) -> bool:
         """High-trust factions exchange blueprints directly via treaties."""
         engine = self.engine

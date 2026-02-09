@@ -183,6 +183,10 @@ def run_campaign_simulation(turns=50, planets=40, game_config=None, universe_nam
                 print(f"\n[VICTORY] {winner} has achieved victory! Terminating simulation at Turn {i+1}.")
                 break
             
+            # [PHASE 5] Telemetry Bridge
+            if auditor:
+                auditor.flush_logs(engine.telemetry)
+            
             # --- DASHBOARD UPDATE ---
             # Calculate basics for dashboard
             stats = {}

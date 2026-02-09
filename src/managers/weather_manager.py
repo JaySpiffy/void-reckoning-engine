@@ -9,6 +9,23 @@ class FluxStormManager:
         self.engine = engine
         self.edges = [] # List of all GraphEdge objects in the universe
         self.active_storms = {} # {edge_id: turns_remaining}
+
+    # [PHASE 8] Serialization Support
+    def __getstate__(self):
+        """Custom serialization to handle engine reference."""
+        state = self.__dict__.copy()
+        if 'engine' in state: del state['engine']
+        # Edges are references to graph objects that exist in Systems/Planets
+        # We don't want to deep copy the expected graph here, just the IDs?
+        # Ideally, we trigger a re-collection of edges on restore.
+        if 'edges' in state: del state['edges']
+        return state
+
+    def __setstate__(self, state):
+        """Custom deserialization."""
+        self.__dict__.update(state)
+        # Engine re-injected by SnapshotManager
+        self.edges = [] # Will need re-collection via collect_edges()
         
     def collect_edges(self):
         """Scans the galaxy to index all edges for weather simulation."""

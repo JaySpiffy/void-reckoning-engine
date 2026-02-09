@@ -202,6 +202,26 @@ def compare_runs_endpoint():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+@report_api_bp.route('/reports/compare/analysis', methods=['GET'])
+def analyze_replay_divergence():
+    from src.reporting.indexing import ReportIndexer
+    from src.observability.replay_analyzer import ReplayAnalyzer
+    
+    universe = request.args.get('universe')
+    run_a = request.args.get('run_a')
+    run_b = request.args.get('run_b')
+    
+    if not all([universe, run_a, run_b]):
+        return jsonify({"error": "Missing parameters (universe, run_a, run_b)"}), 400
+        
+    try:
+        indexer = ReportIndexer("reports/db/index.db")
+        analyzer = ReplayAnalyzer(indexer)
+        report = analyzer.compare_runs(universe, run_a, run_b)
+        return jsonify(report)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 @report_api_bp.route('/reports/compare/runs/gold_standard', methods=['GET'])
 def compare_gold_standard():
     from src.reporting.indexing import ReportIndexer
@@ -498,6 +518,22 @@ def get_battle_stats_history_api():
         results[f] = provider.get_faction_battle_stats_history(universe, run_id, f, batch_id, downsample)
 
     return jsonify({"factions": results})
+
+@report_api_bp.route('/reports/trace', methods=['GET'])
+def get_event_trace_api():
+    from src.reporting.dashboard_data_provider import DashboardDataProvider
+    indexer = get_indexer()
+    provider = DashboardDataProvider(indexer)
+
+    universe = request.args.get('universe')
+    run_id = request.args.get('run_id')
+    trace_id = request.args.get('trace_id')
+
+    if not all([universe, run_id, trace_id]):
+        return jsonify({"chain": []})
+
+    chain = provider.get_event_trace(universe, run_id, trace_id)
+    return jsonify({"chain": chain})
 
 
 # --- Paginated & Performance API Endpoints (Step 8) ---

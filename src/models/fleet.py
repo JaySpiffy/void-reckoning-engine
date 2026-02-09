@@ -113,6 +113,19 @@ class Fleet:
         self.arrived_this_turn = False
         self.has_retreated_this_turn = False
 
+    def __getstate__(self):
+        """Custom pickling to exclude runtime references."""
+        state = self.__dict__.copy()
+        if 'engine' in state:
+            del state['engine']
+        return state
+
+    def __setstate__(self, state):
+        """Restore state."""
+        self.__dict__.update(state)
+        self.engine = None # Re-inject manually
+
+
     def to_dict(self) -> Dict[str, Any]:
         """Serializes fleet state for Save V2."""
         return {
@@ -861,7 +874,15 @@ class Fleet:
     @profile_method
     def update_movement(self, engine=None):
         if self.is_engaged:
-            return False
+            # Self-healing: Check if a battle actually exists here
+            if engine and hasattr(engine, 'battle_manager'):
+                if self.location not in engine.battle_manager.active_battles:
+                    # Ghost engagement detected during movement phase - auto-clear
+                    self.is_engaged = False
+                else:
+                    return False # Valid engagement
+            else:
+                return False # Legacy fallback
 
         if not self.route:
             # SCOUT PATROL LOGIC
@@ -947,7 +968,16 @@ class Fleet:
                  if not edge.is_traversable():
                       if engine and engine.logger: engine.logger.warning(f"Fleet {self.id} blocked by Flux Storm/Hazard!")
                       self.route = [] # Stop moving
-                      self._log_fleet_movement_event('blocked', engine, block_reason='flux_storm_or_hazard')
+                      self._log_fleet_movement_event('blocked', engine, block_reason='flux_storm_or_hazard', location_name=getattr(self.location, 'name', 'Void'))
+                      
+                      # [TELEMETRY] Phase 42: Record blocking for dashboard
+                      if engine and engine.telemetry:
+                           engine.telemetry.log_event(
+                                EventCategory.ENVIRONMENT, "fleet_trapped_in_flux",
+                                {"fleet_id": self.id, "location": getattr(self.location, 'name', 'Void')},
+                                turn=engine.turn_counter,
+                                faction=self.faction
+                           )
                       return False
                      
                  self.current_edge_cost = edge.distance
@@ -1435,3 +1465,10 @@ class TaskForce:
             
             # If battle resolved, return to IDLE or Hold
             pass
+
+    def __getstate__(self):
+        """Prepares TaskForce for pickling."""
+        state = self.__dict__.copy()
+        # Ensure no engine back-refs (though there shouldn't be)
+        if 'engine' in state: del state['engine']
+        return state

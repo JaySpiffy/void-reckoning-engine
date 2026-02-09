@@ -88,26 +88,55 @@ class OffensiveStrategy:
 
                     
                     # --- CACHED SCORING CALL ---
-                    score = self.ai.calculate_expansion_target_score(
+                    score, rationale = self.ai.calculate_expansion_target_score(
                         p.name, faction, home_node.x, home_node.y, 
                         personality.name, econ_state, self.ai.engine.turn_counter,
-                        weights=weights
+                        weights=weights,
+                        include_rationale=True
                     )
                     if self.ai.engine.logger:
                         self.ai.engine.logger.debug(f"[{faction}] Scored {p.name} for expansion: {score:.2f}")
                     
-                    scored_targets.append((p, score))
+                    scored_targets.append((p, score, rationale))
                 
                 # Sort by score
                 scored_targets.sort(key=lambda x: x[1], reverse=True)
+
+                # [PHASE 6] Decision Logging ($DEEP_TRACER)
+                if self.ai.decision_logger:
+                    # Prep options for logging
+                    options = []
+                    for p, s, r in scored_targets[:3]: # Top 3
+                        options.append({
+                            "action": f"EXPAND_TO:{p.name}",
+                            "score": s,
+                            "rationale": r
+                        })
+                    
+                    # Context for the decision
+                    context = {
+                        "available_fleets": len(available_fleets),
+                        "econ_state": econ_state,
+                        "expansion_bias": expansion_bias,
+                        "personality": personality.name
+                    }
+                    
+                    self.ai.decision_logger.log_decision(
+                        decision_type="FLEET_MOVE",
+                        actor_id=faction,
+                        context=context,
+                        options=options,
+                        selected_action=f"EXPAND_TO:{scored_targets[0][0].name}" if scored_targets else "None",
+                        outcome="Planning"
+                    )
                 
                 # Weighted Selection (Phase 64c)
                 # Select target probability proportional to score
-                total_score = sum(s for p, s in scored_targets)
+                total_score = sum(s for p, s, r in scored_targets)
                 if total_score > 0:
                     pick_val = random.uniform(0, total_score)
                     current = 0
-                    for p, s in scored_targets:
+                    for p, s, r in scored_targets:
                         current += s
                         if current >= pick_val:
                             target = p

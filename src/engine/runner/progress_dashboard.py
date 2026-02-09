@@ -9,7 +9,7 @@ class ProgressDashboard:
         pass
 
     def draw(self, progress_map, num_runs, active_workers, total_finished, turns_per_run, output_path="", map_config="", is_done=False, wins=None):
-        os.system('cls' if os.name == 'nt' else 'clear')
+        print("\033[2J\033[H", end="")
         
         # Check for dynamic planet count override
         dynamic_map_str = map_config

@@ -18,6 +18,15 @@ class TheaterManager:
         self.context = context  # SimulationEngine reference
         self.theaters: Dict[str, Theater] = {}  # {theater_id: Theater}
 
+    def __getstate__(self):
+        state = self.__dict__.copy()
+        if 'context' in state: del state['context']
+        return state
+
+    def __setstate__(self, state):
+        self.__dict__.update(state)
+        self.context = None
+
     def analyze_theaters(self, faction: str) -> List[Theater]:
         """
         Groups owned systems into theaters based on connectivity.

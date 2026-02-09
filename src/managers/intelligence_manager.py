@@ -282,19 +282,25 @@ class IntelligenceManager:
                                home_x: float, home_y: float,
                                strat_priority: tuple, strat_targets: tuple, 
                                strat_target_faction: str, strat_phase: str,
-                               turn: int) -> float:
+                               turn: int,
+                               include_rationale: bool = False) -> Any:
         """Calculates a weighted score for a planet as a target, with caching."""
         planet = self.engine.get_planet(planet_name)
-        if not planet: return 0.0
+        if not planet: return 0.0 if not include_rationale else (0.0, {"error": "Planet not found"})
         
+        rationale = {}
         val = getattr(planet, 'income_req', 100)
+        rationale["base_income"] = val
         
         is_capital = "Capital" in [n.type for n in getattr(planet, 'provinces', [])]
-        if is_capital: val *= 5.0 
+        if is_capital: 
+            val *= 5.0 
+            rationale["capital_multiplier"] = 5.0
         
         connections = len(planet.system.connections) if hasattr(planet, 'system') and hasattr(planet.system, 'connections') else 3
-        if connections <= 2: val *= 1.5 
-        # Promethium check removed 
+        if connections <= 2: 
+            val *= 1.5 
+            rationale["strategic_choke_multiplier"] = 1.5
         
         px = planet.system.x if hasattr(planet, 'system') else 0
         py = planet.system.y if hasattr(planet, 'system') else 0
@@ -303,23 +309,40 @@ class IntelligenceManager:
         d = max(10, d)
         dist_factor = 100.0 / d
         val *= dist_factor
+        rationale["distance_absolute"] = d
+        rationale["distance_factor"] = dist_factor
         
-        if planet_name in strat_priority: val *= 2.0
-        if planet_name in strat_targets: val *= 1.5
-        if strat_target_faction and planet.owner == strat_target_faction: val *= 1.3
+        if planet_name in strat_priority: 
+            val *= 2.0
+            rationale["strat_priority_boost"] = 2.0
+        if planet_name in strat_targets: 
+            val *= 1.5
+            rationale["strat_target_boost"] = 1.5
+        if strat_target_faction and planet.owner == strat_target_faction: 
+            val *= 1.3
+            rationale["strat_faction_hostility_boost"] = 1.3
         
-        if strat_phase == "CONSOLIDATION" and d > 300: val *= 0.5
+        if strat_phase == "CONSOLIDATION" and d > 300: 
+            val *= 0.5
+            rationale["consolidation_distance_penalty"] = 0.5
         
         threat = 0
         intel = self.get_cached_intel(faction, planet_name, turn)
         last_seen = intel[0]
         if turn - last_seen < 5:
             threat = intel[3]
+            rationale["threat_source"] = "Recent Intelligence"
         else:
-            threat = self.calculate_threat_level(planet_name, faction, turn) # Fix: passed string
+            threat = self.calculate_threat_level(planet_name, faction, turn)
+            rationale["threat_source"] = "Live Assessment"
             
-        val *= (1.0 / max(0.5, threat))
+        threat_mult = (1.0 / max(0.5, threat))
+        val *= threat_mult
+        rationale["threat_multiplier"] = threat_mult
+        rationale["threat_level"] = threat
         
+        if include_rationale:
+            return (val, rationale)
         return val
 
     def attempt_blueprint_theft(self, faction_name: str, target_faction: str, target_location: Any, engine: 'CampaignEngine'):

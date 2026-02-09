@@ -55,7 +55,17 @@ impl Armor for crate::CombatUnit {
             DamageType::Explosive => 0.0, // Explosive ignores armor? Or flat reduction?
         };
         
-        let mitigated = damage * (1.0 - mitigation_factor);
-        if mitigated < 0.0 { 0.0 } else { mitigated }
+        // Apply Cover
+        let cover_mitigation = match self.cover {
+            crate::CoverType::None => 0.0,
+            crate::CoverType::Light => 0.25,
+            crate::CoverType::Heavy => 0.50,
+            crate::CoverType::Fortified => 0.75,
+        };
+
+        // Multiplicative stacking: (1 - armor) * (1 - cover)
+        let final_damage = damage * (1.0 - mitigation_factor) * (1.0 - cover_mitigation);
+        
+        if final_damage < 0.0 { 0.0 } else { final_damage }
     }
 }

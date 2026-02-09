@@ -43,46 +43,65 @@ class TacticalAI:
         
         return score
 
-    def select_target(self, unit, enemies: List, grid) -> Optional[Any]:
+    def select_target(self, unit, enemies: List, grid, context: Dict = None) -> Optional[Any]:
         """
         Selects the best target from a list of enemies.
         Implements Focus Fire logic.
         """
         if not enemies: return None
         
-        # Filter by range validity? Usually handled by caller.
-        
         best_target = None
         best_score = -999.0
+        options = []
+        
+        # Get Doctrine for rationale
+        doctrine = context.get("doctrine", "CHARGE") if context else "STANDARD"
         
         for e in enemies:
             score = 0.0
+            rationale = {}
             
             # 1. Kill Probability (Low HP)
             hp_pct = e.current_hp / e.max_hp
             if hp_pct < 0.25:
                 score += 50.0  # Finish them off!
+                rationale["low_hp_bonus"] = 50.0
             elif hp_pct < 0.5:
                 score += 20.0
+                rationale["med_hp_bonus"] = 20.0
                 
             # 2. Threat Level (High DPS)
-            # Heuristic: Weapon count or known class
             if "Capital" in e.name or "Battleship" in e.name:
                 score += 30.0
+                rationale["high_threat_bonus"] = 30.0
                 
             # 3. Distance (Closer is easier to hit usually)
             dist = grid.get_distance(unit, e)
             score -= dist  # Penalty for distance
-            
-            # 4. Focus Fire History (Has this target been hit this round?)
-            # Requires context, passed in? Or stored on unit?
-            # Assuming 'e' tracks incoming damage/hits this turn?
-            # If not available, we skip.
+            rationale["distance_penalty"] = -dist
             
             if score > best_score:
                 best_score = score
                 best_target = e
                 
+            options.append({
+                "action": f"ATTACK:{getattr(e, 'id', e.name)}",
+                "score": score,
+                "rationale": rationale
+            })
+                
+        # LOG DECISION ($DEEP_TRACER)
+        if best_target and self.ai and hasattr(self.ai, 'decision_logger'):
+            # Filter top 3 options
+            top_options = sorted(options, key=lambda x: x["score"], reverse=True)[:3]
+            self.ai.decision_logger.log_decision(
+                decision_type="COMBAT_TARGET",
+                actor_id=f"{unit.faction}:{getattr(unit, 'id', 'unknown')}",
+                context={"doctrine": doctrine, "unit_type": unit.name, "enemy_count": len(enemies)},
+                options=top_options,
+                selected_action=f"ATTACK:{getattr(best_target, 'id', best_target.name)}"
+            )
+            
         return best_target
         
     def decide_movement(self, unit, grid, enemies: List, context: Dict) -> Tuple[int, int]:
@@ -107,6 +126,7 @@ class TacticalAI:
         moves = [(0,0), (1,0), (-1,0), (0,1), (0,-1), (1,1), (-1,-1), (1,-1), (-1,1)]
         best_move = (0,0)
         best_val = -9999.0
+        move_options = []
         
         for dx, dy in moves:
             nx = unit.grid_x + dx
@@ -116,8 +136,7 @@ class TacticalAI:
             if not (0 <= nx < grid.width and 0 <= ny < grid.height):
                 continue
                 
-            # Collision check? handled by grid usually, but we assume empty for score
-            # Real collision check:
+            # Collision check
             if grid.get_unit_at(nx, ny) and grid.get_unit_at(nx, ny) != unit:
                 continue
                 
@@ -125,5 +144,22 @@ class TacticalAI:
             if val > best_val:
                 best_val = val
                 best_move = (dx, dy)
+            
+            move_options.append({
+                "action": f"MOVE:{dx},{dy}",
+                "score": val,
+                "rationale": {"pos": (nx, ny)}
+            })
+        
+        # LOG DECISION ($DEEP_TRACER)
+        if self.ai and hasattr(self.ai, 'decision_logger'):
+            top_moves = sorted(move_options, key=lambda x: x["score"], reverse=True)[:3]
+            self.ai.decision_logger.log_decision(
+                decision_type="COMBAT_MOVE",
+                actor_id=f"{unit.faction}:{getattr(unit, 'id', 'unknown')}",
+                context={"doctrine": doctrine, "optimal_range": optimal_range},
+                options=top_moves,
+                selected_action=f"MOVE:{best_move[0]},{best_move[1]}"
+            )
                 
         return best_move

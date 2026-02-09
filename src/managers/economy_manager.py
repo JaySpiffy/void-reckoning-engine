@@ -18,6 +18,7 @@ from src.services.construction_service import ConstructionService
 from src.managers.economy.resource_handler import ResourceHandler
 from src.managers.economy.budget_allocator import BudgetAllocator
 from src.managers.economy.insolvency_handler import InsolvencyHandler
+from src.utils.rust_economy import RustEconomyWrapper
 
 if TYPE_CHECKING:
     from src.core.interfaces import IEngine
@@ -52,6 +53,8 @@ class EconomyManager:
         
         # New Components
         self.resource_handler = ResourceHandler(campaign_engine)
+        self.rust_econ = RustEconomyWrapper()
+        
         self.budget_allocator = BudgetAllocator(
             campaign_engine, 
             self.recruitment_service, 
@@ -85,6 +88,34 @@ class EconomyManager:
         """Clears all cached economic data."""
         self.faction_econ_cache.clear()
 
+    # [PHASE 8] Serialization Support
+    def __getstate__(self):
+        """Custom serialization to handle RNG and circular references."""
+        state = self.__dict__.copy()
+        # Remove unpicklable or reconstructed objects
+        if 'engine' in state: del state['engine']
+        if 'rust_econ' in state: del state['rust_econ'] # Rust wrapper might not picklable
+        if '_economy_rng' in state:
+             state['_economy_rng_state'] = self._economy_rng.getstate()
+             del state['_economy_rng']
+             
+        return state
+
+    def __setstate__(self, state):
+        """Custom deserialization to restore state."""
+        # Restore RNG
+        if '_economy_rng_state' in state:
+            self._economy_rng = random.Random()
+            self._economy_rng.setstate(state['_economy_rng_state'])
+            del state['_economy_rng_state']
+        else:
+            self._economy_rng = random.Random()
+            
+        self.__dict__.update(state)
+        # 'engine' must be re-injected by SnapshotManager
+        # Rust wrappers re-init
+        self.rust_econ = RustEconomyWrapper()
+    
     def process_economy(self) -> None:
         """
         Executes the full economic cycle for the current turn.
@@ -96,18 +127,25 @@ class EconomyManager:
         if hasattr(self.engine, 'banking_manager'):
             self.engine.banking_manager.process_banking_cycle()
 
-        # Step 1: Pre-calculate everything (ResourceHandler)
-        self.faction_econ_cache = self.resource_handler.precalculate_economics()
+        # [PHASE 5] Rust Economy Integration
+        self._sync_rust_economy()
+        self.rust_reports = self.rust_econ.get_all_reports()
         
+        # Flush Rust Economy Events (Insolvency, etc.)
+        if hasattr(self.engine, 'telemetry') and self.engine.telemetry:
+            self.rust_econ.flush_logs(self.engine.telemetry)
+        
+        # Step 0: Global Banking (Debt, etc.)
+        if hasattr(self.engine, 'banking_manager'):
+            self.engine.banking_manager.process_banking_cycle()
+
         for f_name in sorted([f.name for f in self.engine.get_all_factions()]):
             if f_name == "Neutral": continue
             
-            if self.engine.logger:
-                chk = self._economy_rng.getrandbits(32)
-                self.engine.logger.debug(f"[RNG] EconomyManager Processing {f_name} Checksum: {chk}")
-            
-            cached_data = self.faction_econ_cache.get(f_name)
-            self.process_faction_economy(f_name, cached_econ=cached_data)
+            report = self.rust_reports.get(f_name)
+            if not report: continue
+                
+            self.process_faction_economy(f_name, report=report)
 
         self.perf_metrics["economy_time"] = time.time() - start_time
         # Sync metrics from sub-components
@@ -115,15 +153,31 @@ class EconomyManager:
         self.perf_metrics["disbanded_count"] += self.insolvency_handler.perf_metrics["disbanded_count"]
 
     @profile_method
-    def process_faction_economy(self, f_name: str, cached_econ: dict = None) -> None:
+    def process_faction_economy(self, f_name: str, report: dict = None) -> None:
         faction_mgr = self.engine.get_faction(f_name)
         if not faction_mgr: return
         
-        # 1. Calculate Stats & Mode
-        if not cached_econ:
-            econ_data = self._calculate_economics(f_name)
+        # 1. Map Rust Report to Python Economic State
+        if not report:
+             # Fallback to local calculation if Rust fails or missing (Safety check)
+             cached_econ = self.resource_handler.precalculate_economics().get(f_name, {})
+             econ_data = self._hydrate_cached_econ(f_name, cached_econ, faction_mgr)
         else:
-            econ_data = self._hydrate_cached_econ(f_name, cached_econ, faction_mgr)
+             # Rust provided the raw deterministic numbers (The Processor)
+             econ_data = {
+                "income": report["total_income"]["credits"],
+                "total_upkeep": report["total_upkeep"]["credits"],
+                "net_profit": report["net_profit"]["credits"],
+                "research_income": report["total_income"]["research"],
+                "income_by_category": {cat: res["credits"] for cat, res in report.get("income_by_category", {}).items()},
+                "is_insolvent": report.get("is_insolvent", False),
+                # We still need margin for AI decisions
+                "margin": 1.0
+             }
+             if econ_data["total_upkeep"] > 0:
+                  econ_data["margin"] = round(econ_data["income"] / econ_data["total_upkeep"], 2)
+             else:
+                  econ_data["margin"] = 5.0 # Max healthy margin for AI
             
         # 1b. Process Construction Queues (Before Spending)
         self.construction_service.process_queues_for_faction(f_name)
@@ -342,8 +396,8 @@ class EconomyManager:
             {
                 "name": "EXPANSION",
                 "condition_type": "rich",
-                "threshold": 300000.0, # 300k Req
-                "budget": {"recruitment": 0.3, "construction": 0.6, "research": 0.1}
+                "threshold": 50000.0, # Reduced from 300k to 50k for more aggressive expansion
+                "budget": {"recruitment": 0.5, "construction": 0.4, "research": 0.1} # Increased recruitment from 0.3 to 0.5
             },
             {
                 "name": "WAR",
@@ -452,6 +506,109 @@ class EconomyManager:
             "military_upkeep": cached_econ.get("military_upkeep", 0),
             "infrastructure_upkeep": cached_econ.get("infrastructure_upkeep", 0)
         }
+
+    def _sync_rust_economy(self):
+        """
+        Populates the Rust economy engine with data from the simulation.
+        Translates Python models (Planet, Fleet, ArmyGroup) into Rust EconomicNodes.
+        """
+        self.rust_econ.reset()
+        
+        # 1. Set Global Rules from balance.py
+        self.rust_econ.set_rules(
+            orbit_discount=getattr(bal, 'ORBIT_DISCOUNT_MULTIPLIER', 0.5),
+            garrison_discount=getattr(bal, 'GARRISON_UPKEEP_MULTIPLIER', 0.5),
+            navy_penalty_ratio=4, # Baseline: 4 fleets per planet
+            navy_penalty_rate=getattr(bal, 'ECON_NAVY_PENALTY_RATE', 0.25),
+            vassal_tribute_rate=0.2, # 20%
+            fleet_upkeep_scalar=getattr(bal, 'FLEET_MAINTENANCE_SCALAR', 1.0)
+        )
+        
+        # 2. Add Economic Nodes
+        for faction in self.engine.get_all_factions():
+            f_name = faction.name
+            if f_name == "Neutral": continue
+            
+            # --- Planets & Armies ---
+            planets = self.engine.planets_by_faction.get(f_name, [])
+            for p in planets:
+                p.update_economy_cache()
+                cached = p._cached_econ_output
+                
+                # Planet Node
+                self.rust_econ.add_node(
+                    node_id=p.name,
+                    owner_faction=f_name,
+                    node_type="Planet",
+                    base_income={
+                        "credits": cached["total_gross"] + bal.MIN_PLANET_INCOME,
+                        "research": cached["research_output"] + 5 # Passive planetary research
+                    },
+                    base_upkeep={
+                        "credits": p._cached_maintenance
+                    },
+                    efficiency=0.5 if p.is_sieged else 1.0
+                )
+                
+                # Armies on this planet (Garrisoned or Excess)
+                if hasattr(p, 'armies'):
+                    p_armies = [ag for ag in p.armies if ag.faction == f_name and not ag.is_destroyed]
+                    if p_armies:
+                        capacity = getattr(p, 'garrison_capacity', 1)
+                        # We sort by upkeep to ensure the most expensive are garrisoned first for discount
+                        # Wait, Rust engine applies discount to efficiency_scaled < 1.0
+                        # So we mark the first 'capacity' armies as 'garrisoned' (efficiency 0.5)
+                        armies_data = []
+                        for ag in p_armies:
+                            upkeep = sum(getattr(u, 'upkeep', 0) for u in ag.units)
+                            armies_data.append((ag.id if hasattr(ag, 'id') else f"Army_{ag.location.name}_{f_name}", upkeep))
+                        
+                        armies_data.sort(key=lambda x: x[1], reverse=True)
+                        
+                        for i, (a_id, a_upkeep) in enumerate(armies_data):
+                            is_garrisoned = (i < capacity)
+                            self.rust_econ.add_node(
+                                node_id=f"AG_{a_id}",
+                                owner_faction=f_name,
+                                node_type="Army",
+                                base_income={"credits": 0},
+                                base_upkeep={"credits": a_upkeep},
+                                efficiency=0.5 if is_garrisoned else 1.0
+                            )
+
+            # --- Fleets ---
+            fleets = self.engine.fleets_by_faction.get(f_name, [])
+            for fl in fleets:
+                if fl.is_destroyed: continue
+                
+                # Fleet Node
+                self.rust_econ.add_node(
+                    node_id=fl.id,
+                    owner_faction=f_name,
+                    node_type="Fleet",
+                    base_income={"credits": 0},
+                    base_upkeep={"credits": fl.upkeep},
+                    efficiency=0.5 if fl.is_in_orbit else 1.0
+                )
+                
+                # Special Nodes (Mining Station / Research Outpost)
+                for u in fl.units:
+                    if getattr(u, 'unit_class', '') == 'MiningStation':
+                         self.rust_econ.add_node(
+                             node_id=f"Mining_{fl.id}_{u.name}",
+                             owner_faction=f_name,
+                             node_type="Station",
+                             base_income={"credits": 500},
+                             base_upkeep={"credits": 0}
+                         )
+                    elif getattr(u, 'unit_class', '') == 'ResearchOutpost':
+                         self.rust_econ.add_node(
+                             node_id=f"Research_{fl.id}_{u.name}",
+                             owner_faction=f_name,
+                             node_type="Station",
+                             base_income={"research": 10},
+                             base_upkeep={"credits": 0}
+                         )
 
     def get_faction_economic_report(self, f_name: str) -> dict:
         """Public accessor for AI Manager."""
@@ -808,3 +965,56 @@ class EconomyManager:
                 },
                 faction=f_name
             )
+
+    def __getstate__(self):
+        """Custom serialization to handle engine reference."""
+        state = self.__dict__.copy()
+        if 'engine' in state: del state['engine']
+        if 'rust_econ' in state: del state['rust_econ']
+        
+        # Exclude services to prevent 'module' pickling errors
+        if 'recruitment_service' in state: del state['recruitment_service']
+        if 'construction_service' in state: del state['construction_service']
+        if 'resource_handler' in state: del state['resource_handler']
+        if 'budget_allocator' in state: del state['budget_allocator']
+        if 'insolvency_handler' in state: del state['insolvency_handler']
+
+        return state
+
+    def __setstate__(self, state):
+        """Custom deserialization."""
+        self.__dict__.update(state)
+        # Engine re-injected by SnapshotManager
+        self.rust_econ = None
+        # Services re-inited by reinit_services
+        self.recruitment_service = None
+        self.construction_service = None
+        self.resource_handler = None
+        self.budget_allocator = None
+        self.insolvency_handler = None
+
+    def reinit_services(self, engine):
+        """Re-initializes services after snapshot restore."""
+        self.engine = engine
+        # Ensure RNG is restored (handled in __setstate__), pass it to services
+        rng = getattr(self, '_economy_rng', None)
+        
+        self.recruitment_service = RecruitmentService(engine, rng)
+        self.construction_service = ConstructionService(engine, rng)
+        self.resource_handler = ResourceHandler(engine)
+        
+        self.budget_allocator = BudgetAllocator(
+            engine,
+            self.recruitment_service,
+            self.construction_service,
+            rng=rng
+        )
+        self.insolvency_handler = InsolvencyHandler(engine)
+        
+        # Restore Rust bridge if possible
+        try:
+             from src.core.rust_bridge import RustEconomyBridge
+             self.rust_econ = RustEconomyBridge()
+        except:
+             self.rust_econ = None
+

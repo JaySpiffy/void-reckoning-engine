@@ -4,9 +4,13 @@ use crate::registry::Registries;
 use std::sync::Arc;
 use serde_json::Value;
 
+use void_reckoning_shared::{Event, EventLog, EventSeverity, CorrelationContext};
+
 pub struct ValidationEngine {
     rules: Vec<Arc<dyn ValidationRule>>,
     registries: Arc<Registries>,
+    pub event_log: Option<EventLog>,
+    pub current_context: CorrelationContext,
 }
 
 impl ValidationEngine {
@@ -20,7 +24,17 @@ impl ValidationEngine {
         Self {
             rules,
             registries,
+            event_log: None,
+            current_context: CorrelationContext::new(),
         }
+    }
+    
+    pub fn set_event_log(&mut self, log: EventLog) {
+        self.event_log = Some(log);
+    }
+
+    pub fn set_correlation_context(&mut self, context: CorrelationContext) {
+        self.current_context = context;
     }
     
     pub fn validate_entity(
@@ -46,6 +60,23 @@ impl ValidationEngine {
             if rule.is_enabled() {
                 let result = rule.validate(&context);
                 if result.severity != ValidationSeverity::Info {
+                    if let Some(log) = &self.event_log {
+                        let severity = match result.severity {
+                            ValidationSeverity::Warning => EventSeverity::Warning,
+                            ValidationSeverity::Error => EventSeverity::Error,
+                            ValidationSeverity::Critical => EventSeverity::Critical,
+                            _ => EventSeverity::Info,
+                        };
+                        
+                        let evt = Event::new(
+                            severity,
+                            "Auditor".to_string(),
+                            format!("[Rule: {}] {}", result.rule_name, result.message),
+                            self.current_context.child(),
+                            Some(result.entity_id.clone())
+                        );
+                        log.add(evt);
+                    }
                     results.push(result);
                 }
             }

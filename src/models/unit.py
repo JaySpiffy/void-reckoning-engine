@@ -417,6 +417,21 @@ class Unit:
     def fleet(self):
         return self._fleet_ref() if hasattr(self, '_fleet_ref') and self._fleet_ref else None
 
+    def __getstate__(self):
+        """Custom pickling to handle weakrefs."""
+        state = self.__dict__.copy()
+        # weakref objects are not picklable
+        if '_fleet_ref' in state:
+            del state['_fleet_ref']
+        return state
+
+    def __setstate__(self, state):
+        """Restore state and re-init weakrefs as None."""
+        self.__dict__.update(state)
+        # Verify _fleet_ref exists (it was deleted in getstate)
+        if not hasattr(self, '_fleet_ref'):
+            self._fleet_ref = None
+
     def apply_traits(self, trait_mods: Dict[str, Dict[str, Any]]):
         """Applies trait modifications to unit stats."""
         if not self.stats_comp:

@@ -37,6 +37,7 @@ class RustAuditorWrapper:
             return False
         try:
             self._auditor.initialize()
+            self._event_log = self._auditor.enable_event_logging()
             self._initialized = True
             return True
         except Exception as e:
@@ -53,3 +54,64 @@ class RustAuditorWrapper:
         except Exception as e:
             self.logger.error(f"Validation failed for {entity_id}: {e}")
             return []
+    def flush_logs(self, telemetry_logger):
+        """
+        Retrieves events from Rust and flushes them to the Python telemetry logger.
+        """
+        if not self._auditor or not hasattr(self, '_event_log') or not self._event_log:
+            return
+
+        try:
+            events = self._event_log.get_all()
+            if not events: return
+            
+            from src.reporting.telemetry import EventCategory
+            
+            for evt in events:
+                # Map Rust Severity to Telemetry Level
+                cat = EventCategory.SYSTEM
+                if evt.category == "Auditor": cat = EventCategory.SYSTEM
+                
+                telemetry_logger.log_event(
+                    cat, 
+                    "auditor_event", 
+                    {
+                        "severity": evt.severity,
+                        "rule": getattr(evt, 'rule_name', 'unknown'),
+                        "message": evt.message,
+                        "context": evt.context.trace_id if evt.context else None
+                    }
+                )
+                
+            self._event_log.clear() 
+            
+        except Exception as e:
+            self.logger.error(f"Failed to flush logs: {e}")
+
+    def __getstate__(self):
+        state = self.__dict__.copy()
+        if 'logger' in state: del state['logger']
+        if '_auditor' in state: del state['_auditor']
+        if '_event_log' in state: del state['_event_log']
+        return state
+
+    def __setstate__(self, state):
+        self.__dict__.update(state)
+        # Restore logger
+        self.logger = logging.getLogger("RustAuditor")
+        # Restore Auditor if available
+        if _RustAuditor:
+            try:
+                self._auditor = _RustAuditor()
+                # Attempt to restore state? 
+                # Auditor state is complex. For now, we re-init as new.
+                # If specialized state restoration is needed, we'd need serialization on Rust side.
+                if state.get('_initialized', False):
+                     self._auditor.initialize()
+                     self._event_log = self._auditor.enable_event_logging()
+            except Exception as e:
+                self.logger.error(f"Failed to restore RustAuditor: {e}")
+                self._auditor = None
+                self._initialized = False
+        else:
+            self._auditor = None

@@ -56,6 +56,7 @@ class DashboardCommand(BaseCommand):
         }
         
         try:
-            simulation_runner.run_batch_simulation(config)
+            from src.reporting.terminal.orchestrator import TerminalDashboard
+            simulation_runner.run_batch_simulation(config, dashboard_class=TerminalDashboard)
         except KeyboardInterrupt:
             print("\nDemo stopped.")

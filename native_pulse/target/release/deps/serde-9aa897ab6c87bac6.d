@@ -1,0 +1,14 @@
+C:\Users\whitt\OneDrive\Desktop\New folder (4)\native_pulse\target\release\deps\serde-9aa897ab6c87bac6.d: C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\lib.rs C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\integer128.rs C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\mod.rs C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\de.rs C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\ser.rs C:\Users\whitt\OneDrive\Desktop\New\ folder\ (4)\native_pulse\target\release\build\serde-fa1d945d8b5feaec\out/private.rs
+
+C:\Users\whitt\OneDrive\Desktop\New folder (4)\native_pulse\target\release\deps\libserde-9aa897ab6c87bac6.rlib: C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\lib.rs C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\integer128.rs C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\mod.rs C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\de.rs C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\ser.rs C:\Users\whitt\OneDrive\Desktop\New\ folder\ (4)\native_pulse\target\release\build\serde-fa1d945d8b5feaec\out/private.rs
+
+C:\Users\whitt\OneDrive\Desktop\New folder (4)\native_pulse\target\release\deps\libserde-9aa897ab6c87bac6.rmeta: C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\lib.rs C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\integer128.rs C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\mod.rs C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\de.rs C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\ser.rs C:\Users\whitt\OneDrive\Desktop\New\ folder\ (4)\native_pulse\target\release\build\serde-fa1d945d8b5feaec\out/private.rs
+
+C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\lib.rs:
+C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\integer128.rs:
+C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\mod.rs:
+C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\de.rs:
+C:\Users\whitt\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\ser.rs:
+C:\Users\whitt\OneDrive\Desktop\New\ folder\ (4)\native_pulse\target\release\build\serde-fa1d945d8b5feaec\out/private.rs:
+
+# env-dep:OUT_DIR=C:\\Users\\whitt\\OneDrive\\Desktop\\New folder (4)\\native_pulse\\target\\release\\build\\serde-fa1d945d8b5feaec\\out

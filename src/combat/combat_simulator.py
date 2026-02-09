@@ -63,8 +63,10 @@ def resolve_fleet_engagement_rust(armies_dict: Dict[str, List[Any]], silent=Fals
         
     engine.initialize_battle(armies_dict)
     
+    from src.core.constants import MAX_COMBAT_ROUNDS
+    
     rounds = 0
-    max_rounds = 100
+    max_rounds = MAX_COMBAT_ROUNDS
     
     while rounds < max_rounds:
         cont = engine.resolve_round()

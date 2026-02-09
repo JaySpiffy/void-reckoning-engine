@@ -37,6 +37,7 @@ impl InvariantValidator for HealthInvariantValidator {
                 severity: ValidationSeverity::Info,
                 entity_id: "global".to_string(),
                 message: "Health invariant satisfied".to_string(),
+                rule_name: self.name().to_string(),
                 file_path: None,
                 timestamp: 0,
             }
@@ -46,6 +47,7 @@ impl InvariantValidator for HealthInvariantValidator {
                 severity: ValidationSeverity::Critical,
                 entity_id: "global".to_string(),
                 message: format!("Health invariant violations: {}", violations.join(", ")),
+                rule_name: self.name().to_string(),
                 file_path: None,
                 timestamp: 0,
             }

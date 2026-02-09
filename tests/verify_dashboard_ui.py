@@ -1,8 +1,9 @@
 
 import sys
+import os
 import unittest
-from unittest.mock import MagicMock
-from src.reporting.terminal_dashboard import TerminalDashboard
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from src.reporting.terminal.orchestrator import TerminalDashboard
 
 class TestDashboardUI(unittest.TestCase):
     def setUp(self):

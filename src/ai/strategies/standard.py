@@ -196,21 +196,65 @@ class StandardStrategy(FactionAIStrategy):
 
             for p in safe_targets:
                 try:
-                    val = engine.intel_manager.calculate_target_score(
+                    val, rationale = engine.intel_manager.calculate_target_score(
                         p.name, fleet.faction, h_x, h_y,
                         s_priority, s_targets, s_fact, s_phase,
-                        engine.turn_counter
+                        engine.turn_counter,
+                        include_rationale=True
                     )
-                    scored_candidates.append((p, val))
+                    scored_candidates.append((p, val, rationale))
                 except Exception as e:
                     print(f"CRASH in calculate_target_score: {e}")
                     continue
 
-            # Weighted Selection
-            total_score = sum(s for p, s in scored_candidates)
+            # LOG DECISION ($DEEP_TRACER)
+            if hasattr(engine, 'ai_manager') and hasattr(engine.ai_manager, 'decision_logger'):
+                # Prep options for logging
+                options = []
+                sorted_scored = sorted(scored_candidates, key=lambda x: x[1], reverse=True)
+                for p, s, r in sorted_scored[:3]: # Top 3
+                    options.append({
+                        "action": f"MOVE_TO:{p.name}",
+                        "score": s,
+                        "rationale": r
+                    })
+                
+                # Weighted Selection
+                total_score = sum(s for p, s, r in scored_candidates)
+                if total_score > 0:
+                    pick_val = _ai_rng.uniform(0, total_score)
+                    current = 0
+                    selected_node = None
+                    for p, s, r in scored_candidates:
+                        current += s
+                        if current >= pick_val:
+                            selected_node = p
+                            break
+                    if not selected_node: selected_node = scored_candidates[0][0]
+                else:
+                    selected_node = None
+
+                if selected_node:
+                    context = {
+                        "location": fleet.location.name,
+                        "resources": {"requisition": f_mgr.requisition},
+                        "strategic_phase": s_phase,
+                        "fleet_power": fleet.power
+                    }
+                    engine.ai_manager.decision_logger.log_decision(
+                        decision_type="FLEET_MOVE",
+                        actor_id=f"{fleet.faction}:{fleet.id}",
+                        context=context,
+                        options=options,
+                        selected_action=f"MOVE_TO:{selected_node.name}"
+                    )
+                return selected_node
+            
+            # Legacy fallback if no decision logger
+            total_score = sum(s for p, s, r in scored_candidates)
             pick_val = _ai_rng.uniform(0, total_score)
             current = 0
-            for p, s in scored_candidates:
+            for p, s, r in scored_candidates:
                 current += s
                 if current >= pick_val:
                     return p

@@ -38,6 +38,21 @@ class PathfindingService:
             except Exception as e:
                 print(f"[Native Pulse] Failed to init RustPathfinder: {e}")
 
+    def set_correlation_id(self, trace_id: str, span_id: str):
+        """
+        Sets the correlation context for the underlying Rust pathfinder.
+        """
+        if not self._rust_pathfinder: return
+        try:
+            from void_reckoning_bridge import CorrelationContext
+            ctx = CorrelationContext()
+            ctx.trace_id = trace_id
+            ctx.span_id = span_id
+            self._rust_pathfinder.set_correlation_context(ctx)
+        except Exception as e:
+            # print(f"Failed to set correlation context: {e}")
+            pass
+
     @property
     def cache_stats(self):
         return self._stats.copy()
@@ -86,7 +101,9 @@ class PathfindingService:
         for node in nodes:
             node_id = getattr(node, 'id', str(node))
             self._node_ref_cache[node_id] = node
-            self._rust_pathfinder.add_node(node_id)
+            
+            terrain = getattr(node, 'terrain_type', None)
+            self._rust_pathfinder.add_node(node_id, terrain)
             
         # 2. Register Edges
         # We iterate again to ensure all definition nodes exist before adding edges? 
@@ -151,7 +168,8 @@ class PathfindingService:
                 
                 # Check for cached lookup existence to avoid Rust panics or misses
                 if s_id in self._node_ref_cache and e_id in self._node_ref_cache:
-                    path_ids_tuple = self._rust_pathfinder.find_path(s_id, e_id)
+                    profile = "Ground" if is_ground else "Space"
+                    path_ids_tuple = self._rust_pathfinder.find_path(s_id, e_id, profile)
                     
                     if path_ids_tuple:
                         path_ids, cost = path_ids_tuple

@@ -12,6 +12,8 @@ if TYPE_CHECKING:
     from src.models.faction import Faction
     from src.models.planet import Planet
 
+from src.reporting.decision_logger import DecisionLogger
+
 class ConstructionService:
     """
     Handles operational logic for building construction and planet queues.
@@ -22,6 +24,8 @@ class ConstructionService:
         
         # Track construction queue history for analysis
         self._queue_history: Dict[str, List[Dict[str, Any]]] = {}
+        
+        self.decision_logger = DecisionLogger(engine=engine)
 
         # Track construction queue history for analysis
         self._queue_history: Dict[str, List[Dict[str, Any]]] = {}
@@ -558,6 +562,7 @@ class ConstructionService:
                  f.write(f"  Sample Cand: {candidates[:5]}\n")
         
         target_b = None
+        decision_rationale = "No Candidate Found"
         
         # --- PHASE 0: COLONIZATION STARTER PACK ---
         
@@ -570,6 +575,7 @@ class ConstructionService:
                  # Only prioritize if we are relatively safe or very poor
                  if not hasattr(p, 'is_sieged') or not p.is_sieged:
                      target_b = get_stream("economy").choice(res_opts)
+                     decision_rationale = "Colonization Protocol (Resource)"
                      if self.engine.logger: self.engine.logger.economy(f"[CONSTRUCTION] New Colony Protocol (Resource) on {p.name}: {target_b}")
 
         # 2. Military Priority (If < 1 military building and we have resources or skipped resource)
@@ -578,6 +584,7 @@ class ConstructionService:
              if starters_for_me: 
                  starters_for_me.sort()
                  target_b = get_stream("economy").choice(starters_for_me)
+                 decision_rationale = "Colonization Protocol (Military)"
                  if self.engine.logger: self.engine.logger.economy(f"[CONSTRUCTION] New Colony Protocol (Military) on {p.name}: {target_b}")
         # ------------------------------------------
 
@@ -587,6 +594,7 @@ class ConstructionService:
              if starters_for_me: 
                  starters_for_me.sort()
                  target_b = get_stream("economy").choice(starters_for_me)
+                 decision_rationale = "Military Baseline (Defense)"
         
         navy_infra = ["Shipyard", "Orbital Dock", "Deep Space Foundry", "Raider Drydock", "Air Caste Dock"]
         
@@ -608,6 +616,7 @@ class ConstructionService:
              if navy_candidates: 
                  navy_candidates.sort()
                  target_b = get_stream("economy").choice(navy_candidates)
+                 decision_rationale = "Navy Infrastructure Expansion"
              
              # If still no target and we are STUPID rich, build another military building if slots allow
              if not target_b and faction_mgr.requisition > 50000:
@@ -616,12 +625,14 @@ class ConstructionService:
                   if mil_opts and total_slots > 4:
                        mil_opts.sort()
                        target_b = get_stream("economy").choice(mil_opts)
+                       decision_rationale = "Wealth Overflow (Military)"
         
         if not target_b and is_crisis:
             income_opts = [b for b in candidates if b in income_buildings]
             if income_opts:
                 income_opts.sort()
                 target_b = get_stream("economy").choice(income_opts)
+                decision_rationale = "Crisis Recovery (Economic)"
                 
         # Phase 4: Research Drive (Batch 13)
         # If RP income is 0 or very low (< 50), prioritize research if affordable
@@ -675,16 +686,55 @@ class ConstructionService:
             
             # Sort candidates by score + mild randomness
             random_stream = get_stream("economy")
-            candidates.sort(key=lambda x: get_role_score(x) + random_stream.random() * 5, reverse=True)
+            scored_opts = []
+            for c in candidates:
+                score = get_role_score(c)
+                scored_opts.append((c, score))
+            
+            scored_opts.sort(key=lambda x: x[1] + random_stream.random() * 5, reverse=True)
             
             # Pick top 3 weighted
-            top_candidates = candidates[:3]
-            target_b = random_stream.choice(top_candidates) if top_candidates else candidates[0]
+            top_candidates = [opt[0] for opt in scored_opts[:3]]
+            target_b = random_stream.choice(top_candidates) if top_candidates else scored_opts[0][0]
+            decision_rationale = f"Planet Specialization ({role})"
             
-            # target_b = get_stream("economy").choice(candidates) # Old Logic
-            
-        if not target_b: 
-            return 0, 0
+        # [PHASE 6] Decision Logging ($DEEP_TRACER)
+        if target_b and self.decision_logger:
+             # Prep considered options for logging
+             options_considered = []
+             # Collect at least 3 interesting ones if they exist
+             logged_count = 0
+             if 'scored_opts' in locals():
+                  for b_id, score in scored_opts[:3]:
+                       options_considered.append({
+                           "action": f"BUILD:{b_id}",
+                           "score": score,
+                           "rationale": f"Role Match ({role})"
+                       })
+             else:
+                  # If we picked via a specific Phase (Resource/Military priority), just log that one
+                  options_considered.append({
+                      "action": f"BUILD:{target_b}",
+                      "score": 1.0,
+                      "rationale": decision_rationale
+                  })
+
+             self.decision_logger.log_decision(
+                 "PRODUCTION",
+                 p.owner,
+                 {
+                     "planet": p.name,
+                     "mode": mode,
+                     "budget": remaining_budget,
+                     "requisition": faction_mgr.requisition,
+                     "slots_info": f"{built_count}/{total_slots}",
+                     "plan_id": getattr(faction_mgr, 'strategic_context', {}).get("plan_id"),
+                     "root_goal": getattr(faction_mgr, 'strategic_context', {}).get("root_goal")
+                 },
+                 options_considered,
+                 f"BUILD:{target_b}",
+                 "Selected"
+             )
             
         db_entry = get_building_database().get(target_b, {})
         cost = db_entry.get("cost", 1000)

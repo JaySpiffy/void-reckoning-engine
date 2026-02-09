@@ -1,5 +1,5 @@
 import random
-from typing import Dict, Optional
+from typing import Dict, Optional, Any
 
 class RNGManager:
     """
@@ -55,6 +55,21 @@ class RNGManager:
         import hashlib
         stream_hash = int(hashlib.md5(stream_name.encode()).hexdigest(), 16) & 0xFFFFFFFF
         return (base_seed + stream_hash) & 0xFFFFFFFF
+
+    def get_all_states(self) -> Dict[str, Any]:
+        """Captures the internal state of all managed RNG streams."""
+        states = {}
+        for name, rng in self._streams.items():
+            states[name] = rng.getstate()
+        return states
+
+    def restore_states(self, states: Dict[str, Any]):
+        """Restores RNG streams to a previous state."""
+        for name, state in states.items():
+            # If stream doesn't exist, create it
+            if name not in self._streams:
+                self.get_rng(name)
+            self._streams[name].setstate(state)
 
 # Global Accessor
 def get_stream(name: str) -> random.Random:

@@ -32,6 +32,7 @@ from src.ai.coordinators.intelligence_coordinator import IntelligenceCoordinator
 from src.ai.coordinators.tech_doctrine_manager import TechDoctrineManager
 
 from src.core.interfaces import IEngine
+from src.reporting.decision_logger import DecisionLogger
 
 class StrategicAI:
     def __init__(self, engine: IEngine):
@@ -60,6 +61,7 @@ class StrategicAI:
         # New Engine (Item 2.1)
         self.economic_engine = EconomicEngine(self)
         self.target_scoring = TargetScoringService(self)
+        self.decision_logger = DecisionLogger(engine=self.engine)
         
         # New Feature: Dynamic Weights
         from src.ai.dynamic_weights import DynamicWeightSystem
@@ -91,9 +93,109 @@ class StrategicAI:
         # Telemetry: Alliance Stats
         self.alliance_stats = {} # {alliance_id: {shared_intel: 0, coordinated_attacks: 0}}
         
+    def __getstate__(self):
+        """Prepares StrategicAI for pickling."""
+        state = self.__dict__.copy()
+        if 'engine' in state: del state['engine']
+        if 'decision_logger' in state: del state['decision_logger']
+        
+        # Stateless Coordinators/Strategies that contain unpicklable refs (modules/locks)
+        # We exclude them and re-init them on load
+        if 'intelligence_coordinator' in state: del state['intelligence_coordinator']
+        if 'tech_doctrine_manager' in state: del state['tech_doctrine_manager']
+        if 'economic_strategy' in state: del state['economic_strategy']
+        if 'defensive_strategy' in state: del state['defensive_strategy']
+        if 'offensive_strategy' in state: del state['offensive_strategy']
+        if 'interception_strategy' in state: del state['interception_strategy']
+        if 'exploration_strategy' in state: del state['exploration_strategy']
+        
+        # Phase 7/8 components
+        if 'coalition_builder' in state: del state['coalition_builder']
+        if 'proactive_diplomacy' in state: del state['proactive_diplomacy']
+        if 'tactical_ai' in state: del state['tactical_ai']
+        
+        # Prune deep caches that hold engine/fleet refs
+        if 'turn_cache' in state: del state['turn_cache']
+        if '_last_cache_turn' in state: del state['_last_cache_turn']
+        
+        return state
+
+    def __setstate__(self, state):
+        """Restores StrategicAI from pickle."""
+        self.__dict__.update(state)
+        # Engine will be re-injected by SnapshotManager
+        self.decision_logger = None 
+        # Stateless components will be re-inited by reinit_stateless_components called by SnapshotManager
+        self.intelligence_coordinator = None
+        self.tech_doctrine_manager = None
+        
+        self.economic_strategy = None
+        self.defensive_strategy = None
+        self.offensive_strategy = None
+        self.interception_strategy = None
+        self.exploration_strategy = None
+        
+        self.coalition_builder = None
+        self.proactive_diplomacy = None
+        self.tactical_ai = None
+        
+        # Re-init caches
+        self.turn_cache = {}
+        self._last_cache_turn = -1
+
+    def reinit_stateless_components(self):
+        """Re-initializes stateless components after snapshot restore."""
+        # Restore engine refs in stateful managers
+        if self.tf_manager:
+            self.tf_manager.engine = self.engine
+            self.tf_manager.ai_manager = self
+            
+        if self.planner:
+            self.planner.ai = self
+            if self.planner.theater_manager:
+                self.planner.theater_manager.context = self.engine
+
+        if self.personality_manager:
+            self.personality_manager.engine = self.engine
+            # Reload personalities if loader is missing (it was excluded)
+            from src.core.config import ACTIVE_UNIVERSE
+            self.personality_manager.load_personalities(ACTIVE_UNIVERSE or "void_reckoning")
+
+        if self.target_scoring:
+            self.target_scoring.engine = self.engine
+            self.target_scoring.ai_manager = self
+            
+        if self.economic_engine:
+            self.economic_engine.engine = self.engine
+            self.economic_engine.ai = self
+            
+        if self.composition_optimizer:
+            self.composition_optimizer.engine = self.engine
+            self.composition_optimizer.ai = self
+
+        # Coordinators
+        self.intelligence_coordinator = IntelligenceCoordinator(self.engine, self)
+        self.tech_doctrine_manager = TechDoctrineManager(self.engine, self)
+        
+        # Strategies
+        self.economic_strategy = EconomicStrategy(self)
+        self.defensive_strategy = DefensiveStrategy(self)
+        self.offensive_strategy = OffensiveStrategy(self)
+        self.interception_strategy = InterceptionStrategy(self)
+        self.exploration_strategy = ExplorationStrategy(self)
+        
+        # Advanced Features
+        from src.ai.coalition_builder import CoalitionBuilder
+        from src.ai.proactive_diplomacy import ProactiveDiplomacy
+        from src.ai.tactical_ai import TacticalAI
+        
+        self.coalition_builder = CoalitionBuilder(self)
+        self.proactive_diplomacy = ProactiveDiplomacy(self)
+        self.tactical_ai = TacticalAI(self)
+        
     def _log_strategic_decision(self, faction: str, decision_type: str, decision: str, reason: str, context: dict, expected_outcome: str):
         """Logs strategic decision telemetry."""
-        if not self.engine.telemetry: return
+        if not self.engine or not self.engine.telemetry: return
         
         self.engine.telemetry.log_event(
             EventCategory.STRATEGY,
@@ -417,13 +519,14 @@ class StrategicAI:
     def calculate_expansion_target_score(self, planet_name: str, faction: str, 
                                         home_x: float, home_y: float, 
                                         personality_name: str, econ_state: str, turn: int,
-                                        weights: Dict[str, float] = None) -> float:
+                                        weights: Dict[str, float] = None,
+                                        include_rationale: bool = False) -> Any:
         """Cached expansion target scoring with intelligence integration."""
         mandates = self.turn_cache.get('mandates', {}).get(faction, {})
         
         return self.target_scoring.calculate_expansion_target_score(
             planet_name, faction, home_x, home_y, personality_name, econ_state, turn, 
-            mandates=mandates, weights=weights
+            mandates=mandates, weights=weights, include_rationale=include_rationale
         )
 
     def is_valid_target(self, faction: str, target_faction: str) -> bool:

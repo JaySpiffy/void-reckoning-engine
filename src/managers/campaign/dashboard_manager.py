@@ -76,3 +76,17 @@ class DashboardManager:
             pass
             
         return False
+
+    def __getstate__(self):
+        state = self.__dict__.copy()
+        if 'telemetry' in state: del state['telemetry']
+        if 'report_organizer' in state: del state['report_organizer']
+        if 'logger' in state: del state['logger']
+        return state
+
+    def __setstate__(self, state):
+        self.__dict__.update(state)
+        # Dependencies must be re-injected by Orchestrator
+        self.telemetry = None
+        self.report_organizer = None
+        self.logger = None

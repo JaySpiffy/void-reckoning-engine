@@ -28,6 +28,16 @@ class RelationService:
             
         self.initialize_relations()
 
+    def __getstate__(self):
+        state = self.__dict__.copy()
+        if 'engine' in state: del state['engine']
+        return state
+
+    def __setstate__(self, state):
+        self.__dict__.update(state)
+        self.engine = None # Restored by reinit_services
+
+
     def _log_trace(self, message: str):
         if self.trace_file:
             try:
@@ -241,16 +251,16 @@ class RelationService:
                 
                 # 1. Existential Threats
                 if a1 == "DESTRUCTION" or a2 == "DESTRUCTION":
-                    drift = -5 
+                    drift = -1 # Reduced from -5 to allow *some* diplomacy (e.g. bribes)
                 
                 # 2. Order vs Chaos
                 elif (a1 == "ORDER" and a2 == "CHAOS") or (a1 == "CHAOS" and a2 == "ORDER"):
-                    drift = -2
+                    drift = -1 # Reduced from -2
                     
                 # 3. Compatible Alignments
                 elif a1 == a2 and a1 != "NEUTRAL":
                     if a1 == "PROFIT": drift = 1 # Business partners check in
-                    if a1 == "ORDER": drift = 0 # Order doesn't necessarily mean friends, just not enemies
+                    if a1 == "ORDER": drift = 1 # Order factions should stick together (Boosted from 0)
                     if a1 == "CHAOS": drift = -1 # Chaos fights itself too
                     
                 if drift != 0:

@@ -25,6 +25,15 @@ pub struct Weapon {
     pub current_cooldown: f32,
 }
 
+/// Cover bonuses for mitigation
+#[derive(Debug, Clone, Copy, PartialEq)]
+pub enum CoverType {
+    None,
+    Light, // 25% Damage Reduction
+    Heavy, // 50% Damage Reduction
+    Fortified, // 75% Damage Reduction
+}
+
 /// A flattened, memory-efficient representation of a combat unit.
 #[derive(Debug, Clone)]
 pub struct CombatUnit {
@@ -50,6 +59,9 @@ pub struct CombatUnit {
     pub velocity: (f32, f32), // Movement vector
     pub target_id: Option<u32>, // Current target
     pub is_alive: bool,
+    
+    // Context
+    pub cover: CoverType,
 }
 
 impl CombatUnit {
@@ -71,6 +83,7 @@ impl CombatUnit {
             velocity: (0.0, 0.0),
             target_id: None,
             is_alive: true,
+            cover: CoverType::None,
         }
     }
     
@@ -85,6 +98,7 @@ pub struct BattleState {
     pub grid_size: (f32, f32),
     pub turn: u32,
     pub time_elapsed: f32,
+    pub run_id: String,
 }
 
 impl BattleState {
@@ -94,6 +108,7 @@ impl BattleState {
             grid_size: (width, height),
             turn: 0,
             time_elapsed: 0.0,
+            run_id: uuid::Uuid::new_v4().to_string(),
         }
     }
     

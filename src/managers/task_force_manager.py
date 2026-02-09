@@ -22,6 +22,17 @@ class TaskForceManager:
         self._fleet_to_tf_map: Dict[str, TaskForce] = {} # {FleetID: TaskForce} (Inverse Index)
         self.tf_counter = 0
 
+    def __getstate__(self):
+        state = self.__dict__.copy()
+        if 'engine' in state: del state['engine']
+        if 'ai_manager' in state: del state['ai_manager']
+        return state
+
+    def __setstate__(self, state):
+        self.__dict__.update(state)
+        self.engine = None
+        self.ai_manager = None
+
     def get_task_force_for_fleet(self, fleet: Fleet) -> Optional[TaskForce]:
         """Finds the TaskForce containing the given fleet. O(1) Lookup."""
         if not fleet: return None

@@ -9,12 +9,13 @@ class CombatState:
     """
     Encapsulates battle state operations, management, and initialization.
     """
-    def __init__(self, armies_dict: Dict[str, List[Any]], faction_doctrines: Dict[str, str], faction_metadata: Dict[str, Any], universe_rules: Optional[Any] = None, defender_factions: Optional[set] = None):
+    def __init__(self, armies_dict: Dict[str, List[Any]], faction_doctrines: Dict[str, str], faction_metadata: Dict[str, Any], universe_rules: Optional[Any] = None, defender_factions: Optional[set] = None, decision_logger: Optional[Any] = None):
         self.armies_dict = armies_dict
         self.faction_doctrines = faction_doctrines
         self.faction_metadata = faction_metadata
         self.universe_rules = universe_rules
         self.defender_factions = defender_factions or set()
+        self.decision_logger = decision_logger
         self.universe_state = {}
         self.active_factions = [f for f in armies_dict if len(armies_dict[f]) > 0]
         self.battle_stats = {

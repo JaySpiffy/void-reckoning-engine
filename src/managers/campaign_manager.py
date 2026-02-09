@@ -64,6 +64,9 @@ from queue import Empty
 
 from src.utils.game_logging import GameLogger, LogCategory
 from src.services.pathfinding_service import PathfindingService
+from src.observability.snapshot_manager import SnapshotManager
+from src.utils.rust_auditor import RustAuditorWrapper
+from src.core.audit.audit_scheduler import AuditScheduler
 
 class CampaignEngine:
     def __init__(self, battle_log_dir: Optional[str] = None, game_config: Optional[Union[Dict[str, Any], GameConfig]] = None, report_organizer: Optional[object] = None, universe_name: Optional[str] = None, telemetry_collector: Optional[object] = None, manager_overrides: Optional[Dict[str, Any]] = None):
@@ -97,7 +100,14 @@ class CampaignEngine:
         self.banking_manager = BankingManager(self) # [Iron Bank]
         self.scenario_manager = ScenarioManager(self)
         self.persistence_manager = PersistenceManager(self)
+        self.persistence_manager = PersistenceManager(self)
+        self.snapshot_manager = SnapshotManager(self)
         self.stats_history: List[Dict[str, Any]] = []
+        
+        # [PHASE 4] State Consistency Auditing
+        self.auditor_wrapper = RustAuditorWrapper()
+        self.auditor_wrapper.initialize()
+        self.audit_scheduler = AuditScheduler(self.auditor_wrapper)
         
         # Campaign Milestone Tracking
         self._campaign_milestones: List[Dict[str, Any]] = []
@@ -136,6 +146,82 @@ class CampaignEngine:
         # Ideally, move all to initializer, but keeping here for safety during refactor
         
         self._progress_q_ref = None
+
+    def replay_from_snapshot(self, snapshot_id: str) -> bool:
+        success = self.snapshot_manager.restore_snapshot(snapshot_id)
+        return success
+
+    def __getstate__(self):
+        """
+        Prepares CampaignEngine for pickling.
+        Crucial for SnapshotManager to handle components that Reference 'self.engine'.
+        """
+        state = self.__dict__.copy()
+        
+        # Remove unpicklable objects
+        if 'logger' in state: del state['logger']
+        if 'report_organizer' in state: del state['report_organizer'] # Might contain open files/locks
+        if 'telemetry' in state: del state['telemetry']
+            
+        # Services that are re-initialized on load or stateless
+        if 'mechanics_engine' in state: del state['mechanics_engine']
+        if 'pathfinder' in state: del state['pathfinder']
+        if 'distance_matrix' in state: del state['distance_matrix']
+        if 'battle_manager' in state: del state['battle_manager']
+        if 'intelligence_manager' in state: del state['intelligence_manager']
+        if 'faction_reporter' in state: del state['faction_reporter']
+        if 'mission_manager' in state: del state['mission_manager']
+        if 'scenario_manager' in state: del state['scenario_manager']
+        # AssetManager MUST be kept to preserve counters (stateful)
+        
+        return state
+
+    def __setstate__(self, state):
+        """Restores CampaignEngine from pickle."""
+        self.__dict__.update(state)
+        
+        # Restore Logger (SnapshotManager handles main injection)
+        self.logger = None
+        self.report_organizer = None
+        self.telemetry = None
+        
+        # Services will be re-inited by reinit_services called by SnapshotManager
+        self.mechanics_engine = None
+        self.pathfinder = None
+        self.distance_matrix = None
+        self.battle_manager = None
+        self.intelligence_manager = None
+        self.faction_reporter = None
+        self.mission_manager = None
+        self.scenario_manager = None
+
+    def reinit_services(self):
+        """Re-initializes stateless services after snapshot restore."""
+        # 1. Core Services (Stateless/Cache-based)
+        from src.mechanics.faction_mechanics_engine import FactionMechanicsEngine
+        from src.services.pathfinding_service import PathfindingService
+        from src.services.distance_matrix import DistanceMatrixService as DistanceMatrix
+        
+        self.mechanics_engine = FactionMechanicsEngine(self)
+        self.pathfinder = PathfindingService()
+        self.distance_matrix = DistanceMatrix(self)
+        
+        # 2. Managers (Excluded for picking reasons)
+        from src.managers.battle_manager import BattleManager
+        from src.managers.intelligence_manager import IntelligenceManager
+        from src.reporting.faction_reporter import FactionReporter
+        from src.managers.mission_manager import MissionManager
+        from src.managers.scenario_manager import ScenarioManager
+        
+        self.battle_manager = BattleManager(campaign_engine=self)
+        self.intelligence_manager = IntelligenceManager(self)
+        self.faction_reporter = FactionReporter(self) # SnapshotManager injects logger first
+        self.mission_manager = MissionManager(self.logger)
+        self.scenario_manager = ScenarioManager(self)
+
+        # 3. Re-init Orchestrator Dependencies (Phase 7 compatibility)
+        if hasattr(self, 'orchestrator') and self.orchestrator:
+            self.orchestrator.reinit_dependencies()
 
     # [Item 2.2] Proxy Properties for Backward Compatibility
     @property
@@ -286,10 +372,14 @@ class CampaignEngine:
     def register_fleet(self, fleet: 'Fleet') -> None:
         """Delegates to FleetManager (Item 3.1)."""
         self.fleet_manager.register_fleet(fleet)
+        if hasattr(self, 'audit_scheduler') and self.audit_scheduler:
+            self.audit_scheduler.register_entity(fleet)
 
     def unregister_fleet(self, fleet: 'Fleet') -> None:
         """Delegates to FleetManager (Item 3.1)."""
         self.fleet_manager.unregister_fleet(fleet)
+        if self.audit_scheduler:
+            self.audit_scheduler.unregister_entity(fleet)
 
     def update_planet_ownership(self, planet: 'Planet', new_owner: str) -> None:
         """Updates planet owner and maintains faction indices."""
@@ -396,6 +486,11 @@ class CampaignEngine:
         if self.logger:
             self.logger.campaign(f"Galaxy Generation Complete: {len(self.systems)} Systems, {len(self.all_planets)} Planets.")
         
+        # [AUDIT] Register Planets for Auditing
+        if self.audit_scheduler:
+            for p in self.all_planets:
+                self.audit_scheduler.register_entity(p)
+        
         # Populate Planet Index
         # Delegated to Repository via GalaxyStateManager.set_systems -> PlanetRepository.save
         # self.galaxy_manager.set_systems(systems) calls save(), which updates the index.
@@ -481,6 +576,11 @@ class CampaignEngine:
         fleet = self.asset_manager.create_fleet(faction, location, units, fid)
         if hasattr(fleet, 'register_with_cache_manager'):
             fleet.register_with_cache_manager(self.cache_manager)
+        
+        # [AUDIT] Register Fleet
+        if self.audit_scheduler:
+            self.audit_scheduler.register_entity(fleet)
+            
         return fleet
 
     def create_army(self, faction: str, location: Planet, units: Optional[List[Unit]] = None, aid: Optional[str] = None) -> ArmyGroup:

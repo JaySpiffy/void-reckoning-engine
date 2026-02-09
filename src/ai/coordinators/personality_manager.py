@@ -78,3 +78,13 @@ class PersonalityManager:
             
         return personality
 
+    def __getstate__(self):
+        state = self.__dict__.copy()
+        if 'engine' in state: del state['engine']
+        if 'personality_loader' in state: del state['personality_loader']
+        return state
+
+    def __setstate__(self, state):
+        self.__dict__.update(state)
+        self.engine = None
+        self.personality_loader = None

@@ -26,6 +26,18 @@ class AssetManager:
         self.fleet_counters = {}
         self.army_counters = {}
 
+    def __getstate__(self):
+        """Exclude engine from pickling."""
+        state = self.__dict__.copy()
+        if 'engine' in state: del state['engine']
+        return state
+
+    def __setstate__(self, state):
+        """Restore state."""
+        self.__dict__.update(state)
+        self.engine = None # Re-injected by SnapshotManager
+
+
     def register_fleet(self, fleet: 'Fleet') -> None:
         """Adds fleet to master list and faction index."""
         self.engine.add_fleet(fleet)

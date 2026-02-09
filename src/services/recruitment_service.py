@@ -8,6 +8,7 @@ from src.models.unit import Unit
 from src.factories.unit_factory import UnitFactory
 from src.core.constants import FLEET_COMMISSION_COST, FLEET_COMMISSION_THRESHOLD, get_building_database
 from src.core import balance as bal
+from src.reporting.decision_logger import DecisionLogger
 
 
 if TYPE_CHECKING:
@@ -23,6 +24,7 @@ class RecruitmentService:
         self.engine = engine
         # self.rng replaced by RNGManager
         self.telemetry = TelemetryHelper(engine)
+        self.decision_logger = DecisionLogger(engine=engine)
 
     def _log_skip_event(self, f_name: str, r_type: str, skipped: List[dict], caps: dict = None):
         """Logs aggregated recruitment skip reasons."""
@@ -275,6 +277,26 @@ class RecruitmentService:
                 turn=self.engine.turn_counter,
                 faction=f_name
             )
+            
+            # [PHASE 6] Decision Logging ($DEEP_TRACER)
+            if self.decision_logger:
+                strat_ctx = getattr(faction_mgr, 'strategic_context', {})
+                self.decision_logger.log_decision(
+                    "RECRUITMENT",
+                    f_name,
+                    {
+                        "type": "fleet_commission",
+                        "location": spawn_point.name,
+                        "budget": budget,
+                        "requisition": faction_mgr.requisition,
+                        "mode": mode,
+                        "plan_id": strat_ctx.get("plan_id"),
+                        "root_goal": strat_ctx.get("root_goal")
+                    },
+                    [{"action": "COMMISSION_FLEET", "score": 1, "rationale": "Base Priority"}],
+                    f"FLEET:{new_fleet.id}",
+                    "Commissioned"
+                )
             count += 1
         return spent
 
@@ -632,6 +654,28 @@ class RecruitmentService:
                 turn=self.engine.turn_counter,
                 faction=f_name
             )
+
+            # [PHASE 6] Decision Logging ($DEEP_TRACER)
+            if self.decision_logger:
+                strat_ctx = getattr(faction_mgr, 'strategic_context', {})
+                self.decision_logger.log_decision(
+                    "RECRUITMENT",
+                    f_name,
+                    {
+                        "type": "ship_production",
+                        "planet": target_planet.name,
+                        "station": target_station.name,
+                        "target_class": target_class,
+                        "target_role": target_role,
+                        "budget": budget,
+                        "requisition": faction_mgr.requisition,
+                        "plan_id": strat_ctx.get("plan_id"),
+                        "root_goal": strat_ctx.get("root_goal")
+                    },
+                    [{"action": f"BUILD:{bp.name}", "score": 1, "rationale": f"Role Match ({target_role})"}],
+                    f"SHIP:{bp.name}",
+                    "Queued"
+                )
             count += 1
             
         self._log_skip_event(f_name, "navy", skipped_log, skip_caps)

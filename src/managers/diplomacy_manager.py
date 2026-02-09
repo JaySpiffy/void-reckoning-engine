@@ -38,6 +38,39 @@ class DiplomacyManager:
         
         # [PHASE 25] War Goal System
         self.active_war_goals = {} # {(attacker, defender): "Goal"}
+
+    # [PHASE 8] Serialization Support
+    def __getstate__(self):
+        """Custom serialization to handle engine reference."""
+        state = self.__dict__.copy()
+        if 'engine' in state: del state['engine']
+        # Remove services that hold engine references to avoid recursion if they aren't handle internally
+        # But we assume services are picklable or have their own __getstate__
+        # For now, let's trust child objects or add handlers there if tests fail.
+        return state
+
+    def __setstate__(self, state):
+        """Custom deserialization."""
+        self.__dict__.update(state)
+        # Engine re-injected by SnapshotManager
+        
+    def reinit_services(self, engine):
+        """Re-injects engine into services."""
+        self.engine = engine
+        if hasattr(self, 'relation_service') and self.relation_service:
+            self.relation_service.engine = engine
+            # Logging trace file might need re-opening?
+            if hasattr(engine, 'reports_dir'):
+                 import os
+                 log_dir = os.path.join(engine.reports_dir, "logs")
+                 self.relation_service.trace_file = os.path.join(log_dir, "diplomacy_trace.txt")
+                 
+        if hasattr(self, 'treaty_coordinator') and self.treaty_coordinator:
+            self.treaty_coordinator.engine = engine
+            
+        if hasattr(self, 'action_handler') and self.action_handler:
+            self.action_handler.engine = engine
+        
     # --- Backward Compatibility Properties ---
     @property
     def relations(self):
@@ -700,12 +733,16 @@ class DiplomacyManager:
                  
                  friction = self.relation_service.calculate_border_friction(count)
                  if friction != 0:
-                      self.relation_service.drift_relation(f1, f2, friction)
+                      # [FIX] Probabilistic Friction
+                      # Constant -1/-2/-3 per turn is too harsh. Make it 10% chance.
+                      # Effective rate: -0.1 to -0.3 per turn.
+                      if random.random() < 0.10: 
+                          self.relation_service.drift_relation(f1, f2, friction)
                       
-                      # Log occasionally
-                      if self.engine.turn_counter % 20 == 0 and random.random() < 0.1:
-                           if self.engine.logger:
-                                self.engine.logger.diplomacy(f"[BORDER] {f1} feels tension with {f2} due to {count} shared borders.")
+                          # Log occasionally
+                          if self.engine.turn_counter % 50 == 0 and random.random() < 0.1: # Less spam
+                               if self.engine.logger:
+                                    self.engine.logger.diplomacy(f"[BORDER] {f1} feels tension with {f2} due to {count} shared borders.")
 
     def _apply_global_alignment_drift(self):
         """

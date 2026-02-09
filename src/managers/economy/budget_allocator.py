@@ -9,6 +9,8 @@ if TYPE_CHECKING:
     from src.services.recruitment_service import RecruitmentService
     from src.services.construction_service import ConstructionService
 
+from src.reporting.decision_logger import DecisionLogger
+
 class BudgetAllocator:
     """
     Handles budget distribution and spending execution.
@@ -18,6 +20,7 @@ class BudgetAllocator:
         self.recruitment_service = recruitment_service
         self.construction_service = construction_service
         self.rng = rng
+        self.decision_logger = DecisionLogger(engine.telemetry) if hasattr(engine, 'telemetry') else None
 
     @profile_method
     def execute_budget(self, f_name: str, faction_mgr: 'Faction', econ_data: dict) -> None:
@@ -218,32 +221,39 @@ class BudgetAllocator:
                          faction=f_name
                      )
 
-            # Log Allocation Decision
-            if self.engine.telemetry:
-                 self.engine.telemetry.log_event(
-                     EventCategory.ECONOMY,
-                     "budget_allocation_decision",
-                     {
-                         "mode": active_mode["name"],
-                         "growth_funds_available": growth_funds,
-                         "allocations": {
-                             "construction": {"allocated": con_alloc, "reason": "standard"},
-                             "research": {"allocated": res_alloc, "reason": "standard"},
-                             "navy": {"allocated": navy_alloc, "blocked": not can_fund_navy, "reason": "cap_exceeded" if not can_fund_navy else "standard"},
-                             "army": {"allocated": army_alloc, "blocked": not can_fund_army, "reason": "cap_exceeded" if not can_fund_army else "standard"}
-                         },
-                         "redistributions": [{"from": "navy", "to": "construction", "amount": navy_alloc, "reason": "redistributed_due_to_cap"} if not can_fund_navy else {}],
-                         "sustainability_checks": {
-                             "passed": can_fund_navy and can_fund_army,
-                             "checks": [
-                                 {"check": "navy_cap", "result": can_fund_navy},
-                                 {"check": "army_cap", "result": can_fund_army},
-                                 {"check": "infra_cap", "result": can_fund_infra}
-                             ]
-                         }
+             # Log Allocation Decision
+            if self.decision_logger:
+                 reason = "Standard Allocation"
+                 if not can_fund_navy: reason += " (Navy Capped)"
+                 if not can_fund_army: reason += " (Army Capped)"
+                 
+                 # [PHASE 3] Inject Strategic Context
+                 strat_ctx = getattr(faction_mgr, 'strategic_context', {})
+                 ctx_payload = {
+                     "mode": active_mode["name"],
+                     "growth_funds_available": growth_funds,
+                     "income": income,
+                     "upkeep": upkeep,
+                     "caps": {"navy": can_fund_navy, "army": can_fund_army, "infra": can_fund_infra},
+                     "allocations": {
+                         "construction": con_alloc,
+                         "research": res_alloc,
+                         "navy": navy_alloc,
+                         "army": army_alloc
                      },
-                     turn=self.engine.turn_counter,
-                     faction=f_name
+                     "plan_id": strat_ctx.get("plan_id"),
+                     "root_goal": strat_ctx.get("root_goal")
+                 }
+
+                 self.decision_logger.log_decision(
+                     "BUDGET_ALLOCATION",
+                     f_name,
+                     ctx_payload,
+                     [
+                         {"action": "Execute Budget", "score": 1.0, "rationale": reason}
+                     ],
+                     "Execute Budget",
+                     "Success"
                  )
             
         # --- Research Progression (Parallel Slot Support) ---

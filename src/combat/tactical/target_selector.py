@@ -8,7 +8,7 @@ class TargetSelector:
     
     @staticmethod
     @profile_method
-    def select_target_by_doctrine(attacker, enemies: List, doctrine: str, grid, sim_time: float = 0.0) -> Tuple[Optional[object], Optional[object]]:
+    def select_target_by_doctrine(attacker, enemies: List, doctrine: str, grid, sim_time: float = 0.0, decision_logger=None, strategic_context=None) -> Tuple[Optional[object], Optional[object]]:
         """
         Selects the best target and specific hardpoint based on combat doctrine.
         Returns: (target_unit, target_component)
@@ -98,10 +98,63 @@ class TargetSelector:
 
         target_unit = None
         if valid_enemies:
-             if doctrine == "KITE":
-                  target_unit = min(valid_enemies, key=lambda e: getattr(e, 'current_hp', 100))
+             # Fast Path: No Logging
+             if not decision_logger:
+                 if doctrine == "KITE":
+                      target_unit = min(valid_enemies, key=lambda e: getattr(e, 'current_hp', 100))
+                 else:
+                      target_unit = min(valid_enemies, key=get_target_score)
              else:
-                  target_unit = min(valid_enemies, key=get_target_score)
+                 # Instrumented Path (Significant Units Only)
+                 is_significant = False
+                 u_class = (getattr(attacker, 'unit_class', '') or '').lower()
+                 if "titan" in u_class or "battleship" in u_class or "cruiser" in u_class:
+                      is_significant = True
+                 
+                 if not is_significant:
+                      if doctrine == "KITE":
+                          target_unit = min(valid_enemies, key=lambda e: getattr(e, 'current_hp', 100))
+                      else:
+                          target_unit = min(valid_enemies, key=get_target_score)
+                 else:
+                      # Calculate scores for all to log alternatives
+                      scored = []
+                      for e in valid_enemies:
+                           if doctrine == "KITE":
+                                s = getattr(e, 'current_hp', 100)
+                           else:
+                                s = get_target_score(e)
+                           scored.append((e, s))
+                      
+                      # Sort ascending (lower score is better in this heuristic? check get_target_score)
+                      # get_target_score returns 'dist - bonuses', so lower is better.
+                      scored.sort(key=lambda x: x[1])
+                      target_unit = scored[0][0]
+                      
+                      # Log Decision
+                      plan_id = strategic_context.get("plan_id") if strategic_context else "N/A"
+                      root_goal = strategic_context.get("root_goal") if strategic_context else "TACTICAL"
+                      
+                      alternatives = [
+                           {"action": f"Target {c[0].name}", "score": float(f"{c[1]:.2f}"), "rationale": f"Class: {getattr(c[0], 'unit_class', 'Unk')}"}
+                           for c in scored[:3]
+                      ]
+                      
+                      decision_logger.log_decision(
+                           "TACTICAL_TARGETING",
+                           getattr(attacker, 'faction', 'Unknown'),
+                           {
+                               "attacker": attacker.name,
+                               "attacker_class": u_class,
+                               "plan_id": plan_id,
+                               "root_goal": root_goal,
+                               "location": f"({attacker.grid_x}, {attacker.grid_y})",
+                               "doctrine": doctrine
+                           },
+                           alternatives,
+                           f"Target {target_unit.name}",
+                           "Selected best score"
+                      )
         
         if not target_unit:
             return None, None

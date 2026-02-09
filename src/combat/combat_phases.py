@@ -41,6 +41,7 @@ class MovementPhase(CombatPhase):
         
         # Lazy import to avoid circular dependency if tactical_engine imports this
         from src.combat.tactical_engine import select_target_by_doctrine, calculate_movement_vector
+        decision_logger = getattr(manager, 'decision_logger', None)
 
         indices = list(range(len(active_units)))
         get_stream("phases").shuffle(indices)
@@ -85,7 +86,7 @@ class MovementPhase(CombatPhase):
                 # Apply as a multiplier to the current points for this turn
                 u.movement_points *= form_speed_mult
 
-            target, _ = select_target_by_doctrine(u, enemies, doctrine, grid)
+            target, _ = select_target_by_doctrine(u, enemies, doctrine, grid, decision_logger=decision_logger)
             
             # [ADVANCED AI] Escort Logic
             # If no enemy target and unit is in DEFEND mode or is an Interdictor Escort
@@ -215,6 +216,7 @@ class ShootingPhase(CombatPhase):
         universe_rules = context.get("universe_rules")
 
         from src.combat.tactical_engine import select_target_by_doctrine
+        decision_logger = getattr(manager, 'decision_logger', None)
 
         indices = list(range(len(active_units)))
         get_stream("phases").shuffle(indices)
@@ -399,7 +401,7 @@ class ShootingPhase(CombatPhase):
             att_f_doctrine = att_meta.get("faction_doctrine", "STANDARD")
             att_intensity = att_meta.get("intensity", 1.0)
 
-            defender, _ = select_target_by_doctrine(attacker, enemies, doctrine, grid)
+            defender, _ = select_target_by_doctrine(attacker, enemies, doctrine, grid, decision_logger=decision_logger)
             if not defender: continue
             
             dist = grid.get_distance(attacker, defender)
@@ -436,7 +438,7 @@ class ShootingPhase(CombatPhase):
                 tags = attacker.abilities.get("Tags", [])
             
             is_massive = any(t in tags for t in ["Massive", "Starbase", "Titan"])
-            primary_target, _ = select_target_by_doctrine(attacker, enemies, doctrine, grid)
+            primary_target, _ = select_target_by_doctrine(attacker, enemies, doctrine, grid, decision_logger=decision_logger)
             
             for comp in attacker.components:
                 if comp.type == "Weapon" and not comp.is_destroyed:

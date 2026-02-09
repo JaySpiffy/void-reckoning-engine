@@ -316,9 +316,11 @@ class CampaignInitializer:
         mechanics = self.engine.game_config.get("mechanics", {})
         if mechanics.get("enable_diplomacy", True):
             from src.managers.diplomacy_manager import DiplomacyManager
-            self.engine.diplomacy = self.manager_overrides.get("diplomacy_manager") or \
+            self.engine.diplomacy_manager = self.manager_overrides.get("diplomacy_manager") or \
                 DiplomacyManager(self.engine.faction_manager.get_faction_names(), self.engine)
+            self.engine.diplomacy = self.engine.diplomacy_manager # Alias for legacy
         else:
+            self.engine.diplomacy_manager = None
             self.engine.diplomacy = None
             
         self.engine.mechanics_engine = FactionMechanicsEngine(self.engine, universe_name=self.engine.universe_config.name)

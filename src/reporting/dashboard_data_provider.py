@@ -860,6 +860,57 @@ class DashboardDataProvider:
                 pass
         return {}
 
+    def get_event_trace(self, universe: str, run_id: str, trace_id: str) -> List[Dict[str, Any]]:
+        """
+        Retrieves the causal lineage for a specific event.
+        Returns a list of events from root cause to the target event.
+        """
+        if not trace_id: return []
+        
+        chain = []
+        current_id = trace_id
+        import json
+        
+        try:
+            cursor = self.indexer.conn.cursor()
+            
+            # Limit depth to prevent infinite loops in malformed data
+            for _ in range(20):
+                query = """
+                    SELECT trace_id, parent_trace_id, event_type, category, faction, timestamp, data_json, turn
+                    FROM events
+                    WHERE universe = ? AND run_id = ? AND trace_id = ?
+                """
+                cursor.execute(query, (universe, run_id, current_id))
+                row = cursor.fetchone()
+                
+                if not row:
+                    break
+                    
+                event_data = {
+                    "trace_id": row[0],
+                    "parent_trace_id": row[1],
+                    "event_type": row[2],
+                    "category": row[3],
+                    "faction": row[4],
+                    "timestamp": row[5],
+                    "data": json.loads(row[6]) if row[6] else {},
+                    "turn": row[7]
+                }
+                
+                chain.insert(0, event_data) # Prepend to build chronological order
+                
+                parent_id = row[1]
+                if not parent_id:
+                    break
+                current_id = parent_id
+                
+            return chain
+            
+        except Exception as e:
+            logger.error(f"Error tracing event {trace_id}: {e}")
+            return []
+
     # --- Analytics Methods ---
 
     def get_trend_analysis(self, faction: str, universe: str) -> Dict[str, Any]:

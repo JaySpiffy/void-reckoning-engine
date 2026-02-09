@@ -8,13 +8,13 @@
     "procedural_faction_limit": 0,
     "campaign": {
         "turns": 10000,
-        "num_systems": 10,
+        "num_systems": 30,
         "min_planets": 10,
         "max_planets": 10
     },
     "combat": {
         "real_time_headless": true,
-        "max_duration_seconds": 60,
+        "max_duration_seconds": 360,
         "time_step": 0.05,
         "use_rust_combat": true
     },
@@ -141,7 +141,7 @@
         "output_dir": "reports/void_reckoning_sim",
         "log_level": "INFO",
         "random_seed": null,
-        "faction_instances": 1,
+        "faction_instances": 3,
         "enable_mayhem": false
     },
     "performance": {

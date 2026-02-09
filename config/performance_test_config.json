@@ -1,0 +1,16 @@
+{
+    "mode": "single",
+    "campaign": {
+        "turns": 50,
+        "num_systems": 15
+    },
+    "combat": {
+        "real_time_headless": true,
+        "use_rust_combat": true
+    },
+    "performance": {
+        "logging_level": "detail",
+        "log_interval": 1,
+        "profile_methods": true
+    }
+}

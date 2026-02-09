@@ -27,6 +27,7 @@ pub struct ValidationResult {
     pub entity_id: String,
     pub message: String,
     pub file_path: Option<String>,
+    pub rule_name: String,
     pub timestamp: u64,
 }
 
@@ -54,4 +55,6 @@ pub enum EntityType {
     Faction,
     Portal,
     Campaign,
+    Fleet,
+    Planet,
 }

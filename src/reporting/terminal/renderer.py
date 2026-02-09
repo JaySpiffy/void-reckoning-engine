@@ -29,6 +29,7 @@ class DashboardRenderer:
         buffer.append(f"   ║ {YELLOW}v{RESET} : Toggle Victory Progress   ║")
         buffer.append(f"   ║ {YELLOW}a{RESET} : Toggle Alert History      ║")
         buffer.append(f"   ║ {YELLOW}m{RESET} : Toggle Galaxy map         ║")
+        buffer.append(f"   ║ {YELLOW}i{RESET} : Toggle Causal Inspector   ║")
         buffer.append(f"   ║ {YELLOW}e{RESET} : Export / Save Screenshot  ║")
         buffer.append(f"   ║ {YELLOW}h{RESET} : Toggle Help Overlay       ║")
         buffer.append(f"   ║ {YELLOW}1-9{RESET} : Quick Filter Index      ║")
@@ -77,32 +78,25 @@ class DashboardRenderer:
                 latest_crit = a.get('message', 'UNKNOWN CRITICAL ERROR')
                 break
 
-        width = 76
-        side_border = (width - 25) // 2 # Fixed len for " GLOBAL GALACTIC SUMMARY "
-        buffer.append(f"     ╔{'═' * side_border}{BOLD} GLOBAL GALACTIC SUMMARY {RESET}{'═' * (width - side_border - 25)}╗")
+        width = 74
+        title = " GLOBAL GALACTIC SUMMARY "
+        side_border = (width - len(title)) // 2
+        buffer.append(f"     ╔{'═' * side_border}{BOLD}{WHITE}{title}{RESET}{'═' * (width - side_border - len(title))}╗")
         
-        line1 = f"  {BOLD}Planets:{RESET} {WHITE}{planets}{RESET} total | {CYAN}{uncol}{RESET} ntl ({int(ntl_pct)}%) | {YELLOW}{contested}{RESET} cont ({int(cont_pct)}%) | {GREEN}{held_count}{RESET} held ({int(held_pct)}%)"
-        buffer.append(f"     ║ {line1}{' ' * (width - visual_width(line1) - 1)}║")
-        
-        line2 = f"  {BOLD}Battles:{RESET} {RED}⚔ {battles}{RESET} active | {BLUE}🚀 {s_battles}{RESET} space | {GREEN}🪖 {g_battles}{RESET} ground"
-        buffer.append(f"     ║ {line2}{' ' * (width - visual_width(line2) - 1)}║")
-        
-        line3 = f"  {BOLD}Turn Losses:{RESET} {RED}💀 {format_large_num(casualties_total)}{RESET} | {BLUE}🚀 {casualties_s}{RESET} ships | {GREEN}🪖 {casualties_g}{RESET} ground"
-        buffer.append(f"     ║ {line3}{' ' * (width - visual_width(line3) - 1)}║")
-        
-        line3b = f"  {BOLD}Total Deaths:{RESET} {RED}💀 {format_large_num(total_casualties_all)}{RESET} | {BLUE}🚀 {total_casualties_s}{RESET} ships | {GREEN}🪖 {total_casualties_g}{RESET} ground"
-        buffer.append(f"     ║ {line3b}{' ' * (width - visual_width(line3b) - 1)}║")
+        def format_line(content):
+            inner_w = width - 4
+            v_w = visual_width(content)
+            padding = inner_w - v_w
+            return f"     ║  {content}{' ' * max(0, padding)}║"
 
-        line3c = f"  {BOLD}Diplomacy:{RESET} {RED}⚔ {wars}{RESET} wars | {CYAN}🤝 {allies}{RESET} allies | {GREEN}📦 {trades}{RESET} trade"
-        buffer.append(f"     ║ {line3c}{' ' * (width - visual_width(line3c) - 1)}║")
-        
-        line4 = f"  {BOLD}Economy:{RESET} 💰 {econ_status} | {BOLD}Tech:{RESET} 🔬 {CYAN}{tech_pts}{RESET} pts | {BOLD}Flux:{RESET} ⚡ {YELLOW}{storms}{RESET} blocking"
-        buffer.append(f"     ║ {line4}{' ' * (width - visual_width(line4) - 1)}║")
-        
-        line5 = f"  {RED}![CRIT]{RESET} {DIM}{latest_crit[:width-12]}{RESET}"
-        buffer.append(f"     ║ {line5}{' ' * (width - visual_width(line5) - 1)}║")
-        
-        buffer.append(f"     ╚{'═' * width}╝")
+        buffer.append(format_line(f"{BOLD}Planets:{RESET} {WHITE}{planets}{RESET} total | {CYAN}{uncol}{RESET} ntl ({int(ntl_pct)}%) | {YELLOW}{contested}{RESET} cont ({int(cont_pct)}%) | {GREEN}{held_count}{RESET} held ({int(held_pct)}%)"))
+        buffer.append(format_line(f"{BOLD}Battles:{RESET} {RED}⚔ {battles}{RESET} active | {BLUE}🚀 {s_battles}{RESET} space | {GREEN}🪖 {g_battles}{RESET} ground"))
+        buffer.append(format_line(f"{BOLD}Turn Losses:{RESET} {RED}💀 {format_large_num(casualties_total)}{RESET} | {BLUE}🚀 {casualties_s}{RESET} ships | {GREEN}🪖 {casualties_g}{RESET} ground"))
+        buffer.append(format_line(f"{BOLD}Total Deaths:{RESET} {RED}💀 {format_large_num(total_casualties_all)}{RESET} | {BLUE}🚀 {total_casualties_s}{RESET} ships | {GREEN}🪖 {total_casualties_g}{RESET} ground"))
+        buffer.append(format_line(f"{BOLD}Diplomacy:{RESET} {RED}⚔ {wars}{RESET} wars | {CYAN}🤝 {allies}{RESET} allies | {GREEN}📦 {trades}{RESET} trade"))
+        buffer.append(format_line(f"{BOLD}Economy:{RESET} 💰 {econ_status} | {BOLD}Tech:{RESET} 🔬 {CYAN}{tech_pts}{RESET} pts | {BOLD}Flux:{RESET} ⚡ {YELLOW}{storms}{RESET} blocking"))
+        buffer.append(format_line(f"{RED}![CRIT]{RESET} {DIM}{latest_crit[:width-14]}{RESET}"))
+        buffer.append(f"     ╚{'═' * (width - 2)}╝")
 
     @staticmethod
     def render_victory_overlay(stats: dict, buffer: list):
@@ -203,3 +197,67 @@ class DashboardRenderer:
         buffer.append(f"     {BLUE}╚═[ {BOLD}{CYAN}LIVE FEED OK{RESET}{BLUE} ]══════════════════════════════[ {BOLD}{WHITE}m:CLOSE{RESET}{BLUE} ]═╝{RESET}")
         legend = f"{WHITE}●{RESET} Neutral | {BOLD}{GREEN}H{RESET}eld | {BOLD}{YELLOW}C{RESET}apital | {DIM}·{RESET} Deep Space"
         buffer.append(f"     {DIM}SENSORS:{RESET} {legend}")
+    @staticmethod
+    def render_inspector_overlay(buffer: List[str], alerts: List[Dict], selected_idx: int, trace_chain: List[Dict]):
+        """Displays the Causal Inspector with event lineage."""
+        width = 60
+        buffer.append(f"\n     {BOLD}{MAGENTA}╔═══════════════[ CAUSAL INSPECTOR ]═══════════════╗{RESET}")
+        
+        if not alerts:
+            buffer.append(f"     ║ {DIM}No alerts to inspect.{RESET}{' ' * (width - 24)}║")
+        else:
+            buffer.append(f"     ║ {BOLD}SELECT ALERT TO TRACE:{RESET}{' ' * (width - 24)} ║")
+            # Show last 5 alerts for selection
+            recent_alerts = alerts[-5:]
+            for i, a in enumerate(reversed(recent_alerts)):
+                prefix = f"{GREEN} > {RESET}" if i == selected_idx else "   "
+                msg = a.get('message', 'No message')[:40]
+                buffer.append(f"     ║ {prefix}{i+1}. {msg:<40} {' ' * (width - 47)}║")
+        
+        buffer.append(f"     {BOLD}{DIM}╟──────────────────[ CAUSAL CHAIN ]──────────────────╢{RESET}")
+        
+        if not trace_chain:
+            buffer.append(f"     ║ {DIM}No trace data available for selection.{RESET}{' ' * (width - 40)}║")
+        else:
+            # Render ASCII tree for the chain
+            for i, event in enumerate(trace_chain):
+                indent_str = "  " * min(i, 4) # Limit indent
+                connector = "└─ " if i > 0 else "● "
+                category = event.get('category', 'EVENT').upper()
+                msg = event.get('message', 'No message')[:35]
+                
+                color = CYAN if i == 0 else (YELLOW if i < len(trace_chain)-1 else RED)
+                line = f"{indent_str}{color}{connector}[{category}]{RESET} {msg}"
+                raw_len = visual_width(line)
+                padding = width - raw_len - 2
+                buffer.append(f"     ║ {line}{' ' * padding}║")
+                
+                if i < len(trace_chain) - 1:
+                    pipe_line = f"{indent_str} │"
+                    buffer.append(f"     ║ {pipe_line}{' ' * (width - visual_width(pipe_line) - 2)}║")
+
+        buffer.append(f"     {BOLD}{MAGENTA}╚════════════════════════════════════[ i:CLOSE / Esc ]═╝{RESET}")
+
+    @staticmethod
+    def render_god_mode_overlay(buffer: List[str], selection_idx: int):
+        """Displays the God Mode Menu."""
+        width = 60
+        buffer.append(f"\n     {BOLD}{RED}╔═══════════════[ GOD MODE CONTROL ]═══════════════╗{RESET}")
+        buffer.append(f"     ║ {DIM}Directly manipulate simulation state.{RESET}{' ' * (width - 36)}║")
+        
+        options = [
+            "Spawn Fleet (Patrol)",
+            "Spawn Fleet (Battlegroup)",
+            "Add 100,000 Requisition (All)",
+            "Force Global Peace",
+            "Trigger Chaos Incursion"
+        ]
+        
+        for i, opt in enumerate(options):
+            prefix = f"{RED} > {RESET}" if i == selection_idx else "   "
+            style = BOLD if i == selection_idx else WHITE
+            buffer.append(f"     ║ {prefix}{style}{i+1}. {opt:<40}{RESET}{' ' * (width - 48)}║")
+            
+        buffer.append(f"     {BOLD}{RED}╟──────────────────────────────────────────────────╢{RESET}")
+        buffer.append(f"     ║ {YELLOW}Controls: UP/DOWN to select, ENTER to execute.{RESET}   ║")
+        buffer.append(f"     {BOLD}{RED}╚════════════════════════════════════[ G:CLOSE / Esc ]═╝{RESET}")

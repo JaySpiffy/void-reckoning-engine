@@ -31,7 +31,7 @@ def load_config_from_file(path=None):
     with open(path, "r") as f:
         return json.load(f)
 
-def run_batch_simulation(config_data, output_dir=None):
+def run_batch_simulation(config_data, output_dir=None, dashboard_class=None):
     multiprocessing.freeze_support()
     
     # helper to flatten or fallback
@@ -100,12 +100,9 @@ def run_batch_simulation(config_data, output_dir=None):
     }
 
     # Pass config args AND batch_dir to workers
-    # Signature: run_id, turns_per_run, num_systems, batch_dir, min_p, max_p, combat_rounds, max_fleet, max_land, base_req, game_config
     tasks = [(i+1, turns_per_run, num_systems, batch_dir, min_p, max_p, combat_rounds, max_fleet, max_land, base_req, game_config) for i in range(num_runs)]
     
     # Start Workers
-    # Point to SimulationWorker wrapper via import or static method reference wrapped in global func
-    # We imported `run_single_campaign_wrapped` from simulation_worker, which calls SimulationWorker
     from src.engine.runner.simulation_worker import run_single_campaign_wrapped
     result_async = pool.map_async(run_single_campaign_wrapped, tasks, chunksize=1)
     
@@ -115,7 +112,18 @@ def run_batch_simulation(config_data, output_dir=None):
     # Orchestration Loop
     progress_map = {} 
     map_str = f"{num_systems} Systems (~{num_systems * ((min_p+max_p)//2)} Worlds)"
-    dashboard = ProgressDashboard()
+    
+    if dashboard_class:
+        dashboard = dashboard_class()
+        # Pre-initialize configs for interactive TUI
+        if hasattr(dashboard, "last_universe_configs"):
+            dashboard.last_universe_configs = [{
+                "universe_name": get_conf("universe", "void_reckoning"),
+                "num_runs": num_runs,
+                "game_config": config_data
+            }]
+    else:
+        dashboard = ProgressDashboard()
     
     try:
         while not result_async.ready():
@@ -128,8 +136,19 @@ def run_batch_simulation(config_data, output_dir=None):
                     break
             
             finished_count = sum(1 for v in progress_map.values() if "Done" in v[1] or "Error" in v[1])
+            
+            # Frequent non-blocking input sampling (10Hz)
+            from src.reporting.terminal.input_handler import TUIInputHandler
+            for _ in range(5):
+                key = TUIInputHandler.get_key()
+                if key:
+                    dashboard.handle_input(key)
+                    if getattr(dashboard, "quit_requested", False):
+                        pool.terminate()
+                        break
+                time.sleep(0.02)
+
             dashboard.draw(progress_map, num_runs, workers, finished_count, turns_per_run, output_path=batch_dir, map_config=map_str)
-            time.sleep(1.0) 
             
         results = result_async.get()
         
@@ -146,8 +165,6 @@ def run_batch_simulation(config_data, output_dir=None):
         # Result Aggregation
         aggregator = ResultsAggregator(batch_dir, num_runs)
         final_wins = defaultdict(int) 
-        # Calculate wins here or delegate to Aggregator? 
-        # Dashboard wants wins dict immediately for display.
         for r in results:
             if r and r.get('Winner') and r['Winner'] != 'Draw':
                 final_wins[r['Winner']] += 1
@@ -155,9 +172,6 @@ def run_batch_simulation(config_data, output_dir=None):
         dashboard.draw(progress_map, num_runs, workers, finished_count, turns_per_run, output_path=batch_dir, map_config=map_str, is_done=True, wins=final_wins)
         
         # Save Consolidated CSV
-        # Ideally Aggregator handles this, but we have `results` in memory here from map_async.
-        # We can implement a simplified save here or update Aggregator to accept list.
-        # For now, inline save to maintain behavior, but maybe move to Aggregator later.
         log_filename = os.path.join(batch_dir, f"campaign_batch_stats.csv")
         try:
              import csv
@@ -212,9 +226,6 @@ def main():
         config["simulation"]["output_dir"] = args.output
         
     if args.headless:
-        # We might need to pass this down or handle it. 
-        # Currently dashboard is attached if import works. 
-        # We can implement a global flag or config override.
         if "reporting" not in config: config["reporting"] = {}
         config["reporting"]["enable_dashboard"] = False
 

@@ -62,6 +62,7 @@ class Faction:
         self.active_strategic_plan = None # Reference to StrategicPlan object
         self.strategic_posture = "BALANCED" # EXPANSION, CONSOLIDATION, DEFENSIVE
         self.design_preference = "BALANCED" # ANTI_SHIELD, ANTI_ARMOR, AREA_EFFECT
+        self.strategic_context = {} # {plan_id, root_goal, doctrine}
         self.posture_changed_turn = 0
         self.rally_points = {} # {zone_id: planet_name}
         
@@ -681,3 +682,27 @@ class Faction:
             "personality_id": self.personality_id
         }
         return data
+
+    def _truncate_history(self, max_entries=50):
+        """Prunes historical logs to prevent snapshot bloat."""
+        for key in ['plan_outcomes', 'target_outcomes', 'battle_outcomes', 'personality_mutations', 'intel_events']:
+            if key in self.learning_history and len(self.learning_history[key]) > max_entries:
+                # Keep most recent
+                self.learning_history[key] = self.learning_history[key][-max_entries:]
+
+    def __getstate__(self):
+        """Prepares the object for pickling by removing unpicklable attributes."""
+        # Prune history before pickling
+        self._truncate_history()
+        
+        state = self.__dict__.copy()
+        # Logger contains a lock, which cannot be pickled
+        if 'logger' in state:
+            del state['logger']
+        return state
+
+    def __setstate__(self, state):
+        """Restores the object state from pickle."""
+        self.__dict__.update(state)
+        # Logger must be re-injected by the manager or set to None
+        self.logger = None

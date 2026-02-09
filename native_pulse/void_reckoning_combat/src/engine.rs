@@ -3,19 +3,47 @@ use crate::mechanics::{DamageSource, Armor};
 use crate::targeting::find_best_target;
 use rand::thread_rng;
 
+use void_reckoning_shared::{Event, EventLog, EventSeverity, CorrelationContext};
+use std::sync::Arc;
+
 pub struct BattleEngine {
     pub state: BattleState,
+    pub event_log: Option<EventLog>,
+    pub current_context: CorrelationContext,
 }
 
 impl BattleEngine {
     pub fn new(width: f32, height: f32) -> Self {
         Self {
             state: BattleState::new(width, height),
+            event_log: None,
+            current_context: CorrelationContext::new(),
         }
+    }
+    
+    pub fn set_event_log(&mut self, log: EventLog) {
+        self.event_log = Some(log);
+    }
+
+    pub fn set_correlation_context(&mut self, context: CorrelationContext) {
+        self.current_context = context;
+        // Also update the run_id in state for legacy compatibility if needed
+        self.state.run_id = self.current_context.trace_id.clone();
     }
 
     pub fn add_unit(&mut self, unit: CombatUnit) {
         self.state.add_unit(unit);
+    }
+    
+    pub fn set_unit_cover(&mut self, unit_id: u32, cover_val: u8) {
+        if let Some(unit) = self.state.get_unit_mut(unit_id) {
+            unit.cover = match cover_val {
+                1 => crate::CoverType::Light,
+                2 => crate::CoverType::Heavy,
+                3 => crate::CoverType::Fortified,
+                _ => crate::CoverType::None,
+            };
+        }
     }
 
     pub fn step(&mut self) -> bool {
@@ -46,11 +74,46 @@ impl BattleEngine {
             // But targeting needs read access to all units.
         }
         
+        // PASS 0: Movement
+        let mut moves: Vec<(usize, (f32, f32))> = Vec::new();
+        
+        // Snapshot positions for safe lookup
+        let unit_positions: std::collections::HashMap<u32, (f32, f32)> = self.state.units.iter()
+            .map(|u| (u.id, u.position))
+            .collect();
+
+        for (idx, unit) in self.state.units.iter().enumerate() {
+            if !unit.is_alive { continue; }
+            if unit.speed <= 0.0 { continue; }
+
+            if let Some(tid) = unit.target_id {
+                if let Some(target_pos) = unit_positions.get(&tid) {
+                    let dx = target_pos.0 - unit.position.0;
+                    let dy = target_pos.1 - unit.position.1;
+                    let dist = (dx * dx + dy * dy).sqrt();
+                    
+                    // Simple logic: Move to range 20.0
+                    let desired_range = 20.0;
+                    
+                    if dist > desired_range {
+                        let move_dist = unit.speed.min(dist - desired_range);
+                        if move_dist > 0.0 {
+                            let angle = dy.atan2(dx);
+                            let new_x = unit.position.0 + move_dist * angle.cos();
+                            let new_y = unit.position.1 + move_dist * angle.sin();
+                            moves.push((idx, (new_x, new_y)));
+                        }
+                    }
+                }
+            }
+        }
+        
+        for (idx, new_pos) in moves {
+            self.state.units[idx].position = new_pos;
+        }
+
         // PASS 1: Targeting Updates (Read-Only State -> Write Target ID)
-        // We can iterate mutable units, but `find_best_target` needs &BattleState (which has &Vec<Unit>).
-        // Conflict!
-        // Solution: Split the data or use indices.
-        // Let's use indices.
+        use crate::targeting::find_best_target;
         
         let mut new_targets: Vec<(usize, u32)> = Vec::new();
         
@@ -94,6 +157,9 @@ impl BattleEngine {
         // Clone meaningful combat data specifically for the read-phase? No too slow.
         // Index-based loop.
         
+        // PASS 2: Combat Action (Calculate Output Damage)
+        let mut fired_weapons: Vec<(usize, usize)> = Vec::new(); // (unit_idx, weapon_idx)
+
         for i in 0..self.state.units.len() {
              let attacker = &self.state.units[i];
              if !attacker.is_alive || attacker.target_id.is_none() { continue; }
@@ -101,21 +167,38 @@ impl BattleEngine {
              let tid = attacker.target_id.unwrap();
              
              // Find target (scan?) 
-             // We can optimize with a HashMap lookup map later.
              let target_data = self.state.units.iter().find(|u| u.id == tid);
              
              if let Some(target) = target_data {
-                 // Check Range
-                 // Roll Weapons
-                 for weapon in &attacker.weapons {
+                 // Check Range - Distance calculation needed here or assume cached?
+                 // Recalculate distance for safety
+                 let dx = target.position.0 - attacker.position.0;
+                 let dy = target.position.1 - attacker.position.1;
+                 let dist_sq = dx*dx + dy*dy;
+                 let dist = dist_sq.sqrt();
+
+                 for (w_idx, weapon) in attacker.weapons.iter().enumerate() {
+                     // Check range
+                     if dist > weapon.range { continue; }
+
                      // Check cooldown
                      if weapon.current_cooldown <= 0.0 {
                          let dmg = weapon.calculate_damage(&mut rng);
                          let dtype = weapon.get_damage_type();
                          damage_events.push((tid, dmg, dtype));
+                         fired_weapons.push((i, w_idx));
                      }
                  }
              }
+        }
+        
+        // Apply cooldown resets
+        for (u_idx, w_idx) in fired_weapons {
+            if let Some(unit) = self.state.units.get_mut(u_idx) {
+                if let Some(weapon) = unit.weapons.get_mut(w_idx) {
+                    weapon.current_cooldown = weapon.cooldown;
+                }
+            }
         }
         
         // PASS 3: Apply Damage
@@ -140,6 +223,17 @@ impl BattleEngine {
                         target.is_alive = false;
                         target.hp = 0.0;
                         total_destroyed += 1;
+                        
+                        if let Some(log) = &self.event_log {
+                            let evt = Event::new(
+                                EventSeverity::Info,
+                                "Combat".to_string(),
+                                format!("Unit {} destroyed by Unit {}", target_id, "Unknown"), // Context missing for attacker ID here
+                                self.current_context.child(), // Use child context for causal tracing
+                                None
+                            );
+                            log.add(evt);
+                        }
                     }
                 }
             }

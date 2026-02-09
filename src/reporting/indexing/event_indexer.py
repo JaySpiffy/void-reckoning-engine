@@ -149,6 +149,13 @@ class EventIndexerMixin:
             data = e.get("data", {})
             if not isinstance(data, dict): data = {"raw": data}
             
+            # Extract Trace IDs
+            details = e.get("details", {})
+            context = e.get("context", {})
+            
+            trace_id = e.get("trace_id") or data.get("trace_id") or details.get("trace_id") or context.get("trace_id")
+            parent_trace_id = e.get("parent_trace_id") or data.get("parent_trace_id") or details.get("parent_trace_id") or context.get("parent_id")
+
             batch_data.append((
                 batch_id, universe, run_id, e.get("turn"), e.get("timestamp"),
                 e.get("category"), e.get("event_type"), e.get("faction"),
@@ -156,7 +163,9 @@ class EventIndexerMixin:
                 data.get("entity_type"),
                 data.get("entity_name") or data.get("unit") or data.get("fleet"),
                 json.dumps(data),
-                self._extract_keywords(e)
+                self._extract_keywords(e),
+                trace_id,
+                parent_trace_id
             ))
             
             # Map economic events
@@ -176,8 +185,9 @@ class EventIndexerMixin:
         cursor.executemany("""
             INSERT INTO events (
                 batch_id, universe, run_id, turn, timestamp, category, event_type, 
-                faction, location, entity_type, entity_name, data_json, keywords
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                faction, location, entity_type, entity_name, data_json, keywords,
+                trace_id, parent_trace_id
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """, batch_data)
         
         if resource_transactions:
@@ -411,5 +421,6 @@ class EventIndexerMixin:
 
     def _bulk_insert_pseudo_events(self, events: List[Dict[str, Any]], universe: str = "unknown"):
         cursor = self.conn.cursor()
-        batch_data = [(e["batch_id"], e.get("universe", universe), e["run_id"], e["turn"], e["timestamp"], e["category"], e["event_type"], e["faction"], e.get("location"), None, None, e["data_json"], e["keywords"]) for e in events]
-        cursor.executemany("INSERT INTO events (batch_id, universe, run_id, turn, timestamp, category, event_type, faction, location, entity_type, entity_name, data_json, keywords) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", batch_data)
+        # Add None for trace_id and parent_trace_id for pseudo events
+        batch_data = [(e["batch_id"], e.get("universe", universe), e["run_id"], e["turn"], e["timestamp"], e["category"], e["event_type"], e["faction"], e.get("location"), None, None, e["data_json"], e["keywords"], None, None) for e in events]
+        cursor.executemany("INSERT INTO events (batch_id, universe, run_id, turn, timestamp, category, event_type, faction, location, entity_type, entity_name, data_json, keywords, trace_id, parent_trace_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", batch_data)

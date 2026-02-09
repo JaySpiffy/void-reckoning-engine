@@ -40,6 +40,7 @@ impl ValidationRule for FieldExistenceRule {
                     severity: self.severity(),
                     entity_id: context.entity_id.clone(),
                     message: format!("Missing required field: {}", field),
+                    rule_name: self.name().to_string(),
                     file_path: None,
                     timestamp: 0,
                 };
@@ -51,6 +52,7 @@ impl ValidationRule for FieldExistenceRule {
             severity: ValidationSeverity::Info,
             entity_id: context.entity_id.clone(),
             message: "All required fields present".to_string(),
+            rule_name: self.name().to_string(),
             file_path: None,
             timestamp: 0,
         }
@@ -87,6 +89,7 @@ impl ValidationRule for TypeValidationRule {
                 severity: self.severity(),
                 entity_id: context.entity_id.clone(),
                 message: format!("Type violations: {}", violations.join(", ")),
+                rule_name: self.name().to_string(),
                 file_path: None,
                 timestamp: 0,
             };
@@ -97,6 +100,7 @@ impl ValidationRule for TypeValidationRule {
             severity: ValidationSeverity::Info,
             entity_id: context.entity_id.clone(),
             message: "Type validation passed".to_string(),
+            rule_name: self.name().to_string(),
             file_path: None,
             timestamp: 0,
         }
@@ -123,6 +127,7 @@ impl ValidationRule for ReferenceIntegrityRule {
                         severity: self.severity(),
                         entity_id: context.entity_id.clone(),
                         message: format!("Invalid Building Reference: '{}'", building_str),
+                        rule_name: self.name().to_string(),
                         file_path: None,
                         timestamp: 0,
                     };
@@ -141,6 +146,7 @@ impl ValidationRule for ReferenceIntegrityRule {
                                 severity: self.severity(),
                                 entity_id: context.entity_id.clone(),
                                 message: format!("Invalid Tech Reference: '{}'", tech_str),
+                                rule_name: self.name().to_string(),
                                 file_path: None,
                                 timestamp: 0,
                             };
@@ -155,6 +161,7 @@ impl ValidationRule for ReferenceIntegrityRule {
             severity: ValidationSeverity::Info,
             entity_id: context.entity_id.clone(),
             message: "Reference integrity valid".to_string(),
+            rule_name: self.name().to_string(),
             file_path: None,
             timestamp: 0,
         }

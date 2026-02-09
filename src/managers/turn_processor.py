@@ -172,12 +172,22 @@ class TurnProcessor:
         # Phase 9: Narrative Turning Points
         self.engine.detect_narrative_turning_points()
         
+        # [AUDIT] State Consistency Check
+        if hasattr(self.engine, 'audit_scheduler') and self.engine.audit_scheduler:
+             from src.core.config import ACTIVE_UNIVERSE
+             self.engine.audit_scheduler.run_audit_cycle(ACTIVE_UNIVERSE, self.engine.turn_counter)
+        
         self.engine.faction_reporter.finalize_turn()
         if self.engine.turn_counter > 0 and self.engine.turn_counter % self.engine.config.performance_log_interval == 0:
              self.engine.log_performance_metrics()
              
         if self.engine.telemetry:
             self.engine.telemetry.flush()
+            
+        # [PHASE 8] Deterministic Replay Snapshot
+        # Create a snapshot at the end of the turn (after all processing)
+        if hasattr(self.engine, 'snapshot_manager'):
+             self.engine.snapshot_manager.create_snapshot(label=f"turn_{self.engine.turn_counter}")
             
         # Check Victory Conditions and Update Progress Telemetry
         winner = self.engine.check_victory_conditions()
