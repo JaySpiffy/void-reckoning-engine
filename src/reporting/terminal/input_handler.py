@@ -97,10 +97,12 @@ class TUIInputHandler:
         elif key == 'm':
             dashboard.show_map = not dashboard.show_map
 
-        elif key == 'G': # Case sensitive or 'g' depending on input
+        elif key == 'G' or key == 'g': # Case insensitive
             dashboard.show_god_mode = not getattr(dashboard, 'show_god_mode', False)
-        elif key == 'P': # True Pause
+        elif key == 'P': # True Pause (Shift+P)
              dashboard.trigger_simulation_pause()
+
+
         
         elif dashboard.show_god_mode:
             # Menu Navigation
@@ -134,13 +136,7 @@ class TUIInputHandler:
             dashboard._export_session_data() # Export / Capture
         elif key == 's':
             dashboard.global_stats_mode = "COMPACT" if dashboard.global_stats_mode == "FULL" else "FULL"
-        elif key == 's':
-            dashboard.global_stats_mode = "COMPACT" if dashboard.global_stats_mode == "FULL" else "FULL"
-        elif key == 'G' or key == 'g': # Case insensitive
-            dashboard.show_god_mode = not getattr(dashboard, 'show_god_mode', False)
-        elif key == 'P': # True Pause (Shift+P)
-             # Trigger pause via orchestrator logic
-             dashboard.trigger_simulation_pause()
+
         elif key == 'r':
             pass
         elif key.isdigit():

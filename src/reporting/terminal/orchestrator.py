@@ -155,7 +155,7 @@ class TerminalDashboard:
         buffer.append(perf_line)
         
         # 2. Controls Row (Clean Box-style)
-        ctrl_l1 = f" {BOLD}NAV:{RESET} {DIM}(q)uit (p)ause (h)elp (m)ap (i)nspect (e)xport{RESET}"
+        ctrl_l1 = f" {BOLD}NAV:{RESET} {DIM}(q)uit (p)ause (h)elp (m)ap (i)nspect (e)xport (G)odMode (Shift+P)auseSim{RESET}"
         ctrl_l2 = f" {BOLD}VIEW:{RESET} {DIM}(d)iplomacy (y)details (s)ummary (f)ilter (v)ictory (a)lerts{RESET}"
         
         debug_info = f" {DIM}Polls:{self.poll_count} Keys:{self.key_count} Last:{CYAN}{self.last_key}{RESET}"
