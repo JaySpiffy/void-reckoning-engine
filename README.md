@@ -14,6 +14,8 @@
 [![rust](https://img.shields.io/badge/topic-rust-orange)](https://github.com/topics/rust)
 [![4x-game](https://img.shields.io/badge/topic-4x--game-blue)](https://github.com/topics/4x-game)
 [![game-engine](https://img.shields.io/badge/topic-game--engine-blue)](https://github.com/topics/game-engine)
+[![agentic-ai](https://img.shields.io/badge/topic-agentic--ai-purple)](https://github.com/topics/agentic-ai)
+[![procedural-generation](https://img.shields.io/badge/topic-procedural--generation-green)](https://github.com/topics/procedural-generation)
 ![Terminal Dashboard Demo](docs/images/dashboard_demo.png)
 
 A complex, text-based 4X strategy engine featuring trait-based faction evolution and professional architectural patterns.
