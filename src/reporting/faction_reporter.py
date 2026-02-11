@@ -345,5 +345,63 @@ class FactionReporter:
                 notifier.notify_completion(universe, run_id, generated_files, webhook_url)
                 
         except Exception as e:
-            if self.engine.logger:
+            if getattr(self.engine, 'logger', None):
                 self.engine.logger.error(f"Failed to export analytics report: {e}")
+
+    def generate_run_report(self, run_id: str, output_dir: str, formats: List[str] = ["json"], webhook_url: Optional[str] = None):
+        """Generates a specific run report."""
+        if not self.analytics_engine:
+            print("Analytics engine not initialized.")
+            return
+
+        generated_files = {}
+        try:
+            # For a single run, the universe is implied by the DB or engine
+            universe = self.engine.universe_data.active_universe
+            report = self.analytics_engine.generate_comprehensive_report(universe)
+            report["run_id"] = run_id
+            
+            # Save JSON
+            if "json" in formats:
+                path = os.path.join(output_dir, f"run_{run_id}_summary.json")
+                with open(path, "w", encoding="utf-8") as f:
+                    json.dump(report, f, indent=2)
+                generated_files["json"] = path
+                
+            # Excel
+            if "excel" in formats:
+                try:
+                    from src.reporting.generators.excel_generator import ExcelReportGenerator
+                    gen = ExcelReportGenerator()
+                    path = os.path.join(output_dir, f"run_{run_id}_report.xlsx")
+                    report["metadata"] = {"timestamp": datetime.now().isoformat(), "run_id": run_id}
+                    gen.generate(report, path)
+                    generated_files["excel"] = path
+                except Exception as e:
+                    print(f"Excel export failed: {e}")
+            
+            # PDF
+            if "pdf" in formats:
+                try:
+                    from src.reporting.generators.pdf_generator import PDFReportGenerator
+                    gen = PDFReportGenerator()
+                    path = os.path.join(output_dir, f"run_{run_id}_report.pdf")
+                    report["metadata"] = {"timestamp": datetime.now().isoformat(), "run_id": run_id}
+                    gen.generate(report, path)
+                    generated_files["pdf"] = path
+                except Exception as e:
+                    print(f"PDF export failed: {e}")
+
+            # Webhook Notification
+            if webhook_url:
+                from src.reporting.report_notifier import ReportNotifier
+                from src.reporting.notification_channels import NotificationManager
+                nm = NotificationManager({"webhook": {"enabled": True}})
+                notifier = ReportNotifier(nm)
+                notifier.notify_completion(universe, run_id, generated_files, webhook_url)
+                
+        except Exception as e:
+            if hasattr(self.engine, 'logger'):
+                self.engine.logger.error(f"Failed to generate run report: {e}")
+            else:
+                print(f"Failed to generate run report: {e}")
