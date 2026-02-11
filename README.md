@@ -909,7 +909,6 @@ The engine supports 15 CLI commands for comprehensive simulation control.
 | `CrossUniverseBattleCommand` | Execute fleet battles between different universes |
 | `GenerateCommand` | Generate registries and configuration files |
 | `ExportCommand` | Export simulation data in various formats |
-| `HelpCommand` | Display help information for commands |
 
 ### Command Examples
 
@@ -957,7 +956,8 @@ python run.py export analytics --universe void_reckoning --output-dir reports/ex
 python run.py cross-universe-duel --unit1 "void_reckoning:Templars_of_the_Flux:Templar Initiate" --unit2 "custom_universe:Custom_Faction:Custom Warrior"
 
 # Cross-universe fleet battle
-python run.py cross-universe-battle --universe1 void_reckoning --universe2 custom_universe --faction1 Templars_of_the_Flux --faction2 Custom_Faction
+# Cross-universe fleet battle
+python run.py cross-universe-battle --config config/cross_universe_battle.json
 
 ## Dashboard
 

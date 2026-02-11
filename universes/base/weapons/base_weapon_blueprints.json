@@ -15,7 +15,7 @@
         ]
     },
     "base_las_light": {
-        "name": "Light Las Projector",
+        "name": "Light Las Cannon",
         "category": "Energy",
         "description": "Light-weight Laser weapon.",
         "stats": {
@@ -97,7 +97,7 @@
         ]
     },
     "base_las_heavy_twin_linked": {
-        "name": "Twin-Linked Heavy Las Cannon",
+        "name": "Twin-Linked Heavy Las Projector",
         "category": "Energy",
         "description": "Twin-Linked modified Laser weapon.",
         "stats": {
@@ -114,7 +114,7 @@
         ]
     },
     "base_las_heavy_overcharged": {
-        "name": "Overcharged Heavy Las Projector",
+        "name": "Overcharged Heavy Las Cannon",
         "category": "Energy",
         "description": "Overcharged modified Laser weapon.",
         "stats": {
@@ -166,7 +166,7 @@
         ]
     },
     "base_las_super_heavy": {
-        "name": "Super-Heavy Las Projector",
+        "name": "Super-Heavy Las Cannon",
         "category": "Energy",
         "description": "Super-heavy Laser weapon.",
         "stats": {
@@ -182,7 +182,7 @@
         ]
     },
     "base_las_titan_class": {
-        "name": "Titan-Class Las Projector",
+        "name": "Titan-Class Las Cannon",
         "category": "Energy",
         "description": "God-engine class Laser weapon.",
         "stats": {
@@ -245,7 +245,7 @@
         ]
     },
     "base_bolter_heavy_rapid_fire": {
-        "name": "Rapid Fire Heavy Bolt Rifle",
+        "name": "Rapid Fire Heavy Bolt Gun",
         "category": "Ballistic",
         "description": "Rapid Fire modified Rocket-propelled explosive rounds.",
         "stats": {
@@ -296,7 +296,7 @@
         ]
     },
     "base_bolter_heavy_twin_linked": {
-        "name": "Twin-Linked Heavy Bolt Gun",
+        "name": "Twin-Linked Heavy Bolt Rifle",
         "category": "Ballistic",
         "description": "Twin-Linked modified Rocket-propelled explosive rounds.",
         "stats": {
@@ -313,7 +313,7 @@
         ]
     },
     "base_bolter_heavy_overcharged": {
-        "name": "Overcharged Heavy Bolt Rifle",
+        "name": "Overcharged Heavy Bolt Gun",
         "category": "Ballistic",
         "description": "Overcharged modified Rocket-propelled explosive rounds.",
         "stats": {
@@ -365,7 +365,7 @@
         ]
     },
     "base_bolter_super_heavy": {
-        "name": "Super-Heavy Bolt Gun",
+        "name": "Super-Heavy Bolt Rifle",
         "category": "Ballistic",
         "description": "Super-heavy Rocket-propelled explosive rounds.",
         "stats": {
@@ -381,7 +381,7 @@
         ]
     },
     "base_bolter_titan_class": {
-        "name": "Titan-Class Bolt Gun",
+        "name": "Titan-Class Bolt Rifle",
         "category": "Ballistic",
         "description": "God-engine class Rocket-propelled explosive rounds.",
         "stats": {
@@ -430,7 +430,7 @@
         ]
     },
     "base_plasma_heavy": {
-        "name": "Heavy Plasma Cannon",
+        "name": "Heavy Plasma Projector",
         "category": "Energy",
         "description": "Heavy mounted Superheated matter projector.",
         "stats": {
@@ -519,7 +519,7 @@
         ]
     },
     "base_plasma_heavy_overcharged": {
-        "name": "Overcharged Heavy Plasma Projector",
+        "name": "Overcharged Heavy Plasma Cannon",
         "category": "Energy",
         "description": "Overcharged modified Superheated matter projector.",
         "stats": {
@@ -538,7 +538,7 @@
         ]
     },
     "base_plasma_heavy_compact": {
-        "name": "Compact Heavy Plasma Cannon",
+        "name": "Compact Heavy Plasma Projector",
         "category": "Energy",
         "description": "Compact modified Superheated matter projector.",
         "stats": {
@@ -658,7 +658,7 @@
         ]
     },
     "base_melta_heavy_rapid_fire": {
-        "name": "Rapid Fire Heavy Melta Cannon",
+        "name": "Rapid Fire Heavy Melta Projector",
         "category": "Thermal",
         "description": "Rapid Fire modified Thermal agitation beam.",
         "stats": {
@@ -712,7 +712,7 @@
         ]
     },
     "base_melta_heavy_twin_linked": {
-        "name": "Twin-Linked Heavy Melta Cannon",
+        "name": "Twin-Linked Heavy Melta Projector",
         "category": "Thermal",
         "description": "Twin-Linked modified Thermal agitation beam.",
         "stats": {
@@ -730,7 +730,7 @@
         ]
     },
     "base_melta_heavy_overcharged": {
-        "name": "Overcharged Heavy Melta Projector",
+        "name": "Overcharged Heavy Melta Cannon",
         "category": "Thermal",
         "description": "Overcharged modified Thermal agitation beam.",
         "stats": {
@@ -767,7 +767,7 @@
         ]
     },
     "base_melta_heavy_master_crafted": {
-        "name": "Master-Crafted Heavy Melta Cannon",
+        "name": "Master-Crafted Heavy Melta Projector",
         "category": "Thermal",
         "description": "Master-Crafted modified Thermal agitation beam.",
         "stats": {
@@ -836,7 +836,7 @@
         ]
     },
     "base_gauss_light": {
-        "name": "Light Gauss Rifle",
+        "name": "Light Gauss Gun",
         "category": "Exotic",
         "description": "Light-weight Magnetic molecular flayer.",
         "stats": {
@@ -869,7 +869,7 @@
         ]
     },
     "base_gauss_heavy_rapid_fire": {
-        "name": "Rapid Fire Heavy Gauss Gun",
+        "name": "Rapid Fire Heavy Gauss Rifle",
         "category": "Exotic",
         "description": "Rapid Fire modified Magnetic molecular flayer.",
         "stats": {
@@ -905,7 +905,7 @@
         ]
     },
     "base_gauss_heavy_blast": {
-        "name": "Blast Heavy Gauss Gun",
+        "name": "Blast Heavy Gauss Rifle",
         "category": "Exotic",
         "description": "Blast modified Magnetic molecular flayer.",
         "stats": {
@@ -941,7 +941,7 @@
         ]
     },
     "base_gauss_heavy_overcharged": {
-        "name": "Overcharged Heavy Gauss Gun",
+        "name": "Overcharged Heavy Gauss Rifle",
         "category": "Exotic",
         "description": "Overcharged modified Magnetic molecular flayer.",
         "stats": {
@@ -960,7 +960,7 @@
         ]
     },
     "base_gauss_heavy_compact": {
-        "name": "Compact Heavy Gauss Rifle",
+        "name": "Compact Heavy Gauss Gun",
         "category": "Exotic",
         "description": "Compact modified Magnetic molecular flayer.",
         "stats": {
@@ -978,7 +978,7 @@
         ]
     },
     "base_gauss_heavy_master_crafted": {
-        "name": "Master-Crafted Heavy Gauss Rifle",
+        "name": "Master-Crafted Heavy Gauss Gun",
         "category": "Exotic",
         "description": "Master-Crafted modified Magnetic molecular flayer.",
         "stats": {
@@ -1680,7 +1680,7 @@
         ]
     },
     "base_volkite_light": {
-        "name": "Light Volkite Projector",
+        "name": "Light Volkite Cannon",
         "category": "Thermal",
         "description": "Light-weight Thermal ray that combusts targets.",
         "stats": {
@@ -1713,7 +1713,7 @@
         ]
     },
     "base_volkite_heavy_rapid_fire": {
-        "name": "Rapid Fire Heavy Volkite Projector",
+        "name": "Rapid Fire Heavy Volkite Cannon",
         "category": "Thermal",
         "description": "Rapid Fire modified Thermal ray that combusts targets.",
         "stats": {
@@ -1749,7 +1749,7 @@
         ]
     },
     "base_volkite_heavy_blast": {
-        "name": "Blast Heavy Volkite Projector",
+        "name": "Blast Heavy Volkite Cannon",
         "category": "Thermal",
         "description": "Blast modified Thermal ray that combusts targets.",
         "stats": {
@@ -1767,7 +1767,7 @@
         ]
     },
     "base_volkite_heavy_twin_linked": {
-        "name": "Twin-Linked Heavy Volkite Cannon",
+        "name": "Twin-Linked Heavy Volkite Projector",
         "category": "Thermal",
         "description": "Twin-Linked modified Thermal ray that combusts targets.",
         "stats": {
@@ -1804,7 +1804,7 @@
         ]
     },
     "base_volkite_heavy_compact": {
-        "name": "Compact Heavy Volkite Cannon",
+        "name": "Compact Heavy Volkite Projector",
         "category": "Thermal",
         "description": "Compact modified Thermal ray that combusts targets.",
         "stats": {
@@ -1822,7 +1822,7 @@
         ]
     },
     "base_volkite_heavy_master_crafted": {
-        "name": "Master-Crafted Heavy Volkite Projector",
+        "name": "Master-Crafted Heavy Volkite Cannon",
         "category": "Thermal",
         "description": "Master-Crafted modified Thermal ray that combusts targets.",
         "stats": {
@@ -1840,7 +1840,7 @@
         ]
     },
     "base_volkite_super_heavy": {
-        "name": "Super-Heavy Volkite Cannon",
+        "name": "Super-Heavy Volkite Projector",
         "category": "Thermal",
         "description": "Super-heavy Thermal ray that combusts targets.",
         "stats": {
@@ -1857,7 +1857,7 @@
         ]
     },
     "base_volkite_titan_class": {
-        "name": "Titan-Class Volkite Cannon",
+        "name": "Titan-Class Volkite Projector",
         "category": "Thermal",
         "description": "God-engine class Thermal ray that combusts targets.",
         "stats": {
@@ -1924,7 +1924,7 @@
         ]
     },
     "base_rail_heavy_rapid_fire": {
-        "name": "Rapid Fire Heavy Rail Rifle",
+        "name": "Rapid Fire Heavy Rail Gun",
         "category": "Ballistic",
         "description": "Rapid Fire modified Hyper-velocity slug thrower.",
         "stats": {
@@ -1960,7 +1960,7 @@
         ]
     },
     "base_rail_heavy_blast": {
-        "name": "Blast Heavy Rail Gun",
+        "name": "Blast Heavy Rail Rifle",
         "category": "Ballistic",
         "description": "Blast modified Hyper-velocity slug thrower.",
         "stats": {
@@ -1978,7 +1978,7 @@
         ]
     },
     "base_rail_heavy_twin_linked": {
-        "name": "Twin-Linked Heavy Rail Rifle",
+        "name": "Twin-Linked Heavy Rail Gun",
         "category": "Ballistic",
         "description": "Twin-Linked modified Hyper-velocity slug thrower.",
         "stats": {
@@ -2015,7 +2015,7 @@
         ]
     },
     "base_rail_heavy_compact": {
-        "name": "Compact Heavy Rail Rifle",
+        "name": "Compact Heavy Rail Gun",
         "category": "Ballistic",
         "description": "Compact modified Hyper-velocity slug thrower.",
         "stats": {
@@ -2033,7 +2033,7 @@
         ]
     },
     "base_rail_heavy_master_crafted": {
-        "name": "Master-Crafted Heavy Rail Gun",
+        "name": "Master-Crafted Heavy Rail Rifle",
         "category": "Ballistic",
         "description": "Master-Crafted modified Hyper-velocity slug thrower.",
         "stats": {
@@ -2068,7 +2068,7 @@
         ]
     },
     "base_rail_titan_class": {
-        "name": "Titan-Class Rail Gun",
+        "name": "Titan-Class Rail Rifle",
         "category": "Ballistic",
         "description": "God-engine class Hyper-velocity slug thrower.",
         "stats": {
@@ -2102,7 +2102,7 @@
         ]
     },
     "base_phaser_light": {
-        "name": "Light Phaser Projector",
+        "name": "Light Phaser Cannon",
         "category": "Energy",
         "description": "Light-weight Phased energy beam.",
         "stats": {
@@ -2118,7 +2118,7 @@
         ]
     },
     "base_phaser_heavy": {
-        "name": "Heavy Phaser Projector",
+        "name": "Heavy Phaser Cannon",
         "category": "Energy",
         "description": "Heavy mounted Phased energy beam.",
         "stats": {
@@ -2135,7 +2135,7 @@
         ]
     },
     "base_phaser_heavy_rapid_fire": {
-        "name": "Rapid Fire Heavy Phaser Projector",
+        "name": "Rapid Fire Heavy Phaser Cannon",
         "category": "Energy",
         "description": "Rapid Fire modified Phased energy beam.",
         "stats": {
@@ -2153,7 +2153,7 @@
         ]
     },
     "base_phaser_heavy_sniper": {
-        "name": "Sniper Heavy Phaser Projector",
+        "name": "Sniper Heavy Phaser Cannon",
         "category": "Energy",
         "description": "Sniper modified Phased energy beam.",
         "stats": {
@@ -2171,7 +2171,7 @@
         ]
     },
     "base_phaser_heavy_blast": {
-        "name": "Blast Heavy Phaser Projector",
+        "name": "Blast Heavy Phaser Cannon",
         "category": "Energy",
         "description": "Blast modified Phased energy beam.",
         "stats": {
@@ -2244,7 +2244,7 @@
         ]
     },
     "base_phaser_heavy_master_crafted": {
-        "name": "Master-Crafted Heavy Phaser Projector",
+        "name": "Master-Crafted Heavy Phaser Cannon",
         "category": "Energy",
         "description": "Master-Crafted modified Phased energy beam.",
         "stats": {
@@ -2262,7 +2262,7 @@
         ]
     },
     "base_phaser_super_heavy": {
-        "name": "Super-Heavy Phaser Projector",
+        "name": "Super-Heavy Phaser Cannon",
         "category": "Energy",
         "description": "Super-heavy Phased energy beam.",
         "stats": {
@@ -2557,7 +2557,7 @@
         ]
     },
     "base_ion_heavy_rapid_fire": {
-        "name": "Rapid Fire Heavy Ion Projector",
+        "name": "Rapid Fire Heavy Ion Cannon",
         "category": "Energy",
         "description": "Rapid Fire modified Ionized particle stream.",
         "stats": {
@@ -2575,7 +2575,7 @@
         ]
     },
     "base_ion_heavy_sniper": {
-        "name": "Sniper Heavy Ion Projector",
+        "name": "Sniper Heavy Ion Cannon",
         "category": "Energy",
         "description": "Sniper modified Ionized particle stream.",
         "stats": {
@@ -2629,7 +2629,7 @@
         ]
     },
     "base_ion_heavy_overcharged": {
-        "name": "Overcharged Heavy Ion Cannon",
+        "name": "Overcharged Heavy Ion Projector",
         "category": "Energy",
         "description": "Overcharged modified Ionized particle stream.",
         "stats": {
@@ -2701,7 +2701,7 @@
         ]
     },
     "base_ion_titan_class": {
-        "name": "Titan-Class Ion Projector",
+        "name": "Titan-Class Ion Cannon",
         "category": "Energy",
         "description": "God-engine class Ionized particle stream.",
         "stats": {
@@ -2751,7 +2751,7 @@
         ]
     },
     "base_polaron_heavy": {
-        "name": "Heavy Polaron Cannon",
+        "name": "Heavy Polaron Projector",
         "category": "Energy",
         "description": "Heavy mounted Polaron particle beam.",
         "stats": {
@@ -2786,7 +2786,7 @@
         ]
     },
     "base_polaron_heavy_sniper": {
-        "name": "Sniper Heavy Polaron Projector",
+        "name": "Sniper Heavy Polaron Cannon",
         "category": "Energy",
         "description": "Sniper modified Polaron particle beam.",
         "stats": {
@@ -2804,7 +2804,7 @@
         ]
     },
     "base_polaron_heavy_blast": {
-        "name": "Blast Heavy Polaron Cannon",
+        "name": "Blast Heavy Polaron Projector",
         "category": "Energy",
         "description": "Blast modified Polaron particle beam.",
         "stats": {
@@ -2840,7 +2840,7 @@
         ]
     },
     "base_polaron_heavy_overcharged": {
-        "name": "Overcharged Heavy Polaron Cannon",
+        "name": "Overcharged Heavy Polaron Projector",
         "category": "Energy",
         "description": "Overcharged modified Polaron particle beam.",
         "stats": {
@@ -2859,7 +2859,7 @@
         ]
     },
     "base_polaron_heavy_compact": {
-        "name": "Compact Heavy Polaron Cannon",
+        "name": "Compact Heavy Polaron Projector",
         "category": "Energy",
         "description": "Compact modified Polaron particle beam.",
         "stats": {
@@ -2877,7 +2877,7 @@
         ]
     },
     "base_polaron_heavy_master_crafted": {
-        "name": "Master-Crafted Heavy Polaron Cannon",
+        "name": "Master-Crafted Heavy Polaron Projector",
         "category": "Energy",
         "description": "Master-Crafted modified Polaron particle beam.",
         "stats": {
@@ -2912,7 +2912,7 @@
         ]
     },
     "base_polaron_titan_class": {
-        "name": "Titan-Class Polaron Projector",
+        "name": "Titan-Class Polaron Cannon",
         "category": "Energy",
         "description": "God-engine class Polaron particle beam.",
         "stats": {
@@ -2962,7 +2962,7 @@
         ]
     },
     "base_stubber_heavy": {
-        "name": "Heavy Stub Gun",
+        "name": "Heavy Stub Rifle",
         "category": "Ballistic",
         "description": "Heavy mounted Solid projectile machine gun.",
         "stats": {
@@ -2997,7 +2997,7 @@
         ]
     },
     "base_stubber_heavy_sniper": {
-        "name": "Sniper Heavy Stub Rifle",
+        "name": "Sniper Heavy Stub Gun",
         "category": "Ballistic",
         "description": "Sniper modified Solid projectile machine gun.",
         "stats": {
@@ -3015,7 +3015,7 @@
         ]
     },
     "base_stubber_heavy_blast": {
-        "name": "Blast Heavy Stub Rifle",
+        "name": "Blast Heavy Stub Gun",
         "category": "Ballistic",
         "description": "Blast modified Solid projectile machine gun.",
         "stats": {
@@ -3033,7 +3033,7 @@
         ]
     },
     "base_stubber_heavy_twin_linked": {
-        "name": "Twin-Linked Heavy Stub Rifle",
+        "name": "Twin-Linked Heavy Stub Gun",
         "category": "Ballistic",
         "description": "Twin-Linked modified Solid projectile machine gun.",
         "stats": {
@@ -3051,7 +3051,7 @@
         ]
     },
     "base_stubber_heavy_overcharged": {
-        "name": "Overcharged Heavy Stub Rifle",
+        "name": "Overcharged Heavy Stub Gun",
         "category": "Ballistic",
         "description": "Overcharged modified Solid projectile machine gun.",
         "stats": {
@@ -3208,7 +3208,7 @@
         ]
     },
     "base_autocannon_heavy_sniper": {
-        "name": "Sniper Heavy Autocannon Rifle",
+        "name": "Sniper Heavy Autocannon Gun",
         "category": "Ballistic",
         "description": "Sniper modified Large caliber automatic cannon.",
         "stats": {
@@ -3244,7 +3244,7 @@
         ]
     },
     "base_autocannon_heavy_twin_linked": {
-        "name": "Twin-Linked Heavy Autocannon Gun",
+        "name": "Twin-Linked Heavy Autocannon Rifle",
         "category": "Ballistic",
         "description": "Twin-Linked modified Large caliber automatic cannon.",
         "stats": {
@@ -3281,7 +3281,7 @@
         ]
     },
     "base_autocannon_heavy_compact": {
-        "name": "Compact Heavy Autocannon Rifle",
+        "name": "Compact Heavy Autocannon Gun",
         "category": "Ballistic",
         "description": "Compact modified Large caliber automatic cannon.",
         "stats": {
@@ -3299,7 +3299,7 @@
         ]
     },
     "base_autocannon_heavy_master_crafted": {
-        "name": "Master-Crafted Heavy Autocannon Rifle",
+        "name": "Master-Crafted Heavy Autocannon Gun",
         "category": "Ballistic",
         "description": "Master-Crafted modified Large caliber automatic cannon.",
         "stats": {
@@ -3334,7 +3334,7 @@
         ]
     },
     "base_autocannon_titan_class": {
-        "name": "Titan-Class Autocannon Gun",
+        "name": "Titan-Class Autocannon Rifle",
         "category": "Ballistic",
         "description": "God-engine class Large caliber automatic cannon.",
         "stats": {
@@ -4034,7 +4034,7 @@
         ]
     },
     "base_tachyon_heavy_rapid_fire": {
-        "name": "Rapid Fire Heavy Tachyon Projector",
+        "name": "Rapid Fire Heavy Tachyon Cannon",
         "category": "Exotic",
         "description": "Rapid Fire modified Faster-than-light particle lance.",
         "stats": {
@@ -4161,7 +4161,7 @@
         ]
     },
     "base_tachyon_super_heavy": {
-        "name": "Super-Heavy Tachyon Projector",
+        "name": "Super-Heavy Tachyon Cannon",
         "category": "Exotic",
         "description": "Super-heavy Faster-than-light particle lance.",
         "stats": {

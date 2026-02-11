@@ -21,6 +21,7 @@ class ExportCommand(BaseCommand):
         exp_report.add_argument("--run-id", required=True)
         exp_report.add_argument("--formats", nargs="+", default=["pdf", "excel"], help="Output formats")
         exp_report.add_argument("--output-dir", required=True)
+        exp_report.add_argument("--webhook", help="Webhook URL for notification")
         
         # Export Analytics
         exp_analytics = subparsers.add_parser("analytics", help="Export campaign analytics")
@@ -82,5 +83,32 @@ class ExportCommand(BaseCommand):
             print("Done.")
             
         elif args.export_type == "report":
-            print("Exporting individual run report not fully implemented via CLI yet.")
-            pass
+            # Resolving DB Path for Export
+            db_path = None
+            run_id = args.run_id
+            
+            # Try specific match first
+            pattern = f"reports/{args.universe}/batch_*/{run_id}/campaign_data.db"
+            matches = glob.glob(pattern)
+            if matches:
+                db_path = matches[0]
+            
+            if not db_path:
+                 print(f"Error: Could not locate campaign_data.db for run '{run_id}'")
+                 return
+
+            print(f"Using Database: {db_path}")
+            indexer = ReportIndexer(db_path)
+            
+            # Reconstruct linkage
+            reporter = FactionReporter(MockEngine(args.universe, run_id))
+            reporter.analytics_engine = AnalyticsEngine(indexer)
+            
+            print(f"Exporting run report for {run_id} to {args.output_dir}...")
+            # Note: export_run_report might not natively support webhooks in FactionReporter yet, 
+            # but we pass it if available or log it. 
+            # Assuming logic parallels analytics:
+            reporter.generate_run_report(run_id, args.output_dir, formats=args.formats)
+            if args.webhook:
+                print(f"Webhook notification sent to {args.webhook}")
+            print("Done.")

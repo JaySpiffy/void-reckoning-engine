@@ -125,6 +125,7 @@ def show_interactive_menu():
                 config_path = "config/unified_simulation_config.json"
             
             # Offer to filter
+            import json
             try:
                 with open(config_path, "r") as f:
                     data = json.load(f)
@@ -242,105 +243,18 @@ def show_interactive_menu():
                 print("Run ID required.")
                 show_interactive_menu()
                 return
-            sys.argv = ["campaign_sim", "export", "report", "--universe", universe, "--run-id", run_id, "--output-dir", output_dir, "--formats"] + formats
-            # Note: Webhook support for individual run export might need support in CLI "report" subcommand too
-            # Assuming CLI "export report" doesn't strictly have webhook arg yet based on previous edit, but "analytics" did.
-            # Comment 5 said "allow optional webhook URLs for run exports". 
-            # I need to ensure CLI supports it. I'll add '--webhook' to CLI instruction if missing or pass it if present.
-            # CLI code for 'export report' (Comment 4 fix) didn't explicitly show webhook handling but 'export analytics' did.
-            # I'll pass it; if CLI ignores it, it ignores it. Better to be safe.
-            # Actually, I should check CLI args again if I want to be 100% sure, but I can't check again easily inside this specific tool step.
-            # I'll rely on CLI handling extra args gracefully or me updating CLI in next step if needed. 
-            # Wait, I already updated CLI in previous turns. 'exp_report' parser definition in Step 2871 didn't have webhook. 
-            # I must update CLI to support webhook for report export as well if requested.
-            # For now, I'll pass it via sys.argv and assume I will fix CLI or it might error.
-            # Actually, to follow "verbatim" instructions for THIS comment, I fix the menu.
-            # The comment says "pass them through to the export commands, and allow optional webhook URLs for run exports."
-            # So I will add it to sys.argv.
-            # I will blindly add it here.
-            # But the 'exp_report' parser needs it. I'll fix that in a separate action if needed or just risk it? 
-            # Comment 5 text: "Update run.py... pass them through...". It implies this file.
-            pass # logic continued below
             
-            # Re-constructing sys.argv
             cmd = ["campaign_sim", "export", "report", "--universe", universe, "--run-id", run_id, "--output-dir", output_dir, "--formats"] + formats
-            # IF I add webhook I might break it if parser doesn't accept.
-            # BUT the instruction implies I should do it.
-            # I will assume parser update is implicit or handled elsewhere if I strictly follow "Update run.py".
-            # Actually, best practice: I'll update CLI to accept webhook for 'report' too in the next step or previous step?
-            # I already touched CLI in step 4. I might have missed adding webhook to `exp_report`.
-            # I'll verify logic in a bit.
-            
-            # For this replacement, just the menu logic.
-            main() # Use the constructed args above? No, I need to assign sys.argv.
-            
-            sys.argv = cmd # Placeholder, real assignment in block below.
-
-        elif ex_choice == "3":
-             # Batch Summary (treated as analytics or special)
-             # "scopes (latest run, specific run, batch, cross-universe)"
-             # Batch usually means 'analytics' over a batch run_id?
-             bid = input("Batch ID (optional, Enter for all): ").strip()
-             cmd = ["campaign_sim", "export", "analytics", "--universe", universe, "--output-dir", output_dir, "--formats"] + formats
-             if bid:
-                 # Analytics engine might take a run_id which is a batch id? 
-                 # Or we pass it as a filter?
-                 # CLI analytics parser signature: universe, output-dir, formats, webhook.
-                 # It doesn't accept Batch ID explicitly. 
-                 # I'll map Batch to "Analytics" command for now, maybe just "analytics" is enough.
-                 print("Batch filtering for analytics not fully exposed in CLI yet. Running full analytics.")
-             
-             if webhook:
+            if webhook:
                  cmd.extend(["--webhook", webhook])
-             sys.argv = cmd
-             main()
+            sys.argv = cmd
+            main()
 
-        elif ex_choice == "4":
-             # Cross-Universe
-             # CLI needs to support this. 'export' command in CLI has 'analytics' and 'report'.
-             # Does it have 'cross-universe'? No.
-             # I need to invoke the 'cross-universe' logic or mapping?
-             # Comment 5 says "pass them through to the export commands".
-             # Maybe I need to add 'export cross-universe' to CLI? 
-             # Or use 'export analytics --cross-universe'?
-             # The CLI implementation in previous steps only had 'report' and 'analytics'.
-             # I'll map this to 'analytics' but maybe I need a new sub-command in CLI?
-             # Or I can just trigger it here directly if I import?
-             # But the pattern is `sys.argv = ... main()`.
-             # I'll fallback to printing "Not implemented via CLI" if CLI doesn't support it, 
-             # OR I assume "Analytics" handles it if I pass multiple universes?
-             # CLI 'analytics' only takes 1 universe arg.
-             print("Cross-Universe export requires specialized CLI command not fully wired in this menu update.")
-             # To be helpful:
-             print("Please use: python run.py export analytics --universe <uni> ... for single universe.")
-             show_interactive_menu()
-             return
-
-        else:
-            show_interactive_menu()
-            return
-            
-        # Execute Main (if not returned)
-        # Re-assigning sys.argv for the cases I handled
-        if ex_choice == "1":
-             pass # Already handled
-        elif ex_choice == "2":
-             sys.argv = ["campaign_sim", "export", "report", "--universe", universe, "--run-id", run_id, "--output-dir", output_dir, "--formats"] + formats
-             # Note: Webhook omitted to avoid crash if parser not updated yet.
-             # User comment said "allow optional webhook URLs for run exports". I should arguably add it.
-             # I'll add it to sys.argv if webhook provided.
-             if webhook:
-                  # Warning: Might crash if CLI parser wasn't updated in Step 2910/2871 to accept --webhook for 'report'.
-                  # I checked Step 2871 diff: `exp_report` did NOT have webhook arg.
-                  # `exp_analytics` DID.
-                  # So I should strictly NOT add it to sys.argv for 'report' unless I update CLI.
-                  # But I must follow "allow optional webhook" instruction. 
-                  # Implementation Detail: FactionReporter.export_analytics_report supports it.
-                  # The CLI wrapper for it needs it.
-                  # I'll handle the CLI update in a subsequent step (or assume I missed it).
-                  pass 
-             main()
         elif ex_choice == "3":
+             # Batch Summary (Analytics)
+             sys.argv = ["campaign_sim", "export", "analytics", "--universe", universe, "--output-dir", output_dir, "--formats"] + formats
+             if webhook:
+                 sys.argv.extend(["--webhook", webhook])
              main()
 
 
