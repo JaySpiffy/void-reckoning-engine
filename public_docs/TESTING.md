@@ -1,32 +1,40 @@
 # Testing Guide
 
-This project maintains rigorous test coverage to ensure stability. Tests are divided into core engine tests (universe-agnostic) and universe-specific validation tests. The simulator currently focuses on the **eternal_crusade** universe.
+This project maintains rigorous test coverage to ensure stability. Tests are divided into core engine tests (universe-agnostic) and universe-specific validation tests. The simulator currently focuses on the **void_reckoning** universe.
 
 ## Running Tests
 
 ### Standard Execution
+
 Runs all core engine and unit tests.
+
 ```bash
 pytest
 ```
 
 ### Universe-Specific Tests
+
 Test a specific universe implementation and its data integrity.
+
 ```bash
-# Test eternal_crusade only
-pytest tests/universes/test_eternal_crusade_integration.py
-pytest -m eternal_crusade
+# Test void_reckoning only
+pytest tests/universes/test_void_reckoning_integration.py
+pytest -m void_reckoning
 ```
 
 ### Multi-Universe Integration (Future Expansion)
+
 Verify that multiple universes can run in parallel without cross-contamination.
+
 ```bash
 pytest tests/test_multi_universe_runner.py
 pytest tests/test_universe_isolation.py
 ```
 
 ### Dashboard Tests
+
 Verify the FastAPI backend and React frontend.
+
 ```bash
 # Backend (FastAPI)
 pytest src/reporting/dashboard_v2/tests
@@ -38,18 +46,22 @@ npm run test:coverage
 ```
 
 ## Test Structure
+
 - `tests/`: Core engine unit and integration tests.
-- `tests/universes/`: Tests specific to a particular setting (e.g., eternal_crusade psychic phase logic).
+- `tests/universes/`: Tests specific to a particular setting (e.g., void_reckoning psychic phase logic).
 - `tests/utils/`: Shared test helpers and universe data loaders.
 
 ## Key Verification Commands
+
 Beyond `pytest`, use the `validate` command to check universe data files:
+
 ```bash
 # Check for broken unit stats or invalid tech links
 python run.py validate
 ```
 
 ## Adding New Tests
+
 1. **Engine Logic**: Place in `tests/` and use mocks for universe-specific data.
 2. **Universe Content**: Place in `tests/universes/` and use the `set_active_universe` fixture to load the correct context.
 3. **Data Integrity**: New universes should be added to the `test_universe_loader.py` suite.
@@ -57,6 +69,7 @@ python run.py validate
 ## Future Expansion
 
 When additional universes are added, the following testing capabilities will be available:
+
 - Multi-universe integration tests
 - Cross-universe isolation verification
 - Parallel execution validation

@@ -16,7 +16,7 @@
         "real_time_headless": true,
         "max_duration_seconds": 360,
         "time_step": 0.05,
-        "use_rust_combat": true
+        "use_rust_combat": false
     },
     "economy": {
         "base_income_req": 2000000,
@@ -57,16 +57,6 @@
         {
             "name": "void_reckoning",
             "enabled": true,
-            "processor_affinity": [
-                0,
-                1,
-                2,
-                3,
-                4,
-                5,
-                6,
-                7
-            ],
             "num_runs": 1,
             "economy": {
                 "base_income_req": 10000

@@ -1,6 +1,6 @@
 # Strategy Engine - Project Structure
 
-This project is a modular **Grand Strategy Campaign Simulator**. It uses a "Core vs. Universe" architecture where the game engine remains agnostic while loading specific assets, rules, and AI behaviors from the `universes/` directory. The simulator currently focuses on the **eternal_crusade** universe.
+This project is a modular **Grand Strategy Campaign Simulator**. It uses a "Core vs. Universe" architecture where the game engine remains agnostic while loading specific assets, rules, and AI behaviors from the `universes/` directory. The simulator currently focuses on the **void_reckoning** universe.
 
 ## Root Directory Layout
 
@@ -13,12 +13,34 @@ This project is a modular **Grand Strategy Campaign Simulator**. It uses a "Core
 | `reports/` | Organized simulation output. |
 | `tools/` | Cross-universe analyzers and maintenance scripts. |
 
+## Start Here (Golden Path)
+
+To verify the setup and run the canonical simulation:
+
+1. **Verify CLI**:
+
+   ```bash
+   python run.py --help
+   ```
+
+2. **Validate Data**:
+
+   ```bash
+   python run.py validate --universe void_reckoning --rebuild-registries
+   ```
+
+3. **Run Multi-Universe Simulation**:
+
+   ```bash
+   python run.py multi-universe --config config/void_reckoning_config.json
+   ```
+
 ## Universe Structure (`universes/`)
 
 Each universe is isolated within its own directory under `universes/`.
 
 - **`universes/base/`**: Abstract base classes and configuration schemas.
-- **`universes/eternal_crusade/`**: Complete eternal_crusade implementation.
+- **`universes/void_reckoning/`**: Complete void_reckoning implementation.
 
 ### Standard Universe Layout
 
@@ -85,7 +107,7 @@ python run.py campaign --quick
 **With Explicit Universe (Optional):**
 
 ```bash
-python run.py campaign --universe eternal_crusade --quick
+python run.py campaign --universe void_reckoning --quick
 ```
 
 **Data Validation:**
