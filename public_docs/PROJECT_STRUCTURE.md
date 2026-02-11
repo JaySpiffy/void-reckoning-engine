@@ -1,6 +1,6 @@
 # Strategy Engine - Project Structure
 
-This project is a modular **Grand Strategy Campaign Simulator**. It uses a "Core vs. Universe" architecture where the game engine remains agnostic while loading specific assets, rules, and AI behaviors from the `universes/` directory. The simulator currently focuses on the **eternal_crusade** universe.
+This project is a modular **Grand Strategy Campaign Simulator**. It uses a "Core vs. Universe" architecture where the game engine remains agnostic while loading specific assets, rules, and AI behaviors from the `universes/` directory. The simulator currently focuses on the **void_reckoning** universe.
 
 ## Root Directory Layout
 
@@ -18,7 +18,7 @@ This project is a modular **Grand Strategy Campaign Simulator**. It uses a "Core
 Each universe is isolated within its own directory under `universes/`.
 
 - **`universes/base/`**: Abstract base classes and configuration schemas.
-- **`universes/eternal_crusade/`**: Complete eternal_crusade implementation.
+- **`universes/void_reckoning/`**: Complete void_reckoning implementation.
 
 ### Standard Universe Layout
 
@@ -56,7 +56,7 @@ The engine loads universe data through the `UniverseLoader`, which hydrates the 
 ```mermaid
 graph TD
     A[universes/base/] -->|Templates| B[Universe Loader]
-    C[universes/eternal_crusade/] -->|Load| B
+    C[universes/void_reckoning/] -->|Load| B
     B -->|Initialize| E[Campaign Manager]
     E -->|Generate| F[Galaxy & Factions]
     F -->|Loop| G[Turn Processing]
@@ -76,6 +76,21 @@ graph TD
 
 ## Usage Patterns
 
+### Start Here (Golden Path)
+
+Run this short sequence to validate your environment and execute a standard simulation workflow.
+
+```bash
+# 1) Verify CLI wiring
+python run.py --help
+
+# 2) Smoke-check universe data and registries
+python run.py validate --universe void_reckoning --rebuild-registries
+
+# 3) Run the multi-universe simulation configuration used in this repo
+python run.py multi-universe --config config/void_reckoning_config.json
+```
+
 **Single Universe Campaign:**
 
 ```bash
@@ -85,7 +100,7 @@ python run.py campaign --quick
 **With Explicit Universe (Optional):**
 
 ```bash
-python run.py campaign --universe eternal_crusade --quick
+python run.py campaign --universe void_reckoning --quick
 ```
 
 **Data Validation:**
@@ -101,7 +116,7 @@ The multi-universe architecture is preserved for future expansion. When addition
 - **Multi-Universe Batch**: Run multiple universes in parallel
 
   ```bash
-  python run.py multi-universe --config simulation_config_multi_universe.json
+  python run.py multi-universe --config config/void_reckoning_config.json
   ```
 
 - **Cross-universe portal travel** and **multi-universe configuration** will be enabled.
