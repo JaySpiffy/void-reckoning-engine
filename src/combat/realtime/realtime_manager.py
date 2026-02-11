@@ -168,6 +168,19 @@ class RealTimeManager:
                     
                 if hasattr(grid, 'update_unit_position'):
                     grid.update_unit_position(u, u.grid_x, u.grid_y)
+                    
+                # [FEATURE] Fatigue Update
+                # Increase if moving
+                is_moving = abs(dx) > 0.01 or abs(dy) > 0.01
+                fatigue_change = 0.0
+                if is_moving:
+                    fatigue_change += 1.0 * dt
+                elif getattr(u, 'is_pinned', False): # Fighting in melee
+                    fatigue_change += 2.0 * dt
+                else:
+                    fatigue_change -= 2.0 * dt # Recover
+                    
+                u.fatigue = max(0.0, min(100.0, getattr(u, 'fatigue', 0.0) + fatigue_change))
                 
                 # Award survival XP (approx 1 XP per second of active combat)
                 u.gain_xp(UNIT_XP_AWARD_SURVIVAL_SEC * dt, ab_context)
@@ -261,6 +274,11 @@ class RealTimeManager:
                             # Calculate reload time from 'attacks' (e.g. 2 attacks/round = 2.5s reload if 1 round=5s)
                             # Or more simply: reload = 1.0 / attacks
                             attacks = stats.get("attacks", 1.0)
+                            
+                            # [FEATURE] Squadron Logic: Scale attacks by member count
+                            member_count = getattr(u, 'member_count', 1)
+                            attacks *= member_count
+                            
                             wpn.cooldown = 1.0 / max(0.1, attacks)
 
                             # Determine Weapon Attributes for Projectile
@@ -279,7 +297,19 @@ class RealTimeManager:
                             raw_dmg = stats.get("S", 4) * 10 * stats.get("D", 1)
                             
                             # Accuracy Roll at point of fire
-                            hit_prob = getattr(u, 'bs', 50) / 100.0
+                            base_hit_prob = getattr(u, 'bs', 50) / 100.0
+                            
+                            # [FEATURE] Height Advantage
+                            attacker_z = getattr(u, 'grid_z', 0)
+                            target_z = getattr(target_unit, 'grid_z', 0)
+                            z_diff = attacker_z - target_z
+                            
+                            if z_diff > 10:
+                                base_hit_prob *= 1.15 # High Ground
+                            elif z_diff < -10:
+                                base_hit_prob *= 0.85 # Low Ground
+                                
+                            hit_prob = min(0.95, max(0.05, base_hit_prob))
                             if random.random() > hit_prob:
                                 # Spawn with deviation for missed shot
                                 deviation = random.uniform(-0.1, 0.1)
@@ -293,6 +323,15 @@ class RealTimeManager:
                             
                             lifetime = (wpn_range / speed) * 1.2
 
+                            # [FEATURE] Shield Flare & Ion Logic
+                            shield_mult = stats.get("shield_damage_multiplier", 1.0)
+                            hull_mult = stats.get("hull_damage_multiplier", 1.0)
+                            
+                            # Auto-detect Ion weapons if multipliers missing
+                            if "ION" in cat and shield_mult == 1.0:
+                                shield_mult = 3.0
+                                hull_mult = 0.1
+
                             self.projectile_manager.spawn_projectile(
                                 u, target_unit,
                                 damage=raw_dmg,
@@ -301,7 +340,9 @@ class RealTimeManager:
                                 projectile_type=proj_type,
                                 target_comp=target_comp,
                                 deviation=deviation,
-                                lifetime=lifetime
+                                lifetime=lifetime,
+                                shield_mult=shield_mult,
+                                hull_mult=hull_mult
                             )
                             
                             battle_state.log_event("shooting_fire", u.name, target_unit.name, f"Fired {wpn.name} ({proj_type})")

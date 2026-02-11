@@ -24,23 +24,18 @@ class FleetSpawner:
         if not system:
             return False
 
-        # 3. Create Fleet
         try:
-            from src.entities.fleet import Fleet
-            from src.entities.unit import Unit
-            from src.utils.id_generator import generate_id
+            from src.models.fleet import Fleet
+            from src.models.unit import Unit
+            from src.utils.guid_generator import generate_entity_guid as generate_id
             
             fleet_id = generate_id("fleet")
             fleet_name = name if name else f"{faction} Special Task Force {random.randint(100, 999)}"
             
             # Create Fleet Object
-            new_fleet = Fleet(
-                id=fleet_id,
-                name=fleet_name,
-                owner=faction,
-                location=system, # Object reference
-                units=[]
-            )
+            # Fleet(fleet_id, faction, start_planet)
+            new_fleet = Fleet(fleet_id, faction, system)
+            new_fleet.name = fleet_name
             
             # 4. Generate Ships
             # We need to know what 'Escort' or 'Cruiser' maps to in unit_registry for this faction.
@@ -66,12 +61,14 @@ class FleetSpawner:
                     # For MVP, we presume ship_type IS the blueprint ID (e.g. "Human_Cruiser")
                     
                     unit_id = generate_id("unit")
+                    # Unit(name, faction, unit_class, ...)
                     new_ship = Unit(
-                        id=unit_id,
                         name=f"{ship_type}-{random.randint(1000,9999)}",
-                        owner=faction,
-                        unit_type=ship_type # This needs to be a valid blueprint ID usually
+                        faction=faction,
+                        unit_class="Ship",
+                        blueprint_id=ship_type
                     )
+                    new_ship.id = unit_id
                     # We should probably initialize stats from registry
                     # self._hydrate_unit_stats(new_ship, ship_type) 
                     # For now, relying on engine to handle or simple objects
@@ -80,7 +77,7 @@ class FleetSpawner:
 
             # 5. Register Fleet
             self.engine.fleets.append(new_fleet)
-            system.add_fleet(new_fleet)
+            # system.add_fleet(new_fleet) # System does not track fleets directly
             
             # Log
             print(f"GodMode: Spawned fleet {fleet_name} for {faction} at {system_name}")
@@ -119,3 +116,81 @@ class FleetSpawner:
         # Let's just pass these and hope the registry has them or the User inputs correct IDs in the UI.
         
         return self.spawn_fleet(faction, system_name, composition, name=f"{faction} {preset_type}")
+
+    def create_pirate_faction(self) -> str:
+        """
+        Creates the 'Void Reavers' faction if it doesn't exist.
+        Returns the faction ID.
+        """
+        faction_id = "Void_Reavers"
+        
+        if faction_id in self.engine.factions:
+            return faction_id
+            
+        try:
+            from src.models.faction import Faction
+            
+            # Create Faction
+            pirates = Faction(faction_id)
+            pirates.display_name = "Void Reavers"
+            pirates.color = "Red" # Or aggressive color
+            pirates.is_ai = True
+            
+            # Set Aggressive Relations
+            if hasattr(self.engine, 'diplomacy'):
+                # Declare war on everyone
+                for other_f in self.engine.factions:
+                    if other_f != faction_id:
+                        self.engine.diplomacy.set_relation(faction_id, other_f, -100) # Hostile
+                        self.engine.diplomacy.declare_war(faction_id, other_f)
+            
+            # Register
+            self.engine.factions[faction_id] = pirates
+            
+            # Add to turn processor if needed
+            # usually engine.factions list is iterated
+            
+            print(f"GodMode: Created Pirate Faction '{faction_id}'")
+            return faction_id
+            
+        except Exception as e:
+            print(f"GodMode Error creating pirates: {e}")
+            return ""
+
+    def spawn_pirate_fleet(self, system_name: str, target_faction: str = None) -> bool:
+        """
+        Spawns a massive pirate fleet.
+        If target_faction is specified, tries to spawn at one of their systems and ensures war.
+        """
+        faction_id = self.create_pirate_faction()
+        if not faction_id: return False
+        
+        spawn_system = system_name
+        
+        # Target Faction Logic
+        if target_faction and target_faction != "Void_Reavers":
+            # 1. Find a system owned by them
+            # We need to access system.owner.
+            # self.engine.systems is a list of System objects
+            potential = [s for s in self.engine.systems if hasattr(s, 'owner') and s.owner == target_faction]
+            
+            if potential:
+                spawn_system = random.choice(potential).name
+                print(f"GodMode: Targeting {target_faction} at {spawn_system}")
+            else:
+                print(f"GodMode: {target_faction} has no systems! Defaulting to {system_name}")
+                
+            # 2. Ensure War
+            if hasattr(self.engine, 'diplomacy'):
+                # Force hostile relation
+                self.engine.diplomacy.set_relation(faction_id, target_faction, -100)
+                self.engine.diplomacy.declare_war(faction_id, target_faction)
+        
+        # Pirate Warlord Composition
+        composition = {
+            "Pirate_Galleon": 1,   # Capital equivalent
+            "Pirate_Raider": 4,    # Cruiser/Destroyer
+            "Pirate_Skiff": 8      # Frigate/Fighter
+        }
+        
+        return self.spawn_fleet(faction_id, spawn_system, composition, name=f"Warlord's Armada (Target: {target_faction if target_faction else 'General'})")

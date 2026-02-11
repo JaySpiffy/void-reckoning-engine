@@ -55,6 +55,8 @@ class TerminalDashboard:
         # God Mode State
         self.show_god_mode = False
         self.god_mode_selection = 0
+        self.god_mode_target_faction_idx = 0
+        self.god_mode_preset_idx = 0
         self.command_queues = {} # Stores reference to universe queues
 
     def set_command_queues(self, queues):
@@ -197,7 +199,13 @@ class TerminalDashboard:
             return
             
         if self.show_god_mode:
-            DashboardRenderer.render_god_mode_overlay(buffer, self.god_mode_selection)
+            DashboardRenderer.render_god_mode_overlay(
+                buffer, 
+                self.god_mode_selection,
+                configs_to_render,
+                self.god_mode_target_faction_idx,
+                self.god_mode_preset_idx
+            )
             sys.stdout.write("\n".join(buffer) + "\n")
             sys.stdout.flush()
             return

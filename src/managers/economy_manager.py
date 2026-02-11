@@ -445,6 +445,24 @@ class EconomyManager:
                     "research": 0.0
                 }
             }
+        # [AAA Refinement] Economic Adaptation for Poor Performance
+        elif getattr(faction_mgr, 'poor_performance_streak', 0) > 5:
+            # If we are failing repeatedly, stop expanding and consolidate.
+            # Check if we are at war to decide defense vs consolidation
+            if hasattr(faction_mgr, 'enemies') and faction_mgr.enemies:
+                 active_mode = {
+                    "name": "DESPERATE_DEFENSE",
+                    "condition_type": "losing",
+                    "threshold": 0.3,
+                    "budget": {"recruitment": 0.8, "construction": 0.1, "research": 0.1}
+                 }
+            else:
+                 active_mode = {
+                    "name": "CONSOLIDATION",
+                    "condition_type": "default",
+                    "threshold": 0.0,
+                    "budget": {"recruitment": 0.1, "construction": 0.5, "research": 0.4} # Boost tech to catch up
+                 }
         else:
             for m in modes:
                 c_type = m.get("condition_type")

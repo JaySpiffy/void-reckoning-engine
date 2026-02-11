@@ -32,6 +32,10 @@ class Projectile:
         # Accuracy-based deviation (optional, can be passed in kwargs)
         self.deviation = kwargs.get("deviation", 0.0)
         
+        # [FEATURE] Shield Flare
+        self.shield_mult = kwargs.get("shield_mult", 1.0)
+        self.hull_mult = kwargs.get("hull_mult", 1.0)
+        
         self.vx, self.vy = self._calculate_velocity()
             
         self.max_lifetime = kwargs.get("lifetime", 5.0) # Lower default lifetime for performance

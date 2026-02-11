@@ -38,6 +38,7 @@ class FactionPersonality:
     planning_horizon: int = 5
     adaptation_speed: float = 0.5
     rally_point_preference: str = "NEAREST_SAFE"
+    determination: float = 0.5 # [AAA Upgrade] Persistence/Stubbornness
     
     combat_doctrine: Optional[str] = "STANDARD"
     doctrine_intensity: float = 1.0

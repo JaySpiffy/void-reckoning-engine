@@ -1029,11 +1029,19 @@ class ConstructionService:
                 if spent >= remaining_budget: break
                 
                 # Check for existing starbase/structure at this node
-                existing_sb_fleet = next((f for f in self.engine.fleets if f.location == node and any(u.unit_class in ["Starbase", "MiningStation", "ResearchOutpost"] for u in f.units) and not f.is_destroyed), None)
+                # OPTIMIZATION: Iterate system.starbases (small list) instead of all engine fleets (huge list)
+                existing_sb = None
+                if hasattr(system, 'starbases'):
+                    for sb in system.starbases:
+                        if sb.is_destroyed: continue
+                        # Check location via fleet reference
+                        if sb.fleet and sb.fleet.location == node:
+                            existing_sb = sb
+                            break
                 
-                if existing_sb_fleet:
-                    # Upgrade logic for node-based starbase (Only Starbases upgrade relationally for now)
-                    sb = next(u for u in existing_sb_fleet.units if u.unit_class in ["Starbase", "MiningStation", "ResearchOutpost"])
+                if existing_sb:
+                    # Upgrade logic for node-based starbase
+                    sb = existing_sb
                     if sb.faction != f_name: continue
                     
                     # Mining/Research Stations don't upgrade yet

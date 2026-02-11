@@ -21,7 +21,6 @@ class OffensiveStrategy:
         # Check Personality: Expansion Bias (Modified by Economy)
         wants_to_expand = random.random() < expansion_bias
         
-        # BANKRUPT RAIDING OVERRIDE (Step 4)
         if econ_state == "BANKRUPT":
             # 50% chance to launch a raid if fleets available
             if len(available_fleets) >= 2 and random.random() < 0.5:
@@ -29,6 +28,10 @@ class OffensiveStrategy:
                 if not any(tf.is_raid for tf in self.ai.task_forces[faction]):
                     self.ai.form_raiding_task_force(faction, available_fleets)
             return # Even if we didn't raid, don't expand normally
+
+        # HUNTER-KILLER / PURSUIT LOGIC (Step 6)
+        # Prioritize finishing off wounded/retreating enemies before expansion
+        self.handle_pursuit(faction, available_fleets, f_mgr, owned_planets)
 
         is_bankrupt = econ_state == "BANKRUPT" # Redundant but for clarity
 
@@ -244,3 +247,101 @@ class OffensiveStrategy:
                         if self.ai.engine.logger:
                             op_type = "COLONIZATION" if target.owner == "Neutral" else "CONQUEST"
                             self.ai.engine.logger.campaign(f"[{faction}] Formulated {op_type} plan. RALLYING {len(chosen_fleets)} fleets at {rally_point.name} before striking {target.name}")
+
+    def handle_pursuit(self, faction: str, available_fleets: List[Fleet], f_mgr: Any, owned_planets: List[Any]):
+        """
+        [HUNTER-KILLER] 
+        Scanning for vulnerable enemy fleets (retreated, weak) and dispatching interceptors.
+        Run BEFORE expansion to prioritize cleaning up threats.
+        """
+        if not available_fleets: return
+
+        # 1. Identify Enemies
+        enemies = []
+        diplomacy = getattr(self.ai.engine, 'diplomacy', None)
+        if diplomacy:
+             enemies = diplomacy.get_enemies(faction)
+        
+        if not enemies: return # Peaceful or no enemies
+
+        # 2. Scan Visible Space for Vulnerable Targets
+        # Use turn cache if available for performance? 
+        # turn_cache["fleets_by_loc"] gives location->fleets.
+        # But we need to scan known locations.
+        # Better: Iterate all fleets and check visibility + faction.
+        # O(N) where N is total fleets. N ~ 300-3000. Fast enough.
+        
+        visible_planets = getattr(f_mgr, 'visible_planets', set())
+        
+        candidates = []
+        for f in self.ai.engine.fleets:
+            if getattr(f, 'is_destroyed', False): continue
+            if f.faction not in enemies: continue
+            
+            # Check Visibility
+            loc_name = getattr(f.location, 'name', None)
+            if not loc_name or loc_name not in visible_planets: continue
+            
+            # Check Vulnerability
+            is_vulnerable = False
+            reason = ""
+            
+            # A. RETREATED RECENTLY (High Priority)
+            if getattr(f, 'has_retreated_this_turn', False):
+                is_vulnerable = True
+                reason = "RETREATED"
+            
+            # B. WOUNDED (Medium Priority)
+            # Assuming getting current HP requires checking units.
+            # Approximate with power? No.
+            # Let's check power threshold for "Weakness"
+            elif f.power < 500 and f.faction != "Neutral": # Ignore neutral scouts
+                 # Only vulnerable if we have something stronger nearby
+                 is_vulnerable = True
+                 reason = "WEAK"
+            
+            if is_vulnerable:
+                candidates.append((f, reason))
+        
+        if not candidates: return
+        
+        # 3. Match Targets to Available Fleets
+        for target, reason in candidates:
+             if not available_fleets: break
+             
+             # Find best interceptor (Closest + Stronger)
+             best_hunter = None
+             min_dist = 9999
+             
+             required_power = target.power * 1.2 # Need 20% advantage
+             
+             candidates_hunters = [hf for hf in available_fleets if hf.power >= required_power and hf.power > 0]
+             
+             for hf in candidates_hunters:
+                 # Check distance manually (Fleet might not have distance_to)
+                 loc1 = hf.location
+                 loc2 = target.location
+                 
+                 # Ensure locations have coordinates
+                 if not hasattr(loc1, 'x') or not hasattr(loc2, 'x'): continue
+                 
+                 d = ((loc1.x - loc2.x)**2 + (loc1.y - loc2.y)**2)**0.5
+                 
+                 if d < min_dist and d < 20.0: # Only pursue if reasonably close
+                     min_dist = d
+                     best_hunter = hf
+             
+             if best_hunter:
+                 # Dispatch Hunter-Killer
+                 self.ai.tf_counter += 1
+                 tf = TaskForce(f"TF-HK-{self.ai.tf_counter}", faction)
+                 tf.mission_role = "PURSUIT"
+                 tf.target = target # Targeting FLEET not Planet
+                 tf.add_fleet(best_hunter)
+                 
+                 self.ai.task_forces[faction].append(tf)
+                 
+                 available_fleets.remove(best_hunter)
+                 
+                 if self.ai.engine.logger:
+                      self.ai.engine.logger.campaign(f"[{faction}] Dispatched HUNTER-KILLER {best_hunter.id} to intercept {reason} enemy {target.id} at {target.location.name}.")

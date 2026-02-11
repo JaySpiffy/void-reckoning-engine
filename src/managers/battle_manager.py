@@ -236,6 +236,8 @@ class BattleManager:
         armies_present = self._armies_by_location.get(location, [])
         
         # [DOMAIN-FIX] Strict Domain Separation
+        
+        # [DOMAIN-FIX] Strict Domain Separation
         # 1. If forced, obey.
         # 2. If auto, detect based on location type.
         

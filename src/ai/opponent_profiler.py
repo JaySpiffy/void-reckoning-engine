@@ -74,3 +74,53 @@ class OpponentProfiler:
              # if we have relative data passed in 'data'
              if data and 'relative_power' in data:
                   profile.tech_threat = data['relative_power']
+
+    def analyze_threats(self, faction: str, theaters: list) -> List[dict]:
+        """
+        [AAA Upgrade] Predictive Profiling
+        Analyzes enemy fleet movements relative to shared borders.
+        Returns a list of threat events.
+        """
+        threats = []
+        
+        for theater in theaters:
+            # Theater has knowledge of local enemy fleets?
+            # We need to access the TheaterManager's analysis of enemy presence
+            if not hasattr(theater, 'enemy_fleets'): continue
+            
+            total_enemy_power = 0
+            enemy_counts = {}
+            
+            for f_name, fleets in theater.enemy_fleets.items():
+                if f_name == "Neutral": continue
+                f_power = sum(f.military_power_score for f in fleets)
+                enemy_counts[f_name] = f_power
+                total_enemy_power += f_power
+                
+            # Check for Massing
+            # Heuristic: If > 50% of an enemy's KNOWN total power is in this theater
+            # AND this theater is a border...
+            
+            for enemy, local_power in enemy_counts.items():
+                # We need global context (total enemy power) to know if this is a "massing"
+                # For now, we use a simpler heuristic: "Is local power threateningly high?"
+                
+                # Threshold: 20k power is a decent early game fleet
+                if local_power > 25000:
+                    profile = self.get_profile(enemy)
+                    
+                    # If high tension and not at war -> THREAT SPIKE
+                    # (We assume caller checks war state, or we check it here if we had DiploManager ref)
+                    
+                    threats.append({
+                        "type": "THREAT_SPIKE",
+                        "source": enemy,
+                        "theater": theater.id,
+                        "value": local_power,
+                        "reason": "Massive Fleet Concentration on Border"
+                    })
+                    
+                    # Update profile
+                    profile.update_aggression(0.6) # Posturing is aggressive
+                    
+        return threats

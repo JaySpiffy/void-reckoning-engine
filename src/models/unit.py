@@ -1,5 +1,6 @@
 from typing import List, Dict, Any, Optional, Tuple
 import weakref
+import math
 from src.combat.components.health_component import HealthComponent
 from src.combat.components.armor_component import ArmorComponent
 from src.combat.components.weapon_component import WeaponComponent
@@ -32,6 +33,8 @@ class Unit:
         self.level = kwargs.get("level", 1)
         self.experience = kwargs.get("experience", 0.0)
         self.xp_gain_rate = kwargs.get("xp_gain_rate", 1.0)
+        self.mass = kwargs.get("mass", 1.0) # [FEATURE] Unit Mass
+        self.max_members = kwargs.get("max_members", 1) # [FEATURE] Squadrons
         self._abilities = kwargs.get("abilities", {})
         
         # Composition: Components are injected
@@ -105,7 +108,7 @@ class Unit:
             
         self.components.append(component)
 
-    def take_damage(self, amount: float, impact_angle: float = 0, target_component=None, ignore_mitigation=False):
+    def take_damage(self, amount: float, impact_angle: float = 0, target_component=None, ignore_mitigation=False, shield_mult: float = 1.0, hull_mult: float = 1.0):
         """
         Delegates damage handling to components.
         Returns: (shield_dmg, hull_dmg, is_unit_destroyed, destroyed_component)
@@ -131,11 +134,36 @@ class Unit:
              if c_destroyed:
                   destroyed_component = target_component
         
-        # 3. Apply hull/shield damage
+        # 3. Apply hull/shield damage with Multipliers (Ion Cannon Logic)
         s_dmg, h_dmg, is_destroyed = 0.0, 0.0, False
         if self.health_comp:
-            s_dmg, h_dmg, is_destroyed = self.health_comp.take_damage(mitigated_amount)
-            
+            if shield_mult == 1.0 and hull_mult == 1.0:
+                 # Standard path
+                 s_dmg, h_dmg, is_destroyed = self.health_comp.take_damage(mitigated_amount)
+            else:
+                 # Complex path
+                 current_shield = self.health_comp.current_shield
+                 
+                 # Calculate potential shield damage
+                 s_potential = mitigated_amount * shield_mult
+                 
+                 # Amount actually absorbed by shield
+                 s_absorbed = min(current_shield, s_potential)
+                 
+                 # Determine remaining "energy" ratio to pass to hull
+                 # If shield took all damage, ratio is 0. If no shield, ratio is 1.
+                 remainder_ratio = 1.0
+                 if s_potential > 0:
+                     remainder_ratio = (s_potential - s_absorbed) / s_potential
+                 else:
+                     remainder_ratio = 0.0
+                     
+                 # Remaining base damage
+                 remaining_base = mitigated_amount * remainder_ratio
+                 h_potential = remaining_base * hull_mult
+                 
+                 s_dmg, h_dmg, is_destroyed = self.health_comp.apply_specific_damage(s_absorbed, h_potential)
+
             # Update morale
             if self.morale_comp:
                 self.morale_comp.take_damage(h_dmg)
@@ -405,6 +433,8 @@ class Unit:
         self.is_suppressed = False
         self.grid_x = getattr(self, 'grid_x', 0)
         self.grid_y = getattr(self, 'grid_y', 0)
+        self.grid_z = getattr(self, 'grid_z', 0)
+        self.fatigue = 0.0
 
     def invalidate_strength_cache(self):
         """Deprecated: Use invalidate_cache instead."""
@@ -527,6 +557,36 @@ class Unit:
         finally:
              self._level_up_lock = False
 
+    # [FEATURE] Fatigue Scaling
+    @property
+    def ma(self):
+        base = self.stats_comp.ma if self.stats_comp else 50
+        return int(base * self._get_fatigue_multiplier())
+
+    @property
+    def md(self):
+        base = self.stats_comp.md if self.stats_comp else 50
+        return int(base * self._get_fatigue_multiplier())
+
+    def _get_fatigue_multiplier(self):
+        f = getattr(self, 'fatigue', 0)
+        if f > 80: return 0.5 # Exhausted
+        if f > 50: return 0.8 # Fatigued
+        return 1.0
+
+    # [FEATURE] Squadron Logic
+    @property
+    def member_count(self) -> int:
+        """Returns the number of active members in the squadron based on HP."""
+        max_m = getattr(self, 'max_members', 1)
+        if max_m <= 1: return 1
+        
+        # Avoid zero division
+        if self.max_hp <= 0: return 0
+        
+        hp_per_member = self.max_hp / max_m
+        return math.ceil(self.current_hp / hp_per_member) if hp_per_member > 0 else 0
+
     # Add other proxies as needed (ma, md, etc.) to prevent crashes
     def __getattr__(self, name):
         # Fallback for dynamic stats
@@ -543,12 +603,12 @@ class Unit:
         # Transient combat flags (Fallback if init_combat_state called late)
         combat_flags = ["is_pinned", "morale_state", "tactical_directive", "_shooting_cooldown", 
                        "time_since_last_damage", "is_routing", "recent_damage_taken", "is_suppressed",
-                       "grid_x", "grid_y", "home_defense_morale_bonus", "home_defense_toughness_bonus",
+                       "grid_x", "grid_y", "grid_z", "fatigue", "home_defense_morale_bonus", "home_defense_toughness_bonus",
                        "toughness"]
         if name in combat_flags:
-             if name in ["time_since_last_damage", "_shooting_cooldown", "recent_damage_taken"]:
+             if name in ["time_since_last_damage", "_shooting_cooldown", "recent_damage_taken", "fatigue"]:
                  return 0.0
-             if name in ["grid_x", "grid_y", "home_defense_morale_bonus", "home_defense_toughness_bonus", "toughness"]:
+             if name in ["grid_x", "grid_y", "grid_z", "home_defense_morale_bonus", "home_defense_toughness_bonus", "toughness"]:
                  return 0
              if name == "is_suppressed": return False
              return None

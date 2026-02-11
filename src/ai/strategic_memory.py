@@ -14,7 +14,8 @@ class StrategicMemory:
         self.data = {
             "campaigns": [],
             "patterns": {},
-            "faction_stats": {}
+            "faction_stats": {},
+            "failed_strategies": [] # [AAA Upgrade] List of {faction, goal, target, expires_turn}
         }
         self.load_memory()
         
@@ -102,3 +103,33 @@ class StrategicMemory:
             }
             
         return insights
+
+    def record_failure(self, faction: str, goal: str, target: str, turn: int, duration: int = 20):
+        """
+        Blacklists a specific strategy (Goal + Target) for a duration.
+        """
+        entry = {
+            "faction": faction,
+            "goal": goal,
+            "target": target,
+            "expires_turn": turn + duration
+        }
+        self.data["failed_strategies"].append(entry)
+        self.save_memory()
+
+    def is_strategy_blacklisted(self, faction: str, goal: str, target: str, current_turn: int) -> bool:
+        """
+        Checks if a strategy is currently blacklisted.
+        """
+        # 1. Cleanup expired
+        self.data["failed_strategies"] = [
+            f for f in self.data["failed_strategies"] 
+            if f.get("expires_turn", 0) > current_turn
+        ]
+        
+        # 2. Check match
+        for f in self.data["failed_strategies"]:
+            if f["faction"] == faction and f["goal"] == goal and f["target"] == target:
+                return True
+                
+        return False

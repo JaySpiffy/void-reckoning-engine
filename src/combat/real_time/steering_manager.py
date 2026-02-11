@@ -134,8 +134,15 @@ class SteeringManager:
             dy = unit.grid_y - n.grid_y
             dist = math.sqrt(dx**2 + dy**2)
             if 0 < dist < sep_dist:
-                sep_dx += dx / dist
-                sep_dy += dy / dist
+                # [FEATURE] Unit Mass / Pushing
+                neighbor_mass = getattr(n, 'mass', 1.0)
+                my_mass = getattr(unit, 'mass', 1.0)
+                mass_ratio = neighbor_mass / max(0.1, my_mass)
+                
+                # Heavy units ignore light units (push through)
+                # Light units get pushed hard by heavy units
+                sep_dx += (dx / dist) * mass_ratio
+                sep_dy += (dy / dist) * mass_ratio
         
         total_dx += sep_dx * 1.5 # High weight for separation
         total_dy += sep_dy * 1.5

@@ -107,6 +107,10 @@ class Fleet:
         
         # [FEATURE] Strategic Retreat Limit
         self.has_retreated_this_turn = False
+        
+        # [FEATURE] Dynamic Formations
+        self.formation_settings = {} # {template: str, groups: dict}
+        self.saved_formation = {}    # {unit_id: (x, y)}
     
     def reset_turn_flags(self):
         """Resets turn-based behavior flags at start of turn."""
@@ -141,6 +145,8 @@ class Fleet:
             "cargo_armies": [a.to_dict() for a in self.cargo_armies],
             "tactical_directive": self.tactical_directive,
             "has_retreated_this_turn": self.has_retreated_this_turn,
+            "formation_settings": getattr(self, "formation_settings", {}),
+            "saved_formation": getattr(self, "saved_formation", {})
         }
 
     @classmethod

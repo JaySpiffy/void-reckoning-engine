@@ -12,7 +12,8 @@ PERSONALITY_DB = {
         combat_doctrine="SHOCK_ASSAULT",
         tech_doctrine="PURITAN",
         tech_focus=["military", "volatility"],
-        quirks={"threat_affinity": 2.0}
+        quirks={"threat_affinity": 2.0},
+        determination=0.9 # Fanatical
     ),
 
     # 2. Transcendent_Order (Elitist Tech-Mages)
@@ -27,7 +28,8 @@ PERSONALITY_DB = {
         combat_doctrine="ELITE_CASTER",
         tech_doctrine="PRAGMATIC",
         tech_focus=["energy", "aether", "information"],
-        quirks={"research_multiplier": 1.2}
+        quirks={"research_multiplier": 1.2},
+        determination=0.7
     ),
 
     # 3. SteelBound_Syndicate (Defensive Industrialists)
@@ -42,7 +44,8 @@ PERSONALITY_DB = {
         combat_doctrine="ATTRITION",
         tech_doctrine="PRAGMATIC",
         tech_focus=["mass", "cohesion", "engineering"],
-        quirks={"navy_recruitment_mult": 0.9, "army_recruitment_mult": 1.2}
+        quirks={"navy_recruitment_mult": 0.9, "army_recruitment_mult": 1.2},
+        determination=0.85 # Stubborn
     ),
 
     # 4. BioTide_Collective (Biological Flood)
@@ -57,7 +60,8 @@ PERSONALITY_DB = {
         combat_doctrine="SWARM",
         tech_doctrine="XENOPHOBIC",
         tech_focus=["mass", "volatility", "frequency"],
-        quirks={"biomass_hunger": 2.0, "navy_recruitment_mult": 1.5}
+        quirks={"biomass_hunger": 2.0, "navy_recruitment_mult": 1.5},
+        determination=1.0 # Relentless
     ),
 
     # 5. Algorithmic_Hierarchy (Machine Intelligence)
@@ -72,7 +76,8 @@ PERSONALITY_DB = {
         combat_doctrine="COORDINATED_FIRE",
         tech_doctrine="ADAPTIVE",
         tech_focus=["information", "energy", "stability"],
-        quirks={"on_kill_effect": "assimilate"}
+        quirks={"on_kill_effect": "assimilate"},
+        determination=0.6 # Calculated
     ),
     
     # 6. Nebula_Drifters (Raiders)
@@ -87,7 +92,8 @@ PERSONALITY_DB = {
         combat_doctrine="SKIRMISH",
         tech_doctrine="ADAPTIVE",
         tech_focus=["frequency", "volatility"],
-        quirks={"casualty_plunder_ratio": 0.5, "evasion_rating": 1.2}
+        quirks={"casualty_plunder_ratio": 0.5, "evasion_rating": 1.2},
+        determination=0.3 # Easily dissuaded
     ),
 
     # 7. Aurelian_Hegemony (Standard Empire)
@@ -101,7 +107,8 @@ PERSONALITY_DB = {
         combat_doctrine="STANDARD",
         tech_doctrine="PRAGMATIC",
         tech_focus=["mass", "energy", "leadership"],
-        quirks={"diplomacy_bonus": 20}
+        quirks={"diplomacy_bonus": 20},
+        determination=0.5 # Standard
     ),
 
     # 8. VoidSpawn_Entities (Chaotic Invaders)
@@ -116,7 +123,8 @@ PERSONALITY_DB = {
         combat_doctrine="SHOCK_ASSAULT",
         tech_doctrine="RADICAL",
         tech_focus=["aether", "volatility", "will"],
-        quirks={"threat_affinity": 1.5}
+        quirks={"threat_affinity": 1.5},
+        determination=0.95
     ),
     
     # 9. ScrapLord_Marauders (Resource Opportunists)
@@ -131,7 +139,8 @@ PERSONALITY_DB = {
         combat_doctrine="AMBUSH",
         tech_doctrine="ADAPTIVE",
         tech_focus=["mass", "engineering"],
-        quirks={"casualty_plunder_ratio": 0.8}
+        quirks={"casualty_plunder_ratio": 0.8},
+        determination=0.4
     ),
 
     # 10. Primeval_Sentinels (Fallen Empire)
@@ -146,7 +155,8 @@ PERSONALITY_DB = {
         combat_doctrine="SUPERIOR_FIREPOWER",
         tech_doctrine="XENOPHOBIC",
         tech_focus=["aether", "focus", "stability"],
-        quirks={"tech_advantage": 2.0}
+        quirks={"tech_advantage": 2.0},
+        determination=1.0 # Unwavering
     )
 }
 

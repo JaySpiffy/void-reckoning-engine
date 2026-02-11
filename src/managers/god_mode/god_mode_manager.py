@@ -31,6 +31,16 @@ class GodModeManager:
                 )
                 result = {"success": success, "message": f"Spawned fleet for {payload.get('faction')}" if success else "Failed to spawn"}
                 
+                result = {"success": success, "message": f"Spawned fleet for {payload.get('faction')}" if success else "Failed to spawn"}
+            
+            elif action == "SPAWN_PIRATE_FLEET":
+                system = payload.get("system", "Sol")
+                target_faction = payload.get("target_faction")
+                success = self.fleet_spawner.spawn_pirate_fleet(system, target_faction)
+                
+                target_msg = f" targeting {target_faction}" if target_faction else ""
+                result = {"success": success, "message": f"Pirate Warlord spawned at {system}{target_msg}" if success else "Failed to spawn pirates"}
+
             elif action == "SET_RESOURCES":
                 faction = payload.get("faction")
                 amount = payload.get("amount", 0)

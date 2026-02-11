@@ -34,3 +34,9 @@ Dockerfile.*
 # Misc / Backups
 examples_only/
 .roo/
+
+# Compiled Object Files
+*.o
+*.rcgu.o
+*.obj
+

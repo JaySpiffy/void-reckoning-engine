@@ -187,6 +187,7 @@ class UniverseConfig:
             "version": self.universe_version,
             "root": str(self.universe_root),
             "metadata": self.metadata,
+            "factions": self.factions,
             "unit_formats": self.unit_formats,
             "supports_xml": self.supports_xml,
             "portal_config_path": str(self.portal_config_path)

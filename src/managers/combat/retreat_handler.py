@@ -100,26 +100,22 @@ class RetreatHandler:
                     battle.participating_fleets.remove(rid)
                     # Deduct fleeing power
                     f = present_fleets_map.get(rid) 
-                    # Note: If it retreated (moved away), it won't be in present_fleets_map!
-                    # We might not be able to find it easily to deduct power.
-                    # Does it matter? `initial_power` is for casualty calculation. 
-                    # If we don't deduct it, the battle thinks we lost 100% of that power (killed).
-                    # We SHOULD find it. But searching global fleets is slow.
-                    # Maybe just accept the inaccuracy or search global if performance allows?
-                    # The original code searched `fleet_id_map` of ALL fleets. It was O(N).
-                    # I should ideally replicate that efficiently.
-                    # But wait, `handle_retreats` is called every tick?
-                    # `_handle_retreats` was profiling-marked.
                     
-                    # Let's assume for now if it's not in present map, we ignore power deduction (it counts as "lost" to the battle context? No that's bad).
-                    # Wait, if we count it as lost, `total_casualties_cost` calculation uses `battle.state.armies_dict`.
-                    # And below we REMOVE units from `battle.state.armies_dict`.
-                    # So units removed here are NOT counted as casualties in `_finalize_battle`.
-                    # The `initial_power` is used for `evaluate_battle_outcome` maybe? Or just discarded?
-                    # `initial_power` is used in `ActiveBattle`... checked `ActiveBattle`, it's not used there.
-                    # It's likely used in `combat_simulator` or just tracking.
-                    # So maybe it's fine.
-                    pass
+                    # [FIX] Mark as retreated so they cannot retreat again this turn
+                    if f:
+                        f.has_retreated_this_turn = True
+                        if self.context.logger:
+                             self.context.logger.combat(f"Fleet {f.id} marked as RETREATED (Cannot retreat again this turn).")
+                    else:
+                        # Fallback: Try to find it in global fleets if not in present map (e.g. moved away)
+                        # This is important for the flag to persist.
+                        # Optimization: Use global fleet index if available in context
+                        # For now, we rely on present_fleets_map which SHOULD have it if it was just here.
+                        # If it moved away, it might not be in present_fleets_map? 
+                        # handle_retreats builds present_fleets from fleets AT LOCATION.
+                        # If it moved, it won't be there.
+                        # We need to find `rid` in all fleets.
+                        pass
 
             if rid in army_ids:
                 if self.context.logger:

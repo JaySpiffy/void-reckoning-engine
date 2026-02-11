@@ -84,18 +84,7 @@ class CombatState:
         """Initializes the tactical grid and tracker."""
         self.mechanics_engine = mechanics_engine
         
-        # Calculate Grid Size based on unit count (Scaling logic)
-        total_units = sum(len(units) for units in self.armies_dict.values())
         
-        if total_units < 20:
-            grid_size = 30
-        elif total_units < 60:
-            grid_size = 50
-        elif total_units >= 150:
-            grid_size = 100
-        else:
-            grid_size = 80 # Default for transition range
-            
         # [Total War / EaW] Infer Battle Type (Space or Ground)
         map_type = "Ground" # Default
         
@@ -131,6 +120,22 @@ class CombatState:
                 
             if found_space:
                  map_type = "Space"
+        
+        # Calculate Grid Size based on unit count (Scaling logic)
+        # [FIX] Move after Map Type to allow Space Override
+        total_units = sum(len(units) for units in self.armies_dict.values())
+        
+        if total_units < 20:
+            grid_size = 30
+        elif total_units < 60:
+            grid_size = 50
+        elif total_units >= 150:
+            grid_size = 100
+        else:
+            grid_size = 80 # Default for transition range
+            
+        if map_type == "Space":
+             grid_size = max(grid_size, 80) # Space is big, even for small skirmishes
              
         # Initialize Managers
         from src.combat.grid.grid_manager import GridManager
@@ -154,6 +159,23 @@ class CombatState:
 
         self.ability_manager = AbilityManager(registry)
         
+        # [FEATURE] Dynamic Formations: Ensure all fleets have a formation
+        try:
+             from src.ai.formation_designer import FormationDesigner
+             designer = FormationDesigner()
+             processed_fleets = set()
+
+             for f_name, units in self.armies_dict.items():
+                 for u in units:
+                     fleet_ref = getattr(u, 'fleet', None)
+                     if fleet_ref and fleet_ref not in processed_fleets:
+                         processed_fleets.add(fleet_ref)
+                         # If fleet has no formation, design one now
+                         if hasattr(fleet_ref, 'saved_formation') and not fleet_ref.saved_formation:
+                             designer.design_formation(fleet_ref)
+        except ImportError:
+             pass # Fallback if module missing or cycle
+
         # Register units
         for f, units in self.armies_dict.items():
             for u in units:
@@ -168,18 +190,60 @@ class CombatState:
                     curr_y = getattr(u, 'grid_y', None)
                     
                     if curr_x is None or curr_y is None or (curr_x == 0 and curr_y == 0):
-                         f_id = str(f).lower()
-                         is_faction_a = ("factiona" in f_id) or (f_id.startswith("a")) or (f_id == "factiona")
+                         # [FEATURE] Dynamic Formations
+                         placed_via_formation = False
+                         fleet_ref = getattr(u, 'fleet', None)
                          
-                         x_min = int(grid_size * 0.35)
-                         x_max = int(grid_size * 0.45)
-                         if not is_faction_a:
-                             x_min = int(grid_size * 0.55)
-                             x_max = int(grid_size * 0.65)
-                         
-                         name_hash = hash(u.name)
-                         u.grid_x = x_min + (abs(name_hash) % (x_max - x_min + 1))
-                         u.grid_y = (grid_size // 2) + (hash(u.name + "y") % 10 - 5)
+                         if fleet_ref and hasattr(fleet_ref, 'saved_formation') and fleet_ref.saved_formation:
+
+                             # saved_formation is {unit_id: (rel_x, rel_y)}
+                             uid = str(getattr(u, 'id', id(u)))
+                             
+                             if uid in fleet_ref.saved_formation:
+                                 # Determine Faction Side/Facing
+                                 f_id = str(f).lower()
+                                 is_faction_a = ("factiona" in f_id) or (f_id.startswith("a")) or (f_id == "factiona")
+                                 
+                                 # Base Center
+                                 cx = (grid_size * 0.25) if is_faction_a else (grid_size * 0.75)
+                                 cy = grid_size / 2
+                                 
+                                 rel_x, rel_y = fleet_ref.saved_formation[uid]
+                                 
+                                 # Transformations
+                                 if not is_faction_a:
+                                     # Mirror X for opposing side
+                                     rel_x = -rel_x 
+                                     # Y usually stays same (if Left/Right symmetry) or mirrored?
+                                     # Let's assume formations are "Forward Facing". 
+                                     # If B faces -X, then +Y in formation (Left) becomes -Y in world (Right relative to B)?
+                                     # Standard: Invert X. Keep Y (Screen is 'East', Main is 'West', Flanks are North/South).
+                                     pass
+                                     
+                                 final_x = int(cx + rel_x)
+                                 final_y = int(cy + rel_y)
+                                 
+                                 # Clamp
+                                 final_x = max(0, min(grid_size - 1, final_x))
+                                 final_y = max(0, min(grid_size - 1, final_y))
+                                 
+                                 u.grid_x = final_x
+                                 u.grid_y = final_y
+                                 placed_via_formation = True
+
+                         if not placed_via_formation:
+                             f_id = str(f).lower()
+                             is_faction_a = ("factiona" in f_id) or (f_id.startswith("a")) or (f_id == "factiona")
+                             
+                             x_min = int(grid_size * 0.35)
+                             x_max = int(grid_size * 0.45)
+                             if not is_faction_a:
+                                 x_min = int(grid_size * 0.55)
+                                 x_max = int(grid_size * 0.65)
+                             
+                             name_hash = hash(u.name)
+                             u.grid_x = x_min + (abs(name_hash) % (x_max - x_min + 1))
+                             u.grid_y = (grid_size // 2) + (hash(u.name + "y") % 10 - 5)
                     
                     self.grid_manager.place_unit(u, u.grid_x, u.grid_y)
                     

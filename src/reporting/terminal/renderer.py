@@ -239,16 +239,28 @@ class DashboardRenderer:
         buffer.append(f"     {BOLD}{MAGENTA}╚════════════════════════════════════[ i:CLOSE / Esc ]═╝{RESET}")
 
     @staticmethod
-    def render_god_mode_overlay(buffer: List[str], selection_idx: int):
+    def render_god_mode_overlay(buffer: List[str], selection_idx: int, configs: List[Dict] = None, faction_idx: int = 0, preset_idx: int = 0):
         """Displays the God Mode Menu."""
         width = 60
         buffer.append(f"\n     {BOLD}{RED}╔═══════════════[ GOD MODE CONTROL ]═══════════════╗{RESET}")
         buffer.append(f"     ║ {DIM}Directly manipulate simulation state.{RESET}{' ' * (width - 36)}║")
         
+        # Resolve Dynamic Values
+        factions = ["Humanity"]
+        if configs and len(configs) > 0:
+            cfg = configs[0]
+            if "factions" in cfg and cfg["factions"]:
+                factions = list(cfg["factions"].keys()) if isinstance(cfg["factions"], dict) else cfg["factions"]
+            
+        target_faction = factions[faction_idx % len(factions)] if factions else "Humanity"
+        
+        presets = ["Patrol", "Battlegroup", "Wolfpack", "Armada", "Invasion Force"]
+        target_preset = presets[preset_idx % len(presets)]
+
         options = [
-            "Spawn Fleet (Patrol)",
-            "Spawn Fleet (Battlegroup)",
-            "Add 100,000 Requisition (All)",
+            f"Spawn Fleet ({target_preset}) -> {target_faction}",
+            f"Spawn Pirate Raid -> {target_faction}",
+            f"Add 100,000 Requisition ({target_faction})",
             "Force Global Peace",
             "Trigger Chaos Incursion"
         ]
@@ -256,8 +268,11 @@ class DashboardRenderer:
         for i, opt in enumerate(options):
             prefix = f"{RED} > {RESET}" if i == selection_idx else "   "
             style = BOLD if i == selection_idx else WHITE
-            buffer.append(f"     ║ {prefix}{style}{i+1}. {opt:<40}{RESET}{' ' * (width - 48)}║")
+            # Truncate if too long
+            opt_display = opt[:50]
+            buffer.append(f"     ║ {prefix}{style}{i+1}. {opt_display:<50}{RESET}{' ' * (width - 58)}║")
             
         buffer.append(f"     {BOLD}{RED}╟──────────────────────────────────────────────────╢{RESET}")
-        buffer.append(f"     ║ {YELLOW}Controls: UP/DOWN to select, ENTER to execute.{RESET}   ║")
+        buffer.append(f"     ║ {YELLOW}Controls: UP/DOWN select, ENTER execute.{RESET}           ║")
+        buffer.append(f"     ║ {YELLOW}< > Cycle Faction | [ ] Cycle Preset{RESET}             ║")
         buffer.append(f"     {BOLD}{RED}╚════════════════════════════════════[ G:CLOSE / Esc ]═╝{RESET}")

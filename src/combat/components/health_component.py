@@ -34,6 +34,24 @@ class HealthComponent:
             
         return shield_dmg, hp_dmg, self.current_hp <= 0
 
+    def apply_specific_damage(self, shield_amount: float, hull_amount: float) -> Tuple[float, float, bool]:
+        """
+        Applies specific damage amounts to shield and hull respectively.
+        Used for weapons with different multipliers (e.g. Ion Cannons).
+        """
+        s_dmg = 0
+        h_dmg = 0
+        
+        if self.current_shield > 0 and shield_amount > 0:
+            s_dmg = min(self.current_shield, shield_amount)
+            self.current_shield -= s_dmg
+            
+        if hull_amount > 0:
+            h_dmg = min(self.current_hp, hull_amount)
+            self.current_hp -= h_dmg
+            
+        return s_dmg, h_dmg, self.current_hp <= 0
+
     def regenerate(self):
         """Applies regenerative effects."""
         self.current_hp = min(self.max_hp, self.current_hp + self.regen)

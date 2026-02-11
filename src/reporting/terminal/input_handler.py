@@ -105,19 +105,51 @@ class TUIInputHandler:
 
         
         elif dashboard.show_god_mode:
+            # Data Access for cycling limits
+            # Try to get faction count from config
+            num_factions = 1
+            factions_list = ["Humanity"]
+            if hasattr(dashboard, 'last_universe_configs') and dashboard.last_universe_configs:
+                cfg = dashboard.last_universe_configs[0]
+                if "factions" in cfg and cfg["factions"]:
+                    factions_list = list(cfg["factions"].keys()) if isinstance(cfg["factions"], dict) else cfg["factions"]
+                    num_factions = len(factions_list)
+
+            presets = ["Patrol", "Battlegroup", "Wolfpack", "Armada", "Invasion Force"]
+            num_presets = len(presets)
+
             # Menu Navigation
-            if key == 'up': # Need to handle arrow mapping in get_key first
+            if key == 'up':
                  dashboard.god_mode_selection = max(0, dashboard.god_mode_selection - 1)
             elif key == 'down':
-                 dashboard.god_mode_selection = min(4, dashboard.god_mode_selection + 1) # 5 options hardcoded for now
+                 dashboard.god_mode_selection = min(4, dashboard.god_mode_selection + 1)
+            elif key == 'left':
+                 dashboard.god_mode_target_faction_idx = (dashboard.god_mode_target_faction_idx - 1) % num_factions
+            elif key == 'right':
+                 dashboard.god_mode_target_faction_idx = (dashboard.god_mode_target_faction_idx + 1) % num_factions
+            elif key == '[':
+                 dashboard.god_mode_preset_idx = (dashboard.god_mode_preset_idx - 1) % num_presets
+            elif key == ']':
+                 dashboard.god_mode_preset_idx = (dashboard.god_mode_preset_idx + 1) % num_presets
+
             elif key == '\r' or key == '\n':
                  # Execute
                  idx = dashboard.god_mode_selection
+                 target_faction = factions_list[dashboard.god_mode_target_faction_idx]
+                 target_preset = presets[dashboard.god_mode_preset_idx]
+                 
                  cmd = None
-                 if idx == 0: cmd = {"action": "SPAWN_FLEET", "payload": {"faction": "Humanity", "system": "Sol", "preset": "Patrol"}}
-                 elif idx == 1: cmd = {"action": "SPAWN_FLEET", "payload": {"faction": "Humanity", "system": "Sol", "preset": "Battlegroup"}}
-                 elif idx == 2: cmd = {"action": "ADD_RESOURCES", "payload": {"faction": "Humanity", "amount": 100000}}
-                 elif idx == 3: cmd = {"action": "FORCE_PEACE", "payload": {}}
+                 if idx == 0: 
+                     cmd = {"action": "SPAWN_FLEET", "payload": {"faction": target_faction, "system": "Sol", "preset": target_preset}}
+                 elif idx == 1: 
+                     # Spawn Pirate
+                     cmd = {"action": "SPAWN_PIRATE_FLEET", "payload": {"system": "Sol", "target_faction": target_faction}}
+                 elif idx == 2: 
+                     cmd = {"action": "ADD_RESOURCES", "payload": {"faction": target_faction, "amount": 100000}}
+                 elif idx == 3: 
+                     cmd = {"action": "FORCE_PEACE", "payload": {}}
+                 elif idx == 4:
+                     cmd = {"action": "TRIGGER_EVENT", "payload": {"event_type": "chaos_incursion"}}
                  
                  if cmd:
                      dashboard._broadcast_command({"action": "GOD_EXECUTE", "payload": cmd})

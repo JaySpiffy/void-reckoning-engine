@@ -68,10 +68,31 @@ def resolve_fleet_engagement_rust(armies_dict: Dict[str, List[Any]], silent=Fals
     rounds = 0
     max_rounds = MAX_COMBAT_ROUNDS
     
+    # Stalemate Detection logic (Total War style)
+    last_hp_sum = -1.0
+    rounds_since_last_change = 0
+    
     while rounds < max_rounds:
         cont = engine.resolve_round()
         rounds += 1
         if not cont: break
+        
+        # Check every 100 rounds for Stalemate (No HP Change)
+        if rounds % 100 == 0:
+            current_state = engine.get_state()
+            # row format: (bid, x, y, hp, alive, max_hp...)
+            # We sum HP to see if damage is happening
+            current_hp_sum = sum(max(0.0, row[3]) for row in current_state) 
+            
+            if abs(current_hp_sum - last_hp_sum) < 0.1:
+                rounds_since_last_change += 100
+            else:
+                rounds_since_last_change = 0
+                last_hp_sum = current_hp_sum
+                
+            if rounds_since_last_change >= 2500:
+                if not silent: print(f"[Rust] Stalemate detected (No HP change for 2500 rounds). Ending battle.")
+                break
         
     # Final Sync
     engine.sync_back_to_python(armies_dict)

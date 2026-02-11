@@ -109,7 +109,12 @@ class ProjectileManager:
     def _apply_hit(self, proj: Projectile, unit: Any, battle_state: Any):
         """Applies damage to the unit that was hit."""
         # Mitigation logic is usually handled in unit.take_damage
-        dmg_s, dmg_h, is_destroyed, _ = unit.take_damage(proj.damage, target_component=proj.target_comp)
+        dmg_s, dmg_h, is_destroyed, _ = unit.take_damage(
+            proj.damage, 
+            target_component=proj.target_comp,
+            shield_mult=getattr(proj, 'shield_mult', 1.0), 
+            hull_mult=getattr(proj, 'hull_mult', 1.0)
+        )
         
         # Statistics
         attacker_faction = getattr(proj.owner, 'faction', 'Unknown')

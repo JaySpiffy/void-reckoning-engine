@@ -32,6 +32,10 @@ class StrategicPlan:
     success_metrics: dict = "None" 
     contingency_triggers: list = "None"
     
+    # [AAA Upgrade] Deep Trace Reasoning
+    persistence_score: float = 10.0  # Decays over time, resists swift abandonment
+    failure_reason: str = None       # "TIMEOUT", "OVERWHELMING_FORCE", "BETRAYAL"
+    
     def __post_init__(self):
         if self.target_systems is None: self.target_systems = []
         if self.priority_planets is None: self.priority_planets = []
@@ -84,6 +88,16 @@ class StrategicPlanner:
                  "theaters_found": len(theaters),
                  "theater_ids": [t.id for t in theaters]
              })
+             
+        # [AAA Upgrade] Predictive Profiling Check
+        # Check for massing fleets on borders
+        threats = []
+        if hasattr(self.ai, 'profiler') and self.ai.profiler:
+            # We need to populate theater.enemy_fleets first (usually done in analyze_theaters)
+            threats = self.ai.profiler.analyze_threats(faction, theaters)
+            
+        # Global Goals (Fallback or Overarching)
+        war_goal = "GRAND_STRATEGY_WAIT"
 
         sub_plans = []
         
@@ -114,6 +128,17 @@ class StrategicPlanner:
                      "trigger": "theaters_active",
                      "selected_goal": war_goal
                  })
+            
+            # [AAA Upgrade] Threat Override
+            # If any theater has a massive threat, prioritize defense there
+            highest_threat = None
+            for t_event in threats:
+                 # If threat value is very high (> 50k), panic switch
+                 if t_event['value'] > 50000:
+                     highest_threat = t_event
+                     print(f"  > [STRATEGY] {faction} DETECTED MASSING by {t_event['source']} in {t_event['theater']}! Switching to DEFEND.")
+                     war_goal = "EMERGENCY_DEFENSE"
+                     break
             
             for index, theater in enumerate(theaters):
                 # Assign Doctrine
@@ -151,7 +176,24 @@ class StrategicPlanner:
                     for _, owner in enemy_systems:
                         counts[owner] = counts.get(owner, 0) + 1
                     primary_enemy = max(counts, key=counts.get)
-                    sub_target_f = primary_enemy
+                    
+                    # [AAA Upgrade] Check Memory Blacklist
+                    if hasattr(self.ai, 'memory') and self.ai.memory:
+                        if self.ai.memory.is_strategy_blacklisted(faction, sub_goal, primary_enemy, turn):
+                             if trace_enabled:
+                                 trace["steps"].append({
+                                     "step": "blacklist_check",
+                                     "rejected_goal": sub_goal,
+                                     "rejected_target": primary_enemy,
+                                     "reason": "Previous Failure"
+                                 })
+                             print(f"  > [STRATEGY] {faction} skipping blacklisted strategy {sub_goal} vs {primary_enemy}")
+                             sub_goal = "DEFEND" # Fallback
+                             sub_target_f = None
+                        else:
+                             sub_target_f = primary_enemy
+                    else:
+                        sub_target_f = primary_enemy
 
                     # [FIX] Proactive War Declaration
                     # "War must be declared BEFORE attacking" - User
@@ -217,7 +259,8 @@ class StrategicPlanner:
             war_goal=war_goal,
             current_phase="EXECUTION",
             sub_plans=sub_plans,
-            active_theater_id="GLOBAL"
+            active_theater_id="GLOBAL",
+            persistence_score=10.0 + (personality.determination * 5.0) # [AAA] Personality impacts commitment
         )
                                 
         self.active_plans[faction] = new_plan
@@ -312,6 +355,35 @@ class StrategicPlanner:
                 )
                 
             return "COMPLETED"
+            
+        # [AAA Upgrade] Deep Trace Reasoning - Persistence Check
+        # Decay persistence
+        plan.persistence_score -= 1.0
+        
+        # Check against failure conditions (e.g., losing too many ships/planets)
+        # For now, we simulate a 'disaster check' based on recent events (passed in context usually, but we'll assume access)
+        # If persistence drops too low and success probability is low -> ABANDON
+        
+        if plan.persistence_score <= 0:
+            # Check if we should abandon
+            # This is where we'd check "Current Win Probability"
+            # For now, if persistence is 0, we treat it as a potential timeout or forced change
+            
+            # Record Failure in Memory
+            if hasattr(self.ai, 'memory') and self.ai.memory:
+                 # Check active theater sub-plans to blacklist specific failures
+                 for sp in plan.sub_plans:
+                     if sp.get('goal') not in ["DEFEND", "EXPAND_FRONTIER"]:
+                         self.ai.memory.record_failure(
+                             faction, 
+                             sp.get('goal'), 
+                             sp.get('target_faction'), 
+                             self.ai.engine.turn_counter
+                         )
+            
+            print(f"  > [STRATEGY] {faction} ABANDONING plan {plan.plan_id} (Persistence Depleted)")
+            return "FAILED"
+
         return "IN_PROGRESS"
 
     def calculate_plan_success_score(self, faction: str, plan: StrategicPlan) -> float:

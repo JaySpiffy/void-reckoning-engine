@@ -43,7 +43,7 @@ BUILD_TIME_DIVISOR = 100
 MAX_BUILD_TIME = 10
 
 # Combat & Units
-MAX_COMBAT_ROUNDS = 1000000  # [PHASE 11] Effectively infinite for "Total War" style battles
+MAX_COMBAT_ROUNDS = 10000  # [PHASE 11] Reduced from 1M to prevent infinite stalemates (50s lag)
 MAX_FLEET_SIZE = 500
 MAX_LAND_UNITS = 200  # [PHASE 11] Increased from 20 to 200 per user request
 TACTICAL_GRID_SIZE = 500.0  # [PHASE 11] Increased from 100.0 to 500.0

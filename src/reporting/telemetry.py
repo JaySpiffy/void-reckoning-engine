@@ -797,9 +797,11 @@ class TelemetryCollector:
             pass
 
         # Remote Streaming
+        # Remote Streaming
         self.remote_url = None
         self.remote_queue = None
         self.batch_id = "unknown"
+        self.last_index_pos = 0 # [OPTIMIZATION] Incremental Indexing
 
         # [R1] Background Batcher
         self.event_queue = queue.Queue()
@@ -1320,25 +1322,48 @@ class TelemetryCollector:
     def generate_index(self) -> None:
         """
         [REPORTING] Scans the events.json file and generates an index.json.
-        Maps events to turns and categories for efficient lookups.
+        Uses incremental scanning to avoid O(N) penalties on large files.
         """
         if not self.log_file or not os.path.exists(self.log_file):
             return
 
+        index_path = os.path.join(os.path.dirname(self.log_file), "index.json")
+        
+        # Load existing index if available
         index_data = {
             "total_events": 0,
             "turns": {},
             "categories": {}
         }
         
+        # Initialize last_index_pos if missing (e.g. restart)
+        if not hasattr(self, 'last_index_pos'):
+            self.last_index_pos = 0
+            
+        if os.path.exists(index_path) and self.last_index_pos > 0:
+            try:
+                with open(index_path, 'r') as f:
+                    index_data = json.load(f)
+            except:
+                # Corrupt index, start over
+                self.last_index_pos = 0
+        else:
+             self.last_index_pos = 0
+        
         try:
+            current_size = os.path.getsize(self.log_file)
+            if current_size == self.last_index_pos:
+                return # Nothing new
+                
             with open(self.log_file, 'r') as f:
-                for line_no, line in enumerate(f):
+                f.seek(self.last_index_pos)
+                
+                for line in f:
                     if not line.strip(): continue
                     try:
                         event = json.loads(line)
                         cat = event.get("category", "unknown")
-                        turn = event.get("turn", -1)
+                        turn = str(event.get("turn", -1)) # JSON keys are strings
                         
                         # Update Stats
                         index_data["total_events"] += 1
@@ -1356,13 +1381,15 @@ class TelemetryCollector:
                         
                     except json.JSONDecodeError:
                         continue
+                
+                # Update pointer
+                self.last_index_pos = f.tell()
                         
             # Write Index
-            index_path = os.path.join(os.path.dirname(self.log_file), "index.json")
             with open(index_path, 'w') as f:
                 json.dump(index_data, f, indent=2)
                 
-            print(f"[TELEMETRY] Index generated: {index_path} ({index_data['total_events']} events)")
+            # print(f"[TELEMETRY] Index updated: {index_path} ({index_data['total_events']} events)")
             
         except Exception as e:
             print(f"[TELEMETRY] Failed to generate index: {e}")
