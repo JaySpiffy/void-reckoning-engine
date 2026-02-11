@@ -7,6 +7,13 @@
 [![GPU Support](https://img.shields.io/badge/GPU-CuPy%20%7C%20CUDA-green.svg)](#gpu-acceleration)
 [![Dashboard](https://img.shields.io/badge/Dashboard-v2%20In%20Dev-orange.svg)](#dashboard-v2)
 
+<!-- GitHub Topics -->
+[![strategy-game](https://img.shields.io/badge/topic-strategy--game-blue)](https://github.com/topics/strategy-game)
+[![simulation](https://img.shields.io/badge/topic-simulation-blue)](https://github.com/topics/simulation)
+[![python](https://img.shields.io/badge/topic-python-blue)](https://github.com/topics/python)
+[![rust](https://img.shields.io/badge/topic-rust-orange)](https://github.com/topics/rust)
+[![4x-game](https://img.shields.io/badge/topic-4x--game-blue)](https://github.com/topics/4x-game)
+[![game-engine](https://img.shields.io/badge/topic-game--engine-blue)](https://github.com/topics/game-engine)
 ![Terminal Dashboard Demo](docs/images/dashboard_demo.png)
 
 A complex, text-based 4X strategy engine featuring trait-based faction evolution and professional architectural patterns.
