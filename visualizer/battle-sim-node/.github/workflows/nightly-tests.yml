@@ -1,0 +1,135 @@
+name: 🌙 Nightly Full Test Suite
+
+on:
+  schedule:
+    # Run at 2 AM UTC every day
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+jobs:
+  # ============================================
+  # Extended Simulations (500+ runs)
+  # ============================================
+  overnight-simulations:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Install Playwright
+        run: npx playwright install --with-deps chromium
+      
+      - name: Build project
+        run: npm run build
+      
+      - name: Start dev server
+        run: npm run dev:quick &
+      
+      - name: Wait for server
+        run: npx wait-on http://localhost:5173 --timeout 30000
+      
+      - name: Run extended simulations
+        run: node scripts/batch-simulator.js 500 --export=all
+      
+      - name: Upload results
+        uses: actions/upload-artifact@v4
+        with:
+          name: nightly-simulation-results
+          path: simulation-results/
+          retention-days: 30
+      
+      - name: Generate trend report
+        run: |
+          echo "## 🌙 Nightly Test Results - $(date +%Y-%m-%d)" > report.md
+          echo "" >> report.md
+          if [ -f simulation-results/summary-*.json ]; then
+            echo "### 📊 Statistics" >> report.md
+            cat simulation-results/summary-*.json | jq -r '"- Total Runs: \(.summary.total)"' >> report.md
+            cat simulation-results/summary-*.json | jq -r '"- Success Rate: \(.summary.success_rate * 100)%"' >> report.md
+            cat simulation-results/summary-*.json | jq -r '"- Average Waves: \(.summary.avg_waves)"' >> report.md
+            cat simulation-results/summary-*.json | jq -r '"- Best Score: \(.summary.best_score)"' >> report.md
+          fi
+          cat report.md >> $GITHUB_STEP_SUMMARY
+
+  # ============================================
+  # Cross-browser Testing
+  # ============================================
+  cross-browser:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        browser: [chromium, firefox, webkit]
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Install Playwright ${{ matrix.browser }}
+        run: npx playwright install --with-deps ${{ matrix.browser }}
+      
+      - name: Build project
+        run: npm run build
+      
+      - name: Start dev server
+        run: npm run dev:quick &
+      
+      - name: Wait for server
+        run: npx wait-on http://localhost:5173 --timeout 30000
+      
+      - name: Run tests on ${{ matrix.browser }}
+        run: npx playwright test --project=${{ matrix.browser }} --reporter=line
+
+  # ============================================
+  # Performance Benchmarks
+  # ============================================
+  performance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Build project
+        run: npm run build
+      
+      - name: Analyze bundle size
+        run: |
+          echo "## 📦 Bundle Analysis" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| File | Size |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|------|" >> $GITHUB_STEP_SUMMARY
+          find dist/assets -name "*.js" -o -name "*.css" | while read f; do
+            size=$(stat -c%s "$f")
+            echo "| $(basename $f) | $((size / 1024)) KB |" >> $GITHUB_STEP_SUMMARY
+          done
+      
+      - name: Check bundle size limits
+        run: |
+          JS_SIZE=$(find dist/assets -name "*.js" -exec stat -c%s {} + | awk '{sum+=$1} END {print sum}')
+          LIMIT=$((500 * 1024))  # 500 KB limit
+          if [ $JS_SIZE -gt $LIMIT ]; then
+            echo "⚠️ Bundle size ($JS_SIZE bytes) exceeds limit ($LIMIT bytes)"
+          fi
