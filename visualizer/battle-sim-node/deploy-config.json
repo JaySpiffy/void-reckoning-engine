@@ -1,0 +1,36 @@
+{
+    "serverAlias": "myserver",
+    "hostname": "node712.extrainfra.com",
+    "username": "vtfvhrby",
+    "remoteWebRoot": "/home/vtfvhrby/domains/djmsqrvve.com/public_html/DarwinsIslandReHelixedWeb",
+    "localSiteDir": "dist",
+    "keyPath": "C:/Users/Mike/.ssh/key",
+    "siteUrl": "https://djmsqrvve.com/DarwinsIslandReHelixedWeb",
+    "createBackup": true,
+    "setPermissions": true,
+    "syncStrategy": "incremental",
+    "excludePatterns": [
+        "*.md",
+        ".git/*",
+        ".gitignore",
+        "node_modules/*",
+        "*.log"
+    ],
+    "criticalFiles": [
+        "index.html",
+        "assets/*.js",
+        "assets/*.css"
+    ],
+    "assetDirs": [],
+    "healthCheck": {
+        "url": "https://djmsqrvve.com/DarwinsIslandReHelixedWeb",
+        "expectedStatus": 200
+    },
+    "postDeploy": {
+        "commands": [
+            "echo 'Darwins Island deployed at $(date)' > ~/domains/djmsqrvve.com/public_html/DarwinsIslandReHelixedWeb/last_deploy.txt",
+            "find ~/domains/djmsqrvve.com/public_html/DarwinsIslandReHelixedWeb -type f -exec chmod 644 {} \\;",
+            "find ~/domains/djmsqrvve.com/public_html/DarwinsIslandReHelixedWeb -type d -exec chmod 755 {} \\;"
+        ]
+    }
+}

@@ -1,0 +1,11 @@
+{
+  "backups": [
+    {
+      "version": "0.01",
+      "date": "2026-02-05",
+      "filename": "darwins-island-v0.01.tar.gz",
+      "description": "Final verification backup for testing",
+      "activeFeatures": []
+    }
+  ]
+}

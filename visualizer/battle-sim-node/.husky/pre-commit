@@ -1,0 +1,27 @@
+#!/bin/sh
+#
+# Pre-commit hook - Quick checks before committing
+# 
+
+# Stash unstaged changes
+git stash -q --keep-index
+
+echo "🔍 Quick pre-commit checks..."
+
+# Run lint (skip if no TS files staged)
+STAGED_TS=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(ts|tsx)$' || true)
+if [ -n "$STAGED_TS" ]; then
+    echo "  ⏳ Linting staged files..."
+    echo "$STAGED_TS" | xargs npx eslint --max-warnings=5 || {
+        echo "  ❌ Lint errors found"
+        git stash pop -q
+        exit 1
+    }
+    echo "  ✅ Lint passed"
+fi
+
+# Restore stashed changes
+git stash pop -q
+
+echo "  ✅ Pre-commit complete"
+exit 0
